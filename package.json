@@ -1,12 +1,21 @@
 {
   "name": "gifting-web",
   "version": "1.0.0",
-  "description": "Web application for gifting.",
+  "description": "",
   "main": "server.js",
+  "dependencies": {
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.28.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": "git+ssh://git@bitbucket.org/hipbar-dev/gifting-web.git",
+  "author": "Madhur Garg <madhur@hipbar.com>",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/hipbar-dev/gifting-web#readme"
 }
