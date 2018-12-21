@@ -17,7 +17,7 @@ app.get("*.js", (req, res, next) => {
   next()
 })
 
-app.use("/js", express.static(path.join(__dirname, "dist")))
+app.use("/", express.static(path.join(__dirname, "dist")))
 
 app.get("/", (req, res) => {
   const landingPageHTML = LandingTemplate("Server rendered page")

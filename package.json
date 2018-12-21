@@ -33,7 +33,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "build-client": "webpack --config ./webpack-config/client/webpack.prod.js",
-    "start:dev": "webpack-dev-server --config ./webpack-config/client/webpack.dev.js",
+    "start:dev": "webpack-dev-server --config ./webpack-config/client/webpack.dev.js --history-api-fallback",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

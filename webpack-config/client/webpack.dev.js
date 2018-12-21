@@ -1,11 +1,12 @@
-const merge = require('webpack-merge')
-const common = require('./webpack.common.js')
+const merge = require("webpack-merge")
+const common = require("./webpack.common.js")
+const path = require("path")
 
 module.exports = merge(common, {
-  mode: 'development',
-  devtool: 'inline-source-map',
+  mode: "development",
+  devtool: "inline-source-map",
   devServer: {
-    contentBase: './dist',
+    contentBase: path.resolve(__dirname, "./../../dist"),
     port: 3000,
     compress: true
   },
@@ -13,7 +14,7 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader',
+        loader: "style-loader!css-loader!sass-loader",
         exclude: /node_modules/
       }
     ]
