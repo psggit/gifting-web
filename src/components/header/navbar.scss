@@ -14,12 +14,36 @@
 }
 
 .nav-items {
-    margin-left: 70px;
+    margin-left: calc(70px - 32px);
     display: flex;
     align-items: center;
-
+    cursor: pointer;
     .nav-item {
-        margin-right: 64px;
+        //margin-right: 64px;
+        padding: 0 32px;
+        //opacity: 0.7;
+      
+        &:hover {
+          //font-weight: 600;
+          //opacity: 1;
+          //text-decoration: underline;
+        }
+      
+        &.active {
+          //font-weight: 600;
+          text-decoration: underline;
+        }
+
+        &:last-child {
+            padding: 11px 20px;
+            height: 44px;
+            border-radius: 3px;
+            background-color: #000000;
+            color: #f1f1f1;
+            margin-left: 219px;
+            display: flex;
+            align-items: center;
+        }
     }
 }
 
@@ -47,8 +71,7 @@
     li {
         text-transform: uppercase;
         list-style-type: none;
-        font-family: 'Montserrat', sans-serif;
-        padding: 20px;
+        padding: 20px 0;
         text-align: center;
 
         a {
@@ -57,22 +80,27 @@
             padding: 20px 40px;
             text-decoration: none;
             color: #fff;
-            &.active, &:hover {
-                background-color: #222;
-            }
+        }
+
+        &.active, &:hover {
+            background-color: #222;
         }
     }
-    
+
     &.show {
-        display: block
+        display: block;
+        // right: 0px;
+        // transition: all 0.2s ease-out;
     }
 
     &.hide {
         display: none;
+        // right: -300px;
+        // transition: all 0.2s ease-out;
     }
 }
 
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1290px) {
 
     .navbar {
         padding: 23px 24px;
@@ -83,11 +111,22 @@
       display: none;
     }
   
-    .nav-item:first-child {
-      margin: 12px 0;
+    .nav-item:last-child {
+        background: #d1d2dd;
+        color: #000;
     }
-  
+    
     .navbar-menu {
         display: block;
+    }
+
+    .navbar-mobile {
+        ul {
+            li:last-child {
+                background: #d1d2dd;
+                color: #000;
+                border-radius: 3px;
+            }
+        }
     }
 }

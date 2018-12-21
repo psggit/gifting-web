@@ -8,8 +8,27 @@ class Header extends React.Component {
     this.state = {
       isMenuOpen: false
     }
-    this.navItems = ["Send Gift Cards", "Using Gift Cards", "Retailer Outlets", "Support"]
+    this.navItems = ["Send Gift Cards", "Using Gift Cards", "Retailer Outlets", "Support", "SIGN IN"]
     this.onToggle = this.onToggle.bind(this)
+    this.handleMouseOver = this.handleMouseOver.bind(this)
+    this.handleMouseOut = this.handleMouseOut.bind(this)
+  }
+
+  componentDidMount() {
+    this.links = document.querySelectorAll('.nav-items a')
+  }
+
+  handleMouseOver(e) {
+    this.links.forEach(link => {
+      link.style.opacity = 0.6
+      e.target.style.opacity = 1
+    })
+  }
+
+  handleMouseOut(e) {
+    this.links.forEach(link => {
+      link.style.opacity = 1
+    })
   }
 
   onToggle() {
@@ -37,9 +56,12 @@ class Header extends React.Component {
           </div>  
           <div className="nav-items">
             {
-              this.navItems.map((item) => {
+              this.navItems.map((item, index) => {
                 return (
-                  <a className="nav-item">
+                  <a className="nav-item" key={index}
+                    onMouseOut={this.handleMouseOut}
+                    onMouseOver={this.handleMouseOver}
+                  >
                     {item}
                   </a>
                 )
@@ -49,8 +71,8 @@ class Header extends React.Component {
           <div className="navbar-menu">
             {
               !this.state.isMenuOpen ? 
-                <span onClick={() => this.onToggle()}>{getIcon('logo')}</span>
-                : <span onClick={() => this.onToggle()}>{getIcon('logo')}</span>
+                <span onClick={() => this.onToggle()}>{getIcon('menu')}</span>
+                : <span onClick={() => this.onToggle()}>{getIcon('cross')}</span>
             }
           </div>
           <div className={`navbar-mobile ${this.state.isMenuOpen ? 'show' : 'hide'}`}>

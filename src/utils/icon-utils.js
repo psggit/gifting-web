@@ -18,7 +18,7 @@ export function getIcon(name) {
       )
       case 'menu':
         return (
-          <svg version="1.1" id="Layer_1" x="0px" y="0px"
+          <svg width="32px" height="32px" version="1.1" id="Layer_1" x="0px" y="0px"
               viewBox="0 0 512 512">
             <g>
               <g>
@@ -43,7 +43,7 @@ export function getIcon(name) {
         )
       case 'cross':
         return (
-          <svg version="1.1" id="Capa_1" x="0px" y="0px"
+          <svg width="28px" height="28px" fill="#ffffff" version="1.1" id="Capa_1" x="0px" y="0px"
             viewBox="0 0 47.971 47.971">
             <g>
               <path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88
