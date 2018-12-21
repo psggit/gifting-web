@@ -11,5 +11,11 @@ module.exports = {
       }
     ]
   },
-  plugins: []
+  plugins: [],
+  resolve: {
+    alias: {
+      Components: path.resolve(__dirname, './../src/components'),
+      Utils: path.resolve(__dirname, './../src/utils')
+    }
+  },
 }
