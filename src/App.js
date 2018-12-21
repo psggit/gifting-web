@@ -1,12 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from "root"
+import ReactDOM from "react-dom"
 
 class App extends React.Component {
   render() {
     return (
-      <div>Hello preact</div>
+      <div>Hello</div>
     )
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+export default App
+
+ReactDOM.render(<App />, document.getElementById("root"))
