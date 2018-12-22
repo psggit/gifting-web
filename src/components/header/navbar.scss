@@ -107,6 +107,13 @@
     .navbar {
         padding: 6.5% 7.5%;
         height: 100px;
+
+        .logo {
+            svg {
+                width: 35px;
+                height: 38px;
+            }
+        }
     }
 
     .nav-items {
@@ -120,6 +127,11 @@
     
     .navbar-menu {
         display: block;
+
+        svg {
+            width: 25px;
+            height: 20px;;
+        }
     }
 
     .navbar-mobile {

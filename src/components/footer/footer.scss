@@ -48,6 +48,11 @@
 @media only screen and (max-width: 1152px) {
   .footer {
     padding: 136px 58px;
+
+      svg {
+        width: 47px;
+        height: 50px;
+      }
   }
   .footer-items {
     display: none !important;

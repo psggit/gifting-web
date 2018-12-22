@@ -6,14 +6,21 @@
     text-align: center;
   }
   .content {
-    padding: 0 20.5%;
+    // padding: 0 20.5%;
     position: relative;
-    margin-top: calc(134px + 80px);
-    margin-bottom: 140px;
+    // margin-top: calc(134px + 80px);
+    // margin-bottom: 140px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 1;
+    // padding-top: 214px;
+    // padding-left: 20.5%;
+    // padding-right: 20.5%;
+    // padding-bottom: 140px;
+    padding: 214px 20.5% 140px 20.5%;
+    background: #f1f1f1;
     h4 {
       font-size: 28px;
       letter-spacing: 1.3px;
@@ -39,6 +46,9 @@
 
     .app-btns {
       margin-top: 50px;
+      a {
+        margin-right: 38px;
+      }
     }
 
     .button {
@@ -93,12 +103,22 @@
 @media only screen and (max-width: 720px) {
   #GiftCards {
     .content {
-      padding: 0 7%;
-      margin-bottom: 36px;
+      // margin-top: 0px;
+      // padding: 0 7%;
+      // margin-bottom: 0px;
+      // padding-top: 214px;
+      // padding-left: 7%;
+      // padding-right: 7%;
+      // padding-bottom: 0px;
+      padding: 0px 7% 0px 7%;
     }
     .step-number {
-      margin-top: 23px;
-      margin-bottom: 10px;
+      margin-top: 23px !important;
+      margin-bottom: 10px !important;
+        svg {
+          width: 35px;
+          height: 35px;
+        }
     }
 
     .step-text {
@@ -109,7 +129,14 @@
     }
 
     .app-btns {
-      margin-top: 20px;
+      margin-top: 20px !important;
+        svg {
+          width: 94px;
+          height: 25px;
+        }
+        a {
+          margin-right: 16px !important;
+        }
     }
 
     .button {
