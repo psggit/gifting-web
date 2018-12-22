@@ -1,7 +1,7 @@
 const express = require("express")
 const path = require("path")
 const app = express()
-const template = require("./src/template")
+// const template = require("./src/template")
 
 app.disable("x-powered-by")
 
@@ -18,14 +18,14 @@ app.get("*.js", (req, res, next) => {
 
 app.use("/", express.static(path.join(__dirname, "dist")))
 
-app.get("/", (req, res) => {
-  const landingPageHTML = LandingTemplate("Server rendered page")
-  res.send(landingPageHTML)
-})
+// app.get("/", (req, res) => {
+//   const landingPageHTML = LandingTemplate("Server rendered page")
+//   res.send(landingPageHTML)
+// })
 
 // client side app
-app.get("/client", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist/index..html"), (err) => {
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist/index.html"), (err) => {
     if (err) {
       res.status(500).send(err)
     }
