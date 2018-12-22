@@ -17,9 +17,7 @@ class GiftCards extends React.Component {
         <Header />
         <div className="content">
           <h4>How to use HipBar Gift Cards?</h4>
-          <div className="step-number">
-            1
-          </div>
+         <span className="step-number">{ getIcon('step-one') }</span>
           <div className="step-text">
             <h2>Gift Drinks with HipBar Gifting</h2>
             <span>
@@ -28,10 +26,7 @@ class GiftCards extends React.Component {
               you are good to go!
             </span>
           </div>
-
-          <div className="step-number">
-            2
-          </div>
+          <span className="step-number">{ getIcon('step-two') }</span>
           <div className="step-text">
             <h2>Recipient gets notified via SMS & Whatsapp!</h2>
             <span>
@@ -42,9 +37,7 @@ class GiftCards extends React.Component {
             </span>
           </div>
 
-          <div className="step-number">
-            3
-          </div>
+          <span className="step-number">{ getIcon('step-three') }</span>
           <div className="step-text">
             <h2>Recipient downloads the HipBar app</h2>
             <span>
@@ -60,9 +53,7 @@ class GiftCards extends React.Component {
             <a target="_blank" href="https://play.google.com/store/apps/details?id=in.hipbar.hipbar_user_app&hl=en_IN">{getIcon('google-store')}</a>
           </div>
 
-          <div className="step-number">
-            4
-          </div>
+          <span className="step-number">{ getIcon('step-four') }</span>
           <div className="step-text">
             <h2>Get drinks with HipBar Gift Card at Retail Outlets*</h2>
             <span>
@@ -75,18 +66,6 @@ class GiftCards extends React.Component {
           <div className="button">
             <p>VIEW RETAIL OUTLETS</p>
             <span>{getIcon('white-arrow')}</span>
-          </div>
-        </div>
-        <div className="start-gifting">
-          <h4>
-            Get 50%* off on your first HipBar Gift Card!
-          </h4>
-          <div className="note">
-            Gift drinks to your friends & family this festive season with HipBar Gift Cards!
-          </div>
-          <div className="button">
-            <p>VIEW RETAIL OUTLETS</p>
-            <span>{getIcon('black-arrow')}</span>
           </div>
         </div>
         <Footer />

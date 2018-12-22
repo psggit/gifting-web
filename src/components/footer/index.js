@@ -11,7 +11,7 @@ class footer extends React.Component {
   render() {
     return(
       <div className="footer">
-        <span className="logo">{getIcon('logo')}</span>
+        <span className="logo">{getIcon('bottom-logo')}</span>
         <div className="title">HipBar</div>
         <span className="copyright-text">Copyright 2018 | All Right Reserved.</span>
         <div className="footer-items">

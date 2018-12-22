@@ -41,7 +41,7 @@ class Header extends React.Component {
       <div className="navbar">
         <div className="logo">
           <a>
-            <span>{getIcon('logo')}</span>
+            <span>{getIcon('top-logo')}</span>
           </a>
         </div>
 
