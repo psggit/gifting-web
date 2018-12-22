@@ -6,29 +6,29 @@
   .intro-wrapper {
     background-color: #f1f1f1;
     padding: 5.6%;
-  }
 
-  .cm.s1 {
-    color: $black;
-    letter-spacing: 1.4px;
-    margin-bottom: 20px;
-  }
-
-  .os.s2 {
-    color: $grey;
-    line-height: 1.43;
-    letter-spacing: 0.7px;
-  }
-
-  .os.s7 {
-    letter-spacing: 0.5px;
-    margin-top: 10px;
-    color: $grey;
-  }
-
-  .cm.s2 {
-    margin-top: 80px;
-    text-align: center;
+    .cm.s1 {
+      color: $black;
+      letter-spacing: 1.4px;
+      margin-bottom: 20px;
+    }
+  
+    .os.s2 {
+      color: $grey;
+      line-height: 1.43;
+      letter-spacing: 0.7px;
+    }
+  
+    .os.s7 {
+      letter-spacing: 0.5px;
+      margin-top: 10px;
+      color: $grey;
+    }
+  
+    .cm.s2 {
+      margin-top: 80px;
+      text-align: center;
+    }
   }
 
    .intro-container {
@@ -40,8 +40,69 @@
     text-align: right;
   }
 
-  .col {
+  .intro-container .col {
     width: calc((100% - 6.5%)/2);
+  }
+
+  .brands {
+    padding: 30px;
+    background-color: #e0e0e0;
+  }
+
+  .brands-heading {
+    color: $grey;
+    letter-spacing: 0.8px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .brands-list {
+    margin: 40px auto 40px auto;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .what-is-hipbar {
+    background-color: #f1f1f1;
+    padding: 8% 18.6%;
+    h1 {
+      text-align: center;
+      color: $black;
+      letter-spacing: 1.3px;
+    }
+    p {
+      margin-top: 20px;
+      text-align: center;
+      color: $grey;
+      line-height: 1.79;
+      letter-spacing: 0.7px;
+    }
+  }
+
+  .our-presence {
+    padding: 30px;
+    background-color: #e0e0e0;
+    .presence-counts {
+      display: flex;
+      justify-content: space-between;
+      max-width: 800px;
+      margin: 40px auto 0 auto;
+    }
+    .presence-item {
+      h1 {
+        color: $grey;
+        letter-spacing: 1.5;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .how-to-use {
+    background-color: #f1f1f1;
+    padding: 8% 18.6%;
+    background-color: #f1f1f1;
   }
 }
 

@@ -36,6 +36,12 @@ $font-Cormorant: "Cormorant Garamond", serif;
 
 .os {
   font-family: $font-OpenSans;
+  &.s0 {
+    font-size: 42px;
+  }
+  &.s1 {
+    font-size: 24px;
+  }
   &.s2 {
     font-size: 20px;
   }
