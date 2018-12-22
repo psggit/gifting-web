@@ -1,41 +1,78 @@
-// body font size
-$browser-context: 16;
+// // body font size
+// $browser-context: 16;
 
-// unitless function to convert px to em
-@function em($pixels, $context: $browser-context) {
-  @if (unitless($pixels)) {
-    $pixels: $pixels * 1px;
+// // unitless function to convert px to em
+// @function em($pixels, $context: $browser-context) {
+//   @if (unitless($pixels)) {
+//     $pixels: $pixels * 1px;
+//   }
+//   @if (unitless($context)) {
+//     $context: $context * 1px;
+//   }
+//   @return $pixels / $context * 1rem;
+// }
+
+
+/* Texts  */
+/* cm - Cormorant Garamond */
+/* os - Open Sans */
+
+.cm {
+  font-family: 'Cormorant Garamond', serif;
+  &.s1 {
+    font-size: 36px;
   }
-  @if (unitless($context)) {
-    $context: $context * 1px;
+
+  &.s2 {
+    font-size: 24px;
   }
-  @return $pixels / $context * 1em;
 }
 
-html {
-  font-size: em(16);
-}
 
 @media only screen and (max-width: 970px) {
-  html {
-    font-size: em(14);
+  .cm {
+    &.s1 {
+      font-size: 28px;
+    }
+
+    &.s2 {
+      font-size: 22px;
+    }
   }
 }
 
 @media only screen and (max-width: 930px) {
-  html {
-    font-size: em(12);
+  .cm {
+    &.s1 {
+      font-size: 26px;
+    }
+
+    &.s2 {
+      font-size: 20px;
+    }
   }
 }
 
 @media only screen and (max-width: 480px) {
-  html {
-    font-size: em(11);
+  .cm {
+    &.s1 {
+      font-size: 20px;
+    }
+
+    &.s2 {
+      font-size: 16px;
+    }
   }
 }
 
 @media only screen and (max-width: 360px) {
-  html {
-    font-size: em(10);
+  .cm {
+    &.s1 {
+      font-size: 18px;
+    }
+
+    &.s2 {
+      font-size: 14px;
+    }
   }
 }

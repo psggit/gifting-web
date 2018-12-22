@@ -9,12 +9,12 @@ const LandingPage = () => (
     <div className="intro-wrapper">
       <div className="intro-container">
         <div className="col">
-          <h2 className="heading-xl">
+          <h2 className="cm s1">
           Gift drinks to your friends
           with HipBar Gifting!
           </h2>
 
-          <p className="para-l">
+          <p className="cm s2">
           With HipBar Gift Cards, gift drinks to your friends & family this festive season! Redeem drinks at 50+ retailers across Bengaluru!
           </p>
 

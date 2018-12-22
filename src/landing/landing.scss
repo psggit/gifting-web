@@ -11,16 +11,14 @@
    .intro-container {
     display: flex;
     justify-content: space-between;
-    .heading-xl {
+    .cm.s1 {
       color: $black;
-      font-size: em(36);
       letter-spacing: 1.4px;
       margin-bottom: 20px;
     }
 
-    .para-l {
+    .cm.s2 {
       color: $grey;
-      font-size: em(24);
       line-height: 1.43;
       letter-spacing: 0.7px;
     }
