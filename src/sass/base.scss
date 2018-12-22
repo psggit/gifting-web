@@ -12,19 +12,35 @@
 //   @return $pixels / $context * 1rem;
 // }
 
+/* Font families */
+
+$font-OpenSans: "Open Sans", sans-serif;
+$font-Montserrat: "Montserrat", sans-serif;
+$font-Cormorant: "Cormorant Garamond", serif;
+
 
 /* Texts  */
 /* cm - Cormorant Garamond */
 /* os - Open Sans */
 
 .cm {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: $font-Cormorant;
   &.s1 {
     font-size: 36px;
   }
 
   &.s2 {
-    font-size: 24px;
+    font-size: 28px;
+  }
+}
+
+.os {
+  font-family: $font-OpenSans;
+  &.s2 {
+    font-size: 20px;
+  }
+  &.s7 {
+    font-size: 14px;
   }
 }
 
