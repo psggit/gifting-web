@@ -8,6 +8,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Header />
+        <div></div>
         <Footer />
       </React.Fragment>
     )
