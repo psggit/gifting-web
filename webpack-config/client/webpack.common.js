@@ -28,7 +28,8 @@ module.exports = {
       react: "preact-compat",
       "react-dom": "preact-compat",
       Components: path.resolve(__dirname, './../../src/components'),
-      Utils: path.resolve(__dirname, './../../src/utils')
+      Utils: path.resolve(__dirname, './../../src/utils'),
+      Images: path.resolve(__dirname, './../../src/images')
     }
   },
   module: {

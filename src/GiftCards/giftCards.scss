@@ -1,0 +1,99 @@
+#GiftCards {
+  width: 100%;
+  height: 100vh;
+  h4, h2 {
+    font-family: CormorantGaramond;
+  }
+  .content {
+    padding: 0 294px;
+    position: relative;
+    margin-top: calc(134px + 80px);
+    margin-bottom: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h4 {
+      font-size: 28px;
+      letter-spacing: 1.3px;
+    }
+    .step-number {
+      border-radius: 50%;
+      border: 4px solid #555555;
+      width: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 80px;
+      margin-bottom: 36px;
+      height: 90px;
+      width: 90px;
+      color: #555555;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    .step-text {
+      text-align: center;
+      h2 {
+        letter-spacing: 1px;
+      }
+      span {
+        padding: 31px 0px;
+        width: calc(567px - 62px); 
+        line-height: 1.38;
+        letter-spacing: 0.7px;
+        text-align: center;
+        color: #555555;
+      }
+    }
+
+    .app-btns {
+      margin-top: 50px;
+    }
+
+    .button {
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      padding: 23px 36px;
+      color: #fff;
+    }
+  }
+  .start-gifting {
+    padding: 60px 310px;
+    width: 100%;
+    background: #000;
+    color: #d1d2dd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h4 {
+      //color: #d1d2dd;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .note {
+      margin-top: 12px;
+    }
+
+    .button {
+      background: #d1d2dd;
+      padding: 23px 36px;
+      color: #000;
+    }
+  }
+
+  .button {
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 348px;
+    margin-top: 54px;
+  }
+}

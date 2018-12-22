@@ -38,60 +38,58 @@ class Header extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <div className="navbar">
-          <div className="logo">
-            <a>
-              <span>{getIcon('logo')}</span>
-            </a>
-          </div>
+      <div className="navbar">
+        <div className="logo">
+          <a>
+            <span>{getIcon('logo')}</span>
+          </a>
+        </div>
 
-          <div className="title">
-            <p style={{ marginBottom: '6px' }}>
-                Hipbar
-            </p>
-            <p>
-                Gifting
-            </p>
-          </div>  
-          <div className="nav-items">
+        <div className="title">
+          <p style={{ marginBottom: '6px' }}>
+              Hipbar
+          </p>
+          <p>
+              Gifting
+          </p>
+        </div>  
+        <div className="nav-items">
+          {
+            this.navItems.map((item, index) => {
+              return (
+                <a className="nav-item" key={index}
+                  onMouseOut={this.handleMouseOut}
+                  onMouseOver={this.handleMouseOver}
+                >
+                  {item}
+                </a>
+              )
+            })
+          }
+        </div>
+        <div className="navbar-menu">
+          {
+            !this.state.isMenuOpen ? 
+              <span onClick={() => this.onToggle()}>{getIcon('menu')}</span>
+              : <span onClick={() => this.onToggle()}>{getIcon('cross')}</span>
+          }
+        </div>
+        <div className={`navbar-mobile ${this.state.isMenuOpen ? 'show' : 'hide'}`}>
+          <ul>
             {
               this.navItems.map((item, index) => {
                 return (
-                  <a className="nav-item" key={index}
-                    onMouseOut={this.handleMouseOut}
-                    onMouseOver={this.handleMouseOver}
-                  >
-                    {item}
-                  </a>
+                  <li key={index}>
+                    <a>
+                      {item}
+                    </a>
+                  </li>
                 )
               })
             }
-          </div>
-          <div className="navbar-menu">
-            {
-              !this.state.isMenuOpen ? 
-                <span onClick={() => this.onToggle()}>{getIcon('menu')}</span>
-                : <span onClick={() => this.onToggle()}>{getIcon('cross')}</span>
-            }
-          </div>
-          <div className={`navbar-mobile ${this.state.isMenuOpen ? 'show' : 'hide'}`}>
-            <ul>
-              {
-                this.navItems.map((item, index) => {
-                  return (
-                    <li key={index}>
-                      <a>
-                        {item}
-                      </a>
-                    </li>
-                  )
-                })
-              }
-            </ul>
-          </div>
+          </ul>
         </div>
-      </React.Fragment>
+      </div>
     )
   }
 }

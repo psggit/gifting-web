@@ -1,16 +1,11 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import Header from "Components/header"
-import Footer from "Components/footer"
+import GiftCards from './GiftCards/index'
 
 class App extends React.Component {
   render() {
     return (
-      <React.Fragment>
-        <Header />
-        <div></div>
-        <Footer />
-      </React.Fragment>
+      <GiftCards />
     )
   }
 }
