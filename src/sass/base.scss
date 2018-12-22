@@ -1,0 +1,41 @@
+// body font size
+$browser-context: 16;
+
+// unitless function to convert px to em
+@function em($pixels, $context: $browser-context) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return $pixels / $context * 1em;
+}
+
+html {
+  font-size: em(16);
+}
+
+@media only screen and (max-width: 970px) {
+  html {
+    font-size: em(14);
+  }
+}
+
+@media only screen and (max-width: 930px) {
+  html {
+    font-size: em(12);
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  html {
+    font-size: em(11);
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  html {
+    font-size: em(10);
+  }
+}

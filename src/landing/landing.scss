@@ -1,0 +1,54 @@
+@import "./../sass/colors.scss";
+@import "./../sass/base.scss";
+
+#landing {
+  margin-top: 100px;
+  .intro-wrapper {
+    background-color: #f1f1f1;
+    padding: 5.6%;
+  }
+
+   .intro-container {
+    display: flex;
+    justify-content: space-between;
+    .heading-xl {
+      color: $black;
+      font-size: em(36);
+      letter-spacing: 1.4px;
+      margin-bottom: 20px;
+    }
+
+    .para-l {
+      color: $grey;
+      font-size: em(24);
+      line-height: 1.43;
+      letter-spacing: 0.7px;
+    }
+  }
+
+  .intro-container .col:last-child {
+    text-align: right;
+  }
+
+  .col {
+    width: calc((100% - 6.5%)/2);
+  }
+}
+
+@media only screen and (max-width: 930px) {
+  #landing {
+    .intro-container {
+      justify-content: center;
+      flex-direction: column-reverse;
+    }
+
+    .intro-container .col {
+      width: 100%;
+    }
+
+    .intro-container .col:last-child {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+  }
+}

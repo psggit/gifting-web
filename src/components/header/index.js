@@ -19,7 +19,7 @@ class Header extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+     <div>
         <div className="navbar">
           <div className="logo">
             <a>
@@ -49,8 +49,8 @@ class Header extends React.Component {
           <div className="navbar-menu">
             {
               !this.state.isMenuOpen ? 
-                <span onClick={() => this.onToggle()}>{getIcon('logo')}</span>
-                : <span onClick={() => this.onToggle()}>{getIcon('logo')}</span>
+                <span onClick={() => this.onToggle()}>{getIcon('menu')}</span>
+                : <span onClick={() => this.onToggle()}>{getIcon('cross')}</span>
             }
           </div>
           <div className={`navbar-mobile ${this.state.isMenuOpen ? 'show' : 'hide'}`}>
@@ -69,7 +69,7 @@ class Header extends React.Component {
             </ul>
           </div>
         </div>
-      </React.Fragment>
+     </div>
     )
   }
 }

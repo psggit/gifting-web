@@ -1,8 +1,7 @@
 const express = require("express")
 const path = require("path")
 const app = express()
-const LandingTemplate = require("./src/landing")
-const UsingGiftCardsTemplate = require("./src/using-gift-cards")
+const template = require("./src/template")
 
 app.disable("x-powered-by")
 

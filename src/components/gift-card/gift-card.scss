@@ -1,0 +1,126 @@
+.gift-card {
+  position: relative;
+  width: 400px;
+  max-width: 100%;
+  height: 240px;
+  padding: 30px 30px 40px 30px;
+  display: inline-block;
+  background-color: #000;
+  border-radius: 12px;
+  box-shadow: 1px 2px 80px 30px rgba(86, 86, 86, 0.3);
+  font-family: 'Montserrat', sans-serif;
+
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    p {
+      margin-left: 10px;
+      line-height: 1.5;
+      color: #d1d2dd;
+      &:first-child {
+        font-weight: 600;
+        font-size: 20px;
+      }
+      &:last-child {
+        font-size: 22px;
+        font-weight: 300;
+      }
+    }
+    text-align: left;
+  }
+
+  .price {
+    text-align: left;
+    margin-top: 40px;
+    color: #d1d2dd;
+    span:first-child {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 36px;
+      font-weight: 300;
+      margin-right: 15px;
+    }
+
+    span:last-child {
+      font-size: 62px;
+      font-weight: 200;
+    }
+  }
+
+  .gift-logo {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .gift-card {
+    max-width: 90%;
+    height: 210px;
+    .price {
+      margin-top: 30px;
+      span:last-child {
+        font-size: 48px;
+      }
+    }
+
+    .logo-wrapper {
+      svg {
+        width: 48px;
+      }
+      p {
+        &:first-child {
+          font-size: 16px;
+        }
+        &:last-child {
+          font-size: 18px;
+        }
+      }
+    }
+
+    .gift-logo {
+      svg {
+        height: 100px;
+        width: 90px;
+        margin-right: -10px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .gift-card {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .gift-card {
+    max-width: 100%;
+    height: 190px;
+
+    .logo-wrapper {
+      svg {
+        width: 42px;
+      }
+      p {
+        &:first-child {
+          font-size: 14px;
+        }
+        &:last-child {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .price {
+      span:first-child {
+        font-size: 24px;
+      }
+      span:last-child {
+        font-size: 36px;
+      }
+    }
+  }
+}
