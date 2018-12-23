@@ -11,7 +11,7 @@ import { Router } from "react-router"
 import CreateHistory from 'history/createBrowserHistory'
 
 import LandingPage from "./landing"
-import UsingGiftCard from './GiftCards'
+import UsingGiftCard from './GiftCardInfo'
 
 const history = CreateHistory()
 

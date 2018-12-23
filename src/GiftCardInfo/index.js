@@ -1,5 +1,5 @@
 import React from 'react'
-import './giftCards.scss'
+import './gift-card-info.scss'
 import Icon from "Components/icon"
 
 class GiftCards extends React.Component {

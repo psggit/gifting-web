@@ -15,7 +15,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
-    padding: 15% 20.5% 2% 20.5%;
+    padding: 15% 20.5% 8% 20.5%;
     background: #f1f1f1;
     h4 {
       font-size: 28px;
@@ -51,23 +51,32 @@
         margin-right: 7.5%;
       }
     }
+  }
 
-    .button {
-      background: #000;
-      display: flex;
-      // align-items: center;
-      justify-content: space-evenly;
-      padding: 23px 36px;
-      color: #fff;
-      width: 348px;
-      svg {
-        color: #000;
-      }
+  .button {
+    background: #000;
+    display: flex;
+    // align-items: center;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding: 23px 36px;
+    color: #fff;
+    width: 348px;
+    font-weight: bold;
+    cursor: pointer;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-evenly;
+    // width: 44%;
+    // margin-top: 54px;
+    margin-top: 10%;
+    svg {
+      color: #000;
     }
   }
   .start-gifting {
     //padding: 60px 22%;
-    padding: 11% 22%;
+    padding: 5% 10%;
     width: 100%;
     background: #000;
     color: #d1d2dd;
@@ -88,26 +97,31 @@
 
     .button {
       background: #d1d2dd;
-      padding: 23px 36px;
+      //padding: 23px 36px;
       color: #000;
-      width: 278px;
-
-      svg {
-        color: #fff;
-      }
     }
+    // .button {
+    //   background: #d1d2dd;
+    //   padding: 23px 36px;
+    //   color: #000;
+    //   width: 278px;
+
+    //   svg {
+    //     color: #fff;
+    //   }
+    // }
   }
 
-  .button {
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    // align-items: center;
-    justify-content: space-evenly;
-    // width: 44%;
-    // margin-top: 54px;
-    margin-top: 10%;
-  }
+  // .button {
+  //   font-weight: bold;
+  //   cursor: pointer;
+  //   display: flex;
+  //   // align-items: center;
+  //   justify-content: space-evenly;
+  //   // width: 44%;
+  //   // margin-top: 54px;
+  //   margin-top: 10%;
+  // }
 }
 
 @media only screen and (max-width: 720px) {
@@ -116,7 +130,7 @@
       // margin-top: 0px;
       // padding: 0 7%;
       // margin-bottom: 0px;
-      padding: 130px 7% 0px 7%;
+      padding: 130px 7% 12% 7%;
     }
     .step-number {
       margin-top: 23px !important;
@@ -152,12 +166,15 @@
         width: 183px !important;
         padding: 9px 18px !important;
         font-size: 10px !important;
+        svg {
+          height: 13px;
+        }
     }
 
-    .start-gifting {
-      .button {
-        width: 144px;
-      }
-    }
+    // .start-gifting {
+    //   .button {
+    //     width: 144px;
+    //   }
+    // }
   }
 }

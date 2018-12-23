@@ -128,7 +128,7 @@ export default {
     </svg>
   ),
   rightArrowBlack: (
-    <svg width="26px" height="19px" viewBox="0 0 26 19" version="1.1">
+    <svg width="18px" height="19px" viewBox="0 0 26 19" version="1.1">
         <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g id="01a-Gifitng-Website---V0.7---Home-Page" transform="translate(-797.000000, -4820.000000)" fill="#000000" fill-rule="nonzero">
                 <g id="BigGifting-Section" transform="translate(0.000000, 4545.000000)">
@@ -147,7 +147,7 @@ export default {
     </svg>
   ),
   rightArrowWhite: (
-    <svg width="18px" height="14px" viewBox="0 0 18 14" version="1.1">
+    <svg width="18px" height="19px" viewBox="0 0 18 14" version="1.1">
         <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g id="Sign-in/Sign-Up" transform="translate(-390.000000, -334.000000)" fill="#D1D2DD" fill-rule="nonzero">
                 <g id="Content" transform="translate(56.000000, 64.000000)">
