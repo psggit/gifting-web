@@ -4,7 +4,7 @@
   bottom: 0;
   //position: fixed;
   //top: 100px;
-  padding: 10% 21%;
+  padding: 5% 21%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,6 +14,10 @@
   .logo {
     margin-bottom: 2%;
     // margin-bottom: 10px;
+    svg {
+      width: 82px;
+      height: 87px;
+    }
   }
 
   .title {
@@ -50,11 +54,15 @@
   .footer {
     //padding: 136px 58px;
     padding: 8% 8%;
+    .logo {
       svg {
         width: 47px;
         height: 50px;
       }
+    }
   }
+
+  
   .footer-items {
     display: none !important;
   }

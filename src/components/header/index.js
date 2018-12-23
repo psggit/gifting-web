@@ -1,6 +1,7 @@
 import React from 'react'
 import { getIcon } from 'Utils/icon-utils';
 import './navbar.scss'
+import Icon from "Components/icon"
 
 class Header extends React.Component {
   constructor() {
@@ -41,7 +42,7 @@ class Header extends React.Component {
       <div className="navbar">
         <div className="logo">
           <a>
-            <span>{getIcon('top-logo')}</span>
+            <Icon name="hipbarLogo" />
           </a>
         </div>
 
@@ -70,8 +71,8 @@ class Header extends React.Component {
         <div className="navbar-menu">
           {
             !this.state.isMenuOpen ? 
-              <span onClick={() => this.onToggle()}>{getIcon('menu')}</span>
-              : <span onClick={() => this.onToggle()}>{getIcon('cross')}</span>
+              <span onClick={() => this.onToggle()}><Icon name="menu" /></span>
+              : <span onClick={() => this.onToggle()}><Icon name="cross" /></span>
           }
         </div>
         <div className={`navbar-mobile ${this.state.isMenuOpen ? 'show' : 'hide'}`}>

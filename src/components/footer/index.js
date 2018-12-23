@@ -1,6 +1,6 @@
 import React from 'react'
 import './footer.scss'
-import { getIcon } from 'Utils/icon-utils'
+import Icon from "Components/icon"
 
 class footer extends React.Component {
   constructor(props) {
@@ -11,7 +11,9 @@ class footer extends React.Component {
   render() {
     return(
       <div className="footer">
-        <span className="logo">{getIcon('bottom-logo')}</span>
+        <span className="logo">
+          <Icon name="hipbarLogo" />
+        </span>
         <div className="title">HipBar</div>
         <span className="copyright-text">Copyright 2018 | All Right Reserved.</span>
         <div className="footer-items">

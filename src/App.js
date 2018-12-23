@@ -26,7 +26,7 @@ class App extends React.Component {
             <Route exact path="/using-gift-card" component={UsingGiftCard} />
           </Switch>
         </Router>
-      
+        <Footer />
       </div>
     )
   }
