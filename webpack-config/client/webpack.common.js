@@ -1,6 +1,8 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CleanWebpackPlugin = require("clean-webpack-plugin")
+const CompressionPlugin = require("compression-webpack-plugin")
+const BrotliPlugin = require("brotli-webpack-plugin")
   
 module.exports = {
   entry: {
@@ -15,7 +17,21 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "Output Management",
       template: path.resolve(__dirname, "./../../index.html")
-    })
+    }),
+    new CompressionPlugin({  
+      test: /\.js$|\.css$|\.html$/,
+      filename: "[path].gz[query]",
+      exclude: /node_modules/,
+      algorithm: "gzip",
+      threshold: 10240,
+      minRatio: 0.8
+    }),
+    new BrotliPlugin({
+			asset: '[path].br[query]',
+			test: /\.(js|css|html|svg)$/,
+			threshold: 10240,
+			minRatio: 0.8
+		})
   ],
   output: {
     filename: "[name].[chunkhash].js",
