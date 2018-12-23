@@ -1,9 +1,6 @@
 import React from 'react'
 import './giftCards.scss'
 import Icon from "Components/icon"
-//import { getIcon } from 'Utils/icon-utils'
-//import googlePlayBtn from 'Images/PlayStore.svg'
-//import appStoreBtn from 'Images/app-store.svg'
 
 class GiftCards extends React.Component {
   constructor(props) {
@@ -15,7 +12,7 @@ class GiftCards extends React.Component {
       <div id="GiftCards">
         <div className="content">
           <h4>How to use HipBar Gift Cards?</h4>
-         <span className="step-number"><Icon name="stepOne" /></span>
+          <span className="step-number"><Icon name="stepOne" /></span>
           <div className="step-text">
             <h2>Gift Drinks with HipBar Gifting</h2>
             <span>
