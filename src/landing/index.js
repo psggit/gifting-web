@@ -31,7 +31,7 @@ class LandingPage extends React.Component {
               </p>
 
               <div style={{ marginTop: "30px", }}>
-                <Button primary icon="rightArrow">Start Gifting!</Button>
+                <Button primary icon="rightArrowWhite">Start Gifting!</Button>
               </div>
               <p className="os s7">
                 Currently in Bengaluru <br />

@@ -11,11 +11,11 @@ class GiftCards extends React.Component {
     return(
       <div id="GiftCards">
         <div className="content">
-          <h4>How to use HipBar Gift Cards?</h4>
+          <h2 className="cm s1">How to use HipBar Gift Cards?</h2>
           <span className="step-number"><Icon name="stepOne" /></span>
           <div className="step-text">
-            <h2>Gift Drinks with HipBar Gifting</h2>
-            <span>
+            <h2 className="cm s2">Gift Drinks with HipBar Gifting</h2>
+            <span className="os s2">
               Enter the amount to gift, the recipients
               information, pay for the gift card and
               you are good to go!
@@ -23,8 +23,8 @@ class GiftCards extends React.Component {
           </div>
           <span className="step-number"><Icon name="stepTwo" /></span>
           <div className="step-text">
-            <h2>Recipient gets notified via SMS & Whatsapp!</h2>
-            <span>
+            <h2 className="cm s2">Recipient gets notified via SMS & Whatsapp!</h2>
+            <span className="os s2">
               With further information on how to use the 
               gift cards, they have to download the 
               HipBar app to use their
@@ -34,8 +34,8 @@ class GiftCards extends React.Component {
 
           <span className="step-number"><Icon name="stepThree" /></span>
           <div className="step-text">
-            <h2>Recipient downloads the HipBar app</h2>
-            <span>
+            <h2 className="cm s2">Recipient downloads the HipBar app</h2>
+            <span className="os s2">
               With the HipBar app, they can easily
               view their Gift Cards and redeem them it at 
               50+ HipBar powered retail outlets in
@@ -54,8 +54,8 @@ class GiftCards extends React.Component {
 
           <span className="step-number"><Icon name="stepFour" /></span>
           <div className="step-text">
-            <h2>Get drinks with HipBar Gift Card at Retail Outlets*</h2>
-            <span>
+            <h2 className="cm s2">Get drinks with HipBar Gift Card at Retail Outlets*</h2>
+            <span className="os s2">
               Recipient pays for drinks with their HipBar
               Gift Card at select 50+ retail outlets across
               Bengaluru
@@ -68,10 +68,10 @@ class GiftCards extends React.Component {
           </div>
         </div>
         <div className="start-gifting">
-          <h4>
+          <h2 className="cm s1">
             Get 50%* off on your first HipBar Gift Card!
-          </h4>
-          <div className="note">
+          </h2>
+          <div className="note os s2">
             Gift drinks to your friends & family this festive season with HipBar Gift Cards!
           </div>
           <div className="button">
