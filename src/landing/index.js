@@ -79,23 +79,64 @@ const LandingPage = () => (
       <div className="presence-counts">
         <div className="presence-item">
           <h1 className="os s0">10+</h1>
-          <h1 className="os s1">Cities across India</h1>
+          <h1 className="brands-heading os s1">Cities across India</h1>
         </div>
 
         <div className="presence-item">
-          <h1 className="os s0">10+</h1>
-          <h1 className="os s1">Cities across India</h1>
+          <h1 className="os s0">100+</h1>
+          <h1 className="brands-heading os s1">Retail outlets</h1>
         </div>
 
         <div className="presence-item">
-          <h1 className="os s0">10+</h1>
-          <h1 className="os s1">Cities across India</h1>
+          <h1 className="os s0">60+</h1>
+          <h1 className="brands-heading os s1">Brands</h1>
         </div>
       </div>
     </div>
 
     <div className="how-to-use">
+      <h1 className="cm s1">How to use HipBar Gift Cards?</h1>
+      <div className="item">
+        <Icon name="stepOne" />
+        <h2 className="cm s2">Gift drinks with HipBar Gifting</h2>
+        <p className="os s3">
+        Enter the amount to gift, the recipient’s<br/>
+        information, pay for the gift card and <br/>
+        you’re good to go!
+        </p>
+      </div>
 
+
+      <div className="item">
+        <Icon name="stepTwo" />
+        <h2 className="cm s2">Recipient gets notified via SMS & Whatsapp!</h2>
+        <p className="os s3">
+        With further information on how to use the<br/> gift cards, they have to download the<br/> HipBar app to use their<br/>
+HipBar Gift Card.
+        </p>
+      </div>
+
+      <div className="item">
+        <Icon name="stepThree" />
+        <h2 className="cm s2">Recipient downloads the HipBar app</h2>
+        <p className="os s3">
+        With the HipBar app, they can easily<br/> view their Gift Cards and redeem it at<br/>
+50+ HipBar powered retail outlets in<br/> Bengaluru
+        </p>
+      </div>
+
+      <div className="item">
+        <Icon name="stepFour" />
+        <h2 className="cm s2">Gets drinks with HipBar Gift Card at Retail Outlets*</h2>
+        <p className="os s3">
+        Recipient pays for drinks with their HipBar<br/> Gift Card at select 50+ retail outlets across<br/>
+Bengaluru
+        </p>
+      </div>
+
+      <div style={{ marginTop: "20px" }}>
+        <Button primary>View Retail Outlets</Button>
+      </div>
     </div>
 
   </div>

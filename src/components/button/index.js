@@ -12,6 +12,10 @@ class Button extends React.Component {
       className = "btn-danger"
     }
 
+    if (this.props.size === "small") {
+      className += " small"
+    }
+
     return className
   }
 

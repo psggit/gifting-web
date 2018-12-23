@@ -2,6 +2,7 @@ import React from 'react'
 //import { getIcon } from 'Utils/icon-utils';
 import './navbar.scss'
 import Icon from "Components/icon"
+import Button from "Components/button"
 
 class Header extends React.Component {
   constructor() {
@@ -9,7 +10,7 @@ class Header extends React.Component {
     this.state = {
       isMenuOpen: false
     }
-    this.navItems = ["Send Gift Cards", "Using Gift Cards", "Retailer Outlets", "Support", "SIGN IN"]
+    this.navItems = ["Send Gift Cards", "Using Gift Cards", "Retailer Outlets", "Support"]
     this.onToggle = this.onToggle.bind(this)
     this.handleMouseOver = this.handleMouseOver.bind(this)
     this.handleMouseOut = this.handleMouseOut.bind(this)
@@ -67,6 +68,7 @@ class Header extends React.Component {
               )
             })
           }
+          <Button primary size="small">Sign in</Button>
         </div>
         <div className="navbar-menu">
           {
@@ -78,16 +80,13 @@ class Header extends React.Component {
         <div className={`navbar-mobile ${this.state.isMenuOpen ? 'show' : 'hide'}`}>
           <ul>
             {
-              this.navItems.map((item, index) => {
-               
-                return index !== this.navItems.length - 1 
-                  ? <li key={index}>
-                      <a>
-                        {item}
-                      </a>
-                    </li>
-                  : <div> SIGN IN </div>
-              })
+              this.navItems.map((item, index) => (
+                <li key={index}>
+                  <a href="/">
+                    {item}
+                  </a>
+                </li>
+              ))
             }
           </ul>
         </div>
