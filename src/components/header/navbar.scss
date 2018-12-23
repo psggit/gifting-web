@@ -47,16 +47,18 @@
           text-decoration: underline;
         }
 
-        &:last-child {
-            padding: 11px 20px;
-            height: 44px;
-            border-radius: 3px;
-            background-color: #000000;
-            color: #f1f1f1;
-            margin-left: 219px;
-            display: flex;
-            align-items: center;
-        }
+       
+    }
+
+    div {
+        padding: 11px 20px;
+        height: 44px;
+        border-radius: 3px;
+        background-color: #000000;
+        color: #f1f1f1;
+        margin-left: 219px;
+        display: flex;
+        align-items: center;
     }
 }
 

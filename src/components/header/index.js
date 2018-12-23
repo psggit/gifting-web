@@ -2,6 +2,8 @@ import React from 'react'
 //import { getIcon } from 'Utils/icon-utils';
 import './navbar.scss'
 import Icon from "Components/icon"
+import { mountModal } from 'Components/modal-box/utils'
+import SignIn from './../../SignIn'
 
 class Header extends React.Component {
   constructor() {
@@ -13,10 +15,15 @@ class Header extends React.Component {
     this.onToggle = this.onToggle.bind(this)
     this.handleMouseOver = this.handleMouseOver.bind(this)
     this.handleMouseOut = this.handleMouseOut.bind(this)
+    this.mountSignInModal = this.mountSignInModal.bind(this)
   }
 
   componentDidMount() {
     this.links = document.querySelectorAll('.nav-items a')
+  }
+
+  mountSignInModal() {
+    mountModal(SignIn({}))
   }
 
   handleMouseOver(e) {
@@ -57,14 +64,14 @@ class Header extends React.Component {
         <div className="nav-items">
           {
             this.navItems.map((item, index) => {
-              return (
-                <a className="nav-item" key={index}
-                  onMouseOut={this.handleMouseOut}
-                  onMouseOver={this.handleMouseOver}
-                >
-                  {item}
-                </a>
-              )
+              return index !== this.navItems.length - 1 
+                ?   <a className="nav-item" key={index}
+                      onMouseOut={this.handleMouseOut}
+                      onMouseOver={this.handleMouseOver}
+                    >
+                        {item}
+                    </a>
+                : <div onClick={() => this.mountSignInModal()}> SIGN IN </div>
             })
           }
         </div>
@@ -86,7 +93,7 @@ class Header extends React.Component {
                         {item}
                       </a>
                     </li>
-                  : <div> SIGN IN </div>
+                  : <div onClick={() => this.mountSignInModal()}> SIGN IN </div>
               })
             }
           </ul>
