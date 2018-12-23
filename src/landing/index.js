@@ -3,102 +3,116 @@ import Button from "Components/button"
 import Icon from "Components/icon"
 import "./landing.scss"
 import GiftCard from "Components/gift-card"
+import { mountModal } from 'Components/modal-box/utils'
+import AgeGate from './../AgeGate'
 
-const LandingPage = () => (
-  <div id="landing">
-    <div className="intro-wrapper">
-      <div className="intro-container">
-        <div className="col">
-          <h2 className="cm s1">
-          Gift drinks to your friends
-          with HipBar Gifting!
-          </h2>
+class LandingPage extends React.Component {
+  constructor() {
+    super()
+  }
+  
+  componentDidMount() {
+    mountModal(AgeGate({}))
+  }
 
-          <p className="os s2">
-          With HipBar Gift Cards, gift drinks to your friends & family this festive season! Redeem drinks at 50+ retailers across Bengaluru!
-          </p>
+  render() {
+    return (
+      <div id="landing">
+        <div className="intro-wrapper">
+          <div className="intro-container">
+            <div className="col">
+              <h2 className="cm s1">
+              Gift drinks to your friends
+              with HipBar Gifting!
+              </h2>
 
-          <div style={{ marginTop: "30px", }}>
-            <Button primary icon="rightArrow">Start Gifting!</Button>
+              <p className="os s2">
+              With HipBar Gift Cards, gift drinks to your friends & family this festive season! Redeem drinks at 50+ retailers across Bengaluru!
+              </p>
+
+              <div style={{ marginTop: "30px", }}>
+                <Button primary icon="rightArrow">Start Gifting!</Button>
+              </div>
+              <p className="os s7">
+                Currently in Bengaluru <br />
+                Coming soon to 10+ cities accros India!
+              </p>
+
+            </div>
+
+            <div className="col">
+              <GiftCard />
+            </div>
           </div>
-          <p className="os s7">
-            Currently in Bengaluru <br />
-            Coming soon to 10+ cities accros India!
-          </p>
+          <h2 className="cm s2">
+            Get 50%* off on your first HipBar Gift Card!
+            <div style={{ marginTop: "20px" }}>
+              <Icon name="downArrow" />
+            </div>
+          </h2>
+        </div>
+
+        <div className="brands">
+          <h1 className="brands-heading os s1">
+            Brands that we’ve partnered with
+          </h1>
+          <div className="brands-list">
+            <img src="https://hipbar.com/a21696ca22b7c04fb7591c52c5089f4f.png" />
+            <img src="https://hipbar.com/a0ee9f2c10e0e287bc9c05d64cffa171.png" />
+            <img src="https://hipbar.com/d38974e5f50a5ae0f40ba9e323f03b63.png" />
+            <img src="https://hipbar.com/9e9ee179bf9d959bef56c681e6670b9b.png" />
+          </div>
+
+          <h1 className="brands-heading os s1">
+          and 50+ more!
+          </h1>
+        </div>
+
+        <div className="what-is-hipbar">
+          <div>
+            <h1 className="cm s1">What is HipBar?</h1>
+            <p className="os s2">
+            HipBar is a RBI-authorized mobile wallet and India's first digital currency exclusively meant for transacting adult beverages.
+            </p>
+          </div>
+
+          <div style={{ marginTop: "100px" }}>
+            <h1 className="cm s1">What are HipBar Gift Cards?</h1>
+            <p className="os s2">
+            With HipBar Gift Cards, gift drinks to your friends & family this festive season! Redeem drinks at 50+ retailers across Bengaluru!
+            </p>
+          </div>
+        </div>
+
+        <div className="our-presence">
+          <h1 className="brands-heading os s1">
+          Our presense across India
+          </h1>
+          <div className="presence-counts">
+            <div className="presence-item">
+              <h1 className="os s0">10+</h1>
+              <h1 className="os s1">Cities across India</h1>
+            </div>
+
+            <div className="presence-item">
+              <h1 className="os s0">10+</h1>
+              <h1 className="os s1">Cities across India</h1>
+            </div>
+
+            <div className="presence-item">
+              <h1 className="os s0">10+</h1>
+              <h1 className="os s1">Cities across India</h1>
+            </div>
+          </div>
+        </div>
+
+        <div className="how-to-use">
 
         </div>
 
-        <div className="col">
-          <GiftCard />
-        </div>
       </div>
-      <h2 className="cm s2">
-        Get 50%* off on your first HipBar Gift Card!
-        <div style={{ marginTop: "20px" }}>
-          <Icon name="downArrow" />
-        </div>
-      </h2>
-    </div>
-
-    <div className="brands">
-      <h1 className="brands-heading os s1">
-        Brands that we’ve partnered with
-      </h1>
-      <div className="brands-list">
-        <img src="https://hipbar.com/a21696ca22b7c04fb7591c52c5089f4f.png" />
-        <img src="https://hipbar.com/a0ee9f2c10e0e287bc9c05d64cffa171.png" />
-        <img src="https://hipbar.com/d38974e5f50a5ae0f40ba9e323f03b63.png" />
-        <img src="https://hipbar.com/9e9ee179bf9d959bef56c681e6670b9b.png" />
-      </div>
-
-      <h1 className="brands-heading os s1">
-      and 50+ more!
-      </h1>
-    </div>
-
-    <div className="what-is-hipbar">
-      <div>
-        <h1 className="cm s1">What is HipBar?</h1>
-        <p className="os s2">
-        HipBar is a RBI-authorized mobile wallet and India's first digital currency exclusively meant for transacting adult beverages.
-        </p>
-      </div>
-
-      <div style={{ marginTop: "100px" }}>
-        <h1 className="cm s1">What are HipBar Gift Cards?</h1>
-        <p className="os s2">
-        With HipBar Gift Cards, gift drinks to your friends & family this festive season! Redeem drinks at 50+ retailers across Bengaluru!
-        </p>
-      </div>
-    </div>
-
-    <div className="our-presence">
-      <h1 className="brands-heading os s1">
-      Our presense across India
-      </h1>
-      <div className="presence-counts">
-        <div className="presence-item">
-          <h1 className="os s0">10+</h1>
-          <h1 className="os s1">Cities across India</h1>
-        </div>
-
-        <div className="presence-item">
-          <h1 className="os s0">10+</h1>
-          <h1 className="os s1">Cities across India</h1>
-        </div>
-
-        <div className="presence-item">
-          <h1 className="os s0">10+</h1>
-          <h1 className="os s1">Cities across India</h1>
-        </div>
-      </div>
-    </div>
-
-    <div className="how-to-use">
-
-    </div>
-
-  </div>
-)
+    )
+  }
+}
 
 export default LandingPage
