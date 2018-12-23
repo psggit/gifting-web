@@ -1,8 +1,11 @@
+@import "./../sass/base.scss";
+
 #GiftCards {
   width: 100%;
+  font-family: $font-OpenSans;
   //height: 100vh;
   h4, h2 {
-    font-family: CormorantGaramond;
+    font-family: $font-Cormorant;
     text-align: center;
   }
   .content {
