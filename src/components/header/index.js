@@ -1,5 +1,5 @@
 import React from 'react'
-import { getIcon } from 'Utils/icon-utils';
+//import { getIcon } from 'Utils/icon-utils';
 import './navbar.scss'
 import Icon from "Components/icon"
 
@@ -79,13 +79,14 @@ class Header extends React.Component {
           <ul>
             {
               this.navItems.map((item, index) => {
-                return (
-                  <li key={index}>
-                    <a>
-                      {item}
-                    </a>
-                  </li>
-                )
+               
+                return index !== this.navItems.length - 1 
+                  ? <li key={index}>
+                      <a>
+                        {item}
+                      </a>
+                    </li>
+                  : <div> SIGN IN </div>
               })
             }
           </ul>
