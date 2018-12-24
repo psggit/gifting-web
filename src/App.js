@@ -46,30 +46,23 @@ class App extends React.Component {
   render() {
     return (
       <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
-        {
-          !location.pathname.includes("sign-in") &&
-          <Header />
-        }
-       
+        <Header />
         <Router history={history}>
           <Switch>
             <Route exact path="/" component={LandingPage} />
             {/* <Route exact path="/sign-in" component={SignIn} /> */}
-            <Route 
+            {/* <Route 
               path='/sign-in' 
               render={
                 props => (
                   <SignIn isMobile={this.state.isMobile} />
                 )
               } 
-            />
+            /> */}
             <Route exact path="/using-gift-card" component={UsingGiftCard} />
           </Switch>
         </Router>
-        {
-          !location.pathname.includes("sign-in") &&
-          <Footer />
-        }
+        <Footer />
       </div>
     )
   }
