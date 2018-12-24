@@ -3,28 +3,27 @@ import React from "react"
 import "./navbar.scss"
 import Icon from "Components/icon"
 import Button from "Components/button"
-import { mountModal } from "Components/modal-box/utils"
-import SignIn from "./../../SignIn"
 
 class Header extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      isMenuOpen: false
+      isMenuOpen: false,
     }
     this.navItems = ["Send Gift Cards", "Using Gift Cards", "Retailer Outlets", "Support"]
     this.onToggle = this.onToggle.bind(this)
     this.handleMouseOver = this.handleMouseOver.bind(this)
     this.handleMouseOut = this.handleMouseOut.bind(this)
-    this.mountSignInModal = this.mountSignInModal.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
     this.links = document.querySelectorAll(".nav-items a")
   }
-
-  mountSignInModal() {
-    mountModal(SignIn({}))
+  
+  handleClick() {
+    //console.log("props header", this.props, this.props.history)
+    location.href="/sign-in"
   }
 
   handleMouseOver(e) {
@@ -74,7 +73,7 @@ class Header extends React.Component {
               </a>
             ))
           }
-          <Button onClick={() => this.mountSignInModal()} primary size="small">Sign in</Button>
+          <Button onClick={() => this.handleClick()} primary size="small">Sign in</Button>
         </div>
         <div className="navbar-menu">
           {

@@ -8,6 +8,15 @@
   width: 100%;
   z-index: 5003;
   background: rgba(0, 0, 0, 0.8);
+  .modal-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    min-height: 140px;
+    width: 36%;
+  }
   .modal-container {
     position: absolute;
     top: 50%;
@@ -60,7 +69,7 @@
         font-weight: 600;
         // width: auto;
         width: 120px;
-        height: 48px;
+        line-height: 40px;
         &:focus {
           outline: 0;
           box-shadow: none;
