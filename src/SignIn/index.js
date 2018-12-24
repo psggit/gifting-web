@@ -97,10 +97,39 @@ class SignIn extends React.Component {
               <div className="page-body">
                 <label>Phone Number</label>
                 <input type="text" />
+                {
+                  otpSent &&
+                  <React.Fragment>
+                    <div className="note os s7">Otp has been sent</div>
+                    <div className="alert-box">
+                      <div style={{marginRight: '10px'}}>
+                        <Icon name="alert" />
+                      </div>
+                      <div className="0s s2">
+                        Welcome back to HipBar! Please enter the OTP to sign in.
+                      </div>
+                    </div>
+                    <label>OTP</label>
+                    <div className="input-otp-container">
+                      <input type="text" />
+                      <div className="resend" onClick={this.resendOtp}>Resend</div>
+                    </div>
+                  </React.Fragment>
+                  
+                }
               </div>
               <div className="page-footer">
-                <button className='btn btn-primary' onClick={unMountModal}>PROCEED</button>
-                <button className='btn btn-secondary' onClick={unMountModal}>CANCEL</button>
+              {
+                  !otpSent 
+                  ? <React.Fragment>
+                      <button className='btn btn-primary' onClick={this.handleClick}>PROCEED</button>
+                      <button className='btn btn-secondary' onClick={unMountModal}>CANCEL</button>
+                    </React.Fragment>
+                  : <React.Fragment>
+                      <button className='btn btn-primary' onClick={this.signIn}>SIGN IN</button>
+                      <button className='btn btn-secondary' onClick={unMountModal}>CANCEL</button>
+                    </React.Fragment>
+                } 
               </div>
             </div>
         }
