@@ -1,0 +1,150 @@
+@import "./../sass/base.scss";
+
+#send-gift {
+  margin-top: 100px;
+  background-color: #f1f1f1;
+
+  .gift-card-form {
+    max-width: 400px;
+  }
+
+  .gift-card-form .form-item {
+    margin-top: 60px;
+    .form-group {
+      margin-top: 15px;
+      input, textarea {
+        font-family: $font-OpenSans;
+        color: #2b2826;
+        padding: 20px;
+        border-radius: 4px;
+        border: 1px solid #dfdfdf;
+        &:focus {
+          border-color: #000;
+          outline: 0;
+        }
+      }
+
+      input {
+        width: 100%;
+        height: 38px;
+      }
+      textarea {
+        width: 100%;
+        resize: none;
+      }
+    }
+    label {
+      font-size: 14px;
+      color: #000;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+
+  .gift-card-form .form-item.gift-card-info {
+    .form-group {
+      input {
+        width: 90px;
+      }
+    }
+    .amounts {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .form-field {
+        position: relative;
+        &:before {
+          content: "\20B9";
+          display: block;
+          color: #000;
+          position: absolute;
+          top: 10px;
+          left: 20px;
+          pointer-events: none;
+          // background-color: #000;
+        }
+        &:last-child:before {
+          display: none;
+        }
+        &:last-child span {
+          display: none;
+          position: absolute;
+          top: 10px;
+          left: 20px;
+        }
+        &:last-child input {
+          padding: 0 20px 0 20px;
+          &:focus {
+            &::-webkit-input-placeholder {
+              color: transparent;
+            }
+            &::-moz-input-placeholder {
+              color: transparent;
+            }
+            padding-left: 30px;
+            ~ span {
+              display: inline;
+            }
+          }
+        }
+      }
+
+      input:read-only {
+        padding: 0 20px 0 30px;
+        cursor: pointer;
+        &:focus {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  #send-gift {
+    .gift-card-form {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 532px) {
+  #send-gift {
+    .gift-card-form .form-item.gift-card-info {
+      .amounts {
+        justify-content: flex-start;
+        .form-field {
+          margin-right: 12px;
+        }
+        .form-field:last-child {
+          margin-top: 12px;
+        }
+        .form-field:last-child input {
+          width: 160px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  #send-gift {
+    .gift-card-form {
+      .form-group input {
+        font-size: 12px;
+      }
+    }
+    .gift-card-form .form-item.gift-card-info {
+      .amounts {
+        .form-field input {
+          width: 82px;
+        }
+        .form-field:nth-last-child(2) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
