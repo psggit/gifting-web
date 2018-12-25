@@ -1,20 +1,43 @@
 import React from 'react'
 import './signup.scss'
-import { unMountModal } from 'Components/modal-box/utils'
+import { unMountModal, mountModal } from 'Components/modal-box/utils'
 import ModalBox from '../components/modal-box/modalBox'
 import Icon from "Components/icon"
+import SignIn from './../SignIn'
+import { Api } from '../utils/config'
+import {createSession} from 'Utils/session-utils'
 
 export default function SignUp(data) {
   return class SignUp extends React.Component {
     constructor(props) {
       super(props)
-      console.log("data", data)
+      //console.log("data", data)
       this.state = {
-        otpSent: data ? data.otpSent : false,
-        mobileNo: data.mobile ? data.mobile : '',
+        otpSent: false,
+        mobileNo: data.mobile ? data.mobile : "",
         disableField: data.mobile ? true : false,
-        name: '',
-        email: ''
+        name: "",
+        email: "",
+        otp: "",
+        errorInSignUp: false,
+        isGettingOtp: false,
+        isSigningUp: false,
+        mobileErr: {
+          value: "",
+          status: ""
+        },
+        nameErr: {
+          value: "",
+          status: ""
+        },
+        emailErr: {
+          value: "",
+          status: ""
+        },
+        otpErr: {
+          value: "",
+          status: ""
+        }
       }
       this.handleClick = this.handleClick.bind(this)
       this.signUp = this.signUp.bind(this)
@@ -24,21 +47,116 @@ export default function SignUp(data) {
 
     handleClick () {
       //console.log("clikc")
-      unMountModal()
-      data.handleGetOtp()
+      // unMountModal()
+      // data.handleGetOtp()
       //this.setState({otpSent: true})
+      this.signUp()
     }
 
     signUp() {
       //console.log("data", data)
-      unMountModal()
-      data.handleSignIn()
+      // unMountModal()
+      // data.handleSignIn()
       //this.setState({otpSent: false, isMobile: false})
       //location.href="/using-gift-card"
+      const payload = {
+        info: {},
+        mobile: this.state.mobileNo,
+        email: this.state.email,
+        username: this.state.name
+      }
+      const fetchOptions = {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        //credentials: 'include',
+        mode: 'cors',
+        body: JSON.stringify(payload)
+      }
+      this.setState({errorInSignUp: false, isSigningUp: true})
+      fetch(`${Api.blogicUrl}/consumer/auth/otp-signup`, fetchOptions)
+        .then((response) => {
+          if(response.status === 409) {
+            unMountModal()
+            mountModal(SignIn({
+              otpSent: true,
+              mobile: this.state.mobileNo
+            }))
+          } else if(response.status !== 400){
+            this.getOtp()
+            this.setState({isSigningUp: false})
+          }
+          //return
+        })
+        .catch((err) => {
+          this.setState({errorInSignUp: true})
+        })
+    }
+
+    login() {
+      const payload = {
+        info: {},
+        mobile: this.state.mobileNo,
+        otp: this.state.otp
+      }
+      const fetchOptions = {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        //credentials: 'include',
+        mode: 'cors',
+        body: JSON.stringify(payload)
+      }
+      this.setState({errorInSignIn: false, isSigningUp: true})
+      fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
+        .then((response) => {
+          response.json().then((data) => {
+            createSession(data)
+            unMountModal()
+            this.setState({isSigningUp: false})
+          })
+        })
+        .catch((err) => {
+          this.setState({errorInSignUp: true})
+        })
+    }
+
+    getOtp() {
+      const payload = {
+        info: {},
+        mobile: this.state.mobileNo
+      }
+      const fetchOptions = {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        //credentials: 'include',
+        mode: 'cors',
+        body: JSON.stringify(payload)
+      }
+      this.setState({errorInSignUp: false, isGettingOtp: true})
+      fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
+        .then((response) => {
+          if (response.status === 401) {
+            this.setState({otpSent: true, disableField: true})
+          }
+          this.setState({isGettingOtp: false})
+          return
+        })
+        .catch((err) => {
+          this.setState({errorInSignUp: true})
+        })
     }
 
     resendOtp() {
-      this.setState({otpSent: true})
+      //this.setState({otpSent: true})
+      this.getOtp()
     }
 
     handleTextChange(e) {
@@ -82,6 +200,7 @@ export default function SignUp(data) {
                       type="text"
                       name="name"
                       value={this.state.name}
+                      disabled={this.state.disableField && this.state.otpSent}
                       autocomplete="off"
                       onChange={(e) => this.handleTextChange(e)} 
                     />
@@ -92,6 +211,7 @@ export default function SignUp(data) {
                       type="text"
                       name="email"
                       value={this.state.email}
+                      disabled={this.state.disableField && this.state.otpSent} 
                       autocomplete="off"
                       onChange={(e) => this.handleTextChange(e)} 
                     />
@@ -99,9 +219,16 @@ export default function SignUp(data) {
                   {
                     otpSent &&
                     <div>
-                      <label style={{margin: '10px 0'}}>OTP</label>
+                      <label>OTP</label>
                       <div className="input-otp-container">
-                        <input type="text" />
+                        <input 
+                          type="text"
+                          name="otp"
+                          value={this.state.otp}
+                          //disabled={this.state.disableField}
+                          autocomplete="off"
+                          onChange={(e) => this.handleTextChange(e)} 
+                        />
                         <div className="resend" onClick={this.resendOtp}>Resend</div>
                       </div>
                     </div>
@@ -116,7 +243,7 @@ export default function SignUp(data) {
                       </React.Fragment>
                     : <React.Fragment>
                         <button className='btn btn-secondary os s7' onClick={unMountModal}>CANCEL</button>
-                        <button className='btn btn-primary os s7' onClick={this.signUp}>SIGN UP</button>
+                        <button className='btn btn-primary os s7' onClick={this.login}>SIGN UP</button>
                       </React.Fragment>
                   } 
                 </div>

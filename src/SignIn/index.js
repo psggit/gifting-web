@@ -5,7 +5,7 @@ import ModalBox from '../components/modal-box/modalBox'
 import Icon from "Components/icon"
 import {Api} from 'Utils/config'
 import SignUp from './../SignUp'
-import {createSession} from './utils'
+import {createSession} from 'Utils/session-utils'
 
 // function checkStatus(response) {
 //   console.log("check sttus", response)
@@ -27,21 +27,29 @@ export default function SignIn(data) {
       super(props)
       this.state = {
         //isMobile: props ? props.isMobile : false,
-        otpSent: data ? data.otpSent : false,
-        mobileNo: '',
-        otp: '',
+        otpSent: data.otpSent ? data.otpSent : false,
+        mobileNo: data.mobile ? data.mobile : "",
+        otp: "",
         errorInSignIn: false,
-        disableField: false,
-        isSigningIn: false
+        disableField: data.otpSent ? true : false,
+        isSigningIn: false,
+        mobileErr: {
+          value: "",
+          status: ""
+        },
+        otpErr: {
+          value: "",
+          status: ""
+        }
       }
       this.handleClick = this.handleClick.bind(this)
       this.signIn = this.signIn.bind(this)
       this.handleTextChange = this.handleTextChange.bind(this)
-      this.verifyUser = this.verifyUser.bind(this)
+      this.verifyUserAndGetOtp = this.verifyUserAndGetOtp.bind(this)
       this.resendOtp = this.resendOtp.bind(this)
     }
 
-    verifyUser(data) {
+    verifyUserAndGetOtp(data) {
       const payload = {
         info: {},
         mobile: this.state.mobileNo
@@ -59,20 +67,25 @@ export default function SignIn(data) {
       this.setState({errorInSignIn: false, isGettingOtp: true})
       fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
         .then((response) => {
-          if (response.status === 400) {
-            if(data.unMountModal) {
-              unMountModal()
+          console.log("response", response)
+          response.json().then((data) => {
+            if (response.status === 400 && data.errorCode.includes("invalid-user")) {
+              if(data.unMountModal) {
+                unMountModal()
+              }
+              mountModal(SignUp({
+                mobile: this.state.mobileNo
+              }))
+              this.setState({isGettingOtp: false})
+              return
+            } 
+            else if(response.status === 400){
+              this.setState({mobileErr: {status: true, value: "Invalid mobile number"}})
+            } else if (response.status === 401) {
+              this.setState({otpSent: true, disableField: true})
             }
-            mountModal(SignUp({
-              mobile: this.state.mobileNo
-            }))
             this.setState({isGettingOtp: false})
-            return
-          } else if (response.status === 401) {
-            this.setState({otpSent: true, disableField: true})
-          }
-          this.setState({isGettingOtp: false})
-          return
+          })
         })
         .catch((err) => {
           this.setState({errorInSignIn: true})
@@ -80,7 +93,7 @@ export default function SignIn(data) {
     }
 
     handleClick () {
-      this.verifyUser({unMountModal: true})
+      this.verifyUserAndGetOtp({unMountModal: true})
     }
 
     signIn() {
@@ -114,7 +127,7 @@ export default function SignIn(data) {
     }
 
     resendOtp() {
-      this.verifyUser({unMountModal: false})
+      this.verifyUserAndGetOtp({unMountModal: false})
     }
 
     handleTextChange(e) {
