@@ -17,7 +17,17 @@
       padding: 0 10px;
       align-items: center;
     }
+
+    .country-code.error {
+      border: 1px solid #c23934 !important;
+    }
     
+    .error-message {
+      color: #c23934;
+      font-weight: 600;
+      padding: 10px;
+    }
+
     label {
       //padding: 10px 0;
       //height: 40px;
@@ -37,6 +47,11 @@
       //line-height: 25px;
       //height: 40px;
     }
+    
+    input.error {
+      border: 1px solid #c23934 !important;
+    }
+
     .input-otp-container {
       position: relative;
       .resend {

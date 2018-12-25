@@ -6,12 +6,21 @@ import Icon from "Components/icon"
 import SignIn from './../SignIn'
 import { Api } from '../utils/config'
 import {createSession} from 'Utils/session-utils'
+import { checkCtrlA, validateNumType, checkCtrlV } from 'Utils/logic-utils'
+import { validateNumberField } from 'Utils/validators'
+import { validateTextField, validateEmail } from '../utils/validators';
 
 export default function SignUp(data) {
   return class SignUp extends React.Component {
     constructor(props) {
       super(props)
       //console.log("data", data)
+      this.inputNameMap = {
+        mobileNo: "Mobile no",
+        email: "Email",
+        name: "Name",
+        otp: "Otp"
+      }
       this.state = {
         otpSent: false,
         mobileNo: data.mobile ? data.mobile : "",
@@ -22,43 +31,61 @@ export default function SignUp(data) {
         errorInSignUp: false,
         isGettingOtp: false,
         isSigningUp: false,
-        mobileErr: {
+        mobileNoErr: {
           value: "",
-          status: ""
+          status: false
         },
         nameErr: {
           value: "",
-          status: ""
+          status: false
         },
         emailErr: {
           value: "",
-          status: ""
+          status: false
         },
         otpErr: {
           value: "",
-          status: ""
+          status: false
         }
       }
       this.handleClick = this.handleClick.bind(this)
       this.signUp = this.signUp.bind(this)
       this.resendOtp = this.resendOtp.bind(this)
       this.handleTextChange = this.handleTextChange.bind(this)
+      this.isFormValid = this.isFormValid.bind(this)
+    }
+
+    isFormValid() {
+      const {otpSent} = this.state
+      let otpErr = this.state.otpErr
+
+      const mobileNoErr = validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo)
+      this.setState({mobileNoErr: validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo)})
+
+      const nameErr = validateTextField(this.inputNameMap['name'], this.state.name)
+      this.setState({nameErr: validateTextField(this.inputNameMap['name'], this.state.name)})
+
+      const emailErr = validateEmail(this.inputNameMap['email'], this.state.email)
+      this.setState({emailErr: validateEmail(this.inputNameMap['email'], this.state.email)})
+      
+      if(otpSent) {
+        otpErr = validateTextField(this.inputNameMap['otp'], this.state.otp)
+        this.setState({otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp)})
+      }
+    
+      if (!mobileNoErr.status && !otpErr.status && !otpSent && !emailErr.status && !nameErr.status) {
+        return true
+      }
+      return false
     }
 
     handleClick () {
-      //console.log("clikc")
-      // unMountModal()
-      // data.handleGetOtp()
-      //this.setState({otpSent: true})
-      this.signUp()
+      if(this.isFormValid()) {
+        this.signUp()
+      }
     }
 
     signUp() {
-      //console.log("data", data)
-      // unMountModal()
-      // data.handleSignIn()
-      //this.setState({otpSent: false, isMobile: false})
-      //location.href="/using-gift-card"
       const payload = {
         info: {},
         mobile: this.state.mobileNo,
@@ -159,12 +186,41 @@ export default function SignUp(data) {
       this.getOtp()
     }
 
+    // handleTextChange(e) {
+    //   this.setState({[e.target.name]: e.target.value})
+    // }
+
+    handleEmailChange(e) {
+      const errName = `${e.target.name}Err`
+      this.setState({
+        [e.target.name]: e.target.value,
+        [errName]: validateEmail(this.inputNameMap[e.target.name], e.target.value),
+      })
+    }
+
     handleTextChange(e) {
-      this.setState({[e.target.name]: e.target.value})
+      const errName = `${e.target.name}Err`
+      this.setState({
+        [e.target.name]: e.target.value,
+        [errName]: validateTextField(this.inputNameMap[e.target.name], e.target.value),
+      })
+    }
+
+    handleNumberChange(e) {
+      const errName = `${e.target.name}Err`
+
+      if(validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e)) {
+        this.setState({ 
+          [e.target.name]: e.target.value,
+          [errName]:  validateNumberField(this.inputNameMap[e.target.name], e.target.value)
+        })
+      } else {
+        e.preventDefault()
+      }   
     }
 
     render() {
-      const {otpSent} = this.state
+      const {otpSent, mobileNoErr, emailErr, nameErr, otpErr} = this.state
       return (
         <div>
           {
@@ -176,19 +232,24 @@ export default function SignUp(data) {
                 <div className="page-body">
                   <label>Phone Number</label>
                   <div style={{display: 'flex'}}>
-                    <div className="country-code">
+                    <div className={country-code `${mobileNoErr.status ? 'error' : ''}`}>
                       +91
                     </div>
                     <div style={{width: 'calc(100% - 40px'}}>
                       <input 
                         type="text"
                         name="mobileNo"
+                        className={`${mobileNoErr.status ? 'error' : ''}`}
                         disabled={this.state.disableField}
                         value={this.state.mobileNo}
                         autocomplete="off"
                         onChange={(e) => this.handleTextChange(e)}
                       />
                     </div>
+                    {
+                      mobileNoErr.status &&
+                      <p className="error-message os s7">{mobileNoErr.value}</p>
+                    }
                   </div>
                   {   
                     otpSent &&
@@ -199,23 +260,33 @@ export default function SignUp(data) {
                     <input
                       type="text"
                       name="name"
+                      className={`${nameErr.status ? 'error' : ''}`}
                       value={this.state.name}
                       disabled={this.state.disableField && this.state.otpSent}
                       autocomplete="off"
                       onChange={(e) => this.handleTextChange(e)} 
                     />
                   </div>
+                  {
+                    nameErr.status &&
+                    <p className="error-message os s7">{nameErr.value}</p>
+                  }
                   <label>Email Address</label>
                   <div>
                     <input 
                       type="text"
                       name="email"
                       value={this.state.email}
+                      className={`${emailErr.status ? 'error' : ''}`}
                       disabled={this.state.disableField && this.state.otpSent} 
                       autocomplete="off"
                       onChange={(e) => this.handleTextChange(e)} 
                     />
                   </div>
+                  {
+                    emailErr.status &&
+                    <p className="error-message os s7">{emailErr.value}</p>
+                  }
                   {
                     otpSent &&
                     <div>
@@ -224,6 +295,7 @@ export default function SignUp(data) {
                         <input 
                           type="text"
                           name="otp"
+                          className={`${otpErr.status ? 'error' : ''}`}
                           value={this.state.otp}
                           //disabled={this.state.disableField}
                           autocomplete="off"
@@ -231,6 +303,10 @@ export default function SignUp(data) {
                         />
                         <div className="resend" onClick={this.resendOtp}>Resend</div>
                       </div>
+                      {
+                        otpErr.status &&
+                        <p className="error-message os s7">{otpErr.value}</p>
+                      }
                     </div>
                   }
                 </div>

@@ -196,7 +196,7 @@ export default function SignIn(data) {
                 <div className="page-body">
                   <label>Phone Number</label>
                   <div style={{display: 'flex'}}>
-                    <div className="country-code">
+                    <div className={`country-code ${mobileNoErr.status ? 'error' : ''}`}>
                       +91
                     </div>
                     <div style={{width: 'calc(100% - 40px'}}>
@@ -208,6 +208,7 @@ export default function SignIn(data) {
                         autocomplete="off"
                         onChange={(e) => this.handleTextChange(e)}
                         defaultValue={this.state.mobileNo}
+                        className={`${mobileNoErr.status ? 'error' : ''}`}
                         onKeyDown={(e) => {this.handleNumberChange(e)}}
                         onKeyUp={(e) => {this.handleNumberChange(e)}}
                       />
@@ -235,6 +236,7 @@ export default function SignIn(data) {
                           type="text"
                           name="otp"
                           value={this.state.otp}
+                          className={`${otpErr.status ? 'error' : ''}`}
                           autoComplete="fefef"
                           onChange={(e) => this.handleTextChange(e)}
                         />

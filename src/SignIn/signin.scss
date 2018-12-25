@@ -18,6 +18,10 @@
       align-items: center;
     }
 
+    .country-code.error {
+      border: 1px solid #c23934 !important;
+    }
+
     label {
       //padding: 10px 0;
       //height: 40px;
@@ -36,6 +40,10 @@
       //height: 30px;
       //line-height: 25px;
       //height: 40px;
+    }
+
+    input.error {
+      border: 1px solid #c23934 !important;
     }
 
     .error-message {
