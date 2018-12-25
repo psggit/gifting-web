@@ -45,13 +45,19 @@
       }
     }
 
-    .app-btns {
-      // margin-top: 50px;
-      margin-top: 10%;
+    .app-store-btn {
       display: flex;
-      a {
-        // margin-right: 38px;
-        margin-right: 7.5%;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+      svg {
+        max-width: 100%;
+        &:first-child {
+          margin-right: 15px;
+        }
+        &:last-child {
+          margin-left: 15px;
+        }
       }
     }
   }

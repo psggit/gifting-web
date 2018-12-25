@@ -12,8 +12,12 @@ import CreateHistory from 'history/createBrowserHistory'
 
 import LandingPage from "./landing"
 import UsingGiftCard from './GiftCardInfo'
+import SendGiftCards from './SendGift'
 
 const history = CreateHistory()
+
+// console.log(bolt);
+
 
 class App extends React.Component {
   render() {
@@ -24,6 +28,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/using-gift-card" component={UsingGiftCard} />
+            <Route exact path="/send-gift" component={SendGiftCards} />
           </Switch>
         </Router>
         <Footer />

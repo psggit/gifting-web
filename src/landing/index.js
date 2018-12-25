@@ -3,6 +3,7 @@ import Button from "Components/button"
 import Icon from "Components/icon"
 import "./landing.scss"
 import GiftCard from "Components/gift-card"
+import FirstGiftCard from "Components/first-gift-card"
 import { mountModal } from 'Components/modal-box/utils'
 import AgeGate from './../AgeGate'
 
@@ -12,12 +13,13 @@ class LandingPage extends React.Component {
   }
   
   componentDidMount() {
-    mountModal(AgeGate({}))
+    // mountModal(AgeGate({}))
   }
 
   render() {
     return (
       <div id="landing">
+
         <div className="intro-wrapper">
           <div className="intro-container">
             <div className="col">
@@ -135,6 +137,11 @@ class LandingPage extends React.Component {
             With the HipBar app, they can easily<br/> view their Gift Cards and redeem it at<br/>
     50+ HipBar powered retail outlets in<br/> Bengaluru
             </p>
+
+            <div className="app-store-btn">
+              <a rel="noopener noreferrer" target="_blank" href="https://itunes.apple.com/in/app/hipbar-delivery/id1179371753?mt=8"><Icon name="appStore" /></a>
+              <a rel="noopener noreferrer" target="_blank" href="https://play.google.com/store/apps/details?id=in.hipbar.hipbar_user_app&hl=en_IN"><Icon name="googleStore" /></a>
+            </div>
           </div>
 
           <div className="item">
@@ -146,10 +153,12 @@ class LandingPage extends React.Component {
             </p>
           </div>
 
-          <div style={{ marginTop: "20px" }}>
+          <div style={{ marginTop: "30px" }}>
             <Button primary>View Retail Outlets</Button>
           </div>
         </div>
+
+        <FirstGiftCard />
       </div>
     )
   }

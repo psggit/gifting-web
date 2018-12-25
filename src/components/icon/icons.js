@@ -162,7 +162,7 @@ export default {
     </svg>
   ),
   appStore: (
-    <svg width="238px" height="70px" viewBox="0 0 238 70" version="1.1">
+    <svg width="180px" height="70px" viewBox="0 0 238 70" version="1.1">
         <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g id="Artboard" transform="translate(-133.000000, -601.000000)" fill-rule="nonzero">
                 <g id="App-Store-Badge-US-Black" transform="translate(133.000000, 601.000000)">
@@ -181,7 +181,7 @@ export default {
     </svg>
   ),
   googleStore: (
-    <svg width="238px" height="70px" viewBox="0 0 238 70" version="1.1">
+    <svg width="180px" height="54px" viewBox="0 0 238 70" version="1.1">
         <defs>
             <linearGradient x1="91.488428%" y1="4.9481245%" x2="-38.3517333%" y2="71.9074222%" id="linearGradient-1">
                 <stop stop-color="#00A0FF" offset="0%"></stop>

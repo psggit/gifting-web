@@ -1,6 +1,8 @@
 import React from 'react'
 import './gift-card-info.scss'
 import Icon from "Components/icon"
+import Button from "Components/button"
+import FirstGiftCard from "Components/first-gift-card"
 
 class GiftCards extends React.Component {
   constructor(props) {
@@ -43,13 +45,9 @@ class GiftCards extends React.Component {
             </span>
           </div>
 
-          <div className="app-btns">
-            <a target="_blank" href="https://itunes.apple.com/in/app/hipbar-delivery/id1179371753?mt=8">
-              <Icon name="appStore" />
-            </a>
-            <a target="_blank" href="https://play.google.com/store/apps/details?id=in.hipbar.hipbar_user_app&hl=en_IN">
-              <Icon name="googleStore" />
-            </a>
+          <div className="app-store-btn">
+            <a rel="noopener noreferrer" target="_blank" href="https://itunes.apple.com/in/app/hipbar-delivery/id1179371753?mt=8"><Icon name="appStore" /></a>
+            <a rel="noopener noreferrer" target="_blank" href="https://play.google.com/store/apps/details?id=in.hipbar.hipbar_user_app&hl=en_IN"><Icon name="googleStore" /></a>
           </div>
 
           <span className="step-number"><Icon name="stepFour" /></span>
@@ -62,23 +60,10 @@ class GiftCards extends React.Component {
             </span>
           </div>
 
-          <div className="button">
-            <p>VIEW RETAIL OUTLETS</p>
-            <span><Icon name="rightArrowWhite" /></span>
-          </div>
+          <Button primary>View retail outlets</Button>
         </div>
-        <div className="start-gifting">
-          <h2 className="cm s1">
-            Get 50%* off on your first HipBar Gift Card!
-          </h2>
-          <div className="note os s2">
-            Gift drinks to your friends & family this festive season with HipBar Gift Cards!
-          </div>
-          <div className="button">
-            <p>START GIFTING</p>
-            <span><Icon name="rightArrowBlack" /></span>
-          </div>
-        </div>
+
+        <FirstGiftCard />
       </div>
     )
   }

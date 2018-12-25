@@ -2,17 +2,22 @@
 <html lang="en">
 <head>
   <style media="screen">
-    body {
-      /* background-color: #f1f1f1; */
+    body::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    body::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+    
+    body::-webkit-scrollbar-thumb {
+      background-color: #333;
+      outline: 1px solid slategrey;
     }
      * {
        margin: 0;
        padding: 0;
        box-sizing: border-box;
-<<<<<<< HEAD
-=======
-       //font-family: 'Montserrat', sans-serif;
->>>>>>> 554249d695f885035461827cbd3741d1769c66c4
      }
   </style>
   <meta charset="UTF-8">
@@ -23,6 +28,25 @@
 <body>
   <div id="app" ></div>
   <div id="confirm-modal"></div>
+  
+    <!-- <form action='https://test.payu.in/_payment' method='post'>
+    <input type="hidden" name="firstname" value="Vikas Kumar" />
+    <input type="hidden" name="lastname" value="" />
+    <input type="hidden" name="surl" value="https://www.google.com" />
+    <input type="hidden" name="phone" value="9999999999" />
+    <input type="hidden" name="key" value="C0Dr8m" />
+    <input type="hidden" name="hash" value =
+    "c2522a8d561e7c52f7d6b2d46c96b924afac8554313af4b80edef3e237e179bd6e2020e8c5480
+    60306d9fa2cf5c75c35205bcc4b09bcf5b9a9becec8de2952d0" />
+    <input type="hidden" name="curl" value="http://www.google.com" />
+    <input type="hidden" name="furl" value="https:/www.yahoo.in" />
+    <input type="hidden" name="txnid" value="PLS-10061-3" />
+    <input type="hidden" name="productinfo" value="SAU Admission 2014" />
+    <input type="hidden" name="amount" value="600.000" />
+    <input type="hidden" name="email" value="vikaskumarsre@gmail.com" />
+    <input type= "submit" value="submit">
+    </form> -->
+
 </body>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400, 600" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600" rel="stylesheet">
