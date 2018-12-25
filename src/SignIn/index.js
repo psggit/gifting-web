@@ -6,6 +6,9 @@ import Icon from "Components/icon"
 import {Api} from 'Utils/config'
 import SignUp from './../SignUp'
 import {createSession} from 'Utils/session-utils'
+import { checkCtrlA, validateNumType, checkCtrlV } from 'Utils/logic-utils'
+import { validateNumberField } from 'Utils/validators'
+import { validateTextField } from '../utils/validators';
 
 // function checkStatus(response) {
 //   console.log("check sttus", response)
@@ -25,6 +28,11 @@ export default function SignIn(data) {
   return class SignIn extends React.Component {
     constructor(props) {
       super(props)
+      this.inputNameMap ={
+        mobileNo: "Mobile number",
+        otp: "Otp"
+      }
+
       this.state = {
         //isMobile: props ? props.isMobile : false,
         otpSent: data.otpSent ? data.otpSent : false,
@@ -33,13 +41,13 @@ export default function SignIn(data) {
         errorInSignIn: false,
         disableField: data.otpSent ? true : false,
         isSigningIn: false,
-        mobileErr: {
+        mobileNoErr: {
           value: "",
-          status: ""
+          status: false
         },
         otpErr: {
           value: "",
-          status: ""
+          status: false
         }
       }
       this.handleClick = this.handleClick.bind(this)
@@ -47,6 +55,7 @@ export default function SignIn(data) {
       this.handleTextChange = this.handleTextChange.bind(this)
       this.verifyUserAndGetOtp = this.verifyUserAndGetOtp.bind(this)
       this.resendOtp = this.resendOtp.bind(this)
+      this.isFormValid = this.isFormValid.bind(this)
     }
 
     verifyUserAndGetOtp(data) {
@@ -80,7 +89,7 @@ export default function SignIn(data) {
               return
             } 
             else if(response.status === 400){
-              this.setState({mobileErr: {status: true, value: "Invalid mobile number"}})
+              this.setState({mobileNoErr: {status: true, value: "Invalid mobile number"}})
             } else if (response.status === 401) {
               this.setState({otpSent: true, disableField: true})
             }
@@ -92,9 +101,43 @@ export default function SignIn(data) {
         })
     }
 
-    handleClick () {
-      this.verifyUserAndGetOtp({unMountModal: true})
+    isFormValid() {
+      const {otpSent} = this.state
+      let otpErr = this.state.otpErr
+
+      const mobileNoErr = validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo)
+      this.setState({mobileNoErr: validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo)})
+      
+      if(otpSent) {
+        otpErr = validateTextField(this.inputNameMap['otp'], this.state.otp)
+        this.setState({otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp)})
+      }
+    
+      if (!mobileNoErr.status && !otpErr.status && !otpSent) {
+        return true
+      }
+      return false
     }
+
+    handleClick () {
+      if(this.isFormValid()) {
+        this.verifyUserAndGetOtp({unMountModal: true})
+      }
+    }
+
+    handleNumberChange(e) {
+      const errName = `${e.target.name}Err`
+
+      if(validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e)) {
+        this.setState({ 
+          [e.target.name]: e.target.value,
+          [errName]:  validateNumberField(this.inputNameMap[e.target.name], e.target.value)
+        })
+      } else {
+        e.preventDefault()
+      }   
+    }
+
 
     signIn() {
       const payload = {
@@ -116,6 +159,11 @@ export default function SignIn(data) {
       fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
         .then((response) => {
           response.json().then((data) => {
+            if(response.status === 400 && data.errorCode.includes("invalid-otp")){
+              console.log("else if2")
+              this.setState({otpErr: {status: true, value: "Incorrect OTP. Please enter again or resend OTP"}})
+              return
+            } 
             createSession(data)
             unMountModal()
             this.setState({isSigningIn: false})
@@ -136,7 +184,7 @@ export default function SignIn(data) {
 
     render() {
       //console.log("redr")
-      const {otpSent, errorInSignIn, isGettingOtp} = this.state
+      const {otpSent, errorInSignIn, isGettingOtp, mobileNoErr, otpErr} = this.state
       return (
         <div>
           {
@@ -156,13 +204,19 @@ export default function SignIn(data) {
                         type="text"
                         name="mobileNo"
                         disabled={this.state.disableField}
-                        value={this.state.mobileNo}
+                        //value={this.state.mobileNo}
                         autocomplete="off"
                         onChange={(e) => this.handleTextChange(e)}
+                        defaultValue={this.state.mobileNo}
+                        onKeyDown={(e) => {this.handleNumberChange(e)}}
+                        onKeyUp={(e) => {this.handleNumberChange(e)}}
                       />
                     </div>
                   </div>
-                
+                  {
+                    mobileNoErr.status &&
+                    <p className="error-message os s7">{mobileNoErr.value}</p>
+                  }
                   {
                     otpSent &&
                     <React.Fragment>
@@ -186,6 +240,10 @@ export default function SignIn(data) {
                         />
                         <div className="resend" onClick={this.resendOtp}>Resend</div>
                       </div>
+                      {
+                        otpErr.status &&
+                        <p className="error-message os s7">{otpErr.value}</p>
+                      }
                     </React.Fragment>
                     
                   }

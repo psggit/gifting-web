@@ -37,6 +37,12 @@
       //line-height: 25px;
       //height: 40px;
     }
+
+    .error-message {
+      color: #c23934;
+      font-weight: 600;
+      padding: 10px;
+    }
     .input-otp-container {
       position: relative;
       .resend {
