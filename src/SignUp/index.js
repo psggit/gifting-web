@@ -1,11 +1,11 @@
 import React from 'react'
-import './signin.scss'
+import './signup.scss'
 import { unMountModal } from 'Components/modal-box/utils'
 import ModalBox from '../components/modal-box/modalBox'
 import Icon from "Components/icon"
 
-export default function SignIn(data) {
-  return class SignIn extends React.Component {
+export default function SignUp(data) {
+  return class SignUp extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
@@ -13,18 +13,18 @@ export default function SignIn(data) {
         otpSent: data ? data.otpSent : false,
       }
       this.handleClick = this.handleClick.bind(this)
-      this.signIn = this.signIn.bind(this)
-      //this.resendOtp = this.resendOtp.bind(this)
+      this.signUp = this.signUp.bind(this)
+      this.resendOtp = this.resendOtp.bind(this)
     }
 
     handleClick () {
       //console.log("clikc")
       unMountModal()
-      data.handleProceed()
+      data.handleGetOtp()
       //this.setState({otpSent: true})
     }
 
-    signIn() {
+    signUp() {
       //console.log("data", data)
       unMountModal()
       data.handleSignIn()
@@ -32,51 +32,46 @@ export default function SignIn(data) {
       //location.href="/using-gift-card"
     }
 
-    // resendOtp() {
-    //   this.setState({otpSent: true})
-    // }
-
-    // componentWillReceiveProps(newProps) {
-    //   if(this.props.isMobile !== newProps.isMobile) {
-    //     this.setState({isMobile: newProps.isMobile})
-    //   }
-    // }
+    resendOtp() {
+      this.setState({otpSent: true})
+    }
 
     render() {
-      //console.log("redr")
       const {otpSent} = this.state
       return (
         <div>
           {
             <ModalBox>
-              <div id="SignIn">
+              <div id="SignUp">
                 <h2 className="header os s2">
-                  Sign In / Sign Up with mobile number
+                  Sign up with HipBar
                 </h2>
                 <div className="page-body">
                   <label>Phone Number</label>
                   <div>
                     <input type="text" />
                   </div>
+                  {   
+                    otpSent &&
+                    <div className="note os s7">Otp has been sent</div>
+                  }
+                  <label>Name</label>
+                  <div>
+                    <input type="text" />
+                  </div>
+                  <label>Email Address</label>
+                  <div>
+                    <input type="text" />
+                  </div>
                   {
                     otpSent &&
-                    <React.Fragment>
-                      <div className="note os s7">Otp has been sent</div>
-                      <div className="alert-box">
-                        <div style={{marginRight: '10px'}}>
-                          <Icon name="alert" />
-                        </div>
-                        <div className="0s s2">
-                          Welcome back to HipBar! Please enter the OTP to sign in.
-                        </div>
-                      </div>
-                      <label>OTP</label>
+                    <div>
+                      <label style={{margin: '10px 0'}}>OTP</label>
                       <div className="input-otp-container">
                         <input type="text" />
                         <div className="resend" onClick={this.resendOtp}>Resend</div>
                       </div>
-                    </React.Fragment>
-                    
+                    </div>
                   }
                 </div>
                 <div className="page-footer">
@@ -88,7 +83,7 @@ export default function SignIn(data) {
                       </React.Fragment>
                     : <React.Fragment>
                         <button className='btn btn-secondary os s7' onClick={unMountModal}>CANCEL</button>
-                        <button className='btn btn-primary os s7' onClick={this.signIn}>SIGN IN</button>
+                        <button className='btn btn-primary os s7' onClick={this.signUp}>SIGN UP</button>
                       </React.Fragment>
                   } 
                 </div>

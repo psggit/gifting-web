@@ -1,6 +1,6 @@
 @import "./../sass/base.scss";
 
-#SignIn {
+#SignUp {
   padding: 8.5% 49px;
   border-radius: 5px;
   box-shadow: 0 2px 28px -5px rgba(0, 0, 0, 0.5);
@@ -11,7 +11,7 @@
     flex-direction: column;
     margin: 30px 0px;
 
-    label {
+     label {
       //padding: 10px 0;
       //height: 40px;
       margin: 10px 0;
@@ -80,7 +80,7 @@
       // font-size: 14px;
       font-weight: 600;
       // width: auto;
-      width: 120px;
+      //width: 120px;
       line-height: 40px;
       &:focus {
         outline: 0;
@@ -205,14 +205,15 @@
 // }
 
 @media only screen and (max-width: 420px) {
-  #SignIn {
+  #SignUp {
     height: 100vh;
     border-radius: 0px;
     padding: 8.5% 25px;
     .page-footer {
       .btn {
-        width: 80px;
-        padding: 0px 10px;
+        // width: 80px;
+        // padding: 0px 10px;
+        line-height: 30px;
       }
     }
   }

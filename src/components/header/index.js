@@ -4,6 +4,7 @@ import "./navbar.scss"
 import Icon from "Components/icon"
 import Button from "Components/button"
 import SignIn from "./../../SignIn"
+import SignUp from "./../../SignUp"
 import { mountModal } from 'Components/modal-box/utils'
 
 class Header extends React.Component {
@@ -18,6 +19,8 @@ class Header extends React.Component {
     this.handleMouseOut = this.handleMouseOut.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.getOtp = this.getOtp.bind(this)
+    this.handleSignUp = this.handleSignUp.bind(this)
+    this.getSignUpOtp = this.getSignUpOtp.bind(this)
     //this.handleSignIn = this.handleSignIn.bind(this)
   }
 
@@ -28,8 +31,12 @@ class Header extends React.Component {
   handleClick() {
     //console.log("props header", this.props, this.props.history)
     //location.href="/sign-in"
-    mountModal(SignIn({
-      handleProceed: this.getOtp,
+    // mountModal(SignIn({
+    //   handleProceed: this.getOtp,
+    //   otpSent: false
+    // }))
+    mountModal(SignUp({
+      handleGetOtp: this.getSignUpOtp,
       otpSent: false
     }))
   }
@@ -44,6 +51,17 @@ class Header extends React.Component {
 
   handleSignIn() {
     console.log("signIn")
+  }
+
+  getSignUpOtp() {
+    mountModal(SignUp({
+      handleSignIn: this.handleSignUp,
+      otpSent: true
+    }))
+  }
+
+  handleSignUp() {
+    console.log("sign up")
   }
 
   handleMouseOver(e) {
