@@ -11,6 +11,13 @@
     flex-direction: column;
     margin: 30px 0px;
 
+    .country-code {
+      border: 1px solid #cccccc;
+      display: flex;
+      padding: 0 10px;
+      align-items: center;
+    }
+
     label {
       //padding: 10px 0;
       //height: 40px;
@@ -80,7 +87,7 @@
       // font-size: 14px;
       font-weight: 600;
       // width: auto;
-      width: 120px;
+      //width: 120px;
       line-height: 40px;
       &:focus {
         outline: 0;
@@ -96,6 +103,10 @@
       &.btn-secondary {
         color: #000;
         background: #fff;
+      }
+      &.loader {
+        padding: 0 40px;
+        width: 150px;
       }
     }
   }
@@ -211,8 +222,9 @@
     padding: 8.5% 25px;
     .page-footer {
       .btn {
-        width: 80px;
-        padding: 0px 10px;
+        // width: 80px;
+        // padding: 0px 10px;
+        line-height: 30px;
       }
     }
   }

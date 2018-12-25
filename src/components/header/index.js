@@ -6,19 +6,21 @@ import Button from "Components/button"
 import SignIn from "./../../SignIn"
 import SignUp from "./../../SignUp"
 import { mountModal } from 'Components/modal-box/utils'
+import {Api} from 'Utils/config'
 
 class Header extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isMenuOpen: false,
+      errorInSignIn: false
     }
     this.navItems = ["Send Gift Cards", "Using Gift Cards", "Retailer Outlets", "Support"]
     this.onToggle = this.onToggle.bind(this)
     this.handleMouseOver = this.handleMouseOver.bind(this)
     this.handleMouseOut = this.handleMouseOut.bind(this)
     this.handleClick = this.handleClick.bind(this)
-    this.getOtp = this.getOtp.bind(this)
+    //this.getOtp = this.getOtp.bind(this)
     this.handleSignUp = this.handleSignUp.bind(this)
     this.getSignUpOtp = this.getSignUpOtp.bind(this)
     //this.handleSignIn = this.handleSignIn.bind(this)
@@ -31,27 +33,59 @@ class Header extends React.Component {
   handleClick() {
     //console.log("props header", this.props, this.props.history)
     //location.href="/sign-in"
-    // mountModal(SignIn({
-    //   handleProceed: this.getOtp,
+    mountModal(SignIn({
+      handleGetOtp: this.getOtp,
+      //otpSent: false
+    }))
+    // mountModal(SignUp({
+    //   handleGetOtp: this.getSignUpOtp,
     //   otpSent: false
     // }))
-    mountModal(SignUp({
-      handleGetOtp: this.getSignUpOtp,
-      otpSent: false
-    }))
   }
 
-  getOtp() {
-    //console.log("get otp")
-    mountModal(SignIn({
-      handleSignIn: this.handleSignIn,
-      otpSent: true
-    }))
-  }
+  // getOtp(payloadObj) {
+  //   console.log("get otp")
+  //   //Api.verifyUser(payloadObj)
+  //   const fetchOptions = {
+  //     method: 'post',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     //credentials: 'include',
+  //     mode: 'cors',
+  //     body: JSON.stringify(payloadObj)
+  //   }
 
-  handleSignIn() {
-    console.log("signIn")
-  }
+  //   //this.setState({isSubmitting: true})
+
+  //   fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
+  //     .then((response) => {
+  //       console.log("success")
+  //       if (response.status === 400) {
+  //         mountModal(SignUp({
+  //           handleSignUp: this.handleSignUp,
+  //           //otpSent: true
+  //         }))
+  //       } else if (response.status === 401) {
+  //         mountModal(SignIn({
+  //           handleSignIn: this.handleSignIn,
+  //           otpSent: true
+  //         }))
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       this.setState({errorInSignIn: true})
+  //     })
+  //   // mountModal(SignIn({
+  //   //   handleSignIn: this.handleSignIn,
+  //   //   otpSent: true
+  //   // }))
+  // }
+
+  // handleSignIn() {
+  //   console.log("signIn")
+  // }
 
   getSignUpOtp() {
     mountModal(SignUp({

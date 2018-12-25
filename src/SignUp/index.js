@@ -4,6 +4,19 @@ import { unMountModal } from 'Components/modal-box/utils'
 import ModalBox from '../components/modal-box/modalBox'
 import Icon from "Components/icon"
 
+function checkStatus(response) {
+  console.log("check sttus")
+  if (response.status >= 200 && response.status <= 401) {
+    return response
+  } else {
+    // console.log(response.statusText);
+    var error = new Error(response.statusText)
+    //console.log("res", response)
+    //var error = new Error(response.error)
+    error.response = response
+    throw error
+  }
+}
 export default function SignUp(data) {
   return class SignUp extends React.Component {
     constructor(props) {
