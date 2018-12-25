@@ -4,30 +4,22 @@ import { unMountModal } from 'Components/modal-box/utils'
 import ModalBox from '../components/modal-box/modalBox'
 import Icon from "Components/icon"
 
-function checkStatus(response) {
-  console.log("check sttus")
-  if (response.status >= 200 && response.status <= 401) {
-    return response
-  } else {
-    // console.log(response.statusText);
-    var error = new Error(response.statusText)
-    //console.log("res", response)
-    //var error = new Error(response.error)
-    error.response = response
-    throw error
-  }
-}
 export default function SignUp(data) {
   return class SignUp extends React.Component {
     constructor(props) {
       super(props)
+      console.log("data", data)
       this.state = {
-        //isMobile: props ? props.isMobile : false,
         otpSent: data ? data.otpSent : false,
+        mobileNo: data.mobile ? data.mobile : '',
+        disableField: data.mobile ? true : false,
+        name: '',
+        email: ''
       }
       this.handleClick = this.handleClick.bind(this)
       this.signUp = this.signUp.bind(this)
       this.resendOtp = this.resendOtp.bind(this)
+      this.handleTextChange = this.handleTextChange.bind(this)
     }
 
     handleClick () {
@@ -49,6 +41,10 @@ export default function SignUp(data) {
       this.setState({otpSent: true})
     }
 
+    handleTextChange(e) {
+      this.setState({[e.target.name]: e.target.value})
+    }
+
     render() {
       const {otpSent} = this.state
       return (
@@ -61,8 +57,20 @@ export default function SignUp(data) {
                 </h2>
                 <div className="page-body">
                   <label>Phone Number</label>
-                  <div>
-                    <input type="text" />
+                  <div style={{display: 'flex'}}>
+                    <div className="country-code">
+                      +91
+                    </div>
+                    <div style={{width: 'calc(100% - 40px'}}>
+                      <input 
+                        type="text"
+                        name="mobileNo"
+                        disabled={this.state.disableField}
+                        value={this.state.mobileNo}
+                        autocomplete="off"
+                        onChange={(e) => this.handleTextChange(e)}
+                      />
+                    </div>
                   </div>
                   {   
                     otpSent &&
@@ -70,11 +78,23 @@ export default function SignUp(data) {
                   }
                   <label>Name</label>
                   <div>
-                    <input type="text" />
+                    <input
+                      type="text"
+                      name="name"
+                      value={this.state.name}
+                      autocomplete="off"
+                      onChange={(e) => this.handleTextChange(e)} 
+                    />
                   </div>
                   <label>Email Address</label>
                   <div>
-                    <input type="text" />
+                    <input 
+                      type="text"
+                      name="email"
+                      value={this.state.email}
+                      autocomplete="off"
+                      onChange={(e) => this.handleTextChange(e)} 
+                    />
                   </div>
                   {
                     otpSent &&

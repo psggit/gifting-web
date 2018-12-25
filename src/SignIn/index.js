@@ -5,6 +5,7 @@ import ModalBox from '../components/modal-box/modalBox'
 import Icon from "Components/icon"
 import {Api} from 'Utils/config'
 import SignUp from './../SignUp'
+import {createSession} from './utils'
 
 // function checkStatus(response) {
 //   console.log("check sttus", response)
@@ -28,24 +29,19 @@ export default function SignIn(data) {
         //isMobile: props ? props.isMobile : false,
         otpSent: data ? data.otpSent : false,
         mobileNo: '',
-        otpValue: '',
-        errorInSignIn: false
+        otp: '',
+        errorInSignIn: false,
+        disableField: false,
+        isSigningIn: false
       }
       this.handleClick = this.handleClick.bind(this)
       this.signIn = this.signIn.bind(this)
       this.handleTextChange = this.handleTextChange.bind(this)
-      //this.resendOtp = this.resendOtp.bind(this)
+      this.verifyUser = this.verifyUser.bind(this)
+      this.resendOtp = this.resendOtp.bind(this)
     }
 
-    handleClick () {
-      //console.log("clikc")
-      
-      // data.handleGetOtp({
-      //   info: {},
-      //   mobile: this.state.mobileNo
-      // })
-      //this.setState({otpSent: true})
-
+    verifyUser(data) {
       const payload = {
         info: {},
         mobile: this.state.mobileNo
@@ -62,42 +58,65 @@ export default function SignIn(data) {
       }
       this.setState({errorInSignIn: false, isGettingOtp: true})
       fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
-      .then((response) => {
+        .then((response) => {
           if (response.status === 400) {
-            unMountModal()
-            mountModal(SignUp({}))
+            if(data.unMountModal) {
+              unMountModal()
+            }
+            mountModal(SignUp({
+              mobile: this.state.mobileNo
+            }))
             this.setState({isGettingOtp: false})
             return
           } else if (response.status === 401) {
-            this.setState({otpSent: true})
+            this.setState({otpSent: true, disableField: true})
           }
           this.setState({isGettingOtp: false})
-          unMountModal()
           return
         })
         .catch((err) => {
-          console.log("failure",err.status)
           this.setState({errorInSignIn: true})
         })
     }
 
-    signIn() {
-      //console.log("data", data)
-      unMountModal()
-      data.handleSignIn()
-      //this.setState({otpSent: false, isMobile: false})
-      //location.href="/using-gift-card"
+    handleClick () {
+      this.verifyUser({unMountModal: true})
     }
 
-    // resendOtp() {
-    //   this.setState({otpSent: true})
-    // }
+    signIn() {
+      const payload = {
+        info: {},
+        mobile: this.state.mobileNo,
+        otp: this.state.otp
+      }
+      const fetchOptions = {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        //credentials: 'include',
+        mode: 'cors',
+        body: JSON.stringify(payload)
+      }
+      this.setState({errorInSignIn: false, isSigningIn: true})
+      fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
+        .then((response) => {
+          response.json().then((data) => {
+            createSession(data)
+            unMountModal()
+            this.setState({isSigningIn: false})
+          })
+        })
+        .catch((err) => {
+          this.setState({errorInSignIn: true})
+        })
+    }
 
-    // componentWillReceiveProps(newProps) {
-    //   if(this.props.isMobile !== newProps.isMobile) {
-    //     this.setState({isMobile: newProps.isMobile})
-    //   }
-    // }
+    resendOtp() {
+      this.verifyUser({unMountModal: false})
+    }
+
     handleTextChange(e) {
       this.setState({[e.target.name]: e.target.value})
     }
@@ -123,6 +142,7 @@ export default function SignIn(data) {
                       <input 
                         type="text"
                         name="mobileNo"
+                        disabled={this.state.disableField}
                         value={this.state.mobileNo}
                         autocomplete="off"
                         onChange={(e) => this.handleTextChange(e)}
@@ -146,8 +166,8 @@ export default function SignIn(data) {
                       <div className="input-otp-container">
                         <input 
                           type="text"
-                          name="otpValue"
-                          value={this.state.otpValue}
+                          name="otp"
+                          value={this.state.otp}
                           autoComplete="fefef"
                           onChange={(e) => this.handleTextChange(e)}
                         />
