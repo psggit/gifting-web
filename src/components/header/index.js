@@ -170,7 +170,7 @@ class Header extends React.Component {
             {
               this.navItems.map((item, index) => (
                 <li key={index}>
-                  <a href="/">
+                  <a href="/" className="os s2">
                     {item}
                   </a>
                 </li>
@@ -179,11 +179,11 @@ class Header extends React.Component {
           </ul>
           {
             isLoggedIn && 
-            <div onClick={() => this.handleSignOut()}>SIGN OUT</div>
+            <div style={{width: '120px'}} onClick={() => this.handleSignOut()} className="os s2">SIGN OUT</div>
           }
           {
             !isLoggedIn &&
-            <div onClick={() => this.handleClick()}>SIGN IN</div>
+            <div style={{width: '120px'}} onClick={() => this.handleClick()} className="os s2">SIGN IN</div>
           }
         </div>
       </div>

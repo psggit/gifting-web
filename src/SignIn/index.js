@@ -195,9 +195,21 @@ export default function SignIn(data) {
           {
             <ModalBox>
               <div id="SignIn">
-                <h2 className="header os s2">
+                {
+                  !otpSent && 
+                  <h2 className="header os s2">
+                    Sign In / Sign Up with mobile number
+                  </h2>
+                }
+                {
+                  otpSent &&
+                  <h2 className="header os s2">
+                    Sign in with OTP
+                  </h2>
+                }
+                {/* <h2 className="header os s2">
                   Sign In / Sign Up with mobile number
-                </h2>
+                </h2> */}
                 <div className="page-body">
                   <label>Phone Number</label>
                   <div style={{display: 'flex'}}>
