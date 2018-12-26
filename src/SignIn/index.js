@@ -213,7 +213,7 @@ export default function SignIn(data) {
                         autocomplete="off"
                         onChange={(e) => this.handleTextChange(e)}
                         defaultValue={this.state.mobileNo}
-                        className={`${mobileNoErr.status ? 'error' : ''}`}
+                        className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
                         onKeyDown={(e) => {this.handleNumberChange(e)}}
                         onKeyUp={(e) => {this.handleNumberChange(e)}}
                       />

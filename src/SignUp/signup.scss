@@ -16,10 +16,15 @@
       display: flex;
       padding: 0 10px;
       align-items: center;
+      font-size: 14px;
     }
 
     .country-code.error {
-      border: 1px solid #c23934 !important;
+      //border: 1px solid #c23934 !important;
+      // border-right: 0 !important;
+      border-left: 1px solid #c23934 !important;
+      border-top: 1px solid #c23934 !important;
+      border-bottom: 1px solid #c23934 !important;
     }
     
     .error-message {
@@ -50,6 +55,13 @@
     
     input.error {
       border: 1px solid #c23934 !important;
+    }
+
+    input.mobile.error {
+      border-left: 0 !important;
+      border-right: 1px solid #c23934 !important;
+      border-top: 1px solid #c23934 !important;
+      border-bottom: 1px solid #c23934 !important;
     }
 
     .input-otp-container {

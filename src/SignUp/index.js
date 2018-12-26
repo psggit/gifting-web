@@ -244,7 +244,7 @@ export default function SignUp(data) {
                       <input 
                         type="text"
                         name="mobileNo"
-                        className={`${mobileNoErr.status ? 'error' : ''}`}
+                        className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
                         disabled={this.state.disableField}
                         value={this.state.mobileNo}
                         autocomplete="off"
