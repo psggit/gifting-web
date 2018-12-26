@@ -9,6 +9,7 @@ import {createSession} from 'Utils/session-utils'
 import { checkCtrlA, validateNumType, checkCtrlV } from 'Utils/logic-utils'
 import { validateNumberField } from 'Utils/validators'
 import { validateTextField, validateEmail } from '../utils/validators';
+import NotifyError from './../NotifyError';
 
 export default function SignUp(data) {
   return class SignUp extends React.Component {
@@ -83,6 +84,10 @@ export default function SignUp(data) {
       if(this.isFormValid()) {
         this.signUp()
       }
+    }
+
+    renderErrorNotification() {
+      mountModal(NotifyError({}))
     }
 
     signUp() {
@@ -220,7 +225,7 @@ export default function SignUp(data) {
     }
 
     render() {
-      const {otpSent, mobileNoErr, emailErr, nameErr, otpErr} = this.state
+      const {otpSent, mobileNoErr, emailErr, nameErr, otpErr, errorInSignUp} = this.state
       return (
         <div>
           {
@@ -323,6 +328,10 @@ export default function SignUp(data) {
                       </React.Fragment>
                   } 
                 </div>
+                {
+                  errorInSignUp && 
+                  this.renderErrorNotification()
+                }
               </div>
             </ModalBox>
           }

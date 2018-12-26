@@ -13,7 +13,8 @@ class Header extends React.Component {
     super(props)
     this.state = {
       isMenuOpen: false,
-      errorInSignIn: false
+      errorInSignIn: false,
+      isLoggedIn: ""
     }
     this.navItems = ["Send Gift Cards", "Using Gift Cards", "Retailer Outlets", "Support"]
     this.onToggle = this.onToggle.bind(this)
@@ -21,13 +22,19 @@ class Header extends React.Component {
     this.handleMouseOut = this.handleMouseOut.bind(this)
     this.handleClick = this.handleClick.bind(this)
     //this.getOtp = this.getOtp.bind(this)
-    this.handleSignUp = this.handleSignUp.bind(this)
-    this.getSignUpOtp = this.getSignUpOtp.bind(this)
+    // this.handleSignUp = this.handleSignUp.bind(this)
+    // this.getSignUpOtp = this.getSignUpOtp.bind(this)
     //this.handleSignIn = this.handleSignIn.bind(this)
   }
 
   componentDidMount() {
     this.links = document.querySelectorAll(".nav-items a")
+    console.log("login status", localStorage.getItem('isLoggedIn'))
+    if(localStorage.getItem('isLoggedIn')) {
+      this.setState({isLoggedIn: true})
+    } else {
+      this.setState({isLoggedIn: false})
+    }
   }
   
   handleClick() {
@@ -87,16 +94,12 @@ class Header extends React.Component {
   //   console.log("signIn")
   // }
 
-  getSignUpOtp() {
-    mountModal(SignUp({
-      handleSignIn: this.handleSignUp,
-      otpSent: true
-    }))
-  }
-
-  handleSignUp() {
-    console.log("sign up")
-  }
+  // getSignUpOtp() {
+  //   mountModal(SignUp({
+  //     handleSignIn: this.handleSignUp,
+  //     otpSent: true
+  //   }))
+  // }
 
   handleMouseOver(e) {
     this.links.forEach(link => {
@@ -117,6 +120,7 @@ class Header extends React.Component {
   }
 
   render() {
+    const {isLoggedIn} = this.state
     return (
       <div className="navbar">
         <div className="logo">
@@ -145,7 +149,14 @@ class Header extends React.Component {
               </a>
             ))
           }
-          <Button onClick={() => this.handleClick()} primary size="small">Sign in</Button>
+          {
+            isLoggedIn && 
+            <Button onClick={() => this.handleClick()} primary size="small">SIGN IN</Button>
+          }
+          {
+            !isLoggedIn && 
+            <Button onClick={() => this.handleSignOut()} primary size="small">SIGN OUT</Button>
+          }
         </div>
         <div className="navbar-menu">
           {
@@ -166,6 +177,14 @@ class Header extends React.Component {
               ))
             }
           </ul>
+          {
+            isLoggedIn && 
+            <div onClick={() => this.handleSignOut()}>SIGN OUT</div>
+          }
+          {
+            !isLoggedIn &&
+            <div onClick={() => this.handleClick()}>SIGN IN</div>
+          }
         </div>
       </div>
     )

@@ -6,8 +6,8 @@ import ModalBox from 'Components/modal-box'
 import Icon from "Components/icon"
 import { unMountModal } from 'Components/modal-box/utils'
 
-export default function AgeGate(data) {
-  return class AgeGate extends React.Component {
+export default function NotifyError(data) {
+  return class NotifyError extends React.Component {
 
     constructor(props) {
       super(props)
@@ -17,16 +17,15 @@ export default function AgeGate(data) {
       return (
         <ModalBox>
           <ModalHeader>  
-            <Icon name="user" />
+            <Icon name="errorIcon" />
           </ModalHeader>
           <ModalBody>
             <p className="os s2">
-              Agree if you are above the legal drinking age in your state of residence
+              Something went wrong! Please try again
             </p>
           </ModalBody>
           <ModalFooter>
-            <button className='btn btn-secondary os s7' onClick={unMountModal}>DISAGREE</button>
-            <button className='btn btn-primary os s7' onClick={unMountModal}>AGREE</button>
+            <button className='btn btn-primary' onClick={unMountModal}>RETRY</button>
           </ModalFooter>
         </ModalBox>
       )

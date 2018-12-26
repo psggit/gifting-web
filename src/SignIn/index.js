@@ -9,6 +9,7 @@ import {createSession} from 'Utils/session-utils'
 import { checkCtrlA, validateNumType, checkCtrlV } from 'Utils/logic-utils'
 import { validateNumberField } from 'Utils/validators'
 import { validateTextField } from '../utils/validators';
+import NotifyError from './../NotifyError';
 
 // function checkStatus(response) {
 //   console.log("check sttus", response)
@@ -117,6 +118,10 @@ export default function SignIn(data) {
         return true
       }
       return false
+    }
+
+    renderErrorNotification() {
+      mountModal(NotifyError({}))
     }
 
     handleClick () {
@@ -278,11 +283,11 @@ export default function SignIn(data) {
                         <button className='btn btn-primary os s7' onClick={this.signIn}>SIGN IN</button>
                       </React.Fragment>
                   } 
-                  {
-                    errorInSignIn && 
-                    <p>Something went wrong, please try again later</p>
-                  }
                 </div>
+                {
+                  errorInSignIn && 
+                  this.renderErrorNotification()
+                }
               </div>
             </ModalBox>
           }

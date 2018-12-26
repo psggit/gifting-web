@@ -48,7 +48,7 @@
     .modal-footer {
       // text-align: right;
       // position: absolute;
-      width: calc(100% - 98px);
+      //width: calc(100% - 98px);
       left: 0;
       right: 0;
       margin: 0 auto;
@@ -68,7 +68,7 @@
         // font-size: 14px;
         font-weight: 600;
         // width: auto;
-        width: 120px;
+        width: 140px;
         line-height: 40px;
         &:focus {
           outline: 0;
@@ -104,18 +104,18 @@
   }
 
   .modal-body {
-    max-height: 360px;
-    padding: 10px 0;
+    max-height: 360px !important;
+    padding: 20px 0 !important;
   }
 
   .modal-footer {
     // text-align: right;
     // position: absolute;
-    width: calc(100% - 38px) !important;
+    //width: calc(100% - 38px) !important;
     .btn {
       padding: 0 10px !important;
       height: auto !important;
-      line-height: 34px;
+      line-height: 34px !important;
     }
   }
 }
