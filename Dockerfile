@@ -4,8 +4,8 @@ RUN mkdir -p /app
 WORKDIR /app
 
 COPY package.json .
-RUN yarn install --build-from-source
-RUN yarn run build-client
+RUN npm install --build-from-source
+RUN npm run build-client
 
 COPY ./ /app
 
@@ -14,4 +14,4 @@ COPY ./ /app
 
 RUN npm run build
 
-ENTRYPOINT ["yarn", "run", "start"]
+ENTRYPOINT ["npm", "run", "start"]
