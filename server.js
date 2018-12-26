@@ -47,6 +47,10 @@ app.get("/*", (req, res) => {
   })
 })
 
+app.post("/transaction", (req, res) => {
+  res.send("transaction success")
+})
+
 // app.use(express.static(path.join(__dirname, "dist")))
 
 
