@@ -6,7 +6,7 @@ import Icon from "Components/icon"
 import SignIn from './../SignIn'
 import { Api } from '../utils/config'
 import {createSession} from 'Utils/session-utils'
-import { checkCtrlA, validateNumType, checkCtrlV } from 'Utils/logic-utils'
+import { checkCtrlA, validateNumType, checkCtrlV, checkCtrlC } from 'Utils/logic-utils'
 import { validateNumberField } from 'Utils/validators'
 import { validateTextField, validateEmail } from '../utils/validators';
 import NotifyError from './../NotifyError';
@@ -146,9 +146,10 @@ export default function SignUp(data) {
       this.setState({errorInSignIn: false, isSigningUp: true})
       fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
         .then((response) => {
-          response.json().then((data) => {
-            createSession(data)
+          response.json().then((responseData) => {
+            createSession(responseData, "true")
             unMountModal()
+            data.reload()
             this.setState({isSigningUp: false})
           })
         })
@@ -199,7 +200,7 @@ export default function SignUp(data) {
       const errName = `${e.target.name}Err`
       this.setState({
         [e.target.name]: e.target.value,
-        [errName]: validateEmail(this.inputNameMap[e.target.name], e.target.value),
+        //[errName]: validateEmail(this.inputNameMap[e.target.name], e.target.value),
       })
     }
 
@@ -207,17 +208,17 @@ export default function SignUp(data) {
       const errName = `${e.target.name}Err`
       this.setState({
         [e.target.name]: e.target.value,
-        [errName]: validateTextField(this.inputNameMap[e.target.name], e.target.value),
+        //[errName]: validateTextField(this.inputNameMap[e.target.name], e.target.value),
       })
     }
 
     handleNumberChange(e) {
       const errName = `${e.target.name}Err`
 
-      if(validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e)) {
+      if(validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e) || checkCtrlC(e)) {
         this.setState({ 
           [e.target.name]: e.target.value,
-          [errName]:  validateNumberField(this.inputNameMap[e.target.name], e.target.value)
+          //[errName]:  validateNumberField(this.inputNameMap[e.target.name], e.target.value)
         })
       } else {
         e.preventDefault()
@@ -237,18 +238,21 @@ export default function SignUp(data) {
                 <div className="page-body">
                   <label>Phone Number</label>
                   <div style={{display: 'flex'}}>
-                    <div className={country-code `${mobileNoErr.status ? 'error' : ''}`}>
+                    <div className={`country-code ${mobileNoErr.status ? 'error' : ''}`}>
                       +91
                     </div>
                     <div style={{width: 'calc(100% - 40px'}}>
                       <input 
                         type="text"
                         name="mobileNo"
-                        className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
                         disabled={this.state.disableField}
-                        value={this.state.mobileNo}
+                        //value={this.state.mobileNo}
                         autocomplete="off"
-                        onChange={(e) => this.handleTextChange(e)}
+                        //onChange={(e) => this.handleTextChange(e)}
+                        defaultValue={this.state.mobileNo}
+                        className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
+                        onKeyDown={(e) => {this.handleNumberChange(e)}}
+                        onKeyUp={(e) => {this.handleNumberChange(e)}}
                       />
                     </div>
                     {
@@ -258,7 +262,7 @@ export default function SignUp(data) {
                   </div>
                   {   
                     otpSent &&
-                    <div className="note os s7">Otp has been sent</div>
+                    <div className="note os s7">Otp has been sent!</div>
                   }
                   <label>Name</label>
                   <div>

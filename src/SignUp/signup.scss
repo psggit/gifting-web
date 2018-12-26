@@ -64,6 +64,10 @@
       border-bottom: 1px solid #c23934 !important;
     }
 
+    input[type="text"] { 
+      outline: none;
+    }
+
     .input-otp-container {
       position: relative;
       .resend {

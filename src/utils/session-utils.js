@@ -38,14 +38,15 @@ export function getHasuraId(data) {
 }
 
 export function getUsername(data) {
-  const username = data.info.username
+  console.log("data", data)
+  const username = data.info.username ? data.info.username : data.username 
   return username
 }
 
-export function createSession(data) {
+export function createSession(data, loginStatus) {
   console.log("session storage", getHasuraRole(data), getHasuraId(data), getUsername(data))
   localStorage.setItem('x-hasura-role', getHasuraRole(data))
   localStorage.setItem('hasura-id', getHasuraId(data))
   localStorage.setItem('username', getUsername(data))
-  localStorage.setItem('isLoggedIn', true)
+  localStorage.setItem('isLoggedIn', loginStatus)
 }

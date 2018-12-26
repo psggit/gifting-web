@@ -6,7 +6,7 @@ import Icon from "Components/icon"
 import {Api} from 'Utils/config'
 import SignUp from './../SignUp'
 import {createSession} from 'Utils/session-utils'
-import { checkCtrlA, validateNumType, checkCtrlV } from 'Utils/logic-utils'
+import { checkCtrlA, validateNumType, checkCtrlV, checkCtrlC } from 'Utils/logic-utils'
 import { validateNumberField } from 'Utils/validators'
 import { validateTextField } from '../utils/validators';
 import NotifyError from './../NotifyError';
@@ -133,10 +133,10 @@ export default function SignIn(data) {
     handleNumberChange(e) {
       const errName = `${e.target.name}Err`
 
-      if(validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e)) {
+      if(validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e) || checkCtrlC(e)) {
         this.setState({ 
           [e.target.name]: e.target.value,
-          [errName]:  validateNumberField(this.inputNameMap[e.target.name], e.target.value)
+          //[errName]:  validateNumberField(this.inputNameMap[e.target.name], e.target.value)
         })
       } else {
         e.preventDefault()
@@ -163,14 +163,21 @@ export default function SignIn(data) {
       this.setState({errorInSignIn: false, isSigningIn: true})
       fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
         .then((response) => {
-          response.json().then((data) => {
+          response.json().then((responseData) => {
             if(response.status === 400 && data.errorCode.includes("invalid-otp")){
-              console.log("else if2")
+              console.log("else if2", response)
               this.setState({otpErr: {status: true, value: "Incorrect OTP. Please enter again or resend OTP"}})
               return
-            } 
-            createSession(data)
+            } else if(response.status === 401 && data.errorCode.includes("role-invalid")){
+              //console.log("else if2", response)
+              this.setState({otpErr: {status: true, value: data.message}})
+              return
+            }
+            createSession(responseData, "true")
             unMountModal()
+            console.log("data", data)
+            //window.location.reload()
+            data.reload()
             this.setState({isSigningIn: false})
           })
         })
@@ -223,7 +230,7 @@ export default function SignIn(data) {
                         disabled={this.state.disableField}
                         //value={this.state.mobileNo}
                         autocomplete="off"
-                        onChange={(e) => this.handleTextChange(e)}
+                        //onChange={(e) => this.handleTextChange(e)}
                         defaultValue={this.state.mobileNo}
                         className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
                         onKeyDown={(e) => {this.handleNumberChange(e)}}
@@ -238,7 +245,7 @@ export default function SignIn(data) {
                   {
                     otpSent &&
                     <React.Fragment>
-                      <div className="note os s7">Otp has been sent</div>
+                      <div className="note os s7">Otp has been sent!</div>
                       <div className="alert-box">
                         <div style={{marginRight: '10px'}}>
                           <Icon name="alert" />
@@ -254,7 +261,7 @@ export default function SignIn(data) {
                           name="otp"
                           value={this.state.otp}
                           className={`${otpErr.status ? 'error' : ''}`}
-                          autoComplete="fefef"
+                          autocomplete="off"
                           onChange={(e) => this.handleTextChange(e)}
                         />
                         <div className="resend" onClick={this.resendOtp}>Resend</div>

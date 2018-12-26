@@ -12,7 +12,9 @@ class LandingPage extends React.Component {
   }
   
   componentDidMount() {
-    mountModal(AgeGate({}))
+    if(localStorage.getItem('isLoggedIn') === "false") {
+      mountModal(AgeGate({}))
+    }
   }
 
   render() {

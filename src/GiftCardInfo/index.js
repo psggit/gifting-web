@@ -64,7 +64,7 @@ class GiftCards extends React.Component {
 
           <div className="button">
             <p>VIEW RETAIL OUTLETS</p>
-            <span><Icon name="rightArrowWhite" /></span>
+            {/* <span><Icon name="rightArrowWhite" /></span> */}
           </div>
         </div>
         <div className="start-gifting">
@@ -76,7 +76,7 @@ class GiftCards extends React.Component {
           </div>
           <div className="button">
             <p>START GIFTING</p>
-            <span><Icon name="rightArrowBlack" /></span>
+            {/* <span><Icon name="rightArrowBlack" /></span> */}
           </div>
         </div>
       </div>

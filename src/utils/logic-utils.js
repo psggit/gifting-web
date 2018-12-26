@@ -28,3 +28,12 @@ export function checkCtrlV(e) {
   }
   return false
 }
+
+export function checkCtrlC(e) {
+  if (e.ctrlKey) {
+    if (e.keyCode == 99 || e.keyCode == 67) {
+      return true
+    }
+  }
+  return false
+}

@@ -7,6 +7,7 @@ import SignIn from "./../../SignIn"
 import SignUp from "./../../SignUp"
 import { mountModal } from 'Components/modal-box/utils'
 import {Api} from 'Utils/config'
+import {createSession} from 'Utils/session-utils'
 
 class Header extends React.Component {
   constructor(props) {
@@ -14,13 +15,15 @@ class Header extends React.Component {
     this.state = {
       isMenuOpen: false,
       errorInSignIn: false,
-      isLoggedIn: ""
+      //isLoggedIn: ""
     }
     this.navItems = ["Send Gift Cards", "Using Gift Cards", "Retailer Outlets", "Support"]
     this.onToggle = this.onToggle.bind(this)
     this.handleMouseOver = this.handleMouseOver.bind(this)
     this.handleMouseOut = this.handleMouseOut.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleSignOut = this.handleSignOut.bind(this)
+    this.reloadHeader = this.reloadHeader.bind(this)
     //this.getOtp = this.getOtp.bind(this)
     // this.handleSignUp = this.handleSignUp.bind(this)
     // this.getSignUpOtp = this.getSignUpOtp.bind(this)
@@ -28,13 +31,68 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
+    // const fetchOptions = {
+    //   method: 'get',
+    //   credentials: 'include',
+    //   mode: 'cors',
+    //   //'x-hasura-role': 'user'
+    // }
+
+    // fetch(`${Api.authUrl}/user/account/info`, fetchOptions)
+    //   .then((response) => {
+    //     if (response.status !== 200) {
+    //       this.setState({isLoggedIn: false })
+    //       localStorage.clear()
+    //       localStorage.setItem("isLoggedIn", "false")
+    //       return
+    //     }
+    //     response.json().then((data) => {
+    //       createSession(data, "true")
+    //       this.setState({isLoggedIn: true })
+    //     })
+    //   })
+    //   .catch((err) => {
+    //     localStorage.setItem("isLoggedIn", "false")
+    //     this.setState({isLoggedIn: false })
+    //   })
     this.links = document.querySelectorAll(".nav-items a")
-    console.log("login status", localStorage.getItem('isLoggedIn'))
-    if(localStorage.getItem('isLoggedIn')) {
+    if(localStorage.getItem('isLoggedIn') === "false" || localStorage.getItem('isLoggedIn') === "undefined") {
+      this.setState({isLoggedIn: false })
+    } else if(localStorage.getItem('isLoggedIn') === "true") {
+      this.setState({isLoggedIn: true })
+    }
+  }
+
+  reloadHeader() {
+    if(localStorage.getItem('isLoggedIn') === "true") {
       this.setState({isLoggedIn: true})
-    } else {
+    } else if(localStorage.getItem('isLoggedIn') === "false") {
       this.setState({isLoggedIn: false})
     }
+  }
+
+  handleSignOut() {
+    const fetchOptions = {
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      //credentials: 'include',
+      mode: 'cors',
+      //body: JSON.stringify(payload)
+    }
+    //this.setState({errorInSignIn: false, isSigningIn: true})
+    fetch(`${Api.blogicUrl}/consumer/auth/user/logout`, fetchOptions)
+      .then((response) => {
+        console.log("success")
+        localStorage.clear()
+        localStorage.setItem("isLoggedIn", "false")
+        this.setState({isLoggedIn: false})
+      })
+      .catch((err) => {
+        console.log("Error in logout", err)
+      })
   }
   
   handleClick() {
@@ -42,6 +100,7 @@ class Header extends React.Component {
     //location.href="/sign-in"
     mountModal(SignIn({
       handleGetOtp: this.getOtp,
+      reload: this.reloadHeader
       //otpSent: false
     }))
     // mountModal(SignUp({
@@ -121,6 +180,7 @@ class Header extends React.Component {
 
   render() {
     const {isLoggedIn} = this.state
+    console.log("loggeg in", isLoggedIn, !isLoggedIn)
     return (
       <div className="navbar">
         <div className="logo">
@@ -150,11 +210,11 @@ class Header extends React.Component {
             ))
           }
           {
-            isLoggedIn && 
+            !isLoggedIn && 
             <Button onClick={() => this.handleClick()} primary size="small">SIGN IN</Button>
           }
           {
-            !isLoggedIn && 
+            isLoggedIn && 
             <Button onClick={() => this.handleSignOut()} primary size="small">SIGN OUT</Button>
           }
         </div>
@@ -176,15 +236,19 @@ class Header extends React.Component {
                 </li>
               ))
             }
+            <li>
+              {
+                isLoggedIn &&
+                <button onClick={() => this.handleSignOut()} className="btn btn-secondary os s2">SIGN OUT</button>
+              }
+            </li>
+            <li>
+              {
+                !isLoggedIn &&
+                <button onClick={() => this.handleClick()} className="btn btn-secondary os s2">SIGN IN</button>
+              }
+            </li>
           </ul>
-          {
-            isLoggedIn && 
-            <div style={{width: '120px'}} onClick={() => this.handleSignOut()} className="os s2">SIGN OUT</div>
-          }
-          {
-            !isLoggedIn &&
-            <div style={{width: '120px'}} onClick={() => this.handleClick()} className="os s2">SIGN IN</div>
-          }
         </div>
       </div>
     )
