@@ -6,6 +6,7 @@ import "./send-gift.scss"
 class SendGift extends React.Component {
   constructor() {
     super()
+    this.whatsappText = "Hey checkout hipbar gifting. http://192.168.0.113:8080"
   }
 
   render() {
@@ -88,6 +89,8 @@ class SendGift extends React.Component {
             <div style={{ marginTop: "20px" }}>
               <Button primary>Sign in to proceed</Button>
             </div>
+
+            <a href={`whatsapp://send?text=${this.whatsappText}`} data-action="share/whatsapp/share">Share on whatsapp</a>
 
           </div>
         </div>

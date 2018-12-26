@@ -12,9 +12,9 @@ app.disable("x-powered-by")
 app.get("*.js", (req, res, next) => {
   console.log("Processing js files....")
   console.log("Gzipping....")
-  req.url += ".br"
-  res.set("Content-Encoding", "br")
-  res.set("Content-type", "text/javascript")
+  // req.url += ".br"
+  // res.set("Content-Encoding", "br")
+  // res.set("Content-type", "text/javascript")
   const vendorUrlRegex = /vendor.*.js/
   if (vendorUrlRegex.test(req.url)) {
     console.log("Setting cache for vendor....")
@@ -22,6 +22,8 @@ app.get("*.js", (req, res, next) => {
   }
   next()
 })
+
+app.use(express.static(path.join(__dirname, "dist")))
 
 // app.get("/*", (req, res,) => {  
 //   const html = fs.readFileSync("./dist/index.html", "utf-8")
@@ -37,7 +39,7 @@ app.get("*.js", (req, res, next) => {
 // })
 
 // client side app
-app.get("/", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist/index.html"), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -45,7 +47,7 @@ app.get("/", (req, res) => {
   })
 })
 
-app.use(express.static(path.join(__dirname, "dist")))
+// app.use(express.static(path.join(__dirname, "dist")))
 
 
 app.listen(8080, () => {
