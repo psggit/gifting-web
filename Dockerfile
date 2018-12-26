@@ -4,7 +4,6 @@ RUN mkdir -p /app
 WORKDIR /app
 
 COPY package.json .
-COPY yarn.lock .
 RUN yarn install
 RUN yarn run build-client
 
