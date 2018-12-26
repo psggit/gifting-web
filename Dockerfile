@@ -5,9 +5,10 @@ WORKDIR /app
 
 COPY package.json .
 RUN yarn install
-RUN yarn run build-client
 
 COPY ./ /app
+
+RUN yarn run build-client
 
 # ENV NODE_PATH /app/node_modules/
 # ENV NODE_PATH /usr/lib/node_modules/
