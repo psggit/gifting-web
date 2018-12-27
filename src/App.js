@@ -1,5 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import "preact/debug"
 import {Switch} from "react-router-dom"
 import {
   Route
@@ -13,6 +14,7 @@ import UsingGiftCard from './GiftCardInfo'
 import SendGiftCards from './SendGift'
 import SignIn from './SignIn'
 import TransactionHistory from "./TransactionHistory"
+import Checkout from "./Payment"
 
 const history = CreateHistory()
 
@@ -65,6 +67,7 @@ class App extends React.Component {
             <Route exact path="/using-gift-card" component={UsingGiftCard} />
             <Route exact path="/send-gift" component={SendGiftCards} />
             <Route exact path="/transaction-history" component={TransactionHistory} />
+            <Route exact path="/checkout" component={Checkout} />
             <Route exact path="*" component={() => <h1>404 Not Found</h1>} />
           </Switch>
         </Router>

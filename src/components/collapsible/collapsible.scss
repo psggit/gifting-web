@@ -1,0 +1,59 @@
+@import "./../../sass/base.scss";
+
+.collapsible--wrapper {
+  width: 100%;
+  border: 1px solid #dfdfdf;
+
+  .os.s7 {
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: #000;
+  }
+}
+
+.collapsible--header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  line-height: 66px;
+  border-bottom: 1px solid #dfdfdf;
+  background-color: #fff;
+  cursor: pointer;
+  div {
+    position: relative;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    color: #152935;
+    label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      padding: 0 40px;
+    }
+    input {
+      margin-left: 20px;
+    }
+    // text-transform: uppercase;
+  }
+}
+
+.collapsible--body {
+  padding: 20px;
+  width: 100%;
+  background-color: #f5f5f5;
+  transition: 0.8s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 1;
+
+  &.collapsed {
+    transition: 0.8s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding: 0 24px;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+}

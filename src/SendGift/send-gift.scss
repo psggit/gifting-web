@@ -18,7 +18,9 @@
         padding: 20px;
         border-radius: 4px;
         border: 1px solid #dfdfdf;
-        &:focus {
+        transition: border 0.1s ease-in;
+        &:focus, &.focused {
+          transition: border 0.1s ease-in;
           border-color: #000;
           outline: 0;
         }
@@ -94,7 +96,7 @@
       input:read-only {
         padding: 0 20px 0 30px;
         cursor: pointer;
-        &:focus {
+        &:focus, &.focused {
           font-weight: 600;
         }
       }

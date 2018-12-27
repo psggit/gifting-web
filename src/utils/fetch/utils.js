@@ -68,8 +68,9 @@ export function checkStatus(response) {
  * @param {Object} options
  */
 export function constructFetchUtility(options) {
-  const { api, data, method, type, cors, prependBaseUrl = true, apiBase } = options
 
+  const { api, data, method, type, cors, prependBaseUrl = true, apiBase } = options
+  console.log(data);
   // construct request url
   const url = prependBaseUrl ? `${Api[apiBase]}${api}` : api
 

@@ -1,0 +1,32 @@
+@import "./../sass/base.scss";
+
+#checkout {
+  margin-top: 100px;
+  background-color: #f1f1f1;
+
+  .os.s5 {
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: #000;
+  }
+
+  .os.s8 {
+    color: #555555;
+    letter-spacing: 0.5px;
+  }
+
+  .col {
+    max-width: 500px;
+  }
+
+  .payment-methods-wrapper {
+    margin-top: 20px;
+  }
+
+  .payment-methods-container {
+    margin-top: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #dddbda;
+    padding: 20px;
+  }
+}
