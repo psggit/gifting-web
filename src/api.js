@@ -1,19 +1,22 @@
-import { POST } from 'Utils/fetch'
+import { POST, GET } from 'Utils/fetch'
 //import Notify from 'Components/notify'
 
-export function verifyUser (payloadObj, successCallback, failureCallback) {
+export function fetchTransactionList (payloadObj, successCallback, failureCallback) {
+  console.log("payload", payloadObj)
   return POST({
-    api: '/consumer/auth/otp-login',
-    apiBase: 'blogicUrl',
+    api: `/consumer/transactionsv3/gifts_sent`,
+    apiBase: 'orderman',
     data: payloadObj,
     handleError: true
   })
     .then((json) => {
+      successCallback()
       //successCallback(json)
-      console.log("success")
+      //console.log("success", json)
     })
     .catch(err => {
-      console.log("failure")
+      failureCallback()
+      //console.log("failure")
       // console.log("Error in fetching organisation list", err)
       // err.response.json().then(json => { Notify("danger", json.error) })
       // failureCallback()
