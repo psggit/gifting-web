@@ -1,0 +1,24 @@
+@import "./../sass/base.scss";
+
+#retailOutlet {
+  width: 100%;
+  font-family: $font-OpenSans;
+  //height: 100vh;
+  h4, h2 {
+    font-family: $font-Cormorant;
+    text-align: center;
+  }
+  .content {
+    // padding: 0 20.5%;
+    position: relative;
+    // margin-top: calc(134px + 80px);
+    // margin-bottom: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    padding: 15% 20.5% 15% 20.5%;
+    background: #f1f1f1;
+  }
+}
