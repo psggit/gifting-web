@@ -4,17 +4,25 @@ const app = express()
 const fs = require("fs")
 const React = require("react")
 const { renderToNodeStream } = require("react-dom/server")
+const bodyParser = require('body-parser')
+const FormData = require("form-data")
+const request = require("request")
 // const template = require("./src/template")
-
 app.disable("x-powered-by")
+
+// ENV variables
+// const PROD_API_BASE = process.env.PROD_API_BASE
+const URL_ENV = "amebae21.hasura-app.io";
+// const URL_ENV = process.env.URL_ENV
+
 
 // middleware for processing js files
 app.get("*.js", (req, res, next) => {
   console.log("Processing js files....")
   console.log("Gzipping....")
-  req.url += ".br"
-  res.set("Content-Encoding", "br")
-  res.set("Content-type", "text/javascript")
+  // req.url += ".br"
+  // res.set("Content-Encoding", "br")
+  // res.set("Content-type", "text/javascript")
   const vendorUrlRegex = /vendor.*.js/
   if (vendorUrlRegex.test(req.url)) {
     console.log("Setting cache for vendor....")
@@ -23,7 +31,10 @@ app.get("*.js", (req, res, next) => {
   next()
 })
 
-// app. get("/*", (req, res,) => {  
+app.use(express.static(path.join(__dirname, "dist")))
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// app.get("/*", (req, res,) => {  
 //   const html = fs.readFileSync("./dist/index.html", "utf-8")
 //   const [head, tail] = html.split("{content}")
 //   res.write(head)
@@ -37,7 +48,7 @@ app.get("*.js", (req, res, next) => {
 // })
 
 // client side app
-app.get("/", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist/index.html"), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -45,7 +56,18 @@ app.get("/", (req, res) => {
   })
 })
 
-app.use(express.static(path.join(__dirname, "dist")))
+app.post("/transaction", (req, res) => {
+  request.post({ url: `https://orderman.${URL_ENV}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
+    console.log(err, httpRes, body)
+  })
+  res.sendFile(path.join(__dirname, "src/transaction.html"), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+// app.use(express.static(path.join(__dirname, "dist")))
 
 
 app.listen(8080, () => {

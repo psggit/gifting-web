@@ -24,6 +24,7 @@ class SendGift extends React.Component {
     this.handlePhoneChange = this.handlePhoneChange.bind(this)
     this.handleTextChange = this.handleTextChange.bind(this)
     this.proceedToPayment = this.proceedToPayment.bind(this)
+    this.whatsappText = "Hey checkout hipbar gifting. http://192.168.0.113:8080"
   }
 
   proceedToPayment() {
@@ -157,6 +158,9 @@ class SendGift extends React.Component {
               }
 
             </div>
+
+            <a href={`whatsapp://send?text=${this.whatsappText}`} data-action="share/whatsapp/share">Share on whatsapp</a>
+
           </div>
         </div>
         <Footer />
