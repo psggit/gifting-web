@@ -4,7 +4,7 @@ import "./navbar.scss"
 import Icon from "Components/icon"
 import Button from "Components/button"
 import { mountModal } from "Components/modal-box/utils"
-import SignIn from "./../../SignIn"
+// import SignIn from "./../../SignIn"
 
 class Header extends React.Component {
   constructor() {
@@ -24,7 +24,7 @@ class Header extends React.Component {
   }
 
   mountSignInModal() {
-    mountModal(SignIn({}))
+    // mountModal(SignIn({}))
   }
 
   handleMouseOver(e) {

@@ -23,7 +23,7 @@ app.get("*.js", (req, res, next) => {
   next()
 })
 
-// app.get("/*", (req, res,) => {  
+// app. get("/*", (req, res,) => {  
 //   const html = fs.readFileSync("./dist/index.html", "utf-8")
 //   const [head, tail] = html.split("{content}")
 //   res.write(head)
