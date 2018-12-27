@@ -62,6 +62,13 @@ class SendGift extends React.Component {
         receiver_name: receiverName
       }
     })
+    .then((json) => {
+      POST({
+        api: "/checkout",
+        prependBaseUrl: false,
+        data: json
+      })
+    })
   }
 
   render() {

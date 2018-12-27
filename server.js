@@ -7,7 +7,9 @@ const { renderToNodeStream } = require("react-dom/server")
 const bodyParser = require('body-parser')
 const FormData = require("form-data")
 const request = require("request")
-// const template = require("./src/template")
+const CheckoutReact = require("./dist-ssr/checkout").default
+console.log(CheckoutReact);
+// 
 app.disable("x-powered-by")
 
 // ENV variables
@@ -20,9 +22,9 @@ const URL_ENV = "amebae21.hasura-app.io";
 app.get("*.js", (req, res, next) => {
   console.log("Processing js files....")
   console.log("Gzipping....")
-  // req.url += ".br"
-  // res.set("Content-Encoding", "br")
-  // res.set("Content-type", "text/javascript")
+  req.url += ".br"
+  res.set("Content-Encoding", "br")
+  res.set("Content-type", "text/javascript")
   const vendorUrlRegex = /vendor.*.js/
   if (vendorUrlRegex.test(req.url)) {
     console.log("Setting cache for vendor....")
@@ -33,6 +35,23 @@ app.get("*.js", (req, res, next) => {
 
 app.use(express.static(path.join(__dirname, "dist")))
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.get("/checkout", (req, res) => {
+  res.send("Not Found")
+})
+
+app.post("/checkout", (req, res,) => {  
+  const html = fs.readFileSync("./dist/checkout.html", "utf-8")
+  const [head, tail] = html.split("{content}")
+  res.write(head)
+  const reactElement = React.createElement(CheckoutReact)
+  const stream = renderToNodeStream(reactElement)
+  stream.pipe(res, { end: false })
+  stream.on("end", () => {
+    res.write(tail)
+    res.end()
+  })
+})
 
 // app.get("/*", (req, res,) => {  
 //   const html = fs.readFileSync("./dist/index.html", "utf-8")
@@ -55,6 +74,7 @@ app.get("/*", (req, res) => {
     }
   })
 })
+
 
 app.post("/transaction", (req, res) => {
   request.post({ url: `https://orderman.${URL_ENV}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {

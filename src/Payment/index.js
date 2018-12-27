@@ -1,7 +1,8 @@
 import React from "react"
+import "preact/debug"
 import "./../sass/form.scss"
 import "./payment.scss"
-import Header from "Components/header"
+// import Header from "Components/header"
 import Footer from "Components/footer"
 import Collapsible from "Components/collapsible"
 import Button from "Components/button"
@@ -14,7 +15,7 @@ class Payment extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        {/* <Header /> */}
         <div id="checkout">
           <div className="container">
             <div className="col">

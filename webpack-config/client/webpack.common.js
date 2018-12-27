@@ -7,7 +7,8 @@ const BrotliPlugin = require("brotli-webpack-plugin")
 module.exports = {
   entry: {
     app: path.resolve(__dirname, "./../../src/App.js"),
-    vendor: ["react", "react-dom"]
+    checkout: path.resolve(__dirname, "./../../src/Payment/index.js"),
+    // vendor: ["react", "react-dom"]
   },
   plugins: [
     new CleanWebpackPlugin(["dist"], {
@@ -17,6 +18,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "Output Management",
       template: path.resolve(__dirname, "./../../index.html")
+    }),
+    new HtmlWebpackPlugin({
+      // chunks: ["checkout", "vendor"],
+      filename: "checkout.html",
+      template: path.resolve(__dirname, "./../../src/transaction.html")
     }),
     new CompressionPlugin({  
       test: /\.js$|\.css$|\.html$/,
@@ -60,6 +66,11 @@ module.exports = {
         exclude: /node_modules/
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all"
+    }
   }
   // optimization: {
   //   splitChunks: {
