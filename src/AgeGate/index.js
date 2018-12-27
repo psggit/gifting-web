@@ -15,11 +15,14 @@ export default function AgeGate(data) {
     }
 
     closeWindow(cmd) {
-      if (cmd=='quit')
-      {
-        open(location, '_self').close()
-      }   
-      return false;   
+      // if (cmd=='quit')
+      // {
+      //   open(location, '_self').close()
+      // }   
+      // return false;
+      //console.log("close")
+      //window.open('','_self').close()
+      window.close()   
     }
 
     render() {

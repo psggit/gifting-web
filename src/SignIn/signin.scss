@@ -67,6 +67,11 @@
         right: 10px;
         font-weight: 600;
         cursor: pointer;
+
+        &.disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
       }
     }
 

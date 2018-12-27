@@ -38,8 +38,8 @@ export function getHasuraId(data) {
 }
 
 export function getUsername(data) {
-  //console.log("data", data)
-  const username = data.info.username ? data.info.username : data.username 
+  console.log("data", data)
+  const username = data.info.username ? data.info.username : '' 
   return username
 }
 
@@ -52,6 +52,8 @@ export function createSession(data, loginStatus) {
 }
 
 export function clearSession() {
+  const isLoadingFirstTime = localStorage.getItem("isLoadingFirstTime")
   localStorage.clear()
   localStorage.setItem("isLoggedIn", "false")
+  localStorage.setItem("isLoadingFirstTime", isLoadingFirstTime)
 }

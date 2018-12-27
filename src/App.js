@@ -27,6 +27,7 @@ class App extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.display.bind(this))
+    localStorage.setItem("isLoadingFirstTime", true)
   }
 
   display() {

@@ -7,7 +7,7 @@ import SignIn from "./../../SignIn"
 import SignUp from "./../../SignUp"
 import { mountModal } from 'Components/modal-box/utils'
 import {Api} from 'Utils/config'
-import {createSession, clearSession} from 'Utils/session-utils'
+import {createSession, clearSession, getUsername} from 'Utils/session-utils'
 import NotifyError from './../../NotifyError';
 
 class Header extends React.Component {
@@ -16,6 +16,7 @@ class Header extends React.Component {
     this.state = {
       isMenuOpen: false,
       errorInSignIn: false,
+      showDropdown: false
     }
     this.navItems = ["Send Gift Cards", "Using Gift Cards", "Retailer Outlets", "Support"]
     this.onToggle = this.onToggle.bind(this)
@@ -87,13 +88,18 @@ class Header extends React.Component {
     })
   }
 
+  openDropdown() {
+    const {showDropdown} = this.state
+    this.setState({showDropdown: !showDropdown})
+  }
+
   onToggle() {
     const {isMenuOpen} = this.state
     this.setState({ isMenuOpen: !isMenuOpen })
   }
 
   render() {
-    const {isLoggedIn} = this.state
+    const {isLoggedIn, showDropdown} = this.state
     return (
       <div className="navbar">
         <div className="logo">
@@ -128,8 +134,25 @@ class Header extends React.Component {
           }
           {
             isLoggedIn && 
-            <Button onClick={() => this.handleSignOut()} primary size="small">SIGN OUT</Button>
+            // <Button onClick={() => this.handleSignOut()} primary size="small">SIGN OUT</Button>
+            <div class="logout">
+              <Icon name="appUser" style={{marginRight: '10px'}}/>
+              <div className="os s2"  style={{marginRight: '8px'}} >{localStorage.getItem("username")}</div>
+              <span onClick={() => this.openDropdown()}>
+                <Icon name="downArrow" />
+              </span>
+
+              <div className={`dropdown-menu ${showDropdown ? 'show' : 'hide'}`} >
+                <div onClick={() => this.handleSignOut()} className="menu-item"> Sign Out</div>
+              </div>
+            </div>
           }
+          {/* {
+            showDropdown &&
+            <div className="dropdown-menu">
+              <div className="menu-item"> Sign Out</div>
+            </div>
+          } */}
         </div>
         <div className="navbar-menu">
           {

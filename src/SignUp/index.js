@@ -121,7 +121,7 @@ export default function SignUp(data) {
     }
 
     handleClick () {
-      if(this.isFormValid()) {
+      if(this.isFormValid() && !this.state.isGettingOtp) {
         this.signUp()
       }
     }
@@ -154,7 +154,7 @@ export default function SignUp(data) {
         mode: 'cors',
         body: JSON.stringify(payload)
       }
-      this.setState({errorInSignUp: false, isSigningUp: true})
+      this.setState({errorInSignUp: false, isGettingOtp: true})
       fetch(`${Api.blogicUrl}/consumer/auth/otp-signup`, fetchOptions)
         .then((response) => {
           response.json().then((responseData) => {
@@ -170,51 +170,56 @@ export default function SignUp(data) {
               this.setState({dobErr: {status: true, value: responseData.message}})
             } else if(response.status !== 400) {
               this.getOtp()
-              this.setState({isSigningUp: false})
             }
+            this.setState({isGettingOtp: false})
           })
           //return
         })
         .catch((err) => {
           this.setState({errorInSignUp: true})
+          this.setState({isGettingOtp: false})
           mountModal(NotifyError({}))
         })
     }
 
     login() {
-      const payload = {
-        info: {},
-        mobile: this.state.mobileNo,
-        otp: this.state.otp
-      }
-      const fetchOptions = {
-        method: 'post',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        //credentials: 'include',
-        mode: 'cors',
-        body: JSON.stringify(payload)
-      }
-      this.setState({errorInSignIn: false, isSigningUp: true})
-      fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
-        .then((response) => {
-          response.json().then((responseData) => {
-            if(response.status === 400 && responseData.errorCode.includes("invalid-otp")){
-              this.setState({otpErr: {status: true, value: "Incorrect OTP. Please enter again or resend OTP"}})
-              return
-            }
-            createSession(responseData, "true")
-            unMountModal()
-            data.reload()
-            this.setState({isSigningUp: false})
+      if(!this.state.isSigningUp) {
+        const payload = {
+          info: {},
+          mobile: this.state.mobileNo,
+          otp: this.state.otp
+        }
+        const fetchOptions = {
+          method: 'post',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          //credentials: 'include',
+          mode: 'cors',
+          body: JSON.stringify(payload)
+        }
+        this.setState({errorInSignIn: false, isSigningUp: true})
+        fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
+          .then((response) => {
+            response.json().then((responseData) => {
+              if(response.status === 400 && responseData.errorCode.includes("invalid-otp")){
+                this.setState({otpErr: {status: true, value: "Incorrect OTP. Please enter again or resend OTP"}})
+                this.setState({isSigningUp: false})
+                return
+              }
+              createSession(responseData, "true")
+              unMountModal()
+              data.reload()
+              this.setState({isSigningUp: false})
+            })
           })
-        })
-        .catch((err) => {
-          this.setState({errorInSignUp: true})
-          mountModal(NotifyError({}))
-        })
+          .catch((err) => {
+            this.setState({errorInSignUp: true})
+            this.setState({isSigningUp: false})
+            mountModal(NotifyError({}))
+          })
+      }
     }
 
     getOtp() {
@@ -243,13 +248,16 @@ export default function SignUp(data) {
         })
         .catch((err) => {
           this.setState({errorInSignUp: true})
+          this.setState({isGettingOtp: false})
           mountModal(NotifyError({}))
         })
     }
 
     resendOtp() {
       //this.setState({otpSent: true})
-      this.getOtp()
+      if(!this.state.isGettingOtp) {
+        this.getOtp()
+      }
     }
 
     handleEmailChange(e) {
@@ -288,7 +296,9 @@ export default function SignUp(data) {
               nameErr, otpErr, 
               errorInSignUp, 
               dobErr,
-              gender
+              gender,
+              isSigningUp,
+              isGettingOtp
             } = this.state
     
       return (
@@ -407,7 +417,7 @@ export default function SignUp(data) {
                           autocomplete="off"
                           onChange={(e) => this.handleTextChange(e)} 
                         />
-                        <div className="resend os s7" onClick={this.resendOtp}>RESEND</div>
+                        <div className={`resend os s7 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND</div>
                       </div>
                       {
                         otpErr.status &&
@@ -421,11 +431,11 @@ export default function SignUp(data) {
                     !otpSent 
                     ? <React.Fragment>
                         <button className='btn btn-secondary os s7' onClick={unMountModal}>CANCEL</button>
-                        <button className='btn btn-primary os s7' onClick={this.handleClick}>GET OTP</button>
+                        <button className={`btn btn-primary os s7 ${isGettingOtp ? 'disabled': ''}`} onClick={this.handleClick}>GET OTP</button>
                       </React.Fragment>
                     : <React.Fragment>
                         <button className='btn btn-secondary os s7' onClick={unMountModal}>CANCEL</button>
-                        <button className='btn btn-primary os s7' onClick={this.login}>SIGN UP</button>
+                        <button className={`btn btn-primary os s7 ${isSigningUp ? 'disabled': ''}`} onClick={this.login}>SIGN UP</button>
                       </React.Fragment>
                   } 
                 </div>
