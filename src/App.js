@@ -41,8 +41,8 @@ class App extends React.Component {
   componentDidMount() {
     const formData = new FormData()
    const data = ` key~gtKFFx
-    txnid~G01021200623269
-    amount~210
+    txnid~G010249047181
+    amount~300
     productinfo~gift
     firstname~Arun
     email~arunkushore@hip.com
@@ -51,7 +51,7 @@ class App extends React.Component {
     surl~http://localhost:8080/transaction?status=success
     furl~http://localhost:8080/transaction?status=failure
     curl~http://localhost:8080/transaction?status=cancelled
-    hash~78fe602be97d798c249351648edf3a90f039cc1c2902daa49c104339d0906f326814bc363de9f69dbaae7a8f81de88763eb941c04f99451422e4e52d6ae98544
+    hash~fadc202fd9bf5dd4c15cfd269757a78de34c497a387609a587db7fa318a54077abfcc21ed9385264ad7a91bf96eefa53fc17cd1faccda89d01afec32dc0c0396
     ccnum~5123456789012346
     ccname~Madhur Garg
     pg~DC
@@ -59,7 +59,7 @@ class App extends React.Component {
     ccvv~123
     ccexpmon~05
     ccexpyr~2020
-    udf1~ios`
+    udf1~web`
 
     this.dataArr = data.split("\n").map(item => item.trim())
     this.setState({ proceedToPaymemt: true })
