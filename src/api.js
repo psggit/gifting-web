@@ -4,7 +4,7 @@ import { POST, GET } from 'Utils/fetch'
 export function fetchTransactionList (payloadObj, successCallback, failureCallback) {
   console.log("payload", payloadObj)
   return POST({
-    api: `/consumer/transactionsv3/gifts_sent`,
+    api: `/consumer/transactionsv3/gifts_sent_all`,
     apiBase: 'orderman',
     data: payloadObj,
     handleError: true
