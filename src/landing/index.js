@@ -15,7 +15,9 @@ class LandingPage extends React.Component {
   }
   
   componentDidMount() {
-    // mountModal(AgeGate({}))
+    if(!localStorage.getItem('isLoadingFirstTime')) {
+      mountModal(AgeGate({}))
+    }
   }
 
   render() {

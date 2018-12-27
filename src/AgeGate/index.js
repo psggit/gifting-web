@@ -11,6 +11,18 @@ export default function AgeGate(data) {
 
     constructor(props) {
       super(props)
+      this.closeWindow = this.closeWindow.bind(this)
+    }
+
+    closeWindow(cmd) {
+      // if (cmd=='quit')
+      // {
+      //   open(location, '_self').close()
+      // }   
+      // return false;
+      //console.log("close")
+      //window.open('','_self').close()
+      window.close()   
     }
 
     render() {
@@ -25,8 +37,8 @@ export default function AgeGate(data) {
             </p>
           </ModalBody>
           <ModalFooter>
-            <button className='btn btn-secondary' onClick={unMountModal}>DISAGREE</button>
-            <button className='btn btn-primary' onClick={unMountModal}>AGREE</button>
+            <button className='btn btn-secondary os s7' onClick={() => {return this.closeWindow('quit')}}>DISAGREE</button>
+            <button className='btn btn-primary os s7' onClick={unMountModal}>AGREE</button>
           </ModalFooter>
         </ModalBox>
       )
