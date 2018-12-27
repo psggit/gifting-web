@@ -7,7 +7,7 @@ import SignIn from "./../../SignIn"
 import SignUp from "./../../SignUp"
 import { mountModal } from 'Components/modal-box/utils'
 import {Api} from 'Utils/config'
-import {createSession} from 'Utils/session-utils'
+import {createSession, clearSession} from 'Utils/session-utils'
 import NotifyError from './../../NotifyError';
 
 class Header extends React.Component {
@@ -56,12 +56,14 @@ class Header extends React.Component {
 
     fetch(`${Api.blogicUrl}/consumer/auth/user/logout`, fetchOptions)
       .then((response) => {
-        localStorage.clear()
-        localStorage.setItem("isLoggedIn", "false")
         this.setState({isLoggedIn: false})
+        location.href = "/"
+        //setTimeout(() => {
+        clearSession()
+        //}, 1000)
       })
       .catch((err) => {
-        console.log("Error in logout", err)
+        //console.log("Error in logout", err)
         mountModal(NotifyError({}))
       })
   }

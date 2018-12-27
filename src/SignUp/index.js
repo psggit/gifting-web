@@ -57,6 +57,7 @@ export default function SignUp(data) {
       this.handleClick = this.handleClick.bind(this)
       this.signUp = this.signUp.bind(this)
       this.login = this.login.bind(this)
+      this.signOut = this.signOut.bind(this)
       this.resendOtp = this.resendOtp.bind(this)
       this.handleTextChange = this.handleTextChange.bind(this)
       this.isFormValid = this.isFormValid.bind(this)
@@ -94,6 +95,31 @@ export default function SignUp(data) {
       return false
     }
 
+    signOut() {
+      const fetchOptions = {
+        method: 'get',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        //credentials: 'include',
+        mode: 'cors',
+      }
+  
+      fetch(`${Api.blogicUrl}/consumer/auth/user/logout`, fetchOptions)
+        .then((response) => {
+          this.setState({isLoggedIn: false})
+          location.href = "/"
+          //setTimeout(() => {
+          clearSession()
+          //}, 1000)
+        })
+        .catch((err) => {
+          //console.log("Error in logout", err)
+          mountModal(NotifyError({}))
+        })
+    }
+
     handleClick () {
       if(this.isFormValid()) {
         this.signUp()
@@ -110,8 +136,8 @@ export default function SignUp(data) {
           dob: new Date(this.state.dob).toISOString(),
           gender: this.state.gender,
           name: this.state.name,
-          gps: "13,14",
-          pin: 1234,
+          gps: "",
+          pin: 0,
           referral_code:""
         },
         mobile: this.state.mobileNo,
@@ -138,9 +164,11 @@ export default function SignUp(data) {
                 otpSent: true,
                 mobile: this.state.mobileNo
               }))
+            } else if(responseData.errorCode === "role-invalid") {
+              this.signOut()
             } else if(response.status === 400 && responseData.errorCode === "dob-error") {
               this.setState({dobErr: {status: true, value: responseData.message}})
-            } else if(response.status !== 400){
+            } else if(response.status !== 400) {
               this.getOtp()
               this.setState({isSigningUp: false})
             }
