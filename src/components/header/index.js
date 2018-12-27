@@ -8,6 +8,7 @@ import SignUp from "./../../SignUp"
 import { mountModal } from 'Components/modal-box/utils'
 import {Api} from 'Utils/config'
 import {createSession} from 'Utils/session-utils'
+import NotifyError from './../../NotifyError';
 
 class Header extends React.Component {
   constructor(props) {
@@ -15,7 +16,6 @@ class Header extends React.Component {
     this.state = {
       isMenuOpen: false,
       errorInSignIn: false,
-      //isLoggedIn: ""
     }
     this.navItems = ["Send Gift Cards", "Using Gift Cards", "Retailer Outlets", "Support"]
     this.onToggle = this.onToggle.bind(this)
@@ -24,37 +24,9 @@ class Header extends React.Component {
     this.handleClick = this.handleClick.bind(this)
     this.handleSignOut = this.handleSignOut.bind(this)
     this.reloadHeader = this.reloadHeader.bind(this)
-    //this.getOtp = this.getOtp.bind(this)
-    // this.handleSignUp = this.handleSignUp.bind(this)
-    // this.getSignUpOtp = this.getSignUpOtp.bind(this)
-    //this.handleSignIn = this.handleSignIn.bind(this)
   }
 
   componentDidMount() {
-    // const fetchOptions = {
-    //   method: 'get',
-    //   credentials: 'include',
-    //   mode: 'cors',
-    //   //'x-hasura-role': 'user'
-    // }
-
-    // fetch(`${Api.authUrl}/user/account/info`, fetchOptions)
-    //   .then((response) => {
-    //     if (response.status !== 200) {
-    //       this.setState({isLoggedIn: false })
-    //       localStorage.clear()
-    //       localStorage.setItem("isLoggedIn", "false")
-    //       return
-    //     }
-    //     response.json().then((data) => {
-    //       createSession(data, "true")
-    //       this.setState({isLoggedIn: true })
-    //     })
-    //   })
-    //   .catch((err) => {
-    //     localStorage.setItem("isLoggedIn", "false")
-    //     this.setState({isLoggedIn: false })
-    //   })
     this.links = document.querySelectorAll(".nav-items a")
     if(localStorage.getItem('isLoggedIn') === "false" || localStorage.getItem('isLoggedIn') === "undefined") {
       this.setState({isLoggedIn: false })
@@ -80,85 +52,25 @@ class Header extends React.Component {
       },
       //credentials: 'include',
       mode: 'cors',
-      //body: JSON.stringify(payload)
     }
-    //this.setState({errorInSignIn: false, isSigningIn: true})
+
     fetch(`${Api.blogicUrl}/consumer/auth/user/logout`, fetchOptions)
       .then((response) => {
-        console.log("success")
         localStorage.clear()
         localStorage.setItem("isLoggedIn", "false")
         this.setState({isLoggedIn: false})
       })
       .catch((err) => {
         console.log("Error in logout", err)
+        mountModal(NotifyError({}))
       })
   }
   
   handleClick() {
-    //console.log("props header", this.props, this.props.history)
-    //location.href="/sign-in"
     mountModal(SignIn({
-      handleGetOtp: this.getOtp,
       reload: this.reloadHeader
-      //otpSent: false
     }))
-    // mountModal(SignUp({
-    //   handleGetOtp: this.getSignUpOtp,
-    //   otpSent: false
-    // }))
   }
-
-  // getOtp(payloadObj) {
-  //   console.log("get otp")
-  //   //Api.verifyUser(payloadObj)
-  //   const fetchOptions = {
-  //     method: 'post',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     //credentials: 'include',
-  //     mode: 'cors',
-  //     body: JSON.stringify(payloadObj)
-  //   }
-
-  //   //this.setState({isSubmitting: true})
-
-  //   fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
-  //     .then((response) => {
-  //       console.log("success")
-  //       if (response.status === 400) {
-  //         mountModal(SignUp({
-  //           handleSignUp: this.handleSignUp,
-  //           //otpSent: true
-  //         }))
-  //       } else if (response.status === 401) {
-  //         mountModal(SignIn({
-  //           handleSignIn: this.handleSignIn,
-  //           otpSent: true
-  //         }))
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       this.setState({errorInSignIn: true})
-  //     })
-  //   // mountModal(SignIn({
-  //   //   handleSignIn: this.handleSignIn,
-  //   //   otpSent: true
-  //   // }))
-  // }
-
-  // handleSignIn() {
-  //   console.log("signIn")
-  // }
-
-  // getSignUpOtp() {
-  //   mountModal(SignUp({
-  //     handleSignIn: this.handleSignUp,
-  //     otpSent: true
-  //   }))
-  // }
 
   handleMouseOver(e) {
     this.links.forEach(link => {
@@ -180,7 +92,6 @@ class Header extends React.Component {
 
   render() {
     const {isLoggedIn} = this.state
-    console.log("loggeg in", isLoggedIn, !isLoggedIn)
     return (
       <div className="navbar">
         <div className="logo">

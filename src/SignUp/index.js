@@ -15,12 +15,12 @@ export default function SignUp(data) {
   return class SignUp extends React.Component {
     constructor(props) {
       super(props)
-      //console.log("data", data)
       this.inputNameMap = {
         mobileNo: "Mobile no",
         email: "Email",
         name: "Name",
-        otp: "Otp"
+        otp: "Otp",
+        dob: "Date of Birth"
       }
       this.state = {
         otpSent: false,
@@ -29,6 +29,7 @@ export default function SignUp(data) {
         name: "",
         email: "",
         otp: "",
+        gender: "male",
         errorInSignUp: false,
         isGettingOtp: false,
         isSigningUp: false,
@@ -47,13 +48,23 @@ export default function SignUp(data) {
         otpErr: {
           value: "",
           status: false
+        },
+        dobErr: {
+          value: "",
+          status: false
         }
       }
       this.handleClick = this.handleClick.bind(this)
       this.signUp = this.signUp.bind(this)
+      this.login = this.login.bind(this)
       this.resendOtp = this.resendOtp.bind(this)
       this.handleTextChange = this.handleTextChange.bind(this)
       this.isFormValid = this.isFormValid.bind(this)
+      this.handleGenderChange = this.handleGenderChange.bind(this)
+    }
+
+    handleGenderChange(genderValue) {
+      this.setState({gender: genderValue})
     }
 
     isFormValid() {
@@ -68,13 +79,16 @@ export default function SignUp(data) {
 
       const emailErr = validateEmail(this.inputNameMap['email'], this.state.email)
       this.setState({emailErr: validateEmail(this.inputNameMap['email'], this.state.email)})
+
+      const dobErr = validateTextField(this.inputNameMap['dob'], this.state.dob)
+      this.setState({dobErr: validateTextField(this.inputNameMap['dob'], this.state.dob)})
       
       if(otpSent) {
         otpErr = validateTextField(this.inputNameMap['otp'], this.state.otp)
         this.setState({otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp)})
       }
     
-      if (!mobileNoErr.status && !otpErr.status && !otpSent && !emailErr.status && !nameErr.status) {
+      if (!mobileNoErr.status && !otpErr.status && !otpSent && !emailErr.status && !nameErr.status && !dobErr.status) {
         return true
       }
       return false
@@ -86,13 +100,20 @@ export default function SignUp(data) {
       }
     }
 
-    renderErrorNotification() {
-      mountModal(NotifyError({}))
-    }
+    // renderErrorNotification() {
+    //   mountModal(NotifyError({}))
+    // }
 
     signUp() {
       const payload = {
-        info: {},
+        info: {
+          dob: new Date(this.state.dob).toISOString(),
+          gender: this.state.gender,
+          name: this.state.name,
+          gps: "13,14",
+          pin: 1234,
+          referral_code:""
+        },
         mobile: this.state.mobileNo,
         email: this.state.email,
         username: this.state.name
@@ -110,20 +131,25 @@ export default function SignUp(data) {
       this.setState({errorInSignUp: false, isSigningUp: true})
       fetch(`${Api.blogicUrl}/consumer/auth/otp-signup`, fetchOptions)
         .then((response) => {
-          if(response.status === 409) {
-            unMountModal()
-            mountModal(SignIn({
-              otpSent: true,
-              mobile: this.state.mobileNo
-            }))
-          } else if(response.status !== 400){
-            this.getOtp()
-            this.setState({isSigningUp: false})
-          }
+          response.json().then((responseData) => {
+            if(response.status === 409) {
+              unMountModal()
+              mountModal(SignIn({
+                otpSent: true,
+                mobile: this.state.mobileNo
+              }))
+            } else if(response.status === 400 && responseData.errorCode === "dob-error") {
+              this.setState({dobErr: {status: true, value: responseData.message}})
+            } else if(response.status !== 400){
+              this.getOtp()
+              this.setState({isSigningUp: false})
+            }
+          })
           //return
         })
         .catch((err) => {
           this.setState({errorInSignUp: true})
+          mountModal(NotifyError({}))
         })
     }
 
@@ -147,6 +173,10 @@ export default function SignUp(data) {
       fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
         .then((response) => {
           response.json().then((responseData) => {
+            if(response.status === 400 && responseData.errorCode.includes("invalid-otp")){
+              this.setState({otpErr: {status: true, value: "Incorrect OTP. Please enter again or resend OTP"}})
+              return
+            }
             createSession(responseData, "true")
             unMountModal()
             data.reload()
@@ -155,6 +185,7 @@ export default function SignUp(data) {
         })
         .catch((err) => {
           this.setState({errorInSignUp: true})
+          mountModal(NotifyError({}))
         })
     }
 
@@ -184,6 +215,7 @@ export default function SignUp(data) {
         })
         .catch((err) => {
           this.setState({errorInSignUp: true})
+          mountModal(NotifyError({}))
         })
     }
 
@@ -191,10 +223,6 @@ export default function SignUp(data) {
       //this.setState({otpSent: true})
       this.getOtp()
     }
-
-    // handleTextChange(e) {
-    //   this.setState({[e.target.name]: e.target.value})
-    // }
 
     handleEmailChange(e) {
       const errName = `${e.target.name}Err`
@@ -226,7 +254,15 @@ export default function SignUp(data) {
     }
 
     render() {
-      const {otpSent, mobileNoErr, emailErr, nameErr, otpErr, errorInSignUp} = this.state
+      const { otpSent, 
+              mobileNoErr, 
+              emailErr, 
+              nameErr, otpErr, 
+              errorInSignUp, 
+              dobErr,
+              gender
+            } = this.state
+    
       return (
         <div>
           {
@@ -255,11 +291,11 @@ export default function SignUp(data) {
                         onKeyUp={(e) => {this.handleNumberChange(e)}}
                       />
                     </div>
-                    {
-                      mobileNoErr.status &&
-                      <p className="error-message os s7">{mobileNoErr.value}</p>
-                    }
                   </div>
+                  {
+                    mobileNoErr.status &&
+                    <p className="error-message os s7">{mobileNoErr.value}</p>
+                  }
                   {   
                     otpSent &&
                     <div className="note os s7">Otp has been sent!</div>
@@ -297,6 +333,39 @@ export default function SignUp(data) {
                     <p className="error-message os s7">{emailErr.value}</p>
                   }
                   {
+                    !otpSent &&
+                    <div>
+                      <label>Date of Birth</label>
+                      <div>
+                        <input 
+                          type="date"
+                          name="dob"
+                          max="9999-12-31"
+                          value={this.state.dob}
+                          className={`${dobErr.status ? 'error' : ''}`}
+                          //disabled={this.state.disableField && this.state.otpSent} 
+                          autocomplete="off"
+                          onChange={(e) => this.handleTextChange(e)} 
+                        />
+                      </div>
+                    </div>
+                  }
+                  {
+                    dobErr.status &&
+                    <p className="error-message os s7">{dobErr.value}</p>
+                  }
+                  {
+                    !otpSent &&
+                    <div>
+                      <label>Gender</label>
+                      <div className="row">
+                        <div onClick={() => this.handleGenderChange("male")} className={`column ${gender === "male" ? 'active' : 'inactive'}`}>Male</div>
+                        <div onClick={() => this.handleGenderChange("female")} className={`column ${gender === "female" ? 'active' : ''}`}>Female</div>
+                        <div onClick={() => this.handleGenderChange("unspecified")} className={`column ${gender === "unspecified" ? 'active' : ''}`}>Unspecified</div>
+                      </div>
+                    </div>
+                  }
+                  {
                     otpSent &&
                     <div>
                       <label>OTP</label>
@@ -310,7 +379,7 @@ export default function SignUp(data) {
                           autocomplete="off"
                           onChange={(e) => this.handleTextChange(e)} 
                         />
-                        <div className="resend" onClick={this.resendOtp}>Resend</div>
+                        <div className="resend os s7" onClick={this.resendOtp}>RESEND</div>
                       </div>
                       {
                         otpErr.status &&
@@ -332,10 +401,10 @@ export default function SignUp(data) {
                       </React.Fragment>
                   } 
                 </div>
-                {
+                {/* {
                   errorInSignUp && 
                   this.renderErrorNotification()
-                }
+                } */}
               </div>
             </ModalBox>
           }

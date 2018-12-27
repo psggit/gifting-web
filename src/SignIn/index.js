@@ -11,20 +11,6 @@ import { validateNumberField } from 'Utils/validators'
 import { validateTextField } from '../utils/validators';
 import NotifyError from './../NotifyError';
 
-// function checkStatus(response) {
-//   console.log("check sttus", response)
-//   if (response.status >= 200 && response.status <= 401) {
-//     return response
-//   } else {
-//     // console.log(response.statusText);
-//     var error = new Error(response.statusText)
-//     //console.log("res", response)
-//     //var error = new Error(response.error)
-//     error.response = response
-//     throw error
-//   }
-// }
-
 export default function SignIn(data) {
   return class SignIn extends React.Component {
     constructor(props) {
@@ -35,9 +21,8 @@ export default function SignIn(data) {
       }
 
       this.state = {
-        //isMobile: props ? props.isMobile : false,
         otpSent: data.otpSent ? data.otpSent : false,
-        mobileNo: data.mobile ? data.mobile : "",
+        mobileNo: data.otpSent ? data.mobile : "",
         otp: "",
         errorInSignIn: false,
         disableField: data.otpSent ? true : false,
@@ -59,7 +44,7 @@ export default function SignIn(data) {
       this.isFormValid = this.isFormValid.bind(this)
     }
 
-    verifyUserAndGetOtp(data) {
+    verifyUserAndGetOtp(dataObj) {
       const payload = {
         info: {},
         mobile: this.state.mobileNo
@@ -77,14 +62,14 @@ export default function SignIn(data) {
       this.setState({errorInSignIn: false, isGettingOtp: true})
       fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
         .then((response) => {
-          console.log("response", response)
-          response.json().then((data) => {
-            if (response.status === 400 && data.errorCode.includes("invalid-user")) {
-              if(data.unMountModal) {
+          response.json().then((responseData) => {
+            if (response.status === 400 && responseData.errorCode.includes("invalid-user")) {
+              if(dataObj.unMountModal) {
                 unMountModal()
               }
               mountModal(SignUp({
-                mobile: this.state.mobileNo
+                mobile: this.state.mobileNo,
+                reload: data.reload
               }))
               this.setState({isGettingOtp: false})
               return
@@ -99,6 +84,7 @@ export default function SignIn(data) {
         })
         .catch((err) => {
           this.setState({errorInSignIn: true})
+          mountModal(NotifyError({}))
         })
     }
 
@@ -120,9 +106,9 @@ export default function SignIn(data) {
       return false
     }
 
-    renderErrorNotification() {
-      mountModal(NotifyError({}))
-    }
+    // renderErrorNotification() {
+    //   mountModal(NotifyError({}))
+    // }
 
     handleClick () {
       if(this.isFormValid()) {
@@ -164,25 +150,22 @@ export default function SignIn(data) {
       fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
         .then((response) => {
           response.json().then((responseData) => {
-            if(response.status === 400 && data.errorCode.includes("invalid-otp")){
-              console.log("else if2", response)
+            if(response.status === 400 && responseData.errorCode.includes("invalid-otp")){
               this.setState({otpErr: {status: true, value: "Incorrect OTP. Please enter again or resend OTP"}})
               return
-            } else if(response.status === 401 && data.errorCode.includes("role-invalid")){
-              //console.log("else if2", response)
-              this.setState({otpErr: {status: true, value: data.message}})
+            } else if(response.status === 401 && responseData.errorCode.includes("role-invalid")){
+              this.setState({otpErr: {status: true, value: responseData.message}})
               return
             }
             createSession(responseData, "true")
             unMountModal()
-            console.log("data", data)
-            //window.location.reload()
             data.reload()
             this.setState({isSigningIn: false})
           })
         })
         .catch((err) => {
           this.setState({errorInSignIn: true})
+          mountModal(NotifyError({}))
         })
     }
 
@@ -195,7 +178,6 @@ export default function SignIn(data) {
     }
 
     render() {
-      //console.log("redr")
       const {otpSent, errorInSignIn, isGettingOtp, mobileNoErr, otpErr} = this.state
       return (
         <div>
@@ -214,9 +196,6 @@ export default function SignIn(data) {
                     Sign in with OTP
                   </h2>
                 }
-                {/* <h2 className="header os s2">
-                  Sign In / Sign Up with mobile number
-                </h2> */}
                 <div className="page-body">
                   <label>Phone Number</label>
                   <div style={{display: 'flex'}}>
@@ -228,10 +207,10 @@ export default function SignIn(data) {
                         type="text"
                         name="mobileNo"
                         disabled={this.state.disableField}
-                        //value={this.state.mobileNo}
+                        value={this.state.mobileNo}
                         autocomplete="off"
                         //onChange={(e) => this.handleTextChange(e)}
-                        defaultValue={this.state.mobileNo}
+                        //defaultValue={this.state.mobileNo}
                         className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
                         onKeyDown={(e) => {this.handleNumberChange(e)}}
                         onKeyUp={(e) => {this.handleNumberChange(e)}}
@@ -264,7 +243,7 @@ export default function SignIn(data) {
                           autocomplete="off"
                           onChange={(e) => this.handleTextChange(e)}
                         />
-                        <div className="resend" onClick={this.resendOtp}>Resend</div>
+                        <div className="resend os s7" onClick={this.resendOtp}>RESEND</div>
                       </div>
                       {
                         otpErr.status &&
@@ -303,10 +282,10 @@ export default function SignIn(data) {
                       </React.Fragment>
                   } 
                 </div>
-                {
+                {/* {
                   errorInSignIn && 
                   this.renderErrorNotification()
-                }
+                } */}
               </div>
             </ModalBox>
           }
