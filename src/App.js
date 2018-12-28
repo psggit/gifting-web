@@ -14,6 +14,7 @@ import SendGiftCards from './SendGift'
 import SignIn from './SignIn'
 import TransactionHistory from "./TransactionHistory"
 import RetailOutlet from './RetailOutlet'
+import FAQ from "./FAQ"
 
 const history = CreateHistory()
 
@@ -67,6 +68,7 @@ class App extends React.Component {
             <Route exact path="/send-gift" component={SendGiftCards} />
             <Route exact path="/transaction-history" component={TransactionHistory} />
             <Route exact path="/retail-outlet" component={RetailOutlet} />
+            <Route exact path="/FAQ" component={FAQ} />
             <Route exact path="*" component={() => <h1>404 Not Found</h1>} />
           </Switch>
         </Router>

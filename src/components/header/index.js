@@ -18,7 +18,7 @@ class Header extends React.Component {
       errorInSignIn: false,
       showDropdown: false
     }
-    this.navItems = ["Send Gift Cards", "Using Gift Cards", "Retailer Outlets", "Support"]
+    this.navItems = ["Send Gift Cards", "Using Gift Cards", "Retailer Outlets", "FAQs"]
     this.onToggle = this.onToggle.bind(this)
     this.handleMouseOver = this.handleMouseOver.bind(this)
     this.handleMouseOut = this.handleMouseOut.bind(this)

@@ -4,11 +4,20 @@ import Button from "Components/button"
 import Header from "Components/header"
 import Footer from "Components/footer"
 import "./send-gift.scss"
+//import { POST } from "Utils/fetch"
 
 class SendGift extends React.Component {
   constructor() {
     super()
   }
+
+  // componentDidMount() {
+  //   POST({
+  //     api: "/consumer/payment/gift/create",
+  //     apiBase: "orderman",
+  //     data: {}
+  //   })
+  // }
 
   render() {
     return (
