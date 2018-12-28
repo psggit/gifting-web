@@ -37,18 +37,19 @@ export function fetchAvailableHipbarDelivery(successCallback) {
     })
 }
 
-// export function fetchRetailers(payloadObj, successCallback, failureCallback) {
-//   return POST({
-//     api: `/consumer/where_hipbar_delivery_available`,
-//     apiBase: 'loki',
-//     data: payloadObj,
-//     handleError: true
-//   })
-//     .then((json) => {
-//       successCallback(json)
-//     })
-//     .catch(err => {
-//       console.log("Error in fetching available hipbar deliveries", err)
-//       failureCallback()
-//     })
-// }
+export function fetchRetailers(payloadObj, successCallback, failureCallback) {
+  return POST({
+    api: `/retailerDiscovery/getRetailers`,
+    apiBase: 'catman',
+    data: payloadObj,
+    handleError: true
+  })
+    .then((json) => {
+      console.log("success call back", json)
+      successCallback(json)
+    })
+    .catch(err => {
+      console.log("Error in fetching available hipbar deliveries", err)
+      failureCallback()
+    })
+}

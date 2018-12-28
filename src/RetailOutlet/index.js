@@ -4,7 +4,7 @@ import Footer from "Components/footer"
 import './retailOutlet.scss'
 import FirstGiftCard from "Components/first-gift-card"
 import * as Api from './../api'
-import {retailerData} from './../TransactionHistory/mockdata'
+//import {retailerData} from './../TransactionHistory/mockdata'
 
 class RetailOutlet extends React.Component {
   constructor() {
@@ -22,6 +22,8 @@ class RetailOutlet extends React.Component {
     this.successCallback = this.successCallback.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.successRetailerListCallback = this.successRetailerListCallback.bind(this)
+    this.failureRetailerListCallback = this.failureRetailerListCallback.bind(this)
   }
 
   componentDidMount() {
@@ -42,16 +44,19 @@ class RetailOutlet extends React.Component {
     this.setState({availableDeliveryList: response.data, deliveryMap})
   }
 
-  findRetailer(deliveryCityDetails) {
+  findRetailer(cityId) {
+    //console.log("city details", deliveryCityDetails)
     const payload = {
-      city_id: deliveryCityDetails.id
+      city_id: parseInt(cityId),
+      limit: 10,
+      offset: 0
     }
-    this.setState({retailerOutletData: retailerData.data})
-    //Api.fetchRetailers(payload, this.successRetailerListCallback, this.failureRetailerListCallback)
+    //this.setState({retailerOutletData: retailerData.data})
+    Api.fetchRetailers(payload, this.successRetailerListCallback, this.failureRetailerListCallback)
   }
 
-  successRetailerListCallback() {
-    this.setState({loading: false,  isSelectedCity: true})
+  successRetailerListCallback(response) {
+    this.setState({loading: false,  isSelectedCity: true, retailerOutletData: response.data})
   }
 
   failureRetailerListCallback() {
@@ -72,20 +77,26 @@ class RetailOutlet extends React.Component {
     this.findRetailer(selectedCityId)
   }
 
+  loadMap(gps) {
+    console.log("gps", gps)
+  }
+
   renderOutlet(item) {
+    console.log("item", item)
     return (
       <div className="retailer">
         <div className="details">
           <p className="name os s5">{item.retailer_name}</p>
-          <p className="os s7">{item.address}</p>
+          <p className="os s7">{item.retailer_address}</p>
         </div>
-        <p className="direction os s8">DIRECTIONS</p>
+        <p className="direction os s8" onClick={() => this.loadMap(item.retailer_gps)}>DIRECTIONS</p>
       </div>
     )
   }
 
   render() {
     const {availableDeliveryList, retailerOutletData, isSelectedCity, selectedCity} = this.state
+    console.log("outlet data", this.state.retailerOutletData)
     return (
       <div>
         <Header />
