@@ -401,6 +401,9 @@ export default function SignUp(data) {
                     !otpSent &&
                     <div>
                       <label>Date of Birth</label>
+                      <span className="calendar">
+                        <Icon name="calendar"/>
+                      </span>
                       <div>
                         <input 
                           type="date"

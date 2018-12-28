@@ -44,11 +44,11 @@ const Footer = () => (
               Gandhinagar, Adyar, Chennai, <br />
               Tamil Nadu 600020
             </p>
-            {/* <div className="social">
+            <div className="social">
               <a target="_blank" href='https://facebook.com/hipbarapp'><Icon name="fbLogo" /></a>
               <a target="_blank" href='https://twitter.com/hipbarapp'><Icon name="twitterLogo" /></a>
               <a target="_blank" href='https://instagram.com/hipbarapp'><Icon name="instagramLogo" /></a>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

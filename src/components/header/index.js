@@ -145,7 +145,7 @@ class Header extends React.Component {
               <Icon name="appUser" style={{marginRight: '10px'}}/>
               <div className="os s2"  style={{marginRight: '8px'}} >{localStorage.getItem("username")}</div>
               <span onClick={() => this.openDropdown()}>
-                <Icon name="downArrow" />
+                <Icon name="filledDownArrow" />
               </span>
 
               <div className={`dropdown-menu ${showDropdown ? 'show' : 'hide'}`} >
