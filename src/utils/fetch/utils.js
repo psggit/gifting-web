@@ -2,9 +2,9 @@
  * utility methods for constructing `Fetch` API
  */
 
-import "whatwg-fetch"
+// import 'whatwg-fetch'
 // import Session from "./../session"
-import { Api } from "./../config"
+import { Api } from "./../config2"
 /**
  * Helper methods to create window.fetch instance
  */
@@ -70,7 +70,6 @@ export function checkStatus(response) {
 export function constructFetchUtility(options) {
 
   const { api, data, method, type, cors, prependBaseUrl = true, apiBase } = options
-  console.log(data);
   // construct request url
   const url = prependBaseUrl ? `${Api[apiBase]}${api}` : api
 

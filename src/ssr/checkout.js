@@ -1,15 +1,7 @@
-import React from 'react'
-import { renderToString } from 'react-dom/server'
-import App from "./../Payment/index"
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Component = require('./Component.jsx');
 
-export default function render() {
-  // Configure the store with the initial state provided
-  // const store = configureStore(initialState)
+var props = window.PROPS;
 
-  // render the App store static markup ins content variable
-  const content = renderToString(<App />)
-  // Get a copy of store data to create the same store on client side
-  // const preloadedState = store.getState()
-
-  return {content}
-}
+ReactDOM.render(React.createElement(Component, props), document);

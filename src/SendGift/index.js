@@ -16,7 +16,8 @@ class SendGift extends React.Component {
       receiverName: "Madhur",
       receiverNumber: "8989415866",
       senderName: "Arun",
-      senderNumber: "9789702255"
+      senderNumber: "9789702255",
+      canProceed: false
     }
     this.createTransaction = this.createTransaction.bind(this)
     this.handleAmountChange = this.handleAmountChange.bind(this)
@@ -25,6 +26,10 @@ class SendGift extends React.Component {
     this.handleTextChange = this.handleTextChange.bind(this)
     this.proceedToPayment = this.proceedToPayment.bind(this)
     this.whatsappText = "Hey checkout hipbar gifting. http://192.168.0.113:8080"
+  }
+
+  componentDidMount() {
+    localStorage.removeItem("txn")
   }
 
   proceedToPayment() {
@@ -62,13 +67,23 @@ class SendGift extends React.Component {
         receiver_name: receiverName
       }
     })
-    .then((json) => {
-      POST({
-        api: "/checkout",
-        prependBaseUrl: false,
-        data: json
+      .then((json) => {
+        this.postBody = {
+          amount: json.amount,
+          txnid: json.txnid,
+          hash: json.hash,
+          key: json.key,
+          user_cred: json.user_cred,
+          email: json.email,
+          first_name: json.first_name
+        }
+
+        localStorage.setItem("txn", JSON.stringify(this.postBody))
+        location.href = "/checkout"
+        // this.setState({ canProceed: true }, () => {
+        //   this.submit.click()
+        // })
       })
-    })
   }
 
   render() {
@@ -87,15 +102,15 @@ class SendGift extends React.Component {
                   <div className="amounts">
 
                     <div className="form-field">
-                      <input className={this.state.activePrice === "price1" && "focused"}  onClick={this.handleAmountChange} name="price1" type="text" defaultValue="499" readOnly />
+                      <input className={this.state.activePrice === "price1" ? "focused" : undefined}  onClick={this.handleAmountChange} name="price1" type="text" defaultValue="499" readOnly />
                     </div>
 
                     <div className="form-field">
-                      <input className={this.state.activePrice === "price2" && "focused"} onClick={this.handleAmountChange} name="price2" type="text" defaultValue="999" readOnly />
+                      <input className={this.state.activePrice === "price2" ? "focused" : undefined} onClick={this.handleAmountChange} name="price2" type="text" defaultValue="999" readOnly />
                     </div>
 
                     <div className="form-field">
-                      <input className={this.state.activePrice === "price3" && "focused"} onClick={this.handleAmountChange} name="price3" type="text" defaultValue="1999" readOnly />
+                      <input className={this.state.activePrice === "price3" ? "focused": undefined} onClick={this.handleAmountChange} name="price3" type="text" defaultValue="1999" readOnly />
                     </div>
 
                     <div className="form-field">
@@ -166,7 +181,21 @@ class SendGift extends React.Component {
 
             </div>
 
-            <a href={`whatsapp://send?text=${this.whatsappText}`} data-action="share/whatsapp/share">Share on whatsapp</a>
+            {/* {
+              this.state.canProceed &&
+              <form action="/checkout" method="post">
+                <input type="hidden" name="amount" value={this.postBody.amount} />
+                <input type="hidden" name="txnid" value={this.postBody.txnid} />
+                <input type="hidden" name="hash" value={this.postBody.hash} />
+                <input type="hidden" name="key" value={this.postBody.key} />
+                <input type="hidden" name="user_cred" value={this.postBody.user_cred} />
+                <input type="hidden" name="email" value={this.postBody.email} />
+                <input type="hidden" name="first_name" value={this.postBody.first_name} />
+                <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit" />
+              </form>
+            } */}
+
+            {/* <a href={`whatsapp://send?text=${this.whatsappText}`} data-action="share/whatsapp/share">Share on whatsapp</a> */}
 
           </div>
         </div>

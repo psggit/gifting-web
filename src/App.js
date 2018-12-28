@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import "preact/debug"
+// import "preact/debug"
 import {Switch} from "react-router-dom"
 import {
   Route

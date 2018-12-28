@@ -8,7 +8,7 @@ module.exports = {
   entry: {
     app: path.resolve(__dirname, "./../../src/App.js"),
     checkout: path.resolve(__dirname, "./../../src/Payment/index.js"),
-    // vendor: ["react", "react-dom"]
+    vendor: ["react", "react-dom"]
   },
   plugins: [
     new CleanWebpackPlugin(["dist"], {
@@ -47,8 +47,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      react: "preact-compat",
-      "react-dom": "preact-compat",
+      // react: "preact-compat",
+      // "react-dom": "preact-compat",
       Components: path.resolve(__dirname, './../../src/components'),
       Utils: path.resolve(__dirname, './../../src/utils'),
       Sass: path.resolve(__dirname, './../../src/sass')

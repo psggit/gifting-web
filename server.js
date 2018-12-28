@@ -3,12 +3,12 @@ const path = require("path")
 const app = express()
 const fs = require("fs")
 const React = require("react")
-const { renderToNodeStream } = require("react-dom/server")
+const { renderToNodeStream, renderToString } = require("react-dom/server")
 const bodyParser = require('body-parser')
 const FormData = require("form-data")
 const request = require("request")
 const CheckoutReact = require("./dist-ssr/checkout").default
-console.log(CheckoutReact);
+
 // 
 app.disable("x-powered-by")
 
@@ -22,9 +22,9 @@ const URL_ENV = "amebae21.hasura-app.io";
 app.get("*.js", (req, res, next) => {
   console.log("Processing js files....")
   console.log("Gzipping....")
-  req.url += ".br"
-  res.set("Content-Encoding", "br")
-  res.set("Content-type", "text/javascript")
+  // req.url += ".br"
+  // res.set("Content-Encoding", "br")
+  // res.set("Content-type", "text/javascript")
   const vendorUrlRegex = /vendor.*.js/
   if (vendorUrlRegex.test(req.url)) {
     console.log("Setting cache for vendor....")
@@ -36,22 +36,34 @@ app.get("*.js", (req, res, next) => {
 app.use(express.static(path.join(__dirname, "dist")))
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.get("/checkout", (req, res) => {
-  res.send("Not Found")
-})
+// app.get("/checkout", (req, res) => {
+//   res.send("Not Found")
+// })
 
-app.post("/checkout", (req, res,) => {  
-  const html = fs.readFileSync("./dist/checkout.html", "utf-8")
-  const [head, tail] = html.split("{content}")
-  res.write(head)
-  const reactElement = React.createElement(CheckoutReact)
-  const stream = renderToNodeStream(reactElement)
-  stream.pipe(res, { end: false })
-  stream.on("end", () => {
-    res.write(tail)
-    res.end()
-  })
-})
+// app.post('/checkout', (req, res) => {
+//   const { preloadedState, content}  = CheckoutReact.default(req.body)
+//   const response = template("Server Rendered Page", preloadedState, content)
+//   res.setHeader('Cache-Control', 'assets, max-age=604800')
+//   res.send(response)
+// })
+
+
+// app.post("/checkout", (req, res,) => {  
+
+//   const html = fs.readFileSync("./dist/checkout.html", "utf-8")
+//   const [head, tail] = html.split("{content}")
+//   res.write(head)
+//   console.log(req.body)
+//   const reactElement = React.createElement(CheckoutReact, req.body)
+//   // const html = renderToString(reactElement)
+//   // res.send(html)
+//   const stream = renderToNodeStream(reactElement)
+//   stream.pipe(res, { end: false })
+//   stream.on("end", () => {
+//     res.write(tail)
+//     res.end()
+//   })
+// })
 
 // app.get("/*", (req, res,) => {  
 //   const html = fs.readFileSync("./dist/index.html", "utf-8")

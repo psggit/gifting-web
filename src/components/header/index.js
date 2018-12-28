@@ -18,7 +18,24 @@ class Header extends React.Component {
       errorInSignIn: false,
       showDropdown: false
     }
-    this.navItems = ["Send Gift Cards", "Using Gift Cards", "Retailer Outlets", "Support"]
+    this.navItems = [
+      {
+        label: "Send Gift Cards",
+        value: "send-gift"
+      },
+      {
+        label: "Using Gift Cards",
+        value: "using-gift-card"
+      },
+      {
+        label: "Retailer Outlets",
+        value: "retailer-outlets"
+      },
+      {
+        label: "Support",
+        value: "support"
+      }
+    ]
     this.onToggle = this.onToggle.bind(this)
     this.handleMouseOver = this.handleMouseOver.bind(this)
     this.handleMouseOut = this.handleMouseOut.bind(this)
@@ -120,11 +137,12 @@ class Header extends React.Component {
           {
             this.navItems.map((item, index) => (
               <a
+                href={`/${item.value}`}
                 className="nav-item" key={index}
                 onMouseOut={this.handleMouseOut}
                 onMouseOver={this.handleMouseOver}
               >
-                {item}
+                {item.label}
               </a>
             ))
           }
@@ -135,7 +153,7 @@ class Header extends React.Component {
           {
             isLoggedIn && 
             // <Button onClick={() => this.handleSignOut()} primary size="small">SIGN OUT</Button>
-            <div class="logout">
+            <div className="logout">
               <Icon name="appUser" style={{marginRight: '10px'}}/>
               <div className="os s2"  style={{marginRight: '8px'}} >{localStorage.getItem("username")}</div>
               <span onClick={() => this.openDropdown()}>
@@ -166,8 +184,8 @@ class Header extends React.Component {
             {
               this.navItems.map((item, index) => (
                 <li key={index}>
-                  <a href="/" className="os s2">
-                    {item}
+                  <a href={`/${item.value}`} className="os s2">
+                    {item.label}
                   </a>
                 </li>
               ))

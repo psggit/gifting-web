@@ -5,7 +5,7 @@
   &:first-child {
     margin-top: 0;
   }
-  input, textarea {
+  input, textarea, select {
     font-family: $font-OpenSans;
     color: #2b2826;
     padding: 20px;
@@ -17,6 +17,12 @@
       border-color: #000;
       outline: 0;
     }
+  }
+
+  select {
+    // height: 38px;
+    padding: 10px 20px;
+    background-color: #fff;
   }
 
   label {

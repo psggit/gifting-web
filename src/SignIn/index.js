@@ -55,7 +55,7 @@ export default function SignIn(data) {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        //credentials: 'include',
+        credentials: 'include',
         mode: 'cors',
         body: JSON.stringify(payload)
       }
@@ -143,7 +143,7 @@ export default function SignIn(data) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          //credentials: 'include',
+          credentials: 'include',
           mode: 'cors',
           body: JSON.stringify(payload)
         }
@@ -213,8 +213,8 @@ export default function SignIn(data) {
                         type="text"
                         name="mobileNo"
                         disabled={this.state.disableField}
-                        value={this.state.mobileNo}
-                        autocomplete="off"
+                        // value={this.state.mobileNo}
+                        autoComplete="off"
                         //onChange={(e) => this.handleTextChange(e)}
                         //defaultValue={this.state.mobileNo}
                         className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
