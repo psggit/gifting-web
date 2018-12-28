@@ -14,7 +14,7 @@ class RetailOutlet extends React.Component {
       retailerOutletData: [],
       loading: false,
       isSelectedCity: false,
-      selectedCity: '--Select a city--',
+      selectedCity: "",
       deliveryMap: {}
     }
     this.findRetailer = this.findRetailer.bind(this)
@@ -31,12 +31,12 @@ class RetailOutlet extends React.Component {
   }
 
   successCallback(response) {
-    console.log("retailer data", response)
+    //console.log("retailer data", response)
     const deliveryMap = {}
     response.data.map((item) => {
       deliveryMap[item.id] = item
     })
-    console.log("delivery map", deliveryMap)
+    //console.log("delivery map", deliveryMap)
     this.setState({availableDeliveryList: response.data, deliveryMap})
   }
 
@@ -79,7 +79,7 @@ class RetailOutlet extends React.Component {
   }
 
   render() {
-    const {availableDeliveryList, retailerOutletData, isSelectedCity} = this.state
+    const {availableDeliveryList, retailerOutletData, isSelectedCity, selectedCity} = this.state
     return (
       <div>
         <Header />
@@ -98,7 +98,7 @@ class RetailOutlet extends React.Component {
                     }
                   </select>
                 </span>
-                <button className="btn btn-primary" size="small" onClick={() => this.findRetailer()}>FIND</button>
+                <button className={`btn btn-primary ${selectedCity.length === 0 ? 'disabled' : ''} `} size="small" onClick={() => this.findRetailer()}>FIND</button>
               </div>
               <div className="retailer-list">
                 {
