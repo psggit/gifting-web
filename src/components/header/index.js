@@ -98,6 +98,12 @@ class Header extends React.Component {
     this.setState({ isMenuOpen: !isMenuOpen })
   }
 
+  handleTransactionHistory() {
+    //console.log("props", this.props, this.props.history)
+    //history.pushState(null, "transaction history", '/transaction-history')
+    location.href="/transaction-history"
+  }
+
   render() {
     const {isLoggedIn, showDropdown} = this.state
     return (
@@ -143,6 +149,7 @@ class Header extends React.Component {
               </span>
 
               <div className={`dropdown-menu ${showDropdown ? 'show' : 'hide'}`} >
+                <div onClick={() => this.handleTransactionHistory()} className="menu-item">Transaction History</div>
                 <div onClick={() => this.handleSignOut()} className="menu-item"> Sign Out</div>
               </div>
             </div>

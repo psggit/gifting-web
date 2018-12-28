@@ -15,11 +15,13 @@ class RetailOutlet extends React.Component {
       loading: false,
       isSelectedCity: false,
       selectedCity: "",
-      deliveryMap: {}
+      deliveryMap: {},
+      selectedCityId: ""
     }
     this.findRetailer = this.findRetailer.bind(this)
     this.successCallback = this.successCallback.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
@@ -49,11 +51,11 @@ class RetailOutlet extends React.Component {
   }
 
   successRetailerListCallback() {
-    this.setState({loading: false})
+    this.setState({loading: false,  isSelectedCity: true})
   }
 
   failureRetailerListCallback() {
-    this.setState({loading: false, retailerOutletData: []})
+    this.setState({loading: false, retailerOutletData: [], isSelectedCity: true})
   }
 
   renderItem(item) {
@@ -62,8 +64,12 @@ class RetailOutlet extends React.Component {
 
   handleChange(e) {
     const {deliveryMap} = this.state
-    this.setState({isSelectedCity: true, selectedCity: deliveryMap[e.target.value].name})
-    this.findRetailer(deliveryMap[e.target.value])
+    this.setState({selectedCityId: e.target.value, selectedCity: deliveryMap[e.target.value].name})
+  }
+
+  handleClick() {
+    const {selectedCityId} = this.state
+    this.findRetailer(selectedCityId)
   }
 
   renderOutlet(item) {
@@ -98,7 +104,7 @@ class RetailOutlet extends React.Component {
                     }
                   </select>
                 </span>
-                <button className={`btn btn-primary ${selectedCity.length === 0 ? 'disabled' : ''} `} size="small" onClick={() => this.findRetailer()}>FIND</button>
+                <button className={`btn btn-primary ${selectedCity.length === 0 ? 'disabled' : ''} `} size="small" onClick={() => this.handleClick()}>FIND</button>
               </div>
               <div className="retailer-list">
                 {
