@@ -77,5 +77,31 @@ export const questionAnswers = [
     ques_number: "eleven",
     question: "Are gift cards transferable?",
     answer: "No, gift cards are not transferable."
+  },
+  {
+    ques_number: "twelve",
+    question: "I have received a gift card, how do I redeem it?",
+    answer: `If you’ve received a gift card through the app, the value of the gift card is automatically added to your gift wallet. 
+
+              To redeem a gift card, follow the steps below:
+              
+              1. Visit a HipBar-affiliated store as indicated on the app
+              2. Select the desired products on the app & add to cart
+              3. Tap “Check Out” and select “Sef Pickup” option. The gift wallet amount is selected by default. 
+              4. Scan the QR code/ enter the shop code to complete the transaction
+              5. Collect product(s)`
+  },
+  {
+    ques_number: "thirteen",
+    question: "The product I want to redeem isn't available at the store. What do I do?",
+    answer: `You can...
+    1) Try another HipBar-affiliated store or 
+    2) Choose to redeem another product whose price falls within the gift card value
+    `
+  },
+  {
+    ques_number: "fourteen",
+    question: "Gift Card has expired. What do I do?",
+    answer: "Please ping us through chat or write to us at support@hipbar.com."
   }
 ]
