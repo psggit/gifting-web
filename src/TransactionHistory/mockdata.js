@@ -3606,3 +3606,28 @@ export const transactiondata = {
       }
   ]
 }
+
+export const retailerData = {
+    'data': [
+        {
+            retailer_name: 'Blue land wine stores',
+            address: '197/A, Indiranagar Double Rd, Stage 2, Hoysala Nagar, Indiranagar, Bengaluru, Karnataka 560038'
+        },
+        {
+            retailer_name: 'Drops Spirit',
+            address: 'HAL 2nd Stage, Kodihalli, Bengaluru, Karnataka 560008'
+        },
+        {
+            retailer_name: 'Winery',
+            address: 'HAL 2nd Stage, Kodihalli, Bengaluru, Karnataka 560008'
+        },
+        {
+            retailer_name: 'Honey Dews Spirits',
+            address: 'Shop No 35, 10th Main Rd, LIC Colony, HAL 3rd Stage, Sector 12, Jeevan Bima Nagar, Bengaluru, Karnataka 560075'
+        },
+        {
+            retailer_name: 'Drops Spirit',
+            address: 'HAL 2nd Stage, Kodihalli, Bengaluru, Karnataka 560008'
+        }
+    ]
+}

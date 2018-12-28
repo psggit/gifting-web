@@ -2,7 +2,6 @@ import { POST, GET } from 'Utils/fetch'
 //import Notify from 'Components/notify'
 
 export function fetchTransactionList (payloadObj, successCallback, failureCallback) {
-  console.log("payload", payloadObj)
   return POST({
     api: `/consumer/transactionsv3/gifts_sent_all`,
     apiBase: 'orderman',
@@ -22,3 +21,34 @@ export function fetchTransactionList (payloadObj, successCallback, failureCallba
       // failureCallback()
     })
 }
+
+export function fetchAvailableHipbarDelivery(successCallback) {
+  return GET({
+    api: `/consumer/where_hipbar_delivery_available`,
+    apiBase: 'loki',
+    //data: payloadObj,
+    handleError: true
+  })
+    .then((json) => {
+      successCallback(json)
+    })
+    .catch(err => {
+      console.log("Error in fetching available hipbar deliveries", err)
+    })
+}
+
+// export function fetchRetailers(payloadObj, successCallback, failureCallback) {
+//   return POST({
+//     api: `/consumer/where_hipbar_delivery_available`,
+//     apiBase: 'loki',
+//     data: payloadObj,
+//     handleError: true
+//   })
+//     .then((json) => {
+//       successCallback(json)
+//     })
+//     .catch(err => {
+//       console.log("Error in fetching available hipbar deliveries", err)
+//       failureCallback()
+//     })
+// }

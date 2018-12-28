@@ -158,18 +158,18 @@ export default function SignUp(data) {
       fetch(`${Api.blogicUrl}/consumer/auth/otp-signup`, fetchOptions)
         .then((response) => {
           response.json().then((responseData) => {
-            if(response.status === 409) {
-              unMountModal()
-              mountModal(SignIn({
-                otpSent: true,
-                mobile: this.state.mobileNo
-              }))
-            } else if(responseData.errorCode === "role-invalid") {
+            if(responseData.errorCode === "role-invalid") {
               this.signOut()
             } else if(response.status === 400 && responseData.errorCode === "dob-error") {
               this.setState({dobErr: {status: true, value: responseData.message}})
             } else if(response.status !== 400) {
               this.getOtp()
+            } else if(response.status === 409) {
+              unMountModal()
+              mountModal(SignIn({
+                otpSent: true,
+                mobile: this.state.mobileNo
+              }))
             }
             this.setState({isGettingOtp: false})
           })
