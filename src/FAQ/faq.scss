@@ -1,0 +1,73 @@
+@import "./../sass/base.scss";
+
+#Faq {
+  width: 100%;
+  font-family: $font-OpenSans;
+  //height: 100vh;
+  h4, h2 {
+    font-family: $font-Cormorant;
+    text-align: center;
+  }
+  .content {
+    // padding: 0 20.5%;
+    position: relative;
+    // margin-top: calc(134px + 80px);
+    // margin-bottom: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    padding: 12% 15% 5% 15%;
+    background: #f1f1f1;
+
+    .faqContainer {
+      width: 100%;
+      margin: 50px 0;
+
+      .section {
+        margin-top: 24px;
+      }
+
+      .question {
+        width: 100%;
+        // position: relative;
+        // display: flex;
+        background: #fff;
+        border-radius: 4px;
+        border: 1px solid #dddbda;
+        padding: 20px 10px;
+
+        div {
+          font-weight: 600;
+          width: 84%;
+        }
+
+        .show{
+          position: absolute;
+          right: 16%;
+        }
+
+        .hide {
+          position: absolute;
+          right: 16%;
+          display: none;
+        }
+      }
+
+      .answer {
+        border-radius: 4px;
+        background: #fff;
+        padding: 20px 10px;
+        display: none;
+      }
+    }
+  } 
+}
+
+
+@media only screen and (max-width: 720px) { 
+  content {
+    padding: 130px 7% 12% 7% !important;
+  }
+}

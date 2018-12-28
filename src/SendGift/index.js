@@ -86,6 +86,14 @@ class SendGift extends React.Component {
       })
   }
 
+  // componentDidMount() {
+  //   POST({
+  //     api: "/consumer/payment/gift/create",
+  //     apiBase: "orderman",
+  //     data: {}
+  //   })
+  // }
+
   render() {
     return (
       <div>

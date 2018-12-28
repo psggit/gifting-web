@@ -45,6 +45,9 @@
           .item-subheader {
             display: flex;
             flex-direction: row;
+            p {
+              margin-right: 4px;
+            }
           }
         }
 

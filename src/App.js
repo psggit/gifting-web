@@ -15,6 +15,8 @@ import SendGiftCards from './SendGift'
 import SignIn from './SignIn'
 import TransactionHistory from "./TransactionHistory"
 import Checkout from "./Payment"
+import RetailOutlet from './RetailOutlet'
+import FAQ from "./FAQ"
 
 const history = CreateHistory()
 
@@ -27,51 +29,7 @@ class App extends React.Component {
     super() 
     this.state = {
       isMobile: false,
-      proceedToPaymemt: false
     }
-    this.getPostForm = this.getPostForm.bind(this)
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.display.bind(this))
-    localStorage.setItem("isLoadingFirstTime", true)
-    const formData = new FormData()
-   const data = ` key~gtKFFx
-    txnid~G010249047181
-    amount~300
-    productinfo~gift
-    firstname~Arun
-    email~arunkushore@hip.com
-    phone~9843176540
-    lastname~garg
-    surl~http://localhost:8080/transaction?status=success
-    furl~http://localhost:8080/transaction?status=failure
-    curl~http://localhost:8080/transaction?status=cancelled
-    hash~fadc202fd9bf5dd4c15cfd269757a78de34c497a387609a587db7fa318a54077abfcc21ed9385264ad7a91bf96eefa53fc17cd1faccda89d01afec32dc0c0396
-    ccnum~5123456789012346
-    ccname~Madhur Garg
-    pg~DC
-    bankcode~ICIB  
-    ccvv~123
-    ccexpmon~05
-    ccexpyr~2020
-    udf1~web`
-
-    this.dataArr = data.split("\n").map(item => item.trim())
-    this.setState({ proceedToPaymemt: true })
-    // console.log(dataArr)
-    // dataArr.forEach(item => {
-    //   formData.append(item.split(":")[0], item.split(":")[1])
-    //   formData.append()
-    // })
-
-    // POST({
-    //   api: " https://test.payu.in/_payment",
-    //   prependBaseUrl: false,
-    //   handleError: true,
-    //   type: "Public",
-    //   data: formData
-    // })
   }
 
   display() {
@@ -116,6 +74,8 @@ class App extends React.Component {
             <Route exact path="/send-gift" component={SendGiftCards} />
             <Route exact path="/transaction-history" component={TransactionHistory} />
             <Route exact path="/checkout" component={Checkout} />
+            <Route exact path="/retail-outlet" component={RetailOutlet} />
+            <Route exact path="/FAQ" component={FAQ} />
             <Route exact path="*" component={() => <h1>404 Not Found</h1>} />
           </Switch>
         </Router>

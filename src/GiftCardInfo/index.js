@@ -64,25 +64,12 @@ class GiftCards extends React.Component {
               </span>
             </div>
 
-            <div className="button">
-              <p>VIEW RETAIL OUTLETS</p>
-              {/* <span><Icon name="rightArrowWhite" /></span> */}
+            <div style={{ marginTop: "30px" }}>
+              <Button primary>View retail outlets</Button>
             </div>
           </div>
-          <div className="start-gifting">
-            <h2 className="cm s1">
-              Get 50%* off on your first HipBar Gift Card!
-            </h2>
-            <div className="note os s2">
-              Gift drinks to your friends & family this festive season with HipBar Gift Cards!
-            </div>
-            <div className="button">
-              <p>START GIFTING</p>
-              {/* <span><Icon name="rightArrowBlack" /></span> */}
-            </div>
-
-            <FirstGiftCard />
-          </div>
+         
+          <FirstGiftCard />
           <Footer />
         </div>
       </div>

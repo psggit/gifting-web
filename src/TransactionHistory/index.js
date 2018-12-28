@@ -31,7 +31,7 @@ class TransactionHistory extends React.Component {
   }
 
   successCallback() {
-    const data = transactiondata.data
+    const data = transactiondata.order_detail
     this.setState({transactionData: data, loading: false})
     //console.log("Transaction data", data)
   }
@@ -50,7 +50,7 @@ class TransactionHistory extends React.Component {
             <h2 className="cm s1">Transaction History</h2>
             <div className="transaction-list">
               <div className="header">
-                <h2 className="cm s2">GIFT CARDS SENT</h2>
+                <h2 className="os s2">GIFT CARDS SENT</h2>
               </div>
               <div>
                 {
@@ -58,25 +58,23 @@ class TransactionHistory extends React.Component {
                     <div key={i} className="transaction-item">
                       <div className="item-header os s7">
                         <div className="item-subheader">
+                          <p>{item.receiver_name} | </p>
                           <p>
-                            {item.receiver_name} | 
-                          </p>
-                          <p>
-                            {item.receiver_no}
+                            {item.receiver_mobile}
                           </p>
                         </div>
-                        <p>{item.amount}</p>
+                        <p>{item.gift_card_amount}</p>
                       </div>
                       <div className="item-body">
-                        <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px'}}>
+                        <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px', marginRight: '16px'}}>
                           <p className="os s9">
                             Gift Card ID
                           </p>
-                          <span className="os s8">{item.order_id}</span>
+                          <span className="os s8">{item.gift_card_number}</span>
                         </div>
-                        <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px'}}>
+                        <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px', marginRight: '16px'}}>
                           <p className="os s9">Transaction Date & Time</p>
-                          <span className="os s8">{item.created_at}</span>
+                          <span className="os s8">{item.gifted_on}</span>
                         </div>
                       </div>
                       <div className="item-footer">
