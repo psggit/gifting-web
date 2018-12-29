@@ -21,10 +21,16 @@
     padding: 15% 20.5% 15% 20.5%;
     background: #f1f1f1;
 
+    .note {
+      margin-top: 20px;
+      color: #555555;
+    }
+
     .transaction-list {
       //padding: 90px 40px;
       padding-top: 30px;
       width: 100%;
+
       .header {
         border-bottom: 1px solid #555555;
         display: flex;
