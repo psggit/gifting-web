@@ -45,11 +45,11 @@ export function fetchRetailers(payloadObj, successCallback, failureCallback) {
     handleError: true
   })
     .then((json) => {
-      console.log("success call back", json)
+      //console.log("success call back", json)
       successCallback(json)
     })
     .catch(err => {
-      console.log("Error in fetching available hipbar deliveries", err)
+      //console.log("Error in fetching available hipbar deliveries", err)
       failureCallback()
     })
 }
