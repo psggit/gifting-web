@@ -9,6 +9,7 @@ import Button from "Components/button"
 import Accordian from "Components/accordian"
 import AccordianItem from "Components/accordian/accordian-item"
 import { GET } from "Utils/fetch"
+import MaskedInput from "react-text-mask"
 
 class Payment extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class Payment extends React.Component {
       isPopularSelected: false,
       noBankSelected: true,
       bankcode: "null",
+      ccnum: "",
       selectedPaymentMethod: null
     }
     this.getBanks = this.getBanks.bind(this)
@@ -37,6 +39,10 @@ class Payment extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getNetBankingForm = this.getNetBankingForm.bind(this)
     this.getCardBankingForm = this.getCardBankingForm.bind(this)
+    this.handleCardNumberChange = this.handleCardNumberChange.bind(this)
+    this.handleCardExpiryChange = this.handleCardExpiryChange.bind(this)
+    this.handleCVVChange  =this.handleCVVChange.bind(this)
+    this.handleCardnameChange = this.handleCardnameChange.bind(this)
   }
 
   componentWillMount() {
@@ -48,6 +54,7 @@ class Payment extends React.Component {
 
   componentDidMount() {
     this.getBanks()
+    this.getSavedCards()
   }
   
   getSavedCards() {
@@ -56,7 +63,7 @@ class Payment extends React.Component {
       apiBase: "blogicUrl"
     })
       .then(json => {
-        this.setState({ savedCards: json.data })
+        this.setState({ savedCards: json.user_cards })
       })
   }
 
@@ -102,6 +109,22 @@ class Payment extends React.Component {
     this.setState({ selectedPaymentMethod: this.paymentMethods[this.state.activeAccordian] })
   }
 
+  handleCardNumberChange(e) {
+    this.setState({ ccnum: e.target.value.split(" ").join("") })
+  }
+
+  handleCardExpiryChange(e) {
+    this.setState({ ccexp: e.target.value })
+  }
+
+  handleCVVChange(e) {
+    this.setState({ ccvv: e.target.value  })
+  }
+
+  handleCardnameChange(e) {
+    this.setState({ ccname: e.target.value })
+  }
+
   getNetBankingForm() {
     const { bankcode } = this.state
     const postBody = {
@@ -128,7 +151,7 @@ class Payment extends React.Component {
   }
 
   getCardBankingForm() {
-    const { ccnum, ccname, ccvv, ccexpyr, ccexpmon } = this.state
+    const { ccnum, ccname, ccvv, ccexp } = this.state
     const postBody = {
       key: this.txn.key,
       txnid: this.txn.txnid,
@@ -144,10 +167,9 @@ class Payment extends React.Component {
       hash: this.txn.hash,
       ccnum,
       ccname,
-      pg: "DC",
       ccvv,
-      ccexpmon,
-      ccexpyr,
+      ccexpmon: ccexp.split("/")[0],
+      ccexpyr: ccexp.split("/")[1],
       udf1: "web"
     }
 
@@ -178,27 +200,69 @@ class Payment extends React.Component {
                             setActiveAccordian={this.setActiveAccordian}
                             activeAccordian={this.state.activeAccordian}
                           >
-                            <AccordianItem title="Debit Card" id={1}>
+                            <AccordianItem title="Debit Card" id={3}>
                               <div className="form-group">
                                 <label className="os">Card Number</label>
-                                <input onChange={this.handle} type="text" />
+                                <MaskedInput
+                                  guide={false}
+                                  onChange={this.handleCardNumberChange}
+                                  mask={[/[1-9]/, /\d/, /\d/, /\d/, " ", /[1-9]/, /\d/, /\d/, /\d/, " ", /[1-9]/, /\d/, /\d/, /\d/, " ", /[1-9]/, /\d/, /\d/, /\d/]}
+                                />
+                                {/* <input value={this.state.ccnum}  onChange={this.handleCardNumberChange} type="text" /> */}
                               </div>
 
                               <div className="form-group" style={{ display: "flex" }}>
                                 <div style={{ width: "130px" }}>
                                   <label className="os">Expiry Date</label>
-                                  <input type="text" />
+                                  <MaskedInput
+                                    guide={false}
+                                    onChange={this.handleCardExpiryChange}
+                                    mask={[ /[1-9]/, /\d/, "/", /\d/, /\d/]}
+                                  />
                                 </div>
 
                                 <div style={{ width: "130px", marginLeft: "30px" }}>
                                   <label className="os">CVV</label>
-                                  <input type="text" />
+                                  <input onChange={this.handleCVVChange} type="password" maxLength={4} />
                                 </div>
                               </div>
 
                               <div className="form-group">
                                 <label className="os">Name on card</label>
-                                <input type="text" />
+                                <input onChange={this.handleCardnameChange} type="text" />
+                              </div>
+                            </AccordianItem>
+
+                            <AccordianItem title="Debit Card" id={1}>
+                              <div className="form-group">
+                                <label className="os">Card Number</label>
+                                <MaskedInput
+                                  guide={false}
+                                  onChange={this.handleCardNumberChange}
+                                  mask={[/[1-9]/, /\d/, /\d/, /\d/, " ", /[1-9]/, /\d/, /\d/, /\d/, " ", /[1-9]/, /\d/, /\d/, /\d/, " ", /[1-9]/, /\d/, /\d/, /\d/]}
+                                />
+                                {/* <input value={this.state.ccnum}  onChange={this.handleCardNumberChange} type="text" /> */}
+                              </div>
+
+                              <div className="form-group" style={{ display: "flex" }}>
+                                <div style={{ width: "130px" }}>
+                                  <label className="os">Expiry Date</label>
+                                  <MaskedInput
+                                    guide={false}
+                                    onChange={this.handleCardExpiryChange}
+                                    mask={[ /[1-9]/, /\d/, "/", /\d/, /\d/]}
+                                  />
+                                </div>
+
+                                <div style={{ width: "130px", marginLeft: "30px" }}>
+                                  <label className="os">CVV</label>
+                                  <input onChange={this.handleCVVChange} type="password" maxLength={4} />
+                                </div>
+                              </div>
+
+                              <div className="form-group">
+                                <label className="os">Name on card</label>
+                                <input onChange={this.handleCardnameChange} type="text" />
                               </div>
                             </AccordianItem>
 
@@ -242,7 +306,7 @@ class Payment extends React.Component {
                       </div>
                       {
                         this.state.selectedPaymentMethod === "card" &&
-                        <form action='https://test.payu.in/_payment' method='post'>
+                        <form action="https://test.payu.in/_payment" method="post">
                           { this.getCardBankingForm() }
                           <input type="submit" value="submit"></input>
                         </form>
@@ -250,7 +314,7 @@ class Payment extends React.Component {
 
                       {
                         this.state.selectedPaymentMethod === "net_banking" &&
-                        <form action='https://test.payu.in/_payment' method='post'>
+                        <form action="https://test.payu.in/_payment" method="post">
                           { this.getNetBankingForm() }
                           <input type="submit" value="submit"></input>
                         </form>

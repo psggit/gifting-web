@@ -11,6 +11,7 @@
     "react-dom": "^16.7.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "react-text-mask": "^5.4.3",
     "request": "^2.88.0",
     "whatwg-fetch": "^3.0.0"
   },
@@ -32,6 +33,7 @@
     "ignore-loader": "^0.1.2",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
+    "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.28.0",

@@ -29,6 +29,7 @@ class SendGift extends React.Component {
   }
 
   componentDidMount() {
+    console.log("Fefe")
     localStorage.removeItem("txn")
   }
 
@@ -79,7 +80,8 @@ class SendGift extends React.Component {
         }
 
         localStorage.setItem("txn", JSON.stringify(this.postBody))
-        location.href = "/checkout"
+        this.props.history.push("/checkout")
+        // location.href = "/checkout"
         // this.setState({ canProceed: true }, () => {
         //   this.submit.click()
         // })
@@ -110,15 +112,15 @@ class SendGift extends React.Component {
                   <div className="amounts">
 
                     <div className="form-field">
-                      <input className={this.state.activePrice === "price1" ? "focused" : undefined}  onClick={this.handleAmountChange} name="price1" type="text" defaultValue="499" readOnly />
+                      <input className={this.state.activePrice === "price1" ? "focused" : undefined} onFocus={(e) => { e.currentTarget.blur()}}  onClick={this.handleAmountChange} name="price1" type="text" defaultValue="499" readOnly />
                     </div>
 
                     <div className="form-field">
-                      <input className={this.state.activePrice === "price2" ? "focused" : undefined} onClick={this.handleAmountChange} name="price2" type="text" defaultValue="999" readOnly />
+                      <input className={this.state.activePrice === "price2" ? "focused" : undefined} onFocus={(e) => { e.currentTarget.blur()}} onClick={this.handleAmountChange} name="price2" type="text" defaultValue="999" readOnly />
                     </div>
 
                     <div className="form-field">
-                      <input className={this.state.activePrice === "price3" ? "focused": undefined} onClick={this.handleAmountChange} name="price3" type="text" defaultValue="1999" readOnly />
+                      <input className={this.state.activePrice === "price3" ? "focused": undefined} onFocus={(e) => { e.currentTarget.blur()}} onClick={this.handleAmountChange} name="price3" type="text" defaultValue="1999" readOnly />
                     </div>
 
                     <div className="form-field">
