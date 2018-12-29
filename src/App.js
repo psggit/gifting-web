@@ -25,29 +25,29 @@ class App extends React.Component {
 
   constructor() {
     super() 
-    this.state = {
-      isMobile: false
-    }
+    // this.state = {
+    //   isMobile: false
+    // }
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.display.bind(this))
+    //window.addEventListener('resize', this.display.bind(this))
     localStorage.setItem("isLoadingFirstTime", true)
   }
 
-  display() {
-    if(location.pathname.includes("sign-in")) {
-      if(document.documentElement.clientWidth >= 320 && document.documentElement.clientWidth <= 1024) {
-        this.setState({isMobile: true})
-      } else {
-        this.setState({isMobile: false})
-      }
-    }
-  }
+  // display() {
+  //   if(location.pathname.includes("sign-in")) {
+  //     if(document.documentElement.clientWidth >= 320 && document.documentElement.clientWidth <= 1024) {
+  //       this.setState({isMobile: true})
+  //     } else {
+  //       this.setState({isMobile: false})
+  //     }
+  //   }
+  // }
   
-  componentWillUnmount() {
-    window.addEventListener('resize')
-  }
+  // componentWillUnmount() {
+  //   window.addEventListener('resize')
+  // }
 
   render() {
     return (
