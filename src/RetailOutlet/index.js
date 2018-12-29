@@ -45,7 +45,7 @@ class RetailOutlet extends React.Component {
   }
 
   findRetailer(cityId) {
-    console.log("city details", cityId)
+    //console.log("city details", cityId)
     const payload = {
       city_id: parseInt(cityId),
       limit: 10,
@@ -69,23 +69,26 @@ class RetailOutlet extends React.Component {
   }
 
   handleChange(e) {
+    //console.log("value", e.target.value)
     const {deliveryMap} = this.state
+    if(e.target.value === "select city") {
+      this.setState({selectedCityId: ""})
+      return
+    }
     this.setState({selectedCityId: e.target.value, selectedCity: deliveryMap[e.target.value].name})
   }
 
   handleClick() {
     const {selectedCityId} = this.state
-    this.findRetailer(selectedCityId)
+    if(selectedCityId && selectedCityId !== "select city") {
+      this.findRetailer(selectedCityId)
+      return
+    } 
+    this.setState({retailerOutletData: []})
   }
-
-  //loadMap(gps) {
-    //console.log("gps", gps)
-    //window.open(`./locationMap?lat=1`, '_blank')
-  //}
 
   renderOutlet(item) {
     const gpsCoordinates = item.retailer_gps.split(",")
-    console.log("gpsCoordinates", gpsCoordinates)
     return (
       <div className="retailer">
         <div className="details">
@@ -100,7 +103,7 @@ class RetailOutlet extends React.Component {
 
   render() {
     const {availableDeliveryList, retailerOutletData, isSelectedCity, selectedCity} = this.state
-    console.log("outlet data", this.state.retailerOutletData)
+    //console.log("outlet data", this.state.retailerOutletData)
     return (
       <div>
         <Header />
@@ -111,7 +114,7 @@ class RetailOutlet extends React.Component {
               <div className="options">
                 <span class="custom-dropdown">
                   <select class="custom-dropdown-select" onChange={(e) => this.handleChange(e)} selected={this.state.selectedCity}>
-                    <option className="os s8">-- Select a city --</option>
+                    <option className="os s8" value="select city">-- Select a city --</option>
                     {
                       availableDeliveryList.map((item) => (
                         this.renderItem(item)
