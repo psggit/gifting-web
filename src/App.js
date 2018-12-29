@@ -17,6 +17,8 @@ import TransactionHistory from "./TransactionHistory"
 import Checkout from "./Payment"
 import RetailOutlet from './RetailOutlet'
 import FAQ from "./FAQ"
+import TransactionSuccessful from "./SuccessfulTransaction"
+import TransactionFail from "./FailureTransaction"
 
 const history = CreateHistory()
 
@@ -26,24 +28,29 @@ const history = CreateHistory()
 class App extends React.Component {
   constructor() {
     super() 
-    this.state = {
-      isMobile: false,
-    }
+    // this.state = {
+    //   isMobile: false
+    // }
   }
 
-  display() {
-    if(location.pathname.includes("sign-in")) {
-      if(document.documentElement.clientWidth >= 320 && document.documentElement.clientWidth <= 1024) {
-        this.setState({isMobile: true})
-      } else {
-        this.setState({isMobile: false})
-      }
-    }
+  componentDidMount() {
+    //window.addEventListener('resize', this.display.bind(this))
+    localStorage.setItem("isLoadingFirstTime", true)
   }
+
+  // display() {
+  //   if(location.pathname.includes("sign-in")) {
+  //     if(document.documentElement.clientWidth >= 320 && document.documentElement.clientWidth <= 1024) {
+  //       this.setState({isMobile: true})
+  //     } else {
+  //       this.setState({isMobile: false})
+  //     }
+  //   }
+  // }
   
-  componentWillUnmount() {
-    window.addEventListener('resize')
-  }
+  // componentWillUnmount() {
+  //   window.addEventListener('resize')
+  // }
 
   getPostForm() {
     return this.dataArr.map((item, i) => {
@@ -75,6 +82,8 @@ class App extends React.Component {
             <Route exact path="/checkout" component={Checkout} />
             <Route exact path="/retail-outlet" component={RetailOutlet} />
             <Route exact path="/FAQ" component={FAQ} />
+            <Route exact path="/transaction-successful" component={TransactionSuccessful} />
+            <Route exact path="/transaction-fail" component={TransactionFail} />
             <Route exact path="*" component={() => <h1>404 Not Found</h1>} />
           </Switch>
         </Router>
