@@ -58,8 +58,10 @@ class LocationMap extends React.Component {
     this.getGoogleMaps().then((google) => {
       const uluru = {lat: this.state.lat, lng: this.state.lng};
       const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        center: uluru
+        // zoom: 4,
+        // center: uluru
+        zoom: 13,
+        center: uluru,
       });
       const marker = new google.maps.Marker({
         position: uluru,
