@@ -180,9 +180,10 @@ export default function SignUp(data) {
       fetch(`${Api.blogicUrl}/consumer/auth/otp-signup`, fetchOptions)
         .then((response) => {
           response.json().then((responseData) => {
-            if(responseData.errorCode === "role-invalid") {
-              this.signOut()
-            } else if(response.status === 400 && responseData.errorCode === "dob-error") {
+            // if(responseData.errorCode === "role-invalid") {
+            //   this.signOut()
+            // } else 
+            if(response.status === 400 && responseData.errorCode === "dob-error") {
               this.setState({dobErr: {status: true, value: responseData.message}})
             } else if(response.status === 409 && responseData.errorCode === "user-already-exists") {
               //unMountModal()

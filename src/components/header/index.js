@@ -15,8 +15,10 @@ class Header extends React.Component {
     super(props)
     this.state = {
       isMenuOpen: false,
-      errorInSignIn: false,
-      showDropdown: false
+      //errorInSignIn: false,
+      showDropdown: false,
+      isLoggedIn: false,
+      username: ""
     }
     this.navItems = [
       {
@@ -47,10 +49,15 @@ class Header extends React.Component {
 
   componentDidMount() {
     this.links = document.querySelectorAll(".nav-items a")
-    if(localStorage.getItem('isLoggedIn') === "false" || localStorage.getItem('isLoggedIn') === "undefined") {
-      this.setState({isLoggedIn: false })
-    } else if(localStorage.getItem('isLoggedIn') === "true") {
-      this.setState({isLoggedIn: true })
+    // if(localStorage.getItem('isLoggedIn') === "false" || localStorage.getItem('isLoggedIn') === "undefined") {
+    //   this.setState({isLoggedIn: false })
+    // } else if(localStorage.getItem('isLoggedIn') === "true") {
+    //   this.setState({isLoggedIn: true })
+    // }
+    this.setState({isLoggedIn: this.props.isLoggedIn})
+
+    if(this.props && this.props.username) {
+      this.setState({username: this.props.username})
     }
   }
 
@@ -168,7 +175,7 @@ class Header extends React.Component {
             // <Button onClick={() => this.handleSignOut()} primary size="small">SIGN OUT</Button>
             <div className="logout">
               <Icon name="appUser" style={{marginRight: '10px'}}/>
-              <div className="os s2"  style={{marginRight: '8px'}} >{localStorage.getItem("username")}</div>
+              <div className="os s2"  style={{marginRight: '8px'}} >{this.state.username}</div>
               <span onClick={() => this.openDropdown()} style={{display: 'flex'}}>
                 <Icon name="filledDownArrow" />
               </span>
