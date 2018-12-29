@@ -15,6 +15,7 @@ import SignIn from './SignIn'
 import TransactionHistory from "./TransactionHistory"
 import RetailOutlet from './RetailOutlet'
 import FAQ from "./FAQ"
+import TransactionSuccessful from "./SuccessfulTransaction"
 
 const history = CreateHistory()
 
@@ -69,6 +70,7 @@ class App extends React.Component {
             <Route exact path="/transaction-history" component={TransactionHistory} />
             <Route exact path="/retail-outlet" component={RetailOutlet} />
             <Route exact path="/FAQ" component={FAQ} />
+            <Route exact path="/transaction-successful" component={TransactionSuccessful} />
             <Route exact path="*" component={() => <h1>404 Not Found</h1>} />
           </Switch>
         </Router>
