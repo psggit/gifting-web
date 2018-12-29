@@ -10,7 +10,7 @@ class Accordian extends React.Component {
   handleClick(e) {
     // if middleware exists then apply
     if (this.props.middleware) {
-      if (this.props.middleware()) {
+      if (this.props.middleware(e.target.id)) {
         this.props.setActiveAccordian(parseInt(e.target.id))
       }
     } else {

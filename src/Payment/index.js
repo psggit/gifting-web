@@ -43,6 +43,7 @@ class Payment extends React.Component {
     this.handleCardExpiryChange = this.handleCardExpiryChange.bind(this)
     this.handleCVVChange  =this.handleCVVChange.bind(this)
     this.handleCardnameChange = this.handleCardnameChange.bind(this)
+    this.setCardValues = this.setCardValues.bind(this)
   }
 
   componentWillMount() {
@@ -63,7 +64,7 @@ class Payment extends React.Component {
       apiBase: "blogicUrl"
     })
       .then(json => {
-        this.setState({ savedCards: json.user_cards })
+        this.setState({ savedCards: Object.values(json.user_cards) })
       })
   }
 
@@ -106,23 +107,37 @@ class Payment extends React.Component {
   }
 
   handleSubmit() {
-    this.setState({ selectedPaymentMethod: this.paymentMethods[this.state.activeAccordian] })
+    if (this.state.activeAccordian !== 2) {
+      this.setState({ selectedPaymentMethod: "card" }, () => {
+        console.log("Processing card payment..")
+        if (this.ccname.length && this.ccnum.length && this.ccvv.length && this.ccexp.length) {
+          this.submit.click()
+        }
+      })
+    } else {
+      this.setState({ selectedPaymentMethod: "net_banking" }, () => {
+        console.log("Processing net banking..")
+        if (this.bankcode !== "null") {
+          this.submit.click()
+        }
+      })
+    }
   }
 
   handleCardNumberChange(e) {
-    this.setState({ ccnum: e.target.value.split(" ").join("") })
+    this.ccnum = e.target.value
   }
 
   handleCardExpiryChange(e) {
-    this.setState({ ccexp: e.target.value })
+    this.ccexp = e.target.value
   }
 
   handleCVVChange(e) {
-    this.setState({ ccvv: e.target.value  })
+    this.ccvv = e.target.value
   }
 
   handleCardnameChange(e) {
-    this.setState({ ccname: e.target.value })
+    this.ccname = e.target.value
   }
 
   getNetBankingForm() {
@@ -151,7 +166,6 @@ class Payment extends React.Component {
   }
 
   getCardBankingForm() {
-    const { ccnum, ccname, ccvv, ccexp } = this.state
     const postBody = {
       key: this.txn.key,
       txnid: this.txn.txnid,
@@ -159,23 +173,39 @@ class Payment extends React.Component {
       productinfo: "gift",
       firstname: this.txn.first_name,
       email: this.txn.email,
-      phone: this.txn.phone,
-      lastname: "",
+      phone: "890989880",
+      lastname: "yuyiu",
       surl: "http://localhost:8080/transaction?status=success",
       furl: "http://localhost:8080/transaction?status=failure",
       curl: "http://localhost:8080/transaction?status=cancelled",
       hash: this.txn.hash,
-      ccnum,
-      ccname,
-      ccvv,
-      ccexpmon: ccexp.split("/")[0],
-      ccexpyr: ccexp.split("/")[1],
+      pg: "DC",
+      ccnum: this.ccnum,
+      ccname: this.ccname,
+      ccvv: this.ccvv,
+      ccexpmon: this.ccexp.split("/")[0],
+      ccexpyr: this.ccexp.split("/")[1],
       udf1: "web"
     }
 
     return Object.entries(postBody).map(([key, value]) => (
       <input type="hidden" name={key} value={value} />
     ))
+  }
+
+  setCardValues(id) {
+    console.log(id)
+    if (parseInt(id) < 3) {
+      return true
+    } else {
+      // console.log(this[`cardNum${id}`].props.defaultValue)
+      this.ccnum = this[`cardNum${id}`].props.defaultValue
+      this.ccname = this[`cardName${id}`].value
+      this.ccvv = this[`cardCvv${id}`].value
+      this.ccexp = this[`cardExp${id}`].props.defaultValue
+      console.log(this)
+      return true
+    }
   }
 
   render() {
@@ -196,17 +226,58 @@ class Payment extends React.Component {
 
                         <div className="payment-methods-container">
                           <Accordian
-                            // middleware={this.checkFormStatus}
+                            middleware={this.setCardValues}
                             setActiveAccordian={this.setActiveAccordian}
                             activeAccordian={this.state.activeAccordian}
                           >
-                            <AccordianItem title="Debit Card" id={3}>
+                            {
+                              this.state.savedCards.map((item, i) => (
+                                <AccordianItem key={i+3} title={item.card_name} id={i+3}>
+                                  <div className="form-group">
+                                    <label className="os">Card Number</label>
+                                    <MaskedInput
+                                      guide={false}
+                                      onChange={this.handleCardNumberChange}
+                                      ref={(node) => { this[`cardNum${i+3}`] = node }}
+                                      defaultValue={item.card_no}
+                                      mask={[/\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/]}
+                                    />
+                                    {/* <input value={this.state.ccnum}  onChange={this.handleCardNumberChange} type="text" /> */}
+                                  </div>
+
+                                  <div className="form-group" style={{ display: "flex" }}>
+                                    <div style={{ width: "130px" }}>
+                                      <label className="os">Expiry Date</label>
+                                      <MaskedInput
+                                        guide={false}
+                                        defaultValue={`${item.expiry_month}/${item.expiry_year}`}
+                                        ref={(node) => { this[`cardExp${i+3}`] = node }}
+                                        onChange={this.handleCardExpiryChange}
+                                        mask={[ /[0-1]/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
+                                      />
+                                    </div>
+
+                                    <div style={{ width: "130px", marginLeft: "30px" }}>
+                                      <label className="os">CVV</label>
+                                      <input ref={(node) => { this[`cardCvv${i+3}`] = node }} defaultValue={item.card_cvv} onChange={this.handleCVVChange} type="password" maxLength={4} />
+                                    </div>
+                                  </div>
+
+                                  <div className="form-group">
+                                    <label className="os">Name on card</label>
+                                    <input ref={(node) => { this[`cardName${i+3}`] = node }} defaultValue={item.name_on_card}  onChange={this.handleCardnameChange} type="text" />
+                                  </div>
+                                </AccordianItem>
+                              ))
+                            }
+
+                            <AccordianItem key={1} title="Debit Card / Credit Card" id={1}>
                               <div className="form-group">
                                 <label className="os">Card Number</label>
                                 <MaskedInput
                                   guide={false}
                                   onChange={this.handleCardNumberChange}
-                                  mask={[/[1-9]/, /\d/, /\d/, /\d/, " ", /[1-9]/, /\d/, /\d/, /\d/, " ", /[1-9]/, /\d/, /\d/, /\d/, " ", /[1-9]/, /\d/, /\d/, /\d/]}
+                                  mask={[/\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/]}
                                 />
                                 {/* <input value={this.state.ccnum}  onChange={this.handleCardNumberChange} type="text" /> */}
                               </div>
@@ -217,7 +288,7 @@ class Payment extends React.Component {
                                   <MaskedInput
                                     guide={false}
                                     onChange={this.handleCardExpiryChange}
-                                    mask={[ /[1-9]/, /\d/, "/", /\d/, /\d/]}
+                                    mask={[ /[0-1]/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
                                   />
                                 </div>
 
@@ -233,40 +304,7 @@ class Payment extends React.Component {
                               </div>
                             </AccordianItem>
 
-                            <AccordianItem title="Debit Card" id={1}>
-                              <div className="form-group">
-                                <label className="os">Card Number</label>
-                                <MaskedInput
-                                  guide={false}
-                                  onChange={this.handleCardNumberChange}
-                                  mask={[/[1-9]/, /\d/, /\d/, /\d/, " ", /[1-9]/, /\d/, /\d/, /\d/, " ", /[1-9]/, /\d/, /\d/, /\d/, " ", /[1-9]/, /\d/, /\d/, /\d/]}
-                                />
-                                {/* <input value={this.state.ccnum}  onChange={this.handleCardNumberChange} type="text" /> */}
-                              </div>
-
-                              <div className="form-group" style={{ display: "flex" }}>
-                                <div style={{ width: "130px" }}>
-                                  <label className="os">Expiry Date</label>
-                                  <MaskedInput
-                                    guide={false}
-                                    onChange={this.handleCardExpiryChange}
-                                    mask={[ /[1-9]/, /\d/, "/", /\d/, /\d/]}
-                                  />
-                                </div>
-
-                                <div style={{ width: "130px", marginLeft: "30px" }}>
-                                  <label className="os">CVV</label>
-                                  <input onChange={this.handleCVVChange} type="password" maxLength={4} />
-                                </div>
-                              </div>
-
-                              <div className="form-group">
-                                <label className="os">Name on card</label>
-                                <input onChange={this.handleCardnameChange} type="text" />
-                              </div>
-                            </AccordianItem>
-
-                            <AccordianItem title="Net Banking" id={2}>
+                            <AccordianItem key={2} title="Net Banking" id={2}>
                               <div style={{ padding: "0 20px" }}>
                                 <p style={{ fontWeight: "600", color: "#000", letterSpacing: "0.5px" }} className="os s8">Popular Banks</p>
                                 <div ref={(node) => { this.radios = node}} style={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}>
@@ -308,7 +346,7 @@ class Payment extends React.Component {
                         this.state.selectedPaymentMethod === "card" &&
                         <form action="https://test.payu.in/_payment" method="post">
                           { this.getCardBankingForm() }
-                          <input type="submit" value="submit"></input>
+                          <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit"></input>
                         </form>
                       }
 
@@ -316,7 +354,7 @@ class Payment extends React.Component {
                         this.state.selectedPaymentMethod === "net_banking" &&
                         <form action="https://test.payu.in/_payment" method="post">
                           { this.getNetBankingForm() }
-                          <input type="submit" value="submit"></input>
+                          <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit"></input>
                         </form>
                       }
                     </div>
