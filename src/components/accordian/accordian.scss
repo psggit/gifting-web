@@ -39,6 +39,8 @@
 }
 
 .accordian-item__header {
+  border-bottom: 1px solid #dfdfdf;
+  border-top: 1px solid #dfdfdf;
   transition: background-color 0.2s ease-in;
   cursor: pointer;
   width: 100%;

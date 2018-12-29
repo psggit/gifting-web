@@ -29,7 +29,7 @@ class Header extends React.Component {
       },
       {
         label: "Retailer Outlets",
-        value: "retailer-outlets"
+        value: "retail-outlet"
       },
       {
         label: "Support",
@@ -42,6 +42,7 @@ class Header extends React.Component {
     this.handleClick = this.handleClick.bind(this)
     this.handleSignOut = this.handleSignOut.bind(this)
     this.reloadHeader = this.reloadHeader.bind(this)
+    this.handleLink = this.handleLink.bind(this)
   }
 
   componentDidMount() {
@@ -84,6 +85,11 @@ class Header extends React.Component {
         //console.log("Error in logout", err)
         mountModal(NotifyError({}))
       })
+  }
+
+  handleLink(e) {
+    // e.preventDefault()
+    // this.props.history.push(e.target.href)
   }
   
   handleClick() {
@@ -144,6 +150,7 @@ class Header extends React.Component {
             this.navItems.map((item, index) => (
               <a
                 href={`/${item.value}`}
+                onClick={this.handleLink}
                 className="nav-item" key={index}
                 onMouseOut={this.handleMouseOut}
                 onMouseOver={this.handleMouseOver}
@@ -191,7 +198,7 @@ class Header extends React.Component {
             {
               this.navItems.map((item, index) => (
                 <li key={index}>
-                  <a href={`/${item.value}`} className="os s2">
+                  <a onClick={this.handleLink} href={`/${item.value}`} className="os s2">
                     {item.label}
                   </a>
                 </li>

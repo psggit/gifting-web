@@ -24,7 +24,7 @@ class Payment extends React.Component {
       popularBanks: [],
       banks: [],
       savedCards: [],
-      activeAccordian: 1,
+      activeAccordian: 3,
       isPopularSelected: false,
       noBankSelected: true,
       bankcode: "null",
@@ -47,6 +47,11 @@ class Payment extends React.Component {
   }
 
   componentWillMount() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
     if (!localStorage.getItem("txn")) {
       console.log("go back")
       this.props.history.goBack()
@@ -258,7 +263,7 @@ class Payment extends React.Component {
 
                                     <div style={{ width: "130px" }}>
                                       <label className="os">CVV</label>
-                                      <input ref={(node) => { this[`cardCvv${i+3}`] = node }} name="saved" defaultValue={item.card_cvv} disabled type="password" maxLength={4} />
+                                      <input onChange={this.handleCVVChange} ref={(node) => { this[`cardCvv${i+3}`] = node }} name="saved" defaultValue={item.card_cvv}  type="password" maxLength={4} />
                                     </div>
                                   </div>
 

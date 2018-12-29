@@ -2,7 +2,7 @@ import React from "react"
 import "./gift-card.scss"
 import Icon from "Components/icon"
 
-const GiftCard = () => (
+const GiftCard = ({ amount }) => (
   <div className="gift-card">
     <div className="logo-wrapper">
       <Icon name="hipbarLogoWhite" />
@@ -13,7 +13,7 @@ const GiftCard = () => (
     </div>
     <p className="price">
       <span>&#8377;</span>
-      <span>499</span>
+      <span>{amount || 499}</span>
     </p>
 
     <div className="gift-logo">

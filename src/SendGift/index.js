@@ -15,8 +15,8 @@ class SendGift extends React.Component {
       giftMessage: "Wish you a merry christmas, wish you a merry christmas and a very happy new year! :)",
       receiverName: "Madhur",
       receiverNumber: "8989415866",
-      senderName: "Arun",
-      senderNumber: "9789702255",
+      senderName: "",
+      senderNumber: localStorage.getItem("sender_mobile"),
       canProceed: false
     }
     this.createTransaction = this.createTransaction.bind(this)
@@ -34,7 +34,15 @@ class SendGift extends React.Component {
 
   proceedToPayment() {
     const { amount, giftMessage, receiverNumber, senderName, receiverName} = this.state
-    this.createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName)
+    if (
+      amount.length &&
+      giftMessage.length &&
+      receiverName.length &&
+      receiverNumber.length &&
+      senderName.length
+    ) {
+      this.createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName)
+    }
   }
 
   handleAmountChange(e) {
@@ -102,7 +110,7 @@ class SendGift extends React.Component {
         <div id="send-gift">
           <div className="container">
             <div className="gift-card-form">
-              <Giftcard />
+              <Giftcard amount={this.state.amount} />
 
               <div className="form-item gift-card-info">
                 <h3 className="os s5">Gift Card Information</h3>
@@ -161,7 +169,7 @@ class SendGift extends React.Component {
 
                 <div className="form-group">
                   <label className="os">Phone Number</label>
-                  <input onChange={this.handlePhoneChange} name="senderNumber" maxLength="10" type="text" />
+                  <input value={this.state.senderNumber} onChange={this.handlePhoneChange} name="senderNumber" maxLength="10" type="text" readOnly />
                 </div>
               </div>
 

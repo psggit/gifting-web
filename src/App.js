@@ -53,7 +53,7 @@ class App extends React.Component {
           return
         }
         response.json().then((data) => {
-          console.log(data)
+          localStorage.setItem("sender_mobile", data.mobile)
           // if (!location.pathname.includes('home')) {
           //   location.href = '/home/live-ottp'
           // }
