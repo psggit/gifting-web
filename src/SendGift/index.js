@@ -29,7 +29,6 @@ class SendGift extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Fefe")
     localStorage.removeItem("txn")
   }
 

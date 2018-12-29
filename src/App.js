@@ -20,6 +20,7 @@ import FAQ from "./FAQ"
 import TransactionSuccessful from "./SuccessfulTransaction"
 import TransactionFail from "./FailureTransaction"
 import LocationMap from "./LocationMap"
+import { Api } from "Utils/config"
 
 const history = CreateHistory()
 
@@ -32,6 +33,38 @@ class App extends React.Component {
     // this.state = {
     //   isMobile: false
     // }
+  }
+
+  componentWillMount() {
+    const fetchOptions = {
+      method: 'get',
+      credentials: 'include',
+      mode: 'cors',
+      'x-hasura-role': 'user'
+    }
+    // https://auth.hipbar-dev.com/user/account/info
+    fetch(`${Api.authUrl}/user/account/info`, fetchOptions)
+      .then((response) => {
+        if (response.status !== 200) {
+          console.log(`Looks like there was a problem. Status Code: ${response.status}`)
+          // if (location.pathname !== '/login') {
+          //   location.href = '/login'
+          // }
+          return
+        }
+        response.json().then((data) => {
+          console.log(data)
+          // if (!location.pathname.includes('home')) {
+          //   location.href = '/home/live-ottp'
+          // }
+        })
+      })
+      .catch((err) => {
+        // console.log('Fetch Error :-S', err)
+        // if (location.pathname !== '/login') {
+        //   location.href = '/login'
+        // }
+      })
   }
 
   componentDidMount() {

@@ -6,7 +6,9 @@ function getAPIObj() {
   return {
     authUrl: "https://auth." + appName + ".hasura-app.io",
     blogicUrl: "https://api1." + appName + ".hasura-app.io",
-    orderman: scheme + "://orderman" + baseHost
+    orderman: scheme + "://orderman" + baseHost,
+    catman: scheme + "://catman" + baseHost,
+    loki: scheme + "://loki" + baseHost
   }
 }
 

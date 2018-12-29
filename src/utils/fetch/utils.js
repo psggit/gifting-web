@@ -4,7 +4,7 @@
 
 // import 'whatwg-fetch'
 // import Session from "./../session"
-import { Api } from "./../config2"
+import { Api } from "./../config"
 /**
  * Helper methods to create window.fetch instance
  */
@@ -73,6 +73,7 @@ export function constructFetchUtility(options) {
   // construct request url
   const url = prependBaseUrl ? `${Api[apiBase]}${api}` : api
 
+  console.log(apiBase)
   // construct options for creating `window.fetch` instance
   let fetchOptions = {
     method,

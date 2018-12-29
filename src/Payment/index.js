@@ -110,14 +110,19 @@ class Payment extends React.Component {
     if (this.state.activeAccordian !== 2) {
       this.setState({ selectedPaymentMethod: "card" }, () => {
         console.log("Processing card payment..")
-        if (this.ccname.length && this.ccnum.length && this.ccvv.length && this.ccexp.length) {
+        if (this.ccnum) {
+          if (this.ccname.length && this.ccnum.length && this.ccvv.length && this.ccexp.length) {
+            this.submit.click()
+          }
+        } else {
           this.submit.click()
         }
       })
     } else {
       this.setState({ selectedPaymentMethod: "net_banking" }, () => {
         console.log("Processing net banking..")
-        if (this.bankcode !== "null") {
+        // console.log(this.bankcode)
+        if (this.state.bankcode) {
           this.submit.click()
         }
       })
@@ -180,12 +185,19 @@ class Payment extends React.Component {
       curl: "http://localhost:8080/transaction?status=cancelled",
       hash: this.txn.hash,
       pg: "DC",
-      ccnum: this.ccnum,
       ccname: this.ccname,
       ccvv: this.ccvv,
       ccexpmon: this.ccexp.split("/")[0],
       ccexpyr: this.ccexp.split("/")[1],
       udf1: "web"
+    }
+
+    if (this.ccnum) {
+      postBody.ccnum = this.ccnum
+    }
+
+    if (this.cctoken) {
+      postBody.ccnum = this.cctoken
     }
 
     return Object.entries(postBody).map(([key, value]) => (
@@ -198,11 +210,11 @@ class Payment extends React.Component {
     if (parseInt(id) < 3) {
       return true
     } else {
-      // console.log(this[`cardNum${id}`].props.defaultValue)
-      this.ccnum = this[`cardNum${id}`].props.defaultValue
+      this.ccnum = this[`cardNum${id}`].name === "saved" ? null : this[`cardNum${id}`].value
       this.ccname = this[`cardName${id}`].value
+      this.cctoken = this[`cardToken${id}`].name === "saved" ? this[`cardToken${id}`].value : null
       this.ccvv = this[`cardCvv${id}`].value
-      this.ccexp = this[`cardExp${id}`].props.defaultValue
+      this.ccexp = this[`cardExp${id}`].value
       console.log(this)
       return true
     }
@@ -235,37 +247,29 @@ class Payment extends React.Component {
                                 <AccordianItem key={i+3} title={item.card_name} id={i+3}>
                                   <div className="form-group">
                                     <label className="os">Card Number</label>
-                                    <MaskedInput
-                                      guide={false}
-                                      onChange={this.handleCardNumberChange}
-                                      ref={(node) => { this[`cardNum${i+3}`] = node }}
-                                      defaultValue={item.card_no}
-                                      mask={[/\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/]}
-                                    />
-                                    {/* <input value={this.state.ccnum}  onChange={this.handleCardNumberChange} type="text" /> */}
+                                    <input ref={(node) => { this[`cardNum${i+3}`] = node }} name="saved" defaultValue={item.card_no} disabled type="text" />
                                   </div>
 
-                                  <div className="form-group" style={{ display: "flex" }}>
+                                  <div className="form-group">
                                     <div style={{ width: "130px" }}>
-                                      <label className="os">Expiry Date</label>
-                                      <MaskedInput
-                                        guide={false}
-                                        defaultValue={`${item.expiry_month}/${item.expiry_year}`}
-                                        ref={(node) => { this[`cardExp${i+3}`] = node }}
-                                        onChange={this.handleCardExpiryChange}
-                                        mask={[ /[0-1]/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
-                                      />
+                                      {/* <label className="os">Expiry Date</label> */}
+                                      <input ref={(node) => { this[`cardExp${i+3}`] = node }} name="saved" defaultValue={`${item.expiry_month}/${item.expiry_year}`} type="hidden" maxLength={4} />
                                     </div>
 
-                                    <div style={{ width: "130px", marginLeft: "30px" }}>
+                                    <div style={{ width: "130px" }}>
                                       <label className="os">CVV</label>
-                                      <input ref={(node) => { this[`cardCvv${i+3}`] = node }} defaultValue={item.card_cvv} onChange={this.handleCVVChange} type="password" maxLength={4} />
+                                      <input ref={(node) => { this[`cardCvv${i+3}`] = node }} name="saved" defaultValue={item.card_cvv} disabled type="password" maxLength={4} />
                                     </div>
                                   </div>
 
                                   <div className="form-group">
-                                    <label className="os">Name on card</label>
-                                    <input ref={(node) => { this[`cardName${i+3}`] = node }} defaultValue={item.name_on_card}  onChange={this.handleCardnameChange} type="text" />
+                                    {/* <label className="os">Name on card</label> */}
+                                    <input ref={(node) => { this[`cardToken${i+3}`] = node }} name="saved" defaultValue={item.card_token} type="hidden" />
+                                  </div>
+
+                                  <div className="form-group">
+                                    {/* <label className="os">Name on card</label> */}
+                                    <input ref={(node) => { this[`cardName${i+3}`] = node }} name="saved" defaultValue={item.name_on_card} type="hidden" />
                                   </div>
                                 </AccordianItem>
                               ))
