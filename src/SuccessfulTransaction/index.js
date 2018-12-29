@@ -2,7 +2,7 @@ import React from 'react'
 import Header from "Components/header"
 import Footer from "Components/footer"
 import Icon from "Components/icon"
-import "./successful-transaction.scss"
+import "Sass/transaction-status.scss"
 
 class SuccessfulTransaction extends React.Component {
   constructor() {
@@ -13,7 +13,7 @@ class SuccessfulTransaction extends React.Component {
     return (
       <div>
         <Header />
-        <div id="SuccessfulTransaction"> 
+        <div id="SuccessfulTransaction" className="transaction-status"> 
           <div className="content">
             <div className="successful">
               <div className="header section">
