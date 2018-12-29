@@ -4,8 +4,7 @@
   width: 100%;
   font-family: $font-OpenSans;
   //height: 100vh;
-  h4, h2 {
-    font-family: $font-Cormorant;
+  h4 {
     text-align: center;
   }
   .content {
@@ -92,7 +91,10 @@
           padding: 24px 0;
           border-bottom: 1px solid #555555;
           text-align: left;
-          
+          a {
+            text-decoration: none;
+            color: #000;
+          }
           .details {
             width: 90%;
             .name {

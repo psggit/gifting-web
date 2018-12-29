@@ -45,7 +45,7 @@ class RetailOutlet extends React.Component {
   }
 
   findRetailer(cityId) {
-    //console.log("city details", deliveryCityDetails)
+    console.log("city details", cityId)
     const payload = {
       city_id: parseInt(cityId),
       limit: 10,
@@ -64,6 +64,7 @@ class RetailOutlet extends React.Component {
   }
 
   renderItem(item) {
+    //console.log("id", item.id)
     return <option value={item.id}>{item.name}</option>
   }
 
@@ -77,19 +78,22 @@ class RetailOutlet extends React.Component {
     this.findRetailer(selectedCityId)
   }
 
-  loadMap(gps) {
-    console.log("gps", gps)
-  }
+  //loadMap(gps) {
+    //console.log("gps", gps)
+    //window.open(`./locationMap?lat=1`, '_blank')
+  //}
 
   renderOutlet(item) {
-    console.log("item", item)
+    const gpsCoordinates = item.retailer_gps.split(",")
+    console.log("gpsCoordinates", gpsCoordinates)
     return (
       <div className="retailer">
         <div className="details">
           <p className="name os s5">{item.retailer_name}</p>
           <p className="os s7">{item.retailer_address}</p>
         </div>
-        <p className="direction os s8" onClick={() => this.loadMap(item.retailer_gps)}>DIRECTIONS</p>
+        {/* <p className="direction os s8" onClick={() => this.loadMap(item.retailer_gps)}>DIRECTIONS</p> */}
+        <a className="direction os s8" href={`/locationMap?lat=${gpsCoordinates[0]}&lng=${gpsCoordinates[1]}`} target="_blank">DIRECTIONS</a>
       </div>
     )
   }
