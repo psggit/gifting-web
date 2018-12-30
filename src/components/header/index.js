@@ -62,10 +62,10 @@ class Header extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log("helo", newProps)
-    //if(this.props.username !== newProps.username && this.props.isLoggedIn !== newProps.isLoggedIn) {
-    this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-    //}
+    //console.log("helo", newProps)
+    if(this.props.username !== newProps.username && this.props.isLoggedIn !== newProps.isLoggedIn) {
+      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+    }
   }
 
   reloadHeader() {
@@ -83,7 +83,7 @@ class Header extends React.Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      //credentials: 'include',
+      credentials: 'include',
       mode: 'cors',
     }
 
@@ -143,7 +143,7 @@ class Header extends React.Component {
 
   render() {
     const {isLoggedIn, showDropdown} = this.state
-    console.log("header state", this.state)
+    //console.log("header state", this.state)
     return (
       <div className="navbar">
         <div className="logo">

@@ -30,6 +30,13 @@ class RetailOutlet extends React.Component {
     this.fetchAvailableHipbarDelivery()
   }
 
+  componentWillReceiveProps(newProps) {
+    //console.log("helo", newProps)
+    if(this.props.username !== newProps.username && this.props.isLoggedIn !== newProps.isLoggedIn) {
+      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+    }
+  }
+
   fetchAvailableHipbarDelivery() {
     Api.fetchAvailableHipbarDelivery(this.successCallback)
   }
@@ -106,7 +113,7 @@ class RetailOutlet extends React.Component {
     //console.log("outlet data", this.state.retailerOutletData)
     return (
       <div>
-        <Header username={this.props.username} isLoggedIn={this.props.isLoggedIn}/>
+        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
         <div id="retailOutlet">
           <div className="content">
             <h2 className="cm s1">Find a HipBar powered retailer near you</h2>

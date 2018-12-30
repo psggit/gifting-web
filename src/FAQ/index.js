@@ -9,13 +9,22 @@ class FAQ extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      questionAnswers: []
+      questionAnswers: [],
+      username: "",
+      isLoggedIn: false
     }
     this.showAnswer = this.showAnswer.bind(this)
   }
 
   componentDidMount() {
     this.setState({questionAnswers})
+  }
+
+  componentWillReceiveProps(newProps) {
+    //console.log("helo", newProps)
+    if(this.props.username !== newProps.username && this.props.isLoggedIn !== newProps.isLoggedIn) {
+      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+    }
   }
 
   showAnswer(quesNo) {
@@ -55,7 +64,7 @@ class FAQ extends React.Component {
     const {questionAnswers} = this.state
     return (
       <div>
-        <Header username={this.props.username} isLoggedIn={this.props.isLoggedIn}/>
+        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
         <div id="Faq">
           <div className="content">
             <h2 className="cm s1">Frequently Asked Questions</h2>

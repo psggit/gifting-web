@@ -6,7 +6,7 @@ class LocationMap extends React.Component {
 
   constructor(props) {
     super(props)
-    console.log("props", props)
+    //console.log("props", props)
     this.state = {
       lat: "",
       lng: ""

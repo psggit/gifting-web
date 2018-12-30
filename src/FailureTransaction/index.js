@@ -7,12 +7,23 @@ import 'Sass/transaction-status.scss'
 class FailureTransaction extends React.Component {
   constructor() {
     super()
+    this.state = {
+      username: "",
+      isLoggedIn: false
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    //console.log("helo", newProps)
+    if(this.props.username !== newProps.username && this.props.isLoggedIn !== newProps.isLoggedIn) {
+      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+    }
   }
 
   render() {
     return (
       <div>
-        <Header username={this.props.username} isLoggedIn={this.props.isLoggedIn}/>
+        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
         <div id="FailureTransaction" className="transaction-status fail"> 
           <div className="content">
             <div className="successful">

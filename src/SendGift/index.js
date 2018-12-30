@@ -17,7 +17,9 @@ class SendGift extends React.Component {
       receiverNumber: "8989415866",
       senderName: "",
       senderNumber: localStorage.getItem("sender_mobile"),
-      canProceed: false
+      canProceed: false,
+      username: "",
+      isLoggedIn: false
     }
     this.createTransaction = this.createTransaction.bind(this)
     this.handleAmountChange = this.handleAmountChange.bind(this)
@@ -32,6 +34,13 @@ class SendGift extends React.Component {
     localStorage.removeItem("txn")
   }
 
+  componentWillReceiveProps(newProps) {
+    //console.log("helo", newProps)
+    if(this.props.username !== newProps.username && this.props.isLoggedIn !== newProps.isLoggedIn) {
+      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+    }
+  }
+  
   proceedToPayment() {
     const { amount, giftMessage, receiverNumber, senderName, receiverName} = this.state
     if (
@@ -106,7 +115,7 @@ class SendGift extends React.Component {
   render() {
     return (
       <div>
-        <Header username={this.props.username} isLoggedIn={this.props.isLoggedIn}/>
+        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
         <div id="send-gift">
           <div className="container">
             <div className="gift-card-form">

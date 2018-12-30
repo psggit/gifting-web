@@ -51,13 +51,18 @@ class App extends React.Component {
     fetch(`${Api.authUrl}/user/account/info`, fetchOptions)
       .then((response) => {
         if (response.status !== 200) {
-          console.log(`Looks like there was a problem. Status Code: ${response.status}`)
+          //console.log(`Looks like there was a problem. Status Code: ${response.status}`)
           this.setState({isLoggedIn: false})
+          console.log("location", location.pathname.split("/"))
+          if(location.pathname.split("/")[1] && location.pathname.split("/")[1] !== 0)
+          {
+            location.href="/"
+          }
           //this.handleSignOut()
           return
         }
         response.json().then((data) => {
-          console.log("data", data, data.username)
+          //console.log("data", data, data.username)
           this.setState({username: data.username, isLoggedIn: true})
           localStorage.setItem("sender_mobile", data.mobile)
         })
