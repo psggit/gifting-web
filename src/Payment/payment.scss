@@ -15,8 +15,39 @@
     letter-spacing: 0.5px;
   }
 
+  .row {
+    display: flex;
+    justify-content: space-around;
+  }
+
   .col {
-    max-width: 500px;
+    &:first-child {
+      width: 500px;
+    }
+
+    &:last-child {
+      width: 400px;
+      text-align: right;
+    }
+
+   .gift-card-info {
+     display: inline-block;
+     width: 100%;
+     margin-top: 30px;
+     text-align: left;
+     padding: 20px;
+     background-color: #fff;
+     .os.s7 {
+      line-height: 1.6;
+      letter-spacing: 0.5px;
+      color: #000000;
+     }
+     .os.s6 {
+       font-weight: 600;
+      letter-spacing: 0.6px;
+      color: #000000;
+     }
+   }
   }
 
   .payment-methods-wrapper {

@@ -12,7 +12,6 @@ import CreateHistory from 'history/createBrowserHistory'
 import LandingPage from "./landing"
 import UsingGiftCard from './GiftCardInfo'
 import SendGiftCards from './SendGift'
-import SignIn from './SignIn'
 import TransactionHistory from "./TransactionHistory"
 import Checkout from "./Payment"
 import RetailOutlet from './RetailOutlet'
@@ -21,6 +20,16 @@ import TransactionSuccessful from "./SuccessfulTransaction"
 import TransactionFail from "./FailureTransaction"
 import LocationMap from "./LocationMap"
 import { Api } from "Utils/config"
+
+// import makeAsyncComponent from './makeAsyncComponent'
+
+// const UsingGiftCard = makeAsyncComponent(() => import("./GiftCardInfo").then(module => module.default), { name: "Page 1" })
+// const SendGiftCards = makeAsyncComponent(() => import("./SendGift").then(module => module.default), { name: "Page 1" })
+// const TransactionHistory = makeAsyncComponent(() => import("./TransactionHistory").then(module => module.default), { name: "Page 1" })
+// const Checkout = makeAsyncComponent(() => import("./Payment").then(module => module.default), { name: "Page 1" })
+// const RetailOutlet = makeAsyncComponent(() => import("./RetailOutlet").then(module => module.default), { name: "Page 1" })
+// const FAQ = makeAsyncComponent(() => import("./FAQ").then(module => module.default), { name: "Page 1" })
+
 
 const history = CreateHistory()
 

@@ -235,7 +235,7 @@ export default {
     </svg>
   ),
   downArrow: (
-    <svg width="40px" height="23px" viewBox="0 0 40 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <svg width="20px" height="23px" viewBox="0 0 40 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="01a-Gifitng-Website---V0.7---Home-Page" transform="translate(-700.000000, -887.000000)" fill="#000000" fillRule="nonzero">
                 <g id="50%-Off" transform="translate(385.000000, 820.000000)">

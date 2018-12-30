@@ -4,9 +4,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin")
   
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "./../../src/App.js"),
-    checkout: path.resolve(__dirname, "./../../src/Payment/index.js"),
-    vendor: ["react", "react-dom"]
+    app: path.resolve(__dirname, "./../../src/App.js")
   },
   plugins: [
     new CleanWebpackPlugin(["dist"], {
@@ -16,11 +14,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "Output Management",
       template: path.resolve(__dirname, "./../../index.html")
-    }),
-    new HtmlWebpackPlugin({
-      // chunks: ["checkout", "vendor"],
-      filename: "checkout.html",
-      template: path.resolve(__dirname, "./../../src/transaction.html")
     })
   ],
   output: {

@@ -10,11 +10,12 @@ import Accordian from "Components/accordian"
 import AccordianItem from "Components/accordian/accordian-item"
 import { GET } from "Utils/fetch"
 import MaskedInput from "react-text-mask"
+import GiftCard from "Components/gift-card"
 
 class Payment extends React.Component {
   constructor(props) {
     super(props)
-    this.txn = JSON.parse(localStorage.getItem("txn"))
+    this.txn = this.props.history.location.state || JSON.parse(localStorage.getItem("txn"))
     this.paymentMethods = {
       1: "card",
       2: "net_banking"
@@ -87,6 +88,10 @@ class Payment extends React.Component {
 
             if (item.name === "ICICI Netbanking") {
               item.name = "ICICI Bank"
+            }
+
+            if (item.name === "Kotak Mahindra Bank") {
+              item.name = "Kotak Bank"
             }
 
             return item
@@ -235,6 +240,7 @@ class Payment extends React.Component {
                 <Header />
                 <div id="checkout">
                   <div className="container">
+                    <div className="row">
                     <div className="col">
                       <p style={{ borderBottom: "1px solid #c2c2c2", paddingBottom: "20px" }} className="os s5">To Pay: &#8377;{this.state.amount}</p>
                       <div className="payment-methods-wrapper">
@@ -318,16 +324,25 @@ class Payment extends React.Component {
                                 <p style={{ fontWeight: "600", color: "#000", letterSpacing: "0.5px" }} className="os s8">Popular Banks</p>
                                 <div ref={(node) => { this.radios = node}} style={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}>
                                   {
-                                    this.state.popularBanks.map((item, i) => (
-                                      <div key={i} style={{ marginRight: "40px" }}>
-                                        <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={`bank_${i}`} type="radio" />
-                                        <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={`bank_${i}`}>{item.name}</label>
+                                    this.state.popularBanks.slice(0, 3).map((item, i) => (
+                                      <div style={{ width: "120px", cursor: "pointer" }} key={i}>
+                                        <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
+                                        <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label>
+                                      </div>
+                                    ))
+                                  }
+
+                                  {
+                                    this.state.popularBanks.slice(3).map((item, i) => (
+                                      <div style={{ width: "120px", cursor: "pointer" }} key={i}>
+                                        <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
+                                        <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label>
                                       </div>
                                     ))
                                   }
                                 </div>
                                 <div>                                  
-                                  <div className="form-group">
+                                  <div style={{ marginTop: "20px" }} className="form-group">
                                     <p style={{ fontWeight: "600", color: "#000", letterSpacing: "0.5px" }} className="os s8">Other Banks</p>
                                     <select value={this.state.bankcode} onChange={this.handleSelectChange} style={{ marginTop: "15px" }}>
                                       {
@@ -366,6 +381,28 @@ class Payment extends React.Component {
                           <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit"></input>
                         </form>
                       }
+                    </div>
+
+                    <div className="col">
+                      <GiftCard amount={this.state.amount} />
+                      <div className="gift-card-info">
+                        <div>
+                          <p className="os s6">To</p>
+                          <p className="os s7">Baba Ramdev<br /> +91 8989415866</p>
+                        </div>
+
+                        <div style={{ marginTop: "20px", borderBottom: "1px solid #dfdfdf", paddingBottom: "20px" }}>
+                          <p className="os s7">
+                            <span className="os s6">Personal Message -</span> Wish you a merry christmas, wish you a merry christmas and a very happy new year! :)
+                          </p>
+                        </div>
+
+                        <div style={{ marginTop: "20px" }} >
+                          <p className="os s6">From</p>
+                          <p className="os s7">Baba Ramdev<br /> +91 8989415866</p>
+                        </div>
+                      </div>
+                    </div>
                     </div>
                   </div>
                 </div>

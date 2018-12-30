@@ -162,3 +162,21 @@
     }
   }
 }
+
+@media only screen and (max-width: 480px) {
+  #landing {
+    .intro-container .col:first-child {
+      text-align: center;
+      .os.s7 {
+        display: none;
+      }
+    }
+
+    .intro-wrapper .cm.s2 {
+      margin-top: 20px;
+      div {
+        margin-top: 10px !important;
+      }
+    }
+  } 
+}

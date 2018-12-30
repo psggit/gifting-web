@@ -86,8 +86,8 @@ class SendGift extends React.Component {
           first_name: json.first_name
         }
 
-        localStorage.setItem("txn", JSON.stringify(this.postBody))
-        this.props.history.push("/checkout")
+        // localStorage.setItem("txn", JSON.stringify(this.postBody))
+        this.props.history.push("/checkout", this.postBody)
         // location.href = "/checkout"
         // this.setState({ canProceed: true }, () => {
         //   this.submit.click()
