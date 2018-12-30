@@ -5,6 +5,8 @@ WORKDIR /app
 
 COPY package.json .
 RUN yarn install
+RUN npm install -g postcss-cli
+RUN npm instaall -g autoprefixer
 
 COPY ./ /app
 
