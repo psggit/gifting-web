@@ -5,18 +5,18 @@ import Icon from "Components/icon"
 import "Sass/transaction-status.scss"
 
 class SuccessfulTransaction extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
-      username: "",
-      isLoggedIn: false
+      username: props.username ? props.username : "",
+      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
   }
 
   componentWillReceiveProps(newProps) {
     //console.log("helo", newProps)
-    if(this.props.username !== newProps.username && this.props.isLoggedIn !== newProps.isLoggedIn) {
+    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
       this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
     }
   }

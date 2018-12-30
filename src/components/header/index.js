@@ -17,8 +17,8 @@ class Header extends React.Component {
       isMenuOpen: false,
       //errorInSignIn: false,
       showDropdown: false,
-      isLoggedIn: false,
-      username: ""
+      username: props.username ? props.username : "",
+      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
     this.navItems = [
       {
@@ -63,20 +63,22 @@ class Header extends React.Component {
 
   componentWillReceiveProps(newProps) {
     //console.log("helo", newProps)
-    if(this.props.username !== newProps.username && this.props.isLoggedIn !== newProps.isLoggedIn) {
+    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
       this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
     }
   }
 
-  reloadHeader() {
-    if(localStorage.getItem('isLoggedIn') === "true") {
-      this.setState({isLoggedIn: true})
-    } else if(localStorage.getItem('isLoggedIn') === "false") {
-      this.setState({isLoggedIn: false})
-    }
+  reloadHeader(loginStatus) {
+    // if(localStorage.getItem('isLoggedIn') === "true") {
+    //   this.setState({isLoggedIn: true})
+    // } else if(localStorage.getItem('isLoggedIn') === "false") {
+    //   this.setState({isLoggedIn: false})
+    // }
+    this.setState({isLoggedIn: loginStatus})
   }
 
   handleSignOut() {
+    this.setState({showDropdown: false})
     const fetchOptions = {
       method: 'get',
       headers: {

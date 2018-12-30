@@ -7,8 +7,8 @@ import "./send-gift.scss"
 import { POST } from "Utils/fetch"
 
 class SendGift extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       activePrice: "price2",
       amount: "999",
@@ -18,8 +18,8 @@ class SendGift extends React.Component {
       senderName: "",
       senderNumber: localStorage.getItem("sender_mobile"),
       canProceed: false,
-      username: "",
-      isLoggedIn: false
+      username: props.username ? props.username : "",
+      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
     this.createTransaction = this.createTransaction.bind(this)
     this.handleAmountChange = this.handleAmountChange.bind(this)
@@ -36,7 +36,7 @@ class SendGift extends React.Component {
 
   componentWillReceiveProps(newProps) {
     //console.log("helo", newProps)
-    if(this.props.username !== newProps.username && this.props.isLoggedIn !== newProps.isLoggedIn) {
+    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
       this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
     }
   }

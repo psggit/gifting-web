@@ -21,8 +21,8 @@ import TransactionSuccessful from "./SuccessfulTransaction"
 import TransactionFail from "./FailureTransaction"
 import LocationMap from "./LocationMap"
 import { Api } from "Utils/config"
-import {createSession, clearSession, getUsername} from 'Utils/session-utils'
-import { unMountModal, mountModal } from 'Components/modal-box/utils'
+import {clearSession} from 'Utils/session-utils'
+import { mountModal } from 'Components/modal-box/utils'
 import NotifyError from './NotifyError';
 
 const history = CreateHistory()
@@ -53,25 +53,23 @@ class App extends React.Component {
         if (response.status !== 200) {
           //console.log(`Looks like there was a problem. Status Code: ${response.status}`)
           this.setState({isLoggedIn: false})
-          console.log("location", location.pathname.split("/"))
           if(location.pathname.split("/")[1] && location.pathname.split("/")[1] !== 0)
           {
             location.href="/"
           }
-          //this.handleSignOut()
           return
         }
         response.json().then((data) => {
-          //console.log("data", data, data.username)
           this.setState({username: data.username, isLoggedIn: true})
           localStorage.setItem("sender_mobile", data.mobile)
         })
       })
       .catch((err) => {
-        // console.log('Fetch Error :-S', err)
-        // if (location.pathname !== '/login') {
-        //   location.href = '/login'
-        // }
+        console.log('Fetch Error :-S', err)
+        if(location.pathname.split("/")[1] && location.pathname.split("/")[1] !== 0)
+        {
+          location.href="/"
+        }
       })
   }
 
@@ -130,7 +128,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log("this.state", this.state)
+    //console.log("this.state", this.state)
     return (
       <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
         <Router history={history}>

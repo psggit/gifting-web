@@ -63,7 +63,7 @@ export default function SignIn(data) {
       fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
         .then((response) => {
           response.json().then((responseData) => {
-            if (response.status === 400 && responseData.errorCode.includes("invalid-user")) {
+            if (response.status === 400 && responseData.errorCode && responseData.errorCode.includes("invalid-user")) {
               if(dataObj.unMountModal) {
                 unMountModal()
               }
@@ -73,8 +73,7 @@ export default function SignIn(data) {
               }))
               this.setState({isGettingOtp: false})
               return
-            } 
-            else if(response.status === 400){
+            } else if(response.status === 400){
               this.setState({mobileNoErr: {status: true, value: "Invalid mobile number"}})
             } else if (response.status === 401) {
               this.setState({otpSent: true, disableField: true})
@@ -83,7 +82,8 @@ export default function SignIn(data) {
           })
         })
         .catch((err) => {
-          this.setState({errorInSignIn: true})
+          this.setState({errorInSignIn: true, isGettingOtp: false})
+          //this.setState({isGettingOtp: false})
           mountModal(NotifyError({}))
         })
     }
@@ -105,10 +105,6 @@ export default function SignIn(data) {
       }
       return false
     }
-
-    // renderErrorNotification() {
-    //   mountModal(NotifyError({}))
-    // }
 
     handleClick () {
       if(this.isFormValid() && !this.state.isGettingOtp) {
@@ -162,7 +158,7 @@ export default function SignIn(data) {
               }
               createSession(responseData, "true")
               unMountModal()
-              data.reload()
+              data.reload(true)
               this.setState({isSigningIn: false})
             })
           })

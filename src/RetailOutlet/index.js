@@ -7,8 +7,8 @@ import * as Api from './../api'
 //import {retailerData} from './../TransactionHistory/mockdata'
 
 class RetailOutlet extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       availableDeliveryList: [],
       retailerOutletData: [],
@@ -16,7 +16,9 @@ class RetailOutlet extends React.Component {
       isSelectedCity: false,
       selectedCity: "",
       deliveryMap: {},
-      selectedCityId: ""
+      selectedCityId: "",
+      username: props.username ? props.username : "",
+      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
     this.findRetailer = this.findRetailer.bind(this)
     this.successCallback = this.successCallback.bind(this)
@@ -32,7 +34,7 @@ class RetailOutlet extends React.Component {
 
   componentWillReceiveProps(newProps) {
     //console.log("helo", newProps)
-    if(this.props.username !== newProps.username && this.props.isLoggedIn !== newProps.isLoggedIn) {
+    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
       this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
     }
   }
