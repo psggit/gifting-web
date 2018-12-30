@@ -22,9 +22,9 @@ const URL_ENV = "amebae21.hasura-app.io";
 app.get("*.js", (req, res, next) => {
   console.log("Processing js files....")
   console.log("Gzipping....")
-  // req.url += ".br"
-  // res.set("Content-Encoding", "br")
-  // res.set("Content-type", "text/javascript")
+  req.url += ".gz"
+  res.set("Content-Encoding", "gzip")
+  res.set("Content-type", "text/javascript")
   const vendorUrlRegex = /vendor.*.js/
   if (vendorUrlRegex.test(req.url)) {
     console.log("Setting cache for vendor....")
