@@ -69,7 +69,7 @@ export default function SignUp(data) {
       this.handleClick = this.handleClick.bind(this)
       this.signUp = this.signUp.bind(this)
       this.login = this.login.bind(this)
-      this.signOut = this.signOut.bind(this)
+      //this.signOut = this.signOut.bind(this)
       this.resendOtp = this.resendOtp.bind(this)
       this.handleTextChange = this.handleTextChange.bind(this)
       this.isFormValid = this.isFormValid.bind(this)
@@ -109,6 +109,7 @@ export default function SignUp(data) {
 
       if(pin !== confirmPin) {
         this.setState({confirmPinErr: {status: true, value: "Pin does not match"}})
+        return false
       }
     
       if (!mobileNoErr.status && !otpErr.status && !otpSent && !emailErr.status && !nameErr.status && !dobErr.status && !pinErr.status && !confirmPinErr.status) {
@@ -117,40 +118,11 @@ export default function SignUp(data) {
       return false
     }
 
-    signOut() {
-      const fetchOptions = {
-        method: 'get',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        //credentials: 'include',
-        mode: 'cors',
-      }
-  
-      fetch(`${Api.blogicUrl}/consumer/auth/user/logout`, fetchOptions)
-        .then((response) => {
-          this.setState({isLoggedIn: false})
-          location.href = "/"
-          //setTimeout(() => {
-          clearSession()
-          //}, 1000)
-        })
-        .catch((err) => {
-          //console.log("Error in logout", err)
-          mountModal(NotifyError({}))
-        })
-    }
-
     handleClick () {
       if(this.isFormValid() && !this.state.isGettingOtp) {
         this.signUp()
       }
     }
-
-    // renderErrorNotification() {
-    //   mountModal(NotifyError({}))
-    // }
 
     signUp() {
       const payload = {
@@ -180,18 +152,14 @@ export default function SignUp(data) {
       fetch(`${Api.blogicUrl}/consumer/auth/otp-signup`, fetchOptions)
         .then((response) => {
           response.json().then((responseData) => {
-            if(responseData.errorCode === "role-invalid") {
-              this.signOut()
-            } else if(response.status === 400 && responseData.errorCode === "dob-error") {
+            // if(responseData.errorCode === "role-invalid") {
+            //   this.signOut()
+            // } else 
+            if(response.status === 400 && responseData.errorCode === "dob-error") {
               this.setState({dobErr: {status: true, value: responseData.message}})
             } else if(response.status === 409 && responseData.errorCode === "user-already-exists") {
-              //unMountModal()
-              // mountModal(SignIn({
-              //   otpSent: true,
-              //   mobile: this.state.mobileNo
-              // }))
               this.setState({emailErr: {status: true, value: 'Could not create user.. Email already exists'}})
-              return
+              //return
             } else if(response.status !== 400) {
               this.getOtp()
             } 
@@ -200,8 +168,8 @@ export default function SignUp(data) {
           //return
         })
         .catch((err) => {
-          this.setState({errorInSignUp: true})
-          this.setState({isGettingOtp: false})
+          this.setState({errorInSignUp: true, isGettingOtp: false})
+          //this.setState({isGettingOtp: false})
           mountModal(NotifyError({}))
         })
     }
@@ -219,7 +187,7 @@ export default function SignUp(data) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          //credentials: 'include',
+          credentials: 'include',
           mode: 'cors',
           body: JSON.stringify(payload)
         }
@@ -234,13 +202,13 @@ export default function SignUp(data) {
               }
               createSession(responseData, "true")
               unMountModal()
-              data.reload()
+              data.reload(true)
               this.setState({isSigningUp: false})
             })
           })
           .catch((err) => {
-            this.setState({errorInSignUp: true})
-            this.setState({isSigningUp: false})
+            this.setState({errorInSignUp: true, isSigningUp: false})
+            //this.setState({})
             mountModal(NotifyError({}))
           })
       }
@@ -271,8 +239,8 @@ export default function SignUp(data) {
           return
         })
         .catch((err) => {
-          this.setState({errorInSignUp: true})
-          this.setState({isGettingOtp: false})
+          this.setState({errorInSignUp: true, isGettingOtp: false})
+          //this.setState({})
           mountModal(NotifyError({}))
         })
     }
@@ -414,7 +382,7 @@ export default function SignUp(data) {
                           //disabled={this.state.disableField && this.state.otpSent} 
                           autocomplete="off"
                           onChange={(e) => this.handleTextChange(e)} 
-                          style={{paddingLeft: '30px'}}
+                          style={{paddingLeft: '35px'}}
                         />
                       </div>
                     </div>
@@ -514,10 +482,6 @@ export default function SignUp(data) {
                       </React.Fragment>
                   } 
                 </div>
-                {/* {
-                  errorInSignUp && 
-                  this.renderErrorNotification()
-                } */}
               </div>
             </ModalBox>
           }

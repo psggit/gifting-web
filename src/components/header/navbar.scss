@@ -31,11 +31,19 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    width: 100%;
+
+    .login {
+        position: absolute;
+        right: 5.6%;
+    }
+
     .logout {
         display: flex;
         align-items: center;
         justify-content: center;
-        position: relative;
+        position: fixed;
+        right: 5.6%;
         svg {
             width: 20px;
             height: 23px;
@@ -51,7 +59,8 @@
         margin-top: 5px;
         position: absolute;
         top: 30px;
-        right: 0px;
+        //right: 0px;
+        right: 5.6%;
         // left: 0px;
         background: #000;
         color: #fff;

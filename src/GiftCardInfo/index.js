@@ -9,12 +9,25 @@ import Footer from "Components/footer"
 class GiftCards extends React.Component {
   constructor(props) {
     super(props) 
+    this.state = {
+      username: props.username ? props.username : "",
+      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
+    }
+    //console.log("props", props, props.data, props.name, props.isLoggedIn)
+  }
+
+  componentWillReceiveProps(newProps) {
+    //console.log("helo", newProps)
+    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
+      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+    }
   }
 
   render() {
+    //console.log("props in card", this.props)
     return(
       <div>
-        <Header />
+        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
         <div id="GiftCards">
           <div className="content">
             <h2 className="cm s1">How to use HipBar Gift Cards?</h2>

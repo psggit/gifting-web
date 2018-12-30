@@ -6,11 +6,13 @@ import Header from "Components/header"
 import Footer from "Components/footer"
 
 class TransactionHistory extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       transactionData: [],
-      loading: false
+      loading: false,
+      username: props.username ? props.username : "",
+      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
     this.successCallback = this.successCallback.bind(this)
     this.failureCallback = this.failureCallback.bind(this)
@@ -19,6 +21,13 @@ class TransactionHistory extends React.Component {
 
   componentDidMount() {
     this.fetchTransactionList()
+  }
+
+  componentWillReceiveProps(newProps) {
+    //console.log("new props", newProps)
+    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
+      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+    }
   }
 
   fetchTransactionList() {
@@ -77,9 +86,10 @@ class TransactionHistory extends React.Component {
 
   render() {
     const {transactionData, loading} = this.state
+    //console.log("username", this.state.username, "logged in", this.state.isLoggedIn)
     return(
       <div>
-        <Header />
+        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
         <div id="TransactionHistory"> 
           <div className="content">
             <h2 className="cm s1">Transaction History</h2>
