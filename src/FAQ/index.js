@@ -55,7 +55,7 @@ class FAQ extends React.Component {
     const {questionAnswers} = this.state
     return (
       <div>
-        <Header />
+        <Header username={this.props.username} isLoggedIn={this.props.isLoggedIn}/>
         <div id="Faq">
           <div className="content">
             <h2 className="cm s1">Frequently Asked Questions</h2>

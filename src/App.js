@@ -53,7 +53,7 @@ class App extends React.Component {
         if (response.status !== 200) {
           console.log(`Looks like there was a problem. Status Code: ${response.status}`)
           this.setState({isLoggedIn: false})
-          this.handleSignOut()
+          //this.handleSignOut()
           return
         }
         response.json().then((data) => {

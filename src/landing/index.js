@@ -12,6 +12,10 @@ import Footer from "Components/footer"
 class LandingPage extends React.Component {
   constructor() {
     super()
+    this.state = {
+      username: "",
+      isLoggedIn: false
+    }
   }
   
   componentDidMount() {
@@ -20,10 +24,17 @@ class LandingPage extends React.Component {
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    console.log("new props", newProps)
+    //if(this.props.username !== newProps.username && this.props.isLoggedIn !== newProps.isLoggedIn) {
+      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+    //}
+  }
+
   render() {
     return (
       <div>
-        <Header />
+        <Header username={this.props.username} isLoggedIn={this.props.isLoggedIn}/>
         <div id="landing">
 
           <div className="intro-wrapper">

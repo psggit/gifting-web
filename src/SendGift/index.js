@@ -106,7 +106,7 @@ class SendGift extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header username={this.props.username} isLoggedIn={this.props.isLoggedIn}/>
         <div id="send-gift">
           <div className="container">
             <div className="gift-card-form">

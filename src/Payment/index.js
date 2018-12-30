@@ -232,7 +232,7 @@ class Payment extends React.Component {
           localStorage.getItem("txn")
             ? (
               <div>
-                <Header />
+                <Header username={this.props.username} isLoggedIn={this.props.isLoggedIn}/>
                 <div id="checkout">
                   <div className="container">
                     <div className="col">

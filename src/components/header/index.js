@@ -61,6 +61,13 @@ class Header extends React.Component {
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    console.log("helo", newProps)
+    //if(this.props.username !== newProps.username && this.props.isLoggedIn !== newProps.isLoggedIn) {
+    this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+    //}
+  }
+
   reloadHeader() {
     if(localStorage.getItem('isLoggedIn') === "true") {
       this.setState({isLoggedIn: true})
@@ -136,6 +143,7 @@ class Header extends React.Component {
 
   render() {
     const {isLoggedIn, showDropdown} = this.state
+    console.log("header state", this.state)
     return (
       <div className="navbar">
         <div className="logo">
@@ -175,7 +183,7 @@ class Header extends React.Component {
             // <Button onClick={() => this.handleSignOut()} primary size="small">SIGN OUT</Button>
             <div className="logout">
               <Icon name="appUser" style={{marginRight: '10px'}}/>
-              <div className="os s2"  style={{marginRight: '8px'}} >{this.state.username}</div>
+              <div className="os s2"  style={{marginRight: '8px'}} >{this.state.username ? this.state.username : localStorage.getItem("username")}</div>
               <span onClick={() => this.openDropdown()} style={{display: 'flex'}}>
                 <Icon name="filledDownArrow" />
               </span>

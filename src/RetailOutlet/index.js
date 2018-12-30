@@ -106,7 +106,7 @@ class RetailOutlet extends React.Component {
     //console.log("outlet data", this.state.retailerOutletData)
     return (
       <div>
-        <Header />
+        <Header username={this.props.username} isLoggedIn={this.props.isLoggedIn}/>
         <div id="retailOutlet">
           <div className="content">
             <h2 className="cm s1">Find a HipBar powered retailer near you</h2>
