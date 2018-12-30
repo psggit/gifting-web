@@ -264,21 +264,14 @@ export default function SignIn(data) {
                     !otpSent 
                     ? <React.Fragment>
                         <div>
-                          {
-                            //!isGettingOtp &&
-                            <div>
-                              <button className='btn btn-secondary os s7' onClick={unMountModal}>CANCEL</button>
-                              <button className={`btn btn-primary os s7 ${isGettingOtp ? 'disabled' : ''}`} onClick={this.handleClick}>GET OTP</button> 
-                            </div> 
-                          }
-                          {/* {
-                            isGettingOtp &&
-                            <div style={{display: 'flex', position: 'relative'}}>
-                              <button className='btn btn-primary os s7 loader'>GET OTP</button>
-                              <div style={{position: 'absolute'}}><Icon name="loader" /></div>
-                            </div>
-                          } */}
-                        
+                          <div className="button-section">
+                            <button className='btn btn-secondary os s7' onClick={unMountModal}>CANCEL</button>
+                            <button className={`btn btn-primary os s7 ${isGettingOtp ? 'disabled' : ''}`} onClick={this.handleClick}>GET OTP</button> 
+                          </div> 
+                          <div className="button-section mobile">
+                            <button className={`btn btn-primary os s7 ${isGettingOtp ? 'disabled' : ''}`} onClick={this.handleClick}>GET OTP</button> 
+                            <button className='btn btn-secondary os s7' onClick={unMountModal}>CANCEL</button>
+                          </div> 
                         </div>
                         
                       </React.Fragment>

@@ -92,6 +92,15 @@
   }
 
   .page-footer {
+
+    .button-section {
+      display: flex;
+
+      &.mobile {
+        display: none
+      }
+    }
+
     .btn {
       margin-right: 10px;
       border-style: none;
@@ -131,10 +140,19 @@
     border-radius: 0px;
     padding: 8.5% 25px;
     .page-footer {
+      .button-section {
+        display: none;
+        &.mobile {
+          display: flex !important;
+          flex-direction: column !important;
+        }
+      }
       .btn {
         // width: 80px;
         // padding: 0px 10px;
         line-height: 30px;
+        width: 100%;
+        margin-bottom: 10px;
       }
     }
   }
