@@ -69,7 +69,7 @@ class Header extends React.Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      //credentials: 'include',
+      credentials: 'include',
       mode: 'cors',
     }
 
@@ -161,7 +161,9 @@ class Header extends React.Component {
           }
           {
             !isLoggedIn && 
-            <Button onClick={() => this.handleClick()} primary size="small">SIGN IN</Button>
+            <span className="login">
+              <Button onClick={() => this.handleClick()} primary size="small">SIGN IN</Button>
+            </span>
           }
           {
             isLoggedIn && 

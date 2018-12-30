@@ -38,7 +38,7 @@ export function getHasuraId(data) {
 }
 
 export function getUsername(data) {
-  console.log("data", data)
+  //console.log("data", data)
   const username = data.info.username ? data.info.username : '' 
   return username
 }
