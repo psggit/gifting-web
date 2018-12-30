@@ -32,8 +32,12 @@
   }
 
    .intro-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
 
   .intro-container .col:last-child {
@@ -59,9 +63,14 @@
   .brands-list {
     margin: 40px auto 40px auto;
     max-width: 800px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
 
   .what-is-hipbar {
@@ -85,8 +94,12 @@
     padding: 30px;
     background-color: #e0e0e0;
     .presence-counts {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      justify-content: space-between;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
       max-width: 800px;
       margin: 40px auto 0 auto;
     }
@@ -104,8 +117,13 @@
     padding: 80px 20px;
     background-color: #f1f1f1;
     text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     h1 {
       text-align: center;
     }
@@ -126,9 +144,15 @@
     }
 
     .app-store-btn {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
       margin-top: 30px;
       a {
         &:first-child {
@@ -148,8 +172,13 @@
 @media only screen and (max-width: 930px) {
   #landing {
     .intro-container {
-      justify-content: center;
-      flex-direction: column-reverse;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: reverse;
+          -ms-flex-direction: column-reverse;
+              flex-direction: column-reverse;
     }
 
     .intro-container .col {
