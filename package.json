@@ -4,6 +4,9 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "autoprefixer": "^9.4.3",
+    "form-data": "^2.3.3",
+    "postcss-cli": "^6.1.0",
     "preact": "^8.4.2",
     "preact-compat": "^3.18.4",
     "react": "^16.7.0",
@@ -48,7 +51,7 @@
     "start": "node server.js",
     "build-client": "webpack --config ./webpack-config/client/webpack.prod.js",
     "build-ssr": "webpack --config ./webpack-config/ssr/webpack.ssr.js",
-    "apply-postcss": "./node_modules/.bin/postcss --use ./node_modules/.bin/autoprefixer -r  ./dist/*.css",
+    "apply-postcss": "postcss --use autoprefixer -r  ./dist/*.css",
     "build": "yarn run build-client && yarn run apply-postcss",
     "start:dev": "webpack-dev-server --config ./webpack-config/client/webpack.dev.js --host 0.0.0.0  --history-api-fallback",
     "storybook": "start-storybook -p 6006",
