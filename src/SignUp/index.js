@@ -414,7 +414,7 @@ export default function SignUp(data) {
                           //disabled={this.state.disableField && this.state.otpSent} 
                           autocomplete="off"
                           onChange={(e) => this.handleTextChange(e)} 
-                          style={{paddingLeft: '30px'}}
+                          style={{paddingLeft: '35px'}}
                         />
                       </div>
                     </div>
