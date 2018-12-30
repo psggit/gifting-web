@@ -10,8 +10,12 @@ import Header from "Components/header"
 import Footer from "Components/footer"
 
 class LandingPage extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: props.username ? props.username : "",
+      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
+    }
   }
   
   componentDidMount() {
@@ -20,10 +24,18 @@ class LandingPage extends React.Component {
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    //console.log("new props", this.props, newProps, this.props.username !== newProps.username, this.props.isLoggedIn !== newProps.isLoggedIn)
+    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
+      //console.log("if")
+      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+    }
+  }
+
   render() {
     return (
       <div>
-        <Header />
+        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
         <div id="landing">
 
           <div className="intro-wrapper">

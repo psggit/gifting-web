@@ -15,8 +15,10 @@ class Header extends React.Component {
     super(props)
     this.state = {
       isMenuOpen: false,
-      errorInSignIn: false,
-      showDropdown: false
+      //errorInSignIn: false,
+      showDropdown: false,
+      username: props.username ? props.username : "",
+      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
     this.navItems = [
       {
@@ -47,22 +49,36 @@ class Header extends React.Component {
 
   componentDidMount() {
     this.links = document.querySelectorAll(".nav-items a")
-    if(localStorage.getItem('isLoggedIn') === "false" || localStorage.getItem('isLoggedIn') === "undefined") {
-      this.setState({isLoggedIn: false })
-    } else if(localStorage.getItem('isLoggedIn') === "true") {
-      this.setState({isLoggedIn: true })
+    // if(localStorage.getItem('isLoggedIn') === "false" || localStorage.getItem('isLoggedIn') === "undefined") {
+    //   this.setState({isLoggedIn: false })
+    // } else if(localStorage.getItem('isLoggedIn') === "true") {
+    //   this.setState({isLoggedIn: true })
+    // }
+    this.setState({isLoggedIn: this.props.isLoggedIn})
+
+    if(this.props && this.props.username) {
+      this.setState({username: this.props.username})
     }
   }
 
-  reloadHeader() {
-    if(localStorage.getItem('isLoggedIn') === "true") {
-      this.setState({isLoggedIn: true})
-    } else if(localStorage.getItem('isLoggedIn') === "false") {
-      this.setState({isLoggedIn: false})
+  componentWillReceiveProps(newProps) {
+    //console.log("helo", newProps)
+    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
+      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
     }
+  }
+
+  reloadHeader(loginStatus) {
+    // if(localStorage.getItem('isLoggedIn') === "true") {
+    //   this.setState({isLoggedIn: true})
+    // } else if(localStorage.getItem('isLoggedIn') === "false") {
+    //   this.setState({isLoggedIn: false})
+    // }
+    this.setState({isLoggedIn: loginStatus})
   }
 
   handleSignOut() {
+    this.setState({showDropdown: false})
     const fetchOptions = {
       method: 'get',
       headers: {
@@ -129,6 +145,7 @@ class Header extends React.Component {
 
   render() {
     const {isLoggedIn, showDropdown} = this.state
+    //console.log("header state", this.state)
     return (
       <div className="navbar">
         <div className="logo">
@@ -170,7 +187,7 @@ class Header extends React.Component {
             // <Button onClick={() => this.handleSignOut()} primary size="small">SIGN OUT</Button>
             <div className="logout">
               <Icon name="appUser" style={{marginRight: '10px'}}/>
-              <div className="os s2"  style={{marginRight: '8px'}} >{localStorage.getItem("username")}</div>
+              <div className="os s2"  style={{marginRight: '8px'}} >{this.state.username ? this.state.username : localStorage.getItem("username")}</div>
               <span onClick={() => this.openDropdown()} style={{display: 'flex'}}>
                 <Icon name="filledDownArrow" />
               </span>

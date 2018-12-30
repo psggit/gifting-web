@@ -44,7 +44,7 @@ export function getUsername(data) {
 }
 
 export function createSession(data, loginStatus) {
-  //console.log("session storage", getHasuraRole(data), getHasuraId(data), getUsername(data))
+  console.log("session storage", data)
   localStorage.setItem('x-hasura-role', getHasuraRole(data))
   localStorage.setItem('hasura-id', getHasuraId(data))
   localStorage.setItem('username', getUsername(data))

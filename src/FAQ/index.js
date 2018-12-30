@@ -9,7 +9,9 @@ class FAQ extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      questionAnswers: []
+      questionAnswers: [],
+      username: props.username ? props.username : "",
+      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
     this.showAnswer = this.showAnswer.bind(this)
   }
@@ -18,8 +20,15 @@ class FAQ extends React.Component {
     this.setState({questionAnswers})
   }
 
+  componentWillReceiveProps(newProps) {
+    //console.log("helo", newProps)
+    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
+      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+    }
+  }
+
   showAnswer(quesNo) {
-    console.log("quesNo", quesNo)
+    //console.log("quesNo", quesNo)
     document.getElementsByClassName(`answer ${quesNo}`)[0].style.display = 'block'
     document.getElementsByClassName(`hide ${quesNo}`)[0].style.display = 'block'
     document.getElementsByClassName(`show ${quesNo}`)[0].style.display = 'none'
@@ -32,7 +41,7 @@ class FAQ extends React.Component {
   }
 
   renderQA(item) {
-    console.log("item", item)
+    //console.log("item", item)
     return (
       <div className="section">
         <div className={`question ${item.ques_number}`} style={{display: 'flex'}}>
@@ -55,7 +64,7 @@ class FAQ extends React.Component {
     const {questionAnswers} = this.state
     return (
       <div>
-        <Header />
+        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
         <div id="Faq">
           <div className="content">
             <h2 className="cm s1">Frequently Asked Questions</h2>

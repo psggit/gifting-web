@@ -21,6 +21,9 @@ import TransactionSuccessful from "./SuccessfulTransaction"
 import TransactionFail from "./FailureTransaction"
 import LocationMap from "./LocationMap"
 import { Api } from "Utils/config"
+import {clearSession} from 'Utils/session-utils'
+import { mountModal } from 'Components/modal-box/utils'
+import NotifyError from './NotifyError';
 
 const history = CreateHistory()
 
@@ -30,9 +33,11 @@ const history = CreateHistory()
 class App extends React.Component {
   constructor() {
     super() 
-    // this.state = {
-    //   isMobile: false
-    // }
+    this.state = {
+      username: "",
+      isLoggedIn: false
+    }
+    this.handleSignOut = this.handleSignOut.bind(this)
   }
 
   componentWillMount() {
@@ -46,24 +51,25 @@ class App extends React.Component {
     fetch(`${Api.authUrl}/user/account/info`, fetchOptions)
       .then((response) => {
         if (response.status !== 200) {
-          console.log(`Looks like there was a problem. Status Code: ${response.status}`)
-          // if (location.pathname !== '/login') {
-          //   location.href = '/login'
-          // }
+          //console.log(`Looks like there was a problem. Status Code: ${response.status}`)
+          this.setState({isLoggedIn: false})
+          if(location.pathname.split("/")[1] && location.pathname.split("/")[1] !== 0)
+          {
+            location.href="/"
+          }
           return
         }
         response.json().then((data) => {
+          this.setState({username: data.username, isLoggedIn: true})
           localStorage.setItem("sender_mobile", data.mobile)
-          // if (!location.pathname.includes('home')) {
-          //   location.href = '/home/live-ottp'
-          // }
         })
       })
       .catch((err) => {
-        // console.log('Fetch Error :-S', err)
-        // if (location.pathname !== '/login') {
-        //   location.href = '/login'
-        // }
+        console.log('Fetch Error :-S', err)
+        if(location.pathname.split("/")[1] && location.pathname.split("/")[1] !== 0)
+        {
+          location.href="/"
+        }
       })
   }
 
@@ -71,6 +77,32 @@ class App extends React.Component {
     //window.addEventListener('resize', this.display.bind(this))
     localStorage.setItem("isLoadingFirstTime", true)
   }
+
+  handleSignOut() {
+    const fetchOptions = {
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      //credentials: 'include',
+      mode: 'cors',
+    }
+
+    fetch(`${Api.blogicUrl}/consumer/auth/user/logout`, fetchOptions)
+      .then((response) => {
+        this.setState({isLoggedIn: false})
+        //location.href = "/"
+        //setTimeout(() => {
+        clearSession()
+        //}, 1000)
+      })
+      .catch((err) => {
+        //console.log("Error in logout", err)
+        mountModal(NotifyError({}))
+      })
+  }
+
 
   // display() {
   //   if(location.pathname.includes("sign-in")) {
@@ -96,11 +128,23 @@ class App extends React.Component {
   }
 
   render() {
+    //console.log("this.state", this.state)
     return (
       <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
         <Router history={history}>
           <Switch>
-            <Route exact path="/" component={LandingPage} />
+            <Route exact 
+              path="/" 
+              //component={LandingPage} 
+              render={
+                props => (
+                  <LandingPage {...props} 
+                    name={this.state.username} 
+                    isLoggedIn={this.state.isLoggedIn}
+                  />
+                )
+              } 
+            />
             {/* <Route exact path="/sign-in" component={SignIn} /> */}
             {/* <Route 
               path='/sign-in' 
@@ -110,15 +154,106 @@ class App extends React.Component {
                 )
               } 
             /> */}
-            <Route exact path="/using-gift-card" component={UsingGiftCard} />
-            <Route exact path="/send-gift" component={SendGiftCards} />
-            <Route exact path="/transaction-history" component={TransactionHistory} />
-            <Route exact path="/checkout" component={Checkout} />
-            <Route exact path="/retail-outlet" component={RetailOutlet} />
-            <Route exact path="/FAQ" component={FAQ} />
-            <Route exact path="/transaction-successful" component={TransactionSuccessful} />
-            <Route exact path="/transaction-failure" component={TransactionFail} />
-            <Route path="/locationMap" component={LocationMap} />
+            <Route exact 
+              path="/using-gift-card"
+              render={
+                props => (
+                  <UsingGiftCard {...props} 
+                    name={this.state.username} 
+                    isLoggedIn={this.state.isLoggedIn}
+                  />
+                )
+              } 
+              //component={UsingGiftCard} 
+            />
+            <Route exact 
+              path="/send-gift" 
+              //component={SendGiftCards} 
+              render={
+                props => (
+                  <SendGiftCards {...props} 
+                    name={this.state.username} 
+                    isLoggedIn={this.state.isLoggedIn}
+                  />
+                )
+              } 
+            />
+            <Route exact 
+              path="/transaction-history" 
+              //component={TransactionHistory} 
+              render={
+                props => (
+                  <TransactionHistory {...props} 
+                    name={this.state.username} 
+                    isLoggedIn={this.state.isLoggedIn}
+                  />
+                )
+              } 
+            />
+            <Route exact 
+              path="/checkout" 
+              //component={Checkout} 
+              render={
+                props => (
+                  <Checkout {...props} 
+                    name={this.state.username} 
+                    isLoggedIn={this.state.isLoggedIn}
+                  />
+                )
+              } 
+            />
+            <Route exact 
+              path="/retail-outlet" 
+              //component={RetailOutlet} 
+              render={
+                props => (
+                  <RetailOutlet {...props} 
+                    name={this.state.username} 
+                    isLoggedIn={this.state.isLoggedIn}
+                  />
+                )
+              } 
+            />
+            <Route exact 
+              path="/FAQ" 
+              //component={FAQ} 
+              render={
+                props => (
+                  <FAQ {...props} 
+                    name={this.state.username} 
+                    isLoggedIn={this.state.isLoggedIn}
+                  />
+                )
+              } 
+            />
+            <Route exact 
+              path="/transaction-successful" 
+              //component={TransactionSuccessful} 
+              render={
+                props => (
+                  <TransactionSuccessful {...props} 
+                    name={this.state.username} 
+                    isLoggedIn={this.state.isLoggedIn}
+                  />
+                )
+              } 
+            />
+            <Route exact 
+              path="/transaction-failure" 
+              //component={TransactionFail} 
+              render={
+                props => (
+                  <TransactionFail {...props} 
+                    name={this.state.username} 
+                    isLoggedIn={this.state.isLoggedIn}
+                  />
+                )
+              } 
+            />
+            <Route 
+              path="/locationMap" 
+              component={LocationMap} 
+            />
             <Route exact path="*" component={() => <h1>404 Not Found</h1>} />
           </Switch>
         </Router>
