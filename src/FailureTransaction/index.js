@@ -28,7 +28,7 @@ class FailureTransaction extends React.Component {
           <div className="content">
             <div className="successful">
               <div className="header section">
-                <Icon name="success" />
+                <Icon name="failure" />
                 <h2 className="cm s1 title">Transaction Failed!</h2>
                 <p className="info">Don't worry! Money will be credited to your mode of payment in 5 - 7 working days</p>
               </div>
