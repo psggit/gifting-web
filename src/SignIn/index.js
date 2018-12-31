@@ -156,6 +156,10 @@ export default function SignIn(data) {
                 this.setState({otpErr: {status: true, value: responseData.message}})
                 this.setState({isSigningIn: false})
                 return
+              } else if(response.status === 400 && responseData.errorCode.includes("expired-otp")){
+                this.setState({otpErr: {status: true, value: responseData.message}})
+                this.setState({isSigningIn: false})
+                return
               }
               createSession(responseData, "true")
               unMountModal()
