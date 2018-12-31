@@ -33,6 +33,7 @@ class LandingPage extends React.Component {
   }
 
   render() {
+    console.log("props", this.props, this.props.name)
     return (
       <div>
         <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>

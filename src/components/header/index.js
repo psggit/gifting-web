@@ -9,6 +9,7 @@ import { mountModal } from 'Components/modal-box/utils'
 import {Api} from 'Utils/config'
 import {createSession, clearSession, getUsername} from 'Utils/session-utils'
 import NotifyError from './../../NotifyError';
+import {ThemeProvider, ThemeContext} from "./../../ThemeProvider"
 
 class Header extends React.Component {
   constructor(props) {
@@ -149,97 +150,108 @@ class Header extends React.Component {
     const {isLoggedIn, showDropdown} = this.state
     //console.log("header state", this.state)
     return (
-      <div className="navbar">
-        <div className="logo" onClick={() => {location.href="/"}}>
-          <a>
-            <Icon name="hipbarLogo" />
-          </a>
-        </div>
-
-        <div className="title">
-          <p style={{ marginBottom: "6px" }}>
-              Hipbar
-          </p>
-          <p>
-              Gifting
-          </p>
-        </div>  
-        <div className="nav-items">
-          {
-            this.navItems.map((item, index) => (
-              <a
-                href={`/${item.value}`}
-                onClick={this.handleLink}
-                className="nav-item" key={index}
-                onMouseOut={this.handleMouseOut}
-                onMouseOver={this.handleMouseOver}
-              >
-                {item.label}
-              </a>
-            ))
-          }
-          {
-            !isLoggedIn && 
-            <span className="login">
-              <Button onClick={() => this.handleClick()} primary size="small">SIGN IN</Button>
-            </span>
-          }
-          {
-            isLoggedIn && 
-            // <Button onClick={() => this.handleSignOut()} primary size="small">SIGN OUT</Button>
-            <div className="logout">
-              <Icon name="appUser" style={{marginRight: '10px'}}/>
-              <div className="os s2"  style={{marginRight: '8px'}} >{this.state.username ? this.state.username : localStorage.getItem("username")}</div>
-              <span onClick={() => this.openDropdown()} style={{display: 'flex'}}>
-                <Icon name="filledDownArrow" />
-              </span>
-
-              <div className={`dropdown-menu ${showDropdown ? 'show' : 'hide'}`} >
-                <div onClick={() => this.handleTransactionHistory()} className="menu-item">Transaction History</div>
-                <div onClick={() => this.handleSignOut()} className="menu-item"> Sign Out</div>
+    <div>
+    <ThemeProvider>
+      <ThemeContext.Consumer>
+      {(props) => {
+          // console.log("header props", props)
+          return (
+            <div className="navbar">
+              <div className="logo" onClick={() => {location.href="/"}}>
+                <a>
+                  <Icon name="hipbarLogo" />
+                </a>
+              </div>
+      
+              <div className="title">
+                <p style={{ marginBottom: "6px" }}>
+                    Hipbar
+                </p>
+                <p>
+                    Gifting
+                </p>
+              </div>  
+              <div className="nav-items">
+                {
+                  this.navItems.map((item, index) => (
+                    <a
+                      href={`/${item.value}`}
+                      onClick={this.handleLink}
+                      className="nav-item" key={index}
+                      onMouseOut={this.handleMouseOut}
+                      onMouseOver={this.handleMouseOver}
+                    >
+                      {item.label}
+                    </a>
+                  ))
+                }
+                {
+                  !isLoggedIn && 
+                  <span className="login">
+                    <Button onClick={() => this.handleClick()} primary size="small">SIGN IN</Button>
+                  </span>
+                }
+                {
+                  isLoggedIn && 
+                  // <Button onClick={() => this.handleSignOut()} primary size="small">SIGN OUT</Button>
+                  <div className="logout">
+                    <Icon name="appUser" style={{marginRight: '10px'}}/>
+                    <div className="os s2"  style={{marginRight: '8px'}} >{this.state.username ? this.state.username : localStorage.getItem("username")}</div>
+                    <span onClick={() => this.openDropdown()} style={{display: 'flex'}}>
+                      <Icon name="filledDownArrow" />
+                    </span>
+      
+                    <div className={`dropdown-menu ${showDropdown ? 'show' : 'hide'}`} >
+                      <div onClick={() => this.handleTransactionHistory()} className="menu-item">Transaction History</div>
+                      <div onClick={() => this.handleSignOut()} className="menu-item"> Sign Out</div>
+                    </div>
+                  </div>
+                }
+                {/* {
+                  showDropdown &&
+                  <div className="dropdown-menu">
+                    <div className="menu-item"> Sign Out</div>
+                  </div>
+                } */}
+              </div>
+              <div className="navbar-menu">
+                {
+                  !this.state.isMenuOpen ? 
+                    <span onClick={() => this.onToggle()}><Icon name="menu" /></span>
+                    : <span onClick={() => this.onToggle()}><Icon name="cross" /></span>
+                }
+              </div>
+              <div className={`navbar-mobile ${this.state.isMenuOpen ? "show" : "hide"}`}>
+                <ul>
+                  {
+                    this.navItems.map((item, index) => (
+                      <li key={index}>
+                        <a onClick={this.handleLink} href={`/${item.value}`} className="os s2">
+                          {item.label}
+                        </a>
+                      </li>
+                    ))
+                  }
+                  <li>
+                    {
+                      isLoggedIn &&
+                      <button onClick={() => this.handleSignOut()} className="btn btn-secondary os s2">SIGN OUT</button>
+                    }
+                  </li>
+                  <li>
+                    {
+                      !isLoggedIn &&
+                      <button onClick={() => this.handleClick()} className="btn btn-secondary os s2">SIGN IN</button>
+                    }
+                  </li>
+                </ul>
               </div>
             </div>
-          }
-          {/* {
-            showDropdown &&
-            <div className="dropdown-menu">
-              <div className="menu-item"> Sign Out</div>
-            </div>
-          } */}
-        </div>
-        <div className="navbar-menu">
-          {
-            !this.state.isMenuOpen ? 
-              <span onClick={() => this.onToggle()}><Icon name="menu" /></span>
-              : <span onClick={() => this.onToggle()}><Icon name="cross" /></span>
-          }
-        </div>
-        <div className={`navbar-mobile ${this.state.isMenuOpen ? "show" : "hide"}`}>
-          <ul>
-            {
-              this.navItems.map((item, index) => (
-                <li key={index}>
-                  <a onClick={this.handleLink} href={`/${item.value}`} className="os s2">
-                    {item.label}
-                  </a>
-                </li>
-              ))
-            }
-            <li>
-              {
-                isLoggedIn &&
-                <button onClick={() => this.handleSignOut()} className="btn btn-secondary os s2">SIGN OUT</button>
-              }
-            </li>
-            <li>
-              {
-                !isLoggedIn &&
-                <button onClick={() => this.handleClick()} className="btn btn-secondary os s2">SIGN IN</button>
-              }
-            </li>
-          </ul>
-        </div>
-      </div>
+          )
+        }}
+      </ThemeContext.Consumer>
+    </ThemeProvider>
+    </div>
     )
   }
 }

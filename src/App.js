@@ -23,7 +23,7 @@ import { Api } from "Utils/config"
 import {clearSession} from 'Utils/session-utils'
 import { mountModal } from 'Components/modal-box/utils'
 import NotifyError from './NotifyError';
-
+import {ThemeProvider, ThemeContext} from "./ThemeProvider"
 // import makeAsyncComponent from './makeAsyncComponent'
 
 // const UsingGiftCard = makeAsyncComponent(() => import("./GiftCardInfo").then(module => module.default), { name: "Page 1" })
@@ -37,7 +37,18 @@ import NotifyError from './NotifyError';
 const history = CreateHistory()
 
 // console.log(bolt);
+const ThemeConsumer = ThemeContext.Consumer
 
+const styles = {
+  dark: {
+    backgroundColor: "black",
+    color: "white"
+  },
+  light: {
+    backgroundColor: "white",
+    color: "black"
+  }
+};
 
 class App extends React.Component {
   constructor() {
@@ -49,38 +60,38 @@ class App extends React.Component {
     this.handleSignOut = this.handleSignOut.bind(this)
   }
 
-  componentWillMount() {
-    const fetchOptions = {
-      method: 'get',
-      credentials: 'include',
-      mode: 'cors',
-      'x-hasura-role': 'user'
-    }
-    // https://auth.hipbar-dev.com/user/account/info
-    fetch(`${Api.authUrl}/user/account/info`, fetchOptions)
-      .then((response) => {
-        if (response.status !== 200) {
-          //console.log(`Looks like there was a problem. Status Code: ${response.status}`)
-          this.setState({isLoggedIn: false})
-          // if(location.pathname.split("/")[1] && location.pathname.split("/")[1] !== 0)
-          // {
-          //   location.href="/"
-          // }
-          return
-        }
-        response.json().then((data) => {
-          this.setState({username: data.username, isLoggedIn: true})
-          localStorage.setItem("sender_mobile", data.mobile)
-        })
-      })
-      .catch((err) => {
-        // console.log('Fetch Error :-S', err)
-        // if(location.pathname.split("/")[1] && location.pathname.split("/")[1] !== 0)
-        // {
-        //   location.href="/"
-        // }
-      })
-  }
+  // componentWillMount() {
+  //   const fetchOptions = {
+  //     method: 'get',
+  //     credentials: 'include',
+  //     mode: 'cors',
+  //     'x-hasura-role': 'user'
+  //   }
+  //   // https://auth.hipbar-dev.com/user/account/info
+  //   fetch(`${Api.authUrl}/user/account/info`, fetchOptions)
+  //     .then((response) => {
+  //       if (response.status !== 200) {
+  //         //console.log(`Looks like there was a problem. Status Code: ${response.status}`)
+  //         this.setState({isLoggedIn: false})
+  //         // if(location.pathname.split("/")[1] && location.pathname.split("/")[1] !== 0)
+  //         // {
+  //         //   location.href="/"
+  //         // }
+  //         return
+  //       }
+  //       response.json().then((data) => {
+  //         this.setState({username: data.username, isLoggedIn: true})
+  //         localStorage.setItem("sender_mobile", data.mobile)
+  //       })
+  //     })
+  //     .catch((err) => {
+  //       // console.log('Fetch Error :-S', err)
+  //       // if(location.pathname.split("/")[1] && location.pathname.split("/")[1] !== 0)
+  //       // {
+  //       //   location.href="/"
+  //       // }
+  //     })
+  // }
 
   componentDidMount() {
     //window.addEventListener('resize', this.display.bind(this))
@@ -140,132 +151,136 @@ class App extends React.Component {
     //console.log("this.state", this.state)
     return (
       <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
-        <Router history={history}>
-          <Switch>
-            <Route exact 
-              path="/" 
-              //component={LandingPage} 
-              render={
-                props => (
-                  <LandingPage {...props} 
-                    name={this.state.username} 
-                    isLoggedIn={this.state.isLoggedIn}
+        <ThemeProvider>
+          <ThemeConsumer>
+            {(username) => {
+              console.log(username)
+              return <Router history={history}>
+                <Switch>
+                  <Route exact 
+                    path="/" 
+                    render={
+                      props => (
+                        <LandingPage {...props} 
+                        />
+                      )
+                    } 
                   />
-                )
-              } 
-            />
-            {/* <Route exact path="/sign-in" component={SignIn} /> */}
-            {/* <Route 
-              path='/sign-in' 
-              render={
-                props => (
-                  <SignIn isMobile={this.state.isMobile} />
-                )
-              } 
-            /> */}
-            <Route exact 
-              path="/using-gift-card"
-              render={
-                props => (
-                  <UsingGiftCard {...props} 
-                    name={this.state.username} 
-                    isLoggedIn={this.state.isLoggedIn}
+                  {/* <Route exact path="/sign-in" component={SignIn} /> */}
+                  {/* <Route 
+                    path='/sign-in' 
+                    render={
+                      props => (
+                        <SignIn isMobile={this.state.isMobile} />
+                      )
+                    } 
+                  /> */}
+                  <Route exact 
+                    path="/using-gift-card"
+                    render={
+                      props => (
+                        <UsingGiftCard {...props} 
+                          name={this.state.username} 
+                          isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
+                    //component={UsingGiftCard} 
                   />
-                )
-              } 
-              //component={UsingGiftCard} 
-            />
-            <Route exact 
-              path="/send-gift" 
-              //component={SendGiftCards} 
-              render={
-                props => (
-                  <SendGiftCards {...props} 
-                    name={this.state.username} 
-                    isLoggedIn={this.state.isLoggedIn}
+                  <Route exact 
+                    path="/send-gift" 
+                    //component={SendGiftCards} 
+                    render={
+                      props => (
+                        <SendGiftCards {...props} 
+                          name={username} 
+                          isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
                   />
-                )
-              } 
-            />
-            <Route exact 
-              path="/transaction-history" 
-              //component={TransactionHistory} 
-              render={
-                props => (
-                  <TransactionHistory {...props} 
-                    name={this.state.username} 
-                    isLoggedIn={this.state.isLoggedIn}
+                  <Route exact 
+                    path="/transaction-history" 
+                    //component={TransactionHistory} 
+                    render={
+                      props => (
+                        <TransactionHistory {...props} 
+                          name={this.state.username} 
+                          isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
                   />
-                )
-              } 
-            />
-            <Route exact 
-              path="/checkout" 
-              //component={Checkout} 
-              render={
-                props => (
-                  <Checkout {...props} 
-                    name={this.state.username} 
-                    isLoggedIn={this.state.isLoggedIn}
+                  <Route exact 
+                    path="/checkout" 
+                    //component={Checkout} 
+                    render={
+                      props => (
+                        <Checkout {...props} 
+                          name={this.state.username} 
+                          isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
                   />
-                )
-              } 
-            />
-            <Route exact 
-              path="/retail-outlet" 
-              //component={RetailOutlet} 
-              render={
-                props => (
-                  <RetailOutlet {...props} 
-                    name={this.state.username} 
-                    isLoggedIn={this.state.isLoggedIn}
+                  <Route exact 
+                    path="/retail-outlet" 
+                    //component={RetailOutlet} 
+                    render={
+                      props => (
+                        <RetailOutlet {...props} 
+                          name={this.state.username} 
+                          isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
                   />
-                )
-              } 
-            />
-            <Route exact 
-              path="/FAQs" 
-              //component={FAQ} 
-              render={
-                props => (
-                  <FAQ {...props} 
-                    name={this.state.username} 
-                    isLoggedIn={this.state.isLoggedIn}
+                  <Route exact 
+                    path="/FAQs" 
+                    //component={FAQ} 
+                    render={
+                      props => (
+                        <FAQ {...props} 
+                          name={this.state.username} 
+                          isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
                   />
-                )
-              } 
-            />
-            <Route exact 
-              path="/transaction-successful" 
-              //component={TransactionSuccessful} 
-              render={
-                props => (
-                  <TransactionSuccessful {...props} 
-                    name={this.state.username} 
-                    isLoggedIn={this.state.isLoggedIn}
+                  <Route exact 
+                    path="/transaction-successful" 
+                    //component={TransactionSuccessful} 
+                    render={
+                      props => (
+                        <TransactionSuccessful {...props} 
+                          name={this.state.username} 
+                          isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
                   />
-                )
-              } 
-            />
-            <Route exact 
-              path="/transaction-failure" 
-              //component={TransactionFail} 
-              render={
-                props => (
-                  <TransactionFail {...props} 
-                    name={this.state.username} 
-                    isLoggedIn={this.state.isLoggedIn}
+                  <Route exact 
+                    path="/transaction-failure" 
+                    //component={TransactionFail} 
+                    render={
+                      props => (
+                        <TransactionFail {...props} 
+                          name={this.state.username} 
+                          isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
                   />
-                )
-              } 
-            />
-            <Route 
-              path="/locationMap" 
-              component={LocationMap} 
-            />
-            <Route exact path="*" component={() => <h1>404 Not Found</h1>} />
-          </Switch>
-        </Router>
+                  <Route 
+                    path="/locationMap" 
+                    component={LocationMap} 
+                  />
+                  <Route exact path="*" component={() => <h1>404 Not Found</h1>} />
+                </Switch>
+              </Router>
+            }}
+          </ThemeConsumer>
+        </ThemeProvider>
       </div>
     )
   }
