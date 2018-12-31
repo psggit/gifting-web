@@ -34,8 +34,8 @@ class Header extends React.Component {
         value: "retail-outlet"
       },
       {
-        label: "Support",
-        value: "support"
+        label: "FAQs",
+        value: "FAQs"
       }
     ]
     this.onToggle = this.onToggle.bind(this)

@@ -224,7 +224,7 @@ class App extends React.Component {
               } 
             />
             <Route exact 
-              path="/FAQ" 
+              path="/FAQs" 
               //component={FAQ} 
               render={
                 props => (
