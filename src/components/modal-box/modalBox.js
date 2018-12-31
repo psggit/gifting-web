@@ -21,14 +21,14 @@ class ModalBox extends React.Component {
   // }
 
   componentDidMount() {
-    window.addEventListener('mousedown', this.handleClick)
-    window.addEventListener('keyup', this.handleClick)
-    document.addEventListener('mouseup', this.handlePress)
+    // window.addEventListener('mousedown', this.handleClick)
+    // window.addEventListener('keyup', this.handleClick)
+    // document.addEventListener('mouseup', this.handlePress)
   }
   componentWillUnmount() {
-    window.removeEventListener('mousedown', this.handleClick)
-    window.addEventListener('keyup', this.handleClick)
-    document.removeEventListener('mouseup', this.handlePress)
+    // window.removeEventListener('mousedown', this.handleClick)
+    // window.addEventListener('keyup', this.handleClick)
+    // document.removeEventListener('mouseup', this.handlePress)
   }
   render () {
     return (
