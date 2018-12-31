@@ -46,9 +46,9 @@
     }
 
     input {
-     border-left: 0;
-     border-top-left-radius: 0;
-     border-bottom-left-radius: 0;
+    //  border-left: 0;
+    //  border-top-left-radius: 0;
+    //  border-bottom-left-radius: 0;
     }
 
     input.error {
@@ -82,7 +82,7 @@
       .resend {
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
         position: absolute;
-        top: 10px;
+        top: 34px;
         right: 10px;
         font-weight: 600;
         cursor: pointer;

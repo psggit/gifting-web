@@ -241,8 +241,8 @@ export default function SignIn(data) {
                           Welcome back to HipBar! Please enter the OTP to sign in.
                         </div>
                       </div>
-                      <label>OTP</label>
-                      <div className="input-otp-container">
+                      <div className="form-group input-otp-container">
+                      <label className="os s7">OTP</label>
                         <input 
                           type="text"
                           name="otp"
