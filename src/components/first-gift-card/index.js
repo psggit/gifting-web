@@ -13,7 +13,9 @@ const FirstGiftCard = () => (
 with HipBar Gift Cards!
     </p>
 
-    <Button secondary>start gifting!</Button>
+    <a href="/send-gift">
+      <Button secondary>start gifting!</Button>
+    </a>
   </div>
 )
 

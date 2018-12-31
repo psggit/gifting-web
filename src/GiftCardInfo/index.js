@@ -78,7 +78,9 @@ class GiftCards extends React.Component {
             </div>
 
             <div style={{ marginTop: "30px" }}>
-              <Button primary>View retail outlets</Button>
+              <a href="/retail-outlet">
+                <Button primary>View retail outlets</Button>
+              </a>
             </div>
           </div>
          

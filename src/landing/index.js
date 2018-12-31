@@ -52,7 +52,9 @@ class LandingPage extends React.Component {
                 </p>
 
                 <div style={{ marginTop: "30px", }}>
-                  <Button primary icon="rightArrowWhite">Start Gifting!</Button>
+                  <a href="/send-gift">
+                    <Button primary icon="rightArrowWhite">Start Gifting!</Button>
+                  </a>
                 </div>
                 <p className="os s7">
                   Currently in Bengaluru <br />
@@ -173,7 +175,9 @@ class LandingPage extends React.Component {
             </div>
 
             <div style={{ marginTop: "30px" }}>
-              <Button primary>View Retail Outlets</Button>
+              <a href="/retail-outlet">
+                <Button primary>View Retail Outlets</Button>
+              </a>
             </div>
           </div>
 
