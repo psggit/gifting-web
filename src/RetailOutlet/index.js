@@ -17,8 +17,8 @@ class RetailOutlet extends React.Component {
       selectedCity: "",
       deliveryMap: {},
       selectedCityId: "",
-      username: props.username ? props.username : "",
-      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
+      // username: props.username ? props.username : "",
+      // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
     this.findRetailer = this.findRetailer.bind(this)
     this.successCallback = this.successCallback.bind(this)
@@ -32,12 +32,12 @@ class RetailOutlet extends React.Component {
     this.fetchAvailableHipbarDelivery()
   }
 
-  componentWillReceiveProps(newProps) {
-    //console.log("helo", newProps)
-    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-    }
-  }
+  // componentWillReceiveProps(newProps) {
+  //   //console.log("helo", newProps)
+  //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
+  //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+  //   }
+  // }
 
   fetchAvailableHipbarDelivery() {
     Api.fetchAvailableHipbarDelivery(this.successCallback)
@@ -115,7 +115,7 @@ class RetailOutlet extends React.Component {
     //console.log("outlet data", this.state.retailerOutletData)
     return (
       <div>
-        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
+        <Header />
         <div id="retailOutlet">
           <div className="content">
             <h2 className="cm s1">Find a HipBar powered retailer near you</h2>

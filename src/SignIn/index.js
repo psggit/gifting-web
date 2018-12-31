@@ -162,6 +162,7 @@ export default function SignIn(data) {
                 return
               }
               createSession(responseData, "true")
+              location.href= (location.pathname)
               unMountModal()
               data.reload(true)
               this.setState({isSigningIn: false})

@@ -8,23 +8,23 @@ class SuccessfulTransaction extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      username: props.username ? props.username : "",
-      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
-    }
+    // this.state = {
+    //   username: props.username ? props.username : "",
+    //   isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
+    // }
   }
 
-  componentWillReceiveProps(newProps) {
-    //console.log("helo", newProps)
-    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-    }
-  }
+  // componentWillReceiveProps(newProps) {
+  //   //console.log("helo", newProps)
+  //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
+  //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+  //   }
+  // }
 
   render() {
     return (
       <div>
-        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
+        <Header />
         <div id="SuccessfulTransaction" className="transaction-status"> 
           <div className="content">
             <div className="successful">

@@ -10,8 +10,8 @@ class FAQ extends React.Component {
     super(props)
     this.state = {
       questionAnswers: [],
-      username: props.username ? props.username : "",
-      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
+      // username: props.username ? props.username : "",
+      // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
     this.showAnswer = this.showAnswer.bind(this)
   }
@@ -20,12 +20,12 @@ class FAQ extends React.Component {
     this.setState({questionAnswers})
   }
 
-  componentWillReceiveProps(newProps) {
-    //console.log("helo", newProps)
-    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-    }
-  }
+  // componentWillReceiveProps(newProps) {
+  //   //console.log("helo", newProps)
+  //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
+  //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+  //   }
+  // }
 
   showAnswer(quesNo) {
     //console.log("quesNo", quesNo)
@@ -64,7 +64,7 @@ class FAQ extends React.Component {
     const {questionAnswers} = this.state
     return (
       <div>
-        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
+        <Header/>
         <div id="Faq">
           <div className="content">
             <h2 className="cm s1">Frequently Asked Questions</h2>

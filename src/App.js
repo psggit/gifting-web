@@ -154,7 +154,7 @@ class App extends React.Component {
         <ThemeProvider>
           <ThemeConsumer>
             {(paramObj) => {
-              console.log(paramObj)
+              //console.log(paramObj)
               return <Router history={history}>
                 <Switch>
                   <Route exact 

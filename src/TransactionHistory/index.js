@@ -11,29 +11,29 @@ class TransactionHistory extends React.Component {
     this.state = {
       transactionData: [],
       loading: false,
-      username: props.username ? props.username : "",
-      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
+      // username: props.username ? props.username : "",
+      // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
     this.successCallback = this.successCallback.bind(this)
     this.failureCallback = this.failureCallback.bind(this)
     this.renderTransation =  this.renderTransation.bind(this)
   }
 
-  componentDidMount() {
-    //console.log("login", localStorage.getItem("isLoggedIn"), this.props)
-    if(localStorage.getItem("isLoggedIn") === "false") {
-      this.props.history.goBack()
-    } else {
-      this.fetchTransactionList()
-    }
-  }
+  // componentDidMount() {
+  //   //console.log("login", localStorage.getItem("isLoggedIn"), this.props)
+  //   if(localStorage.getItem("isLoggedIn") === "false") {
+  //     this.props.history.goBack()
+  //   } else {
+  //     this.fetchTransactionList()
+  //   }
+  // }
 
-  componentWillReceiveProps(newProps) {
-    //console.log("new props", newProps)
-    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-    }
-  }
+  // componentWillReceiveProps(newProps) {
+  //   //console.log("new props", newProps)
+  //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
+  //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+  //   }
+  // }
 
   fetchTransactionList() {
     const payload = {
@@ -94,7 +94,7 @@ class TransactionHistory extends React.Component {
     //console.log("username", this.state.username, "logged in", this.state.isLoggedIn)
     return(
       <div>
-        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
+        <Header />
         <div id="TransactionHistory"> 
           <div className="content">
             <h2 className="cm s1">Transaction History</h2>
