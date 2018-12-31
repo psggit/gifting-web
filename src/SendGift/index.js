@@ -10,6 +10,8 @@ import { POST } from "Utils/fetch"
 class SendGift extends React.Component {
   constructor(props) {
     super(props)
+    console.log(localStorage.getItem("sender_mobile"));
+    
     this.state = {
       activePrice: "price2",
       amount: "999",
@@ -36,6 +38,7 @@ class SendGift extends React.Component {
   componentDidMount() {
     localStorage.removeItem("txn")
   }
+
 
   toggleHowTo() {
     this.setState({ isActive: !this.state.isActive })
@@ -99,7 +102,12 @@ class SendGift extends React.Component {
           key: json.key,
           user_cred: json.user_cred,
           email: json.email,
-          first_name: json.first_name
+          first_name: json.first_name,
+          sender_name: senderName,
+          sender_num: localStorage.getItem("sender_mobile"),
+          gift_message: giftMessage,
+          receiver_name: receiverName,
+          receiver_number: receiverNumber
         }
 
         localStorage.setItem("txn", JSON.stringify(this.postBody))
@@ -244,7 +252,7 @@ class SendGift extends React.Component {
                 </div>
 
                 {
-                  localStorage.getItem("isLoggedIn")
+                  localStorage.getItem("isLoggedIn") === "true"
                     ? (
                       <div style={{ marginTop: "20px" }}>
                         <Button onClick={this.proceedToPayment} primary>Proceed to payment</Button>

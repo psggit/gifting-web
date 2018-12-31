@@ -21,11 +21,16 @@ class Payment extends React.Component {
       2: "net_banking"
     }
     this.state = {
+      senderName: this.txn ? this.txn.sender_name : "",
+      sender_num: this.txn ? this.txn.sender_num : "",
+      gift_message: this.txn ? this.txn.gift_message : "",
+      receiver_name: this.txn ? this.txn.receiver_name : "",
+      receiver_number: this.txn ? this.txn.receiver_number : "",
       amount: this.txn ? this.txn.amount: "",
       popularBanks: [],
       banks: [],
       savedCards: [],
-      activeAccordian: 3,
+      activeAccordian: -1,
       isPopularSelected: false,
       noBankSelected: true,
       bankcode: "null",
@@ -197,8 +202,8 @@ class Payment extends React.Component {
       productinfo: "gift",
       firstname: this.txn.first_name,
       email: this.txn.email,
-      phone: "890989880",
-      lastname: "yuyiu",
+      phone: this.txn.sender_num,
+      lastname: "",
       surl: "http://localhost:8080/transaction?status=success",
       furl: "http://localhost:8080/transaction?status=failure",
       curl: "http://localhost:8080/transaction?status=cancelled",
@@ -216,7 +221,8 @@ class Payment extends React.Component {
     }
 
     if (this.cctoken) {
-      postBody.ccnum = this.cctoken
+      postBody.cardtoken = this.cctoken
+      postBody.cardbin = this.ccbin
     }
 
     return Object.entries(postBody).map(([key, value]) => (
@@ -229,6 +235,7 @@ class Payment extends React.Component {
     if (parseInt(id) < 3) {
       return true
     } else {
+      this.ccbin = this[`cardBin${id}`].name === "saved" ?  this[`cardBin${id}`].value : null
       this.ccnum = this[`cardNum${id}`].name === "saved" ? null : this[`cardNum${id}`].value
       this.ccname = this[`cardName${id}`].value
       this.cctoken = this[`cardToken${id}`].name === "saved" ? this[`cardToken${id}`].value : null
@@ -278,13 +285,18 @@ class Payment extends React.Component {
 
                                     <div style={{ width: "130px" }}>
                                       <label className="os">CVV</label>
-                                      <input onChange={this.handleCVVChange} ref={(node) => { this[`cardCvv${i+3}`] = node }} name="saved" defaultValue={item.card_cvv}  type="password" maxLength={4} />
+                                      <input onChange={this.handleCVVChange} ref={(node) => { this[`cardCvv${i+3}`] = node }} name="saved"  type="password" maxLength={4} />
                                     </div>
                                   </div>
 
                                   <div className="form-group">
                                     {/* <label className="os">Name on card</label> */}
                                     <input ref={(node) => { this[`cardToken${i+3}`] = node }} name="saved" defaultValue={item.card_token} type="hidden" />
+                                  </div>
+
+                                  <div className="form-group">
+                                    {/* <label className="os">Name on card</label> */}
+                                    <input ref={(node) => { this[`cardBin${i+3}`] = node }} name="saved" defaultValue={item.card_bin} type="hidden" />
                                   </div>
 
                                   <div className="form-group">
@@ -397,18 +409,18 @@ class Payment extends React.Component {
                       <div className="gift-card-info">
                         <div>
                           <p className="os s6">To</p>
-                          <p className="os s7">Baba Ramdev<br /> +91 8989415866</p>
+                          <p className="os s7">{this.state.sender_name}<br /> +91 {this.state.sender_num}</p>
                         </div>
 
                         <div style={{ marginTop: "20px", borderBottom: "1px solid #dfdfdf", paddingBottom: "20px" }}>
                           <p className="os s7">
-                            <span className="os s6">Personal Message -</span> Wish you a merry christmas, wish you a merry christmas and a very happy new year! :)
+                            <span className="os s6">Personal Message -</span>{this.state.gift_message}
                           </p>
                         </div>
 
                         <div style={{ marginTop: "20px" }} >
                           <p className="os s6">From</p>
-                          <p className="os s7">Baba Ramdev<br /> +91 8989415866</p>
+                          <p className="os s7">{this.state.receiver_name}<br /> +91 {this.state.receiver_number}</p>
                         </div>
                       </div>
                     </div>

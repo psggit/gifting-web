@@ -1,0 +1,30 @@
+#payment-status {
+  background-color: #f1f1f1;
+  height: 100vh;
+  position: relative;
+  .payment-status-container {
+    padding: 40px;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    text-align: center;
+
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    // left: 50%
+
+    .cm {
+      font-weight: 600;
+      letter-spacing: 0.9px;
+      text-align: center;
+      color: #000000;
+    }
+
+    .os.s7 {
+      letter-spacing: 0.6px;
+      text-align: center;
+      color: #000000;
+    }
+  }
+}

@@ -23,6 +23,10 @@ import { Api } from "Utils/config"
 import {clearSession} from 'Utils/session-utils'
 import { mountModal } from 'Components/modal-box/utils'
 import NotifyError from './NotifyError';
+import PaymentSuccess from "./payment-success"
+import PaymentFailure from "./payment-failed"
+
+const AppContext = React.createContext()
 
 // import makeAsyncComponent from './makeAsyncComponent'
 
@@ -69,8 +73,8 @@ class App extends React.Component {
           return
         }
         response.json().then((data) => {
-          this.setState({username: data.username, isLoggedIn: true})
           localStorage.setItem("sender_mobile", data.mobile)
+          this.setState({username: data.username, isLoggedIn: true})
         })
       })
       .catch((err) => {
@@ -140,6 +144,8 @@ class App extends React.Component {
     //console.log("this.state", this.state)
     return (
       <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
+      {/* <AppContext.Provider value={this.state}>
+      <AppContext.Consumer> */}
         <Router history={history}>
           <Switch>
             <Route exact 
@@ -263,9 +269,13 @@ class App extends React.Component {
               path="/locationMap" 
               component={LocationMap} 
             />
+            <Route exact path="/payment-success" component={PaymentSuccess}  />
+            <Route exact path="/payment-failure" component={PaymentFailure}  />
             <Route exact path="*" component={() => <h1>404 Not Found</h1>} />
           </Switch>
         </Router>
+        {/* </AppContext.Consumer>
+        </AppContext.Provider> */}
       </div>
     )
   }

@@ -241,6 +241,7 @@ export default function SignIn(data) {
                           Welcome back to HipBar! Please enter the OTP to sign in.
                         </div>
                       </div>
+                      
                       <div className="form-group input-otp-container">
                       <label className="os s7">OTP</label>
                         <input 
@@ -251,7 +252,7 @@ export default function SignIn(data) {
                           autocomplete="off"
                           onChange={(e) => this.handleTextChange(e)}
                         />
-                        <div className={`resend os s7 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND</div>
+                        <div className={`resend os s8 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND</div>
                       </div>
                       {
                         otpErr.status &&
