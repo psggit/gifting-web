@@ -73,10 +73,10 @@ class SuccessfulTransaction extends React.Component {
                     <Icon name="step1" />
                   </span>
                   <div className="detail">
-                    <p className="os s8">
+                    <p className="cm s6">
                       Inform your friend about the Gift Card
                     </p>
-                    <span className="os s9">
+                    <span className="os s7">
                       For a more personalized experience, inform your friend about the gift card via Whatsapp
                     </span>
                   </div>
@@ -86,10 +86,10 @@ class SuccessfulTransaction extends React.Component {
                     <Icon name="step2" />
                   </span>
                   <div className="detail">
-                    <p className="os s8">
+                    <p className="cm s6">
                       Download the HipBar app!
                     </p>
-                    <span className="os s9">
+                    <span className="os s7">
                       Download the HipBar app to manage your gift cards if necessary
                     </span>
                   </div>
