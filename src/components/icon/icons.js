@@ -247,6 +247,21 @@ export default {
         </g>
     </svg>
   ),
+  filledDownArrowWhite: (
+    <svg fill="#FFFFFF" width="12px" height="7px" viewBox="0 0 12 7" version="1.1">
+        <g id="V0.1" stroke="none" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd">
+            <g id="01a-Gifitng-Website---Product-Detail-Screen---Before-selecting-Stat" transform="translate(-1348.000000, -69.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                <g id="Header">
+                    <g id="Name" transform="translate(1198.000000, 57.000000)">
+                        <g id="DownArrow" transform="translate(150.000000, 12.000000)">
+                            <path d="M11.7772488,0.222623543 C11.6289121,0.0741668035 11.4530753,0 11.2499025,0 L0.750056437,0 C0.546801568,0 0.371087898,0.0741668035 0.222628112,0.222623543 C0.0741683256,0.371244459 0,0.546954523 0,0.750082088 C0,0.953168609 0.0741683256,1.12887867 0.222628112,1.27737646 L5.47257167,6.52721228 C5.62119564,6.67566902 5.79690931,6.75 6,6.75 C6.20309069,6.75 6.37896854,6.67566902 6.52730519,6.52721228 L11.7772488,1.27733541 C11.9255444,1.12887867 12,0.953168609 12,0.750041044 C12,0.546954523 11.9255444,0.371244459 11.7772488,0.222623543 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </svg>
+  ),
   user: (
     <svg width="124px" height="117px" viewBox="0 0 124 117" version="1.1">
         <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">

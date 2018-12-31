@@ -5,7 +5,7 @@
   background-color: #f1f1f1;
 
   .container {
-    margin-top: 100px;
+    // margin-top: 100px;
   }
 
   .how-to-gift {
@@ -201,7 +201,7 @@
       display: block;
     }
     .how-to-gift-body {
-      margin-top: 77px;
+      margin-top: 200px;
       max-height: 0;
       padding: 0 20px;
       overflow: hidden;
@@ -215,8 +215,9 @@
       position: fixed;
       top: 100px;
       left: 0;
+      text-align: left;
       background-color: #000;
-      height: 100px;
+      line-height: 100px;
       width: 100%;
       z-index: 4;
     }

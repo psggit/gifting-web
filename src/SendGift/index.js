@@ -13,8 +13,8 @@ class SendGift extends React.Component {
     console.log(localStorage.getItem("sender_mobile"));
     
     this.state = {
-      activePrice: "price2",
-      amount: "999",
+      activePrice: "price1",
+      amount: "499",
       giftMessage: "Wish you a merry christmas, wish you a merry christmas and a very happy new year! :)",
       receiverName: "Madhur",
       receiverNumber: "8989415866",
@@ -23,6 +23,7 @@ class SendGift extends React.Component {
       canProceed: false,
       username: props.username ? props.username : "",
       isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false,
+      otherValue: "",
       isActive: false
     }
     this.createTransaction = this.createTransaction.bind(this)
@@ -65,7 +66,14 @@ class SendGift extends React.Component {
   }
 
   handleAmountChange(e) {
-    this.setState({ amount: e.target.value, activePrice: e.target.name })
+    if (e.target.name !== "price4") {
+      this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: "" })
+    } else {
+      if (parseInt(e.target.value) > 10000) {
+        return;
+      }
+      this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: e.target.value })
+    }
   }
 
   handleMessageChange(e) {
@@ -134,7 +142,12 @@ class SendGift extends React.Component {
         <div id="send-gift">
         <div className="how-to-gift mobile">
               <div onClick={this.toggleHowTo} className="how-to-gift-header">
-
+                 <p style={{ padding: "0 30px", color: "#fff" }} className="os s3">
+                  Using HipBar Gift Cards
+                  <span style={{ marginLeft: "10px" }}>
+                  <Icon name="filledDownArrowWhite" />
+                  </span>
+                </p>
               </div>
               <div className={`how-to-gift-body ${this.state.isActive ? "active" : ""}`}>
                 <h2 className="cm s3">How to use Hipbar Gift Cards?</h2>
@@ -200,7 +213,7 @@ class SendGift extends React.Component {
                       </div>
 
                       <div className="form-field">
-                        <input onChange={this.handleAmountChange} name="price1" maxLength="5" type="text" placeholder="Other" />
+                        <input className={this.state.activePrice === "price4" ? "focused" : undefined} value={this.state.otherValue} onChange={this.handleAmountChange} name="price4" maxLength="5" type="text" placeholder="Other" />
                         <span>&#8377;</span>
                       </div>
 

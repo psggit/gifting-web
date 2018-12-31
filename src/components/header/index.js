@@ -151,7 +151,7 @@ class Header extends React.Component {
     return (
       <div className="navbar">
         <div className="logo">
-          <a>
+          <a href="/">
             <Icon name="hipbarLogo" />
           </a>
         </div>
