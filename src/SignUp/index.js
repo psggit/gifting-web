@@ -159,7 +159,7 @@ export default function SignUp(data) {
             if(response.status === 400 && responseData.errorCode === "dob-error") {
               this.setState({dobErr: {status: true, value: responseData.message}})
             } else if(response.status === 409 && responseData.errorCode === "user-already-exists") {
-              this.setState({emailErr: {status: true, value: 'Could not create user.. Email already exists'}})
+              this.setState({emailErr: {status: true, value: responseData.message}})
               //return
             } else if(response.status !== 400) {
               this.getOtp()
@@ -198,6 +198,10 @@ export default function SignUp(data) {
             response.json().then((responseData) => {
               if(response.status === 400 && responseData.errorCode.includes("invalid-otp")){
                 this.setState({otpErr: {status: true, value: "Incorrect OTP. Please enter again or resend OTP"}})
+                this.setState({isSigningUp: false})
+                return
+              } else if(response.status === 400 && responseData.errorCode === "expired-otp"){
+                this.setState({otpErr: {status: true, value: responseData.message}})
                 this.setState({isSigningUp: false})
                 return
               }
