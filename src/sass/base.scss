@@ -36,6 +36,13 @@ $font-Cormorant: "Cormorant Garamond", serif;
 
 .cm {
   font-family: $font-Cormorant;
+}
+
+.os {
+  font-family: $font-OpenSans;
+}
+
+.cm {
   &.s1 {
     font-size: px(52);
   }
@@ -57,7 +64,6 @@ $font-Cormorant: "Cormorant Garamond", serif;
 }
 
 .os {
-  font-family: $font-OpenSans;
   &.s1 {
     font-size: px(32);
   }
@@ -90,6 +96,10 @@ $font-Cormorant: "Cormorant Garamond", serif;
   }
 }
 
+@media only screen and (max-width: 640px) {
+  
+}
+
 
 @media only screen and (max-width: 970px) {
   .cm {
@@ -115,7 +125,7 @@ $font-Cormorant: "Cormorant Garamond", serif;
   }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 640px) {
   .cm {
     &.s1 {
       font-size: 24px;
@@ -123,8 +133,17 @@ $font-Cormorant: "Cormorant Garamond", serif;
   }
 
   .os {
+    &.s3 {
+      font-size: 14px;
+    }
     &.s2 {
       font-size: 16px;
+    }
+    &.s0 {
+      font-size: 20px;
+    }
+    &.s1 {
+      font-size: 14px;
     }
   }
 }

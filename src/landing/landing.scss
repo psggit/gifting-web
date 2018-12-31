@@ -105,6 +105,7 @@
     }
     .presence-item {
       h1 {
+        text-align: center;
         color: $grey;
         letter-spacing: 1.5;
         font-weight: 600;
@@ -205,6 +206,14 @@
       margin-top: 20px;
       div {
         margin-top: 10px !important;
+      }
+    }
+
+    .our-presence .presence-counts {
+      margin-top: 20px;
+      flex-direction: column-reverse;
+      .presence-item:nth-child(2) {
+        margin: 20px 0;
       }
     }
   } 
