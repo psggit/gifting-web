@@ -7,7 +7,7 @@ const { renderToNodeStream, renderToString } = require("react-dom/server")
 const bodyParser = require('body-parser')
 const FormData = require("form-data")
 const request = require("request")
-const CheckoutReact = require("./dist-ssr/checkout").default
+// const CheckoutReact = require("./dist-ssr/checkout").default
 
 // 
 app.disable("x-powered-by")
@@ -78,21 +78,60 @@ app.use(bodyParser.urlencoded({ extended: true }))
 //   })
 // })
 
-// client side app
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist/index.html"), (err) => {
+app.get('/privacy', (req, res) => {
+  res.sendFile(path.join(__dirname, `src/privacy.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
   })
 })
 
-
 app.post("/transaction", (req, res) => {
   request.post({ url: `https://orderman.${URL_ENV}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     console.log(err, httpRes, body)
   })
   res.sendFile(path.join(__dirname, "src/transaction.html"), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get('/grievance-policy', (req, res) => {
+  res.sendFile(path.join(__dirname, `src/grievance-policy.html`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get('/merchants-t-c', (req, res) => {
+  res.sendFile(path.join(__dirname, `src/merchants-t-c.html`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get('/gifting-t-c', (req, res) => {
+  res.sendFile(path.join(__dirname, `src/gifting-t-c.html`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get('/user-terms', (req, res) => {
+  res.sendFile(path.join(__dirname, `src/user-terms.html`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+// client side app
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist/index.html"), (err) => {
     if (err) {
       res.status(500).send(err)
     }
