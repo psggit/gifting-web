@@ -11,17 +11,17 @@ class ModalBox extends React.Component {
       maxHeight: '95vh'
     }
   }
-  handleClick(e) {
+  handlePress(e) {
     if (e.keyCode == 27) {
-      //unmountComponentAtNode(document.getElementById('confirm-modal'))
-      // document.body.setAttribute('class', '')
+      unmountComponentAtNode(document.getElementById('confirm-modal'))
+      document.body.setAttribute('style', 'auto')
     }
   }
 
-  handlePress(e) {
+  handleClick(e) {
     if (e.target.className === 'modal-overlay') {
-      //unmountComponentAtNode(document.getElementById('confirm-modal'))
-      // document.body.setAttribute('class', '')
+      unmountComponentAtNode(document.getElementById('confirm-modal'))
+      document.body.setAttribute('style', 'auto')
     }
   }
 

@@ -8,6 +8,7 @@
   width: 100%;
   z-index: 5003;
   background: rgba(0, 0, 0, 0.8);
+  overflow: auto;
   .modal-box {
     position: absolute;
     top: 50%;
@@ -15,7 +16,9 @@
     border-radius: 5px;
     transform: translate(-50%, -50%);
     min-height: 140px;
-    width: 36%;
+    max-height: 560px;
+    overflow: auto;
+    width: 500px;
   }
   .modal-container {
     position: absolute;
@@ -26,6 +29,8 @@
     background: #fff;
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
     min-height: 140px;
+    max-height: 600px;
+    overflow: auto;
     width: 36%;
     font-family: $font-OpenSans;
     padding: 25px 49px;
@@ -120,20 +125,18 @@
   }
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 560px) {
   .modal-box {
-    //position: absolute;
-    // top: 0 !important;
-    // left: 0 !important;
-    z-index: 9999;
+    z-index: 2;
     width: 100% !important;
     height: 100vh;
+    max-height: 100vh !important;
     border-radius: 0px !important;
   }
 }
 
-@media only screen and (min-width: 760px) and (max-width: 1024px) {
-  .modal-box {
-    width: 56% !important;
-  }
-}
+// @media only screen and (min-width: 760px) and (max-width: 1024px) {
+//   .modal-box {
+//     width: 56% !important;
+//   }
+// }

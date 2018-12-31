@@ -10,6 +10,7 @@ import { checkCtrlA, validateNumType, checkCtrlV, checkCtrlC } from 'Utils/logic
 import { validateNumberField } from 'Utils/validators'
 import { validateTextField } from '../utils/validators';
 import NotifyError from './../NotifyError';
+import Button from "Components/button"
 
 export default function SignIn(data) {
   return class SignIn extends React.Component {
@@ -199,12 +200,13 @@ export default function SignIn(data) {
                   </h2>
                 }
                 <div className="page-body">
-                  <label>Phone Number</label>
+                  <div className="form-group">
+                  <label className="os s7">Phone Number</label>
                   <div style={{display: 'flex'}}>
                     <div className={`country-code ${mobileNoErr.status ? 'error' : ''}`}>
                       +91
                     </div>
-                    <div style={{width: 'calc(100% - 40px'}}>
+                    {/* <div style={{width: 'calc(100% - 40px'}}> */}
                       <input 
                         type="text"
                         name="mobileNo"
@@ -261,19 +263,19 @@ export default function SignIn(data) {
                     ? <React.Fragment>
                         <div>
                           <div className="button-section">
-                            <button className='btn btn-secondary os s7' onClick={unMountModal}>CANCEL</button>
-                            <button className={`btn btn-primary os s7 ${isGettingOtp ? 'disabled' : ''}`} onClick={this.handleClick}>GET OTP</button> 
+                            <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
+                            <Button size="small" style={{ marginLeft: "15px" }} disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
                           </div> 
                           <div className="button-section mobile">
-                            <button className={`btn btn-primary os s7 ${isGettingOtp ? 'disabled' : ''}`} onClick={this.handleClick}>GET OTP</button> 
-                            <button className='btn btn-secondary os s7' onClick={unMountModal}>CANCEL</button>
+                          <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
+                            <Button size="small" style={{ marginLeft: "15px" }} disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
                           </div> 
                         </div>
                         
                       </React.Fragment>
                     : <React.Fragment>
-                        <button className='btn btn-secondary os s7' onClick={unMountModal}>CANCEL</button>
-                        <button className={`btn btn-primary os s7 ${isSigningIn ? 'disabled' : ''}`} onClick={this.signIn}>SIGN IN</button>
+                        <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
+                        <Button size="small" style={{ marginLeft: "15px" }} disabled={isGettingOtp} primary onClick={this.signIn}>Sign in</Button>
                       </React.Fragment>
                   } 
                 </div>

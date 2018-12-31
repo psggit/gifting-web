@@ -10,6 +10,7 @@ import { checkCtrlA, validateNumType, checkCtrlV, checkCtrlC } from 'Utils/logic
 import { validateNumberField } from 'Utils/validators'
 import { validateTextField, validateEmail } from '../utils/validators';
 import NotifyError from './../NotifyError';
+import Button from "Components/button"
 
 export default function SignUp(data) {
   return class SignUp extends React.Component {
@@ -304,7 +305,8 @@ export default function SignUp(data) {
                   Sign up with HipBar
                 </h2>
                 <div className="page-body">
-                  <label>Phone Number</label>
+                <div className="form-group">
+                  <label className="os s7">Phone Number</label>
                   <div style={{display: 'flex'}}>
                     <div className={`country-code ${mobileNoErr.status ? 'error' : ''}`}>
                       +91
@@ -316,7 +318,7 @@ export default function SignUp(data) {
                         maxLength={10}
                         disabled={this.state.disableField}
                         //value={this.state.mobileNo}
-                        autocomplete="off"
+                        autoComplete="off"
                         //onChange={(e) => this.handleTextChange(e)}
                         defaultValue={this.state.mobileNo}
                         className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
@@ -324,6 +326,7 @@ export default function SignUp(data) {
                         onKeyUp={(e) => {this.handleNumberChange(e)}}
                       />
                     </div>
+                  </div>
                   </div>
                   {
                     mobileNoErr.status &&
@@ -333,33 +336,37 @@ export default function SignUp(data) {
                     otpSent &&
                     <div className="note os s7">Otp has been sent!</div>
                   }
-                  <label>Name</label>
-                  <div>
-                    <input
-                      type="text"
-                      name="name"
-                      className={`${nameErr.status ? 'error' : ''}`}
-                      value={this.state.name}
-                      disabled={this.state.disableField && this.state.otpSent}
-                      autocomplete="off"
-                      onChange={(e) => this.handleTextChange(e)} 
-                    />
+                  <div className="form-group">
+                    <label className="os s7">Name</label>
+                    <div>
+                      <input
+                        type="text"
+                        name="name"
+                        className={`${nameErr.status ? 'error' : ''}`}
+                        value={this.state.name}
+                        disabled={this.state.disableField && this.state.otpSent}
+                        autoComplete="off"
+                        onChange={(e) => this.handleTextChange(e)} 
+                      />
+                    </div>
                   </div>
                   {
                     nameErr.status &&
                     <p className="error-message os s7">{nameErr.value}</p>
                   }
-                  <label>Email Address</label>
-                  <div>
-                    <input 
-                      type="text"
-                      name="email"
-                      value={this.state.email}
-                      className={`${emailErr.status ? 'error' : ''}`}
-                      disabled={this.state.disableField && this.state.otpSent} 
-                      autocomplete="off"
-                      onChange={(e) => this.handleTextChange(e)} 
-                    />
+                  <div className="form-group">
+                    <label>Email Address</label>
+                    <div>
+                      <input 
+                        type="text"
+                        name="email"
+                        value={this.state.email}
+                        className={`${emailErr.status ? 'error' : ''}`}
+                        disabled={this.state.disableField && this.state.otpSent} 
+                        autoComplete="off"
+                        onChange={(e) => this.handleTextChange(e)} 
+                      />
+                    </div>
                   </div>
                   {
                     emailErr.status &&
@@ -367,7 +374,7 @@ export default function SignUp(data) {
                   }
                   {
                     !otpSent &&
-                    <div>
+                    <div style={{ position: "relative" }} className="form-group">
                       <label>Date of Birth</label>
                       <span className="calendar">
                         <Icon name="calendar"/>
@@ -380,7 +387,7 @@ export default function SignUp(data) {
                           value={this.state.dob}
                           className={`${dobErr.status ? 'error' : ''}`}
                           //disabled={this.state.disableField && this.state.otpSent} 
-                          autocomplete="off"
+                          autoComplete="off"
                           onChange={(e) => this.handleTextChange(e)} 
                           style={{paddingLeft: '35px'}}
                         />
@@ -393,7 +400,7 @@ export default function SignUp(data) {
                   }
                   {
                     !otpSent &&
-                    <div>
+                    <div className="form-group">
                       <label>Gender</label>
                       <div className="row">
                         <div onClick={() => this.handleGenderChange("male")} className={`column ${gender === "male" ? 'active' : 'inactive'}`}>Male</div>
@@ -404,7 +411,7 @@ export default function SignUp(data) {
                   }
                   {
                     !otpSent &&
-                    <div>
+                    <div className="form-group">
                       <label>Account Pin</label>
                       <div>
                         <input 
@@ -413,7 +420,7 @@ export default function SignUp(data) {
                           maxLength={4}
                           value={this.state.pin}
                           className={`${pinErr.status ? 'error' : ''}`}
-                          autocomplete="off"
+                          autoComplete="off"
                           onChange={(e) => this.handleTextChange(e)} 
                           //style={{paddingLeft: '30px'}}
                         />
@@ -426,7 +433,7 @@ export default function SignUp(data) {
                   }
                   {
                     !otpSent &&
-                    <div>
+                    <div className="form-group">
                       <label>Confirm Account Pin</label>
                       <div>
                         <input 
@@ -435,7 +442,7 @@ export default function SignUp(data) {
                           maxLength={4}
                           value={this.state.confirmPin}
                           className={`${confirmPinErr.status ? 'error' : ''}`}
-                          autocomplete="off"
+                          autoComplete="off"
                           onChange={(e) => this.handleTextChange(e)} 
                           //style={{paddingLeft: '30px'}}
                         />
@@ -448,7 +455,7 @@ export default function SignUp(data) {
                   }
                   {
                     otpSent &&
-                    <div>
+                    <div className="form-group">
                       <label>OTP</label>
                       <div className="input-otp-container">
                         <input 
@@ -457,7 +464,7 @@ export default function SignUp(data) {
                           className={`${otpErr.status ? 'error' : ''}`}
                           value={this.state.otp}
                           //disabled={this.state.disableField}
-                          autocomplete="off"
+                          autoComplete="off"
                           onChange={(e) => this.handleTextChange(e)} 
                         />
                         <div className={`resend os s7 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND</div>
@@ -472,13 +479,13 @@ export default function SignUp(data) {
                 <div className="page-footer">
                   {
                     !otpSent 
-                    ? <React.Fragment>
-                        <button className='btn btn-secondary os s7' onClick={unMountModal}>CANCEL</button>
-                        <button className={`btn btn-primary os s7 ${isGettingOtp ? 'disabled': ''}`} onClick={this.handleClick}>GET OTP</button>
+                      ? <React.Fragment>
+                        <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
+                        <Button size="small" style={{ marginLeft: "15px" }} disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
                       </React.Fragment>
-                    : <React.Fragment>
-                        <button className='btn btn-secondary os s7' onClick={unMountModal}>CANCEL</button>
-                        <button className={`btn btn-primary os s7 ${isSigningUp ? 'disabled': ''}`} onClick={this.login}>SIGN UP</button>
+                      : <React.Fragment>
+                        <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
+                        <Button size="small" style={{ marginLeft: "15px" }} disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
                       </React.Fragment>
                   } 
                 </div>

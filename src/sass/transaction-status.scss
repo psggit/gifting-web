@@ -85,8 +85,8 @@
         width: 48%;
         //border: 1px solid red;
         text-align: left;
-        position: fixed;
-        right: 0px;
+        position: sticky;
+        top: 134px;
         .steps {
           svg {
             width: 30px;

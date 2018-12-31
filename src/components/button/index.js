@@ -23,7 +23,7 @@ class Button extends React.Component {
     return (
       <button
         disabled={this.props.disabled}
-        // style={this.props.style}
+        style={this.props.style}
         onClick={this.props.onClick}
         className={`btn ${this.getClassName()}`}
       >

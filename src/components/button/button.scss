@@ -7,7 +7,7 @@
   text-align: center;
   border: 0;
   border-radius: 5px;
-  line-height: 46px;
+  line-height: 44px;
   padding: 0 30px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -18,7 +18,7 @@
   }
 
   &.small {
-    line-height: 40px;
+    line-height: 38px;
   }
 
   &.disabled {
@@ -27,7 +27,7 @@
   }
 
   &.btn-primary {
-    // border-color: #000;
+    border: 2px solid #000;
     background-color: #000;
     color: #fff;
     &:hover {
@@ -37,8 +37,8 @@
   }
 
   &.btn-secondary {
-    background-color: #d1d2dd;
-    // border-color: #5a6872;
+    background-color: #f1f1f1;
+    border: 2px solid #000;
     color: #000;
     &:hover {
       transition: all 0.2s ease;

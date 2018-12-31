@@ -5,14 +5,14 @@ class ModalBox extends React.Component {
   handleClick(e) {
     if (e.keyCode == 27) {
       unmountComponentAtNode(document.getElementById('confirm-modal'))
-      // document.body.setAttribute('class', '')
+      document.body.setAttribute('style', 'auto')
     }
   }
 
   handlePress(e) {
     if (e.target.className === 'modal-overlay') {
       unmountComponentAtNode(document.getElementById('confirm-modal'))
-      // document.body.setAttribute('class', '')
+      document.body.setAttribute('style', 'auto')
     }
   }
 

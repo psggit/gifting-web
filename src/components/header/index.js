@@ -134,7 +134,9 @@ class Header extends React.Component {
 
   onToggle() {
     const {isMenuOpen} = this.state
-    this.setState({ isMenuOpen: !isMenuOpen })
+    this.setState({ isMenuOpen: !isMenuOpen }, () => {
+      document.body.style = !isMenuOpen ? "overflow:hidden" : "overflow:auto"
+    })
   }
 
   handleTransactionHistory() {
