@@ -7,9 +7,10 @@ export class ThemeProvider extends React.Component {
   constructor() {
     super()
     this.state = {
-      username: "Appu"
+      username: "",
+      isLoggedIn: "",
+      mobile: ""
     }
-    //this.toggleTheme = this.toggleTheme.bind(this)
   }
 
   componentWillMount() {
@@ -32,8 +33,8 @@ export class ThemeProvider extends React.Component {
           return
         }
         response.json().then((data) => {
-          this.setState({username: data.username, isLoggedIn: true})
-          localStorage.setItem("sender_mobile", data.mobile)
+          this.setState({username: data.username, isLoggedIn: true, mobile: data.mobile})
+          //localStorage.setItem("sender_mobile", data.mobile)
         })
       })
       .catch((err) => {
@@ -44,13 +45,15 @@ export class ThemeProvider extends React.Component {
         // }
       })
   }
-  // toggleTheme() {
-  //   const {theme} = this.state
-  //   this.setState({theme: theme === "light" ? "dark" : "light"});
-  // }
+
   render() {
+    const paramObj = {
+      username: this.state.username,
+      mobile: this.state.mobile,
+      isLoggedIn: this.state.isLoggedIn
+    }
     return (
-      <ThemeContext.Provider value={this.state.username}>
+      <ThemeContext.Provider value={paramObj}>
         {this.props.children}
       </ThemeContext.Provider>
     )

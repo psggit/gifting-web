@@ -153,8 +153,8 @@ class App extends React.Component {
       <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
         <ThemeProvider>
           <ThemeConsumer>
-            {(username) => {
-              console.log(username)
+            {(paramObj) => {
+              console.log(paramObj)
               return <Router history={history}>
                 <Switch>
                   <Route exact 
@@ -180,8 +180,8 @@ class App extends React.Component {
                     render={
                       props => (
                         <UsingGiftCard {...props} 
-                          name={this.state.username} 
-                          isLoggedIn={this.state.isLoggedIn}
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
                     } 
@@ -193,8 +193,7 @@ class App extends React.Component {
                     render={
                       props => (
                         <SendGiftCards {...props} 
-                          name={username} 
-                          isLoggedIn={this.state.isLoggedIn}
+                          paramObj={paramObj}
                         />
                       )
                     } 
@@ -205,8 +204,8 @@ class App extends React.Component {
                     render={
                       props => (
                         <TransactionHistory {...props} 
-                          name={this.state.username} 
-                          isLoggedIn={this.state.isLoggedIn}
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
                     } 
@@ -217,8 +216,8 @@ class App extends React.Component {
                     render={
                       props => (
                         <Checkout {...props} 
-                          name={this.state.username} 
-                          isLoggedIn={this.state.isLoggedIn}
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
                     } 
@@ -229,8 +228,8 @@ class App extends React.Component {
                     render={
                       props => (
                         <RetailOutlet {...props} 
-                          name={this.state.username} 
-                          isLoggedIn={this.state.isLoggedIn}
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
                     } 
@@ -241,8 +240,8 @@ class App extends React.Component {
                     render={
                       props => (
                         <FAQ {...props} 
-                          name={this.state.username} 
-                          isLoggedIn={this.state.isLoggedIn}
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
                     } 
@@ -253,8 +252,8 @@ class App extends React.Component {
                     render={
                       props => (
                         <TransactionSuccessful {...props} 
-                          name={this.state.username} 
-                          isLoggedIn={this.state.isLoggedIn}
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
                     } 
@@ -265,8 +264,8 @@ class App extends React.Component {
                     render={
                       props => (
                         <TransactionFail {...props} 
-                          name={this.state.username} 
-                          isLoggedIn={this.state.isLoggedIn}
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
                     } 

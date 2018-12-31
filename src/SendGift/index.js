@@ -11,14 +11,14 @@ class SendGift extends React.Component {
   constructor(props) {
     super(props)
     console.log(props.name);
-    
+
     this.state = {
       activePrice: "price2",
       amount: "999",
       giftMessage: "Wish you a merry christmas, wish you a merry christmas and a very happy new year! :)",
       receiverName: "Madhur",
       receiverNumber: "8989415866",
-      senderName: props.name,
+      senderName: "",
       senderNumber: localStorage.getItem("sender_mobile"),
       canProceed: false,
       username: props.username ? props.username : "",
@@ -40,10 +40,10 @@ class SendGift extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("send gift",prevProps, this.props, prevProps.name,this.props.name)
-    if (prevProps.name !== this.props.name) {
+    console.log("send gift", prevProps, this.props, prevProps.name, this.props.name)
+    if (prevProps.paramObj.username !== this.props.paramObj.username) {
       console.log("if")
-      this.setState({ senderName: this.props.name })
+      this.setState({ senderName: this.props.paramObj.username })
     }
   }
 
@@ -52,9 +52,9 @@ class SendGift extends React.Component {
   }
 
 
-  
+
   proceedToPayment() {
-    const { amount, giftMessage, receiverNumber, senderName, receiverName} = this.state
+    const { amount, giftMessage, receiverNumber, senderName, receiverName } = this.state
     if (
       amount.length &&
       giftMessage.length &&
@@ -128,14 +128,147 @@ class SendGift extends React.Component {
     console.log("sender nae", this.state.senderName)
     return (
       <div>
-        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
+        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn} />
         <div id="send-gift">
-        <div className="how-to-gift mobile">
-              <div onClick={this.toggleHowTo} className="how-to-gift-header">
+          <div className="how-to-gift mobile">
+            <div onClick={this.toggleHowTo} className="how-to-gift-header">
 
+            </div>
+            <div className={`how-to-gift-body ${this.state.isActive ? "active" : ""}`}>
+              <h2 className="cm s3">How to use Hipbar Gift Cards?</h2>
+              <Icon name="step1" />
+              <div className="desc">
+                <p className="cm s6">Gift drinks with HipBar Gifting</p>
+                <p className="os s7">
+                  Enter the amount to gift, the recipient’s information,<br />
+                  pay for the gift card and you’re good to go!
+                </p>
               </div>
-              <div className={`how-to-gift-body ${this.state.isActive ? "active" : ""}`}>
-                <h2 className="cm s3">How to use Hipbar Gift Cards?</h2>
+
+              <Icon name="step2" />
+              <div className="desc">
+                <p className="cm s6">Recipient gets notified via SMS & Whatsapp!</p>
+                <p className="os s7">
+                  With further information on how to use the gift <br /> cards, they have to download the HipBar app to use<br /> their HipBar Gift Card.
+                </p>
+              </div>
+
+              <Icon name="step3" />
+              <div className="desc">
+                <p className="cm s6">Recipient downloads the HipBar app</p>
+                <p className="os s7">
+                  With the HipBar app, they can easily view their Gift<br /> Cards and redeem it at 50+ HipBar powered retail<br /> outlets in Bengaluru.
+                </p>
+              </div>
+
+              <Icon name="step4" />
+              <div className="desc">
+                <p className="cm s6">
+                  Gets drinks with HipBar Gift Card at
+                  Retail Outlets*
+                </p>
+                <p className="os s7">
+                  Recipient pays for drinks with their HipBar Gift Card<br /> at select 50+ retail outlets across Bengaluru
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="container">
+            <div className="row">
+              <div className="col">
+                <div className="gift-card-form">
+                  <Giftcard amount={this.state.amount} />
+
+                  <div className="form-item gift-card-info">
+                    <h3 className="os s5">Gift Card Information</h3>
+                    <div className="form-group">
+                      <label className="os">Amount to gift</label>
+                      <div className="amounts">
+
+                        <div className="form-field">
+                          <input className={this.state.activePrice === "price1" ? "focused" : undefined} onFocus={(e) => { e.currentTarget.blur() }} onClick={this.handleAmountChange} name="price1" type="text" defaultValue="499" readOnly />
+                        </div>
+
+                        <div className="form-field">
+                          <input className={this.state.activePrice === "price2" ? "focused" : undefined} onFocus={(e) => { e.currentTarget.blur() }} onClick={this.handleAmountChange} name="price2" type="text" defaultValue="999" readOnly />
+                        </div>
+
+                        <div className="form-field">
+                          <input className={this.state.activePrice === "price3" ? "focused" : undefined} onFocus={(e) => { e.currentTarget.blur() }} onClick={this.handleAmountChange} name="price3" type="text" defaultValue="1999" readOnly />
+                        </div>
+
+                        <div className="form-field">
+                          <input onChange={this.handleAmountChange} name="price1" maxLength="5" type="text" placeholder="Other" />
+                          <span>&#8377;</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div className="form-group">
+                      <label className="os">Personal Message (optional)</label>
+                      <textarea onChange={this.handleMessageChange} name="giftMessage" rows="4" cols="50"></textarea>
+                      {/* <p>416 characters remaining</p> */}
+                    </div>
+                  </div>
+
+                  <div className="form-item recipient-info">
+                    <h3 className="os s5">Recipient Information</h3>
+
+                    <div className="form-group">
+                      <label className="os">Name</label>
+                      <input onChange={this.handleTextChange} name="receiverName" type="text" />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="os">Phone Number</label>
+                      <input onChange={this.handlePhoneChange} name="receiverNumber" maxLength="10" type="text" />
+                    </div>
+                  </div>
+
+                  <div className="form-item senders-info">
+                    <h3 className="os s5">Senders Information</h3>
+
+                    <div className="form-group">
+                      <label className="os">Name</label>
+                      <input onChange={this.handleTextChange} value={this.state.senderName} name="senderName" type="text" />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="os">Phone Number</label>
+                      <input value={this.state.senderNumber} onChange={this.handlePhoneChange} name="senderNumber" maxLength="10" type="text" readOnly />
+                    </div>
+                  </div>
+
+                  <div className="form-item">
+                    <div className="form-group">
+                      {/* <input type="checkbox" id="terms" />
+                    <label htmlFor="terms">
+                    I agree that the recipient is of legal drinking<br/> age at his state of residence and I agree to the<br/> terms and condition
+                    </label> */}
+                    </div>
+                  </div>
+
+                  {
+                    localStorage.getItem("isLoggedIn")
+                      ? (
+                        <div style={{ marginTop: "20px" }}>
+                          <Button onClick={this.proceedToPayment} primary>Proceed to payment</Button>
+                        </div>
+                      )
+                      : (
+                        <div style={{ marginTop: "20px" }}>
+                          <Button primary>Sign in to proceed</Button>
+                        </div>
+                      )
+                  }
+
+                </div>
+              </div>
+
+              <div className="col">
+                <div className="how-to-gift" >
+                  <h2 className="cm s3">How to use Hipbar Gift Cards?</h2>
                   <Icon name="step1" />
                   <div className="desc">
                     <p className="cm s6">Gift drinks with HipBar Gifting</p>
@@ -149,7 +282,7 @@ class SendGift extends React.Component {
                   <div className="desc">
                     <p className="cm s6">Recipient gets notified via SMS & Whatsapp!</p>
                     <p className="os s7">
-                    With further information on how to use the gift <br /> cards, they have to download the HipBar app to use<br/> their HipBar Gift Card.
+                      With further information on how to use the gift <br /> cards, they have to download the HipBar app to use<br /> their HipBar Gift Card.
                     </p>
                   </div>
 
@@ -157,157 +290,24 @@ class SendGift extends React.Component {
                   <div className="desc">
                     <p className="cm s6">Recipient downloads the HipBar app</p>
                     <p className="os s7">
-                    With the HipBar app, they can easily view their Gift<br /> Cards and redeem it at 50+ HipBar powered retail<br /> outlets in Bengaluru.
+                      With the HipBar app, they can easily view their Gift<br /> Cards and redeem it at 50+ HipBar powered retail<br /> outlets in Bengaluru.
                     </p>
                   </div>
 
                   <Icon name="step4" />
                   <div className="desc">
                     <p className="cm s6">
-                    Gets drinks with HipBar Gift Card at 
-                    Retail Outlets*
+                      Gets drinks with HipBar Gift Card at
+                      Retail Outlets*
                     </p>
                     <p className="os s7">
-                    Recipient pays for drinks with their HipBar Gift Card<br /> at select 50+ retail outlets across Bengaluru
+                      Recipient pays for drinks with their HipBar Gift Card<br /> at select 50+ retail outlets across Bengaluru
                     </p>
                   </div>
+
                 </div>
-                </div>
-          <div className="container">
-          <div className="row">
-            <div className="col">
-              <div className="gift-card-form">
-                <Giftcard amount={this.state.amount} />
-
-                <div className="form-item gift-card-info">
-                  <h3 className="os s5">Gift Card Information</h3>
-                  <div className="form-group">
-                    <label className="os">Amount to gift</label>
-                    <div className="amounts">
-
-                      <div className="form-field">
-                        <input className={this.state.activePrice === "price1" ? "focused" : undefined} onFocus={(e) => { e.currentTarget.blur()}}  onClick={this.handleAmountChange} name="price1" type="text" defaultValue="499" readOnly />
-                      </div>
-
-                      <div className="form-field">
-                        <input className={this.state.activePrice === "price2" ? "focused" : undefined} onFocus={(e) => { e.currentTarget.blur()}} onClick={this.handleAmountChange} name="price2" type="text" defaultValue="999" readOnly />
-                      </div>
-
-                      <div className="form-field">
-                        <input className={this.state.activePrice === "price3" ? "focused": undefined} onFocus={(e) => { e.currentTarget.blur()}} onClick={this.handleAmountChange} name="price3" type="text" defaultValue="1999" readOnly />
-                      </div>
-
-                      <div className="form-field">
-                        <input onChange={this.handleAmountChange} name="price1" maxLength="5" type="text" placeholder="Other" />
-                        <span>&#8377;</span>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <div className="form-group">
-                    <label className="os">Personal Message (optional)</label>
-                    <textarea onChange={this.handleMessageChange} name="giftMessage" rows="4" cols="50"></textarea>
-                    {/* <p>416 characters remaining</p> */}
-                  </div>
-                </div>
-                
-                <div className="form-item recipient-info">
-                  <h3 className="os s5">Recipient Information</h3>
-
-                  <div className="form-group">
-                    <label className="os">Name</label>
-                    <input onChange={this.handleTextChange} name="receiverName" type="text" />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="os">Phone Number</label>
-                    <input onChange={this.handlePhoneChange} name="receiverNumber" maxLength="10" type="text" />
-                  </div>
-                </div>
-
-                <div className="form-item senders-info">
-                  <h3 className="os s5">Senders Information</h3>
-
-                  <div className="form-group">
-                    <label className="os">Name</label>
-                    <input onChange={this.handleTextChange} value={this.state.senderName} name="senderName" type="text" />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="os">Phone Number</label>
-                    <input value={this.state.senderNumber} onChange={this.handlePhoneChange} name="senderNumber" maxLength="10" type="text" readOnly />
-                  </div>
-                </div>
-
-                <div className="form-item">
-                  <div className="form-group">
-                    {/* <input type="checkbox" id="terms" />
-                    <label htmlFor="terms">
-                    I agree that the recipient is of legal drinking<br/> age at his state of residence and I agree to the<br/> terms and condition
-                    </label> */}
-                  </div>
-                </div>
-
-                {
-                  localStorage.getItem("isLoggedIn")
-                    ? (
-                      <div style={{ marginTop: "20px" }}>
-                        <Button onClick={this.proceedToPayment} primary>Proceed to payment</Button>
-                      </div>
-                    )
-                    : (
-                      <div style={{ marginTop: "20px" }}>
-                        <Button primary>Sign in to proceed</Button>
-                      </div>
-                    )
-                }
-
               </div>
             </div>
-
-            <div className="col">
-              <div className="how-to-gift" >
-              <h2 className="cm s3">How to use Hipbar Gift Cards?</h2>
-                <Icon name="step1" />
-                <div className="desc">
-                  <p className="cm s6">Gift drinks with HipBar Gifting</p>
-                  <p className="os s7">
-                    Enter the amount to gift, the recipient’s information,<br />
-                    pay for the gift card and you’re good to go!
-                  </p>
-                </div>
-
-                <Icon name="step2" />
-                <div className="desc">
-                  <p className="cm s6">Recipient gets notified via SMS & Whatsapp!</p>
-                  <p className="os s7">
-                  With further information on how to use the gift <br /> cards, they have to download the HipBar app to use<br/> their HipBar Gift Card.
-                  </p>
-                </div>
-
-                <Icon name="step3" />
-                <div className="desc">
-                  <p className="cm s6">Recipient downloads the HipBar app</p>
-                  <p className="os s7">
-                  With the HipBar app, they can easily view their Gift<br /> Cards and redeem it at 50+ HipBar powered retail<br /> outlets in Bengaluru.
-                  </p>
-                </div>
-
-                <Icon name="step4" />
-                <div className="desc">
-                  <p className="cm s6">
-                  Gets drinks with HipBar Gift Card at 
-                  Retail Outlets*
-                  </p>
-                  <p className="os s7">
-                  Recipient pays for drinks with their HipBar Gift Card<br /> at select 50+ retail outlets across Bengaluru
-                  </p>
-                </div>
-
-              </div>
-            </div>
-          </div>
 
             {/* {
               this.state.canProceed &&
