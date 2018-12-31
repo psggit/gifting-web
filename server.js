@@ -33,6 +33,14 @@ app.get("*.js", (req, res, next) => {
   next()
 })
 
+app.get('/images/:name', (req, res) => {
+  res.sendFile(path.join(__dirname, `images/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 app.use(express.static(path.join(__dirname, "dist")))
 app.use(bodyParser.urlencoded({ extended: true }))
 

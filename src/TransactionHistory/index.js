@@ -36,8 +36,8 @@ class TransactionHistory extends React.Component {
       offset: 10
     }
     this.setState({loading: true})
-    //Api.fetchTransactionList(payload, this.successCallback,  this.failureCallback)
-    this.successCallback()
+    Api.fetchTransactionList(payload, this.successCallback,  this.failureCallback)
+    //this.successCallback()
   }
 
   successCallback() {

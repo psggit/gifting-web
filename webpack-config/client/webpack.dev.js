@@ -8,7 +8,8 @@ module.exports = merge(common, {
   devServer: {
     contentBase: path.resolve(__dirname, "./../../dist"),
     port: 3000,
-    compress: true
+    compress: true,
+    publicPath: "/"
   },
   module: {
     rules: [
