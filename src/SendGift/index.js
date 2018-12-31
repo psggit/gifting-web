@@ -19,7 +19,7 @@ class SendGift extends React.Component {
       receiverName: "Madhur",
       receiverNumber: "8989415866",
       senderName: "",
-      senderNumber: localStorage.getItem("sender_mobile"),
+      senderNumber: "",
       canProceed: false,
       username: props.username ? props.username : "",
       isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false,
