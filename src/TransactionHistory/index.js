@@ -1,7 +1,7 @@
 import React from 'react'
 import './transaction-history.scss'
 import * as Api from './../api'
-import {transactiondata} from './mockdata'
+//import {transactiondata} from './mockdata'
 import Header from "Components/header"
 import Footer from "Components/footer"
 
@@ -32,15 +32,15 @@ class TransactionHistory extends React.Component {
 
   fetchTransactionList() {
     const payload = {
-      limit: 10,
-      offset: 10
+      limit: 1000,
+      offset: 0
     }
     this.setState({loading: true})
     Api.fetchTransactionList(payload, this.successCallback,  this.failureCallback)
     //this.successCallback()
   }
 
-  successCallback() {
+  successCallback(transactiondata) {
     //const data = []
     const data = transactiondata.order_detail
     this.setState({transactionData: data, loading: false})

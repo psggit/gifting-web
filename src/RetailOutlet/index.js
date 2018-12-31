@@ -57,7 +57,7 @@ class RetailOutlet extends React.Component {
     //console.log("city details", cityId)
     const payload = {
       city_id: parseInt(cityId),
-      limit: 10,
+      limit: 1000,
       offset: 0
     }
     //this.setState({retailerOutletData: retailerData.data})

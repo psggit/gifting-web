@@ -2,22 +2,22 @@ import { POST, GET } from 'Utils/fetch'
 //import Notify from 'Components/notify'
 
 export function fetchTransactionList (payloadObj, successCallback, failureCallback) {
-  return GET({
+  return POST({
     api: `/consumer/transactionsv3/gifts_sent_all`,
     apiBase: 'orderman',
-    //data: payloadObj,
+    data: payloadObj,
     handleError: true
   })
     .then((json) => {
       console.log("Fetched transaction list", json)
-      successCallback()
+      successCallback(json)
       //successCallback(json)
       //console.log("success", json)
     })
     .catch(err => {
-      failureCallback()
       //console.log("failure")
-      // console.log("Error in fetching organisation list", err)
+      console.log("Error in fetching transaction list", err)
+      failureCallback()
       // err.response.json().then(json => { Notify("danger", json.error) })
       // failureCallback()
     })
