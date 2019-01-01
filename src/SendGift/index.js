@@ -19,7 +19,7 @@ class SendGift extends React.Component {
       receiverName: "Madhur",
       receiverNumber: "8989415866",
       senderName: "",
-      senderNumber: localStorage.getItem("sender_mobile"),
+      senderNumber: "",
       canProceed: false,
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false,
@@ -41,9 +41,9 @@ class SendGift extends React.Component {
 
   componentDidUpdate(prevProps) {
     //console.log("send gift", prevProps, this.props, prevProps.name, this.props.name)
-    if (prevProps.paramObj.username !== this.props.paramObj.username || prevProps.paramObj.mobile !== this.props.paramObj.mobile) {
+    if (prevProps.paramObj.username !== this.props.paramObj.username || prevProps.paramObj.mobile !== this.props.paramObj.mobile || prevProps.paramObj.isLoggedIn !== this.props.paramObj.isLoggedIn ) {
       //console.log("if")
-      this.setState({ senderName: this.props.paramObj.username, senderNumber: this.props.paramObj.mobile})
+      this.setState({ senderName: this.props.paramObj.username, senderNumber: this.props.paramObj.mobile, isLoggedIn: this.props.paramObj.isLoggedIn})
     }
   }
 
@@ -250,7 +250,7 @@ class SendGift extends React.Component {
                   </div>
 
                   {
-                    localStorage.getItem("isLoggedIn")
+                    this.state.isLoggedIn
                       ? (
                         <div style={{ marginTop: "20px" }}>
                           <Button onClick={this.proceedToPayment} primary>Proceed to payment</Button>

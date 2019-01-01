@@ -43,17 +43,17 @@ export function getUsername(data) {
   return username
 }
 
-export function createSession(data, loginStatus) {
+export function createSession(data) {
   console.log("session storage", data)
   localStorage.setItem('x-hasura-role', getHasuraRole(data))
   localStorage.setItem('hasura-id', getHasuraId(data))
   localStorage.setItem('username', getUsername(data))
-  localStorage.setItem('isLoggedIn', loginStatus)
+  //localStorage.setItem('isLoggedIn', loginStatus)
 }
 
 export function clearSession() {
   const isLoadingFirstTime = localStorage.getItem("isLoadingFirstTime")
   localStorage.clear()
-  localStorage.setItem("isLoggedIn", "false")
+ // localStorage.setItem("isLoggedIn", "false")
   localStorage.setItem("isLoadingFirstTime", isLoadingFirstTime)
 }

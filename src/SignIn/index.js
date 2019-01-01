@@ -70,7 +70,7 @@ export default function SignIn(data) {
               }
               mountModal(SignUp({
                 mobile: this.state.mobileNo,
-                reload: data.reload
+                //reload: data.reload
               }))
               this.setState({isGettingOtp: false})
               return
@@ -161,10 +161,10 @@ export default function SignIn(data) {
                 this.setState({isSigningIn: false})
                 return
               }
-              createSession(responseData, "true")
+              //createSession(responseData, "true")
               location.href= (location.pathname)
               unMountModal()
-              data.reload(true)
+              //data.reload(true)
               this.setState({isSigningIn: false})
             })
           })
@@ -218,6 +218,7 @@ export default function SignIn(data) {
                         disabled={this.state.disableField}
                         // value={this.state.mobileNo}
                         autoComplete="off"
+                        maxLength={10}
                         //onChange={(e) => this.handleTextChange(e)}
                         //defaultValue={this.state.mobileNo}
                         className={`mobile ${mobileNoErr.status ? 'error' : ''}`}

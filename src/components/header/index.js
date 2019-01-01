@@ -44,7 +44,7 @@ class Header extends React.Component {
     this.handleMouseOut = this.handleMouseOut.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleSignOut = this.handleSignOut.bind(this)
-    this.reloadHeader = this.reloadHeader.bind(this)
+    //this.reloadHeader = this.reloadHeader.bind(this)
     this.handleLink = this.handleLink.bind(this)
   }
 
@@ -71,14 +71,14 @@ class Header extends React.Component {
   //   }
   // }
 
-  reloadHeader(loginStatus) {
-    // if(localStorage.getItem('isLoggedIn') === "true") {
-    //   this.setState({isLoggedIn: true})
-    // } else if(localStorage.getItem('isLoggedIn') === "false") {
-    //   this.setState({isLoggedIn: false})
-    // }
-    this.setState({isLoggedIn: loginStatus})
-  }
+  // reloadHeader(loginStatus) {
+  //   // if(localStorage.getItem('isLoggedIn') === "true") {
+  //   //   this.setState({isLoggedIn: true})
+  //   // } else if(localStorage.getItem('isLoggedIn') === "false") {
+  //   //   this.setState({isLoggedIn: false})
+  //   // }
+  //   this.setState({isLoggedIn: loginStatus})
+  // }
 
   handleSignOut() {
     this.setState({showDropdown: false})
@@ -113,7 +113,7 @@ class Header extends React.Component {
   
   handleClick() {
     mountModal(SignIn({
-      reload: this.reloadHeader
+      //reload: this.reloadHeader
     }))
   }
 
