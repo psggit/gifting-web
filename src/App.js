@@ -8,6 +8,7 @@ import {
 
 import { Router } from "react-router"
 import CreateHistory from 'history/createBrowserHistory'
+import LegalDrinkingAge from './LegalDrinkingAge'
 
 import LandingPage from "./landing"
 import UsingGiftCard from './GiftCardInfo'
@@ -278,8 +279,9 @@ class App extends React.Component {
                     path="/locationMap" 
                     component={LocationMap} 
                   />
-                   <Route exact path="/payment-success" component={PaymentSuccess}  />
-                   <Route exact path="/payment-failure" component={PaymentFailure}  />
+                  <Route exact path="/payment-success" component={PaymentSuccess}  />
+                  <Route exact path="/payment-failure" component={PaymentFailure}  />
+                  <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
                   <Route exact path="*" component={() => <h1>404 Not Found</h1>} />
                 </Switch>
               </Router>

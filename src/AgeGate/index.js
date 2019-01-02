@@ -33,7 +33,7 @@ export default function AgeGate(data) {
               Agree if you are above the legal drinking age in your state of residence
             </p>
             <div style={{display: 'flex', marginTop: '40px', alignItems: 'center'}}>
-              <a className="os s6">
+              <a className="os s6" href="/legal-drinking-age" target="_blank">
                 Legal drinking age by states/UTs
               </a>
               <Icon name="rightArrowBlack" />
