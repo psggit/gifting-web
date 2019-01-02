@@ -253,7 +253,7 @@ export default function SignIn(data) {
                           autocomplete="off"
                           onChange={(e) => this.handleTextChange(e)}
                         />
-                        <div className={`resend os s7 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND OTP</div>
+                        <div className={`resend os s10 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND OTP</div>
                       </div>
                       {
                         otpErr.status &&
@@ -273,8 +273,8 @@ export default function SignIn(data) {
                             <Button size="small" style={{ marginLeft: "15px" }} disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
                           </div> 
                           <div className="button-section mobile">
-                          <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                            <Button size="small" style={{ marginLeft: "15px" }} disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
+                            <Button size="small" disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
+                            <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
                           </div> 
                         </div>
                         
