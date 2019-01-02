@@ -2,11 +2,16 @@
 
 #retailOutlet {
   width: 100%;
-  font-family: $font-OpenSans;
+  //font-family: $font-OpenSans;
   //height: 100vh;
   h4 {
     text-align: center;
   }
+
+  h2 {
+    padding-bottom: 10px;
+  }
+
   .content {
     // padding: 0 20.5%;
     position: relative;
