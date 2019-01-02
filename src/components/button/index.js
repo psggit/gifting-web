@@ -1,5 +1,6 @@
 import React from "react"
 import "./button.scss"
+import Icon from "./../icon"
 
 class Button extends React.Component {
   getClassName() {
@@ -28,6 +29,10 @@ class Button extends React.Component {
         className={`btn ${this.getClassName()}`}
       >
         { this.props.children }
+        {
+          this.props.icon &&
+          <span style={{ position: "relative", top: "5px", left: "10px" }}><Icon name="rightArrowWhite" /></span>
+        }
       </button>
     )
   }

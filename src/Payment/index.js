@@ -67,6 +67,8 @@ class Payment extends React.Component {
   }
 
   componentDidMount() {
+    // console.log(this.props);
+    
     this.getBanks()
     this.getSavedCards()
   }
@@ -283,9 +285,10 @@ class Payment extends React.Component {
                                       <input ref={(node) => { this[`cardExp${i+3}`] = node }} name="saved" defaultValue={`${item.expiry_month}/${item.expiry_year}`} type="hidden" maxLength={4} />
                                     </div>
 
-                                    <div style={{ width: "130px" }}>
+                                    <div style={{ width: "130px", position: "relative" }}>
                                       <label className="os">CVV</label>
                                       <input onChange={this.handleCVVChange} ref={(node) => { this[`cardCvv${i+3}`] = node }} name="saved"  type="password" maxLength={4} />
+                                      <div style={{ position: "absolute", top: 0, left: 0 }}></div>
                                     </div>
                                   </div>
 
@@ -385,7 +388,7 @@ class Payment extends React.Component {
                       </div>
 
                       <div style={{ marginTop: "30px" }}>
-                        <Button onClick={this.handleSubmit} primary>Pay now</Button>
+                        <Button icon="fefe" onClick={this.handleSubmit} primary>Pay now</Button>
                       </div>
                       {
                         this.state.selectedPaymentMethod === "card" &&

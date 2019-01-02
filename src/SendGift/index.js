@@ -20,8 +20,8 @@ class SendGift extends React.Component {
       giftMessage: "Wish you a merry christmas, wish you a merry christmas and a very happy new year! :)",
       receiverName: "Madhur",
       receiverNumber: "8989415866",
-      senderName: "",
-      senderNumber: "",
+      senderName: props.paramObj.username,
+      senderNumber: props.paramObj.mobile,
       canProceed: false,
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false,
@@ -42,9 +42,9 @@ class SendGift extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    console.log("componrnt fif update")
     //console.log("send gift", prevProps, this.props, prevProps.name, this.props.name)
     if (prevProps.paramObj.username !== this.props.paramObj.username || prevProps.paramObj.mobile !== this.props.paramObj.mobile || prevProps.paramObj.isLoggedIn !== this.props.paramObj.isLoggedIn ) {
-      //console.log("if")
       this.setState({ senderName: this.props.paramObj.username, senderNumber: this.props.paramObj.mobile, isLoggedIn: this.props.paramObj.isLoggedIn})
     }
   }
@@ -114,7 +114,7 @@ class SendGift extends React.Component {
           email: json.email,
           first_name: json.first_name,
           sender_name: senderName,
-          sender_num: localStorage.getItem("sender_mobile"),
+          sender_num: this.state.senderNumber,
           gift_message: giftMessage,
           receiver_name: receiverName,
           receiver_number: receiverNumber

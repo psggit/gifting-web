@@ -44,9 +44,9 @@ app.get('/images/:name', (req, res) => {
 app.use(express.static(path.join(__dirname, "dist")))
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.get("/checkout", (req, res) => {
-  res.send("Not Found")
-})
+// app.get("/checkout", (req, res) => {
+//   res.send("Not Found")
+// })
 
 // app.post('/checkout', (req, res) => {
 //   const { preloadedState, content}  = CheckoutReact.default(req.body)
