@@ -4,6 +4,36 @@
   margin-top: 100px;
   background-color: #f1f1f1;
 
+  .gift-card-info {
+    display: inline-block;
+    width: 100%;
+    margin-top: 30px;
+    text-align: left;
+    padding: 20px;
+    background-color: #fff;
+    .os.s7 {
+     line-height: 1.6;
+     letter-spacing: 0.5px;
+     color: #000000;
+    }
+    .os.s6 {
+      font-weight: 600;
+     letter-spacing: 0.6px;
+     color: #000000;
+    }
+  }
+
+  .how-to-gift.mobile {
+    display: none;
+    background-color: #fff;
+    svg {
+      margin-top: 30px;
+    }
+    .gift-card-info {
+      margin-top: 0;
+    }
+  }
+
   .os.s5 {
     font-weight: 600;
     letter-spacing: 0.6px;
@@ -23,6 +53,7 @@
   .col {
     &:first-child {
       width: 500px;
+      max-width: 100%;
     }
 
     &:last-child {
@@ -30,24 +61,24 @@
       text-align: right;
     }
 
-   .gift-card-info {
-     display: inline-block;
-     width: 100%;
-     margin-top: 30px;
-     text-align: left;
-     padding: 20px;
-     background-color: #fff;
-     .os.s7 {
-      line-height: 1.6;
-      letter-spacing: 0.5px;
-      color: #000000;
-     }
-     .os.s6 {
-       font-weight: 600;
-      letter-spacing: 0.6px;
-      color: #000000;
-     }
-   }
+  //  .gift-card-info {
+  //    display: inline-block;
+  //    width: 100%;
+  //    margin-top: 30px;
+  //    text-align: left;
+  //    padding: 20px;
+  //    background-color: #fff;
+  //    .os.s7 {
+  //     line-height: 1.6;
+  //     letter-spacing: 0.5px;
+  //     color: #000000;
+  //    }
+  //    .os.s6 {
+  //      font-weight: 600;
+  //     letter-spacing: 0.6px;
+  //     color: #000000;
+  //    }
+  //  }
   }
 
   .payment-methods-wrapper {
@@ -68,4 +99,56 @@
   }
 }
 
-// @media only screen and 
+
+@media only screen and (max-width: 1060px) {
+  #checkout {
+    .how-to-gift.mobile {
+      z-index: 1;
+      display: block;
+    }
+    .how-to-gift-body {
+      margin-top: 200px;
+      max-height: 0;
+      padding: 0 20px;
+      overflow: hidden;
+      transition: all 0.2s ease-in;
+    }
+    .how-to-gift-body.active {
+      padding: 20px;
+      max-height: 1000px;
+    }
+    .how-to-gift.mobile .how-to-gift-header {
+      position: fixed;
+      top: 100px;
+      left: 0;
+      text-align: left;
+      background-color: #000;
+      line-height: 100px;
+      width: 100%;
+      z-index: 2;
+    }
+    .row {
+      justify-content: space-around;
+      // flex-direction: column;
+      .col:last-child {
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1125px) {
+  #checkout {
+    .row {
+      justify-content: space-between;
+    }
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  #checkout {
+    .row {
+      display: block;
+    }
+  }
+}

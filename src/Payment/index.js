@@ -11,6 +11,7 @@ import AccordianItem from "Components/accordian/accordian-item"
 import { GET } from "Utils/fetch"
 import MaskedInput from "react-text-mask"
 import GiftCard from "Components/gift-card"
+import Icon from "Components/icon"
 
 class Payment extends React.Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class Payment extends React.Component {
     this.handleCVVChange  =this.handleCVVChange.bind(this)
     this.handleCardnameChange = this.handleCardnameChange.bind(this)
     this.setCardValues = this.setCardValues.bind(this)
+    this.toggleHowTo = this.toggleHowTo.bind(this)
   }
 
   componentWillMount() {
@@ -153,6 +155,10 @@ class Payment extends React.Component {
         }
       })
     }
+  }
+
+  toggleHowTo() {
+    this.setState({ isActive: !this.state.isActive })
   }
 
   handleCardNumberChange(e) {
@@ -257,6 +263,35 @@ class Payment extends React.Component {
               <div>
                 <Header />
                 <div id="checkout">
+                <div className="how-to-gift mobile">
+                  <div onClick={this.toggleHowTo} className="how-to-gift-header">
+                    <p style={{ padding: "0 30px", color: "#fff" }} className="os s3">
+                      Gift Card Summary
+                        <span style={{ marginLeft: "10px" }}>
+                        <Icon name="filledDownArrowWhite" />
+                      </span>
+                    </p>
+                  </div>
+                  <div className={`how-to-gift-body ${this.state.isActive ? "active" : ""}`}>
+                    <div className="gift-card-info">
+                        <div>
+                          <p className="os s6">To</p>
+                          <p className="os s7">{this.state.sender_name}<br /> +91 {this.state.sender_num}</p>
+                        </div>
+
+                        <div style={{ marginTop: "20px", borderBottom: "1px solid #dfdfdf", paddingBottom: "20px" }}>
+                          <p className="os s7">
+                            <span className="os s6">Personal Message -</span>{this.state.gift_message}
+                          </p>
+                        </div>
+
+                        <div style={{ marginTop: "20px" }} >
+                          <p className="os s6">From</p>
+                          <p className="os s7">{this.state.receiver_name}<br /> +91 {this.state.receiver_number}</p>
+                        </div>
+                      </div>
+                  </div>
+                </div>
                   <div className="container">
                     <div className="row">
                     <div className="col">
