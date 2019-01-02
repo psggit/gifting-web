@@ -2,11 +2,12 @@
 
 #TransactionHistory {
   width: 100%;
-  font-family: $font-OpenSans;
+  //font-family: $font-OpenSans;
   //height: 100vh;
   h4, h2 {
-    font-family: $font-Cormorant;
+    //font-family: $font-Cormorant;
     text-align: center;
+    padding-bottom: 10px;
   }
   .content {
     // padding: 0 20.5%;
@@ -18,7 +19,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
-    padding: 15% 20.5% 7% 20.5%;
+    padding: 15% 12.5% 7% 12.5%;
     background: #f1f1f1;
 
     .note {
@@ -32,7 +33,7 @@
       width: 100%;
 
       .header {
-        border-bottom: 1px solid #555555;
+        border-bottom: 2px solid #555555;
         display: flex;
       }
 

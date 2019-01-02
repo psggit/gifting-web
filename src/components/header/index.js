@@ -201,7 +201,7 @@ class Header extends React.Component {
                       <div className="logout">
                         <Icon name="appUser" style={{marginRight: '10px'}}/>
                         <div className="os s2"  style={{marginRight: '8px'}} >{paramObj.username}</div>
-                        <span onClick={() => this.openDropdown()} style={{display: 'flex'}}>
+                        <span onClick={() => this.openDropdown()} style={{display: 'flex', alignSelf: 'flex-end'}}>
                           <Icon name="filledDownArrow" />
                         </span>
           

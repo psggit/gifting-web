@@ -74,7 +74,7 @@
       //   margin-bottom: 10px;
       // }
       font-weight: 600;
-      padding: 10px;
+      padding: 10px 0;
     }
     .input-otp-container {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -82,7 +82,7 @@
       .resend {
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
         position: absolute;
-        top: 34px;
+        top: 35px;
         right: 10px;
         font-weight: 600;
         cursor: pointer;
@@ -110,6 +110,7 @@
       margin: 10px 0;
       border: 1px solid #000;
       border-radius: 4px;
+      background: #fff;
     }
   }
 
@@ -163,6 +164,15 @@
     height: 100vh;
     border-radius: 0px;
     padding: 8.5% 25px;
+  
+    .page-body {
+      .alert-box {
+          display: flex;
+          flex-direction: column !important;
+          text-align: center !important;
+      }
+    }
+
     .page-footer {
       .button-section {
         display: none;

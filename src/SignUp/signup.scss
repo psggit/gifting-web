@@ -70,6 +70,10 @@
       outline: none;
     }
 
+    input[type="password"] {
+      font-size: 27px;
+    }
+
     // input[type="date"]::-webkit-calendar-picker-indicator {
     //   color: rgba(0, 0, 0, 0);
     //   opacity: 1;
@@ -114,7 +118,7 @@
       .resend {
         position: absolute;
         top: 10px;
-        right: 10px;
+        right: 35px;
         font-weight: 600;
         cursor: pointer;
         &.disabled {
@@ -153,7 +157,7 @@
       color: #232a2e;
       letter-spacing: 0;
       margin: 10px 0;
-      font-weight: 600;
+      font-weight: 400;
     }
 
     .alert-box {

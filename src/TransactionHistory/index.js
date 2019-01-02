@@ -4,6 +4,7 @@ import * as Api from './../api'
 //import {transactiondata} from './mockdata'
 import Header from "Components/header"
 import Footer from "Components/footer"
+import Moment from "moment"
 
 class TransactionHistory extends React.Component {
   constructor(props) {
@@ -69,28 +70,28 @@ class TransactionHistory extends React.Component {
       <div key={i} className="transaction-item">
         <div className="item-header os s7">
           <div className="item-subheader">
-            <p>{item.receiver_name} | </p>
-            <p>
+            <p className="os s7">{item.receiver_name} | </p>
+            <p className="os s7">
               {item.receiver_mobile}
             </p>
           </div>
-          <p>{item.gift_card_amount}</p>
+          <p className="os s7">Rs. {item.gift_card_amount}</p>
         </div>
         <div className="item-body">
           <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px', marginRight: '16px'}}>
             <p className="os s9">
               Gift Card ID
             </p>
-            <span className="os s8">{item.gift_card_number}</span>
+            <span className="os s8">#{item.gift_card_number}</span>
           </div>
           <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px', marginRight: '16px'}}>
             <p className="os s9">Transaction Date & Time</p>
-            <span className="os s8">{item.gifted_on}</span>
+            <span className="os s8">{Moment(item.gifted_on).format('DD/MM/YYYY, HH:mm A')}</span>
           </div>
         </div>
         <div className="item-footer">
           <p className="os s9">Personal Message</p>
-          <p className="os s8">{item.personal_message}</p>
+          <p className="os s8">{item.gift_message ? item.gift_message : '-'}</p>
         </div>
       </div>
     ))
