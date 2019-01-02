@@ -345,7 +345,7 @@ class Payment extends React.Component {
 
                             <AccordianItem key={2} title="Net Banking" id={2}>
                               <div style={{ padding: "0 20px" }}>
-                                <p style={{ fontWeight: "600", color: "#000", letterSpacing: "0.5px" }} className="os s8">Popular Banks</p>
+                                <p style={{ fontWeight: "bold", color: "#000", letterSpacing: "0.5px" }} className="os s8">Popular Banks</p>
                                 <div ref={(node) => { this.radios = node}} style={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}>
                                   {
                                     this.state.popularBanks.slice(0, 3).map((item, i) => (
@@ -367,7 +367,7 @@ class Payment extends React.Component {
                                 </div>
                                 <div>                                  
                                   <div style={{ marginTop: "20px" }} className="form-group">
-                                    <p style={{ fontWeight: "600", color: "#000", letterSpacing: "0.5px" }} className="os s8">Other Banks</p>
+                                    <p style={{ fontWeight: "bold", color: "#000", letterSpacing: "0.5px" }} className="os s8">Other Banks</p>
                                     <select value={this.state.bankcode} onChange={this.handleSelectChange} style={{ marginTop: "15px" }}>
                                       {
                                         (this.state.isPopularSelected || this.state.noBankSelected) &&

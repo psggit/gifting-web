@@ -137,7 +137,7 @@ class RetailOutlet extends React.Component {
                 {
                   retailerOutletData.length > 0 &&
                   <div className="header">
-                    <h2 className="os s4">OUTLETS - {retailerOutletData.length} AVAILABLE</h2>
+                    <h2 className="os s7">OUTLETS - {retailerOutletData.length} AVAILABLE</h2>
                   </div>
                 }
                 {
@@ -147,11 +147,11 @@ class RetailOutlet extends React.Component {
                 }
                 {
                   isSelectedCity && retailerOutletData.length === 0 &&
-                  <p className="note os s8">No retailers found</p>
+                  <p className="note os s4">No retailers found</p>
                 }
                 {
                   !isSelectedCity &&
-                  <p className="note os s8">Select a city to find retailers there </p>
+                  <p className="note os s4">Select a city to find retailers there </p>
                 }
               </div>
           

@@ -187,6 +187,9 @@ export default function SignIn(data) {
 
     render() {
       const {otpSent, isGettingOtp, mobileNoErr, otpErr, isSigningIn} = this.state
+      const cursorStyle = {
+        cursor: 'not-allowed'
+      }
       return (
         <div>
           {
@@ -216,6 +219,7 @@ export default function SignIn(data) {
                         type="text"
                         name="mobileNo"
                         disabled={this.state.disableField}
+                        style={this.state.disableField ? cursorStyle : {}}
                         placeholder="Enter the phone number"
                         // value={this.state.mobileNo}
                         autoComplete="off"
@@ -230,37 +234,39 @@ export default function SignIn(data) {
                   </div>
                   {
                     mobileNoErr.status &&
-                    <p className="error-message os s7">{mobileNoErr.value}</p>
+                    <p className="error-message os s9">{mobileNoErr.value}</p>
                   }
                   {
                     otpSent &&
                     <React.Fragment>
-                      <div className="note os s7">Otp has been sent!</div>
+                      <div className="note os s9">OTP has been sent!</div>
                       <div className="alert-box">
-                        <div style={{marginRight: '10px'}}>
+                        <div style={{marginRight: '10px', display: 'flex'}}>
                           <Icon name="alert" />
                         </div>
-                        <div className="0s s2">
+                        <div className="os s8">
                           Welcome back to HipBar! Please enter the OTP to sign in.
                         </div>
                       </div>
-                      <div className="form-group input-otp-container">
-                      <label className="os s7">OTP</label>
-                        <input 
-                          type="text"
-                          name="otp"
-                          placeholder="Enter the OTP that you've received"
-                          value={this.state.otp}
-                          className={`${otpErr.status ? 'error' : ''}`}
-                          autocomplete="off"
-                          onChange={(e) => this.handleTextChange(e)}
-                        />
-                        <div className={`resend os s10 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND OTP</div>
+                      <div className="form-group">
+                        <label className="os s7">OTP</label>
+                        <div className="input-otp-container"> 
+                          <input 
+                            type="text"
+                            name="otp"
+                            placeholder="Enter the OTP that you've received"
+                            value={this.state.otp}
+                            className={`${otpErr.status ? 'error' : ''}`}
+                            autocomplete="off"
+                            onChange={(e) => this.handleTextChange(e)}
+                          />
+                          <div className={`resend os s10 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND OTP</div>
+                        </div>
+                        {
+                          otpErr.status &&
+                          <p className="error-message os s9">{otpErr.value}</p>
+                        }
                       </div>
-                      {
-                        otpErr.status &&
-                        <p className="error-message os s7">{otpErr.value}</p>
-                      }
                     </React.Fragment>
                     
                   }

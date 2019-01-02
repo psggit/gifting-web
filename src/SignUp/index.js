@@ -301,6 +301,10 @@ export default function SignUp(data) {
         isGettingOtp
       } = this.state
 
+      const cursorStyle = {
+        cursor: 'not-allowed'
+      }
+
       return (
         <div>
           {
@@ -322,6 +326,7 @@ export default function SignUp(data) {
                           name="mobileNo"
                           maxLength={10}
                           disabled={this.state.disableField}
+                          style={this.state.disableField ? cursorStyle : {}}
                           //value={this.state.mobileNo}
                           autoComplete="off"
                           //onChange={(e) => this.handleTextChange(e)}
@@ -335,7 +340,7 @@ export default function SignUp(data) {
                   </div>
                   {
                     mobileNoErr.status &&
-                    <p className="error-message os s7">{mobileNoErr.value}</p>
+                    <p className="error-message os s9">{mobileNoErr.value}</p>
                   }
                   {
                     otpSent &&
@@ -358,7 +363,7 @@ export default function SignUp(data) {
                   </div>
                   {
                     nameErr.status &&
-                    <p className="error-message os s7">{nameErr.value}</p>
+                    <p className="error-message os s9">{nameErr.value}</p>
                   }
                   <div className="form-group">
                     <label>Email Address</label>
@@ -377,7 +382,7 @@ export default function SignUp(data) {
                   </div>
                   {
                     emailErr.status &&
-                    <p className="error-message os s7">{emailErr.value}</p>
+                    <p className="error-message os s9">{emailErr.value}</p>
                   }
                   {
                     !otpSent &&
@@ -404,16 +409,16 @@ export default function SignUp(data) {
                   }
                   {
                     dobErr.status &&
-                    <p className="error-message os s7">{dobErr.value}</p>
+                    <p className="error-message os s9">{dobErr.value}</p>
                   }
                   {
                     !otpSent &&
                     <div className="form-group">
                       <label>Gender</label>
                       <div className="row">
-                        <div onClick={() => this.handleGenderChange("male")} className={`column ${gender === "male" ? 'active' : 'inactive'}`}>Male</div>
-                        <div onClick={() => this.handleGenderChange("female")} className={`column ${gender === "female" ? 'active' : ''}`}>Female</div>
-                        <div onClick={() => this.handleGenderChange("unspecified")} className={`column ${gender === "unspecified" ? 'active' : ''}`}>Unspecified</div>
+                        <div onClick={() => this.handleGenderChange("male")} className={`column os s8 ${gender === "male" ? 'active' : 'inactive'}`}>Male</div>
+                        <div onClick={() => this.handleGenderChange("female")} className={`column os s8 ${gender === "female" ? 'active' : ''}`}>Female</div>
+                        <div onClick={() => this.handleGenderChange("unspecified")} className={`column os s8 ${gender === "unspecified" ? 'active' : ''}`}>Unspecified</div>
                       </div>
                     </div>
                   }
@@ -439,7 +444,7 @@ export default function SignUp(data) {
                   }
                   {
                     !otpSent &&
-                    <div className="note os s7">Set account pin for secure transactions on the HipBar mobile app</div>
+                    <div className="note os s9">Set account pin for secure transactions on the HipBar mobile app</div>
                   }
                   {
                     !otpSent &&
@@ -464,7 +469,7 @@ export default function SignUp(data) {
                   }
                   {
                     confirmPinErr.status &&
-                    <p className="error-message os s7">{confirmPinErr.value}</p>
+                    <p className="error-message os s9">{confirmPinErr.value}</p>
                   }
                   {
                     otpSent &&
@@ -484,7 +489,7 @@ export default function SignUp(data) {
                       </div>
                       {
                         otpErr.status &&
-                        <p className="error-message os s7">{otpErr.value}</p>
+                        <p className="error-message os s9">{otpErr.value}</p>
                       }
                     </div>
                   }

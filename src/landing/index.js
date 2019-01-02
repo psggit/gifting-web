@@ -81,7 +81,8 @@ class LandingPage extends React.Component {
               Brands that we’ve partnered with
             </h1>
             <div className="brands-list">
-              <img src="https://hipbar.com/a21696ca22b7c04fb7591c52c5089f4f.png" />
+              {/* <img src="https://hipbar.com/a21696ca22b7c04fb7591c52c5089f4f.png" /> */}
+              <Icon name="bacardi" />
               <img src="https://hipbar.com/a0ee9f2c10e0e287bc9c05d64cffa171.png" />
               <img src="https://hipbar.com/d38974e5f50a5ae0f40ba9e323f03b63.png" />
               <img src="https://hipbar.com/9e9ee179bf9d959bef56c681e6670b9b.png" />

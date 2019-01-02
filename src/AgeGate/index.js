@@ -5,6 +5,7 @@ import ModalBody from 'Components/modal-box/ModalBody'
 import ModalBox from 'Components/modal-box'
 import Icon from "Components/icon"
 import { unMountModal } from 'Components/modal-box/utils'
+import Button from "Components/button"
 
 export default function AgeGate(data) {
   return class AgeGate extends React.Component {
@@ -40,8 +41,8 @@ export default function AgeGate(data) {
             </div>
           </ModalBody>
           <ModalFooter>
-            <button className='btn btn-secondary os s7' onClick={() => {return this.closeWindow()}}>DISAGREE</button>
-            <button className='btn btn-primary os s7' onClick={unMountModal}>AGREE</button>     
+            <Button secondary className='os s7' style={{marginRight: '24px', width: '160px'}} onClick={() => {return this.closeWindow()}}>DISAGREE</Button>
+            <Button  primary className='os s7' style={{width: '160px'}} onClick={unMountModal}>AGREE</Button>     
           </ModalFooter>
           {
             showNote &&
@@ -49,7 +50,7 @@ export default function AgeGate(data) {
               <span  className="icon">
                 <Icon name="alert"/>
               </span>
-              <div>Sorry! You've to be above the legal drinking age to access this website</div>
+              <div className="os s6">Sorry! You've to be above the legal drinking age to access this website</div>
             </div>
           }     
         </ModalBox>

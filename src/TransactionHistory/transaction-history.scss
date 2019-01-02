@@ -40,14 +40,14 @@
       .transaction-item {
         display: flex;
         flex-direction: column;
-        padding: 24px 0px;
+        padding: 12px 0px;
         border-bottom: 1px solid #555555;
 
         .item-header {
           display: flex;
           justify-content: space-between;
           margin-top: 16px;
-          font-weight: 600;
+          font-weight: bold;
 
           .item-subheader {
             display: flex;
