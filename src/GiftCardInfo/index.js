@@ -12,6 +12,14 @@ class GiftCards extends React.Component {
     //console.log("props", props, props.data, props.name, props.isLoggedIn)
   }
 
+  componentDidMount() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
+  }
+
   // componentWillReceiveProps(newProps) {
   //   //console.log("helo", newProps)
   //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
@@ -23,7 +31,7 @@ class GiftCards extends React.Component {
     //console.log("props in card", this.props)
     return(
       <div>
-        <Header/>
+        <Header history={this.props.history} />
         <div id="GiftCards">
           <div className="content">
             <h2 className="cm s1">How to use HipBar Gift Cards?</h2>

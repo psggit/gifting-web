@@ -38,6 +38,12 @@ class SendGift extends React.Component {
   }
 
   componentDidMount() {
+    console.log("send gift mounting....")
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
     localStorage.removeItem("txn")
   }
 
@@ -141,7 +147,7 @@ class SendGift extends React.Component {
     console.log("sender nae", this.state.senderName)
     return (
       <div>
-        <Header />
+        <Header history={this.props.history} />
         <div id="send-gift">
           <div className="how-to-gift mobile">
             <div onClick={this.toggleHowTo} className="how-to-gift-header">

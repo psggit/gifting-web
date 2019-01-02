@@ -49,6 +49,7 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props)
     this.links = document.querySelectorAll(".nav-items a")
     // if(localStorage.getItem('isLoggedIn') === "false" || localStorage.getItem('isLoggedIn') === "undefined") {
     //   this.setState({isLoggedIn: false })
@@ -108,7 +109,7 @@ class Header extends React.Component {
 
   handleLink(e) {
     // e.preventDefault()
-    // this.props.history.push(e.target.href)
+    // this.props.history.push("/" + e.target.href.split("/").pop())
   }
   
   handleClick() {
@@ -161,8 +162,8 @@ class Header extends React.Component {
               //console.log("header props", paramObj)
               return (
                 <div className="navbar">
-                  <div className="logo" onClick={() => {location.href="/"}}>
-                    <a>
+                  <div className="logo">
+                    <a href="/">
                       <Icon name="hipbarLogo" />
                     </a>
                   </div>

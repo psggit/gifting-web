@@ -29,6 +29,11 @@ class RetailOutlet extends React.Component {
   }
 
   componentDidMount() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
     this.fetchAvailableHipbarDelivery()
   }
 
@@ -115,7 +120,7 @@ class RetailOutlet extends React.Component {
     //console.log("outlet data", this.state.retailerOutletData)
     return (
       <div>
-        <Header />
+        <Header history={this.props.history} />
         <div id="retailOutlet">
           <div className="content">
             <h2 className="cm s1">Find a HipBar powered retailer near you</h2>

@@ -99,6 +99,9 @@ class App extends React.Component {
   componentDidMount() {
     //window.addEventListener('resize', this.display.bind(this))
     localStorage.setItem("isLoadingFirstTime", true)
+    history.listen(location => {
+      console.log(location)
+    })
   }
 
   handleSignOut() {

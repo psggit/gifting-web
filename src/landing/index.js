@@ -19,7 +19,12 @@ class LandingPage extends React.Component {
   }
   
   componentDidMount() {
-    console.log(this.props.value)
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
+    
     if(!localStorage.getItem('isLoadingFirstTime')) {
       mountModal(AgeGate({}))
     }
@@ -37,7 +42,7 @@ class LandingPage extends React.Component {
     //console.log("props", this.props, this.props.name)
     return (
       <div>
-        <Header/>
+        <Header history={this.props.history} />
         <div id="landing">
 
           <div className="intro-wrapper">

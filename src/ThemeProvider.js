@@ -1,6 +1,8 @@
 import React from "react";
 import { render } from "react-dom";
 import { Api } from "Utils/config"
+import CreateHistory from 'history/createBrowserHistory'
+const history = CreateHistory()
 
 export const ThemeContext = React.createContext("light")
 export class ThemeProvider extends React.Component {
@@ -51,7 +53,8 @@ export class ThemeProvider extends React.Component {
     const paramObj = {
       username: this.state.username,
       mobile: this.state.mobile,
-      isLoggedIn: this.state.isLoggedIn
+      isLoggedIn: this.state.isLoggedIn,
+      history
     }
     //console.log("theme provider", paramObj)
     return (

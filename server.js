@@ -14,8 +14,9 @@ app.disable("x-powered-by")
 
 // ENV variables
 // const PROD_API_BASE = process.env.PROD_API_BASE
-const URL_ENV = "amebae21.hasura-app.io";
-// const URL_ENV = process.env.URL_ENV
+// const ENDPOINT_URL = "amebae21.hasura-app.io";
+const ENDPOINT_URL = process.env.ENDPOINT_URL || "amebae21.hasura-app.io"
+console.log(ENDPOINT_URL)
 
 
 // middleware for processing js files
@@ -95,7 +96,7 @@ app.get('/privacy', (req, res) => {
 })
 
 app.post("/transaction", (req, res) => {
-  request.post({ url: `https://orderman.${URL_ENV}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
+  request.post({ url: `https://orderman.${ENDPOINT_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     console.log(err, httpRes, body)
   })
   res.sendFile(path.join(__dirname, "src/transaction.html"), (err) => {
