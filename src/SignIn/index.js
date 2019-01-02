@@ -216,6 +216,7 @@ export default function SignIn(data) {
                         type="text"
                         name="mobileNo"
                         disabled={this.state.disableField}
+                        placeholder="Enter the phone number"
                         // value={this.state.mobileNo}
                         autoComplete="off"
                         maxLength={10}
@@ -243,12 +244,12 @@ export default function SignIn(data) {
                           Welcome back to HipBar! Please enter the OTP to sign in.
                         </div>
                       </div>
-                      
                       <div className="form-group input-otp-container">
                       <label className="os s7">OTP</label>
                         <input 
                           type="text"
                           name="otp"
+                          placeholder="Enter the OTP that you've received"
                           value={this.state.otp}
                           className={`${otpErr.status ? 'error' : ''}`}
                           autocomplete="off"

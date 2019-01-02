@@ -347,6 +347,7 @@ export default function SignUp(data) {
                       <input
                         type="text"
                         name="name"
+                        placeholder="Enter your name"
                         className={`${nameErr.status ? 'error' : ''}`}
                         value={this.state.name}
                         disabled={this.state.disableField && this.state.otpSent}
@@ -365,6 +366,7 @@ export default function SignUp(data) {
                       <input
                         type="text"
                         name="email"
+                        placeholder="Enter your email address"
                         value={this.state.email}
                         className={`${emailErr.status ? 'error' : ''}`}
                         disabled={this.state.disableField && this.state.otpSent}
@@ -390,6 +392,7 @@ export default function SignUp(data) {
                           name="dob"
                           max="9999-12-31"
                           value={this.state.dob}
+                          placeholder="Enter your date of birth"
                           className={`${dobErr.status ? 'error' : ''}`}
                           //disabled={this.state.disableField && this.state.otpSent} 
                           autoComplete="off"
@@ -423,6 +426,7 @@ export default function SignUp(data) {
                           type="password"
                           name="pin"
                           maxLength={4}
+                          placeholder="Set your account pin"
                           //value={this.state.pin}
                           className={`${pinErr.status ? 'error' : ''}`}
                           autoComplete="off"
@@ -446,6 +450,7 @@ export default function SignUp(data) {
                           type="password"
                           name="confirmPin"
                           maxLength={4}
+                          placeholder="Re enter your account pin"
                           //value={this.state.confirmPin}
                           className={`${confirmPinErr.status ? 'error' : ''}`}
                           autoComplete="off"

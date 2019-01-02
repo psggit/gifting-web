@@ -235,12 +235,23 @@ class SendGift extends React.Component {
 
                     <div className="form-group">
                       <label className="os">Name</label>
-                      <input onChange={this.handleTextChange} name="receiverName" type="text" />
+                      <input 
+                        onChange={this.handleTextChange} 
+                        name="receiverName" 
+                        type="text" 
+                        placeholder="Enter the recipients name"
+                      />
                     </div>
 
                     <div className="form-group">
                       <label className="os">Phone Number</label>
-                      <input onChange={this.handlePhoneChange} name="receiverNumber" maxLength="10" type="text" />
+                      <input 
+                        onChange={this.handlePhoneChange} 
+                        name="receiverNumber" 
+                        maxLength="10" 
+                        type="text" 
+                        placeholder="Enter the recipients phone number"
+                      />
                     </div>
                   </div>
 
@@ -249,12 +260,24 @@ class SendGift extends React.Component {
 
                     <div className="form-group">
                       <label className="os">Name</label>
-                      <input onChange={this.handleTextChange} value={this.state.senderName}  name="senderName" type="text" />
+                      <input 
+                        onChange={this.handleTextChange} 
+                        value={this.state.senderName}  
+                        name="senderName" 
+                        type="text" 
+                        placeholder="Enter your name"
+                      />
                     </div>
 
                     <div className="form-group">
                       <label className="os">Phone Number</label>
-                      <input value={this.state.senderNumber} onChange={this.handlePhoneChange} name="senderNumber" maxLength="10" type="text" readOnly />
+                      <input 
+                        value={this.state.senderNumber} 
+                        onChange={this.handlePhoneChange} 
+                        name="senderNumber" 
+                        maxLength="10" 
+                        placeholder="Enter your phone number"
+                        type="text" readOnly />
                     </div>
                   </div>
 
