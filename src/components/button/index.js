@@ -31,7 +31,7 @@ class Button extends React.Component {
         { this.props.children }
         {
           this.props.icon &&
-          <span style={{ position: "relative", top: "5px", left: "10px" }}><Icon name="rightArrowWhite" /></span>
+          <span style={{ position: "relative", top: "5px", left: "10px" }}><Icon name={this.props.icon} /></span>
         }
       </button>
     )

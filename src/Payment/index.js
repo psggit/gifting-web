@@ -388,7 +388,7 @@ class Payment extends React.Component {
                       </div>
 
                       <div style={{ marginTop: "30px" }}>
-                        <Button icon="fefe" onClick={this.handleSubmit} primary>Pay now</Button>
+                        <Button icon="fefe" onClick={this.handleSubmit}  icon="rightArrowWhite" primary>Pay now</Button>
                       </div>
                       {
                         this.state.selectedPaymentMethod === "card" &&

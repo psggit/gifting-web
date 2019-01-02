@@ -177,7 +177,7 @@ class LandingPage extends React.Component {
 
             <div style={{ marginTop: "30px" }}>
               <a href="/retail-outlet">
-                <Button primary>View Retail Outlets</Button>
+                <Button primary  icon="rightArrowWhite">View Retail Outlets</Button>
               </a>
             </div>
           </div>

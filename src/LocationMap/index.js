@@ -50,7 +50,7 @@ class LocationMap extends React.Component {
     const queryObj = getQueryObj(queryUri)
 
     Object.entries(queryObj).forEach((item) => {
-      this.setState({[item[0]]: parseInt(item[1]) },
+      this.setState({[item[0]]: parseFloat(item[1]) },
         () => {console.log("state", this.state)})
         //this.filter[item[0]] = item[1]
     })

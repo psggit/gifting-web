@@ -294,12 +294,12 @@ class SendGift extends React.Component {
                     this.state.isLoggedIn
                       ? (
                         <div style={{ marginTop: "20px" }}>
-                          <Button onClick={this.proceedToPayment} primary>Proceed to payment</Button>
+                          <Button onClick={this.proceedToPayment} primary  icon="rightArrowWhite">Proceed to payment</Button>
                         </div>
                       )
                       : (
                         <div style={{ marginTop: "20px" }}>
-                          <Button onClick={() => { mountModal(SignIn({})) }} primary>Sign in to proceed</Button>
+                          <Button onClick={() => { mountModal(SignIn({})) }} primary  icon="rightArrowWhite">Sign in to proceed</Button>
                         </div>
                       )
                   }

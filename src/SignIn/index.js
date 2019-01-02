@@ -272,10 +272,10 @@ export default function SignIn(data) {
                         <div>
                           <div className="button-section">
                             <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                            <Button size="small" style={{ marginLeft: "15px" }} disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
+                            <Button size="small" icon="rightArrowWhite" style={{ marginLeft: "15px" }} disabled={isGettingOtp} primary onClick={this.handleClick}>PROCEED</Button>
                           </div> 
                           <div className="button-section mobile">
-                            <Button size="small" disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
+                            <Button size="small"  icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.handleClick}>PROCEED</Button>
                             <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
                           </div> 
                         </div>
@@ -283,7 +283,7 @@ export default function SignIn(data) {
                       </React.Fragment>
                     : <React.Fragment>
                         <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                        <Button size="small" style={{ marginLeft: "15px" }} disabled={isGettingOtp} primary onClick={this.signIn}>Sign in</Button>
+                        <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.signIn}>Sign in</Button>
                       </React.Fragment>
                   } 
                 </div>

@@ -494,11 +494,11 @@ export default function SignUp(data) {
                     !otpSent
                       ? <React.Fragment>
                         <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                        <Button size="small" style={{ marginLeft: "15px" }} disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
+                        <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
                       </React.Fragment>
                       : <React.Fragment>
                         <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                        <Button size="small" style={{ marginLeft: "15px" }} disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
+                        <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
                       </React.Fragment>
                   }
                 </div>
