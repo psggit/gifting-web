@@ -5,7 +5,7 @@ import {Switch} from "react-router-dom"
 import {
   Route
 } from "react-router-dom"
-
+import AgeGate from './AgeGate'
 import { Router } from "react-router"
 import CreateHistory from 'history/createBrowserHistory'
 import LegalDrinkingAge from './LegalDrinkingAge'
@@ -61,7 +61,7 @@ class App extends React.Component {
       username: "",
       isLoggedIn: false
     }
-    this.handleSignOut = this.handleSignOut.bind(this)
+    //this.handleSignOut = this.handleSignOut.bind(this)
   }
 
   // componentWillMount() {
@@ -96,36 +96,40 @@ class App extends React.Component {
   //       // }
   //     })
   // }
-
+  componentWillMount() {
+    //localStorage.setItem("showAgegate", true)
+  }
   componentDidMount() {
     //window.addEventListener('resize', this.display.bind(this))
-    localStorage.setItem("isLoadingFirstTime", true)
-  }
-
-  handleSignOut() {
-    const fetchOptions = {
-      method: 'get',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      //credentials: 'include',
-      mode: 'cors',
+    if((localStorage.getItem("showAgeGate") === "true" && !localStorage.getItem("hasura-id"))) {
+      mountModal(AgeGate({}))
     }
-
-    fetch(`${Api.blogicUrl}/consumer/auth/user/logout`, fetchOptions)
-      .then((response) => {
-        this.setState({isLoggedIn: false})
-        //location.href = "/"
-        //setTimeout(() => {
-        clearSession()
-        //}, 1000)
-      })
-      .catch((err) => {
-        //console.log("Error in logout", err)
-        mountModal(NotifyError({}))
-      })
   }
+
+  // handleSignOut() {
+  //   const fetchOptions = {
+  //     method: 'get',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     //credentials: 'include',
+  //     mode: 'cors',
+  //   }
+
+  //   fetch(`${Api.blogicUrl}/consumer/auth/user/logout`, fetchOptions)
+  //     .then((response) => {
+  //       this.setState({isLoggedIn: false})
+  //       //location.href = "/"
+  //       //setTimeout(() => {
+  //       clearSession()
+  //       //}, 1000)
+  //     })
+  //     .catch((err) => {
+  //       //console.log("Error in logout", err)
+  //       mountModal(NotifyError({}))
+  //     })
+  // }
 
 
   // display() {

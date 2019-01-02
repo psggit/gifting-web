@@ -205,6 +205,7 @@ export default function SignUp(data) {
                 this.setState({ isSigningUp: false })
                 return
               }
+              //localStorage.setItem("showAgegate", false)
               createSession(responseData)
               location.href = (location.pathname)
               unMountModal()

@@ -8,6 +8,7 @@ import { mountModal } from 'Components/modal-box/utils'
 import AgeGate from './../AgeGate'
 import Header from "Components/header"
 import Footer from "Components/footer"
+import { loadavg } from "os";
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -20,9 +21,6 @@ class LandingPage extends React.Component {
   
   componentDidMount() {
     console.log(this.props.value)
-    if(!localStorage.getItem('isLoadingFirstTime')) {
-      mountModal(AgeGate({}))
-    }
   }
 
   // componentWillReceiveProps(newProps) {

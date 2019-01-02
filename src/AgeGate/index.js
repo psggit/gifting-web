@@ -41,8 +41,8 @@ export default function AgeGate(data) {
             </div>
           </ModalBody>
           <ModalFooter>
-            <Button secondary className='os s7' style={{marginRight: '24px', width: '160px'}} onClick={() => {return this.closeWindow()}}>DISAGREE</Button>
-            <Button  primary className='os s7' style={{width: '160px'}} onClick={unMountModal}>AGREE</Button>     
+            <Button secondary style={{marginRight: '24px', width: '160px'}} onClick={() => {return this.closeWindow()}}>DISAGREE</Button>
+            <Button  primary style={{width: '160px'}} onClick={unMountModal}>AGREE</Button>     
           </ModalFooter>
           {
             showNote &&

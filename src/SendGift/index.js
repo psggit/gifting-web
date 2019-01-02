@@ -138,7 +138,7 @@ class SendGift extends React.Component {
   // }
 
   render() {
-    console.log("sender nae", this.state.senderName)
+    //console.log("sender nae", this.state.senderName)
     return (
       <div>
         <Header />
