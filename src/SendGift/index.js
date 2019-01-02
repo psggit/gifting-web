@@ -12,7 +12,7 @@ import { POST } from "Utils/fetch"
 class SendGift extends React.Component {
   constructor(props) {
     super(props)
-    console.log(localStorage.getItem("sender_mobile"));
+    console.log(props.name);
 
     this.state = {
       activePrice: "price1",
@@ -42,17 +42,18 @@ class SendGift extends React.Component {
     localStorage.removeItem("txn")
   }
 
+  componentDidUpdate(prevProps) {
+    console.log("send gift", prevProps, this.props, prevProps.name, this.props.name)
+    if (prevProps.paramObj.username !== this.props.paramObj.username) {
+      console.log("if")
+      this.setState({ senderName: this.props.paramObj.username })
+    }
+  }
 
   toggleHowTo() {
     this.setState({ isActive: !this.state.isActive })
   }
 
-  componentWillReceiveProps(newProps) {
-    //console.log("helo", newProps)
-    if (this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-      this.setState({ username: newProps.username, isLoggedIn: newProps.isLoggedIn })
-    }
-  }
 
   proceedToPayment() {
     const { amount, giftMessage, receiverNumber, senderName, receiverName } = this.state
@@ -138,6 +139,7 @@ class SendGift extends React.Component {
   // }
 
   render() {
+    console.log("sender nae", this.state.senderName)
     return (
       <div>
         <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn} />
@@ -248,7 +250,7 @@ class SendGift extends React.Component {
 
                     <div className="form-group">
                       <label className="os">Name</label>
-                      <input onChange={this.handleTextChange} name="senderName" type="text" />
+                      <input onChange={this.handleTextChange} value={this.state.senderName}  name="senderName" type="text" />
                     </div>
 
                     <div className="form-group">

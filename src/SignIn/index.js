@@ -252,7 +252,7 @@ export default function SignIn(data) {
                           autocomplete="off"
                           onChange={(e) => this.handleTextChange(e)}
                         />
-                        <div className={`resend os s8 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND</div>
+                        <div className={`resend os s7 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND OTP</div>
                       </div>
                       {
                         otpErr.status &&

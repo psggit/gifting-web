@@ -20,7 +20,12 @@ class TransactionHistory extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchTransactionList()
+    //console.log("login", localStorage.getItem("isLoggedIn"), this.props)
+    if(localStorage.getItem("isLoggedIn") === "false") {
+      this.props.history.goBack()
+    } else {
+      this.fetchTransactionList()
+    }
   }
 
   componentWillReceiveProps(newProps) {
