@@ -5,7 +5,7 @@ import ModalBox from '../components/modal-box/modalBox'
 import Icon from "Components/icon"
 import SignIn from './../SignIn'
 import { Api } from '../utils/config'
-import {createSession} from 'Utils/session-utils'
+import { createSession } from 'Utils/session-utils'
 import { checkCtrlA, validateNumType, checkCtrlV, checkCtrlC } from 'Utils/logic-utils'
 import { validateNumberField } from 'Utils/validators'
 import { validateTextField, validateEmail } from '../utils/validators';
@@ -78,49 +78,49 @@ export default function SignUp(data) {
     }
 
     handleGenderChange(genderValue) {
-      this.setState({gender: genderValue})
+      this.setState({ gender: genderValue })
     }
 
     isFormValid() {
-      const {otpSent, pin, confirmPin} = this.state
+      const { otpSent, pin, confirmPin } = this.state
       let otpErr = this.state.otpErr
 
       const mobileNoErr = validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo)
-      this.setState({mobileNoErr: validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo)})
+      this.setState({ mobileNoErr: validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo) })
 
       const nameErr = validateTextField(this.inputNameMap['name'], this.state.name)
-      this.setState({nameErr: validateTextField(this.inputNameMap['name'], this.state.name)})
+      this.setState({ nameErr: validateTextField(this.inputNameMap['name'], this.state.name) })
 
       const emailErr = validateEmail(this.inputNameMap['email'], this.state.email)
-      this.setState({emailErr: validateEmail(this.inputNameMap['email'], this.state.email)})
+      this.setState({ emailErr: validateEmail(this.inputNameMap['email'], this.state.email) })
 
       const dobErr = validateTextField(this.inputNameMap['dob'], this.state.dob)
-      this.setState({dobErr: validateTextField(this.inputNameMap['dob'], this.state.dob)})
+      this.setState({ dobErr: validateTextField(this.inputNameMap['dob'], this.state.dob) })
 
       const pinErr = validateTextField(this.inputNameMap['pin'], this.state.pin)
-      this.setState({pinErr: validateTextField(this.inputNameMap['pin'], this.state.pin)})
+      this.setState({ pinErr: validateTextField(this.inputNameMap['pin'], this.state.pin) })
 
       const confirmPinErr = validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin)
-      this.setState({confirmPinErr: validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin)})
-      
-      if(otpSent) {
+      this.setState({ confirmPinErr: validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin) })
+
+      if (otpSent) {
         otpErr = validateTextField(this.inputNameMap['otp'], this.state.otp)
-        this.setState({otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp)})
+        this.setState({ otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp) })
       }
 
-      if(pin !== confirmPin) {
-        this.setState({confirmPinErr: {status: true, value: "Pin does not match"}})
+      if (pin !== confirmPin) {
+        this.setState({ confirmPinErr: { status: true, value: "Pin does not match" } })
         return false
       }
-    
+
       if (!mobileNoErr.status && !otpErr.status && !otpSent && !emailErr.status && !nameErr.status && !dobErr.status && !pinErr.status && !confirmPinErr.status) {
         return true
       }
       return false
     }
 
-    handleClick () {
-      if(this.isFormValid() && !this.state.isGettingOtp) {
+    handleClick() {
+      if (this.isFormValid() && !this.state.isGettingOtp) {
         this.signUp()
       }
     }
@@ -133,7 +133,7 @@ export default function SignUp(data) {
           name: this.state.name,
           gps: "",
           pin: parseInt(this.state.pin),
-          referral_code:""
+          referral_code: ""
         },
         mobile: this.state.mobileNo,
         email: this.state.email,
@@ -149,34 +149,34 @@ export default function SignUp(data) {
         mode: 'cors',
         body: JSON.stringify(payload)
       }
-      this.setState({errorInSignUp: false, isGettingOtp: true})
+      this.setState({ errorInSignUp: false, isGettingOtp: true })
       fetch(`${Api.blogicUrl}/consumer/auth/otp-signup`, fetchOptions)
         .then((response) => {
           response.json().then((responseData) => {
             // if(responseData.errorCode === "role-invalid") {
             //   this.signOut()
             // } else 
-            if(response.status === 400 && responseData.errorCode === "dob-error") {
-              this.setState({dobErr: {status: true, value: responseData.message}})
-            } else if(response.status === 409 && responseData.errorCode === "user-already-exists") {
-              this.setState({emailErr: {status: true, value: responseData.message}})
+            if (response.status === 400 && responseData.errorCode === "dob-error") {
+              this.setState({ dobErr: { status: true, value: responseData.message } })
+            } else if (response.status === 409 && responseData.errorCode === "user-already-exists") {
+              this.setState({ emailErr: { status: true, value: responseData.message } })
               //return
-            } else if(response.status !== 400) {
+            } else if (response.status !== 400) {
               this.getOtp()
-            } 
-            this.setState({isGettingOtp: false})
+            }
+            this.setState({ isGettingOtp: false })
           })
           //return
         })
         .catch((err) => {
-          this.setState({errorInSignUp: true, isGettingOtp: false})
+          this.setState({ errorInSignUp: true, isGettingOtp: false })
           //this.setState({isGettingOtp: false})
           mountModal(NotifyError({}))
         })
     }
 
     login() {
-      if(!this.state.isSigningUp) {
+      if (!this.state.isSigningUp) {
         const payload = {
           info: {},
           mobile: this.state.mobileNo,
@@ -192,27 +192,28 @@ export default function SignUp(data) {
           mode: 'cors',
           body: JSON.stringify(payload)
         }
-        this.setState({errorInSignIn: false, isSigningUp: true})
+        this.setState({ errorInSignIn: false, isSigningUp: true })
         fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
           .then((response) => {
             response.json().then((responseData) => {
-              if(response.status === 400 && responseData.errorCode.includes("invalid-otp")){
-                this.setState({otpErr: {status: true, value: "Incorrect OTP. Please enter again or resend OTP"}})
-                this.setState({isSigningUp: false})
+              if (response.status === 400 && responseData.errorCode.includes("invalid-otp")) {
+                this.setState({ otpErr: { status: true, value: "Incorrect OTP. Please enter again or resend OTP" } })
+                this.setState({ isSigningUp: false })
                 return
-              } else if(response.status === 400 && responseData.errorCode === "expired-otp"){
-                this.setState({otpErr: {status: true, value: responseData.message}})
-                this.setState({isSigningUp: false})
+              } else if (response.status === 400 && responseData.errorCode === "expired-otp") {
+                this.setState({ otpErr: { status: true, value: responseData.message } })
+                this.setState({ isSigningUp: false })
                 return
               }
-              createSession(responseData, "true")
+              createSession(responseData)
+              location.href = (location.pathname)
               unMountModal()
-              data.reload(true)
-              this.setState({isSigningUp: false})
+              //data.reload(true)
+              this.setState({ isSigningUp: false })
             })
           })
           .catch((err) => {
-            this.setState({errorInSignUp: true, isSigningUp: false})
+            this.setState({ errorInSignUp: true, isSigningUp: false })
             //this.setState({})
             mountModal(NotifyError({}))
           })
@@ -234,17 +235,17 @@ export default function SignUp(data) {
         mode: 'cors',
         body: JSON.stringify(payload)
       }
-      this.setState({errorInSignUp: false, isGettingOtp: true})
+      this.setState({ errorInSignUp: false, isGettingOtp: true })
       fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
         .then((response) => {
           if (response.status === 401) {
-            this.setState({otpSent: true, disableField: true})
+            this.setState({ otpSent: true, disableField: true })
           }
-          this.setState({isGettingOtp: false})
+          this.setState({ isGettingOtp: false })
           return
         })
         .catch((err) => {
-          this.setState({errorInSignUp: true, isGettingOtp: false})
+          this.setState({ errorInSignUp: true, isGettingOtp: false })
           //this.setState({})
           mountModal(NotifyError({}))
         })
@@ -252,7 +253,7 @@ export default function SignUp(data) {
 
     resendOtp() {
       //this.setState({otpSent: true})
-      if(!this.state.isGettingOtp) {
+      if (!this.state.isGettingOtp) {
         this.getOtp()
       }
     }
@@ -276,30 +277,30 @@ export default function SignUp(data) {
     handleNumberChange(e) {
       const errName = `${e.target.name}Err`
 
-      if(validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e) || checkCtrlC(e)) {
-        this.setState({ 
+      if (validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e) || checkCtrlC(e)) {
+        this.setState({
           [e.target.name]: e.target.value,
           //[errName]:  validateNumberField(this.inputNameMap[e.target.name], e.target.value)
         })
       } else {
         e.preventDefault()
-      }   
+      }
     }
 
     render() {
-      const { otpSent, 
-              mobileNoErr, 
-              emailErr, 
-              nameErr, otpErr, 
-              errorInSignUp, 
-              dobErr,
-              pinErr,
-              confirmPinErr,
-              gender,
-              isSigningUp,
-              isGettingOtp
-            } = this.state
-    
+      const { otpSent,
+        mobileNoErr,
+        emailErr,
+        nameErr, otpErr,
+        errorInSignUp,
+        dobErr,
+        pinErr,
+        confirmPinErr,
+        gender,
+        isSigningUp,
+        isGettingOtp
+      } = this.state
+
       return (
         <div>
           {
@@ -309,34 +310,34 @@ export default function SignUp(data) {
                   Sign up with HipBar
                 </h2>
                 <div className="page-body">
-                <div className="form-group">
-                  <label className="os s7">Phone Number</label>
-                  <div style={{display: 'flex'}}>
-                    <div className={`country-code ${mobileNoErr.status ? 'error' : ''}`}>
-                      +91
+                  <div className="form-group">
+                    <label className="os s7">Phone Number</label>
+                    <div style={{ display: 'flex' }}>
+                      <div className={`country-code ${mobileNoErr.status ? 'error' : ''}`}>
+                        +91
                     </div>
-                    <div style={{width: 'calc(100% - 40px'}}>
-                      <input 
-                        type="text"
-                        name="mobileNo"
-                        maxLength={10}
-                        disabled={this.state.disableField}
-                        //value={this.state.mobileNo}
-                        autoComplete="off"
-                        //onChange={(e) => this.handleTextChange(e)}
-                        defaultValue={this.state.mobileNo}
-                        className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
-                        onKeyDown={(e) => {this.handleNumberChange(e)}}
-                        onKeyUp={(e) => {this.handleNumberChange(e)}}
-                      />
+                      <div style={{ width: 'calc(100% - 40px' }}>
+                        <input
+                          type="text"
+                          name="mobileNo"
+                          maxLength={10}
+                          disabled={this.state.disableField}
+                          //value={this.state.mobileNo}
+                          autoComplete="off"
+                          //onChange={(e) => this.handleTextChange(e)}
+                          defaultValue={this.state.mobileNo}
+                          className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
+                          onKeyDown={(e) => { this.handleNumberChange(e) }}
+                          onKeyUp={(e) => { this.handleNumberChange(e) }}
+                        />
+                      </div>
                     </div>
-                  </div>
                   </div>
                   {
                     mobileNoErr.status &&
                     <p className="error-message os s7">{mobileNoErr.value}</p>
                   }
-                  {   
+                  {
                     otpSent &&
                     <div className="note os s7">Otp has been sent!</div>
                   }
@@ -350,7 +351,7 @@ export default function SignUp(data) {
                         value={this.state.name}
                         disabled={this.state.disableField && this.state.otpSent}
                         autoComplete="off"
-                        onChange={(e) => this.handleTextChange(e)} 
+                        onChange={(e) => this.handleTextChange(e)}
                       />
                     </div>
                   </div>
@@ -361,14 +362,14 @@ export default function SignUp(data) {
                   <div className="form-group">
                     <label>Email Address</label>
                     <div>
-                      <input 
+                      <input
                         type="text"
                         name="email"
                         value={this.state.email}
                         className={`${emailErr.status ? 'error' : ''}`}
-                        disabled={this.state.disableField && this.state.otpSent} 
+                        disabled={this.state.disableField && this.state.otpSent}
                         autoComplete="off"
-                        onChange={(e) => this.handleTextChange(e)} 
+                        onChange={(e) => this.handleTextChange(e)}
                       />
                     </div>
                   </div>
@@ -381,10 +382,10 @@ export default function SignUp(data) {
                     <div style={{ position: "relative" }} className="form-group">
                       <label>Date of Birth</label>
                       <span className="calendar">
-                        <Icon name="calendar"/>
+                        <Icon name="calendar" />
                       </span>
                       <div>
-                        <input 
+                        <input
                           type="date"
                           name="dob"
                           max="9999-12-31"
@@ -392,8 +393,8 @@ export default function SignUp(data) {
                           className={`${dobErr.status ? 'error' : ''}`}
                           //disabled={this.state.disableField && this.state.otpSent} 
                           autoComplete="off"
-                          onChange={(e) => this.handleTextChange(e)} 
-                          style={{paddingLeft: '35px'}}
+                          onChange={(e) => this.handleTextChange(e)}
+                          style={{ paddingLeft: '35px' }}
                         />
                       </div>
                     </div>
@@ -418,20 +419,21 @@ export default function SignUp(data) {
                     <div className="form-group">
                       <label>Account Pin</label>
                       <div>
-                        <input 
+                        <input
                           type="password"
                           name="pin"
                           maxLength={4}
-                          value={this.state.pin}
+                          //value={this.state.pin}
                           className={`${pinErr.status ? 'error' : ''}`}
                           autoComplete="off"
-                          onChange={(e) => this.handleTextChange(e)} 
-                          //style={{paddingLeft: '30px'}}
+                          //onChange={(e) => this.handleTextChange(e)}
+                          onKeyDown={(e) => {this.handleNumberChange(e)}}
+                          onKeyUp={(e) => {this.handleNumberChange(e)}}
                         />
                       </div>
                     </div>
                   }
-                  {   
+                  {
                     !otpSent &&
                     <div className="note os s7">Set account pin for secure transactions on the HipBar mobile app</div>
                   }
@@ -440,15 +442,17 @@ export default function SignUp(data) {
                     <div className="form-group">
                       <label>Confirm Account Pin</label>
                       <div>
-                        <input 
+                        <input
                           type="password"
                           name="confirmPin"
                           maxLength={4}
-                          value={this.state.confirmPin}
+                          //value={this.state.confirmPin}
                           className={`${confirmPinErr.status ? 'error' : ''}`}
                           autoComplete="off"
-                          onChange={(e) => this.handleTextChange(e)} 
-                          //style={{paddingLeft: '30px'}}
+                          //onChange={(e) => this.handleTextChange(e)}
+                          onKeyDown={(e) => {this.handleNumberChange(e)}}
+                          onKeyUp={(e) => {this.handleNumberChange(e)}}
+                        //style={{paddingLeft: '30px'}}
                         />
                       </div>
                     </div>
@@ -462,16 +466,16 @@ export default function SignUp(data) {
                     <div className="form-group">
                       <label>OTP</label>
                       <div className="input-otp-container">
-                        <input 
+                        <input
                           type="text"
                           name="otp"
                           className={`${otpErr.status ? 'error' : ''}`}
                           value={this.state.otp}
                           //disabled={this.state.disableField}
                           autoComplete="off"
-                          onChange={(e) => this.handleTextChange(e)} 
+                          onChange={(e) => this.handleTextChange(e)}
                         />
-                        <div className={`resend os s7 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND OTP</div>
+                        <div className={`resend os s7 ${isGettingOtp ? 'disabled' : ''}`} onClick={this.resendOtp}>RESEND OTP</div>
                       </div>
                       {
                         otpErr.status &&
@@ -482,7 +486,7 @@ export default function SignUp(data) {
                 </div>
                 <div className="page-footer">
                   {
-                    !otpSent 
+                    !otpSent
                       ? <React.Fragment>
                         <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
                         <Button size="small" style={{ marginLeft: "15px" }} disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
@@ -491,7 +495,7 @@ export default function SignUp(data) {
                         <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
                         <Button size="small" style={{ marginLeft: "15px" }} disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
                       </React.Fragment>
-                  } 
+                  }
                 </div>
               </div>
             </ModalBox>
@@ -500,5 +504,5 @@ export default function SignUp(data) {
       )
     }
   }
-//export default SignIn
+  //export default SignIn
 }

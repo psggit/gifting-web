@@ -18,8 +18,8 @@ class Header extends React.Component {
       isMenuOpen: false,
       //errorInSignIn: false,
       showDropdown: false,
-      username: props.username ? props.username : "",
-      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
+      username: "",
+      isLoggedIn: false
     }
     this.navItems = [
       {
@@ -44,7 +44,7 @@ class Header extends React.Component {
     this.handleMouseOut = this.handleMouseOut.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleSignOut = this.handleSignOut.bind(this)
-    this.reloadHeader = this.reloadHeader.bind(this)
+    //this.reloadHeader = this.reloadHeader.bind(this)
     this.handleLink = this.handleLink.bind(this)
   }
 
@@ -55,28 +55,30 @@ class Header extends React.Component {
     // } else if(localStorage.getItem('isLoggedIn') === "true") {
     //   this.setState({isLoggedIn: true })
     // }
-    this.setState({isLoggedIn: this.props.isLoggedIn})
+    //console.log("header mount", this.props)
+    this.setState({isLoggedIn: this.props.paramObj && this.props.paramObj.isLoggedIn ? this.props.paramObj.isLoggedIn  : ""})
 
-    if(this.props && this.props.username) {
-      this.setState({username: this.props.username})
+    if(this.props.paramObj && this.props.paramObj.username) {
+      this.setState({username: this.props.paramObj.username})
     }
   }
 
-  componentWillReceiveProps(newProps) {
-    //console.log("helo", newProps)
-    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   console.log("helo", prevProps)
+  //   if (prevProps.paramObj && (prevProps.paramObj.username !== this.props.paramObj.username || prevProps.paramObj.isLoggedIn !== this.props.paramObj.isLoggedIn)) {
+  //     console.log("if")
+  //     this.setState({ username: this.props.paramObj.username, isLoggedIn: this.props.paramObj.isLoggedIn})
+  //   }
+  // }
 
-  reloadHeader(loginStatus) {
-    // if(localStorage.getItem('isLoggedIn') === "true") {
-    //   this.setState({isLoggedIn: true})
-    // } else if(localStorage.getItem('isLoggedIn') === "false") {
-    //   this.setState({isLoggedIn: false})
-    // }
-    this.setState({isLoggedIn: loginStatus})
-  }
+  // reloadHeader(loginStatus) {
+  //   // if(localStorage.getItem('isLoggedIn') === "true") {
+  //   //   this.setState({isLoggedIn: true})
+  //   // } else if(localStorage.getItem('isLoggedIn') === "false") {
+  //   //   this.setState({isLoggedIn: false})
+  //   // }
+  //   this.setState({isLoggedIn: loginStatus})
+  // }
 
   handleSignOut() {
     this.setState({showDropdown: false})
@@ -111,7 +113,7 @@ class Header extends React.Component {
   
   handleClick() {
     mountModal(SignIn({
-      reload: this.reloadHeader
+      //reload: this.reloadHeader
     }))
   }
 
@@ -147,14 +149,16 @@ class Header extends React.Component {
   }
 
   render() {
-    const {isLoggedIn, showDropdown} = this.state
-    //console.log("header state", this.state)
+    const {showDropdown} = this.state
+    //const isLoggedIn = 
+    //console.log("header state", this.props)
     return (
       <div>
         <ThemeProvider>
           <ThemeContext.Consumer>
-            {(props) => {
-              // console.log("header props", props)
+            {(paramObj) => {
+              const isLoggedIn = paramObj.isLoggedIn
+              //console.log("header props", paramObj)
               return (
                 <div className="navbar">
                   <div className="logo" onClick={() => {location.href="/"}}>
@@ -196,7 +200,7 @@ class Header extends React.Component {
                       // <Button onClick={() => this.handleSignOut()} primary size="small">SIGN OUT</Button>
                       <div className="logout">
                         <Icon name="appUser" style={{marginRight: '10px'}}/>
-                        <div className="os s2"  style={{marginRight: '8px'}} >{this.state.username ? this.state.username : localStorage.getItem("username")}</div>
+                        <div className="os s2"  style={{marginRight: '8px'}} >{paramObj.username}</div>
                         <span onClick={() => this.openDropdown()} style={{display: 'flex'}}>
                           <Icon name="filledDownArrow" />
                         </span>

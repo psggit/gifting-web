@@ -23,9 +23,8 @@ class SendGift extends React.Component {
       senderName: "",
       senderNumber: "",
       canProceed: false,
-      username: props.username ? props.username : "",
-      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false,
-      otherValue: "",
+      // username: props.username ? props.username : "",
+      // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false,
       isActive: false
     }
     this.createTransaction = this.createTransaction.bind(this)
@@ -43,10 +42,10 @@ class SendGift extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("send gift", prevProps, this.props, prevProps.name, this.props.name)
-    if (prevProps.paramObj.username !== this.props.paramObj.username) {
-      console.log("if")
-      this.setState({ senderName: this.props.paramObj.username })
+    //console.log("send gift", prevProps, this.props, prevProps.name, this.props.name)
+    if (prevProps.paramObj.username !== this.props.paramObj.username || prevProps.paramObj.mobile !== this.props.paramObj.mobile || prevProps.paramObj.isLoggedIn !== this.props.paramObj.isLoggedIn ) {
+      //console.log("if")
+      this.setState({ senderName: this.props.paramObj.username, senderNumber: this.props.paramObj.mobile, isLoggedIn: this.props.paramObj.isLoggedIn})
     }
   }
 
@@ -142,7 +141,7 @@ class SendGift extends React.Component {
     console.log("sender nae", this.state.senderName)
     return (
       <div>
-        <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn} />
+        <Header />
         <div id="send-gift">
           <div className="how-to-gift mobile">
             <div onClick={this.toggleHowTo} className="how-to-gift-header">
@@ -269,7 +268,7 @@ class SendGift extends React.Component {
                   </div>
 
                   {
-                    this.props.isLoggedIn
+                    this.state.isLoggedIn
                       ? (
                         <div style={{ marginTop: "20px" }}>
                           <Button onClick={this.proceedToPayment} primary>Proceed to payment</Button>

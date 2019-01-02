@@ -11,15 +11,11 @@ export function fetchTransactionList (payloadObj, successCallback, failureCallba
     .then((json) => {
       console.log("Fetched transaction list", json)
       successCallback(json)
-      //successCallback(json)
-      //console.log("success", json)
     })
     .catch(err => {
-      //console.log("failure")
       console.log("Error in fetching transaction list", err)
       failureCallback()
       // err.response.json().then(json => { Notify("danger", json.error) })
-      // failureCallback()
     })
 }
 

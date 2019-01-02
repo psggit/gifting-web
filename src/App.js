@@ -157,7 +157,7 @@ class App extends React.Component {
         <ThemeProvider>
           <ThemeConsumer>
             {(paramObj) => {
-              console.log(paramObj)
+              //console.log(paramObj)
               return <Router history={history}>
                 <Switch>
                   <Route exact 
@@ -207,6 +207,7 @@ class App extends React.Component {
                     render={
                       props => (
                         <TransactionHistory {...props} 
+                          paramObj={paramObj}
                           // name={this.state.username} 
                           // isLoggedIn={this.state.isLoggedIn}
                         />

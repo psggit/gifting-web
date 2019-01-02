@@ -36,8 +36,8 @@ class Payment extends React.Component {
       bankcode: "null",
       ccnum: "",
       selectedPaymentMethod: null,
-      username: props.username ? props.username : "",
-      isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
+      // username: props.username ? props.username : "",
+      // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
     this.getBanks = this.getBanks.bind(this)
     this.getSavedCards = this.getSavedCards.bind(this)
@@ -71,12 +71,12 @@ class Payment extends React.Component {
     this.getSavedCards()
   }
 
-  componentWillReceiveProps(newProps) {
-    //console.log("helo", newProps)
-    if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-      this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-    }
-  }
+  // componentWillReceiveProps(newProps) {
+  //   //console.log("helo", newProps)
+  //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
+  //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
+  //   }
+  // }
   
   getSavedCards() {
     GET({
@@ -253,7 +253,7 @@ class Payment extends React.Component {
           localStorage.getItem("txn")
             ? (
               <div>
-                <Header username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
+                <Header />
                 <div id="checkout">
                   <div className="container">
                     <div className="row">

@@ -52,6 +52,7 @@ export class ThemeProvider extends React.Component {
       mobile: this.state.mobile,
       isLoggedIn: this.state.isLoggedIn
     }
+    //console.log("theme provider", paramObj)
     return (
       <ThemeContext.Provider value={paramObj}>
         {this.props.children}
