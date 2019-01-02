@@ -12,28 +12,34 @@ class TransactionHistory extends React.Component {
       transactionData: [],
       loading: false,
       // username: props.username ? props.username : "",
-      // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
+      isLoggedIn: this.props.paramObj ? this.props.paramObj.isLoggedIn : ""
     }
     this.successCallback = this.successCallback.bind(this)
     this.failureCallback = this.failureCallback.bind(this)
     this.renderTransation =  this.renderTransation.bind(this)
+    this.showTransactions = this.showTransactions.bind(this)
   }
 
-  // componentDidMount() {
-  //   //console.log("login", localStorage.getItem("isLoggedIn"), this.props)
-  //   if(localStorage.getItem("isLoggedIn") === "false") {
-  //     this.props.history.goBack()
-  //   } else {
-  //     this.fetchTransactionList()
-  //   }
-  // }
+  componentDidMount() {
+    if(this.props.paramObj && this.props.paramObj.isLoggedIn) {
+      this.showTransactions()
+    }
+  }
 
-  // componentWillReceiveProps(newProps) {
-  //   //console.log("new props", newProps)
-  //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-  //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-  //   }
-  // }
+  showTransactions() {
+    if(!this.props.paramObj.isLoggedIn) {
+      this.props.history.goBack()
+    } else {
+      this.fetchTransactionList()
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.paramObj.isLoggedIn !== this.props.paramObj.isLoggedIn ) {
+      this.showTransactions()
+      this.setState({isLoggedIn: this.props.paramObj.isLoggedIn})
+    }
+  }
 
   fetchTransactionList() {
     const payload = {
@@ -53,7 +59,8 @@ class TransactionHistory extends React.Component {
   }
 
   failureCallback() {
-    console.log("failure")
+    //console.log("failure")
+    this.setState({transactionData: [], loading: false})
   }
 
   renderTransation() {
@@ -90,7 +97,7 @@ class TransactionHistory extends React.Component {
   }
 
   render() {
-    const {transactionData, loading} = this.state
+    const {transactionData, loading, isLoggedIn} = this.state
     //console.log("username", this.state.username, "logged in", this.state.isLoggedIn)
     return(
       <div>
@@ -99,7 +106,7 @@ class TransactionHistory extends React.Component {
           <div className="content">
             <h2 className="cm s1">Transaction History</h2>
             {
-              !loading && transactionData.length === 0 &&
+              !loading && transactionData.length === 0 && isLoggedIn &&
               <p className="note os s8">No transactions found</p>
             }
             {
