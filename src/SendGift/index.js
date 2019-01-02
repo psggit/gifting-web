@@ -256,7 +256,7 @@ class SendGift extends React.Component {
                   </div>
 
                   <div className="form-item senders-info">
-                    <h3 className="os s5">Senders Information</h3>
+                    <h3 className="os s5">Sender's Information</h3>
 
                     <div className="form-group">
                       <label className="os">Name</label>

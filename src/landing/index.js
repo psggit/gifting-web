@@ -59,7 +59,7 @@ class LandingPage extends React.Component {
                 </div>
                 <p className="os s7">
                   Currently in Bengaluru <br />
-                  Coming soon to 10+ cities accros India!
+                  Coming soon to 10+ cities across India!
                 </p>
 
               </div>
@@ -110,7 +110,7 @@ class LandingPage extends React.Component {
 
           <div className="our-presence">
             <h1 className="brands-heading os s1">
-            Our presense across India
+            Our presence across India
             </h1>
             <div className="presence-counts">
               <div className="presence-item">
