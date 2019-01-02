@@ -32,6 +32,12 @@ export default function AgeGate(data) {
             <p className="os s2">
               Agree if you are above the legal drinking age in your state of residence
             </p>
+            <div style={{display: 'flex', marginTop: '40px', alignItems: 'center'}}>
+              <a className="os s6">
+                Legal drinking age by states/UTs
+              </a>
+              <Icon name="rightArrowBlack" />
+            </div>
           </ModalBody>
           <ModalFooter>
             <button className='btn btn-secondary os s7' onClick={() => {return this.closeWindow()}}>DISAGREE</button>
@@ -39,8 +45,10 @@ export default function AgeGate(data) {
           </ModalFooter>
           {
             showNote &&
-            <div style={{border: '1px solid #000', borderRadius: '4px', display: 'flex', alignItems: 'center', flexDirection: 'column', padding: '10px 12px', marginTop: '20px'}}>
-              <Icon name="alert" />
+            <div className="note">
+              <span  className="icon">
+                <Icon name="alert"/>
+              </span>
               <div>Sorry! You've to be above the legal drinking age to access this website</div>
             </div>
           }     

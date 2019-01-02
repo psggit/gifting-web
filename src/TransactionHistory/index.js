@@ -91,7 +91,7 @@ class TransactionHistory extends React.Component {
         </div>
         <div className="item-footer">
           <p className="os s9">Personal Message</p>
-          <p className="os s8">{item.personal_message ? item.personal_message : '-'}</p>
+          <p className="os s8">{item.gift_message ? item.gift_message : '-'}</p>
         </div>
       </div>
     ))
