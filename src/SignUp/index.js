@@ -512,11 +512,15 @@ export default function SignUp(data) {
                         <input
                           type="text"
                           name="otp"
+                          placeholder="Enter the OTP that you've received"
                           className={`${otpErr.status ? 'error' : ''}`}
-                          value={this.state.otp}
+                          //value={this.state.otp}
+                          maxLength={6}
+                          onKeyDown={(e) => {this.handleNumberChange(e)}}
+                          onKeyUp={(e) => {this.handleNumberChange(e)}}
                           //disabled={this.state.disableField}
                           autoComplete="off"
-                          onChange={(e) => this.handleTextChange(e)}
+                          //onChange={(e) => this.handleTextChange(e)}
                         />
                         <div className={`resend os s10 ${isGettingOtp ? 'disabled' : ''}`} onClick={this.resendOtp}>RESEND OTP</div>
                       </div>

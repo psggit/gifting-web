@@ -126,7 +126,6 @@ export default function SignIn(data) {
       }   
     }
 
-
     signIn() {
       if(!this.state.isSigningIn) {
         const payload = {
@@ -256,10 +255,13 @@ export default function SignIn(data) {
                             type="text"
                             name="otp"
                             placeholder="Enter the OTP that you've received"
-                            value={this.state.otp}
+                            //value={this.state.otp}
                             className={`${otpErr.status ? 'error' : ''}`}
                             autocomplete="off"
-                            onChange={(e) => this.handleTextChange(e)}
+                            maxLength={6}
+                            onKeyDown={(e) => {this.handleNumberChange(e)}}
+                            onKeyUp={(e) => {this.handleNumberChange(e)}}
+                            //onChange={(e) => this.handleTextChange(e)}
                           />
                           <div className={`resend os s10 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND OTP</div>
                         </div>
