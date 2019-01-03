@@ -536,7 +536,7 @@ export default {
     </svg>
   ),
   bacardi: (
-    <svg width="114px" height="67px" viewBox="0 0 114 67" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <svg width="103px" height="70px" viewBox="0 0 114 67" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g id="01a-Gifitng-Website---V0.7---Home-Page" transform="translate(-488.000000, -956.000000)" fill="#555555" fill-rule="nonzero">
                 <g id="Brand-Partners" transform="translate(0.000000, 828.000000)">
@@ -554,7 +554,7 @@ export default {
     </svg>
   ),
   diageo: (
-    <svg width="146px" height="32px" viewBox="0 0 146 32" version="1.1">
+    <svg width="130px" height="71px" viewBox="0 0 146 32" version="1.1">
         <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g id="01a-Gifitng-Website---V0.7---Home-Page" transform="translate(-180.000000, -974.000000)" fill="#555555" fill-rule="nonzero">
                 <g id="Brand-Partners" transform="translate(0.000000, 828.000000)">
@@ -574,7 +574,7 @@ export default {
     </svg>
   ),
   bira: (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 460">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 460" width="93.5px" height="93.5px">
         <g id="Layer_2" data-name="Layer 2">
             <g id="Bira_91" data-name="Bira 91" class="cls-1">
                 <g id="Black"><g id="LOGO">
@@ -587,7 +587,7 @@ export default {
       </svg>
   ),
   carlsberg: (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 899.74 365.68">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 899.74 365.68" width="172px" height="67px">
         <g id="Layer_1-2" data-name="Layer 1">
             <g id="Black">
                 <g id="Name">
