@@ -9,12 +9,16 @@ import Button from "Components/button"
 import Accordian from "Components/accordian"
 import AccordianItem from "Components/accordian/accordian-item"
 import { GET } from "Utils/fetch"
-import MaskedInput from "react-text-mask"
 import GiftCard from "Components/gift-card"
+import Icon from "Components/icon"
+import InputMask from "react-input-mask"
+
+// const cardNumMask = new IMask()
 
 class Payment extends React.Component {
   constructor(props) {
     super(props)
+    // console.log(this.props.history.location.state)
     this.txn = this.props.history.location.state || JSON.parse(localStorage.getItem("txn"))
     this.paymentMethods = {
       1: "card",
@@ -35,6 +39,10 @@ class Payment extends React.Component {
       noBankSelected: true,
       bankcode: "null",
       ccnum: "",
+      ccexp: "",
+      ccname: "",
+      ccvv: "",
+      store_card: false,
       selectedPaymentMethod: null,
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
@@ -52,6 +60,8 @@ class Payment extends React.Component {
     this.handleCVVChange  =this.handleCVVChange.bind(this)
     this.handleCardnameChange = this.handleCardnameChange.bind(this)
     this.setCardValues = this.setCardValues.bind(this)
+    this.toggleHowTo = this.toggleHowTo.bind(this)
+    // this.getButtonStatus = this.getButtonStatus.bind(this)
   }
 
   componentWillMount() {
@@ -148,23 +158,27 @@ class Payment extends React.Component {
       this.setState({ selectedPaymentMethod: "net_banking" }, () => {
         console.log("Processing net banking..")
         // console.log(this.bankcode)
-        if (this.state.bankcode) {
+        if (this.state.bankcode !== "null") {
           this.submit.click()
         }
       })
     }
   }
 
+  toggleHowTo() {
+    this.setState({ isActive: !this.state.isActive })
+  }
+
   handleCardNumberChange(e) {
-    this.ccnum = e.target.value
+    this.setState({ ccnum: e.target.value })
   }
 
   handleCardExpiryChange(e) {
-    this.ccexp = e.target.value
+    this.setState({ ccexpyr: e.target.value })
   }
 
   handleCVVChange(e) {
-    this.ccvv = e.target.value
+    this.setState({ ccvv: e.target.value })
   }
 
   handleCardnameChange(e) {
@@ -182,9 +196,9 @@ class Payment extends React.Component {
       email: this.txn.email,
       phone: this.txn.phone,
       lastname: "",
-      surl: "http://localhost:8080/transaction?status=success",
-      furl: "http://localhost:8080/transaction?status=failure",
-      curl: "http://localhost:8080/transaction?status=cancelled",
+      surl: `${location.origin}/transaction?status=success`,
+      furl: `{location.origin}/transaction?status=failure`,
+      curl: `${location.origin}/transaction?status=cancelled`,
       hash: this.txn.hash,
       pg: "NB",
       bankcode, 
@@ -206,25 +220,29 @@ class Payment extends React.Component {
       email: this.txn.email,
       phone: this.txn.sender_num,
       lastname: "",
-      surl: "http://localhost:8080/transaction?status=success",
-      furl: "http://localhost:8080/transaction?status=failure",
-      curl: "http://localhost:8080/transaction?status=cancelled",
+      surl: `${location.origin}/payment-status?status=success`,
+      furl: `{location.origin}/payement-status?status=failure`,
+      curl: `${location.origin}/payment-status?status=cancelled`,
       hash: this.txn.hash,
       pg: "DC",
-      ccname: this.ccname,
-      ccvv: this.ccvv,
-      ccexpmon: this.ccexp.split("/")[0],
-      ccexpyr: this.ccexp.split("/")[1],
+      ccname: this.state.ccname,
+      ccvv: this.state.ccvv,
+      ccexpmon: this.state.ccexp.split("/")[0],
+      ccexpyr: this.state.ccexp.split("/")[1],
       udf1: "web"
     }
 
-    if (this.ccnum) {
+    if (this.state.ccnum.length) {
       postBody.ccnum = this.ccnum
     }
 
-    if (this.cctoken) {
-      postBody.cardtoken = this.cctoken
-      postBody.cardbin = this.ccbin
+    if (this.state.store_card) {
+      postBody.store_card = 1
+    }
+
+    if (this.state.cctoken.length) {
+      postBody.store_card_token = this.state.cctoken
+      postBody.user_credentials = this.txn.user_cred
     }
 
     return Object.entries(postBody).map(([key, value]) => (
@@ -237,13 +255,11 @@ class Payment extends React.Component {
     if (parseInt(id) < 3) {
       return true
     } else {
-      this.ccbin = this[`cardBin${id}`].name === "saved" ?  this[`cardBin${id}`].value : null
-      this.ccnum = this[`cardNum${id}`].name === "saved" ? null : this[`cardNum${id}`].value
-      this.ccname = this[`cardName${id}`].value
-      this.cctoken = this[`cardToken${id}`].name === "saved" ? this[`cardToken${id}`].value : null
-      this.ccvv = this[`cardCvv${id}`].value
-      this.ccexp = this[`cardExp${id}`].value
-      console.log(this)
+      const ccnum = this[`cardNum${id}`].name === "saved" ? "" : this[`cardNum${id}`].value
+      const ccname = this[`cardName${id}`].value
+      const cctoken = this[`cardToken${id}`].name === "saved" ? this[`cardToken${id}`].value : "" 
+      const ccexp = this[`cardExp${id}`].value
+      this.setState({ ccnum, ccnum, cctoken, ccexp })
       return true
     }
   }
@@ -257,6 +273,35 @@ class Payment extends React.Component {
               <div>
                 <Header />
                 <div id="checkout">
+                <div className="how-to-gift mobile">
+                  <div onClick={this.toggleHowTo} className="how-to-gift-header">
+                    <p style={{ padding: "0 30px", color: "#fff" }} className="os s3">
+                      Gift Card Summary
+                        <span style={{ marginLeft: "10px" }}>
+                        <Icon name="filledDownArrowWhite" />
+                      </span>
+                    </p>
+                  </div>
+                  <div className={`how-to-gift-body ${this.state.isActive ? "active" : ""}`}>
+                    <div className="gift-card-info">
+                        <div>
+                          <p className="os s6">To</p>
+                          <p className="os s7">{this.state.sender_name}<br /> +91 {this.state.sender_num}</p>
+                        </div>
+
+                        <div style={{ marginTop: "20px", borderBottom: "1px solid #dfdfdf", paddingBottom: "20px" }}>
+                          <p className="os s7">
+                            <span className="os s6">Personal Message -</span>{this.state.gift_message}
+                          </p>
+                        </div>
+
+                        <div style={{ marginTop: "20px" }} >
+                          <p className="os s6">From</p>
+                          <p className="os s7">{this.state.receiver_name}<br /> +91 {this.state.receiver_number}</p>
+                        </div>
+                      </div>
+                  </div>
+                </div>
                   <div className="container">
                     <div className="row">
                     <div className="col">
@@ -299,11 +344,6 @@ class Payment extends React.Component {
 
                                   <div className="form-group">
                                     {/* <label className="os">Name on card</label> */}
-                                    <input ref={(node) => { this[`cardBin${i+3}`] = node }} name="saved" defaultValue={item.card_bin} type="hidden" />
-                                  </div>
-
-                                  <div className="form-group">
-                                    {/* <label className="os">Name on card</label> */}
                                     <input ref={(node) => { this[`cardName${i+3}`] = node }} name="saved" defaultValue={item.name_on_card} type="hidden" />
                                   </div>
                                 </AccordianItem>
@@ -313,27 +353,27 @@ class Payment extends React.Component {
                             <AccordianItem key={1} title="Debit Card / Credit Card" id={1}>
                               <div className="form-group">
                                 <label className="os">Card Number</label>
-                                <MaskedInput
-                                  guide={false}
+                                <InputMask
+                                  mask="9999 9999 9999 9999"
+                                  maskChar={null}
                                   onChange={this.handleCardNumberChange}
-                                  mask={[/\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/]}
                                 />
-                                {/* <input value={this.state.ccnum}  onChange={this.handleCardNumberChange} type="text" /> */}
                               </div>
 
                               <div className="form-group" style={{ display: "flex" }}>
                                 <div style={{ width: "130px" }}>
                                   <label className="os">Expiry Date</label>
-                                  <MaskedInput
-                                    guide={false}
-                                    onChange={this.handleCardExpiryChange}
-                                    mask={[ /[0-1]/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
-                                  />
+                                  <InputMask
+                                  value={this.state.ccexpyr}
+                                  mask="99/9999"
+                                  maskChar={null}
+                                  onChange={this.handleCardExpiryChange}
+                                />
                                 </div>
 
                                 <div style={{ width: "130px", marginLeft: "30px" }}>
                                   <label className="os">CVV</label>
-                                  <input onChange={this.handleCVVChange} type="password" maxLength={4} />
+                                  <input value={this.state.ccvv}  onChange={this.handleCVVChange} type="password" maxLength={4} />
                                 </div>
                               </div>
 
@@ -388,7 +428,7 @@ class Payment extends React.Component {
                       </div>
 
                       <div style={{ marginTop: "30px" }}>
-                        <Button icon="fefe" onClick={this.handleSubmit}  icon="rightArrowWhite" primary>Pay now</Button>
+                        <Button disabled={this.state.activeAccordian === -1} onClick={this.handleSubmit}  icon="rightArrowWhite" primary>Pay now</Button>
                       </div>
                       {
                         this.state.selectedPaymentMethod === "card" &&

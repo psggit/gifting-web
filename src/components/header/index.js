@@ -167,8 +167,8 @@ class Header extends React.Component {
               //console.log("header props", paramObj)
               return (
                 <div className="navbar">
-                  <div className="logo" onClick={() => {location.href="/"}}>
-                    <a>
+                  <div className="logo">
+                    <a href="/">
                       <Icon name="hipbarLogo" />
                     </a>
                   </div>
@@ -184,7 +184,7 @@ class Header extends React.Component {
                   <div className="nav-items">
                     {
                       this.navItems.map((item, index) => (
-                        <NavLink to={`/${item.value}`} key={index}>
+                        <a className={location.pathname.slice(1) === item.value ? "active" : undefined} href={`/${item.value}`} key={index}>
                           <div 
                             onClick={this.handleLink}
                             className="nav-item" 
@@ -194,7 +194,7 @@ class Header extends React.Component {
                           >
                             {item.label}
                           </div>
-                        </NavLink>
+                        </a>
                       ))
                     }
                     {
@@ -240,7 +240,7 @@ class Header extends React.Component {
                       {
                         this.navItems.map((item, index) => (
                           <li key={index}>
-                            <a onClick={this.handleLink} href={`/${item.value}`} className="os s2">
+                            <a className={location.pathname.slice(1) === item.value ? "active" : undefined} onClick={this.handleLink} href={`/${item.value}`} className="os s2">
                               {item.label}
                             </a>
                           </li>

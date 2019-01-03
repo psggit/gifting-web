@@ -9,7 +9,7 @@ const config = {
   target: "node",
   externals: [nodeExternals()],
   entry: {
-    checkout: path.resolve(__dirname, "./../../src/Payment/index.js")
+    "transaction-success": path.resolve(__dirname, "./../../src/payment-success.js")
   },
   output: {
     path: path.resolve(__dirname, "./../../dist-ssr"),
@@ -18,8 +18,8 @@ const config = {
   },
   resolve: {
     alias: {
-      react: "preact-compat",
-      "react-dom": "preact-compat",
+      // react: "preact-compat",
+      // "react-dom": "preact-compat",
       Components: path.resolve(__dirname, './../../src/components'),
       Utils: path.resolve(__dirname, './../../src/utils'),
       Sass: path.resolve(__dirname, './../../src/sass')
@@ -48,5 +48,4 @@ const config = {
 if (process.env.NODE_ENV !== "production") {
   config.devtool = "cheap-module-eval-source-map"
 }
-
 module.exports = config

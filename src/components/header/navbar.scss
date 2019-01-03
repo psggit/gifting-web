@@ -42,7 +42,12 @@
         text-decoration: none;
         &.active {
             text-decoration: underline;
+            text-decoration-color: #000;
             font-weight: bold;
+        }
+        &:hover {
+            text-decoration: underline;
+            text-decoration-color: #000;
         }
     }
 
@@ -180,7 +185,7 @@
 @media only screen and (max-width: 1120px) {
 
     .navbar {
-        padding: 6.5% 7.5%;
+        // padding: 6.5% 7.5%;
         height: 100px;
 
         .logo {

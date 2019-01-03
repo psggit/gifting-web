@@ -17,6 +17,11 @@ class FAQ extends React.Component {
   }
 
   componentDidMount() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
     this.setState({questionAnswers})
   }
 
@@ -64,7 +69,7 @@ class FAQ extends React.Component {
     const {questionAnswers} = this.state
     return (
       <div>
-        <Header/>
+        <Header history={this.props.history} />
         <div id="Faq">
           <div className="content">
             <h2 className="cm s1">Frequently Asked Questions</h2>

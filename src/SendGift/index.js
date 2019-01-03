@@ -8,6 +8,7 @@ import SignIn from "./../SignIn"
 import { mountModal } from "Components/modal-box/utils"
 import "./send-gift.scss"
 import { POST } from "Utils/fetch"
+import InputMask from "react-input-mask"
 
 class SendGift extends React.Component {
   constructor(props) {
@@ -38,6 +39,12 @@ class SendGift extends React.Component {
   }
 
   componentDidMount() {
+    console.log("send gift mounting....")
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
     localStorage.removeItem("txn")
   }
 
@@ -60,7 +67,7 @@ class SendGift extends React.Component {
       amount.length &&
       giftMessage.length &&
       receiverName.length &&
-      receiverNumber.length &&
+      receiverNumber.length === 10 && ["1", "2", "3", "4", "5"].indexOf(receiverNumber[0]) === -1 &&
       senderName.length
     ) {
       this.createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName)
@@ -71,6 +78,10 @@ class SendGift extends React.Component {
     if (e.target.name !== "price4") {
       this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: "" })
     } else {
+      if (!e.target.value.length) {
+        this.setState({ amount: "499", activePrice: "price1", otherValue: "" })
+        return
+      }
       if (parseInt(e.target.value) > 10000) {
         return;
       }
@@ -102,7 +113,8 @@ class SendGift extends React.Component {
         sender_name: senderName,
         device: "web",
         receiver_name: receiverName
-      }
+      },
+      handleError: true
     })
       .then((json) => {
         this.postBody = {
@@ -141,7 +153,7 @@ class SendGift extends React.Component {
     //console.log("sender nae", this.state.senderName)
     return (
       <div>
-        <Header />
+        <Header history={this.props.history} />
         <div id="send-gift">
           <div className="how-to-gift mobile">
             <div onClick={this.toggleHowTo} className="how-to-gift-header">
@@ -216,7 +228,7 @@ class SendGift extends React.Component {
                         </div>
 
                         <div className="form-field">
-                          <input className={this.state.activePrice === "price4" ? "focused" : undefined} value={this.state.otherValue} onChange={this.handleAmountChange} name="price4" maxLength="5" type="text" placeholder="Other" />
+                          <input className={this.state.activePrice === "price4" ? "focused" : undefined} value={this.state.otherValue} onChange={this.handleAmountChange} name="price4" type="text" maxLength="5" placeholder="Other" />
                           <span>&#8377;</span>
                         </div>
 
