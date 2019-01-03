@@ -454,7 +454,7 @@ export default function SignUp(data) {
                   {
                     //!otpSent &&
                     <div className="form-group">
-                      <label>Account Pin</label>
+                      <label>Account PIN</label>
                       <div>
                         <input
                           type="password"
@@ -480,7 +480,7 @@ export default function SignUp(data) {
                   {
                     //!otpSent &&
                     <div className="form-group">
-                      <label>Confirm Account Pin</label>
+                      <label>Confirm Account PIN</label>
                       <div>
                         <input
                           type="password"

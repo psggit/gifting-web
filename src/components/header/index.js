@@ -32,7 +32,7 @@ class Header extends React.Component {
         value: "using-gift-card"
       },
       {
-        label: "Retail Outlet",
+        label: "Retail Outlets",
         value: "retail-outlet"
       },
       {
@@ -175,7 +175,7 @@ class Header extends React.Component {
           
                   <div className="title">
                     <p style={{ marginBottom: "6px" }}>
-                        Hipbar
+                        HipBar
                     </p>
                     <p>
                         Gifting

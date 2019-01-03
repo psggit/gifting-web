@@ -31,7 +31,7 @@ class SuccessfulTransaction extends React.Component {
               <div className="header section">
                 <Icon name="success" />
                 <h2 className="cm s1 title">Transaction Successful!</h2>
-                <p className="info">We've informed the recipient about the gift card via SMS and WhatsApp</p>
+                <p className="info">We've informed the recipient about the gift card via SMS</p>
               </div>
               <div className="body section">
                 <p className="subheader">Transaction Details</p>
@@ -74,10 +74,10 @@ class SuccessfulTransaction extends React.Component {
                   </span>
                   <div className="detail">
                     <p className="cm s6">
-                      Inform your friend about the Gift Card
+                      Make it personal!
                     </p>
                     <span className="os s7">
-                      For a more personalized experience, inform your friend about the gift card via Whatsapp
+                      Inform your friend about the gift card via Whatsapp
                     </span>
                   </div>
                 </div>
@@ -90,7 +90,7 @@ class SuccessfulTransaction extends React.Component {
                       Download the HipBar app!
                     </p>
                     <span className="os s7">
-                      Download the HipBar app to manage your gift cards if necessary
+                      Download the HipBar app to manage your gift cards on the go
                     </span>
                   </div>
                 </div>

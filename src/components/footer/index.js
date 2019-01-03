@@ -10,7 +10,7 @@ const Footer = () => (
           <Icon name="hipbarLogo" />
           <p>HipBar</p>
           <p>
-            Copyright 2018 | All Right Reserved.
+            Copyright 2018 | All Rights Reserved.
           </p>
         </div>
 
@@ -37,7 +37,7 @@ const Footer = () => (
 
         <div className="col">
           <div className="footer-item">
-            <p>Hip Bar Private Limited</p>
+            <p>HipBar Private Limited</p>
             <p>
               No. 34, (1st Floor) B Ramachandra<br />
               Adithanar Road, <br />

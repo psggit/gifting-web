@@ -321,7 +321,7 @@ class SendGift extends React.Component {
 
                   <Icon name="step2" />
                   <div className="desc">
-                    <p className="cm s6">Recipient gets notified via SMS & Whatsapp!</p>
+                    <p className="cm s6">Recipient gets notified via SMS</p>
                     <p className="os s7">
                       With further information on how to use the gift <br /> cards, they have to download the HipBar app to use<br /> their HipBar Gift Card.
                   </p>
@@ -331,7 +331,7 @@ class SendGift extends React.Component {
                   <div className="desc">
                     <p className="cm s6">Recipient downloads the HipBar app</p>
                     <p className="os s7">
-                      With the HipBar app, they can easily view their Gift<br /> Cards and redeem it at 50+ HipBar powered retail<br /> outlets in Bengaluru.
+                      With the HipBar app, they can easily view their Gift<br /> Cards and redeem it at 60+ HipBar powered retail<br /> outlets in Bengaluru and Goa.
                   </p>
                   </div>
 
@@ -342,7 +342,7 @@ class SendGift extends React.Component {
                       Retail Outlets*
                   </p>
                     <p className="os s7">
-                      Recipient pays for drinks with their HipBar Gift Card<br /> at select 50+ retail outlets across Bengaluru
+                      Recipient pays for drinks with their HipBar Gift Card<br /> at select 60+ retail outlets across Bengaluru and Goa
                   </p>
                   </div>
 
