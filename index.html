@@ -32,20 +32,51 @@
   <div id="app" ></div>
   <div id="confirm-modal"></div>
 </body>
-<<<<<<< HEAD
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-78394923-4"></script>
 <script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+ 
+  gtag('config', 'UA-78394923-4');
+ </script>
 
- gtag('config', 'UA-78394923-4');
+<script src="https://wchat.freshchat.com/js/widget.js"></script>
+<script>
+  window.fcWidget.init({
+    token: "8d3a4a04-5562-4f59-8f66-f84a269897a1",
+    host: "https://wchat.freshchat.com",
+    config: {
+      disableEvents: true,
+      cssNames: {
+        widget: 'fc_frame',
+        open: 'fc_open',
+        expanded: 'fc_expanded'
+      },
+      showFAQOnOpen: true,
+      hideFAQ: true,
+      agent: {
+        hideName: false,
+        hidePic: false,
+        hideBio: false,
+      },
+      headerProperty: {
+	      //If you have multiple sites you can use the appName and appLogo to overwrite the values.
+      	appName: 'Gadget God',
+        appLogo: 'https://d1qb2nb5cznatu.cloudfront.net/startups/i/2473-2c38490d8e4c91660d86ff54ba5391ea-medium_jpg.jpg?buster=1518574527',
+        backgroundColor: '#000',
+        foregroundColor: '#fff',
+        backgroundImage: 'https://wchat.freshchat.com/assets/images/texture_background_1-bdc7191884a15871ed640bcb0635e7e7.png'
+      }
+    }
+  });
 </script>
-=======
+
 <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400, 600" rel="stylesheet"> -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"> 
 <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500,600,700" rel="stylesheet">
->>>>>>> dfa3595d34215c9d5497158e0cfd0c49922808b7
+
 </html>

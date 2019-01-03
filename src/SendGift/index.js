@@ -165,7 +165,7 @@ class SendGift extends React.Component {
               </p>
             </div>
             <div className={`how-to-gift-body ${this.state.isActive ? "active" : ""}`}>
-              <h2 className="cm s3">How to use Hipbar Gift Cards?</h2>
+              <h2 className="cm s3">How to use HipBar Gift Cards?</h2>
               <Icon name="step1" />
               <div className="desc">
                 <p className="cm s6">Gift drinks with HipBar Gifting</p>

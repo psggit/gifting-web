@@ -10,7 +10,7 @@ const Footer = () => (
           <Icon name="hipbarLogo" />
           <p>HipBar</p>
           <p>
-            Copyright 2018 | All Rights Reserved.
+            Copyright 2019 | All Rights Reserved.
           </p>
         </div>
 
