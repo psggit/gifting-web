@@ -177,6 +177,16 @@
   }
 
   .page-footer {
+
+    .button-section {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+
+      &.mobile {
+        display: none;
+      }
+    }
     //display: flex;
     // text-align: right;
     // position: absolute;
@@ -330,35 +340,43 @@
     overflow: auto;
     border-radius: 0px;
     padding: 8.5% 25px;
-    .page-footer {
-      .btn {
-        // width: 80px;
-        // padding: 0px 10px;
-        // line-height: 30px;
-      }
-    }
-
+    
     .row {
       display: block !important;
       .column {
         display: block !important;
       }
     }
-   
-  }
 
-  // #SignInMobile {
-    .page-footer {
-      .btn {
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-        margin-bottom: 10px;
-        &:last-child {
-          margin-left: 0 !important;
-        }
+    .page-body {
+      .note {
+        position: relative !important;
+        padding: 12px 0;
+        text-align: left;
+        margin: 0;
+        width: 100% !important;
       }
     }
-  // }
+    
+    .page-footer {
+      .button-section {
+        display: none !important;
+        &.mobile {
+          display: -webkit-box !important;
+          display: -ms-flexbox !important;
+          display: flex !important;
+          -webkit-box-orient: vertical !important;
+          -webkit-box-direction: normal !important;
+              -ms-flex-direction: column !important;
+                  flex-direction: column !important;
+        }
+      }
 
+      .button-section .btn:last-child {
+        margin-left: 0 !important;
+        margin-top: 15px;
+      }
+    }
+
+  }
 }
