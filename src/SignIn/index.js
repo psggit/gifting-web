@@ -118,7 +118,7 @@ export default function SignIn(data) {
 
       if(validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e) || checkCtrlC(e)) {
         this.setState({ 
-          [e.target.name]: e.target.value,
+          [e.target.name]: (e.target.value).trim(),
           //[errName]:  validateNumberField(this.inputNameMap[e.target.name], e.target.value)
         })
       } else {
@@ -182,7 +182,7 @@ export default function SignIn(data) {
     }
 
     handleTextChange(e) {
-      this.setState({[e.target.name]: e.target.value})
+      this.setState({[e.target.name]: (e.target.value).trim()})
     }
 
     render() {

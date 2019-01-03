@@ -265,7 +265,7 @@ export default function SignUp(data) {
     handleEmailChange(e) {
       const errName = `${e.target.name}Err`
       this.setState({
-        [e.target.name]: e.target.value,
+        [e.target.name]: (e.target.value).trim(),
         //[errName]: validateEmail(this.inputNameMap[e.target.name], e.target.value),
       })
     }
@@ -273,7 +273,7 @@ export default function SignUp(data) {
     handleTextChange(e) {
       const errName = `${e.target.name}Err`
       this.setState({
-        [e.target.name]: e.target.value,
+        [e.target.name]: (e.target.value).trim(),
         //[errName]: validateTextField(this.inputNameMap[e.target.name], e.target.value),
       })
     }
@@ -283,7 +283,7 @@ export default function SignUp(data) {
 
       if (validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e) || checkCtrlC(e)) {
         this.setState({
-          [e.target.name]: e.target.value,
+          [e.target.name]: (e.target.value).trim(),
           //[errName]:  validateNumberField(this.inputNameMap[e.target.name], e.target.value)
         })
       } else {
