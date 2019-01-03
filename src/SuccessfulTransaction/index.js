@@ -54,13 +54,13 @@ class SuccessfulTransaction extends React.Component {
               </div>
               <div className="footnote section">
                 <p className="subheader">Gift Card Details</p>
-                <p style={{marginTop: '20px', fontWeight: '600'}} className="os s8">To:</p>
+                <p style={{marginTop: '20px', fontWeight: 'bold'}} className="os s8">To:</p>
                 <div className="section-content">
                   <p className="os s8">Name</p>
                   <p className="os s8">Phone number</p>
                 </div>
                 <div className="section-content">
-                  <span className="os s8" style={{fontWeight: '600'}}>Personal Message - </span>
+                  <span className="os s8" style={{fontWeight: 'bold'}}>Personal Message - </span>
                   <span className="os s8">message</span>
                 </div>
               </div>

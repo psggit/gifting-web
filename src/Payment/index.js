@@ -9,10 +9,8 @@ import Button from "Components/button"
 import Accordian from "Components/accordian"
 import AccordianItem from "Components/accordian/accordian-item"
 import { GET } from "Utils/fetch"
-import MaskedInput from "react-text-mask"
 import GiftCard from "Components/gift-card"
 import Icon from "Components/icon"
-// import { IMaskInput } from "react-imask"
 import InputMask from "react-input-mask"
 
 // const cardNumMask = new IMask()
@@ -387,7 +385,7 @@ class Payment extends React.Component {
 
                             <AccordianItem key={2} title="Net Banking" id={2}>
                               <div style={{ padding: "0 20px" }}>
-                                <p style={{ fontWeight: "600", color: "#000", letterSpacing: "0.5px" }} className="os s8">Popular Banks</p>
+                                <p style={{ fontWeight: "bold", color: "#000", letterSpacing: "0.5px" }} className="os s8">Popular Banks</p>
                                 <div ref={(node) => { this.radios = node}} style={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}>
                                   {
                                     this.state.popularBanks.slice(0, 3).map((item, i) => (
@@ -409,7 +407,7 @@ class Payment extends React.Component {
                                 </div>
                                 <div>                                  
                                   <div style={{ marginTop: "20px" }} className="form-group">
-                                    <p style={{ fontWeight: "600", color: "#000", letterSpacing: "0.5px" }} className="os s8">Other Banks</p>
+                                    <p style={{ fontWeight: "bold", color: "#000", letterSpacing: "0.5px" }} className="os s8">Other Banks</p>
                                     <select value={this.state.bankcode} onChange={this.handleSelectChange} style={{ marginTop: "15px" }}>
                                       {
                                         (this.state.isPopularSelected || this.state.noBankSelected) &&
@@ -430,7 +428,7 @@ class Payment extends React.Component {
                       </div>
 
                       <div style={{ marginTop: "30px" }}>
-                        <Button disabled={this.state.activeAccordian === -1} icon="fefe" onClick={this.handleSubmit} primary>Pay now</Button>
+                        <Button disabled={this.state.activeAccordian === -1} onClick={this.handleSubmit}  icon="rightArrowWhite" primary>Pay now</Button>
                       </div>
                       {
                         this.state.selectedPaymentMethod === "card" &&

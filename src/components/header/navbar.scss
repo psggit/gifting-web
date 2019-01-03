@@ -40,13 +40,19 @@
 
     .logout {
         display: flex;
-        align-items: center;
+        //align-items: center;
         justify-content: center;
         position: absolute;
         right: 5.6%;
+        .user {
+            svg {
+                width: 14px;
+                height: 14px;
+            }
+        }
         svg {
-            width: 20px;
-            height: 23px;
+            width: 10px;
+            height: 5.83px;
             margin-right: 8px;
         }
     }

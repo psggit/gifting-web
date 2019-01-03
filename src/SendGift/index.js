@@ -149,7 +149,7 @@ class SendGift extends React.Component {
   // }
 
   render() {
-    console.log("sender nae", this.state.senderName)
+    //console.log("sender nae", this.state.senderName)
     return (
       <div>
         <Header history={this.props.history} />
@@ -246,31 +246,49 @@ class SendGift extends React.Component {
 
                     <div className="form-group">
                       <label className="os">Name</label>
-                      <input onChange={this.handleTextChange} name="receiverName" type="text" />
+                      <input 
+                        onChange={this.handleTextChange} 
+                        name="receiverName" 
+                        type="text" 
+                        placeholder="Enter the recipients name"
+                      />
                     </div>
 
                     <div className="form-group">
                       <label className="os">Phone Number</label>
-                      {/* <InputMask
-                        mask="+\9\1 9999999999"
-                        maskChar={null}
-                      /> */}
-                      <input onChange={this.handlePhoneChange} name="receiverNumber" maxLength="10" type="text" />
+                      <input 
+                        onChange={this.handlePhoneChange} 
+                        name="receiverNumber" 
+                        maxLength="10" 
+                        type="text" 
+                        placeholder="Enter the recipients phone number"
+                      />
                     </div>
                   </div>
 
                   <div className="form-item senders-info">
-                    <h3 className="os s5">Senders Information</h3>
+                    <h3 className="os s5">Sender's Information</h3>
 
                     <div className="form-group">
                       <label className="os">Name</label>
-                      <input onChange={this.handleTextChange} value={this.state.senderName}  name="senderName" type="text" />
+                      <input 
+                        onChange={this.handleTextChange} 
+                        value={this.state.senderName}  
+                        name="senderName" 
+                        type="text" 
+                        placeholder="Enter your name"
+                      />
                     </div>
 
                     <div className="form-group">
                       <label className="os">Phone Number</label>
-                      
-                      <input value={this.state.senderNumber} onChange={this.handlePhoneChange} name="senderNumber" maxLength="10" type="text" readOnly />
+                      <input 
+                        value={this.state.senderNumber} 
+                        onChange={this.handlePhoneChange} 
+                        name="senderNumber" 
+                        maxLength="10" 
+                        placeholder="Enter your phone number"
+                        type="text" readOnly />
                     </div>
                   </div>
 
@@ -287,12 +305,12 @@ class SendGift extends React.Component {
                     this.state.isLoggedIn
                       ? (
                         <div style={{ marginTop: "20px" }}>
-                          <Button onClick={this.proceedToPayment} primary>Proceed to payment</Button>
+                          <Button onClick={this.proceedToPayment} primary  icon="rightArrowWhite">Proceed to payment</Button>
                         </div>
                       )
                       : (
                         <div style={{ marginTop: "20px" }}>
-                          <Button onClick={() => { mountModal(SignIn({})) }} primary>Sign in to proceed</Button>
+                          <Button onClick={() => { mountModal(SignIn({})) }} primary  icon="rightArrowWhite">Sign in to proceed</Button>
                         </div>
                       )
                   }

@@ -205,6 +205,7 @@ export default function SignUp(data) {
                 this.setState({ isSigningUp: false })
                 return
               }
+              //localStorage.setItem("showAgegate", false)
               createSession(responseData)
               location.href = (location.pathname)
               unMountModal()
@@ -301,6 +302,10 @@ export default function SignUp(data) {
         isGettingOtp
       } = this.state
 
+      const cursorStyle = {
+        cursor: 'not-allowed'
+      }
+
       return (
         <div>
           {
@@ -322,6 +327,7 @@ export default function SignUp(data) {
                           name="mobileNo"
                           maxLength={10}
                           disabled={this.state.disableField}
+                          style={this.state.disableField ? cursorStyle : {}}
                           //value={this.state.mobileNo}
                           autoComplete="off"
                           //onChange={(e) => this.handleTextChange(e)}
@@ -335,7 +341,7 @@ export default function SignUp(data) {
                   </div>
                   {
                     mobileNoErr.status &&
-                    <p className="error-message os s7">{mobileNoErr.value}</p>
+                    <p className="error-message os s9">{mobileNoErr.value}</p>
                   }
                   {
                     otpSent &&
@@ -347,6 +353,7 @@ export default function SignUp(data) {
                       <input
                         type="text"
                         name="name"
+                        placeholder="Enter your name"
                         className={`${nameErr.status ? 'error' : ''}`}
                         value={this.state.name}
                         disabled={this.state.disableField && this.state.otpSent}
@@ -357,7 +364,7 @@ export default function SignUp(data) {
                   </div>
                   {
                     nameErr.status &&
-                    <p className="error-message os s7">{nameErr.value}</p>
+                    <p className="error-message os s9">{nameErr.value}</p>
                   }
                   <div className="form-group">
                     <label>Email Address</label>
@@ -365,6 +372,7 @@ export default function SignUp(data) {
                       <input
                         type="text"
                         name="email"
+                        placeholder="Enter your email address"
                         value={this.state.email}
                         className={`${emailErr.status ? 'error' : ''}`}
                         disabled={this.state.disableField && this.state.otpSent}
@@ -375,7 +383,7 @@ export default function SignUp(data) {
                   </div>
                   {
                     emailErr.status &&
-                    <p className="error-message os s7">{emailErr.value}</p>
+                    <p className="error-message os s9">{emailErr.value}</p>
                   }
                   {
                     !otpSent &&
@@ -390,6 +398,7 @@ export default function SignUp(data) {
                           name="dob"
                           max="9999-12-31"
                           value={this.state.dob}
+                          placeholder="Enter your date of birth"
                           className={`${dobErr.status ? 'error' : ''}`}
                           //disabled={this.state.disableField && this.state.otpSent} 
                           autoComplete="off"
@@ -401,16 +410,16 @@ export default function SignUp(data) {
                   }
                   {
                     dobErr.status &&
-                    <p className="error-message os s7">{dobErr.value}</p>
+                    <p className="error-message os s9">{dobErr.value}</p>
                   }
                   {
                     !otpSent &&
                     <div className="form-group">
                       <label>Gender</label>
                       <div className="row">
-                        <div onClick={() => this.handleGenderChange("male")} className={`column ${gender === "male" ? 'active' : 'inactive'}`}>Male</div>
-                        <div onClick={() => this.handleGenderChange("female")} className={`column ${gender === "female" ? 'active' : ''}`}>Female</div>
-                        <div onClick={() => this.handleGenderChange("unspecified")} className={`column ${gender === "unspecified" ? 'active' : ''}`}>Unspecified</div>
+                        <div onClick={() => this.handleGenderChange("male")} className={`column os s8 ${gender === "male" ? 'active' : 'inactive'}`}>Male</div>
+                        <div onClick={() => this.handleGenderChange("female")} className={`column os s8 ${gender === "female" ? 'active' : ''}`}>Female</div>
+                        <div onClick={() => this.handleGenderChange("unspecified")} className={`column os s8 ${gender === "unspecified" ? 'active' : ''}`}>Unspecified</div>
                       </div>
                     </div>
                   }
@@ -423,6 +432,7 @@ export default function SignUp(data) {
                           type="password"
                           name="pin"
                           maxLength={4}
+                          placeholder="Set your account pin"
                           //value={this.state.pin}
                           className={`${pinErr.status ? 'error' : ''}`}
                           autoComplete="off"
@@ -435,7 +445,7 @@ export default function SignUp(data) {
                   }
                   {
                     !otpSent &&
-                    <div className="note os s7">Set account pin for secure transactions on the HipBar mobile app</div>
+                    <div className="note os s9">Set account pin for secure transactions on the HipBar mobile app</div>
                   }
                   {
                     !otpSent &&
@@ -446,6 +456,7 @@ export default function SignUp(data) {
                           type="password"
                           name="confirmPin"
                           maxLength={4}
+                          placeholder="Re enter your account pin"
                           //value={this.state.confirmPin}
                           className={`${confirmPinErr.status ? 'error' : ''}`}
                           autoComplete="off"
@@ -459,7 +470,7 @@ export default function SignUp(data) {
                   }
                   {
                     confirmPinErr.status &&
-                    <p className="error-message os s7">{confirmPinErr.value}</p>
+                    <p className="error-message os s9">{confirmPinErr.value}</p>
                   }
                   {
                     otpSent &&
@@ -479,7 +490,7 @@ export default function SignUp(data) {
                       </div>
                       {
                         otpErr.status &&
-                        <p className="error-message os s7">{otpErr.value}</p>
+                        <p className="error-message os s9">{otpErr.value}</p>
                       }
                     </div>
                   }
@@ -489,11 +500,11 @@ export default function SignUp(data) {
                     !otpSent
                       ? <React.Fragment>
                         <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                        <Button size="small" style={{ marginLeft: "15px" }} disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
+                        <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
                       </React.Fragment>
                       : <React.Fragment>
                         <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                        <Button size="small" style={{ marginLeft: "15px" }} disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
+                        <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
                       </React.Fragment>
                   }
                 </div>

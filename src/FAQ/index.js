@@ -51,10 +51,10 @@ class FAQ extends React.Component {
       <div className="section">
         <div className={`question ${item.ques_number}`} style={{display: 'flex'}}>
           <div style={{position: 'relative'}} className="os s7">Q.) {item.question}</div>
-          <span className={`show ${item.ques_number}`} onClick={() => this.showAnswer(item.ques_number)}>
+          <span className={`show ${item.ques_number}`} style={{cursor: 'pointer'}} onClick={() => this.showAnswer(item.ques_number)}>
             <Icon name="plus" />
           </span>
-          <span className={`hide ${item.ques_number}`} onClick={() => this.hideAnswer(item.ques_number)}>
+          <span className={`hide ${item.ques_number}`} style={{cursor: 'pointer'}} onClick={() => this.hideAnswer(item.ques_number)}>
             <Icon name="minus" />
           </span>
         </div>

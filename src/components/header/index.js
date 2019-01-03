@@ -62,6 +62,10 @@ class Header extends React.Component {
     if(this.props.paramObj && this.props.paramObj.username) {
       this.setState({username: this.props.paramObj.username})
     }
+
+    if(!this.state.isLoggedIn) {
+      setTimeout(()=> {localStorage.setItem("showAgeGate", true)},500)
+    }
   }
 
   // componentDidUpdate(prevProps) {
@@ -199,10 +203,12 @@ class Header extends React.Component {
                     {
                       isLoggedIn && 
                       // <Button onClick={() => this.handleSignOut()} primary size="small">SIGN OUT</Button>
-                      <div className="logout">
-                        <Icon name="appUser" style={{marginRight: '10px'}}/>
-                        <div className="os s2"  style={{marginRight: '8px'}} >{paramObj.username}</div>
-                        <span onClick={() => this.openDropdown()} style={{display: 'flex', alignSelf: 'flex-end'}}>
+                      <div className="logout" onClick={() => this.openDropdown()} >
+                        <span className="user">
+                          <Icon name="appUser" style={{marginRight: '10px'}}/>
+                        </span>
+                        <div className="os s7"  style={{marginRight: '8px'}} >{paramObj.username}</div>
+                        <span style={{display: 'flex', alignSelf: 'center'}}>
                           <Icon name="filledDownArrow" />
                         </span>
           

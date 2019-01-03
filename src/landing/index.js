@@ -8,6 +8,7 @@ import { mountModal } from 'Components/modal-box/utils'
 import AgeGate from './../AgeGate'
 import Header from "Components/header"
 import Footer from "Components/footer"
+import { loadavg } from "os";
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class LandingPage extends React.Component {
                 </div>
                 <p className="os s7">
                   Currently in Bengaluru <br />
-                  Coming soon to 10+ cities accros India!
+                  Coming soon to 10+ cities across India!
                 </p>
 
               </div>
@@ -86,7 +87,8 @@ class LandingPage extends React.Component {
               Brands that we’ve partnered with
             </h1>
             <div className="brands-list">
-              <img src="https://hipbar.com/a21696ca22b7c04fb7591c52c5089f4f.png" />
+              {/* <img src="https://hipbar.com/a21696ca22b7c04fb7591c52c5089f4f.png" /> */}
+              <Icon name="bacardi" />
               <img src="https://hipbar.com/a0ee9f2c10e0e287bc9c05d64cffa171.png" />
               <img src="https://hipbar.com/d38974e5f50a5ae0f40ba9e323f03b63.png" />
               <img src="https://hipbar.com/9e9ee179bf9d959bef56c681e6670b9b.png" />
@@ -115,7 +117,7 @@ class LandingPage extends React.Component {
 
           <div className="our-presence">
             <h1 className="brands-heading os s1">
-            Our presense across India
+            Our presence across India
             </h1>
             <div className="presence-counts">
               <div className="presence-item">
@@ -182,7 +184,7 @@ class LandingPage extends React.Component {
 
             <div style={{ marginTop: "30px" }}>
               <a href="/retail-outlet">
-                <Button primary>View Retail Outlets</Button>
+                <Button primary  icon="rightArrowWhite">View Retail Outlets</Button>
               </a>
             </div>
           </div>

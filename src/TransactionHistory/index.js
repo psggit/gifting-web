@@ -72,19 +72,19 @@ class TransactionHistory extends React.Component {
           <div className="item-subheader">
             <p className="os s7">{item.receiver_name} | </p>
             <p className="os s7">
-              {item.receiver_mobile}
+              +91 {item.receiver_mobile}
             </p>
           </div>
           <p className="os s7">Rs. {item.gift_card_amount}</p>
         </div>
         <div className="item-body">
-          <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px', marginRight: '16px'}}>
+          <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px', marginRight: '24px'}}>
             <p className="os s9">
               Gift Card ID
             </p>
             <span className="os s8">#{item.gift_card_number}</span>
           </div>
-          <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px', marginRight: '16px'}}>
+          <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px', marginRight: '24px'}}>
             <p className="os s9">Transaction Date & Time</p>
             <span className="os s8">{Moment(item.gifted_on).format('DD/MM/YYYY, HH:mm A')}</span>
           </div>
@@ -119,7 +119,7 @@ class TransactionHistory extends React.Component {
                 <div className="transaction-list">
                   <div>
                     <div className="header">
-                      <h2 className="os s2">GIFT CARDS SENT</h2>
+                      <h2 className="os s7">GIFT CARDS SENT</h2>
                     </div>
                     {
                       this.renderTransation()

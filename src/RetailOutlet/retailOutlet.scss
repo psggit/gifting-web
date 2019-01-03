@@ -22,7 +22,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
-    padding: 12% 15% 5% 15%;
+    padding: 12% 15% 10% 15%;
     background: #f1f1f1;
 
     .retailer-list-container {
@@ -82,7 +82,8 @@
       }
 
       .retailer-list {
-        padding: 40px 0;
+        //padding: 40px 0;
+        margin-top: 10%;
         width: 100%;
         text-align: center;
         .header {
@@ -103,7 +104,7 @@
           .details {
             width: 90%;
             .name {
-              font-weight: 600;
+              font-weight: bold;
             }
           }
           .direction {

@@ -29,6 +29,11 @@
       // margin-bottom: 36px;
       margin-top: 8%;
       margin-bottom: 3%;
+
+      svg {
+        width: 70px;
+        height: 70px;
+      }
     }
     .step-text {
       text-align: center;
@@ -102,7 +107,7 @@
     align-items: center;
     h4 {
       //color: #d1d2dd;
-      font-weight: 600;
+      font-weight: bold;
       letter-spacing: 1.2px;
       font-size: 30px;
       text-align: center;
@@ -110,7 +115,7 @@
 
     .note {
       margin-top: 12px;
-      font-weight: 600;
+      font-weight: bold;
     }
 
     .button {

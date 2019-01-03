@@ -82,9 +82,10 @@
       .resend {
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
         position: absolute;
-        top: 35px;
+        top: 11px;
         right: 10px;
         font-weight: 600;
+        letter-spacing: 0.6px;
         cursor: pointer;
 
         &.disabled {
@@ -99,14 +100,15 @@
       color: #232a2e;
       letter-spacing: 0;
       margin: 10px 0;
-      font-weight: 600;
+      font-weight: 400;
     }
 
     .alert-box {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
-      padding: 10px 5px;
+      align-items: center;
+      padding: 10px 10px;
       margin: 10px 0;
       border: 1px solid #000;
       border-radius: 4px;
