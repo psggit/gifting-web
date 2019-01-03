@@ -212,8 +212,8 @@ class Header extends React.Component {
                         </span>
           
                         <div className={`dropdown-menu ${showDropdown ? 'show' : 'hide'}`} >
-                          <div onClick={() => this.handleTransactionHistory()} className="menu-item">Transaction History</div>
-                          <div onClick={() => this.handleSignOut()} className="menu-item"> Sign Out</div>
+                          <div onClick={() => this.handleTransactionHistory()} className="menu-item os s9">Transaction History</div>
+                          <div onClick={() => this.handleSignOut()} className="menu-item os s9"> Sign Out</div>
                         </div>
                       </div>
                     }
