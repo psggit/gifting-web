@@ -22,7 +22,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
-    padding: 12% 15% 10% 15%;
+    padding: 12% 12.5% 10% 12.5%;
     background: #f1f1f1;
 
     .retailer-list-container {
@@ -102,15 +102,16 @@
             color: #000;
           }
           .details {
-            width: 90%;
+            width: 85%;
             .name {
               font-weight: bold;
             }
           }
           .direction {
-            width: 10%;
+            width: 15%;
             display: flex;
             align-items: center;
+            justify-content: flex-end;
             font-weight: bold;
             cursor: pointer;
           }

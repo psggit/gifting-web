@@ -78,7 +78,10 @@ export default function SignUp(data) {
     }
 
     handleGenderChange(genderValue) {
-      this.setState({ gender: genderValue })
+      const {otpSent} = this.state
+      if(!otpSent) {
+        this.setState({ gender: genderValue })
+      }
     }
 
     isFormValid() {
@@ -320,7 +323,7 @@ export default function SignUp(data) {
                     <div style={{ display: 'flex' }}>
                       <div className={`country-code ${mobileNoErr.status ? 'error' : ''}`}>
                         +91
-                    </div>
+                      </div>
                       <div style={{ width: 'calc(100% - 40px' }}>
                         <input
                           type="text"
@@ -357,6 +360,7 @@ export default function SignUp(data) {
                         className={`${nameErr.status ? 'error' : ''}`}
                         value={this.state.name}
                         disabled={this.state.disableField && this.state.otpSent}
+                        style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
                         autoComplete="off"
                         onChange={(e) => this.handleTextChange(e)}
                       />
@@ -376,6 +380,7 @@ export default function SignUp(data) {
                         value={this.state.email}
                         className={`${emailErr.status ? 'error' : ''}`}
                         disabled={this.state.disableField && this.state.otpSent}
+                        style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
                         autoComplete="off"
                         onChange={(e) => this.handleTextChange(e)}
                       />
@@ -386,7 +391,7 @@ export default function SignUp(data) {
                     <p className="error-message os s9">{emailErr.value}</p>
                   }
                   {
-                    !otpSent &&
+                    //!otpSent &&
                     <div style={{ position: "relative" }} className="form-group">
                       <label>Date of Birth</label>
                       <span className="calendar">
@@ -398,12 +403,14 @@ export default function SignUp(data) {
                           name="dob"
                           max="9999-12-31"
                           value={this.state.dob}
+                          disabled={this.state.disableField && this.state.otpSent}
+                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
                           placeholder="Enter your date of birth"
                           className={`${dobErr.status ? 'error' : ''}`}
                           //disabled={this.state.disableField && this.state.otpSent} 
                           autoComplete="off"
                           onChange={(e) => this.handleTextChange(e)}
-                          style={{ paddingLeft: '35px' }}
+                          //style={{ paddingLeft: '35px' }}
                         />
                       </div>
                     </div>
@@ -413,18 +420,39 @@ export default function SignUp(data) {
                     <p className="error-message os s9">{dobErr.value}</p>
                   }
                   {
-                    !otpSent &&
+                    //!otpSent &&
                     <div className="form-group">
                       <label>Gender</label>
                       <div className="row">
-                        <div onClick={() => this.handleGenderChange("male")} className={`column os s8 ${gender === "male" ? 'active' : 'inactive'}`}>Male</div>
-                        <div onClick={() => this.handleGenderChange("female")} className={`column os s8 ${gender === "female" ? 'active' : ''}`}>Female</div>
-                        <div onClick={() => this.handleGenderChange("unspecified")} className={`column os s8 ${gender === "unspecified" ? 'active' : ''}`}>Unspecified</div>
+                        <div 
+                          disabled={this.state.disableField && this.state.otpSent} 
+                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}} 
+                          onClick={() => this.handleGenderChange("male")} 
+                          className={`column os s8 ${gender === "male" ? 'active' : 'inactive'}`}
+                        >
+                          Male
+                        </div>
+                        <div 
+                          disabled={this.state.disableField && this.state.otpSent} 
+                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
+                          onClick={() => this.handleGenderChange("female")} 
+                          className={`column os s8 ${gender === "female" ? 'active' : ''}`}
+                        >
+                          Female
+                        </div>
+                        <div 
+                          disabled={this.state.disableField && this.state.otpSent} 
+                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
+                          onClick={() => this.handleGenderChange("unspecified")} 
+                          className={`column os s8 ${gender === "unspecified" ? 'active' : ''}`}
+                        >
+                          Unspecified
+                        </div>
                       </div>
                     </div>
                   }
                   {
-                    !otpSent &&
+                    //!otpSent &&
                     <div className="form-group">
                       <label>Account Pin</label>
                       <div>
@@ -436,6 +464,8 @@ export default function SignUp(data) {
                           //value={this.state.pin}
                           className={`${pinErr.status ? 'error' : ''}`}
                           autoComplete="off"
+                          disabled={this.state.disableField && this.state.otpSent}
+                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
                           //onChange={(e) => this.handleTextChange(e)}
                           onKeyDown={(e) => {this.handleNumberChange(e)}}
                           onKeyUp={(e) => {this.handleNumberChange(e)}}
@@ -444,17 +474,19 @@ export default function SignUp(data) {
                     </div>
                   }
                   {
-                    !otpSent &&
+                    //!otpSent &&
                     <div className="note os s9">Set account pin for secure transactions on the HipBar mobile app</div>
                   }
                   {
-                    !otpSent &&
+                    //!otpSent &&
                     <div className="form-group">
                       <label>Confirm Account Pin</label>
                       <div>
                         <input
                           type="password"
                           name="confirmPin"
+                          disabled={this.state.disableField && this.state.otpSent}
+                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
                           maxLength={4}
                           placeholder="Re enter your account pin"
                           //value={this.state.confirmPin}

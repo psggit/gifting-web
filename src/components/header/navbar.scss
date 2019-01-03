@@ -38,6 +38,25 @@
         right: 5.6%;
     }
 
+    a {
+        text-decoration: none;
+        &.active {
+            text-decoration: underline;
+        }
+    }
+
+    // &:hover {
+    //   //font-weight: 600;
+    //   //opacity: 1;
+    //   //text-decoration: underline;
+    // }
+  
+    // &.active {
+    //   //font-weight: 600;
+    //   //background: red;
+    //   //text-decoration: underline;
+    // }
+
     .logout {
         display: flex;
         //align-items: center;
@@ -70,13 +89,14 @@
         // left: 0px;
         background: #000;
         color: #fff;
-        width: 190px;
+        width: 160px;
         //transition: all 0.2s ease;
         .menu-item {
             display: block;
             //text-align: center;
             padding: 10px 20px;
             color: #d1d2dd;
+            letter-spacing: 0.4px;
         }
     }
 
@@ -86,18 +106,6 @@
         text-decoration: none;
         color: #000;
         //opacity: 0.7;
-      
-        &:hover {
-          //font-weight: 600;
-          //opacity: 1;
-          text-decoration: underline;
-        }
-      
-        &.active {
-          //font-weight: 600;
-          text-decoration: underline;
-        }
-
         // &:last-child {
         //     padding: 11px 20px;
         //     height: 44px;
