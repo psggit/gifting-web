@@ -184,7 +184,7 @@ class Header extends React.Component {
                   <div className="nav-items">
                     {
                       this.navItems.map((item, index) => (
-                        <NavLink to={`/${item.value}`} key={index}>
+                        <a href={`/${item.value}`} key={index}>
                           <div 
                             onClick={this.handleLink}
                             className="nav-item" 
@@ -194,7 +194,7 @@ class Header extends React.Component {
                           >
                             {item.label}
                           </div>
-                        </NavLink>
+                        </a>
                       ))
                     }
                     {
