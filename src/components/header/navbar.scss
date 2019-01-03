@@ -42,6 +42,11 @@
         text-decoration: none;
         &.active {
             text-decoration: underline;
+            text-decoration-color: #000;
+        }
+        &:hover {
+            text-decoration: underline;
+            text-decoration-color: #000;
         }
     }
 

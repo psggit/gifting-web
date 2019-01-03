@@ -184,7 +184,7 @@ class Header extends React.Component {
                   <div className="nav-items">
                     {
                       this.navItems.map((item, index) => (
-                        <a href={`/${item.value}`} key={index}>
+                        <a className={location.pathname.slice(1) === item.value ? "active" : undefined} href={`/${item.value}`} key={index}>
                           <div 
                             onClick={this.handleLink}
                             className="nav-item" 
@@ -240,7 +240,7 @@ class Header extends React.Component {
                       {
                         this.navItems.map((item, index) => (
                           <li key={index}>
-                            <a onClick={this.handleLink} href={`/${item.value}`} className="os s2">
+                            <a className={location.pathname.slice(1) === item.value ? "active" : undefined} onClick={this.handleLink} href={`/${item.value}`} className="os s2">
                               {item.label}
                             </a>
                           </li>

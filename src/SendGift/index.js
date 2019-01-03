@@ -113,7 +113,8 @@ class SendGift extends React.Component {
         sender_name: senderName,
         device: "web",
         receiver_name: receiverName
-      }
+      },
+      handleError: true
     })
       .then((json) => {
         this.postBody = {
@@ -227,7 +228,7 @@ class SendGift extends React.Component {
                         </div>
 
                         <div className="form-field">
-                          <InputMask mask="99999" maskChar={null} className={this.state.activePrice === "price4" ? "focused" : undefined} value={this.state.otherValue} onChange={this.handleAmountChange} name="price4" maxLength="5" type="text" placeholder="Other" />
+                          <input className={this.state.activePrice === "price4" ? "focused" : undefined} value={this.state.otherValue} onChange={this.handleAmountChange} name="price4" type="text" maxLength="5" placeholder="Other" />
                           <span>&#8377;</span>
                         </div>
 
