@@ -55,7 +55,7 @@ class LandingPage extends React.Component {
                 </h2>
 
                 <p className="os s2">
-                With HipBar Gift Cards, gift drinks to your friends & family this festive season! Redeem drinks at 60+ retailers across Bengaluru and Goa!
+                With HipBar Gift Cards, gift drinks to your friends & family. Redeem drinks at 60+ retailers across Bengaluru and Goa!
                 </p>
 
                 <div style={{ marginTop: "30px", }}>
@@ -113,7 +113,7 @@ class LandingPage extends React.Component {
             <div style={{ marginTop: "100px" }}>
               <h1 className="cm s1">What are HipBar Gift Cards?</h1>
               <p className="os s2">
-              With HipBar Gift Cards, gift drinks to your friends & family this festive season! Redeem drinks at 60+ retailers across Bengaluru and Goa!
+              With HipBar Gift Cards, gift drinks to your friends & family. Redeem drinks at 60+ retailers across Bengaluru and Goa!
               </p>
             </div>
           </div>
