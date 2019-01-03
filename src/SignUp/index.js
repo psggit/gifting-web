@@ -34,6 +34,7 @@ export default function SignUp(data) {
         otp: "",
         pin: "",
         confirmPin: "",
+        resentOtp: false,
         gender: "male",
         errorInSignUp: false,
         isGettingOtp: false,
@@ -165,7 +166,7 @@ export default function SignUp(data) {
               this.setState({ emailErr: { status: true, value: responseData.message } })
               //return
             } else if (response.status !== 400) {
-              this.getOtp()
+              this.getOtp({resend: false})
             }
             this.setState({ isGettingOtp: false })
           })
@@ -224,7 +225,7 @@ export default function SignUp(data) {
       }
     }
 
-    getOtp() {
+    getOtp(dataObj) {
       const payload = {
         info: {},
         mobile: this.state.mobileNo
@@ -244,6 +245,9 @@ export default function SignUp(data) {
         .then((response) => {
           if (response.status === 401) {
             this.setState({ otpSent: true, disableField: true })
+            if(dataObj.resend) {
+              this.setState({resentOtp: true})
+            }
           }
           this.setState({ isGettingOtp: false })
           return
@@ -258,14 +262,14 @@ export default function SignUp(data) {
     resendOtp() {
       //this.setState({otpSent: true})
       if (!this.state.isGettingOtp) {
-        this.getOtp()
+        this.getOtp({resend: true})
       }
     }
 
     handleEmailChange(e) {
       const errName = `${e.target.name}Err`
       this.setState({
-        [e.target.name]: e.target.value,
+        [e.target.name]: (e.target.value).trim(),
         //[errName]: validateEmail(this.inputNameMap[e.target.name], e.target.value),
       })
     }
@@ -273,7 +277,7 @@ export default function SignUp(data) {
     handleTextChange(e) {
       const errName = `${e.target.name}Err`
       this.setState({
-        [e.target.name]: e.target.value,
+        [e.target.name]: (e.target.value).trim(),
         //[errName]: validateTextField(this.inputNameMap[e.target.name], e.target.value),
       })
     }
@@ -283,7 +287,7 @@ export default function SignUp(data) {
 
       if (validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e) || checkCtrlC(e)) {
         this.setState({
-          [e.target.name]: e.target.value,
+          [e.target.name]: (e.target.value).trim(),
           //[errName]:  validateNumberField(this.inputNameMap[e.target.name], e.target.value)
         })
       } else {
@@ -454,7 +458,7 @@ export default function SignUp(data) {
                   {
                     //!otpSent &&
                     <div className="form-group">
-                      <label>Account Pin</label>
+                      <label>Account PIN</label>
                       <div>
                         <input
                           type="password"
@@ -480,7 +484,7 @@ export default function SignUp(data) {
                   {
                     //!otpSent &&
                     <div className="form-group">
-                      <label>Confirm Account Pin</label>
+                      <label>Confirm Account PIN</label>
                       <div>
                         <input
                           type="password"
@@ -512,13 +516,21 @@ export default function SignUp(data) {
                         <input
                           type="text"
                           name="otp"
+                          placeholder="Enter the OTP that you've received"
                           className={`${otpErr.status ? 'error' : ''}`}
-                          value={this.state.otp}
+                          //value={this.state.otp}
+                          maxLength={6}
+                          onKeyDown={(e) => {this.handleNumberChange(e)}}
+                          onKeyUp={(e) => {this.handleNumberChange(e)}}
                           //disabled={this.state.disableField}
                           autoComplete="off"
-                          onChange={(e) => this.handleTextChange(e)}
+                          //onChange={(e) => this.handleTextChange(e)}
                         />
                         <div className={`resend os s10 ${isGettingOtp ? 'disabled' : ''}`} onClick={this.resendOtp}>RESEND OTP</div>
+                        {
+                          this.state.resentOtp && 
+                          <div className="note os s9">OTP has been resent!</div>
+                        }
                       </div>
                       {
                         otpErr.status &&

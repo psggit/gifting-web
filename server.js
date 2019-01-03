@@ -5,8 +5,10 @@ const fs = require("fs")
 const React = require("react")
 const { renderToNodeStream, renderToString } = require("react-dom/server")
 const bodyParser = require('body-parser')
-const FormData = require("form-data")
+// const FormData = require("form-data")
 const request = require("request")
+const PaymentStatus = require("./dist-ssr/payment-status").default
+const location = {}
 // const TransactionSuccess = require("./dist-ssr/transaction-success").default
 // const TransactionFailure = require("./dist-ssr/transaction-failure").default
 
@@ -104,11 +106,14 @@ app.post("/payment-status", (req, res) => {
   request.post({ url: `https://orderman.${ENDPOINT_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     console.log(err, httpRes, body)
   })
-  res.sendFile(path.join(__dirname, "dist/index.html"), (err) => {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
+  const reactElement = React.createElement(PaymentStatus, { amount: req.body.net_amount_debit })
+  const reactHTML = renderToString(reactElement)
+  res.send(reactHTML)
+  // res.sendFile(path.join(__dirname, "dist/index.html"), (err) => {
+  //   if (err) {
+  //     res.status(500).send(err)
+  //   }
+  // })
 })
 
 app.get('/grievance-policy', (req, res) => {

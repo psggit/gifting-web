@@ -51,7 +51,7 @@ class LandingPage extends React.Component {
                 </h2>
 
                 <p className="os s2">
-                With HipBar Gift Cards, gift drinks to your friends & family this festive season! Redeem drinks at 50+ retailers across Bengaluru!
+                With HipBar Gift Cards, gift drinks to your friends & family this festive season! Redeem drinks at 60+ retailers across Bengaluru and Goa!
                 </p>
 
                 <div style={{ marginTop: "30px", }}>
@@ -60,7 +60,7 @@ class LandingPage extends React.Component {
                   </a>
                 </div>
                 <p className="os s7">
-                  Currently in Bengaluru <br />
+                  Currently in Bengaluru and Goa<br />
                   Coming soon to 10+ cities across India!
                 </p>
 
@@ -71,7 +71,7 @@ class LandingPage extends React.Component {
               </div>
             </div>
             <h2 className="cm s2">
-              Get 50%* off on your first HipBar Gift Card!
+              {/* Get 50%* off on your first HipBar Gift Card! */}
               <div style={{ marginTop: "20px" }}>
                 <Icon name="downArrow" />
               </div>
@@ -80,18 +80,21 @@ class LandingPage extends React.Component {
 
           <div className="brands">
             <h1 className="brands-heading os s1">
-              Brands that we’ve partnered with
+              Our Brand partners
             </h1>
             <div className="brands-list">
-              {/* <img src="https://hipbar.com/a21696ca22b7c04fb7591c52c5089f4f.png" /> */}
+              <img src="https://hipbar.com/a21696ca22b7c04fb7591c52c5089f4f.png" />
+              {/* <Icon name="diageo" />
               <Icon name="bacardi" />
+              <Icon name="carlsberg" />
+              <Icon name="bira" /> */}
               <img src="https://hipbar.com/a0ee9f2c10e0e287bc9c05d64cffa171.png" />
               <img src="https://hipbar.com/d38974e5f50a5ae0f40ba9e323f03b63.png" />
               <img src="https://hipbar.com/9e9ee179bf9d959bef56c681e6670b9b.png" />
             </div>
 
             <h1 className="brands-heading os s1">
-            and 50+ more!
+            and 200+ more!
             </h1>
           </div>
 
@@ -106,7 +109,7 @@ class LandingPage extends React.Component {
             <div style={{ marginTop: "100px" }}>
               <h1 className="cm s1">What are HipBar Gift Cards?</h1>
               <p className="os s2">
-              With HipBar Gift Cards, gift drinks to your friends & family this festive season! Redeem drinks at 50+ retailers across Bengaluru!
+              With HipBar Gift Cards, gift drinks to your friends & family this festive season! Redeem drinks at 60+ retailers across Bengaluru and Goa!
               </p>
             </div>
           </div>
@@ -117,17 +120,17 @@ class LandingPage extends React.Component {
             </h1>
             <div className="presence-counts">
               <div className="presence-item">
-                <h1 className="os s0">10+</h1>
-                <h1 className="brands-heading os s1">Cities across India</h1>
-              </div>
-
-              <div className="presence-item">
-                <h1 className="os s0">100+</h1>
-                <h1 className="brands-heading os s1">Retail outlets</h1>
+                <h1 className="os s0">100000+</h1>
+                <h1 className="brands-heading os s1">HipBar users</h1>
               </div>
 
               <div className="presence-item">
                 <h1 className="os s0">60+</h1>
+                <h1 className="brands-heading os s1">Retail outlets</h1>
+              </div>
+
+              <div className="presence-item">
+                <h1 className="os s0">250+</h1>
                 <h1 className="brands-heading os s1">Brands</h1>
               </div>
             </div>
@@ -148,10 +151,9 @@ class LandingPage extends React.Component {
 
             <div className="item">
               <Icon name="stepTwo" />
-              <h2 className="cm s2">Recipient gets notified via SMS & Whatsapp!</h2>
+              <h2 className="cm s2">Recipient notified via SMS</h2>
               <p className="os s3">
-              With further information on how to use the<br/> gift cards, they have to download the<br/> HipBar app to use their<br/>
-          HipBar Gift Card.
+              Recipient is notified via SMS with more information on how to use the gift card.
               </p>
             </div>
 
@@ -160,7 +162,7 @@ class LandingPage extends React.Component {
               <h2 className="cm s2">Recipient downloads the HipBar app</h2>
               <p className="os s3">
               With the HipBar app, they can easily<br/> view their Gift Cards and redeem it at<br/>
-          50+ HipBar powered retail outlets in<br/> Bengaluru
+          60+ HipBar powered retail outlets in<br/> Bengaluru and Goa
               </p>
 
               <div className="app-store-btn">
@@ -171,10 +173,9 @@ class LandingPage extends React.Component {
 
             <div className="item">
               <Icon name="stepFour" />
-              <h2 className="cm s2">Gets drinks with HipBar Gift Card at Retail Outlets*</h2>
+              <h2 className="cm s2">Redeem</h2>
               <p className="os s3">
-              Recipient pays for drinks with their HipBar<br/> Gift Card at select 50+ retail outlets across<br/>
-          Bengaluru
+              Recipient pays for drinks with their HipBar<br/> Gift Card at any of the 60+ HipBar-affiliated stores in the city of operation<br/>
               </p>
             </div>
 

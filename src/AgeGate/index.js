@@ -31,7 +31,7 @@ export default function AgeGate(data) {
           </ModalHeader>
           <ModalBody>
             <p className="os s2">
-              Agree if you are above the legal drinking age in your state of residence
+              Agree if you are of legal drinking age in your current state of residence
             </p>
             <div style={{display: 'flex', marginTop: '40px', alignItems: 'center'}}>
               <a className="os s6" href="/legal-drinking-age" target="_blank">
@@ -50,7 +50,7 @@ export default function AgeGate(data) {
               <span  className="icon">
                 <Icon name="alert"/>
               </span>
-              <div className="os s6">Sorry! You've to be above the legal drinking age to access this website</div>
+              <div className="os s6">Sorry! You've to be of legal drinking age to access this website</div>
             </div>
           }     
         </ModalBox>

@@ -26,6 +26,7 @@ export default function SignIn(data) {
         mobileNo: data.mobile ? data.mobile : "",
         otp: "",
         errorInSignIn: false,
+        resentOtp: false,
         disableField: data.otpSent ? true : false,
         isSigningIn: false,
         mobileNoErr: {
@@ -78,6 +79,9 @@ export default function SignIn(data) {
               this.setState({mobileNoErr: {status: true, value: "Invalid mobile number"}})
             } else if (response.status === 401) {
               this.setState({otpSent: true, disableField: true})
+              if(dataObj.resendOtp) {
+                this.setState({resentOtp : true})
+              }
             }
             this.setState({isGettingOtp: false})
           })
@@ -109,7 +113,7 @@ export default function SignIn(data) {
 
     handleClick () {
       if(this.isFormValid() && !this.state.isGettingOtp) {
-        this.verifyUserAndGetOtp({unMountModal: true})
+        this.verifyUserAndGetOtp({unMountModal: true, resendOtp: false})
       }
     }
 
@@ -118,14 +122,13 @@ export default function SignIn(data) {
 
       if(validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e) || checkCtrlC(e)) {
         this.setState({ 
-          [e.target.name]: e.target.value,
+          [e.target.name]: (e.target.value).trim(),
           //[errName]:  validateNumberField(this.inputNameMap[e.target.name], e.target.value)
         })
       } else {
         e.preventDefault()
       }   
     }
-
 
     signIn() {
       if(!this.state.isSigningIn) {
@@ -178,12 +181,13 @@ export default function SignIn(data) {
 
     resendOtp() {
       if(!this.state.isGettingOtp) {
-        this.verifyUserAndGetOtp({unMountModal: false})
+        this.verifyUserAndGetOtp({unMountModal: false, resendOtp: true})
+        //this.setState({})
       }
     }
 
     handleTextChange(e) {
-      this.setState({[e.target.name]: e.target.value})
+      this.setState({[e.target.name]: (e.target.value).trim()})
     }
 
     render() {
@@ -256,12 +260,19 @@ export default function SignIn(data) {
                             type="text"
                             name="otp"
                             placeholder="Enter the OTP that you've received"
-                            value={this.state.otp}
+                            //value={this.state.otp}
                             className={`${otpErr.status ? 'error' : ''}`}
                             autocomplete="off"
-                            onChange={(e) => this.handleTextChange(e)}
+                            maxLength={6}
+                            onKeyDown={(e) => {this.handleNumberChange(e)}}
+                            onKeyUp={(e) => {this.handleNumberChange(e)}}
+                            //onChange={(e) => this.handleTextChange(e)}
                           />
                           <div className={`resend os s10 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND OTP</div>
+                          {
+                            this.state.resentOtp && 
+                            <div className="note os s9">OTP has been resent!</div>
+                          }
                         </div>
                         {
                           otpErr.status &&

@@ -9,7 +9,7 @@ const config = {
   target: "node",
   externals: [nodeExternals()],
   entry: {
-    "transaction-success": path.resolve(__dirname, "./../../src/payment-success.js")
+    "payment-status": path.resolve(__dirname, "./../../src/payment-status.js")
   },
   output: {
     path: path.resolve(__dirname, "./../../dist-ssr"),
