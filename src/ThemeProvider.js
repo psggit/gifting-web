@@ -21,7 +21,7 @@ export class ThemeProvider extends React.Component {
       'x-hasura-role': 'user'
     }
     // https://auth.hipbar-dev.com/user/account/info
-    fetch(`${Api.authUrl}/user/account/info`, fetchOptions)
+    fetch(`${Api.blogicUrl}/consumer/settings/profile`, fetchOptions)
       .then((response) => {
         if (response.status !== 200) {
           //console.log(`Looks like there was a problem. Status Code: ${response.status}`)
@@ -33,7 +33,7 @@ export class ThemeProvider extends React.Component {
           return
         }
         response.json().then((data) => {
-          this.setState({username: data.username, isLoggedIn: true, mobile: data.mobile})
+          this.setState({username: data.consumer.full_name, isLoggedIn: true, mobile: data.consumer.mobile_number})
           // localStorage.setItem("sender_mobile", data.mobile)
           // localStorage.setItem("username", data.username)
         })
