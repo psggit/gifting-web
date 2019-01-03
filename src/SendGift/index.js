@@ -8,6 +8,7 @@ import SignIn from "./../SignIn"
 import { mountModal } from "Components/modal-box/utils"
 import "./send-gift.scss"
 import { POST } from "Utils/fetch"
+import InputMask from "react-input-mask"
 
 class SendGift extends React.Component {
   constructor(props) {
@@ -66,7 +67,7 @@ class SendGift extends React.Component {
       amount.length &&
       giftMessage.length &&
       receiverName.length &&
-      receiverNumber.length &&
+      receiverNumber.length === 10 && ["1", "2", "3", "4", "5"].indexOf(receiverNumber[0]) === -1 &&
       senderName.length
     ) {
       this.createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName)
@@ -77,6 +78,10 @@ class SendGift extends React.Component {
     if (e.target.name !== "price4") {
       this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: "" })
     } else {
+      if (!e.target.value.length) {
+        this.setState({ amount: "499", activePrice: "price1", otherValue: "" })
+        return
+      }
       if (parseInt(e.target.value) > 10000) {
         return;
       }
@@ -222,7 +227,7 @@ class SendGift extends React.Component {
                         </div>
 
                         <div className="form-field">
-                          <input className={this.state.activePrice === "price4" ? "focused" : undefined} value={this.state.otherValue} onChange={this.handleAmountChange} name="price4" maxLength="5" type="text" placeholder="Other" />
+                          <InputMask mask="99999" maskChar={null} className={this.state.activePrice === "price4" ? "focused" : undefined} value={this.state.otherValue} onChange={this.handleAmountChange} name="price4" maxLength="5" type="text" placeholder="Other" />
                           <span>&#8377;</span>
                         </div>
 
@@ -246,6 +251,10 @@ class SendGift extends React.Component {
 
                     <div className="form-group">
                       <label className="os">Phone Number</label>
+                      {/* <InputMask
+                        mask="+\9\1 9999999999"
+                        maskChar={null}
+                      /> */}
                       <input onChange={this.handlePhoneChange} name="receiverNumber" maxLength="10" type="text" />
                     </div>
                   </div>
@@ -260,6 +269,7 @@ class SendGift extends React.Component {
 
                     <div className="form-group">
                       <label className="os">Phone Number</label>
+                      
                       <input value={this.state.senderNumber} onChange={this.handlePhoneChange} name="senderNumber" maxLength="10" type="text" readOnly />
                     </div>
                   </div>

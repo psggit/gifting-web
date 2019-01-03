@@ -23,8 +23,7 @@ import { Api } from "Utils/config"
 import {clearSession} from 'Utils/session-utils'
 import { mountModal } from 'Components/modal-box/utils'
 import NotifyError from './NotifyError';
-import PaymentSuccess from "./payment-success"
-import PaymentFailure from "./payment-failed"
+import PaymentStatus from "./payment-status"
 
 import {ThemeProvider, ThemeContext} from "./ThemeProvider"
 // import makeAsyncComponent from './makeAsyncComponent'
@@ -281,8 +280,8 @@ class App extends React.Component {
                     path="/locationMap" 
                     component={LocationMap} 
                   />
-                   <Route exact path="/payment-success" component={PaymentSuccess}  />
-                   <Route exact path="/payment-failure" component={PaymentFailure}  />
+                   <Route exact path="/payment-status" component={PaymentStatus}  />
+                   {/* <Route exact path="/payment-status" component={PaymentFailure}  /> */}
                   <Route exact path="*" component={() => <h1>404 Not Found</h1>} />
                 </Switch>
               </Router>

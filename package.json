@@ -12,9 +12,9 @@
     "preact-compat": "^3.18.4",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-input-mask": "^2.0.4",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-text-mask": "^5.4.3",
     "request": "^2.88.0",
     "whatwg-fetch": "^3.0.0"
   },

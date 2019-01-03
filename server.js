@@ -7,7 +7,8 @@ const { renderToNodeStream, renderToString } = require("react-dom/server")
 const bodyParser = require('body-parser')
 const FormData = require("form-data")
 const request = require("request")
-// const CheckoutReact = require("./dist-ssr/checkout").default
+// const TransactionSuccess = require("./dist-ssr/transaction-success").default
+// const TransactionFailure = require("./dist-ssr/transaction-failure").default
 
 // 
 app.disable("x-powered-by")
@@ -95,11 +96,15 @@ app.get('/privacy', (req, res) => {
   })
 })
 
-app.post("/transaction", (req, res) => {
+app.get("/payment-status", (req, res) => {
+  res.send("Not found")
+})
+
+app.post("/payment-status", (req, res) => {
   request.post({ url: `https://orderman.${ENDPOINT_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     console.log(err, httpRes, body)
   })
-  res.sendFile(path.join(__dirname, "src/transaction.html"), (err) => {
+  res.sendFile(path.join(__dirname, "dist/index.html"), (err) => {
     if (err) {
       res.status(500).send(err)
     }
