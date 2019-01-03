@@ -32,7 +32,7 @@ class Header extends React.Component {
         value: "using-gift-card"
       },
       {
-        label: "Retailer Outlets",
+        label: "Retail Outlet",
         value: "retail-outlet"
       },
       {
