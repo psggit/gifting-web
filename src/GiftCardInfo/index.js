@@ -29,8 +29,8 @@ class GiftCards extends React.Component {
             <h2 className="cm s1">How to use HipBar Gift Cards?</h2>
             <span className="step-number"><Icon name="stepOne" /></span>
             <div className="step-text">
-              <h2 className="cm s2">Gift Drinks with HipBar Gifting</h2>
-              <span className="os s2">
+              <h2 className="cm s3">Gift Drinks with HipBar Gifting</h2>
+              <span className="os s4">
                 Enter the amount to gift, the recipients
                 information, pay for the gift card and
                 you are good to go!
@@ -38,8 +38,8 @@ class GiftCards extends React.Component {
             </div>
             <span className="step-number"><Icon name="stepTwo" /></span>
             <div className="step-text">
-              <h2 className="cm s2">Recipient gets notified via SMS & Whatsapp!</h2>
-              <span className="os s2">
+              <h2 className="cm s3">Recipient gets notified via SMS & Whatsapp!</h2>
+              <span className="os s4">
                 With further information on how to use the 
                 gift cards, they have to download the 
                 HipBar app to use their
@@ -49,8 +49,8 @@ class GiftCards extends React.Component {
 
             <span className="step-number"><Icon name="stepThree" /></span>
             <div className="step-text">
-              <h2 className="cm s2">Recipient downloads the HipBar app</h2>
-              <span className="os s2">
+              <h2 className="cm s3">Recipient downloads the HipBar app</h2>
+              <span className="os s4">
                 With the HipBar app, they can easily
                 view their Gift Cards and redeem them it at 
                 50+ HipBar powered retail outlets in
@@ -65,8 +65,8 @@ class GiftCards extends React.Component {
 
             <span className="step-number"><Icon name="stepFour" /></span>
             <div className="step-text">
-              <h2 className="cm s2">Get drinks with HipBar Gift Card at Retail Outlets*</h2>
-              <span className="os s2">
+              <h2 className="cm s3">Get drinks with HipBar Gift Card at Retail Outlets*</h2>
+              <span className="os s4">
                 Recipient pays for drinks with their HipBar
                 Gift Card at select 50+ retail outlets across
                 Bengaluru
