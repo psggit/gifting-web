@@ -90,7 +90,7 @@ class SendGift extends React.Component {
   }
 
   handleMessageChange(e) {
-    this.setState({ personalMessage: e.target.value })
+    this.setState({ giftMessage: e.target.value })
   }
 
   handlePhoneChange(e) {
@@ -228,7 +228,7 @@ class SendGift extends React.Component {
                         </div>
 
                         <div className="form-field">
-                          <input className={this.state.activePrice === "price4" ? "focused" : undefined} value={this.state.otherValue} onChange={this.handleAmountChange} name="price4" type="text" maxLength="5" placeholder="Other" />
+                          <InputMask mask="99999" maskChar={null}  className={this.state.activePrice === "price4" ? "focused" : undefined} value={this.state.otherValue} onChange={this.handleAmountChange} name="price4" type="text" placeholder="Other" />
                           <span>&#8377;</span>
                         </div>
 
