@@ -23,6 +23,8 @@
       // border-right: 0;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -53,6 +55,12 @@
 
     input.error {
       border: 1px solid #c23934 !important;
+    }
+
+    input.mobile {
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      //border-left: 0px;
     }
 
     input.mobile.error {
