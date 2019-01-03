@@ -91,7 +91,7 @@ class LandingPage extends React.Component {
               <Icon name="diageo" />
               <Icon name="bacardi" />
               <Icon name="carlsberg" />
-              <Icon name="bira" />
+              <Icon name="pernado" />
               {/* <img src="https://hipbar.com/a0ee9f2c10e0e287bc9c05d64cffa171.png" />
               <img src="https://hipbar.com/d38974e5f50a5ae0f40ba9e323f03b63.png" />
               <img src="https://hipbar.com/9e9ee179bf9d959bef56c681e6670b9b.png" /> */}
