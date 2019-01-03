@@ -28,8 +28,8 @@ class Header extends React.Component {
         value: "send-gift"
       },
       {
-        label: "Using Gift Cards",
-        value: "using-gift-card"
+        label: "Redeeming Gift Card",
+        value: "redeeming-gift-card"
       },
       {
         label: "Retail Outlets",
