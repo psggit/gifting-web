@@ -181,6 +181,14 @@
           flex-direction: column !important;
           text-align: center !important;
       }
+
+      .note {
+        position: relative !important;
+        padding: 12px 0;
+        text-align: left;
+        margin: 0;
+        width: 100% !important;
+      }
     }
 
     .page-footer {

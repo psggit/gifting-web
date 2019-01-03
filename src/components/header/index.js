@@ -65,7 +65,7 @@ class Header extends React.Component {
     }
 
     if(!this.state.isLoggedIn) {
-      setTimeout(()=> {localStorage.setItem("showAgeGate", true)},500)
+      setTimeout(()=> {localStorage.setItem("showAgeGate", true)}, 0)
     }
   }
 

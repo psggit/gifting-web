@@ -162,7 +162,7 @@ export default function SignIn(data) {
                 return
               }
               createSession(responseData, "true")
-              //localStorage.setItem("showAgegate", false)
+              localStorage.setItem("showAgegate", false)
               location.href= (location.pathname)
               unMountModal()
               //data.reload(true)
@@ -289,8 +289,14 @@ export default function SignIn(data) {
                         
                       </React.Fragment>
                     : <React.Fragment>
-                        <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                        <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.signIn}>Sign in</Button>
+                        <div className="button-section">
+                          <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
+                          <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.signIn}>Sign in</Button>
+                        </div> 
+                        <div className="button-section mobile">
+                          <Button size="small" icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.signIn}>Sign in</Button>
+                          <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
+                        </div> 
                       </React.Fragment>
                   } 
                 </div>

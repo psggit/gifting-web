@@ -208,7 +208,7 @@ export default function SignUp(data) {
                 this.setState({ isSigningUp: false })
                 return
               }
-              //localStorage.setItem("showAgegate", false)
+              localStorage.setItem("showAgegate", false)
               createSession(responseData)
               location.href = (location.pathname)
               unMountModal()
@@ -531,12 +531,25 @@ export default function SignUp(data) {
                   {
                     !otpSent
                       ? <React.Fragment>
-                        <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                        <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
+                        <div className="button-section">
+                          <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
+                          <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
+                        </div> 
+                        <div className="button-section mobile">
+                          <Button size="small" icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
+                          <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
+                        </div> 
                       </React.Fragment>
                       : <React.Fragment>
-                        <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                        <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
+                        <div className="button-section">
+                          <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
+                          <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
+                        </div> 
+                        <div className="button-section mobile">
+                          <Button size="small" icon="rightArrowWhite" disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
+                          <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
+                        </div> 
+                       
                       </React.Fragment>
                   }
                 </div>
