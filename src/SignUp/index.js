@@ -34,6 +34,7 @@ export default function SignUp(data) {
         otp: "",
         pin: "",
         confirmPin: "",
+        resentOtp: false,
         gender: "male",
         errorInSignUp: false,
         isGettingOtp: false,
@@ -165,7 +166,7 @@ export default function SignUp(data) {
               this.setState({ emailErr: { status: true, value: responseData.message } })
               //return
             } else if (response.status !== 400) {
-              this.getOtp()
+              this.getOtp({resend: false})
             }
             this.setState({ isGettingOtp: false })
           })
@@ -224,7 +225,7 @@ export default function SignUp(data) {
       }
     }
 
-    getOtp() {
+    getOtp(dataObj) {
       const payload = {
         info: {},
         mobile: this.state.mobileNo
@@ -244,6 +245,9 @@ export default function SignUp(data) {
         .then((response) => {
           if (response.status === 401) {
             this.setState({ otpSent: true, disableField: true })
+            if(dataObj.resend) {
+              this.setState({resentOtp: true})
+            }
           }
           this.setState({ isGettingOtp: false })
           return
@@ -258,7 +262,7 @@ export default function SignUp(data) {
     resendOtp() {
       //this.setState({otpSent: true})
       if (!this.state.isGettingOtp) {
-        this.getOtp()
+        this.getOtp({resend: true})
       }
     }
 
@@ -523,6 +527,10 @@ export default function SignUp(data) {
                           //onChange={(e) => this.handleTextChange(e)}
                         />
                         <div className={`resend os s10 ${isGettingOtp ? 'disabled' : ''}`} onClick={this.resendOtp}>RESEND OTP</div>
+                        {
+                          this.state.resentOtp && 
+                          <div className="note os s9">OTP has been resent!</div>
+                        }
                       </div>
                       {
                         otpErr.status &&
