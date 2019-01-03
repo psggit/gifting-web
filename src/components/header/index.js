@@ -10,6 +10,7 @@ import {Api} from 'Utils/config'
 import {createSession, clearSession, getUsername} from 'Utils/session-utils'
 import NotifyError from './../../NotifyError';
 import {ThemeProvider, ThemeContext} from "./../../ThemeProvider"
+import { NavLink } from 'react-router-dom'
 
 class Header extends React.Component {
   constructor(props) {
@@ -40,16 +41,17 @@ class Header extends React.Component {
       }
     ]
     this.onToggle = this.onToggle.bind(this)
-    this.handleMouseOver = this.handleMouseOver.bind(this)
-    this.handleMouseOut = this.handleMouseOut.bind(this)
+    //this.handleMouseOver = this.handleMouseOver.bind(this)
+    //this.handleMouseOut = this.handleMouseOut.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleSignOut = this.handleSignOut.bind(this)
     //this.reloadHeader = this.reloadHeader.bind(this)
-    this.handleLink = this.handleLink.bind(this)
+    //this.handleLink = this.handleLink.bind(this)
   }
 
   componentDidMount() {
-    this.links = document.querySelectorAll(".nav-items a")
+    this.links = document.querySelectorAll(".nav-items a div")
+    console.log("links", this.links)
     // if(localStorage.getItem('isLoggedIn') === "false" || localStorage.getItem('isLoggedIn') === "undefined") {
     //   this.setState({isLoggedIn: false })
     // } else if(localStorage.getItem('isLoggedIn') === "true") {
@@ -110,10 +112,10 @@ class Header extends React.Component {
       })
   }
 
-  handleLink(e) {
-    // e.preventDefault()
-    // this.props.history.push(e.target.href)
-  }
+  // handleLink(e) {
+  //   // e.preventDefault()
+  //   // this.props.history.push(e.target.href)
+  // }
   
   handleClick() {
     mountModal(SignIn({
@@ -121,18 +123,18 @@ class Header extends React.Component {
     }))
   }
 
-  handleMouseOver(e) {
-    this.links.forEach(link => {
-      link.style.opacity = 0.6
-      e.target.style.opacity = 1
-    })
-  }
+  // handleMouseOver(e) {
+  //   this.links.forEach(link => {
+  //     //link.style.opacity = 0.6
+  //     //e.target.style.opacity = 1
+  //   })
+  // }
 
-  handleMouseOut() {
-    this.links.forEach(link => {
-      link.style.opacity = 1
-    })
-  }
+  // handleMouseOut() {
+  //   this.links.forEach(link => {
+  //     //link.style.opacity = 1
+  //   })
+  // }
 
   openDropdown() {
     const {showDropdown} = this.state
@@ -182,15 +184,17 @@ class Header extends React.Component {
                   <div className="nav-items">
                     {
                       this.navItems.map((item, index) => (
-                        <a
-                          href={`/${item.value}`}
-                          onClick={this.handleLink}
-                          className="nav-item" key={index}
-                          onMouseOut={this.handleMouseOut}
-                          onMouseOver={this.handleMouseOver}
-                        >
-                          {item.label}
-                        </a>
+                        <NavLink to={`/${item.value}`} key={index}>
+                          <div 
+                            onClick={this.handleLink}
+                            className="nav-item" 
+                            key={index}
+                            //onMouseOut={this.handleMouseOut}
+                            //onMouseOver={this.handleMouseOver}
+                          >
+                            {item.label}
+                          </div>
+                        </NavLink>
                       ))
                     }
                     {
