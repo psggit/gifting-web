@@ -2,6 +2,7 @@ import React from 'react'
 import Header from 'Components/header'
 import Footer from "Components/footer"
 import './retailOutlet.scss'
+import Icon from "Components/icon"
 import FirstGiftCard from "Components/first-gift-card"
 import * as Api from './../api'
 //import {retailerData} from './../TransactionHistory/mockdata'
@@ -105,7 +106,10 @@ class RetailOutlet extends React.Component {
           <p className="os s7">{item.retailer_address}</p>
         </div>
         {/* <p className="direction os s8" onClick={() => this.loadMap(item.retailer_gps)}>DIRECTIONS</p> */}
-        <a className="direction os s8" href={`/locationMap?lat=${gpsCoordinates[0]}&lng=${gpsCoordinates[1]}`} target="_blank">DIRECTIONS</a>
+        <a className="direction os s8" href={`/locationMap?lat=${gpsCoordinates[0]}&lng=${gpsCoordinates[1]}`} target="_blank">
+          <span style={{marginRight: '13px'}}>DIRECTIONS</span>
+          <span style={{position: 'relative', top: '3px'}}><Icon name="rightArrowBlack" /></span>
+        </a>
       </div>
     )
   }

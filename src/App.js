@@ -96,12 +96,10 @@ class App extends React.Component {
   //       // }
   //     })
   // }
-  componentWillMount() {
-    //localStorage.setItem("showAgegate", true)
-  }
+ 
   componentDidMount() {
     //window.addEventListener('resize', this.display.bind(this))
-    if((localStorage.getItem("showAgeGate") === "true" && !localStorage.getItem("hasura-id"))) {
+    if((localStorage.getItem("showAgeGate") === "true" && !localStorage.getItem("hasura-id") && !location.pathname.split("/")[1])) {
       mountModal(AgeGate({}))
     }
   }
