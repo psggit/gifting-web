@@ -4,7 +4,7 @@ export const questionAnswers = [
     question: "What is gifting?",
     answer: `Gifting is a unique feature on the HipBar website and app that you can use 
     to gift drinks to friends. Recipients (at locations where HipBar is operational) can 
-    se the gift card to redeem any drink on the HipBar platform.`
+    send the gift card to redeem any drink on the HipBar platform.`
   },
   {
     ques_number: "two",
