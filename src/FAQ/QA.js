@@ -1,4 +1,4 @@
-export const questionAnswers = [
+export const sendingGiftCardQuestions = [
   {
     ques_number: "one",
     question: "What is gifting?",
@@ -77,7 +77,10 @@ export const questionAnswers = [
     ques_number: "eleven",
     question: "Are gift cards transferable?",
     answer: "No, gift cards are not transferable."
-  },
+  }
+]
+
+export const redeemingGiftCardQuestions = [
   {
     ques_number: "twelve",
     question: "I have received a gift card, how do I redeem it?",
