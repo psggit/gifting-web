@@ -58,7 +58,7 @@
     "build-client": "webpack --config ./webpack-config/client/webpack.prod.js",
     "build-ssr": "webpack --config ./webpack-config/ssr/webpack.ssr.js",
     "apply-postcss": "postcss --use autoprefixer -r  ./dist/*.css",
-    "build": "yarn run build-client && yarn run apply-postcss",
+    "build": "yarn run build-client && yarn run build-ssr && yarn run apply-postcss",
     "start:dev": "webpack-dev-server --config ./webpack-config/client/webpack.dev.js --host 0.0.0.0  --history-api-fallback",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
