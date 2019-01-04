@@ -195,7 +195,7 @@ class App extends React.Component {
                   /> */}
 
                   <Route exact 
-                    path="/redeeming-gift-card"
+                    path="/how-to-redeem"
                     render={
                       props => (
                         <RedeemingGiftCard {...props} 

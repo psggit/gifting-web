@@ -29,7 +29,7 @@ class Header extends React.Component {
       },
       {
         label: "Redeeming Gift Card",
-        value: "redeeming-gift-card"
+        value: "how-to-redeem"
       },
       {
         label: "Retail Outlets",
@@ -51,7 +51,7 @@ class Header extends React.Component {
 
   componentDidMount() {
     this.links = document.querySelectorAll(".nav-items a div")
-    console.log("links", this.links)
+    //console.log("links", this.links)
     // if(localStorage.getItem('isLoggedIn') === "false" || localStorage.getItem('isLoggedIn') === "undefined") {
     //   this.setState({isLoggedIn: false })
     // } else if(localStorage.getItem('isLoggedIn') === "true") {
