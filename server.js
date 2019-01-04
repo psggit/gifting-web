@@ -70,26 +70,44 @@ app.get('/privacy', (req, res) => {
   })
 })
 
-app.get("/payment-status", (req, res) => {
+app.get("/transaction-successful", (req, res) => {
   res.send("Not found")
 })
 
-app.post("/payment-status", (req, res) => {
+app.get("/transaction-failure", (req, res) => {
+  res.send("Not found")
+})
+
+app.post("/transaction-successful", (req, res) => {
   request.post({ url: `https://orderman.${ENDPOINT_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     // console.log(err, httpRes, body)
   })
-  const html = fs.readFileSync("./dist/transaction-status.html", "utf-8")
+  const html = fs.readFileSync("./dist/transaction-success.html", "utf-8")
   const [head, tail] = html.split("{content}")
   res.write(head)
-  let component
-  if (req.query.status === "success") {
-    component = TransactionSuccess
-  } else {
-    component = TransactionFailure
-  }
-  
-  const reactElement = React.createElement(component, { res: req.body, status: req.query.status })
-  console.log(renderToString(reactElement))
+
+  const reactElement = React.createElement(TransactionSuccess, { res: req.body })
+  // console.log(renderToString(reactElement))
+  const stream = renderToNodeStream(reactElement)
+  stream.pipe(res, { end: false })
+  stream.on("end", () => {
+    res.write(tail)
+    res.end()
+  })
+  // const reactHTML = renderToString(reactElement)
+  // res.send(reactHTML)
+})
+
+app.post("/transaction-failure", (req, res) => {
+  request.post({ url: `https://orderman.${ENDPOINT_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
+    // console.log(err, httpRes, body)
+  })
+  const html = fs.readFileSync("./dist/transaction-failed.html", "utf-8")
+  const [head, tail] = html.split("{content}")
+  res.write(head)
+
+  const reactElement = React.createElement(TransactionFailure, { res: req.body })
+  // console.log(renderToString(reactElement))
   const stream = renderToNodeStream(reactElement)
   stream.pipe(res, { end: false })
   stream.on("end", () => {

@@ -227,7 +227,7 @@ export default function SignIn(data) {
                         disabled={this.state.disableField}
                         style={this.state.disableField ? cursorStyle : {}}
                         placeholder="Enter the phone number"
-                        // value={this.state.mobileNo}
+                        defaultValue={data.mobile}
                         autoComplete="off"
                         maxLength={10}
                         //onChange={(e) => this.handleTextChange(e)}

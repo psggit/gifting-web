@@ -1,25 +1,20 @@
 import React from 'react'
 import Icon from "Components/icon"
 import "Sass/transaction-status.scss"
+import Moment from "moment"
 
 class SuccessfulTransaction extends React.Component {
   constructor(props) {
     super(props)
-
-    // this.state = {
-    //   username: props.username ? props.username : "",
-    //   isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
-    // }
+    this.modeMap = {
+      "CC": "Credit Card",
+      "DC": "Debit Card",
+      "NB": "Netbanking"
+    }
   }
 
-  // componentWillReceiveProps(newProps) {
-  //   //console.log("helo", newProps)
-  //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-  //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-  //   }
-  // }
-
   render() {
+    const { res } = this.props
     return (
       <div>
         <div id="SuccessfulTransaction" className="transaction-status"> 
@@ -34,27 +29,27 @@ class SuccessfulTransaction extends React.Component {
                 <p className="subheader">Transaction Details</p>
                 <div className="section-content">
                   <span className="os s9">Amount Paid</span>
-                  <p className="os s8">Rs. { this.props.amount }</p>
+                  <p className="os s8">Rs. { res.net_amount_debit }</p>
                 </div>
                 <div className="section-content">
                   <span className="os s9">Paid using</span>
-                  <p className="os s8">3929****5993</p>
+                  <p className="os s8">{ this.modeMap[res.mode] }</p>
                 </div>
                 <div className="section-content">
                   <span className="os s9">Transaction ID</span>
-                  <p className="os s8">#483293949304</p>
+                  <p className="os s8">{ res.txnid }</p>
                 </div>
                 <div className="section-content">
                   <span className="os s9">Transaction Date and Time</span>
-                  <p className="os s8">18/12/2018, 5.50 PM</p>
+                  <p className="os s8">{ res.addedon }</p>
                 </div>
               </div>
               <div className="footnote section">
                 <p className="subheader">Gift Card Details</p>
                 <p style={{marginTop: '20px', fontWeight: 'bold'}} className="os s8">To:</p>
                 <div className="section-content">
-                  <p className="os s8">Name</p>
-                  <p className="os s8">Phone number</p>
+                  <p className="os s8">{ res.firstname + res.lastname } </p>
+                  <p className="os s8">{ res.phone }</p>
                 </div>
                 <div className="section-content">
                   <span className="os s8" style={{fontWeight: 'bold'}}>Personal Message - </span>

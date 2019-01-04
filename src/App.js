@@ -27,6 +27,8 @@ import NotifyError from './NotifyError';
 import PaymentStatus from "./payment-status"
 
 import {ThemeProvider, ThemeContext} from "./ThemeProvider"
+import Header from "Components/header"
+import Footer from "Components/footer"
 // import makeAsyncComponent from './makeAsyncComponent'
 
 // const UsingGiftCard = makeAsyncComponent(() => import("./GiftCardInfo").then(module => module.default), { name: "Page 1" })
@@ -274,8 +276,8 @@ class App extends React.Component {
                       )
                     } 
                   />
-                  <Route exact 
-                    path="/transaction-status" 
+                  {/* <Route exact 
+                    path="/transaction-successful" 
                     //component={TransactionSuccessful} 
                     render={
                       props => (
@@ -297,14 +299,13 @@ class App extends React.Component {
                         />
                       )
                     } 
-                  />
+                  /> */}
                   <Route 
                     path="/locationMap" 
                     component={LocationMap} 
                   />
                   <Route exact path="/payment-status" component={PaymentStatus}  />
                   <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
-                  <Route exact path="*" component={() => <h1>404 Not Found</h1>} />
                 </Switch>
               </Router>
             }}
@@ -315,5 +316,12 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("app"))
+
+
+if (!document.getElementById("app").childNodes.length) {
+  ReactDOM.render(<App />, document.getElementById("app"))
+} else {
+  ReactDOM.render(<Header />, document.getElementById("header"))
+  ReactDOM.render(<Footer />, document.getElementById("footer"))
+}
 export default App
