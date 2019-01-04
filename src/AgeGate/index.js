@@ -18,8 +18,17 @@ export default function AgeGate(data) {
       this.closeWindow = this.closeWindow.bind(this)
     }
 
+    componentDidMount() {
+      localStorage.setItem("agreedAgeGate", false)
+    }
+
     closeWindow() {
       this.setState({showNote: true})
+    }
+
+    agreeAgeGate() {
+      localStorage.setItem("agreedAgeGate", true)
+      unMountModal()
     }
 
     render() {
@@ -42,7 +51,7 @@ export default function AgeGate(data) {
           </ModalBody>
           <ModalFooter>
             <Button secondary style={{marginRight: '24px', width: '160px'}} onClick={() => {return this.closeWindow()}}>DISAGREE</Button>
-            <Button  primary style={{width: '160px'}} onClick={unMountModal}>AGREE</Button>     
+            <Button  primary style={{width: '160px'}} onClick={this.agreeAgeGate}>AGREE</Button>     
           </ModalFooter>
           {
             showNote &&

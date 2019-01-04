@@ -18,6 +18,7 @@ class GiftCards extends React.Component {
       left: 0,
       behavior: 'smooth'
     })
+    //localStorage.setItem("showAgeGate", false)
   }
 
   // componentWillReceiveProps(newProps) {

@@ -97,13 +97,17 @@ class App extends React.Component {
   // }
  
   componentDidMount() {
-    //  if (!this.state.isLoggedIn) {
-    //   setTimeout(()=> {localStorage.setItem("showAgeGate", true)}, 500)
-    //  }
-    // console.log((localStorage.getItem("showAgeGate") === "true" && !localStorage.getItem("hasura-id") && !location.pathname.split("/")[1]))
-    if((localStorage.getItem("showAgeGate") === "true" && !localStorage.getItem("hasura-id") && !location.pathname.split("/")[1])) {
-      // console.log((localStorage.getItem("showAgeGate") === "true" && !localStorage.getItem("hasura-id") && !location.pathname.split("/")[1]))
-      mountModal(AgeGate({}))
+    window.addEventListener('pageshow', this.handleClick)
+  }
+
+  handleClick(e) {
+    var historyTraversal = event.persisted || 
+                          ( typeof window.performance != "undefined" && 
+                            window.performance.navigation.type === 2 )
+    if (!historyTraversal ) {
+      if((localStorage.getItem("showAgeGate") === "true" && !localStorage.getItem("hasura-id") && !location.pathname.split("/")[1])) {
+        mountModal(AgeGate({}))
+      }
     }
   }
 
