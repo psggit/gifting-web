@@ -28,7 +28,7 @@ class Header extends React.Component {
         value: "send-gift"
       },
       {
-        label: "Redeeming Gift Card",
+        label: "Redeeming Gift Cards",
         value: "how-to-redeem"
       },
       {
