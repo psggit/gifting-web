@@ -232,7 +232,7 @@ export default function SignIn(data) {
                         //onChange={(e) => this.handleTextChange(e)}
                         //defaultValue={this.state.mobileNo}
                         className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
-                        onKeyPress={(e) => {this.handleNumberChange(e)}}
+                        onKeyDown={(e) => {this.handleNumberChange(e)}}
                         onKeyUp={(e) => {this.handleNumberChange(e)}}
                       />
                     </div>
