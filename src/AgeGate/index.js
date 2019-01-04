@@ -19,7 +19,7 @@ export default function AgeGate(data) {
     }
 
     componentDidMount() {
-      localStorage.setItem("agreedAgeGate", false)
+      //localStorage.setItem("agreedAgeGate", false)
     }
 
     closeWindow() {
@@ -27,7 +27,8 @@ export default function AgeGate(data) {
     }
 
     agreeAgeGate() {
-      localStorage.setItem("agreedAgeGate", true)
+      document.cookie = "agreedAgeGate=true; path=/; expires=" + (new Date(new Date().getTime() + 1 * 60 * 1000)).toUTCString() + "; path=/;";
+      //localStorage.setItem("agreedAgeGate", true)
       unMountModal()
     }
 

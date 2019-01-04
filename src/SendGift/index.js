@@ -8,7 +8,9 @@ import SignIn from "./../SignIn"
 import { mountModal } from "Components/modal-box/utils"
 import "./send-gift.scss"
 import { POST } from "Utils/fetch"
+import AgeGate from './../AgeGate'
 import InputMask from "react-input-mask"
+import {readCookie} from "Utils/session-utils"
 
 class SendGift extends React.Component {
   constructor(props) {
@@ -46,7 +48,10 @@ class SendGift extends React.Component {
       behavior: 'smooth'
     })
     localStorage.removeItem("txn")
-    localStorage.setItem("showAgeGate", false)
+    //localStorage.setItem("showAgeGate", false)
+    if(!readCookie("agreedAgeGate")) {
+      mountModal(AgeGate({}))
+    }
   }
 
   componentDidUpdate(prevProps) {

@@ -5,6 +5,9 @@ import Button from "Components/button"
 import FirstGiftCard from "Components/first-gift-card"
 import Header from "Components/header"
 import Footer from "Components/footer"
+import AgeGate from './../AgeGate'
+import {readCookie} from "Utils/session-utils"
+import { mountModal } from 'Components/modal-box/utils'
 
 class GiftCards extends React.Component {
   constructor(props) {
@@ -18,6 +21,9 @@ class GiftCards extends React.Component {
       left: 0,
       behavior: 'smooth'
     })
+    if(!readCookie("agreedAgeGate")) {
+      mountModal(AgeGate({}))
+    }
     //localStorage.setItem("showAgeGate", false)
   }
 

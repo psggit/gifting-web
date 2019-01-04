@@ -64,9 +64,9 @@ class Header extends React.Component {
       this.setState({username: this.props.paramObj.username})
     }
 
-    if(!this.state.isLoggedIn) {
-      setTimeout(()=> {localStorage.setItem("showAgeGate", true)}, 1000)
-    }
+    // if(!this.state.isLoggedIn) {
+    //   setTimeout(()=> {localStorage.setItem("showAgeGate", true)}, 1000)
+    // }
   }
 
   // componentDidUpdate(prevProps) {

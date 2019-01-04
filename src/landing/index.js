@@ -9,6 +9,7 @@ import AgeGate from './../AgeGate'
 import Header from "Components/header"
 import Footer from "Components/footer"
 import { loadavg } from "os";
+import {readCookie} from "Utils/session-utils"
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -25,6 +26,10 @@ class LandingPage extends React.Component {
       left: 0,
       behavior: 'smooth'
     })
+    if(!readCookie("agreedAgeGate")) {
+      mountModal(AgeGate({}))
+    }
+    //document.cookie = "my_super_cookie=hellyeah; path=/; expires=" + (new Date(new Date().getTime() + 1 * 60 * 1000)).toUTCString() + "; path=/; domain=codepen.io";
   }
 
   // componentWillReceiveProps(newProps) {
