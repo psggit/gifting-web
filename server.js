@@ -7,10 +7,17 @@ const { renderToNodeStream, renderToString } = require("react-dom/server")
 const bodyParser = require('body-parser')
 // const FormData = require("form-data")
 const request = require("request")
+<<<<<<< Updated upstream
 // const PaymentStatus = require("./dist-ssr/payment-status").default
 // global.location = {}
 const TransactionSuccess = require("./dist-ssr/transaction_success").default
 const TransactionFailure = require("./dist-ssr/transaction_failure").default
+=======
+const PaymentStatus = require("./dist-ssr/payment-status").default
+const localStorage = {}
+// const TransactionSuccess = require("./dist-ssr/transaction-success").default
+// const TransactionFailure = require("./dist-ssr/transaction-failure").default
+>>>>>>> Stashed changes
 
 // 
 app.disable("x-powered-by")
