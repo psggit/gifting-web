@@ -238,6 +238,17 @@ class Header extends React.Component {
                   </div>
                   <div className={`navbar-mobile ${this.state.isMenuOpen ? "show" : "hide"}`}>
                     <ul>
+                      <li>
+                        {
+                          isLoggedIn &&
+                          <React.Fragment>
+                            <span className="user" style={{marginRight: '10px'}}>
+                              <Icon name="mobileApplnUser" />
+                            </span>
+                            <span style={{color: '#fff'}}>{paramObj.username}</span>
+                          </React.Fragment>
+                        }
+                      </li>
                       {
                         this.navItems.map((item, index) => (
                           <li key={index}>
