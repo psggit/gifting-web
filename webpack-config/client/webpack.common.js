@@ -2,10 +2,14 @@ const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CleanWebpackPlugin = require("clean-webpack-plugin")
 const webpack = require("webpack")
+
+console.log(path.resolve(__dirname, "./../../src/payment-status.html"))
   
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "./../../src/App.js")
+    app: path.resolve(__dirname, "./../../src/App.js"),
+    // transaction_success: path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
+    // transaction_failure: path.resolve(__dirname, "./../../src/FailureTransaction")
   },
   plugins: [
     new CleanWebpackPlugin(["dist"], {
@@ -13,6 +17,12 @@ module.exports = {
       verbose: true
     }),
     new HtmlWebpackPlugin({
+      title: "Transaction Status",
+      filename: "transaction-status.html",
+      template: path.resolve(__dirname, "./../../src/payment-status.html")
+    }),
+    new HtmlWebpackPlugin({
+      filename: "index.html",
       title: "Output Management",
       template: path.resolve(__dirname, "./../../index.html")
     }),
@@ -48,11 +58,11 @@ module.exports = {
       }
     ]
   },
-  optimization: {
-    splitChunks: {
-      chunks: "all"
-    }
-  }
+  // optimization: {
+    // splitChunks: {
+    //   chunks: "all"
+    // }
+  // }
   // optimization: {
   //   splitChunks: {
   //     chunks: "async",

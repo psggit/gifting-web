@@ -1,6 +1,4 @@
 import React from 'react'
-import Header from "Components/header"
-import Footer from "Components/footer"
 import Icon from "Components/icon"
 import "Sass/transaction-status.scss"
 
@@ -24,7 +22,6 @@ class SuccessfulTransaction extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <div id="SuccessfulTransaction" className="transaction-status"> 
           <div className="content">
             <div className="successful">
@@ -37,7 +34,7 @@ class SuccessfulTransaction extends React.Component {
                 <p className="subheader">Transaction Details</p>
                 <div className="section-content">
                   <span className="os s9">Amount Paid</span>
-                  <p className="os s8">Rs. 499</p>
+                  <p className="os s8">Rs. { this.props.amount }</p>
                 </div>
                 <div className="section-content">
                   <span className="os s9">Paid using</span>
@@ -106,7 +103,6 @@ class SuccessfulTransaction extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }

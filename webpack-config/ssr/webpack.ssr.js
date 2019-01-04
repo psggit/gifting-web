@@ -9,7 +9,8 @@ const config = {
   target: "node",
   externals: [nodeExternals()],
   entry: {
-    "transaction-success": path.resolve(__dirname, "./../../src/payment-success.js")
+    "transaction_success": path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
+    "transaction_failure": path.resolve(__dirname, "./../../src/FailureTransaction")
   },
   output: {
     path: path.resolve(__dirname, "./../../dist-ssr"),
@@ -34,7 +35,7 @@ const config = {
 
   plugins: [
     new webpack.DefinePlugin({
-      SSR: JSON.stringify(true)
+      "process.env.BROWSER": JSON.stringify(true)
     }),
     new CleanWebpackPlugin(["dist-ssr"], {
       root: path.resolve(__dirname, "./../../"),

@@ -42,6 +42,7 @@ class Payment extends React.Component {
       ccexp: "",
       ccname: "",
       ccvv: "",
+      cctoken: "",
       store_card: false,
       selectedPaymentMethod: null,
       // username: props.username ? props.username : "",
@@ -61,6 +62,7 @@ class Payment extends React.Component {
     this.handleCardnameChange = this.handleCardnameChange.bind(this)
     this.setCardValues = this.setCardValues.bind(this)
     this.toggleHowTo = this.toggleHowTo.bind(this)
+    this.handleSaveCard = this.handleSaveCard.bind(this)
     // this.getButtonStatus = this.getButtonStatus.bind(this)
   }
 
@@ -96,8 +98,12 @@ class Payment extends React.Component {
       apiBase: "blogicUrl"
     })
       .then(json => {
-        this.setState({ savedCards: Object.values(json.user_cards) })
+        this.setState({ savedCards: json.user_cards ? Object.values(json.user_cards) : [] })
       })
+  }
+
+  handleSaveCard(e) {
+    this.setState({ store_card: e.target.checked })
   }
 
   getBanks() {
@@ -147,7 +153,7 @@ class Payment extends React.Component {
       this.setState({ selectedPaymentMethod: "card" }, () => {
         console.log("Processing card payment..")
         if (this.ccnum) {
-          if (this.ccname.length && this.ccnum.length && this.ccvv.length && this.ccexp.length) {
+          if (this.state.ccname.length && this.state.ccnum.length && this.state.ccvv.length && this.state.ccexp.length) {
             this.submit.click()
           }
         } else {
@@ -174,7 +180,7 @@ class Payment extends React.Component {
   }
 
   handleCardExpiryChange(e) {
-    this.setState({ ccexpyr: e.target.value })
+    this.setState({ ccexp: e.target.value })
   }
 
   handleCVVChange(e) {
@@ -182,7 +188,7 @@ class Payment extends React.Component {
   }
 
   handleCardnameChange(e) {
-    this.ccname = e.target.value
+    this.setState({ ccname: e.target.value })
   }
 
   getNetBankingForm() {
@@ -229,11 +235,12 @@ class Payment extends React.Component {
       ccvv: this.state.ccvv,
       ccexpmon: this.state.ccexp.split("/")[0],
       ccexpyr: this.state.ccexp.split("/")[1],
+      user_credentials: this.txn.user_cred,
       udf1: "web"
     }
 
     if (this.state.ccnum.length) {
-      postBody.ccnum = this.ccnum
+      postBody.ccnum = this.state.ccnum.split(" ").join("")
     }
 
     if (this.state.store_card) {
@@ -242,7 +249,6 @@ class Payment extends React.Component {
 
     if (this.state.cctoken.length) {
       postBody.store_card_token = this.state.cctoken
-      postBody.user_credentials = this.txn.user_cred
     }
 
     return Object.entries(postBody).map(([key, value]) => (
@@ -380,6 +386,11 @@ class Payment extends React.Component {
                               <div className="form-group">
                                 <label className="os">Name on card</label>
                                 <input onChange={this.handleCardnameChange} type="text" />
+                              </div>
+
+                              <div style={{  display: "flex", alignItems: "center", flexDirection: "row-reverse", justifyContent: "flex-end" }} className="form-group">
+                                <label htmlFor="save-card" style={{ marginLeft: "10px", cursor: "pointer" }} >Save card for faster transactions</label>
+                                <input id="save-card" type="checkbox" onChange={this.handleSaveCard} />
                               </div>
                             </AccordianItem>
 

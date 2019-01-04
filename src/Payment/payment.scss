@@ -89,6 +89,9 @@
     margin-top: 20px;
     // background-color: #f5f5f5;
     border: 1px solid #dddbda;
+    input[type=checkbox] {
+      width: inherit;
+    }
     // padding: 20px;
 
     // select {

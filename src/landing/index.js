@@ -25,10 +25,6 @@ class LandingPage extends React.Component {
       left: 0,
       behavior: 'smooth'
     })
-    
-    if(!localStorage.getItem('isLoadingFirstTime')) {
-      mountModal(AgeGate({}))
-    }
   }
 
   // componentWillReceiveProps(newProps) {

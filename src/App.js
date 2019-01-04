@@ -97,8 +97,12 @@ class App extends React.Component {
   // }
  
   componentDidMount() {
-    //window.addEventListener('resize', this.display.bind(this))
+    //  if (!this.state.isLoggedIn) {
+    //   setTimeout(()=> {localStorage.setItem("showAgeGate", true)}, 500)
+    //  }
+    // console.log((localStorage.getItem("showAgeGate") === "true" && !localStorage.getItem("hasura-id") && !location.pathname.split("/")[1]))
     if((localStorage.getItem("showAgeGate") === "true" && !localStorage.getItem("hasura-id") && !location.pathname.split("/")[1])) {
+      // console.log((localStorage.getItem("showAgeGate") === "true" && !localStorage.getItem("hasura-id") && !location.pathname.split("/")[1]))
       mountModal(AgeGate({}))
     }
   }
@@ -267,7 +271,7 @@ class App extends React.Component {
                     } 
                   />
                   <Route exact 
-                    path="/transaction-successful" 
+                    path="/transaction-status" 
                     //component={TransactionSuccessful} 
                     render={
                       props => (
