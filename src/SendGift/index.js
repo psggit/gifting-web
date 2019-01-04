@@ -257,11 +257,12 @@ class SendGift extends React.Component {
 
                     <div className="form-group">
                       <label className="os">Phone Number</label>
-                      <input 
+                      <InputMask
                         onChange={this.handlePhoneChange} 
                         name="receiverNumber" 
-                        maxLength="10" 
-                        type="text" 
+                        mask="9999999999"
+                        maskChar={null}
+                        type="text"
                         placeholder="Enter the recipients phone number"
                       />
                     </div>

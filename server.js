@@ -7,10 +7,10 @@ const { renderToNodeStream, renderToString } = require("react-dom/server")
 const bodyParser = require('body-parser')
 // const FormData = require("form-data")
 const request = require("request")
-const PaymentStatus = require("./dist-ssr/payment-status").default
-const location = {}
-// const TransactionSuccess = require("./dist-ssr/transaction-success").default
-// const TransactionFailure = require("./dist-ssr/transaction-failure").default
+// const PaymentStatus = require("./dist-ssr/payment-status").default
+// global.location = {}
+const TransactionSuccess = require("./dist-ssr/transaction_success").default
+const TransactionFailure = require("./dist-ssr/transaction_failure").default
 
 // 
 app.disable("x-powered-by")
@@ -48,34 +48,6 @@ app.get('/images/:name', (req, res) => {
 app.use(express.static(path.join(__dirname, "dist")))
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// app.get("/checkout", (req, res) => {
-//   res.send("Not Found")
-// })
-
-// app.post('/checkout', (req, res) => {
-//   const { preloadedState, content}  = CheckoutReact.default(req.body)
-//   const response = template("Server Rendered Page", preloadedState, content)
-//   res.setHeader('Cache-Control', 'assets, max-age=604800')
-//   res.send(response)
-// })
-
-
-// app.post("/checkout", (req, res,) => {  
-
-//   const html = fs.readFileSync("./dist/checkout.html", "utf-8")
-//   const [head, tail] = html.split("{content}")
-//   res.write(head)
-//   console.log(req.body)
-//   const reactElement = React.createElement(CheckoutReact, req.body)
-//   // const html = renderToString(reactElement)
-//   // res.send(html)
-//   const stream = renderToNodeStream(reactElement)
-//   stream.pipe(res, { end: false })
-//   stream.on("end", () => {
-//     res.write(tail)
-//     res.end()
-//   })
-// })
 
 // app.get("/*", (req, res,) => {  
 //   const html = fs.readFileSync("./dist/index.html", "utf-8")
@@ -104,16 +76,26 @@ app.get("/payment-status", (req, res) => {
 
 app.post("/payment-status", (req, res) => {
   request.post({ url: `https://orderman.${ENDPOINT_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
-    console.log(err, httpRes, body)
+    // console.log(err, httpRes, body)
   })
-  const reactElement = React.createElement(PaymentStatus, { amount: req.body.net_amount_debit })
-  const reactHTML = renderToString(reactElement)
-  res.send(reactHTML)
-  // res.sendFile(path.join(__dirname, "dist/index.html"), (err) => {
-  //   if (err) {
-  //     res.status(500).send(err)
-  //   }
-  // })
+  const html = fs.readFileSync("./dist/transaction-status.html", "utf-8")
+  const [head, tail] = html.split("{content}")
+  res.write(head)
+  let component
+  if (req.query.status === "success") {
+    component = TransactionSuccess
+  } else {
+    component = TransactionFailure
+  }
+  const reactElement = React.createElement(component, { res: req.body, status: req.query.status })
+  const stream = renderToNodeStream(reactElement)
+  stream.pipe(res, { end: false })
+  stream.on("end", () => {
+    res.write(tail)
+    res.end()
+  })
+  // const reactHTML = renderToString(reactElement)
+  // res.send(reactHTML)
 })
 
 app.get('/grievance-policy', (req, res) => {

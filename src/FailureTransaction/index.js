@@ -1,6 +1,4 @@
 import React from 'react'
-import Header from "Components/header"
-import Footer from "Components/footer"
 import Icon from "Components/icon"
 import 'Sass/transaction-status.scss'
 
@@ -23,7 +21,6 @@ class FailureTransaction extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <div id="FailureTransaction" className="transaction-status fail"> 
           <div className="content">
             <div className="successful">
@@ -57,7 +54,6 @@ class FailureTransaction extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }

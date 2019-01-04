@@ -185,8 +185,8 @@ class Header extends React.Component {
                   <div className="nav-items">
                     {
                       this.navItems.map((item, index) => (
-                        <a className={location.pathname.slice(1) === item.value ? "active" : undefined} href={`/${item.value}`} key={index}>
-                          <div 
+                        <a id={`nav-item-${index+1}`} className={location.pathname.slice(1) === item.value ? "active" : undefined} href={`/${item.value}`}  key={`nav-item-${index+1}`}>
+                          <div
                             onClick={this.handleLink}
                             className="nav-item" 
                             key={index}
