@@ -11,6 +11,7 @@ import { validateNumberField } from 'Utils/validators'
 import { validateTextField, validateEmail } from '../utils/validators';
 import NotifyError from './../NotifyError';
 import Button from "Components/button"
+import InputMask from "react-input-mask"
 
 export default function SignUp(data) {
   return class SignUp extends React.Component {
@@ -89,8 +90,8 @@ export default function SignUp(data) {
       const { otpSent, pin, confirmPin } = this.state
       let otpErr = this.state.otpErr
 
-      const mobileNoErr = validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo)
-      this.setState({ mobileNoErr: validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo) })
+      const mobileNoErr = validateTextField(this.inputNameMap['mobileNo'], this.state.mobileNo)
+      this.setState({ mobileNoErr: validateTextField(this.inputNameMap['mobileNo'], this.state.mobileNo) })
 
       const nameErr = validateTextField(this.inputNameMap['name'], this.state.name)
       this.setState({ nameErr: validateTextField(this.inputNameMap['name'], this.state.name) })
@@ -124,6 +125,7 @@ export default function SignUp(data) {
     }
 
     handleClick() {
+      //console.log(this.isFormValid() , !this.state.isGettingOtp)
       if (this.isFormValid() && !this.state.isGettingOtp) {
         this.signUp()
       }
@@ -329,7 +331,7 @@ export default function SignUp(data) {
                         +91
                       </div>
                       <div style={{ width: 'calc(100% - 40px' }}>
-                        <input
+                        {/* <input
                           type="text"
                           name="mobileNo"
                           maxLength={10}
@@ -342,6 +344,20 @@ export default function SignUp(data) {
                           className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
                           onKeyDown={(e) => { this.handleNumberChange(e) }}
                           onKeyUp={(e) => { this.handleNumberChange(e) }}
+                        /> */}
+
+                        <InputMask
+                          onChange={this.handleTextChange} 
+                          name="mobileNo"
+                          mask="9999999999"
+                          disabled={this.state.disableField}
+                          style={this.state.disableField ? cursorStyle : {}}
+                          defaultValue={this.state.mobileNo}
+                          placeholder="Enter the phone number"
+                          autoComplete="off"
+                          className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
+                          maskChar={null}
+                          type="text"
                         />
                       </div>
                     </div>
@@ -460,7 +476,7 @@ export default function SignUp(data) {
                     <div className="form-group">
                       <label>Account PIN</label>
                       <div>
-                        <input
+                        {/* <input
                           type="password"
                           name="pin"
                           maxLength={4}
@@ -473,6 +489,19 @@ export default function SignUp(data) {
                           //onChange={(e) => this.handleTextChange(e)}
                           onKeyDown={(e) => {this.handleNumberChange(e)}}
                           onKeyUp={(e) => {this.handleNumberChange(e)}}
+                        /> */}
+
+                        <InputMask
+                          onChange={this.handleTextChange} 
+                          name="pin"
+                          disabled={this.state.disableField && this.state.otpSent}
+                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
+                          mask="9999"
+                          placeholder="Set your account pin"
+                          autoComplete="off"
+                          className={`${pinErr.status ? 'error' : ''}`}
+                          maskChar={null}
+                          type="password"
                         />
                       </div>
                     </div>
@@ -486,7 +515,7 @@ export default function SignUp(data) {
                     <div className="form-group">
                       <label>Confirm Account PIN</label>
                       <div>
-                        <input
+                        {/* <input
                           type="password"
                           name="confirmPin"
                           disabled={this.state.disableField && this.state.otpSent}
@@ -500,6 +529,19 @@ export default function SignUp(data) {
                           onKeyDown={(e) => {this.handleNumberChange(e)}}
                           onKeyUp={(e) => {this.handleNumberChange(e)}}
                         //style={{paddingLeft: '30px'}}
+                        /> */}
+
+                        <InputMask
+                          onChange={this.handleTextChange} 
+                          name="confirmPin"
+                          disabled={this.state.disableField && this.state.otpSent}
+                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
+                          mask="9999"
+                          placeholder="Re enter your account pin"
+                          autoComplete="off"
+                          className={`${confirmPinErr.status ? 'error' : ''}`}
+                          maskChar={null}
+                          type="password"
                         />
                       </div>
                     </div>
@@ -513,7 +555,7 @@ export default function SignUp(data) {
                     <div className="form-group">
                       <label>OTP</label>
                       <div className="input-otp-container">
-                        <input
+                        {/* <input
                           type="text"
                           name="otp"
                           placeholder="Enter the OTP that you've received"
@@ -525,6 +567,17 @@ export default function SignUp(data) {
                           //disabled={this.state.disableField}
                           autoComplete="off"
                           //onChange={(e) => this.handleTextChange(e)}
+                        /> */}
+
+                        <InputMask
+                          onChange={this.handleTextChange} 
+                          name="otp"
+                          mask="999999"
+                          placeholder="Enter the OTP that you've received"
+                          autoComplete="off"
+                          className={`${otpErr.status ? 'error' : ''}`}
+                          maskChar={null}
+                          type="text"
                         />
                         <div className={`resend os s10 ${isGettingOtp ? 'disabled' : ''}`} onClick={this.resendOtp}>RESEND OTP</div>
                         {

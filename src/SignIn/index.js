@@ -11,6 +11,7 @@ import { validateNumberField } from 'Utils/validators'
 import { validateTextField } from '../utils/validators';
 import NotifyError from './../NotifyError';
 import Button from "Components/button"
+import InputMask from "react-input-mask"
 
 export default function SignIn(data) {
   return class SignIn extends React.Component {
@@ -97,8 +98,8 @@ export default function SignIn(data) {
       const {otpSent} = this.state
       let otpErr = this.state.otpErr
 
-      const mobileNoErr = validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo)
-      this.setState({mobileNoErr: validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo)})
+      const mobileNoErr = validateTextField(this.inputNameMap['mobileNo'], this.state.mobileNo)
+      this.setState({mobileNoErr: validateTextField(this.inputNameMap['mobileNo'], this.state.mobileNo)})
       
       if(otpSent) {
         otpErr = validateTextField(this.inputNameMap['otp'], this.state.otp)
@@ -220,7 +221,7 @@ export default function SignIn(data) {
                       +91
                     </div>
                     {/* <div style={{width: 'calc(100% - 40px'}}> */}
-                      <input 
+                      {/* <input 
                         type="text"
                         name="mobileNo"
                         disabled={this.state.disableField}
@@ -234,6 +235,19 @@ export default function SignIn(data) {
                         className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
                         onKeyDown={(e) => {this.handleNumberChange(e)}}
                         onKeyUp={(e) => {this.handleNumberChange(e)}}
+                      /> */}
+
+                      <InputMask
+                        onChange={this.handleTextChange} 
+                        name="mobileNo"
+                        mask="9999999999"
+                        disabled={this.state.disableField}
+                        style={this.state.disableField ? cursorStyle : {}}
+                        placeholder="Enter the phone number"
+                        autoComplete="off"
+                        className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
+                        maskChar={null}
+                        type="text"
                       />
                     </div>
                   </div>
@@ -256,7 +270,7 @@ export default function SignIn(data) {
                       <div className="form-group">
                         <label className="os s7">OTP</label>
                         <div className="input-otp-container"> 
-                          <input 
+                          {/* <input 
                             type="text"
                             name="otp"
                             placeholder="Enter the OTP that you've received"
@@ -267,6 +281,16 @@ export default function SignIn(data) {
                             onKeyDown={(e) => {this.handleNumberChange(e)}}
                             onKeyUp={(e) => {this.handleNumberChange(e)}}
                             //onChange={(e) => this.handleTextChange(e)}
+                          /> */}
+                          <InputMask
+                            onChange={this.handleTextChange} 
+                            name="otp"
+                            mask="999999"
+                            className={`${otpErr.status ? 'error' : ''}`}
+                            placeholder="Enter the OTP that you've received"
+                            autoComplete="off"
+                            maskChar={null}
+                            type="text"
                           />
                           <div className={`resend os s10 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND OTP</div>
                           {
