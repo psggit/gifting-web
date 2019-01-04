@@ -8,8 +8,8 @@ console.log(path.resolve(__dirname, "./../../src/payment-status.html"))
 module.exports = {
   entry: {
     app: path.resolve(__dirname, "./../../src/App.js"),
-    // transaction_success: path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
-    // transaction_failure: path.resolve(__dirname, "./../../src/FailureTransaction")
+    transaction_success: path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
+    transaction_failure: path.resolve(__dirname, "./../../src/FailureTransaction")
   },
   plugins: [
     new CleanWebpackPlugin(["dist"], {
@@ -17,8 +17,15 @@ module.exports = {
       verbose: true
     }),
     new HtmlWebpackPlugin({
-      title: "Transaction Status",
-      filename: "transaction-status.html",
+      // chunks: ["transaction_success"],
+      title: "Transaction Successful",
+      filename: "transaction-success.html",
+      template: path.resolve(__dirname, "./../../src/payment-status.html")
+    }),
+    new HtmlWebpackPlugin({
+      // chunks: ["transaction_failure"],
+      title: "Transaction Failed",
+      filename: "transaction-failed.html",
       template: path.resolve(__dirname, "./../../src/payment-status.html")
     }),
     new HtmlWebpackPlugin({

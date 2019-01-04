@@ -5,6 +5,11 @@ import 'Sass/transaction-status.scss'
 class FailureTransaction extends React.Component {
   constructor(props) {
     super(props)
+    this.modeMap = {
+      "CC": "Credit Card",
+      "DC": "Debit Card",
+      "NB": "Netbanking"
+    }
     // this.state = {
     //   username: props.username ? props.username : "",
     //   isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
@@ -19,6 +24,7 @@ class FailureTransaction extends React.Component {
   // }
 
   render() {
+    const { res } = this.props
     return (
       <div>
         <div id="FailureTransaction" className="transaction-status fail"> 
@@ -33,19 +39,19 @@ class FailureTransaction extends React.Component {
                 <p className="subheader">Transaction Details</p>
                 <div className="section-content">
                   <span className="os s9">Amount Paid</span>
-                  <p className="os s8">Rs. 499</p>
+                  <p className="os s8">Rs. {res.net_amount_debit}</p>
                 </div>
                 <div className="section-content">
                   <span className="os s9">Paid using</span>
-                  <p className="os s8">3929****5993</p>
+                  <p className="os s8">{ this.modeMap[res.mode] }</p>
                 </div>
                 <div className="section-content">
                   <span className="os s9">Transaction ID</span>
-                  <p className="os s8">#483293949304</p>
+                  <p className="os s8">{ res.txnid } </p>
                 </div>
                 <div className="section-content">
                   <span className="os s9">Transaction Date and Time</span>
-                  <p className="os s8">18/12/2018, 5.50 PM</p>
+                  <p className="os s8">{ res.addedon }</p>
                 </div>
               </div>
               <div className="footnote section">
