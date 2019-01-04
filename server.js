@@ -87,7 +87,9 @@ app.post("/payment-status", (req, res) => {
   } else {
     component = TransactionFailure
   }
+  
   const reactElement = React.createElement(component, { res: req.body, status: req.query.status })
+  console.log(renderToString(reactElement))
   const stream = renderToNodeStream(reactElement)
   stream.pipe(res, { end: false })
   stream.on("end", () => {

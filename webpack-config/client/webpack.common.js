@@ -8,8 +8,8 @@ console.log(path.resolve(__dirname, "./../../src/payment-status.html"))
 module.exports = {
   entry: {
     app: path.resolve(__dirname, "./../../src/App.js"),
-    transaction_success: path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
-    transaction_failure: path.resolve(__dirname, "./../../src/FailureTransaction")
+    // transaction_success: path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
+    // transaction_failure: path.resolve(__dirname, "./../../src/FailureTransaction")
   },
   plugins: [
     new CleanWebpackPlugin(["dist"], {
