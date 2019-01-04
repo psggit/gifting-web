@@ -35,7 +35,7 @@ export function validateEmail(fieldName, fieldValue) {
 
 export function validateNumberField(fieldName, fieldValue) {
   //console.log("validate",fieldValue.length, !fieldValue.length)
-  if (!fieldValue.length) {
+  if (!fieldValue.trim().length) {
     //console.log("field value", !fieldValue.length)
     return {
       status: true,
