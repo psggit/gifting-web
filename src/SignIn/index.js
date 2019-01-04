@@ -97,12 +97,12 @@ export default function SignIn(data) {
       const {otpSent} = this.state
       let otpErr = this.state.otpErr
 
-      const mobileNoErr = validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo.trim())
-      this.setState({mobileNoErr: validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo.trim())})
+      const mobileNoErr = validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo)
+      this.setState({mobileNoErr: validateNumberField(this.inputNameMap['mobileNo'], this.state.mobileNo)})
       
       if(otpSent) {
-        otpErr = validateTextField(this.inputNameMap['otp'], this.state.otp.trim())
-        this.setState({otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp.trim())})
+        otpErr = validateTextField(this.inputNameMap['otp'], this.state.otp)
+        this.setState({otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp)})
       }
     
       if (!mobileNoErr.status && !otpErr.status && !otpSent) {
@@ -122,7 +122,7 @@ export default function SignIn(data) {
 
       if(validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e) || checkCtrlC(e)) {
         this.setState({ 
-          [e.target.name]: (e.target.value).trim(),
+          [e.target.name]: (e.target.value),
           //[errName]:  validateNumberField(this.inputNameMap[e.target.name], e.target.value)
         })
       } else {
@@ -187,7 +187,7 @@ export default function SignIn(data) {
     }
 
     handleTextChange(e) {
-      this.setState({[e.target.name]: (e.target.value).trim()})
+      this.setState({[e.target.name]: (e.target.value)})
     }
 
     render() {
