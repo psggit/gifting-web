@@ -279,6 +279,7 @@ class SendGift extends React.Component {
                         name="senderName" 
                         type="text" 
                         placeholder="Enter your name"
+                        readOnly={this.state.isLoggedIn}
                       />
                     </div>
 
@@ -290,7 +291,7 @@ class SendGift extends React.Component {
                         name="senderNumber" 
                         maxLength="10" 
                         placeholder="Enter your phone number"
-                        type="text" readOnly />
+                        type="text" readOnly={this.state.isLoggedIn} />
                     </div>
                   </div>
 
@@ -312,7 +313,14 @@ class SendGift extends React.Component {
                       )
                       : (
                         <div style={{ marginTop: "20px" }}>
-                          <Button onClick={() => { mountModal(SignIn({})) }} primary  icon="rightArrowWhite">Sign in to proceed</Button>
+                          <Button
+                            onClick={() => {
+                              mountModal(SignIn({ mobile: this.state.senderNumber }))
+                            }}
+                            primary
+                            icon="rightArrowWhite">
+                            Sign in to proceed
+                          </Button>
                         </div>
                       )
                   }
