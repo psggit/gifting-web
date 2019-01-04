@@ -4,16 +4,22 @@ import Footer from "Components/footer"
 import './faq.scss'
 import Icon from "Components/icon"
 import {sendingGiftCardQuestions, redeemingGiftCardQuestions} from './QA'
+import Accordian from "Components/accordian"
+import AccordianItem from "Components/accordian/accordian-item"
 
 class FAQ extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       sendingGiftCardQuestions: [],
+      //isModelOpen: false,
+      activeAccordian: -1
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
-    this.showAnswer = this.showAnswer.bind(this)
+    //this.toggleBox = this.toggleBox.bind(this)
+    this.setActiveAccordian = this.setActiveAccordian.bind(this)
+    this.toggleAccordian = this.toggleAccordian.bind(this)
   }
 
   componentDidMount() {
@@ -25,44 +31,12 @@ class FAQ extends React.Component {
     this.setState({sendingGiftCardQuestions})
   }
 
-  // componentWillReceiveProps(newProps) {
-  //   //console.log("helo", newProps)
-  //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-  //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-  //   }
-  // }
-
-  showAnswer(quesNo) {
-    //console.log("quesNo", quesNo)
-    document.getElementsByClassName(`answer ${quesNo}`)[0].style.display = 'block'
-    document.getElementsByClassName(`hide ${quesNo}`)[0].style.display = 'block'
-    document.getElementsByClassName(`show ${quesNo}`)[0].style.display = 'none'
+  setActiveAccordian(activeAccordian) {
+    this.setState({activeAccordian})
   }
 
-  hideAnswer(quesNo) {
-    document.getElementsByClassName(`answer ${quesNo}`)[0].style.display = 'none'
-    document.getElementsByClassName(`show ${quesNo}`)[0].style.display = 'block'
-    document.getElementsByClassName(`hide ${quesNo}`)[0].style.display = 'none'
-  }
-
-  renderQA(item) {
-    //console.log("item", item)
-    return (
-      <div className="section">
-        <div className={`question ${item.ques_number}`} style={{display: 'flex'}}>
-          <div style={{position: 'relative'}} className="os s7">Q.) {item.question}</div>
-          <span className={`show ${item.ques_number}`} style={{cursor: 'pointer'}} onClick={() => this.showAnswer(item.ques_number)}>
-            <Icon name="plus" />
-          </span>
-          <span className={`hide ${item.ques_number}`} style={{cursor: 'pointer'}} onClick={() => this.hideAnswer(item.ques_number)}>
-            <Icon name="minus" />
-          </span>
-        </div>
-        <div className={`answer one os s6 ${item.ques_number}`}>
-          A.) {item.answer}
-        </div>
-      </div>
-    )
+  toggleAccordian() {
+    this.setState({activeAccordian: -1})
   }
 
   render() {
@@ -80,9 +54,20 @@ class FAQ extends React.Component {
               <div style={{marginBottom: '70px'}}>
                 {
                   sendingGiftCardQuestions.length > 0 &&
-                  sendingGiftCardQuestions.map((item) => (
-                    this.renderQA(item)
-                  ))
+                  <Accordian
+                    //middleware={this.setCardValues}
+                    setActiveAccordian={this.setActiveAccordian}
+                    toggleAccordian={this.toggleAccordian}
+                    activeAccordian={this.state.activeAccordian}
+                  >
+                    {
+                      sendingGiftCardQuestions.map((item, index) => (
+                        <AccordianItem key={index} title={item.question} icon={this.state.activeAccordian !== -1 ? <Icon name="minus" /> : <Icon name="plus" />} id={index}>
+                          {item.answer}
+                        </AccordianItem>
+                      ))
+                    }
+                  </Accordian>
                 }
               </div>
               <div className="header">
@@ -90,9 +75,20 @@ class FAQ extends React.Component {
               </div>
               {
                 redeemingGiftCardQuestions.length > 0 && 
-                redeemingGiftCardQuestions.map((item) => (
-                  this.renderQA(item)
-                ))
+                <Accordian
+                  //middleware={this.setCardValues}
+                  setActiveAccordian={this.setActiveAccordian}
+                  toggleAccordian={this.toggleAccordian}
+                  activeAccordian={this.state.activeAccordian}
+                >
+                  {
+                    redeemingGiftCardQuestions.map((item, index) => (
+                      <AccordianItem key={index} title={item.question} icon={this.state.activeAccordian !== -1 ? <Icon name="minus" /> : <Icon name="plus" />} id={index}>
+                        {item.answer}
+                      </AccordianItem>
+                    ))
+                  }
+                </Accordian>
               }
             </div>
           </div>

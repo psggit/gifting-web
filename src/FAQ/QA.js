@@ -84,7 +84,7 @@ export const redeemingGiftCardQuestions = [
   {
     ques_number: "twelve",
     question: "I have received a gift card, how do I redeem it?",
-    answer: `If you’ve received a gift card through the app, the value of the gift card is automatically added to your gift wallet. 
+    answer: `If you’ve received a gift card, the value of the gift card is automatically added to your gift wallet. 
 
               To redeem a gift card, follow the steps below:
               

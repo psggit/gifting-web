@@ -34,7 +34,7 @@
       width: 100%;
       margin: 50px 0;
 
-      .section {
+      .accordian-item {
         margin-top: 24px;
       }
 
@@ -43,38 +43,44 @@
         margin-bottom: 13px;
       }
 
-      .question {
+      .accordian-item__header {
         width: 100%;
+        cursor: pointer;
         // position: relative;
         // display: flex;
         background: #fff;
         border-radius: 4px;
         border: 1px solid #dddbda;
         padding: 20px 10px;
+        position: relative;
 
-        div {
+        label {
           font-weight: 600;
           width: 84%;
           letter-spacing: 0.6px; 
+          position: absolute;
+          top: 0px;
         }
 
-        .show{
+        .icon{
           position: absolute;
-          right: 16%;
+          right: 10px;
+          transform: translateY(-50%);
+          top: 50%;
         }
 
-        .hide {
-          position: absolute;
-          right: 16%;
-          display: none;
-        }
+        // .hide {
+        //   position: absolute;
+        //   right: 16%;
+        //   display: none;
+        // }
       }
 
-      .answer {
+      .accordian-item__body {
         border-radius: 4px;
         background: #fff;
-        padding: 20px 10px;
-        display: none;
+        // padding: 20px 10px;
+        // display: none;
       }
     }
   } 
