@@ -51,7 +51,7 @@ class LandingPage extends React.Component {
                 </h2>
 
                 <p className="os s2">
-                With HipBar Gift Cards, gift drinks to your friends & family this festive season! Redeem drinks at 60+ retailers across Bengaluru and Goa!
+                With HipBar Gift Cards, gift drinks to your friends & family! Redeem drinks at 60+ retailers across Bengaluru and Goa!
                 </p>
 
                 <div style={{ marginTop: "30px", }}>
@@ -83,14 +83,14 @@ class LandingPage extends React.Component {
               Our Brand partners
             </h1>
             <div className="brands-list">
-              <img src="https://hipbar.com/a21696ca22b7c04fb7591c52c5089f4f.png" />
-              {/* <Icon name="diageo" />
+              {/* <img src="https://hipbar.com/a21696ca22b7c04fb7591c52c5089f4f.png" /> */}
+              <Icon name="diageo" />
               <Icon name="bacardi" />
               <Icon name="carlsberg" />
-              <Icon name="bira" /> */}
-              <img src="https://hipbar.com/a0ee9f2c10e0e287bc9c05d64cffa171.png" />
+              <Icon name="pernado" />
+              {/* <img src="https://hipbar.com/a0ee9f2c10e0e287bc9c05d64cffa171.png" />
               <img src="https://hipbar.com/d38974e5f50a5ae0f40ba9e323f03b63.png" />
-              <img src="https://hipbar.com/9e9ee179bf9d959bef56c681e6670b9b.png" />
+              <img src="https://hipbar.com/9e9ee179bf9d959bef56c681e6670b9b.png" /> */}
             </div>
 
             <h1 className="brands-heading os s1">
@@ -109,7 +109,7 @@ class LandingPage extends React.Component {
             <div style={{ marginTop: "100px" }}>
               <h1 className="cm s1">What are HipBar Gift Cards?</h1>
               <p className="os s2">
-              With HipBar Gift Cards, gift drinks to your friends & family this festive season! Redeem drinks at 60+ retailers across Bengaluru and Goa!
+              With HipBar Gift Cards, gift drinks to your friends & family! Redeem drinks at 60+ retailers across Bengaluru and Goa!
               </p>
             </div>
           </div>

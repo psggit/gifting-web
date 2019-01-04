@@ -18,7 +18,7 @@ const Footer = () => (
           <div className="footer-item">
             <ul>
               <li><a target="_blank" href="/send-gift">Send Gift Cards</a></li>
-              <li><a target="_blank" href="/using-gift-card">Using Gift Cards</a></li>
+              <li><a target="_blank" href="/redeeming-gift-card">Redeeming Gift Card</a></li>
               <li><a target="_blank" href="/retail-outlet">Retail Outlets</a></li>
               <li><a target="_blank" href="/faq">FAQs</a></li>
             </ul>

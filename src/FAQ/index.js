@@ -3,13 +3,13 @@ import Header from "Components/header"
 import Footer from "Components/footer"
 import './faq.scss'
 import Icon from "Components/icon"
-import {questionAnswers} from './QA'
+import {sendingGiftCardQuestions, redeemingGiftCardQuestions} from './QA'
 
 class FAQ extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      questionAnswers: [],
+      sendingGiftCardQuestions: [],
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
@@ -22,7 +22,7 @@ class FAQ extends React.Component {
       left: 0,
       behavior: 'smooth'
     })
-    this.setState({questionAnswers})
+    this.setState({sendingGiftCardQuestions})
   }
 
   // componentWillReceiveProps(newProps) {
@@ -66,7 +66,7 @@ class FAQ extends React.Component {
   }
 
   render() {
-    const {questionAnswers} = this.state
+    const {sendingGiftCardQuestions} = this.state
     return (
       <div>
         <Header history={this.props.history} />
@@ -74,9 +74,23 @@ class FAQ extends React.Component {
           <div className="content">
             <h2 className="cm s1">Frequently Asked Questions</h2>
             <div className="faqContainer">
+              <div className="header">
+                <div className="os s7" style={{fontWeight: '600'}}> SENDING A GIFT CARD </div>
+              </div>
+              <div style={{marginBottom: '70px'}}>
+                {
+                  sendingGiftCardQuestions.length > 0 &&
+                  sendingGiftCardQuestions.map((item) => (
+                    this.renderQA(item)
+                  ))
+                }
+              </div>
+              <div className="header">
+                <div className="os s7" style={{fontWeight: '600'}}> REDEEMING A GIFT CARD </div>
+              </div>
               {
-                questionAnswers.length > 0 &&
-                questionAnswers.map((item) => (
+                redeemingGiftCardQuestions.length > 0 && 
+                redeemingGiftCardQuestions.map((item) => (
                   this.renderQA(item)
                 ))
               }

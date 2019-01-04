@@ -9,7 +9,7 @@ import AgeGate from './AgeGate'
 import { Router } from "react-router"
 import CreateHistory from 'history/createBrowserHistory'
 import LegalDrinkingAge from './LegalDrinkingAge'
-
+import RedeemingGiftCard from './RedeemingGiftCard'
 import LandingPage from "./landing"
 import UsingGiftCard from './GiftCardInfo'
 import SendGiftCards from './SendGift'
@@ -184,11 +184,25 @@ class App extends React.Component {
                       )
                     } 
                   /> */}
-                  <Route exact 
+                  
+                  {/* <Route exact 
                     path="/using-gift-card"
                     render={
                       props => (
                         <UsingGiftCard {...props} 
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
+                    //component={UsingGiftCard} 
+                  /> */}
+
+                  <Route exact 
+                    path="/how-to-redeem"
+                    render={
+                      props => (
+                        <RedeemingGiftCard {...props} 
                           // name={this.state.username} 
                           // isLoggedIn={this.state.isLoggedIn}
                         />

@@ -5,6 +5,7 @@
 //   }
 
 export function validateNumType(keyCode) {
+  //added 229 because In Android 4.4.2, Chrome: 49.0.2623.105, keyCode is always 229
   let allowed = [ 8, 46, 37, 39, 9, 189 ]
   const res = allowed.indexOf(keyCode) > -1 || (keyCode == 190) || (keyCode >=48 && keyCode <=57) || (keyCode >=96 && keyCode <= 105)
   //console.log(res)

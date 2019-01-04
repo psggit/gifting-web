@@ -122,7 +122,7 @@ export default function SignIn(data) {
 
       if(validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e) || checkCtrlC(e)) {
         this.setState({ 
-          [e.target.name]: (e.target.value).trim(),
+          [e.target.name]: (e.target.value),
           //[errName]:  validateNumberField(this.inputNameMap[e.target.name], e.target.value)
         })
       } else {
@@ -187,7 +187,7 @@ export default function SignIn(data) {
     }
 
     handleTextChange(e) {
-      this.setState({[e.target.name]: (e.target.value).trim()})
+      this.setState({[e.target.name]: (e.target.value)})
     }
 
     render() {
@@ -232,7 +232,7 @@ export default function SignIn(data) {
                         //onChange={(e) => this.handleTextChange(e)}
                         //defaultValue={this.state.mobileNo}
                         className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
-                        onKeyDown={(e) => {this.handleNumberChange(e)}}
+                        onKeyPress={(e) => {this.handleNumberChange(e)}}
                         onKeyUp={(e) => {this.handleNumberChange(e)}}
                       />
                     </div>
