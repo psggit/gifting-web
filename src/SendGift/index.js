@@ -46,6 +46,7 @@ class SendGift extends React.Component {
       behavior: 'smooth'
     })
     localStorage.removeItem("txn")
+    localStorage.setItem("showAgeGate", false)
   }
 
   componentDidUpdate(prevProps) {
