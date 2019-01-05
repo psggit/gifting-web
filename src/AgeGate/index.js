@@ -27,7 +27,7 @@ export default function AgeGate(data) {
     }
 
     agreeAgeGate() {
-      document.cookie = "isAgeGateAgreed=true; path=/; expires=" + (new Date(new Date().getTime() + 30 * 60 * 1000)).toUTCString() + "; path=/;  domain=gifting-web.amebae21.hasura-app.io";
+      document.cookie = "isAgeGateAgreed=true; path=/; expires=" + (new Date(new Date().getTime() + 30 * 60 * 1000)).toUTCString() + `;path=/;  domain=${location.hostname}`
       //localStorage.setItem("agreedAgeGate", true)
       unMountModal()
     }
