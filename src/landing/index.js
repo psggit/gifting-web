@@ -26,7 +26,7 @@ class LandingPage extends React.Component {
       left: 0,
       behavior: 'smooth'
     })
-    if(!readCookie("agreedAgeGate")) {
+    if(!readCookie("isAgeGateAgreed")) {
       mountModal(AgeGate({}))
     }
     //document.cookie = "my_super_cookie=hellyeah; path=/; expires=" + (new Date(new Date().getTime() + 1 * 60 * 1000)).toUTCString() + "; path=/; domain=codepen.io";

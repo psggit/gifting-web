@@ -49,7 +49,7 @@ class SendGift extends React.Component {
     })
     localStorage.removeItem("txn")
     //localStorage.setItem("showAgeGate", false)
-    if(!readCookie("agreedAgeGate")) {
+    if(!readCookie("isAgeGateAgreed")) {
       mountModal(AgeGate({}))
     }
   }

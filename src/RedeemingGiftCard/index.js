@@ -21,7 +21,7 @@ class GiftCards extends React.Component {
       left: 0,
       behavior: 'smooth'
     })
-    if(!readCookie("agreedAgeGate")) {
+    if(!readCookie("isAgeGateAgreed")) {
       mountModal(AgeGate({}))
     }
     //localStorage.setItem("showAgeGate", false)

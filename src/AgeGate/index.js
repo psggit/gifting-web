@@ -27,7 +27,7 @@ export default function AgeGate(data) {
     }
 
     agreeAgeGate() {
-      document.cookie = "agreedAgeGate=true; path=/; expires=" + (new Date(new Date().getTime() + 1 * 60 * 1000)).toUTCString() + "; path=/;";
+      document.cookie = "isAgeGateAgreed=true; path=/; expires=" + (new Date(new Date().getTime() + 30 * 60 * 1000)).toUTCString() + "; path=/;";
       //localStorage.setItem("agreedAgeGate", true)
       unMountModal()
     }
