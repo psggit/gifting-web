@@ -107,10 +107,10 @@ class SendGift extends React.Component {
     if (e.target.name !== "price4") {
       this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: "" })
     } else {
-      if (!e.target.value.length) {
-        this.setState({ amount: "499", activePrice: "price1", otherValue: "" })
-        return
-      }
+      // if (!e.target.value.length) {
+      //   this.setState({ amount: "499", activePrice: "price1", otherValue: "" })
+      //   return
+      // }
       if (parseInt(e.target.value) > 10000) {
         return;
       }
@@ -194,12 +194,12 @@ class SendGift extends React.Component {
         <div id="send-gift">
           <div className="how-to-gift mobile">
             <div onClick={this.toggleHowTo} className="how-to-gift-header">
-              <p style={{ padding: "0 30px", color: "#fff" }} className="os s3">
+              <p style={{ padding: "0 0 0 30px", color: "#fff" }} className="os s3">
                 Using HipBar Gift Cards
-                  <span style={{ marginLeft: "10px" }}>
-                  <Icon name="filledDownArrowWhite" />
-                </span>
               </p>
+              <span style={{ marginLeft: "15px" }}>
+                <Icon name="filledDownArrowWhite" />
+              </span>
             </div>
             <div className={`how-to-gift-body ${this.state.isActive ? "active" : ""}`}>
               <h2 className="cm s3">How to use HipBar Gift Cards?</h2>
@@ -253,19 +253,61 @@ class SendGift extends React.Component {
                       <div className="amounts">
 
                         <div className="form-field">
-                          <input className={this.state.activePrice === "price1" ? "focused" : undefined} onFocus={(e) => { e.currentTarget.blur() }} onClick={this.handleAmountChange} name="price1" type="text" defaultValue="499" readOnly />
+                          <input 
+                            className={this.state.activePrice === "price1" ? "focused" : undefined}
+                            onFocus={(e) => { e.currentTarget.blur() }}
+                            onClick={this.handleAmountChange}
+                            name="price1"
+                            type="text"
+                            defaultValue="499"
+                            readOnly 
+                          />
                         </div>
 
                         <div className="form-field">
-                          <input className={this.state.activePrice === "price2" ? "focused" : undefined} onFocus={(e) => { e.currentTarget.blur() }} onClick={this.handleAmountChange} name="price2" type="text" defaultValue="999" readOnly />
+                          <input
+                            className={this.state.activePrice === "price2" ? "focused" : undefined}
+                            onFocus={(e) => { e.currentTarget.blur() }}
+                            onClick={this.handleAmountChange}
+                            name="price2"
+                            type="text"
+                            defaultValue="999"
+                            readOnly 
+                          />
                         </div>
 
                         <div className="form-field">
-                          <input className={this.state.activePrice === "price3" ? "focused" : undefined} onFocus={(e) => { e.currentTarget.blur() }} onClick={this.handleAmountChange} name="price3" type="text" defaultValue="1999" readOnly />
+                          <input 
+                            className={this.state.activePrice === "price3" ? "focused" : undefined}
+                            onFocus={(e) => { e.currentTarget.blur() }}
+                            onClick={this.handleAmountChange}
+                            name="price3"
+                            type="text"
+                            defaultValue="1999"
+                            readOnly
+                          />
                         </div>
 
                         <div className="form-field">
-                          <InputMask mask="99999" maskChar={null}  className={this.state.activePrice === "price4" ? "focused" : undefined} value={this.state.otherValue} onChange={this.handleAmountChange} name="price4" type="text" placeholder="Other" />
+                          <InputMask 
+                            mask="99999"
+                            maskChar={null}
+                            className={this.state.activePrice === "price4" ? "focused" : undefined}
+                            onFocus={(e) => {
+                              this.setState({ activePrice: "price4", amount: e.target.value }) 
+                            }}
+                            onBlur={(e) => {
+                              this.setState({
+                                activePrice: e.target.value.length ? "price4" : "price1",
+                                amount: e.target.value.length ? e.target.value : "499"
+                              })
+                            }}
+                            value={this.state.otherValue}
+                            onChange={this.handleAmountChange}
+                            name="price4"
+                            type="text"
+                            placeholder="Other"
+                          />
                           <span>&#8377;</span>
                         </div>
 

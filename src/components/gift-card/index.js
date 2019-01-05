@@ -13,7 +13,7 @@ const GiftCard = ({ amount }) => (
     </div>
     <p className="price">
       <span>&#8377;</span>
-      <span>{amount || 499}</span>
+      <span>{amount}</span>
     </p>
 
     <div className="gift-logo">

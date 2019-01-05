@@ -82,7 +82,7 @@ class LandingPage extends React.Component {
               </div>
 
               <div className="col">
-                <GiftCard />
+                <GiftCard amount="499" />
               </div>
             </div>
             <h2 className="cm s2">
