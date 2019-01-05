@@ -16,16 +16,17 @@ class SendGift extends React.Component {
   constructor(props) {
     super(props)
     console.log(props.name);
-
+    this.count = 0;
     this.state = {
       activePrice: "price1",
       amount: "499",
-      giftMessage: "Wish you a merry christmas, wish you a merry christmas and a very happy new year! :)",
-      receiverName: "Madhur",
-      receiverNumber: "8989415866",
+      giftMessage: "",
+      receiverName: "",
+      receiverNumber: "",
       senderName: props.paramObj.username,
       senderNumber: props.paramObj.mobile,
       canProceed: false,
+      count: 10,
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false,
       isActive: false
@@ -71,7 +72,7 @@ class SendGift extends React.Component {
     const { amount, giftMessage, receiverNumber, senderName, receiverName } = this.state
     if (
       amount.length &&
-      giftMessage.length &&
+      //giftMessage.length &&
       receiverName.length &&
       receiverNumber.length === 10 && ["1", "2", "3", "4", "5"].indexOf(receiverNumber[0]) === -1 &&
       senderName.length
@@ -96,7 +97,14 @@ class SendGift extends React.Component {
   }
 
   handleMessageChange(e) {
-    this.setState({ giftMessage: e.target.value })
+    const max = 10
+    if(this.state.count > 0) {
+      this.setState({count: max -  e.target.value.length, giftMessage: e.target.value })
+    } else if(e.target.value.length < max && this.state.count <= e.target.value.length) {
+      this.setState({count: max - e.target.value.length})
+    } else {
+      return
+    }
   }
 
   handlePhoneChange(e) {
@@ -154,7 +162,7 @@ class SendGift extends React.Component {
   //     data: {}
   //   })
   // }
-
+ 
   render() {
     //console.log("sender nae", this.state.senderName)
     return (
@@ -243,7 +251,15 @@ class SendGift extends React.Component {
 
                     <div className="form-group">
                       <label className="os">Personal Message (optional)</label>
-                      <textarea onChange={this.handleMessageChange} name="giftMessage" rows="4" cols="50"></textarea>
+                      <textarea 
+                        onChange={this.handleMessageChange}
+                        name="giftMessage" rows="4" cols="50"
+                        // onFocus={() => {this.countChars('char_count',10)}}
+                        // onKeyDown={() => {this.countChars('char_count',10)}}
+                        // onKeyUp={() => {this.countChars('char_count',10)}}
+                      >
+                      </textarea>
+                      <p className="os s9"><span id="char_count">{this.state.count}</span> characters remaining</p>
                       {/* <p>416 characters remaining</p> */}
                     </div>
                   </div>

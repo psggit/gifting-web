@@ -61,8 +61,8 @@
   }
 
   .brands-list {
-    margin: 40px auto 40px auto;
-    max-width: 800px;
+    margin: 40px 10% 40px 10%;
+    //max-width: 800px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -72,6 +72,12 @@
     justify-content: space-between;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+
+    .brand-icon {
+      display: flex;
+      width: 50%;
+      justify-content: space-around;
+    }
   }
 
   .what-is-hipbar {
@@ -195,6 +201,19 @@
     .intro-container .col:last-child {
       text-align: center;
       margin-bottom: 40px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1120px) {
+  #landing {
+    .brands-list {
+      display: flex;
+      flex-direction: column;
+      .brand-icon {
+        width: 100% !important;
+        margin-bottom: 50px;
+      }
     }
   }
 }
