@@ -21,7 +21,7 @@ export default function SignIn(data) {
         mobileNo: "Mobile number",
         otp: "Otp"
       }
-
+      console.log("data", data)
       this.state = {
         otpSent: data.otpSent ? data.otpSent : false,
         mobileNo: data.mobile ? data.mobile : "",
@@ -244,6 +244,7 @@ export default function SignIn(data) {
                         disabled={this.state.disableField}
                         style={this.state.disableField ? cursorStyle : {}}
                         placeholder="Enter the phone number"
+                        defaultValue={this.state.mobileNo}
                         autoComplete="off"
                         className={`mobile ${mobileNoErr.status ? 'error' : ''}`}
                         maskChar={null}

@@ -10,7 +10,7 @@ import Header from "Components/header"
 import Footer from "Components/footer"
 import { loadavg } from "os";
 import {readCookie} from "Utils/session-utils"
-
+var timeOut;
 class LandingPage extends React.Component {
   constructor(props) {
     super(props)
@@ -39,6 +39,16 @@ class LandingPage extends React.Component {
   //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
   //   }
   // }
+
+  handleScroll() {
+    //document.body.scrollTop = document.getElementById("brands").offsetTop;
+    //document.documentElement.scrollTop = document.getElementById("brands").offsetTop;
+    window.scroll({
+      top: document.getElementById("brands").offsetTop - 100,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
 
   render() {
     //console.log("props", this.props, this.props.name)
@@ -77,22 +87,26 @@ class LandingPage extends React.Component {
             </div>
             <h2 className="cm s2">
               {/* Get 50%* off on your first HipBar Gift Card! */}
-              <div style={{ marginTop: "20px" }}>
+              <div style={{ marginTop: "20px" }} onClick={this.handleScroll}>
                 <Icon name="downArrow" />
               </div>
             </h2>
           </div>
 
-          <div className="brands">
+          <div className="brands" id="brands">
             <h1 className="brands-heading os s1">
               Our Brand partners
             </h1>
             <div className="brands-list">
               {/* <img src="https://hipbar.com/a21696ca22b7c04fb7591c52c5089f4f.png" /> */}
-              <Icon name="diageo" />
-              <Icon name="bacardi" />
-              <Icon name="carlsberg" />
-              <Icon name="pernado" />
+              <div className="brand-icon">
+                <Icon name="diageo" />
+                <Icon name="bacardi" />
+              </div>
+              <div className="brand-icon">
+                <Icon name="carlsberg" />
+                <Icon name="pernado" />
+              </div>
               {/* <img src="https://hipbar.com/a0ee9f2c10e0e287bc9c05d64cffa171.png" />
               <img src="https://hipbar.com/d38974e5f50a5ae0f40ba9e323f03b63.png" />
               <img src="https://hipbar.com/9e9ee179bf9d959bef56c681e6670b9b.png" /> */}

@@ -15,6 +15,7 @@ class SuccessfulTransaction extends React.Component {
 
   render() {
     const { res } = this.props
+    console.log("response", res)
     return (
       <div>
         <div id="SuccessfulTransaction" className="transaction-status"> 

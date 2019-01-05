@@ -39,11 +39,11 @@
   .row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   .gift-card-form {
-    max-width: 400px;
+    //max-width: 400px;
     z-index: 2;
   }
 
@@ -67,10 +67,55 @@
         }
       }
 
+      .country-code {
+        border: 1px solid #cccccc;
+        display: flex;
+        padding: 0 10px;
+        align-items: center;
+        font-size: 14px;
+      }
+  
+      .country-code.error {
+        //border: 1px solid #c23934 !important;
+        // border-right: 0 !important;
+        border-left: 1px solid #c23934 !important;
+        border-top: 1px solid #c23934 !important;
+        border-bottom: 1px solid #c23934 !important;
+      }
+
+      .error-message {
+        color: #c23934;// width: 80px;
+        //   // padding: 0px 10px;
+        //   line-height: 30px;
+        //   width: 100%;
+        //   margin-bottom: 10px;
+        // }
+        font-weight: 600;
+        padding: 10px 0;
+      }
+
       input {
         width: 100%;
         height: 38px;
       }
+
+      input.error {
+        border: 1px solid #c23934 !important;
+      }
+
+      input.mobile {
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        //border-left: 0px;
+      }
+
+      input.mobile.error {
+        border-left: 0 !important;
+        border-right: 1px solid #c23934 !important;
+        border-top: 1px solid #c23934 !important;
+        border-bottom: 1px solid #c23934 !important;
+      }
+
       textarea {
         width: 100%;
         resize: none;
@@ -88,7 +133,8 @@
   .gift-card-form .form-item.gift-card-info {
     .form-group {
       input {
-        width: 90px;
+        width: 100px;
+        margin-right: 20px;
       }
     }
     .amounts {
@@ -109,7 +155,7 @@
           color: #000;
           position: absolute;
           top: 10px;
-          left: 20px;
+          left: 13px;
           pointer-events: none;
           // background-color: #000;
         }
@@ -117,13 +163,15 @@
           display: none;
         }
         &:last-child span {
-          display: none;
+          //display: none;
           position: absolute;
           top: 10px;
-          left: 20px;
+          left: 13px;
         }
         &:last-child input {
-          padding: 0 20px 0 20px;
+          padding: 0 30px 0 30px;
+          margin-right: 0;
+          text-align: center;
           &:focus {
             &::-webkit-input-placeholder {
               color: transparent;
@@ -140,7 +188,8 @@
       }
 
       input:-moz-read-only {
-        padding: 0 20px 0 30px;
+        padding: 0 30px 0 30px;
+        text-align: center;
         cursor: pointer;
         &:focus, &.focused {
           font-weight: bold;
@@ -148,7 +197,8 @@
       }
 
       input:read-only {
-        padding: 0 20px 0 30px;
+        padding: 0 30px 0 30px;
+        text-align: center;
         cursor: pointer;
         &:focus, &.focused {
           font-weight: bold;
@@ -158,6 +208,7 @@
   }
 
   .col {
+    width: 38%;
     .cm.s3 {
       margin-bottom: 30px;
       letter-spacing: 0.7px;
@@ -176,8 +227,9 @@
     }
     &:last-child {
       // position: sticky;
-      max-width: 500px;
-      right: 5.6%;
+      //max-width: 500px;
+      //right: 5.6%;
+      width: 46%;
       
       .how-to-gift {
         position: sticky;
@@ -224,6 +276,11 @@
     }
     .row {
       justify-content: space-around;
+        width: 100%;
+        .col:first-child {
+          width: 100%;
+        }
+
       // flex-direction: column;
       .col:last-child {
         display: none;
@@ -236,6 +293,17 @@
   #send-gift {
     .gift-card-form {
       width: 100%;
+
+      // .col:first-child {
+      //   width: 100%;
+      // }
+    }
+
+    .row {
+      width: 100%;
+      .col:first-child {
+        width: 100%;
+      }
     }
   }
 }

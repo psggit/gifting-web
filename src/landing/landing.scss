@@ -44,8 +44,18 @@
     text-align: right;
   }
 
-  .intro-container .col {
-    width: calc((100% - 6.5%)/2);
+  // .intro-container .col {
+  //   width: calc((100% - 6.5%)/2);
+  // }
+
+  .intro-container {
+    .col:first-child {
+      width: calc(100% - 6.5% - 38%)
+    }
+
+    .col:last-child {
+      width: calc(100% - 6.5% - 55.5%)
+    }
   }
 
   .brands {
@@ -61,8 +71,8 @@
   }
 
   .brands-list {
-    margin: 40px auto 40px auto;
-    max-width: 800px;
+    margin: 40px 10% 40px 10%;
+    //max-width: 800px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -72,6 +82,12 @@
     justify-content: space-between;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+
+    .brand-icon {
+      display: flex;
+      width: 50%;
+      justify-content: space-around;
+    }
   }
 
   .what-is-hipbar {
@@ -189,12 +205,25 @@
     }
 
     .intro-container .col {
-      width: 100%;
+      width: 100% !important;
     }
 
     .intro-container .col:last-child {
       text-align: center;
       margin-bottom: 40px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1120px) {
+  #landing {
+    .brands-list {
+      display: flex;
+      flex-direction: column;
+      .brand-icon {
+        width: 100% !important;
+        margin-bottom: 50px;
+      }
     }
   }
 }

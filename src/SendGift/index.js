@@ -11,24 +11,39 @@ import { POST } from "Utils/fetch"
 import AgeGate from './../AgeGate'
 import InputMask from "react-input-mask"
 import {readCookie} from "Utils/session-utils"
+import { validateTextField } from '../utils/validators';
 
 class SendGift extends React.Component {
   constructor(props) {
     super(props)
     console.log(props.name);
+    this.count = 0;
 
+    this.inputNameMap = {
+      receiverName: "Receiver name",
+      receiverNumber: "Receiver number"
+    }
     this.state = {
       activePrice: "price1",
       amount: "499",
-      giftMessage: "Wish you a merry christmas, wish you a merry christmas and a very happy new year! :)",
-      receiverName: "Madhur",
-      receiverNumber: "8989415866",
+      giftMessage: "",
+      receiverName: "",
+      receiverNumber: "",
       senderName: props.paramObj.username,
       senderNumber: props.paramObj.mobile,
       canProceed: false,
+      count: 10,
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false,
-      isActive: false
+      isActive: false,
+      receiverNameErr: {
+        value: "",
+        status: false
+      },
+      receiverNumberErr: {
+        value: "",
+        status: false
+      }
     }
     this.createTransaction = this.createTransaction.bind(this)
     this.handleAmountChange = this.handleAmountChange.bind(this)
@@ -69,13 +84,21 @@ class SendGift extends React.Component {
 
   proceedToPayment() {
     const { amount, giftMessage, receiverNumber, senderName, receiverName } = this.state
-    if (
-      amount.length &&
-      giftMessage.length &&
-      receiverName.length &&
-      receiverNumber.length === 10 && ["1", "2", "3", "4", "5"].indexOf(receiverNumber[0]) === -1 &&
-      senderName.length
-    ) {
+
+    const receiverNumberErr = validateTextField(this.inputNameMap['receiverNumber'], receiverNumber)
+    this.setState({receiverNumberErr: validateTextField(this.inputNameMap['receiverNumber'], receiverNumber)})
+
+    const receiverNameErr = validateTextField(this.inputNameMap['receiverName'], receiverName)
+    this.setState({receiverNameErr: validateTextField(this.inputNameMap['receiverName'], receiverName)})
+    console.log(receiverNumberErr, receiverNameErr)
+    // if (
+    //   amount.length &&
+    //   //giftMessage.length &&
+    //   receiverName.length &&
+    //   receiverNumber.length === 10 && ["1", "2", "3", "4", "5"].indexOf(receiverNumber[0]) === -1 &&
+    //   senderName.length
+    // ) 
+    if(senderName.length && amount.length && !receiverNumberErr.status && !receiverNameErr.status && ["1", "2", "3", "4", "5"].indexOf(receiverNumber[0]) === -1) {
       this.createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName)
     }
   }
@@ -96,7 +119,14 @@ class SendGift extends React.Component {
   }
 
   handleMessageChange(e) {
-    this.setState({ giftMessage: e.target.value })
+    const max = 10
+    if(this.state.count > 0) {
+      this.setState({count: max -  e.target.value.length, giftMessage: e.target.value })
+    } else if(e.target.value.length < max && this.state.count <= e.target.value.length) {
+      this.setState({count: max - e.target.value.length})
+    } else {
+      return
+    }
   }
 
   handlePhoneChange(e) {
@@ -154,9 +184,10 @@ class SendGift extends React.Component {
   //     data: {}
   //   })
   // }
-
+ 
   render() {
     //console.log("sender nae", this.state.senderName)
+    const {receiverNameErr, receiverNumberErr} = this.state;
     return (
       <div>
         <Header history={this.props.history} />
@@ -243,7 +274,15 @@ class SendGift extends React.Component {
 
                     <div className="form-group">
                       <label className="os">Personal Message (optional)</label>
-                      <textarea onChange={this.handleMessageChange} name="giftMessage" rows="4" cols="50"></textarea>
+                      <textarea 
+                        onChange={this.handleMessageChange}
+                        name="giftMessage" rows="4" cols="50"
+                        // onFocus={() => {this.countChars('char_count',10)}}
+                        // onKeyDown={() => {this.countChars('char_count',10)}}
+                        // onKeyUp={() => {this.countChars('char_count',10)}}
+                      >
+                      </textarea>
+                      <p className="os s9"><span id="char_count">{this.state.count}</span> characters remaining</p>
                       {/* <p>416 characters remaining</p> */}
                     </div>
                   </div>
@@ -257,20 +296,35 @@ class SendGift extends React.Component {
                         onChange={this.handleTextChange} 
                         name="receiverName" 
                         type="text" 
+                        className={`${receiverNameErr.status ? 'error' : ''}`}
                         placeholder="Enter the recipients name"
                       />
+                      {
+                        receiverNameErr.status &&
+                        <p className="error-message os s9">{receiverNameErr.value}</p>
+                      }
                     </div>
 
                     <div className="form-group">
                       <label className="os">Phone Number</label>
-                      <InputMask
-                        onChange={this.handlePhoneChange} 
-                        name="receiverNumber" 
-                        mask="9999999999"
-                        maskChar={null}
-                        type="text"
-                        placeholder="Enter the recipients phone number"
-                      />
+                      <div style={{display: 'flex'}}>
+                        <div className={`country-code ${receiverNumberErr.status ? 'error' : ''}`}>
+                          +91
+                        </div>
+                        <InputMask
+                          onChange={this.handlePhoneChange} 
+                          name="receiverNumber" 
+                          mask="9999999999"
+                          maskChar={null}
+                          className={`mobile ${receiverNumberErr.status ? 'error' : ''}`}
+                          type="text"
+                          placeholder="Enter the recipients phone number"
+                        />
+                      </div>
+                      {
+                        receiverNumberErr.status &&
+                        <p className="error-message os s9">{receiverNumberErr.value}</p>
+                      }
                     </div>
                   </div>
 
