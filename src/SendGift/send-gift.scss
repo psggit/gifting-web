@@ -47,6 +47,30 @@
     //max-width: 400px;
     z-index: 2;
   }
+  input[type="checkbox"] {
+    display: none;
+  }
+  label {
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+  input[type="checkbox"] + label:before {
+    border: 1px solid #333;
+    content: "\00a0";
+    display: inline-block;
+    font: 16px/1em sans-serif;
+    height: 16px;
+    margin: 0 .25em 0 0;
+    padding: 0;
+    vertical-align: top;
+    width: 16px;
+  }
+  input[type="checkbox"]:checked + label:before {
+    background: #000;
+    color: #fff;
+    content: "\2713";
+    text-align: center;
+  }
 
   .gift-card-form .form-item {
     margin-top: 60px;
@@ -122,6 +146,7 @@
         resize: none;
       }
     }
+
     label {
       font-size: 14px;
       color: #000;

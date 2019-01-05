@@ -23,6 +23,7 @@ class SendGift extends React.Component {
       receiverName: "Receiver name",
       receiverNumber: "Receiver number"
     }
+    this.characterLimit = 10
     this.state = {
       activePrice: "price1",
       amount: "499",
@@ -33,6 +34,7 @@ class SendGift extends React.Component {
       senderNumber: props.paramObj.mobile,
       canProceed: false,
       count: 10,
+      agreedTermsAndConditions: false,
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false,
       isActive: false,
@@ -43,7 +45,8 @@ class SendGift extends React.Component {
       receiverNumberErr: {
         value: "",
         status: false
-      }
+      },
+      agreement: false
     }
     this.createTransaction = this.createTransaction.bind(this)
     this.handleAmountChange = this.handleAmountChange.bind(this)
@@ -119,14 +122,20 @@ class SendGift extends React.Component {
   }
 
   handleMessageChange(e) {
-    const max = 10
-    if(this.state.count > 0) {
-      this.setState({count: max -  e.target.value.length, giftMessage: e.target.value })
-    } else if(e.target.value.length < max && this.state.count <= e.target.value.length) {
-      this.setState({count: max - e.target.value.length})
-    } else {
-      return
-    }
+    const message = e.target.value
+    message.length > this.characterLimit
+    ? e.preventDefault()
+    : this.setState({
+        giftMessage: message,
+        count: this.characterLimit - message.length
+      })
+    // if(this.state.count > 0) {
+    //   this.setState({count: max -  e.target.value.length, giftMessage: e.target.value })
+    // } else if(e.target.value.length < max && this.state.count <= e.target.value.length) {
+    //   this.setState({count: max - e.target.value.length})
+    // } else {
+    //   return
+    // }
   }
 
   handlePhoneChange(e) {
@@ -177,6 +186,10 @@ class SendGift extends React.Component {
       })
   }
 
+  handleCheckbox(e) {
+    console.log("e", e.target.checked)
+    this.setState({agreedTermsAndConditions: true})
+  }
   // componentDidMount() {
   //   POST({
   //     api: "/consumer/payment/gift/create",
@@ -316,7 +329,8 @@ class SendGift extends React.Component {
 
                     <div className="form-group">
                       <label className="os">Personal Message (optional)</label>
-                      <textarea 
+                      <textarea
+                        value={this.state.giftMessage}
                         onChange={this.handleMessageChange}
                         name="giftMessage" rows="4" cols="50"
                         // onFocus={() => {this.countChars('char_count',10)}}
@@ -399,23 +413,33 @@ class SendGift extends React.Component {
 
                   <div className="form-item">
                     <div className="form-group">
-                      {/* <input type="checkbox" id="terms" />
-                    <label htmlFor="terms">
-                    I agree that the recipient is of legal drinking<br/> age at his state of residence and I agree to the<br/> terms and condition
-                    </label> */}
+                      <input onChange={(e) => { this.setState({ agreement: e.target.checked})  }} type="checkbox" id="terms" />
+                      <label htmlFor="terms" className="os s7" >
+                        I agree that the recipient is of legal drinking age and I agree to the <a href="https://www.google.com" target="_blank">Terms & Conditions</a>
+                      </label>
                     </div>
                   </div>
-
+                  {/* <div style={{marginBottom: '24px'}}>
+                    <input type="checkbox" id="c1" name="cb" onChange={(e) => this.handleCheckbox(e)}/>
+                    <label className="os s10" for="c1">I agree that the recipient is of legal drinking age and I agree to the <a href="https://www.google.com" target="_blank">Terms & Conditions</a></label>
+                  </div> */}
                   {
-                    this.state.isLoggedIn
+                    localStorage.getItem("hasura-id")
                       ? (
                         <div style={{ marginTop: "20px" }}>
-                          <Button onClick={this.proceedToPayment} primary  icon="rightArrowWhite">Proceed to payment</Button>
+                          <Button
+                            disabled={!this.state.agreement}
+                            onClick={this.proceedToPayment}
+                            primary 
+                            icon="rightArrowWhite">
+                            Proceed to payment
+                          </Button>
                         </div>
                       )
                       : (
                         <div style={{ marginTop: "20px" }}>
                           <Button
+                            disabled={!this.state.agreement}
                             onClick={() => {
                               mountModal(SignIn({ mobile: this.state.senderNumber }))
                             }}

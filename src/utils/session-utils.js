@@ -73,3 +73,12 @@ export function  readCookie(name) {
   }
   return null;
 }
+
+
+export function getCookie(tabs) {
+  var getting = browser.cookies.get({
+    url: tabs[0].url,
+    name: "favourite-colour"
+  });
+  getting.then(logCookie);
+}
