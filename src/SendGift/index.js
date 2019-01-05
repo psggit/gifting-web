@@ -33,6 +33,7 @@ class SendGift extends React.Component {
       senderNumber: props.paramObj.mobile,
       canProceed: false,
       count: 10,
+      agreedTermsAndConditions: false,
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false,
       isActive: false,
@@ -177,6 +178,10 @@ class SendGift extends React.Component {
       })
   }
 
+  handleCheckbox(e) {
+    console.log("e", e.target.checked)
+    this.setState({agreedTermsAndConditions: true})
+  }
   // componentDidMount() {
   //   POST({
   //     api: "/consumer/payment/gift/create",
@@ -265,7 +270,7 @@ class SendGift extends React.Component {
                         </div>
 
                         <div className="form-field">
-                          <InputMask mask="99999" maskChar={null}  className={this.state.activePrice === "price4" ? "focused" : undefined} value={this.state.otherValue} onChange={this.handleAmountChange} name="price4" type="text" placeholder="Other" />
+                          <InputMask mask="99999" maskChar={null}  className={this.state.activePrice === "price4" ? "focused" : undefined} onFocus={(e) => { e.currentTarget.blur() }} value={this.state.otherValue} onChange={this.handleAmountChange} name="price4" type="text" placeholder="Other" />
                           <span>&#8377;</span>
                         </div>
 
@@ -357,13 +362,16 @@ class SendGift extends React.Component {
 
                   <div className="form-item">
                     <div className="form-group">
-                      {/* <input type="checkbox" id="terms" />
-                    <label htmlFor="terms">
-                    I agree that the recipient is of legal drinking<br/> age at his state of residence and I agree to the<br/> terms and condition
-                    </label> */}
+                      <input type="checkbox" id="terms" />
+                      <label htmlFor="terms" className="os s7" >
+                        I agree that the recipient is of legal drinking age and I agree to the <a href="https://www.google.com" target="_blank">Terms & Conditions</a>
+                      </label>
                     </div>
                   </div>
-
+                  {/* <div style={{marginBottom: '24px'}}>
+                    <input type="checkbox" id="c1" name="cb" onChange={(e) => this.handleCheckbox(e)}/>
+                    <label className="os s10" for="c1">I agree that the recipient is of legal drinking age and I agree to the <a href="https://www.google.com" target="_blank">Terms & Conditions</a></label>
+                  </div> */}
                   {
                     this.state.isLoggedIn
                       ? (
