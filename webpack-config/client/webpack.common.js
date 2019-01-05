@@ -2,19 +2,26 @@ const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CleanWebpackPlugin = require("clean-webpack-plugin")
 const webpack = require("webpack")
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 console.log(path.resolve(__dirname, "./../../src/payment-status.html"))
   
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "./../../src/App.js"),
     transaction_success: path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
-    transaction_failure: path.resolve(__dirname, "./../../src/FailureTransaction")
+    transaction_failure: path.resolve(__dirname, "./../../src/FailureTransaction"),
+    app: path.resolve(__dirname, "./../../src/App.js"),
   },
   plugins: [
     new CleanWebpackPlugin(["dist"], {
       root: path.resolve(__dirname, "./../../"),
       verbose: true
+    }),
+    new WorkboxPlugin.GenerateSW({
+    // these options encourage the ServiceWorkers to get in there fast 
+    // and not allow any straggling "old" SWs to hang around
+      clientsClaim: true,
+      skipWaiting: true
     }),
     new HtmlWebpackPlugin({
       // chunks: ["transaction_success"],
@@ -29,6 +36,7 @@ module.exports = {
       template: path.resolve(__dirname, "./../../src/payment-status.html")
     }),
     new HtmlWebpackPlugin({
+      excludeChunks: ["transaction_success", "transaction_failure"],
       filename: "index.html",
       title: "Output Management",
       template: path.resolve(__dirname, "./../../index.html")
@@ -65,11 +73,11 @@ module.exports = {
       }
     ]
   },
-  // optimization: {
-    // splitChunks: {
-    //   chunks: "all"
-    // }
-  // }
+  optimization: {
+    splitChunks: {
+      chunks: "all"
+    }
+  }
   // optimization: {
   //   splitChunks: {
   //     chunks: "async",

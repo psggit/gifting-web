@@ -23,7 +23,7 @@ import LocationMap from "./LocationMap"
 import { Api } from "Utils/config"
 import {clearSession} from 'Utils/session-utils'
 import { mountModal } from 'Components/modal-box/utils'
-import NotifyError from './NotifyError';
+import NotifyError from './NotifyError'
 import PaymentStatus from "./payment-status"
 
 import {ThemeProvider, ThemeContext} from "./ThemeProvider"
@@ -41,7 +41,7 @@ import Footer from "Components/footer"
 
 const history = CreateHistory()
 
-// console.log(bolt);
+// console.log(bolt)
 const ThemeConsumer = ThemeContext.Consumer
 
 const styles = {
@@ -53,7 +53,7 @@ const styles = {
     backgroundColor: "white",
     color: "black"
   }
-};
+}
 
 class App extends React.Component {
   constructor() {
