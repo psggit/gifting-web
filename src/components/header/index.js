@@ -188,7 +188,7 @@ class Header extends React.Component {
                         <a id={`nav-item-${index+1}`} className={location.pathname.slice(1) === item.value ? "active" : undefined} href={`/${item.value}`}  key={`nav-item-${index+1}`}>
                           <div
                             onClick={this.handleLink}
-                            className="nav-item" 
+                            className="nav-item os s7" 
                             key={index}
                             //onMouseOut={this.handleMouseOut}
                             //onMouseOver={this.handleMouseOver}

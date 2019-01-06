@@ -87,7 +87,7 @@ class LandingPage extends React.Component {
             </div>
             <h2 className="cm s2">
               {/* Get 50%* off on your first HipBar Gift Card! */}
-              <div style={{ marginTop: "20px" }} onClick={this.handleScroll}>
+              <div style={{ marginTop: "20px", cursor: 'pointer' }} onClick={this.handleScroll}>
                 <Icon name="downArrow" />
               </div>
             </h2>
