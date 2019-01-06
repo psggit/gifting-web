@@ -486,7 +486,7 @@ class SendGift extends React.Component {
                   <div className="desc">
                     <p className="cm s6">
                       Gets drinks with HipBar Gift Card at
-                      Retail Outlets*
+                      Retail Outlets
                   </p>
                     <p className="os s7">
                       Recipient pays for drinks with their HipBar Gift Card<br /> at select 60+ retail outlets across Bengaluru and Goa
