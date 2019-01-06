@@ -72,11 +72,6 @@ module.exports = {
         exclude: /node_modules/
       }
     ]
-  },
-  optimization: {
-    splitChunks: {
-      chunks: "all"
-    }
   }
   // optimization: {
   //   splitChunks: {
