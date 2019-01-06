@@ -168,20 +168,20 @@ class Header extends React.Component {
               //console.log("header props", paramObj)
               return (
                 <div className="navbar">
-                  <div className="logo">
+                  {/* <div className="logo"> */}
                     <a href="/">
                       <Icon name="hipbarLogo" />
                     </a>
-                  </div>
+                  {/* </div> */}
           
-                  <div className="title">
+                  {/* <div className="title">
                     <p style={{ marginBottom: "6px" }}>
                         HipBar
                     </p>
                     <p>
                         Gifting
                     </p>
-                  </div>  
+                  </div>   */}
                   <div className="nav-items">
                     {
                       this.navItems.map((item, index) => (
@@ -234,6 +234,12 @@ class Header extends React.Component {
                       !this.state.isMenuOpen ? 
                         <span onClick={() => this.onToggle()}><Icon name="menu" /></span>
                         : <span onClick={() => this.onToggle()}><Icon name="cross" /></span>
+                    }
+                  </div>
+                  <div className="navbar-logo" >
+                    {
+                      this.state.isMenuOpen &&
+                      <span onClick={() => {location.href="/"}}><Icon name="hipbarLogoMobile" /></span>
                     }
                   </div>
                   <div className={`navbar-mobile ${this.state.isMenuOpen ? "show" : "hide"}`}>

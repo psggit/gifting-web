@@ -135,6 +135,12 @@
     transform: translateY(-50%);
 }
 
+.navbar-logo {
+    position: absolute;
+    left: 5.6%;
+    z-index: 6;
+}
+
 .navbar-mobile {
     height: 100vh;
     z-index: 5;

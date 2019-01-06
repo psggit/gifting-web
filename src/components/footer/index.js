@@ -7,7 +7,7 @@ const Footer = () => (
     <div className="container footer">
       <div className="upper">
         <div className="col">
-          <Icon name="hipbarLogo" />
+          <Icon name="hipbarLogoFooter" />
           <p>HipBar</p>
           <p>
             Copyright 2019 | All Rights Reserved.
