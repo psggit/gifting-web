@@ -63,7 +63,9 @@ class FAQ extends React.Component {
                     {
                       sendingGiftCardQuestions.map((item, index) => (
                         <AccordianItem key={index} title={item.question} icon={this.state.activeAccordian !== -1 && this.state.activeAccordian === index ? <Icon name="minus" /> : <Icon name="plus" />} id={index}>
-                          {item.answer}
+                          <p className="os s7">
+                            {item.answer}
+                          </p>
                         </AccordianItem>
                       ))
                     }
@@ -84,7 +86,9 @@ class FAQ extends React.Component {
                   {
                     redeemingGiftCardQuestions.map((item, index) => (
                       <AccordianItem key={index+11} title={item.question} icon={this.state.activeAccordian !== -1 && this.state.activeAccordian === index+11 ? <Icon name="minus" /> : <Icon name="plus" />} id={index+11}>
-                        {item.answer}
+                        <p className="os s7">
+                          {item.answer}
+                        </p>
                       </AccordianItem>
                     ))
                   }

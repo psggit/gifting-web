@@ -5,7 +5,7 @@ class AccordianItem extends React.Component {
     return (
       <div className={`accordian-item ${this.props.activeAccordian === this.props.id ? 'active' : '' }`}>
         <div id={this.props.id} onClick={this.props.handleClick} className="accordian-item__header">
-          <label className="os s7">{ this.props.title }</label>
+          <p className="os s7">{ this.props.title }</p>
           {
             this.props.icon &&
             <span className="icon">{this.props.icon}</span>

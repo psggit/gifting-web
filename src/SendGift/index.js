@@ -415,7 +415,7 @@ class SendGift extends React.Component {
                     <div className="form-group">
                       <input onChange={(e) => { this.setState({ agreement: e.target.checked})  }} type="checkbox" id="terms" />
                       <label htmlFor="terms" className="os s7" >
-                        I agree that the recipient is of legal drinking age and I agree to the <a href="https://www.google.com" target="_blank">Terms & Conditions</a>
+                        I agree that the recipient is of legal drinking age and I agree to the <a href="/" target="_blank">Terms & Conditions</a>
                       </label>
                     </div>
                   </div>
