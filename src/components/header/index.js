@@ -244,8 +244,8 @@ class Header extends React.Component {
                   <div className="navbar-logo" >
                     {
                       this.state.isMenuOpen 
-                      ? <span onClick={() => {location.href="/"}}><Icon name="hipbarLogoMobile" /></span>
-                      : <span onClick={() => {location.href="/"}}><Icon name="hipbarLogo" /></span>
+                      ? <span style={{cursor: 'pointer'}} onClick={() => {location.href="/"}}><Icon name="hipbarLogoMobile" /></span>
+                      : <span style={{cursor: 'pointer'}} onClick={() => {location.href="/"}}><Icon name="hipbarLogo" /></span>
                     }
                   </div>
                   <div className={`navbar-mobile ${this.state.isMenuOpen ? "show" : "hide"}`}>

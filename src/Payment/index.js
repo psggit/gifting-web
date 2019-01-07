@@ -324,7 +324,7 @@ class Payment extends React.Component {
                           >
                             {
                               this.state.savedCards.map((item, i) => (
-                                <AccordianItem key={i+3} title={item.card_name} id={i+3}>
+                                <AccordianItem key={i+3} title={item.card_name} id={i+3} showRadioButton={true}>
                                   <div className="form-group">
                                     <label className="os">Card Number</label>
                                     <input ref={(node) => { this[`cardNum${i+3}`] = node }} name="saved" defaultValue={item.card_no} disabled type="text" />
@@ -356,7 +356,7 @@ class Payment extends React.Component {
                               ))
                             }
 
-                            <AccordianItem key={1} title="Debit Card / Credit Card" id={1}>
+                            <AccordianItem key={1} title="Debit Card / Credit Card" id={1} showRadioButton={true}>
                               <div className="form-group">
                                 <label className="os">Card Number</label>
                                 <InputMask
@@ -394,7 +394,7 @@ class Payment extends React.Component {
                               </div>
                             </AccordianItem>
 
-                            <AccordianItem key={2} title="Net Banking" id={2}>
+                            <AccordianItem key={2} title="Net Banking" id={2} showRadioButton={true}>
                               <div style={{ padding: "0 20px" }}>
                                 <p style={{ fontWeight: "bold", color: "#000", letterSpacing: "0.5px" }} className="os s8">Popular Banks</p>
                                 <div ref={(node) => { this.radios = node}} style={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}>
