@@ -400,22 +400,39 @@ class SendGift extends React.Component {
 
                     <div className="form-group">
                       <label className="os">Phone Number</label>
-                      <input 
-                        value={this.state.senderNumber} 
-                        onChange={this.handlePhoneChange} 
-                        name="senderNumber" 
-                        maxLength="10" 
-                        placeholder="Enter your phone number"
-                        type="text" readOnly={this.state.isLoggedIn} />
+                      <div style={{display: 'flex'}}>
+                        <div className={`country-code ${receiverNumberErr.status ? 'error' : ''}`}>
+                          +91
+                        </div>
+                        <input 
+                          value={this.state.senderNumber} 
+                          onChange={this.handlePhoneChange} 
+                          name="senderNumber" 
+                          maxLength="10" 
+                          className={`mobile`}
+                          placeholder="Enter your phone number"
+                          type="text" readOnly={this.state.isLoggedIn} 
+                        />
+                      </div>
                     </div>
                   </div>
 
                   <div className="form-item">
                     <div className="form-group">
-                      <input onChange={(e) => { this.setState({ agreement: e.target.checked})  }} type="checkbox" id="terms" />
+                      {/* <input onChange={(e) => { this.setState({ agreement: e.target.checked})  }} type="checkbox" id="terms" />
                       <label htmlFor="terms" className="os s7" >
                         I agree that the recipient is of legal drinking age and I agree to the <a href="/" target="_blank">Terms & Conditions</a>
-                      </label>
+                      </label> */}
+                      <div style={{display: 'flex'}} onClick={() => { this.setState({ agreement: !this.state.agreement})}}>
+                        <span style={{marginRight: '10px'}}>
+                          {
+                            !this.state.agreement
+                            ? <Icon name="rectangle" />
+                            : <Icon name="filledRectangle" />
+                          }
+                        </span>
+                        <span style={{width: 'calc(100% - 24px)'}}> I agree that the recipient is of legal drinking age and I agree to the <a href="/" target="_blank">Terms & Conditions</a></span>
+                      </div>
                     </div>
                   </div>
                   {/* <div style={{marginBottom: '24px'}}>

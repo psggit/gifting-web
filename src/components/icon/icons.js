@@ -786,5 +786,32 @@ export default {
             </g>
         </g>
     </svg>
+  ),
+  rectangle: (
+    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+        <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="02d-Gifitng-Website---V0.7---Send-Gift-Cards---Before-selecting-the-checkbox" transform="translate(-86.000000, -1647.000000)" stroke="#000000" stroke-width="2">
+                <g id="Agree" transform="translate(86.000000, 1641.000000)">
+                    <g id="CheckBoxTicked" transform="translate(0.000000, 6.000000)">
+                        <rect id="Rectangle-2" x="1" y="1" width="22" height="22" rx="2"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </svg>
+  ),
+  filledRectangle: (
+    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+        <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="02b-Gifitng-Website---V0.7---Send-Gift-Cards---V0.2---Using-GCs---Aftering-Signin-In" transform="translate(-86.000000, -1647.000000)">
+                <g id="Agree" transform="translate(86.000000, 1641.000000)">
+                    <g id="CheckBoxTicked" transform="translate(0.000000, 6.000000)">
+                        <rect id="Rectangle-2" fill="#000000" x="0" y="0" width="24" height="24" rx="2"></rect>
+                        <path d="M10.346165,17.6632653 C10.1655572,17.8469388 9.90969609,18 9.68393632,18 C9.45817656,18 9.20231548,17.8392857 9.01418234,17.6556122 L4.8,13.369898 L6.13950796,12.0076531 L9.69146165,15.619898 L19.083068,6 L20.4,7.38520408 L10.346165,17.6632653 Z" id="Shape" fill="#D1D2DD" fill-rule="nonzero"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </svg>
   )
 }

@@ -144,8 +144,8 @@ class Payment extends React.Component {
     })
   }
 
-  handleRadioChange(e) {
-    this.setState({ isPopularSelected: true, noBankSelected: false, bankcode: e.target.value })
+  handleRadioChange(value) {
+    this.setState({ isPopularSelected: true, noBankSelected: false, bankcode: value })
   }
 
   handleSubmit() {
@@ -400,8 +400,19 @@ class Payment extends React.Component {
                                   {
                                     this.state.popularBanks.slice(0, 3).map((item, i) => (
                                       <div style={{ width: "120px", cursor: "pointer" }} key={i}>
-                                        <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
-                                        <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label>
+                                        {/* <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
+
+                                        <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label> */}
+                                        <div onClick={() => this.handleRadioChange(item.ibibo_code)} style={{marginBottom: '10px'}}>
+                                          <span style={{marginRight: '10px'}}>
+                                            {
+                                              this.state.bankcode === item.ibibo_code 
+                                              ? <Icon name="filledCircle" />
+                                              : <Icon name="circle" />
+                                            }
+                                          </span>
+                                          <span>{item.name}</span>
+                                        </div>
                                       </div>
                                     ))
                                   }
@@ -409,8 +420,18 @@ class Payment extends React.Component {
                                   {
                                     this.state.popularBanks.slice(3).map((item, i) => (
                                       <div style={{ width: "120px", cursor: "pointer" }} key={i}>
-                                        <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
-                                        <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label>
+                                        {/* <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
+                                        <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label> */}
+                                        <div onClick={() => this.handleRadioChange(item.ibibo_code)} style={{marginBottom: '10px'}}>
+                                          <span style={{marginRight: '10px'}}>
+                                            {
+                                              this.state.bankcode === item.ibibo_code 
+                                              ? <Icon name="filledCircle" />
+                                              : <Icon name="circle" />
+                                            }
+                                          </span>
+                                          <span>{item.name}</span>
+                                        </div>
                                       </div>
                                     ))
                                   }
