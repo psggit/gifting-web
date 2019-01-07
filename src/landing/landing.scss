@@ -220,7 +220,8 @@
   #landing {
     .brands-list {
       display: flex;
-      flex-direction: column;
+      //flex-direction: column;
+      justify-content: center !important;
       .brand-icon {
         width: 100% !important;
         margin-bottom: 50px;

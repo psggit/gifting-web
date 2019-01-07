@@ -788,7 +788,7 @@ export default {
     </svg>
   ),
   rectangle: (
-    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <svg width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
         <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g id="02d-Gifitng-Website---V0.7---Send-Gift-Cards---Before-selecting-the-checkbox" transform="translate(-86.000000, -1647.000000)" stroke="#000000" stroke-width="2">
                 <g id="Agree" transform="translate(86.000000, 1641.000000)">
@@ -801,7 +801,7 @@ export default {
     </svg>
   ),
   filledRectangle: (
-    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <svg width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
         <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g id="02b-Gifitng-Website---V0.7---Send-Gift-Cards---V0.2---Using-GCs---Aftering-Signin-In" transform="translate(-86.000000, -1647.000000)">
                 <g id="Agree" transform="translate(86.000000, 1641.000000)">

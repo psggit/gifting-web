@@ -434,14 +434,14 @@ class SendGift extends React.Component {
                         I agree that the recipient is of legal drinking age and I agree to the <a href="/" target="_blank">Terms & Conditions</a>
                       </label> */}
                       <div style={{display: 'flex'}} onClick={() => { this.setState({ agreement: !this.state.agreement})}}>
-                        <span style={{marginRight: '10px'}}>
+                        <span style={{marginRight: '10px', display: 'inline-block', verticalAlign: 'middle', cursor: 'pointer'}}>
                           {
                             !this.state.agreement
                             ? <Icon name="rectangle" />
                             : <Icon name="filledRectangle" />
                           }
                         </span>
-                        <span style={{width: 'calc(100% - 24px)'}}> I agree that the recipient is of legal drinking age and I agree to the <a href="/" target="_blank">Terms & Conditions</a></span>
+                        <span style={{width: 'calc(100% - 24px)', display: 'inline-block', cursor: 'pointer'}}> I agree that the recipient is of legal drinking age and I agree to the <a href="/" target="_blank">Terms & Conditions</a></span>
                       </div>
                     </div>
                   </div>
