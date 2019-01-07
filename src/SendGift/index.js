@@ -65,7 +65,7 @@ class SendGift extends React.Component {
       left: 0,
       behavior: 'smooth'
     })
-    //localStorage.removeItem("txn")
+    localStorage.removeItem("txn")
     //localStorage.setItem("showAgeGate", false)
     if(!readCookie("isAgeGateAgreed")) {
       mountModal(AgeGate({}))
