@@ -35,7 +35,8 @@ export default function SignUp(data) {
         otp: "",
         pin: "",
         confirmPin: "",
-        resentOtp: false,
+        //resentOtp: false,
+        setTimer: false,
         gender: "male",
         errorInSignUp: false,
         isGettingOtp: false,
@@ -77,6 +78,7 @@ export default function SignUp(data) {
       this.handleTextChange = this.handleTextChange.bind(this)
       this.isFormValid = this.isFormValid.bind(this)
       this.handleGenderChange = this.handleGenderChange.bind(this)
+      this.countdown = this.countdown.bind(this)
     }
 
     handleGenderChange(genderValue) {
@@ -124,6 +126,23 @@ export default function SignUp(data) {
       return false
     }
 
+    countdown() {
+      let timeoutHandle;
+      let seconds = 30;
+      let self = this;
+      function tick() {
+        var counter = document.getElementById("timer");
+        seconds--;
+        counter.innerHTML ="OTP can be resent in" + " 00" + ":"  +(seconds < 10 ? "0" : "") + String(seconds) + " seconds";
+        if( seconds > 0 ) {
+          timeoutHandle=setTimeout(tick, 1000);
+        }else {
+          self.setState({setTimer: false})
+        }
+      }
+      tick();
+    }
+
     handleClick() {
       //console.log(this.isFormValid() , !this.state.isGettingOtp)
       if (this.isFormValid() && !this.state.isGettingOtp) {
@@ -167,8 +186,10 @@ export default function SignUp(data) {
             } else if (response.status === 409 && responseData.errorCode === "user-already-exists") {
               this.setState({ emailErr: { status: true, value: responseData.message } })
               //return
-            } else if (response.status !== 400) {
-              this.getOtp({resend: false})
+            } 
+            // else if (response.status !== 400) {
+            else {
+              this.getOtp()
             }
             this.setState({ isGettingOtp: false })
           })
@@ -227,7 +248,7 @@ export default function SignUp(data) {
       }
     }
 
-    getOtp(dataObj) {
+    getOtp() {
       const payload = {
         info: {},
         mobile: this.state.mobileNo
@@ -246,10 +267,11 @@ export default function SignUp(data) {
       fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
         .then((response) => {
           if (response.status === 401) {
-            this.setState({ otpSent: true, disableField: true })
-            if(dataObj.resend) {
-              this.setState({resentOtp: true})
-            }
+            this.setState({ otpSent: true, disableField: true, setTimer: true})
+            this.countdown()
+            // if(dataObj.resend) {
+            //   this.setState({resentOtp: true})
+            // }
           }
           this.setState({ isGettingOtp: false })
           return
@@ -264,7 +286,7 @@ export default function SignUp(data) {
     resendOtp() {
       //this.setState({otpSent: true})
       if (!this.state.isGettingOtp) {
-        this.getOtp({resend: true})
+        this.getOtp()
       }
     }
 
@@ -308,7 +330,8 @@ export default function SignUp(data) {
         confirmPinErr,
         gender,
         isSigningUp,
-        isGettingOtp
+        isGettingOtp,
+        setTimer
       } = this.state
 
       const cursorStyle = {
@@ -573,16 +596,16 @@ export default function SignUp(data) {
                           onChange={this.handleTextChange} 
                           name="otp"
                           mask="999999"
-                          placeholder="Enter the OTP that you've received"
+                          placeholder="Enter the OTP"
                           autoComplete="off"
                           className={`${otpErr.status ? 'error' : ''}`}
                           maskChar={null}
                           type="text"
                         />
-                        <div className={`resend os s10 ${isGettingOtp ? 'disabled' : ''}`} onClick={this.resendOtp}>RESEND OTP</div>
+                        <div className={`resend os s10 ${setTimer ? 'disabled' : ''}`} onClick={this.resendOtp}>RESEND OTP</div>
                         {
-                          this.state.resentOtp && 
-                          <div className="note os s9">OTP has been resent!</div>
+                          this.state.setTimer && 
+                          <div className="note os s9" id="timer"></div>
                         }
                       </div>
                       {

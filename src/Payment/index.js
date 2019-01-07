@@ -483,18 +483,21 @@ class Payment extends React.Component {
                       <div className="gift-card-info">
                         <div>
                           <p className="os s6">To</p>
-                          <p className="os s7">{this.state.receiver_name}<br /> +91 {this.state.receiver_number}</p>
+                          <p className="os s7">{this.state.receiver_name}<br /> +91 - {this.state.receiver_number}</p>
                         </div>
-
-                        <div style={{ marginTop: "20px", borderBottom: "1px solid #dfdfdf", paddingBottom: "20px" }}>
-                          <p className="os s7">
-                            <span className="os s6">Personal Message -</span>{this.state.gift_message ? this.state.gift_message : ' -'}
-                          </p>
-                        </div>
-
+                        {
+                          this.state.gift_message.length > 0 && 
+                            <div style={{ marginTop: "20px", borderBottom: "1px solid #dfdfdf", paddingBottom: "20px" }}>
+                              <p className="os s7">
+                                <span className="os s6">Personal Message</span>
+                                <p>{this.state.gift_message}</p>
+                              </p>
+                            </div>
+                        }
+                  
                         <div style={{ marginTop: "20px" }} >
                           <p className="os s6">From</p>
-                          <p className="os s7">{this.state.senderName}<br /> +91 {this.state.sender_num}</p>
+                          <p className="os s7">{this.state.senderName}<br /> +91 - {this.state.sender_num}</p>
                         </div>
                       </div>
                     </div>

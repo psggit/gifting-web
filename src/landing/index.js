@@ -97,14 +97,18 @@ class LandingPage extends React.Component {
             </h1>
             <div className="brands-list">
               {/* <img src="https://hipbar.com/a21696ca22b7c04fb7591c52c5089f4f.png" /> */}
-              <div className="brand-icon">
+              {/* <div className="brand-icon">
                 <Icon name="diageo" />
                 <Icon name="bacardi" />
               </div>
               <div className="brand-icon">
                 <Icon name="carlsberg" />
                 <Icon name="pernado" />
-              </div>
+              </div> */}
+              <span className="brand"><Icon name="diageo" /></span>
+              <span className="brand"><Icon name="bacardi" /></span>
+              <span className="brand"><Icon name="carlsberg" /></span>
+              <span className="brand">  <Icon name="pernado" /></span>
               {/* <img src="https://hipbar.com/a0ee9f2c10e0e287bc9c05d64cffa171.png" />
               <img src="https://hipbar.com/d38974e5f50a5ae0f40ba9e323f03b63.png" />
               <img src="https://hipbar.com/9e9ee179bf9d959bef56c681e6670b9b.png" /> */}
@@ -190,7 +194,7 @@ class LandingPage extends React.Component {
 
             <div className="item">
               <Icon name="stepFour" />
-              <h2 className="cm s2">Redeem</h2>
+              <h2 className="cm s2">Redeem with HipBar Gift Card at Retail Outlets</h2>
               <p className="os s3">
               Recipient pays for drinks with their HipBar<br/> Gift Card at any of the 60+ HipBar-affiliated stores in the city of operation<br/>
               </p>

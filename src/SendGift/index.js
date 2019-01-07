@@ -405,7 +405,7 @@ class SendGift extends React.Component {
                     <div className="form-group">
                       <label className="os">Phone Number</label>
                       <div style={{display: 'flex'}}>
-                        <div className={`country-code ${receiverNumberErr.status ? 'error' : ''}`}>
+                        <div className={`country-code`}>
                           +91
                         </div>
                         <input 
@@ -505,11 +505,11 @@ class SendGift extends React.Component {
                   <Icon name="step4" />
                   <div className="desc">
                     <p className="cm s6">
-                      Redeem
-                  </p>
+                      Redeem with HipBar Gift Card at Retail Outlets
+                    </p>
                     <p className="os s7">
                       Recipient pays for drinks with their HipBar Gift Card<br /> at select 60+ retail outlets across Bengaluru and Goa
-                  </p>
+                    </p>
                   </div>
 
                 </div>
