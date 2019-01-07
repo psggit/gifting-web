@@ -47,36 +47,36 @@
     //max-width: 400px;
     z-index: 2;
   }
-  input[type="checkbox"] {
-    display: none;
-  }
-  input[type="checkbox"] + label {
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    padding-left: 28px;
-    text-indent: -28px;
-  }
-  input[type="checkbox"] + label:before {
-    border: 1px solid #333;
-    content: "\00a0";
-    display: inline-block;
-    height: 16px;
-    margin-right: 10px;
-    padding: 0;
-    vertical-align: top;
-    width: 16px;
-  }
-  input[type="checkbox"]:checked + label:before {
-    background: #000;
-    color: #fff;
-    content: "\2713";
-    // padding-left: 28px;
-    text-indent: 0px !important;
-    //margin-right: 10px;
-    //position: absolute;
-    //left: 28px;
-    text-align: center;
-  }
+  // input[type="checkbox"] {
+  //   display: none;
+  // }
+  // input[type="checkbox"] + label {
+  //   cursor: pointer;
+  //   letter-spacing: 0.5px;
+  //   padding-left: 28px;
+  //   text-indent: -28px;
+  // }
+  // input[type="checkbox"] + label:before {
+  //   border: 1px solid #333;
+  //   content: "\00a0";
+  //   display: inline-block;
+  //   height: 16px;
+  //   margin-right: 10px;
+  //   padding: 0;
+  //   vertical-align: top;
+  //   width: 16px;
+  // }
+  // input[type="checkbox"]:checked + label:before {
+  //   background: #000;
+  //   color: #fff;
+  //   content: "\2713";
+  //   // padding-left: 28px;
+  //   text-indent: 0px !important;
+  //   //margin-right: 10px;
+  //   //position: absolute;
+  //   //left: 28px;
+  //   text-align: center;
+  // }
 
   .gift-card-form .form-item {
     margin-top: 60px;

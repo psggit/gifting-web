@@ -402,7 +402,7 @@ class SendGift extends React.Component {
                     <div className="form-group">
                       <label className="os">Phone Number</label>
                       <div style={{display: 'flex'}}>
-                        <div className={`country-code ${receiverNumberErr.status ? 'error' : ''}`}>
+                        <div className={`country-code`}>
                           +91
                         </div>
                         <input 
