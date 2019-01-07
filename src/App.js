@@ -170,144 +170,150 @@ class App extends React.Component {
           <ThemeConsumer>
             {(paramObj) => {
               //console.log(paramObj)
-              return <Router history={history}>
-                <Switch>
-                  <Route exact 
-                    path="/" 
-                    render={
-                      props => (
-                        <LandingPage {...props} 
-                        />
-                      )
-                    } 
-                  />
-                  {/* <Route exact path="/sign-in" component={SignIn} /> */}
-                  {/* <Route 
-                    path='/sign-in' 
-                    render={
-                      props => (
-                        <SignIn isMobile={this.state.isMobile} />
-                      )
-                    } 
-                  /> */}
-                  
-                  {/* <Route exact 
-                    path="/using-gift-card"
-                    render={
-                      props => (
-                        <UsingGiftCard {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
-                        />
-                      )
-                    } 
-                    //component={UsingGiftCard} 
-                  /> */}
+              return (
+                <div>
+                  <Header paramObj={paramObj} />
+                  <Router history={history}>
+                    <Switch>
+                      <Route exact 
+                        path="/" 
+                        render={
+                          props => (
+                            <LandingPage {...props} 
+                            />
+                          )
+                        } 
+                      />
+                      {/* <Route exact path="/sign-in" component={SignIn} /> */}
+                      {/* <Route 
+                        path='/sign-in' 
+                        render={
+                          props => (
+                            <SignIn isMobile={this.state.isMobile} />
+                          )
+                        } 
+                      /> */}
+                      
+                      {/* <Route exact 
+                        path="/using-gift-card"
+                        render={
+                          props => (
+                            <UsingGiftCard {...props} 
+                              // name={this.state.username} 
+                              // isLoggedIn={this.state.isLoggedIn}
+                            />
+                          )
+                        } 
+                        //component={UsingGiftCard} 
+                      /> */}
 
-                  <Route exact 
-                    path="/how-to-redeem"
-                    render={
-                      props => (
-                        <RedeemingGiftCard {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
-                        />
-                      )
-                    } 
-                    //component={UsingGiftCard} 
-                  />
-                  <Route exact 
-                    path="/send-gift" 
-                    //component={SendGiftCards} 
-                    render={
-                      props => (
-                        <SendGiftCards {...props} 
-                          paramObj={paramObj}
-                        />
-                      )
-                    } 
-                  />
-                  <Route exact 
-                    path="/transaction-history" 
-                    //component={TransactionHistory} 
-                    render={
-                      props => (
-                        <TransactionHistory {...props} 
-                          paramObj={paramObj}
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
-                        />
-                      )
-                    } 
-                  />
-                  <Route exact 
-                    path="/checkout" 
-                    //component={Checkout} 
-                    render={
-                      props => (
-                        <Checkout {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
-                        />
-                      )
-                    } 
-                  />
-                  <Route exact 
-                    path="/retail-outlet" 
-                    //component={RetailOutlet} 
-                    render={
-                      props => (
-                        <RetailOutlet {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
-                        />
-                      )
-                    } 
-                  />
-                  <Route exact 
-                    path="/FAQs" 
-                    //component={FAQ} 
-                    render={
-                      props => (
-                        <FAQ {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
-                        />
-                      )
-                    } 
-                  />
-                  {/* <Route exact 
-                    path="/transaction-successful" 
-                    //component={TransactionSuccessful} 
-                    render={
-                      props => (
-                        <TransactionSuccessful {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
-                        />
-                      )
-                    } 
-                  />
-                  <Route exact 
-                    path="/transaction-failure" 
-                    //component={TransactionFail} 
-                    render={
-                      props => (
-                        <TransactionFail {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
-                        />
-                      )
-                    } 
-                  /> */}
-                  <Route 
-                    path="/locationMap" 
-                    component={LocationMap} 
-                  />
-                  <Route exact path="/payment-status" component={PaymentStatus}  />
-                  <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
-                </Switch>
-              </Router>
+                      <Route exact 
+                        path="/how-to-redeem"
+                        render={
+                          props => (
+                            <RedeemingGiftCard {...props} 
+                              // name={this.state.username} 
+                              // isLoggedIn={this.state.isLoggedIn}
+                            />
+                          )
+                        } 
+                        //component={UsingGiftCard} 
+                      />
+                      <Route exact 
+                        path="/send-gift" 
+                        //component={SendGiftCards} 
+                        render={
+                          props => (
+                            <SendGiftCards {...props} 
+                              paramObj={paramObj}
+                            />
+                          )
+                        } 
+                      />
+                      <Route exact 
+                        path="/transaction-history" 
+                        //component={TransactionHistory} 
+                        render={
+                          props => (
+                            <TransactionHistory {...props} 
+                              paramObj={paramObj}
+                              // name={this.state.username} 
+                              // isLoggedIn={this.state.isLoggedIn}
+                            />
+                          )
+                        } 
+                      />
+                      <Route exact 
+                        path="/checkout" 
+                        //component={Checkout} 
+                        render={
+                          props => (
+                            <Checkout {...props} 
+                              // name={this.state.username} 
+                              // isLoggedIn={this.state.isLoggedIn}
+                            />
+                          )
+                        } 
+                      />
+                      <Route exact 
+                        path="/retail-outlet" 
+                        //component={RetailOutlet} 
+                        render={
+                          props => (
+                            <RetailOutlet {...props} 
+                              // name={this.state.username} 
+                              // isLoggedIn={this.state.isLoggedIn}
+                            />
+                          )
+                        } 
+                      />
+                      <Route exact 
+                        path="/FAQs" 
+                        //component={FAQ} 
+                        render={
+                          props => (
+                            <FAQ {...props} 
+                              // name={this.state.username} 
+                              // isLoggedIn={this.state.isLoggedIn}
+                            />
+                          )
+                        } 
+                      />
+                      {/* <Route exact 
+                        path="/transaction-successful" 
+                        //component={TransactionSuccessful} 
+                        render={
+                          props => (
+                            <TransactionSuccessful {...props} 
+                              // name={this.state.username} 
+                              // isLoggedIn={this.state.isLoggedIn}
+                            />
+                          )
+                        } 
+                      />
+                      <Route exact 
+                        path="/transaction-failure" 
+                        //component={TransactionFail} 
+                        render={
+                          props => (
+                            <TransactionFail {...props} 
+                              // name={this.state.username} 
+                              // isLoggedIn={this.state.isLoggedIn}
+                            />
+                          )
+                        } 
+                      /> */}
+                      <Route 
+                        path="/locationMap" 
+                        component={LocationMap} 
+                      />
+                      <Route exact path="/payment-status" component={PaymentStatus}  />
+                      <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
+                    </Switch>
+                  </Router>
+                  <Footer />
+                </div>
+              )
             }}
           </ThemeConsumer>
         </ThemeProvider>

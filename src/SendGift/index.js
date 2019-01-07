@@ -23,7 +23,7 @@ class SendGift extends React.Component {
       receiverName: "Receiver name",
       receiverNumber: "Receiver number"
     }
-    this.characterLimit = 10
+    this.characterLimit = 500
     this.state = {
       activePrice: "price1",
       amount: "499",
@@ -33,7 +33,7 @@ class SendGift extends React.Component {
       senderName: props.paramObj.username,
       senderNumber: props.paramObj.mobile,
       canProceed: false,
-      count: 10,
+      count: 500,
       agreedTermsAndConditions: false,
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false,
@@ -203,7 +203,6 @@ class SendGift extends React.Component {
     const {receiverNameErr, receiverNumberErr} = this.state;
     return (
       <div>
-        <Header history={this.props.history} />
         <div id="send-gift">
           <div className="how-to-gift mobile">
             <div onClick={this.toggleHowTo} className="how-to-gift-header">
@@ -516,7 +515,6 @@ class SendGift extends React.Component {
           </div>
         </div>
         <div style={{ display: "block" }}></div>
-        <Footer />
       </div>
     )
   }

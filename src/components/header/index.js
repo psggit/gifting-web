@@ -157,134 +157,122 @@ class Header extends React.Component {
 
   render() {
     const {showDropdown} = this.state
-    //const isLoggedIn = 
+    const isLoggedIn = this.props.paramObj.isLoggedIn
     //console.log("header state", this.props)
     return (
-      <div>
-        <ThemeProvider>
-          <ThemeContext.Consumer>
-            {(paramObj) => {
-              const isLoggedIn = paramObj.isLoggedIn
-              //console.log("header props", paramObj)
-              return (
-                <div className="navbar">
-                  <div className="logo">
-                    <a href="/">
-                      <Icon name="hipbarLogo" />
-                    </a>
-                  </div>
-          
-                  <div className="title">
-                    <p style={{ marginBottom: "6px" }}>
-                        HipBar
-                    </p>
-                    <p>
-                        Gifting
-                    </p>
-                  </div>  
-                  <div className="nav-items">
-                    {
-                      this.navItems.map((item, index) => (
-                        <a id={`nav-item-${index+1}`} className={location.pathname.slice(1) === item.value ? "active" : undefined} href={`/${item.value}`}  key={`nav-item-${index+1}`}>
-                          <div
-                            onClick={this.handleLink}
-                            className="nav-item" 
-                            key={index}
-                            //onMouseOut={this.handleMouseOut}
-                            //onMouseOver={this.handleMouseOver}
-                          >
-                            {item.label}
-                          </div>
-                        </a>
-                      ))
-                    }
-                    {
-                      !isLoggedIn && 
-                      <span className="login">
-                        <Button onClick={() => this.handleClick()} primary size="small">SIGN IN</Button>
-                      </span>
-                    }
-                    {
-                      isLoggedIn && 
-                      // <Button onClick={() => this.handleSignOut()} primary size="small">SIGN OUT</Button>
-                      <div className="logout" onClick={() => this.openDropdown()} >
-                        <span className="user">
-                          <Icon name="appUser" style={{marginRight: '10px'}}/>
-                        </span>
-                        <div className="os s7"  style={{marginRight: '8px'}} >{paramObj.username}</div>
-                        <span style={{display: 'flex', alignSelf: 'center'}}>
-                          <Icon name="filledDownArrow" />
-                        </span>
-          
-                        <div className={`dropdown-menu ${showDropdown ? 'show' : 'hide'}`} >
-                          <div onClick={() => this.handleTransactionHistory()} className="menu-item os s9">Transaction History</div>
-                          <div onClick={() => this.handleSignOut()} className="menu-item os s9"> Sign Out</div>
-                        </div>
-                      </div>
-                    }
-                    {/* {
-                      showDropdown &&
-                      <div className="dropdown-menu">
-                        <div className="menu-item"> Sign Out</div>
-                      </div>
-                    } */}
-                  </div>
-                  <div className="navbar-menu">
-                    {
-                      !this.state.isMenuOpen ? 
-                        <span onClick={() => this.onToggle()}><Icon name="menu" /></span>
-                        : <span onClick={() => this.onToggle()}><Icon name="cross" /></span>
-                    }
-                  </div>
-                  <div className={`navbar-mobile ${this.state.isMenuOpen ? "show" : "hide"}`}>
-                    <ul>
-                      <li>
-                        {
-                          isLoggedIn &&
-                          <React.Fragment>
-                            <span className="user" style={{marginRight: '10px'}}>
-                              <Icon name="mobileApplnUser" />
-                            </span>
-                            <span style={{color: '#fff'}}>{paramObj.username}</span>
-                          </React.Fragment>
-                        }
-                      </li>
-                      {
-                        this.navItems.map((item, index) => (
-                          <li key={index}>
-                            <a className={location.pathname.slice(1) === item.value ? "active" : undefined} onClick={this.handleLink} href={`/${item.value}`} className="os s2">
-                              {item.label}
-                            </a>
-                          </li>
-                        ))
-                      }
-                      <li>
-                        {
-                          isLoggedIn &&
-                          <a onClick={this.handleTransactionHistory} href={`/transaction-history`} className="os s2">
-                              Transaction History
-                          </a>
-                        }
-                      </li>
-                      <li>
-                        {
-                          isLoggedIn &&
-                          <button onClick={() => this.handleSignOut()} className="btn btn-secondary os s2">SIGN OUT</button>
-                        }
-                      </li>
-                      <li>
-                        {
-                          !isLoggedIn &&
-                          <button onClick={() => this.handleClick()} className="btn btn-secondary os s2">SIGN IN</button>
-                        }
-                      </li>
-                    </ul>
-                  </div>
+      <div className="navbar">
+        <div className="logo">
+          <a href="/">
+            <Icon name="hipbarLogo" />
+          </a>
+        </div>
+
+        <div className="title">
+          <p style={{ marginBottom: "6px" }}>
+              HipBar
+          </p>
+          <p>
+              Gifting
+          </p>
+        </div>  
+        <div className="nav-items">
+          {
+            this.navItems.map((item, index) => (
+              <a id={`nav-item-${index+1}`} className={location.pathname.slice(1) === item.value ? "active" : undefined} href={`/${item.value}`}  key={`nav-item-${index+1}`}>
+                <div
+                  onClick={this.handleLink}
+                  className="nav-item" 
+                  key={index}
+                  //onMouseOut={this.handleMouseOut}
+                  //onMouseOver={this.handleMouseOver}
+                >
+                  {item.label}
                 </div>
-              )
-            }}
-          </ThemeContext.Consumer>
-        </ThemeProvider>
+              </a>
+            ))
+          }
+          {
+            !isLoggedIn && 
+            <span className="login">
+              <Button onClick={() => this.handleClick()} primary size="small">SIGN IN</Button>
+            </span>
+          }
+          {
+            isLoggedIn && 
+            // <Button onClick={() => this.handleSignOut()} primary size="small">SIGN OUT</Button>
+            <div className="logout" onClick={() => this.openDropdown()} >
+              <span className="user">
+                <Icon name="appUser" style={{marginRight: '10px'}}/>
+              </span>
+              <div className="os s7"  style={{marginRight: '8px'}} >{this.props.paramObj.username}</div>
+              <span style={{display: 'flex', alignSelf: 'center'}}>
+                <Icon name="filledDownArrow" />
+              </span>
+
+              <div className={`dropdown-menu ${showDropdown ? 'show' : 'hide'}`} >
+                <div onClick={() => this.handleTransactionHistory()} className="menu-item os s9">Transaction History</div>
+                <div onClick={() => this.handleSignOut()} className="menu-item os s9"> Sign Out</div>
+              </div>
+            </div>
+          }
+          {/* {
+            showDropdown &&
+            <div className="dropdown-menu">
+              <div className="menu-item"> Sign Out</div>
+            </div>
+          } */}
+        </div>
+        <div className="navbar-menu">
+          {
+            !this.state.isMenuOpen ? 
+              <span onClick={() => this.onToggle()}><Icon name="menu" /></span>
+              : <span onClick={() => this.onToggle()}><Icon name="cross" /></span>
+          }
+        </div>
+        <div className={`navbar-mobile ${this.state.isMenuOpen ? "show" : "hide"}`}>
+          <ul>
+            <li>
+              {
+                isLoggedIn &&
+                <React.Fragment>
+                  <span className="user" style={{marginRight: '10px'}}>
+                    <Icon name="mobileApplnUser" />
+                  </span>
+                  <span style={{color: '#fff'}}>{this.props.paramObj.username}</span>
+                </React.Fragment>
+              }
+            </li>
+            {
+              this.navItems.map((item, index) => (
+                <li key={index}>
+                  <a className={location.pathname.slice(1) === item.value ? "active" : undefined} onClick={this.handleLink} href={`/${item.value}`} className="os s2">
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+            <li>
+              {
+                isLoggedIn &&
+                <a onClick={this.handleTransactionHistory} href={`/transaction-history`} className="os s2">
+                    Transaction History
+                </a>
+              }
+            </li>
+            <li>
+              {
+                isLoggedIn &&
+                <button onClick={() => this.handleSignOut()} className="btn btn-secondary os s2">SIGN OUT</button>
+              }
+            </li>
+            <li>
+              {
+                !isLoggedIn &&
+                <button onClick={() => this.handleClick()} className="btn btn-secondary os s2">SIGN IN</button>
+              }
+            </li>
+          </ul>
+        </div>
       </div>
     )
   }

@@ -31,7 +31,6 @@ class GiftCards extends React.Component {
     //console.log("props in card", this.props)
     return(
       <div>
-        <Header history={this.props.history} />
         <div id="GiftCards">
           <div className="content">
             <h2 className="cm s1">How to use HipBar Gift Cards?</h2>
@@ -89,7 +88,6 @@ class GiftCards extends React.Component {
           </div>
          
           <FirstGiftCard />
-          <Footer />
         </div>
       </div>
     )

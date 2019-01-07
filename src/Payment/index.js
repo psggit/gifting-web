@@ -277,7 +277,6 @@ class Payment extends React.Component {
           localStorage.getItem("txn")
             ? (
               <div>
-                <Header />
                 <div id="checkout">
                 <div className="how-to-gift mobile">
                   <div onClick={this.toggleHowTo} className="how-to-gift-header">
@@ -481,7 +480,6 @@ class Payment extends React.Component {
                     </div>
                   </div>
                 </div>
-                <Footer />
               </div>
             )
             : ""
