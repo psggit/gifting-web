@@ -12,6 +12,7 @@ import AgeGate from './../AgeGate'
 import InputMask from "react-input-mask"
 import {readCookie} from "Utils/session-utils"
 import { validateTextField } from '../utils/validators';
+import { parse } from "path";
 
 class SendGift extends React.Component {
   constructor(props) {
@@ -110,13 +111,16 @@ class SendGift extends React.Component {
     if (e.target.name !== "price4") {
       this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: "" })
     } else {
-      // if (!e.target.value.length) {
-      //   this.setState({ amount: "499", activePrice: "price1", otherValue: "" })
-      //   return
-      // }
+      console.log(parseInt(e.target.value))
+      if (parseInt(e.target.value) === 0) {
+       e.preventDefault()
+       console.log("45")
+        return;
+      } 
       if (parseInt(e.target.value) > 10000) {
         return;
       }
+      console.log("35")
       this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: e.target.value })
     }
   }
@@ -306,7 +310,7 @@ class SendGift extends React.Component {
                             maskChar={null}
                             className={this.state.activePrice === "price4" ? "focused" : undefined}
                             onFocus={(e) => {
-                              this.setState({ activePrice: "price4", amount: e.target.value }) 
+                              this.setState({ activePrice: "price4", amount: "" }) 
                             }}
                             onBlur={(e) => {
                               this.setState({

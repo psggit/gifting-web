@@ -172,7 +172,7 @@ class App extends React.Component {
               //console.log(paramObj)
               return (
                 <div>
-                  <Header paramObj={paramObj} />
+                  <Header />
                   <Router history={history}>
                     <Switch>
                       <Route exact 

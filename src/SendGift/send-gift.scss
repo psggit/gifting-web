@@ -235,7 +235,7 @@
       }
     }
     .how-to-gift-body {
-      margin-top: 200px;
+      margin-top: 162px;
       max-height: 0;
       padding: 0 20px;
       overflow: hidden;
@@ -253,9 +253,12 @@
       left: 0;
       text-align: left;
       background-color: #000;
-      line-height: 100px;
+      line-height: 60px;
       width: 100%;
       z-index: 2;
+      p {
+        font-size: 16px;
+      }
     }
     .row {
       justify-content: space-around;
@@ -292,7 +295,7 @@
 }
 
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 420px) {
   #send-gift {
     .row {
       display: block;
@@ -308,7 +311,7 @@
         margin-top: 15px;
         // flex-grow: 2;
         input {
-          width: 180px;
+          width: 100px;
         }
       }
     }
@@ -356,7 +359,7 @@
       .form-field:last-child {
         margin-top: 15px;
         input {
-          width: 180px;
+          width: 100px;
         }
       }
     }

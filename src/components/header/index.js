@@ -11,6 +11,7 @@ import {createSession, clearSession, getUsername} from 'Utils/session-utils'
 import NotifyError from './../../NotifyError';
 import {ThemeProvider, ThemeContext} from "./../../ThemeProvider"
 // import { NavLink } from 'react-router-dom'
+const ThemeConsumer = ThemeContext.Consumer
 
 class Header extends React.Component {
   constructor(props) {
@@ -157,10 +158,14 @@ class Header extends React.Component {
 
   render() {
     const {showDropdown} = this.state
-    const {isLoggedIn} = this.props.paramObj
     //console.log("header state", this.props)
     return (
-      <div className="navbar">
+      <ThemeProvider>
+        <ThemeConsumer>
+          {(paramObj) => {
+            const isLoggedIn = paramObj.isLoggedIn
+            return (
+            <div className="navbar">
         {/* <div className="logo"> */}
         
         {/* </div> */}
@@ -209,7 +214,7 @@ class Header extends React.Component {
               <span className="user">
                 <Icon name="appUser" style={{marginRight: '10px'}}/>
               </span>
-              <div className="os s7"  style={{marginRight: '8px'}} >{this.props.paramObj.username}</div>
+              <div className="os s7"  style={{marginRight: '8px'}} >{paramObj.username}</div>
               <span style={{display: 'flex', alignSelf: 'center'}}>
                 <Icon name="filledDownArrow" />
               </span>
@@ -250,7 +255,7 @@ class Header extends React.Component {
                   <span className="user" style={{marginRight: '10px'}}>
                     <Icon name="mobileApplnUser" />
                   </span>
-                  <span style={{color: '#fff'}}>{this.props.paramObj.username}</span>
+                  <span style={{color: '#fff'}}>{paramObj.username}</span>
                 </React.Fragment>
               }
             </li>
@@ -286,6 +291,9 @@ class Header extends React.Component {
           </ul>
         </div>
       </div>
+          )}}
+        </ThemeConsumer>
+      </ThemeProvider>
     )
   }
 }
