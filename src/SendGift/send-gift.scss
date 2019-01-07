@@ -154,7 +154,12 @@
         }
         &:last-child input {
           margin-right: 0;
-          // text-align: center;
+          &::-webkit-input-placeholder {
+            font-weight: normal;
+          }
+          &::-moz-input-placeholder {
+            font-weight: normal;
+          }
           &:focus {
             &::-webkit-input-placeholder {
               color: transparent;
