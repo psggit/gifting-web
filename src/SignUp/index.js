@@ -79,7 +79,27 @@ export default function SignUp(data) {
       this.isFormValid = this.isFormValid.bind(this)
       this.handleGenderChange = this.handleGenderChange.bind(this)
       this.countdown = this.countdown.bind(this)
+      this.handleKeyDown = this.handleKeyDown.bind(this)
     }
+
+    componentDidMount() {
+      window.addEventListener("keydown", this.handleKeyDown)
+    }
+
+    handleKeyDown(e) {
+      const {otpSent} = this.state;
+      if(e.keyCode === 13) {
+        if(!otpSent) {
+          this.handleClick()
+        } else {
+          this.login()
+        }
+      }
+    }
+
+    // componentWillUnmount() {
+    //   window.removeEventListener("keydown")
+    // }
 
     handleGenderChange(genderValue) {
       const {otpSent} = this.state
