@@ -192,7 +192,7 @@ class LandingPage extends React.Component {
 
             <div className="item">
               <Icon name="stepFour" />
-              <h2 className="cm s2">Redeem</h2>
+              <h2 className="cm s2">Redeem with HipBar Gift Card at Retail Outlets</h2>
               <p className="os s3">
               Recipient pays for drinks with their HipBar<br/> Gift Card at any of the 60+ HipBar-affiliated stores in the city of operation<br/>
               </p>

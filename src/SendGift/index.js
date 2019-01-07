@@ -502,11 +502,11 @@ class SendGift extends React.Component {
                   <Icon name="step4" />
                   <div className="desc">
                     <p className="cm s6">
-                      Redeem
-                  </p>
+                      Redeem with HipBar Gift Card at Retail Outlets
+                    </p>
                     <p className="os s7">
                       Recipient pays for drinks with their HipBar Gift Card<br /> at select 60+ retail outlets across Bengaluru and Goa
-                  </p>
+                    </p>
                   </div>
 
                 </div>
