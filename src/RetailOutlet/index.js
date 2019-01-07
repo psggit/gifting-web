@@ -6,6 +6,9 @@ import Icon from "Components/icon"
 import FirstGiftCard from "Components/first-gift-card"
 import * as Api from './../api'
 //import {retailerData} from './../TransactionHistory/mockdata'
+import AgeGate from './../AgeGate'
+import {readCookie} from "Utils/session-utils"
+import { mountModal } from 'Components/modal-box/utils'
 
 class RetailOutlet extends React.Component {
   constructor(props) {
@@ -36,6 +39,9 @@ class RetailOutlet extends React.Component {
       behavior: 'smooth'
     })
     this.fetchAvailableHipbarDelivery()
+    if(!readCookie("isAgeGateAgreed")) {
+      mountModal(AgeGate({}))
+    }
   }
 
   // componentWillReceiveProps(newProps) {
