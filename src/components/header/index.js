@@ -169,9 +169,7 @@ class Header extends React.Component {
               return (
                 <div className="navbar">
                   {/* <div className="logo"> */}
-                    <a href="/">
-                      <Icon name="hipbarLogo" />
-                    </a>
+                  
                   {/* </div> */}
           
                   {/* <div className="title">
@@ -182,6 +180,13 @@ class Header extends React.Component {
                         Gifting
                     </p>
                   </div>   */}
+                  {/* <div className="navbar-logo" >
+                    {
+                      this.state.isMenuOpen 
+                      ? <span onClick={() => {location.href="/"}}><Icon name="hipbarLogoMobile" /></span>
+                      : <span onClick={() => {location.href="/"}}><Icon name="hipbarLogo" /></span>
+                    }
+                  </div> */}
                   <div className="nav-items">
                     {
                       this.navItems.map((item, index) => (
@@ -238,8 +243,9 @@ class Header extends React.Component {
                   </div>
                   <div className="navbar-logo" >
                     {
-                      this.state.isMenuOpen &&
-                      <span onClick={() => {location.href="/"}}><Icon name="hipbarLogoMobile" /></span>
+                      this.state.isMenuOpen 
+                      ? <span onClick={() => {location.href="/"}}><Icon name="hipbarLogoMobile" /></span>
+                      : <span onClick={() => {location.href="/"}}><Icon name="hipbarLogo" /></span>
                     }
                   </div>
                   <div className={`navbar-mobile ${this.state.isMenuOpen ? "show" : "hide"}`}>
