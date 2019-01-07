@@ -27,7 +27,8 @@
 }
 
 .nav-items {
-    margin-left: calc(70px - 32px);
+    //margin-left: calc(70px - 32px);
+    margin-left: 80px;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -129,15 +130,21 @@
 .navbar-menu {
     display: none;
     position: absolute;
-    right: 7.5%;
+    right: 5.6%;
     z-index: 6;
     top: 50%;
     transform: translateY(-50%);
 }
 
+.navbar-logo {
+    position: absolute;
+    left: 5.6%;
+    z-index: 5;
+}
+
 .navbar-mobile {
     height: 100vh;
-    z-index: 5;
+    z-index: 4;
     width: 100%;
     background-color: #000000;
     position: fixed;

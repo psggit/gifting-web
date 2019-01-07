@@ -8,9 +8,8 @@ import { mountModal } from 'Components/modal-box/utils'
 import AgeGate from './../AgeGate'
 import Header from "Components/header"
 import Footer from "Components/footer"
-import { loadavg } from "os";
 import {readCookie} from "Utils/session-utils"
-var timeOut;
+
 class LandingPage extends React.Component {
   constructor(props) {
     super(props)
@@ -47,7 +46,7 @@ class LandingPage extends React.Component {
       top: document.getElementById("brands").offsetTop - 100,
       left: 0,
       behavior: 'smooth'
-    });
+    })
   }
 
   render() {
@@ -169,7 +168,7 @@ class LandingPage extends React.Component {
 
             <div className="item">
               <Icon name="stepTwo" />
-              <h2 className="cm s2">Recipient notified via SMS</h2>
+              <h2 className="cm s2">Recipient notified via SMS!</h2>
               <p className="os s3">
               Recipient is notified via SMS with more information on how to use the gift card.
               </p>

@@ -20,7 +20,7 @@ export default function NotifyError(data) {
             <Icon name="errorIcon" />
           </ModalHeader>
           <ModalBody>
-            <p className="os s2">
+            <p className="os s4">
               Something went wrong! Please try again
             </p>
           </ModalBody>

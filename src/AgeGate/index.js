@@ -40,7 +40,7 @@ export default function AgeGate(data) {
             <Icon name="user" />
           </ModalHeader>
           <ModalBody>
-            <p className="os s2">
+            <p className="os s4">
               Agree if you are of legal drinking age in your current state of residence
             </p>
             <div style={{display: 'flex', marginTop: '40px', alignItems: 'center'}}>

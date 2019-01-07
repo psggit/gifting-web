@@ -157,31 +157,36 @@ class Header extends React.Component {
 
   render() {
     const {showDropdown} = this.state
-    const isLoggedIn = this.props.paramObj.isLoggedIn
+    const {isLoggedIn} = this.props.paramObj
     //console.log("header state", this.props)
     return (
       <div className="navbar">
-        <div className="logo">
-          <a href="/">
-            <Icon name="hipbarLogo" />
-          </a>
-        </div>
+        {/* <div className="logo"> */}
+        
+        {/* </div> */}
 
-        <div className="title">
+        {/* <div className="title">
           <p style={{ marginBottom: "6px" }}>
               HipBar
           </p>
           <p>
               Gifting
           </p>
-        </div>  
+        </div>   */}
+        {/* <div className="navbar-logo" >
+          {
+            this.state.isMenuOpen 
+            ? <span onClick={() => {location.href="/"}}><Icon name="hipbarLogoMobile" /></span>
+            : <span onClick={() => {location.href="/"}}><Icon name="hipbarLogo" /></span>
+          }
+        </div> */}
         <div className="nav-items">
           {
             this.navItems.map((item, index) => (
               <a id={`nav-item-${index+1}`} className={location.pathname.slice(1) === item.value ? "active" : undefined} href={`/${item.value}`}  key={`nav-item-${index+1}`}>
                 <div
                   onClick={this.handleLink}
-                  className="nav-item" 
+                  className="nav-item os s7" 
                   key={index}
                   //onMouseOut={this.handleMouseOut}
                   //onMouseOver={this.handleMouseOver}
@@ -227,6 +232,13 @@ class Header extends React.Component {
             !this.state.isMenuOpen ? 
               <span onClick={() => this.onToggle()}><Icon name="menu" /></span>
               : <span onClick={() => this.onToggle()}><Icon name="cross" /></span>
+          }
+        </div>
+        <div className="navbar-logo" >
+          {
+            this.state.isMenuOpen 
+            ? <span onClick={() => {location.href="/"}}><Icon name="hipbarLogoMobile" /></span>
+            : <span onClick={() => {location.href="/"}}><Icon name="hipbarLogo" /></span>
           }
         </div>
         <div className={`navbar-mobile ${this.state.isMenuOpen ? "show" : "hide"}`}>
