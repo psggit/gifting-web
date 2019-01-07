@@ -103,7 +103,8 @@ class Payment extends React.Component {
   }
 
   handleSaveCard(e) {
-    this.setState({ store_card: e.target.checked })
+    const {store_card} = this.state;
+    this.setState({ store_card: !store_card })
   }
 
   getBanks() {
@@ -389,8 +390,18 @@ class Payment extends React.Component {
                               </div>
 
                               <div style={{  display: "flex", alignItems: "center", flexDirection: "row-reverse", justifyContent: "flex-end" }} className="form-group">
-                                <label htmlFor="save-card" style={{ marginLeft: "10px", cursor: "pointer" }} >Save card for faster transactions</label>
-                                <input id="save-card" type="checkbox" onChange={this.handleSaveCard} />
+                                {/* <label htmlFor="save-card" style={{ marginLeft: "10px", cursor: "pointer" }} >Save card for faster transactions</label>
+                                <input id="save-card" type="checkbox" onChange={this.handleSaveCard} /> */}
+                                <div onClick={() => this.handleSaveCard()} style={{marginBottom: '10px'}}>
+                                  <span style={{marginRight: '10px', display: 'inline-block', verticalAlign: 'middle', cursor: 'pointer'}}>
+                                    {
+                                      this.state.store_card
+                                      ? <Icon name="rectangle" />
+                                      : <Icon name="filledRectangle" />
+                                    }
+                                  </span>
+                                  <span style={{ display: 'inline-block', cursor: 'pointer'}}>Save card for faster transactions</span>
+                                </div>
                               </div>
                             </AccordianItem>
 
