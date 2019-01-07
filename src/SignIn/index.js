@@ -21,13 +21,14 @@ export default function SignIn(data) {
         mobileNo: "Mobile number",
         otp: "Otp"
       }
-      console.log("data", data)
+
       this.state = {
         otpSent: data.otpSent ? data.otpSent : false,
         mobileNo: data.mobile ? data.mobile : "",
         otp: "",
         errorInSignIn: false,
-        resentOtp: false,
+        //resentOtp: false,
+        setTimer: false,
         disableField: data.otpSent ? true : false,
         isSigningIn: false,
         mobileNoErr: {
@@ -45,7 +46,26 @@ export default function SignIn(data) {
       this.verifyUserAndGetOtp = this.verifyUserAndGetOtp.bind(this)
       this.resendOtp = this.resendOtp.bind(this)
       this.isFormValid = this.isFormValid.bind(this)
+      this.countdown = this.countdown.bind(this)
     }
+
+    countdown() {
+      let timeoutHandle;
+      let seconds = 30;
+      let self = this;
+      function tick() {
+        var counter = document.getElementById("timer");
+        seconds--;
+        counter.innerHTML ="OTP can be resent in" + " 00" + ":"  +(seconds < 10 ? "0" : "") + String(seconds) + " seconds";
+        if( seconds > 0 ) {
+          timeoutHandle=setTimeout(tick, 1000);
+        }else {
+          self.setState({setTimer: false})
+        }
+      }
+      tick();
+    }
+    
 
     verifyUserAndGetOtp(dataObj) {
       const payload = {
@@ -79,10 +99,11 @@ export default function SignIn(data) {
             } else if(response.status === 400){
               this.setState({mobileNoErr: {status: true, value: "Invalid mobile number"}})
             } else if (response.status === 401) {
-              this.setState({otpSent: true, disableField: true})
-              if(dataObj.resendOtp) {
-                this.setState({resentOtp : true})
-              }
+              this.setState({otpSent: true, disableField: true, setTimer: true})
+              this.countdown()
+              // if(dataObj.resendOtp) {
+              //   this.setState({resentOtp : true})
+              // }
             }
             this.setState({isGettingOtp: false})
           })
@@ -114,7 +135,7 @@ export default function SignIn(data) {
 
     handleClick () {
       if(this.isFormValid() && !this.state.isGettingOtp) {
-        this.verifyUserAndGetOtp({unMountModal: true, resendOtp: false})
+        this.verifyUserAndGetOtp({unMountModal: true})
       }
     }
 
@@ -182,7 +203,7 @@ export default function SignIn(data) {
 
     resendOtp() {
       if(!this.state.isGettingOtp) {
-        this.verifyUserAndGetOtp({unMountModal: false, resendOtp: true})
+        this.verifyUserAndGetOtp({unMountModal: false})
         //this.setState({})
       }
     }
@@ -192,7 +213,7 @@ export default function SignIn(data) {
     }
 
     render() {
-      const {otpSent, isGettingOtp, mobileNoErr, otpErr, isSigningIn} = this.state
+      const {otpSent, isGettingOtp, mobileNoErr, otpErr, isSigningIn, setTimer} = this.state
       const cursorStyle = {
         cursor: 'not-allowed'
       }
@@ -288,15 +309,15 @@ export default function SignIn(data) {
                             name="otp"
                             mask="999999"
                             className={`${otpErr.status ? 'error' : ''}`}
-                            placeholder="Enter the OTP that you've received"
+                            placeholder="Enter the OTP"
                             autoComplete="off"
                             maskChar={null}
                             type="text"
                           />
-                          <div className={`resend os s10 ${isGettingOtp ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND OTP</div>
+                          <div className={`resend os s10 ${setTimer ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND OTP</div>
                           {
-                            this.state.resentOtp && 
-                            <div className="note os s9">OTP has been resent!</div>
+                            this.state.setTimer && 
+                            <div className="note os s9" id="timer"></div>
                           }
                         </div>
                         {
