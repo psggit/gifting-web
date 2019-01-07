@@ -8,20 +8,20 @@ export const sendingGiftCardQuestions = [
   },
   {
     ques_number: "two",
-    question: "How to send a gift card?",
-    answer: `Tap START GIFTING on the homepage
-    Enter the amount you wish to gift with a personal message
-    Enter sender & receiver information
-    Pay`
-  },
-  {
-    ques_number: "three",
     question: "What are HipBar gift cards?",
     answer: `Gifting on the HipBar app/website can be done only through HipBar gift cards. 
     A gift card has a certain value attached to it and can be used to redeem any 
     drink on the HipBar platform that is proportionate to the gift card value. 
     The sender determines the value of the gift card and can send over a gift card of 
     any value of choice.`
+  },
+  {
+    ques_number: "three",
+    question: "How to send a gift card?",
+    answer: `Tap START GIFTING on the homepage
+    Enter the amount you wish to gift with a personal message
+    Enter sender & receiver information
+    Pay`
   },
   {
     ques_number: "four",
