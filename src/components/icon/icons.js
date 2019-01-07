@@ -754,5 +754,37 @@ export default {
             </g>
         </g>
     </svg>
+  ),
+  circle: (
+    <svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1">
+        <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="03b-Mobile---Payment---Net-Banking---Not-Expanded" transform="translate(-24.000000, -348.000000)" fill="#000000">
+                <g id="Payment-Options" transform="translate(-1.000000, 321.000000)">
+                    <g id="DB/CC">
+                        <g id="Db/CC-Content" transform="translate(25.000000, 24.000000)">
+                            <g id="DB/CC">
+                                <path d="M7,3 C3.15,3 0,6.15 0,10 C0,13.85 3.15,17 7,17 C10.85,17 14,13.85 14,10 C14,6.15 10.85,3 7,3 L7,3 Z M7,15.6 C3.92,15.6 1.4,13.08 1.4,10 C1.4,6.92 3.92,4.4 7,4.4 C10.08,4.4 12.6,6.92 12.6,10 C12.6,13.08 10.08,15.6 7,15.6 L7,15.6 Z" id="Shape"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </svg>
+  ),
+  filledCircle: (
+    <svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1">
+        <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="03b-Mobile---Payment---Net-Banking---Not-Expanded" transform="translate(-21.000000, -416.000000)" fill="#000000">
+                <g id="Payment-Options" transform="translate(-1.000000, 321.000000)">
+                    <g id="Net-Banking" transform="translate(0.000000, 68.000000)">
+                        <g id="NetBanking" transform="translate(22.000000, 24.000000)">
+                            <path d="M7,6.5 C5.04,6.5 3.5,8.04 3.5,10 C3.5,11.96 5.04,13.5 7,13.5 C8.96,13.5 10.5,11.96 10.5,10 C10.5,8.04 8.96,6.5 7,6.5 L7,6.5 Z M7,3 C3.15,3 0,6.15 0,10 C0,13.85 3.15,17 7,17 C10.85,17 14,13.85 14,10 C14,6.15 10.85,3 7,3 L7,3 Z M7,15.6 C3.92,15.6 1.4,13.08 1.4,10 C1.4,6.92 3.92,4.4 7,4.4 C10.08,4.4 12.6,6.92 12.6,10 C12.6,13.08 10.08,15.6 7,15.6 L7,15.6 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </svg>
   )
 }

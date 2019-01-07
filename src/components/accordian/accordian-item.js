@@ -1,11 +1,19 @@
 import React from 'react'
+import Icon from "Components/icon"
 
 class AccordianItem extends React.Component {
   render() {
     return (
       <div className={`accordian-item ${this.props.activeAccordian === this.props.id ? 'active' : '' }`}>
         <div id={this.props.id} onClick={this.props.handleClick} className="accordian-item__header">
-          <p className="os s7">{ this.props.title }</p>
+          {
+            this.props.showRadioButton ?
+            this.props.activeAccordian === this.props.id 
+              ? <span style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px'}}><Icon name="filledCircle" /></span> 
+              : <span style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px'}}><Icon name="circle" /></span>
+            : ''
+          }
+          <p className="os s7" style={{ display: 'inline-block'}}>{ this.props.title }</p>
           {
             this.props.icon &&
             <span className="icon">{this.props.icon}</span>
