@@ -44,7 +44,11 @@
         border: 1px solid #dddbda;
         // padding: 20px 10px;
         position: relative;
+        //font-weight: 600 !important;
 
+        .os.s7 {
+          font-weight: 600;
+        }
         label {
           font-weight: 600;
           width: 84%;
