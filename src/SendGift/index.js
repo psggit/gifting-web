@@ -25,7 +25,8 @@ class SendGift extends React.Component {
       receiverNumber: "Receiver number"
     }
     this.characterLimit = 500
-    this.state = {
+    this.storedState = JSON.parse(localStorage.getItem("send__gift__state"))
+    this.defaultState = {
       activePrice: "price1",
       amount: "499",
       giftMessage: "",
@@ -49,6 +50,9 @@ class SendGift extends React.Component {
       },
       agreement: false
     }
+
+    this.state = this.storedState ? Object.assign({}, this.storedState) : Object.assign({}, this.defaultState)
+
     this.createTransaction = this.createTransaction.bind(this)
     this.handleAmountChange = this.handleAmountChange.bind(this)
     this.handleMessageChange = this.handleMessageChange.bind(this)
@@ -352,6 +356,7 @@ class SendGift extends React.Component {
                     <div className="form-group">
                       <label className="os">Name</label>
                       <input 
+                        value={this.state.receiverName}
                         onChange={this.handleTextChange} 
                         name="receiverName" 
                         type="text" 
@@ -375,6 +380,7 @@ class SendGift extends React.Component {
                           name="receiverNumber" 
                           mask="9999999999"
                           maskChar={null}
+                          value={this.state.receiverNumber}
                           className={`mobile ${receiverNumberErr.status ? 'error' : ''}`}
                           type="text"
                           placeholder="Enter the recipients phone number"
@@ -461,6 +467,7 @@ class SendGift extends React.Component {
                           <Button
                             disabled={!this.state.agreement}
                             onClick={() => {
+                              localStorage.setItem("send__gift__state", JSON.stringify(this.state))
                               mountModal(SignIn({ mobile: this.state.senderNumber }))
                             }}
                             primary
