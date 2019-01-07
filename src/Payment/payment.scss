@@ -4,6 +4,11 @@
   margin-top: 100px;
   background-color: #f1f1f1;
 
+  // .cvv--input::-webkit-input-placeholder {
+  //   transform: scale(1.4);
+  //   transform-origin: 0 50%;
+  // }
+
   .gift-card-info {
     display: inline-block;
     width: 100%;
@@ -110,7 +115,7 @@
       display: block;
     }
     .how-to-gift-body {
-      margin-top: 200px;
+      margin-top: 162px;
       max-height: 0;
       padding: 0 20px;
       overflow: hidden;
@@ -126,9 +131,12 @@
       left: 0;
       text-align: left;
       background-color: #000;
-      line-height: 100px;
+      line-height: 60px;
       width: 100%;
       z-index: 2;
+      p {
+        font-size: 16px;
+      }
     }
     .row {
       justify-content: space-around;

@@ -108,7 +108,6 @@ class TransactionHistory extends React.Component {
     //console.log("username", this.state.username, "logged in", this.state.isLoggedIn)
     return(
       <div>
-        <Header />
         <div id="TransactionHistory"> 
           <div className="content">
             <h2 className="cm s1">Transaction History</h2>
@@ -135,7 +134,6 @@ class TransactionHistory extends React.Component {
             }
           </div>
         </div>
-        <Footer />
       </div>
     )
   }

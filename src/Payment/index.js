@@ -42,6 +42,7 @@ class Payment extends React.Component {
       ccexp: "",
       ccname: "",
       ccvv: "",
+      savedccvv: "",
       cctoken: "",
       store_card: false,
       selectedPaymentMethod: null,
@@ -153,11 +154,12 @@ class Payment extends React.Component {
     if (this.state.activeAccordian !== 2) {
       this.setState({ selectedPaymentMethod: "card" }, () => {
         console.log("Processing card payment..")
-        if (this.ccnum) {
-          if (this.state.ccname.length && this.state.ccnum.length && this.state.ccvv.length && this.state.ccexp.length) {
-            this.submit.click()
-          }
-        } else {
+        if (
+            this.state.ccname.length &&
+            (this.state.ccnum.length || this.state.cctoken.length) &&
+            (this.state.ccvv.length || this.state.savedccvv.length)&&
+            this.state.ccexp.length
+          ) {
           this.submit.click()
         }
       })
@@ -185,7 +187,11 @@ class Payment extends React.Component {
   }
 
   handleCVVChange(e) {
-    this.setState({ ccvv: e.target.value })
+    if (e.target.name === "saved") {
+      this.setState({ savedccvv: e.target.value })
+    } else {
+      this.setState({ ccvv: e.target.value })
+    }
   }
 
   handleCardnameChange(e) {
@@ -233,7 +239,7 @@ class Payment extends React.Component {
       hash: this.txn.hash,
       pg: "DC",
       ccname: this.state.ccname,
-      ccvv: this.state.ccvv,
+      // ccvv: this.state.ccvv,
       ccexpmon: this.state.ccexp.split("/")[0],
       ccexpyr: this.state.ccexp.split("/")[1],
       user_credentials: this.txn.user_cred,
@@ -242,6 +248,7 @@ class Payment extends React.Component {
 
     if (this.state.ccnum.length) {
       postBody.ccnum = this.state.ccnum.split(" ").join("")
+      postBody.ccvv = this.state.ccvv
     }
 
     if (this.state.store_card) {
@@ -249,6 +256,7 @@ class Payment extends React.Component {
     }
 
     if (this.state.cctoken.length) {
+      postBody.ccvv = this.state.savedccvv
       postBody.store_card_token = this.state.cctoken
     }
 
@@ -258,15 +266,16 @@ class Payment extends React.Component {
   }
 
   setCardValues(id) {
-    console.log(id)
     if (parseInt(id) < 3) {
+      this.setState({ cctoken: "" })
       return true
     } else {
+      // console.log(this[`cardToken${id}`].name)
       const ccnum = this[`cardNum${id}`].name === "saved" ? "" : this[`cardNum${id}`].value
       const ccname = this[`cardName${id}`].value
-      const cctoken = this[`cardToken${id}`].name === "saved" ? this[`cardToken${id}`].value : "" 
+      const cctoken = this[`cardToken${id}`].name === "saved" ? this[`cardToken${id}`].value : ""
       const ccexp = this[`cardExp${id}`].value
-      this.setState({ ccnum, ccnum, cctoken, ccexp })
+      this.setState({ ccnum, ccname, cctoken, ccexp })
       return true
     }
   }
@@ -278,7 +287,6 @@ class Payment extends React.Component {
           localStorage.getItem("txn")
             ? (
               <div>
-                <Header />
                 <div id="checkout">
                 <div className="how-to-gift mobile">
                   <div onClick={this.toggleHowTo} className="how-to-gift-header">
@@ -372,7 +380,7 @@ class Payment extends React.Component {
                                   <label className="os">Expiry Date</label>
                                   <InputMask
                                   value={this.state.ccexpyr}
-                                  mask="99/9999"
+                                  mask="99 / 9999"
                                   maskChar={null}
                                   onChange={this.handleCardExpiryChange}
                                 />
@@ -380,7 +388,7 @@ class Payment extends React.Component {
 
                                 <div style={{ width: "130px", marginLeft: "30px" }}>
                                   <label className="os">CVV</label>
-                                  <input value={this.state.ccvv}  onChange={this.handleCVVChange} type="password" maxLength={4} />
+                                  <InputMask mask="9999" maskChar={null} className="cvv--input" value={this.state.ccvv}  onChange={this.handleCVVChange} type="password" />
                                 </div>
                               </div>
 
@@ -516,7 +524,6 @@ class Payment extends React.Component {
                     </div>
                   </div>
                 </div>
-                <Footer />
               </div>
             )
             : ""

@@ -49,7 +49,6 @@ class FAQ extends React.Component {
     const {sendingGiftCardQuestions} = this.state
     return (
       <div>
-        <Header history={this.props.history} />
         <div id="Faq">
           <div className="content">
             <h2 className="cm s1">Frequently Asked Questions</h2>
@@ -103,7 +102,6 @@ class FAQ extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }

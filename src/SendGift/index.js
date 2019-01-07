@@ -11,7 +11,8 @@ import { POST } from "Utils/fetch"
 import AgeGate from './../AgeGate'
 import InputMask from "react-input-mask"
 import {readCookie} from "Utils/session-utils"
-import { validateTextField } from '../utils/validators';
+import { validateTextField, validateNumberField } from '../utils/validators';
+import { parse } from "path";
 
 class SendGift extends React.Component {
   constructor(props) {
@@ -23,8 +24,9 @@ class SendGift extends React.Component {
       receiverName: "Receiver name",
       receiverNumber: "Receiver number"
     }
-    this.characterLimit = 100
-    this.state = {
+    this.characterLimit = 250
+    this.storedState = JSON.parse(localStorage.getItem("send__gift__state"))
+    this.defaultState = {
       activePrice: "price1",
       amount: "499",
       giftMessage: "",
@@ -33,7 +35,7 @@ class SendGift extends React.Component {
       senderName: props.paramObj.username,
       senderNumber: props.paramObj.mobile,
       canProceed: false,
-      count: 10,
+      count: 250,
       agreedTermsAndConditions: false,
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false,
@@ -46,8 +48,16 @@ class SendGift extends React.Component {
         value: "",
         status: false
       },
+      amountErr: {
+        value: "",
+        status: false
+      },
       agreement: false
     }
+
+    this.state = this.storedState ? Object.assign({}, this.storedState) : Object.assign({}, this.defaultState)
+    localStorage.removeItem("send__gift__state")
+
     this.createTransaction = this.createTransaction.bind(this)
     this.handleAmountChange = this.handleAmountChange.bind(this)
     this.handleMessageChange = this.handleMessageChange.bind(this)
@@ -88,8 +98,8 @@ class SendGift extends React.Component {
   proceedToPayment() {
     const { amount, giftMessage, receiverNumber, senderName, receiverName } = this.state
 
-    const receiverNumberErr = validateTextField(this.inputNameMap['receiverNumber'], receiverNumber)
-    this.setState({receiverNumberErr: validateTextField(this.inputNameMap['receiverNumber'], receiverNumber)})
+    const receiverNumberErr = validateNumberField(this.inputNameMap['receiverNumber'], receiverNumber)
+    this.setState({receiverNumberErr: validateNumberField(this.inputNameMap['receiverNumber'], receiverNumber)})
 
     const receiverNameErr = validateTextField(this.inputNameMap['receiverName'], receiverName)
     this.setState({receiverNameErr: validateTextField(this.inputNameMap['receiverName'], receiverName)})
@@ -101,7 +111,23 @@ class SendGift extends React.Component {
     //   receiverNumber.length === 10 && ["1", "2", "3", "4", "5"].indexOf(receiverNumber[0]) === -1 &&
     //   senderName.length
     // ) 
-    if(senderName.length && amount.length && !receiverNumberErr.status && !receiverNameErr.status && ["1", "2", "3", "4", "5"].indexOf(receiverNumber[0]) === -1) {
+
+    let amountErr = {
+      status: false,
+      value: ""
+    }
+    // let receiverNumberErr
+    if (!amount.length) {
+       amountErr = {
+        status: true,
+        value: "Amount is required"
+      }
+      this.setState({ amountErr })
+    }
+
+    console.log(amountErr, receiverNumberErr)
+    
+    if(senderName.length && !amountErr.status && !receiverNumberErr.status && !receiverNameErr.status) {
       this.createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName)
     }
   }
@@ -110,13 +136,16 @@ class SendGift extends React.Component {
     if (e.target.name !== "price4") {
       this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: "" })
     } else {
-      // if (!e.target.value.length) {
-      //   this.setState({ amount: "499", activePrice: "price1", otherValue: "" })
-      //   return
-      // }
+      console.log(parseInt(e.target.value))
+      if (parseInt(e.target.value) === 0) {
+       e.preventDefault()
+       console.log("45")
+        return;
+      } 
       if (parseInt(e.target.value) > 10000) {
         return;
       }
+      console.log("35")
       this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: e.target.value })
     }
   }
@@ -143,7 +172,11 @@ class SendGift extends React.Component {
   }
 
   handleTextChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
+    if (/^[a-zA-Z]*$/.test(e.target.value)) {
+      this.setState({ [e.target.name]: e.target.value.trim() })
+    } else {
+      return
+    }
   }
 
   createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName) {
@@ -203,7 +236,6 @@ class SendGift extends React.Component {
     const {receiverNameErr, receiverNumberErr} = this.state;
     return (
       <div>
-        <Header history={this.props.history} />
         <div id="send-gift">
           <div className="how-to-gift mobile">
             <div onClick={this.toggleHowTo} className="how-to-gift-header">
@@ -307,13 +339,7 @@ class SendGift extends React.Component {
                             maskChar={null}
                             className={this.state.activePrice === "price4" ? "focused" : undefined}
                             onFocus={(e) => {
-                              this.setState({ activePrice: "price4", amount: e.target.value }) 
-                            }}
-                            onBlur={(e) => {
-                              this.setState({
-                                activePrice: e.target.value.length ? "price4" : "price1",
-                                amount: e.target.value.length ? e.target.value : "499"
-                              })
+                              this.setState({ activePrice: "price4", amount: "" }) 
                             }}
                             value={this.state.otherValue}
                             onChange={this.handleAmountChange}
@@ -325,6 +351,10 @@ class SendGift extends React.Component {
                         </div>
 
                       </div>
+                      {
+                        this.state.amountErr.status &&
+                        <p className="error-message os s9">{this.state.amountErr.value}</p>
+                      }
                     </div>
 
                     <div className="form-group">
@@ -349,6 +379,7 @@ class SendGift extends React.Component {
                     <div className="form-group">
                       <label className="os">Name</label>
                       <input 
+                        value={this.state.receiverName}
                         onChange={this.handleTextChange} 
                         name="receiverName" 
                         type="text" 
@@ -372,6 +403,7 @@ class SendGift extends React.Component {
                           name="receiverNumber" 
                           mask="9999999999"
                           maskChar={null}
+                          value={this.state.receiverNumber}
                           className={`mobile ${receiverNumberErr.status ? 'error' : ''}`}
                           type="text"
                           placeholder="Enter the recipients phone number"
@@ -458,6 +490,7 @@ class SendGift extends React.Component {
                           <Button
                             disabled={!this.state.agreement}
                             onClick={() => {
+                              localStorage.setItem("send__gift__state", JSON.stringify(this.state))
                               mountModal(SignIn({ mobile: this.state.senderNumber }))
                             }}
                             primary
@@ -532,7 +565,6 @@ class SendGift extends React.Component {
           </div>
         </div>
         <div style={{ display: "block" }}></div>
-        <Footer />
       </div>
     )
   }

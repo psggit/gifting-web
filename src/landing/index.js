@@ -8,9 +8,8 @@ import { mountModal } from 'Components/modal-box/utils'
 import AgeGate from './../AgeGate'
 import Header from "Components/header"
 import Footer from "Components/footer"
-import { loadavg } from "os";
 import {readCookie} from "Utils/session-utils"
-var timeOut;
+
 class LandingPage extends React.Component {
   constructor(props) {
     super(props)
@@ -47,14 +46,13 @@ class LandingPage extends React.Component {
       top: document.getElementById("brands").offsetTop - 100,
       left: 0,
       behavior: 'smooth'
-    });
+    })
   }
 
   render() {
     //console.log("props", this.props, this.props.name)
     return (
       <div>
-        <Header history={this.props.history} />
         <div id="landing">
 
           <div className="intro-wrapper">
@@ -85,12 +83,12 @@ class LandingPage extends React.Component {
                 <GiftCard amount="499" />
               </div>
             </div>
-            {/* <h2 className="cm s2">
-              Get 50%* off on your first HipBar Gift Card! 
-              <div style={{ marginTop: "20px", cursor: 'pointer' }} onClick={this.handleScroll}>
+            <h2 className="cm s2">
+              {/* Get 50%* off on your first HipBar Gift Card! */}
+              <div style={{ marginTop: "20px", cursor: "pointer" }} onClick={this.handleScroll}>
                 <Icon name="downArrow" />
               </div>
-            </h2> */}
+            </h2>
           </div>
 
           <div className="brands" id="brands">
@@ -211,7 +209,6 @@ class LandingPage extends React.Component {
 
           <FirstGiftCard />
         </div>
-        <Footer />
       </div>
     )
   }

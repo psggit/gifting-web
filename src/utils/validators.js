@@ -41,7 +41,7 @@ export function validateNumberField(fieldName, fieldValue) {
       status: true,
       value: `${fieldName} is required`
     }
-  } else if (isNaN(fieldValue) || fieldValue.trim().length < 10 || fieldValue.trim().length > 10) {
+  } else if ((fieldValue.length !== 10 || ["1", "2", "3", "4", "5"].indexOf(fieldValue[0]) > -1)) {
     return {
       status: true,
       value: `${fieldName} is invalid`
