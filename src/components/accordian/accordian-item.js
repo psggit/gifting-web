@@ -16,7 +16,7 @@ class AccordianItem extends React.Component {
           <p className="os s7" style={{ display: 'inline-block'}}>{ this.props.title }</p>
           {
             this.props.icon &&
-            <span className="icon">{this.props.icon}</span>
+            <span style={{ pointerEvents: "none" }} className="icon">{this.props.icon}</span>
           }
         </div>
         <div className="accordian-item__body">

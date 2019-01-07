@@ -268,26 +268,26 @@ class Header extends React.Component {
                 </li>
               ))
             }
-            <li>
-              {
-                isLoggedIn &&
+            {
+              isLoggedIn &&
+              <li>
                 <a onClick={this.handleTransactionHistory} href={`/transaction-history`} className="os s2">
                     Transaction History
                 </a>
-              }
-            </li>
-            <li>
-              {
-                isLoggedIn &&
+              </li>
+            }
+            {
+              isLoggedIn &&
+              <li>
                 <button onClick={() => this.handleSignOut()} className="btn btn-secondary os s2">SIGN OUT</button>
-              }
-            </li>
-            <li>
-              {
-                !isLoggedIn &&
+              </li>
+            }
+            {
+              !isLoggedIn &&
+              <li>
                 <button onClick={() => this.handleClick()} className="btn btn-secondary os s2">SIGN IN</button>
-              }
-            </li>
+              </li>
+            }
           </ul>
         </div>
       </div>

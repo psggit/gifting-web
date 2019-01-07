@@ -12,6 +12,7 @@ import { GET } from "Utils/fetch"
 import GiftCard from "Components/gift-card"
 import Icon from "Components/icon"
 import InputMask from "react-input-mask"
+import Moment from "moment"
 
 // const cardNumMask = new IMask()
 
@@ -46,6 +47,10 @@ class Payment extends React.Component {
       cctoken: "",
       store_card: false,
       selectedPaymentMethod: null,
+      ccexpErr: {
+        status: false,
+        value: ""
+      }
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
@@ -154,7 +159,24 @@ class Payment extends React.Component {
     if (this.state.activeAccordian !== 2) {
       this.setState({ selectedPaymentMethod: "card" }, () => {
         console.log("Processing card payment..")
+        const ccexp = this.state.ccexp.split(" ").join("")
+
+        console.log(ccexp)
+
+        const ccexpErr = {
+          status: false,
+          value: ""
+        }
+        const re = /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/
+
+        if (!re.test(ccexp)) {
+          ccexpErr.status = true
+          ccexpErr.value = "Invalid expiry date"
+          this.setState({ ccexpErr })
+        }
+
         if (
+            !ccexpErr.status &&
             this.state.ccname.length &&
             (this.state.ccnum.length || this.state.cctoken.length) &&
             (this.state.ccvv.length || this.state.savedccvv.length)&&
@@ -183,7 +205,12 @@ class Payment extends React.Component {
   }
 
   handleCardExpiryChange(e) {
-    this.setState({ ccexp: e.target.value })
+    this.setState({
+      ccexp: e.target.value,
+      ccexpErr: {
+        status: false,
+        value: ""
+      }})
   }
 
   handleCVVChange(e) {
@@ -195,7 +222,11 @@ class Payment extends React.Component {
   }
 
   handleCardnameChange(e) {
-    this.setState({ ccname: e.target.value })
+    if (/^[a-zA-Z]*$/.test(e.target.value)) {
+      this.setState({ ccname: e.target.value.trim() })
+    } else {
+      return
+    }
   }
 
   getNetBankingForm() {
@@ -384,6 +415,10 @@ class Payment extends React.Component {
                                   maskChar={null}
                                   onChange={this.handleCardExpiryChange}
                                 />
+                                {
+                                  this.state.ccexpErr.status &&
+                                  <p className="error-message os s9">{this.state.ccexpErr.value}</p>
+                                }
                                 </div>
 
                                 <div style={{ width: "130px", marginLeft: "30px" }}>
@@ -394,7 +429,7 @@ class Payment extends React.Component {
 
                               <div className="form-group">
                                 <label className="os">Name on card</label>
-                                <input onChange={this.handleCardnameChange} type="text" />
+                                <input value={this.state.ccname} onChange={this.handleCardnameChange} type="text" />
                               </div>
 
                               <div style={{  display: "flex", alignItems: "center", flexDirection: "row-reverse", justifyContent: "flex-end" }} className="form-group">
@@ -424,14 +459,14 @@ class Payment extends React.Component {
 
                                         <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label> */}
                                         <div onClick={() => this.handleRadioChange(item.ibibo_code)} style={{marginBottom: '10px'}}>
-                                          <span style={{marginRight: '10px'}}>
+                                          <span style={{marginRight: '10px', verticalAlign: "middle"}}>
                                             {
                                               this.state.bankcode === item.ibibo_code 
                                               ? <Icon name="filledCircle" />
                                               : <Icon name="circle" />
                                             }
                                           </span>
-                                          <span>{item.name}</span>
+                                          <span style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px", verticalAlign: "middle" }} className="os s8">{item.name}</span>
                                         </div>
                                       </div>
                                     ))
@@ -443,14 +478,14 @@ class Payment extends React.Component {
                                         {/* <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
                                         <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label> */}
                                         <div onClick={() => this.handleRadioChange(item.ibibo_code)} style={{marginBottom: '10px'}}>
-                                          <span style={{marginRight: '10px'}}>
+                                          <span style={{marginRight: '10px', verticalAlign: "middle"}}>
                                             {
                                               this.state.bankcode === item.ibibo_code 
                                               ? <Icon name="filledCircle" />
                                               : <Icon name="circle" />
                                             }
                                           </span>
-                                          <span>{item.name}</span>
+                                          <span style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px", verticalAlign: "middle" }} className="os s8">{item.name}</span>
                                         </div>
                                       </div>
                                     ))

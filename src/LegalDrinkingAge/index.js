@@ -20,7 +20,7 @@ class LegalDrinkingAge extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        {/* <Header /> */}
         <div id="LegalDrinkingAge">
           <div className="content">
             <h2 className="cm s1">Legal drinking age by states/UTs</h2>
@@ -36,7 +36,7 @@ class LegalDrinkingAge extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     )
   }
