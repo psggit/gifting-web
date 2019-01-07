@@ -456,8 +456,8 @@ class SendGift extends React.Component {
                       <label htmlFor="terms" className="os s7" >
                         I agree that the recipient is of legal drinking age and I agree to the <a href="/" target="_blank">Terms & Conditions</a>
                       </label> */}
-                      <div style={{display: 'flex'}} onClick={() => { this.setState({ agreement: !this.state.agreement})}}>
-                        <span style={{marginRight: '10px', display: 'inline-block', verticalAlign: 'middle', cursor: 'pointer'}}>
+                      <div style={{display: 'flex'}}>
+                        <span onClick={() => { this.setState({ agreement: !this.state.agreement})}} style={{marginRight: '10px', display: 'inline-block', verticalAlign: 'middle', cursor: 'pointer'}}>
                           {
                             !this.state.agreement
                             ? <Icon name="rectangle" />
