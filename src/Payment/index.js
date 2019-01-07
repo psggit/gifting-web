@@ -404,7 +404,7 @@ class Payment extends React.Component {
                                         {/* <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
 
                                         <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label> */}
-                                        <div onClick={() => this.handleRadioChange(item.ibibo_code)}>
+                                        <div onClick={() => this.handleRadioChange(item.ibibo_code)} style={{marginBottom: '10px'}}>
                                           <span style={{marginRight: '10px'}}>
                                             {
                                               this.state.bankcode === item.ibibo_code 
@@ -423,7 +423,7 @@ class Payment extends React.Component {
                                       <div style={{ width: "120px", cursor: "pointer" }} key={i}>
                                         {/* <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
                                         <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label> */}
-                                        <div onClick={() => this.handleRadioChange(item.ibibo_code)}>
+                                        <div onClick={() => this.handleRadioChange(item.ibibo_code)} style={{marginBottom: '10px'}}>
                                           <span style={{marginRight: '10px'}}>
                                             {
                                               this.state.bankcode === item.ibibo_code 
