@@ -9,8 +9,8 @@ class AccordianItem extends React.Component {
           {
             this.props.showRadioButton ?
             this.props.activeAccordian === this.props.id 
-              ? <span style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px'}}><Icon name="filledCircle" /></span> 
-              : <span style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px'}}><Icon name="circle" /></span>
+              ? <span style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', pointerEvents: 'none'}}><Icon name="filledCircle" /></span> 
+              : <span style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px',  pointerEvents: 'none'}}><Icon name="circle" /></span>
             : ''
           }
           <p className="os s7" style={{ display: 'inline-block'}}>{ this.props.title }</p>

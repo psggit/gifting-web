@@ -27,6 +27,51 @@
     background-color: #fff;
   }
 
+  .country-code {
+    border: 1px solid #cccccc;
+    display: flex;
+    padding: 0 10px;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  .country-code.error {
+    //border: 1px solid #c23934 !important;
+    // border-right: 0 !important;
+    border-left: 1px solid #c23934 !important;
+    border-top: 1px solid #c23934 !important;
+    border-bottom: 1px solid #c23934 !important;
+  }
+
+  .error-message {
+    color: #c23934;// width: 80px;
+    //   // padding: 0px 10px;
+    //   line-height: 30px;
+    //   width: 100%;
+    //   margin-bottom: 10px;
+    // }
+    font-weight: 600;
+    padding: 10px 0;
+  }
+
+
+  input.error {
+    border: 1px solid #c23934 !important;
+  }
+
+  input.mobile {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    //border-left: 0px;
+  }
+
+  input.mobile.error {
+    border-left: 0 !important;
+    border-right: 1px solid #c23934 !important;
+    border-top: 1px solid #c23934 !important;
+    border-bottom: 1px solid #c23934 !important;
+  }
+
   label {
     font-size: 14px;
     color: #000;

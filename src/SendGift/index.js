@@ -401,13 +401,20 @@ class SendGift extends React.Component {
 
                     <div className="form-group">
                       <label className="os">Phone Number</label>
-                      <input 
-                        value={this.state.senderNumber} 
-                        onChange={this.handlePhoneChange} 
-                        name="senderNumber" 
-                        maxLength="10" 
-                        placeholder="Enter your phone number"
-                        type="text" readOnly={this.state.isLoggedIn} />
+                      <div style={{display: 'flex'}}>
+                        <div className={`country-code ${receiverNumberErr.status ? 'error' : ''}`}>
+                          +91
+                        </div>
+                        <input 
+                          value={this.state.senderNumber} 
+                          onChange={this.handlePhoneChange} 
+                          name="senderNumber" 
+                          maxLength="10" 
+                          className={`mobile`}
+                          placeholder="Enter your phone number"
+                          type="text" readOnly={this.state.isLoggedIn} 
+                        />
+                      </div>
                     </div>
                   </div>
 
