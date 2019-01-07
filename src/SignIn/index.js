@@ -47,7 +47,28 @@ export default function SignIn(data) {
       this.resendOtp = this.resendOtp.bind(this)
       this.isFormValid = this.isFormValid.bind(this)
       this.countdown = this.countdown.bind(this)
+      this.handleKeyDown = this.handleKeyDown.bind(this)
     }
+
+    componentDidMount() {
+      window.addEventListener("keydown", this.handleKeyDown)
+    }
+
+    handleKeyDown(e) {
+      //console.log("keydown", this.state.otpSent)
+      if(e.keyCode === 13) {
+        const {otpSent} = this.state;
+        if(!otpSent) {
+          this.handleClick()
+        } else {
+          this.signIn()
+        }
+      }
+    }
+
+    // componentWillUnmount() {
+    //   window.removeEventListener("keydown")
+    // }
 
     countdown() {
       let timeoutHandle;

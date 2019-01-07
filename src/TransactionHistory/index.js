@@ -5,6 +5,9 @@ import * as Api from './../api'
 import Header from "Components/header"
 import Footer from "Components/footer"
 import Moment from "moment"
+import AgeGate from './../AgeGate'
+import {readCookie} from "Utils/session-utils"
+import { mountModal } from 'Components/modal-box/utils'
 
 class TransactionHistory extends React.Component {
   constructor(props) {
@@ -24,6 +27,9 @@ class TransactionHistory extends React.Component {
   componentDidMount() {
     if(this.props.paramObj && this.props.paramObj.isLoggedIn) {
       this.showTransactions()
+    }
+    if(!readCookie("isAgeGateAgreed")) {
+      mountModal(AgeGate({}))
     }
   }
 
