@@ -1,7 +1,7 @@
 
 function getAPIObj() {
   // console.log(BASE_URL)
-  const baseHost = "amebae21.hasura-app.io"
+  const baseHost = process.env.BASE_URL
 
   return {
     authUrl: "https://auth." + baseHost,

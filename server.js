@@ -19,7 +19,7 @@ app.disable("x-powered-by")
 // const PROD_API_BASE = process.env.PROD_API_BASE
 // const BASE_URL = "amebae21.hasura-app.io";
 const BASE_URL = process.env.BASE_URL || "amebae21.hasura-app.io"
-// console.log(BASE_URL)
+console.log(BASE_URL)
 
 
 // middleware for processing js files
