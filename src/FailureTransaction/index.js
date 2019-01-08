@@ -43,11 +43,11 @@ class FailureTransaction extends React.Component {
                 </div>
                 <div className="section-content">
                   <span className="os s9">Paid using</span>
-                  <p className="os s8">{ this.modeMap[res.mode] }</p>
+                  <p className="os s8">{ res.mode === "CC" || res.mode === "DC" ? res.cardnum : this.modeMap[res.mode] }</p>
                 </div>
                 <div className="section-content">
                   <span className="os s9">Transaction ID</span>
-                  <p className="os s8">{ res.txnid } </p>
+                  <p className="os s8">#{ res.txnid } </p>
                 </div>
                 <div className="section-content">
                   <span className="os s9">Transaction Date and Time</span>

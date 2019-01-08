@@ -164,7 +164,7 @@ class SendGift extends React.Component {
       if (parseInt(e.target.value) > 10000) {
         //console.log("if3")
         //e.preventDefault()
-        this.setState({otherValue: 10000})
+        // this.setState({otherValue: 10000})
         //this.setState({amountErr: {status: false, value: ''} })
         return;
       }

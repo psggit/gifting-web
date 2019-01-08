@@ -104,6 +104,29 @@ app.post("/transaction-successful", (req, res) => {
   // res.send(reactHTML)
 })
 
+app.post("/transaction-cancelled", (req, res) => {
+  request.post({ url: `https://orderman.${ENDPOINT_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
+    const html = fs.readFileSync("./dist/transaction-failed.html", "utf-8")
+    const [head, tail] = html.split("{content}")
+    res.write(head)
+    console.log(req.query)
+    req.body.message = req.query.message
+    req.body.receiver_name = req.query.receiver_name
+    req.body.receiver_num = req.query.receiver_num
+
+    const reactElement = React.createElement(TransactionFailure, { res: req.body })
+    // console.log(renderToString(reactElement))
+    const stream = renderToNodeStream(reactElement)
+    stream.pipe(res, { end: false })
+    stream.on("end", () => {
+      res.write(tail)
+      res.end()
+    })
+  })
+  // const reactHTML = renderToString(reactElement)
+  // res.send(reactHTML)
+})
+
 app.post("/transaction-failure", (req, res) => {
   request.post({ url: `https://orderman.${ENDPOINT_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync("./dist/transaction-failed.html", "utf-8")

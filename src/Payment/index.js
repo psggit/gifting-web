@@ -28,6 +28,7 @@ class Payment extends React.Component {
       2: "net_banking"
     }
     this.state = {
+      isSubmitting: false,
       senderName: this.gift ? this.gift.senderName : "",
       sender_num: this.gift? this.gift.senderNumber: "",
       gift_message: this.gift ? this.gift.giftMessage : "",
@@ -341,6 +342,7 @@ class Payment extends React.Component {
   }
 
   createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName, CB) {
+    this.setState({ isSubmitting: true })
     POST({
       api: "/consumer/payment/gift/create",
       apiBase: "orderman",
@@ -381,6 +383,9 @@ class Payment extends React.Component {
         // this.setState({ canProceed: true }, () => {
         //   this.submit.click()
         // })
+      })
+      .catch((err) => {
+        this.setState({ isSubmitting: false })
       })
   }
 
@@ -691,7 +696,7 @@ class Payment extends React.Component {
                         </div>
 
                         <div style={{ marginTop: "30px" }}>
-                          <Button disabled={this.state.activeAccordian === -1} onClick={this.handleSubmit} icon="rightArrowWhite" primary>Pay now</Button>
+                          <Button disabled={this.state.activeAccordian === -1 || this.state.isSubmitting} onClick={this.handleSubmit} icon="rightArrowWhite" primary>Pay now</Button>
                         </div>
                         {
                            this.state.selectedPaymentMethod === "card" &&
