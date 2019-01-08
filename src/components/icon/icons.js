@@ -12,7 +12,7 @@ export default {
     </svg>
   ),
   hipbarLogo: (
-    <svg width="80px" height="40px" viewBox="0 0 140 54" version="1.1">
+    <svg width="100px" height="38.57px" viewBox="0 0 140 54" version="1.1">
         <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g id="02a-Gifitng-Website---V0.7---Send-Gift-Cards---V0.2---Using-GCs" transform="translate(-80.000000, -40.000000)" fill="#000000">
                 <g id="Header" transform="translate(80.000000, 40.000000)">

@@ -134,16 +134,17 @@ class SendGift extends React.Component {
   }
 
   handleAmountChange(e) {
+    console.log("change")
     this.setState({ amountErr: {status: false, value: ''}})
     if (e.target.name !== "price4") {
       this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: ""})
     } else {
-      console.log(parseInt(e.target.value))
+      //console.log(parseInt(e.target.value))
       if (parseInt(e.target.value) === 0) {
         //console.log("if1")
-        e.preventDefault()
+        //e.preventDefault()
         //console.log("45")
-        return;
+        //return;
       } 
       if (parseInt(e.target.value) < 100) {
         //console.log("if2")
@@ -152,7 +153,9 @@ class SendGift extends React.Component {
         return
       }
       if (parseInt(e.target.value) > 10000) {
-       // console.log("if3")
+        //console.log("if3")
+        //e.preventDefault()
+        this.setState({otherValue: 10000})
         //this.setState({amountErr: {status: false, value: ''} })
         return;
       }
@@ -383,6 +386,7 @@ class SendGift extends React.Component {
                         value={this.state.giftMessage}
                         onChange={this.handleMessageChange}
                         name="giftMessage" rows="4" cols="50"
+                        placeholder="Enter a personal message for a more personalized experience"
                         // onFocus={() => {this.countChars('char_count',10)}}
                         // onKeyDown={() => {this.countChars('char_count',10)}}
                         // onKeyUp={() => {this.countChars('char_count',10)}}
@@ -394,7 +398,7 @@ class SendGift extends React.Component {
                   </div>
 
                   <div className="form-item recipient-info">
-                    <h3 className="os s5">Recipient Information</h3>
+                    <h1 className="os s5">Recipient Information</h1>
 
                     <div className="form-group">
                       <label className="os">Name</label>
