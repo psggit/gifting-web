@@ -1,14 +1,14 @@
 
 function getAPIObj() {
-  let scheme = "https"
-  let baseHost = ".amebae21.hasura-app.io"
-  let appName = "amebae21"
+  // console.log(BASE_URL)
+  const baseHost = "amebae21.hasura-app.io"
+
   return {
-    authUrl: "https://auth." + appName + ".hasura-app.io",
-    blogicUrl: "https://api1." + appName + ".hasura-app.io",
-    orderman: scheme + "://orderman" + baseHost,
-    catman: scheme + "://catman" + baseHost,
-    loki: scheme + "://loki" + baseHost
+    authUrl: "https://auth." + baseHost,
+    blogicUrl: "https://api1." + baseHost,
+    orderman: "https://orderman." + baseHost,
+    catman: "https://catman." + baseHost,
+    loki: "https://loki." + baseHost
   }
 }
 

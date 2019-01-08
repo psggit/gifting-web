@@ -17,9 +17,9 @@ app.disable("x-powered-by")
 
 // ENV variables
 // const PROD_API_BASE = process.env.PROD_API_BASE
-// const ENDPOINT_URL = "amebae21.hasura-app.io";
-const ENDPOINT_URL = process.env.ENDPOINT_URL || "amebae21.hasura-app.io"
-console.log(ENDPOINT_URL)
+// const BASE_URL = "amebae21.hasura-app.io";
+const BASE_URL = process.env.BASE_URL || "amebae21.hasura-app.io"
+// console.log(BASE_URL)
 
 
 // middleware for processing js files
@@ -80,8 +80,12 @@ app.get("/transaction-failure", (req, res) => {
   res.send("Not found")
 })
 
+app.get("/transaction-cancelled", (req, res) => {
+  res.send("Not found")
+})
+
 app.post("/transaction-successful", (req, res) => {
-  request.post({ url: `https://orderman.${ENDPOINT_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
+  request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     console.log(httpRes)
     const html = fs.readFileSync("./dist/transaction-success.html", "utf-8")
     const [head, tail] = html.split("{content}")
@@ -105,7 +109,7 @@ app.post("/transaction-successful", (req, res) => {
 })
 
 app.post("/transaction-cancelled", (req, res) => {
-  request.post({ url: `https://orderman.${ENDPOINT_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
+  request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync("./dist/transaction-failed.html", "utf-8")
     const [head, tail] = html.split("{content}")
     res.write(head)
@@ -128,7 +132,7 @@ app.post("/transaction-cancelled", (req, res) => {
 })
 
 app.post("/transaction-failure", (req, res) => {
-  request.post({ url: `https://orderman.${ENDPOINT_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
+  request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync("./dist/transaction-failed.html", "utf-8")
     const [head, tail] = html.split("{content}")
     res.write(head)

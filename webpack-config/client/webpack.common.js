@@ -42,7 +42,8 @@ module.exports = {
       template: path.resolve(__dirname, "./../../index.html")
     }),
     new webpack.DefinePlugin({
-      ENDPOINT_URL: process.env.ENDPOINT_URL || "amebae21.hasura-app.io"
+      "BASE_URL": JSON.stringify(process.env.BASE_URL || "amebae21.hasura-app.io"),
+      "PAYU_BASE": JSON.stringify(process.env.PAYU_BASE || "test"),
     })
   ],
   output: {

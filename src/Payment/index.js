@@ -700,7 +700,7 @@ class Payment extends React.Component {
                         </div>
                         {
                            this.state.selectedPaymentMethod === "card" &&
-                          <form action="https://test.payu.in/_payment" method="post">
+                          <form action={`https://${PAYU_BASE}.payu.in/_payment`} method="post">
                             {this.getCardBankingForm()}
                             <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit"></input>
                           </form>
@@ -708,7 +708,7 @@ class Payment extends React.Component {
 
                         {
                           this.state.selectedPaymentMethod === "net_banking" &&
-                          <form action="https://test.payu.in/_payment" method="post">
+                          <form action={`https://${PAYU_BASE}.payu.in/_payment`} method="post">
                             {this.getNetBankingForm()}
                             <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit"></input>
                           </form>
