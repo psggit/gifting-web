@@ -29,7 +29,7 @@ import PaymentStatus from "./payment-status"
 import {ThemeProvider, ThemeContext} from "./ThemeProvider"
 import Header from "Components/header"
 import Footer from "Components/footer"
-import NotFound from "./NotFound"
+// import NotFound from "./NotFound"
 // import makeAsyncComponent from './makeAsyncComponent'
 
 // const UsingGiftCard = makeAsyncComponent(() => import("./GiftCardInfo").then(module => module.default), { name: "Page 1" })
