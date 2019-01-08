@@ -117,7 +117,7 @@ class RetailOutlet extends React.Component {
           <p className="os s7">{item.retailer_address}</p>
         </div>
         {/* <p className="direction os s8" onClick={() => this.loadMap(item.retailer_gps)}>DIRECTIONS</p> */}
-        <a className="direction os s8" href={`/locationMap?lat=${gpsCoordinates[0]}&lng=${gpsCoordinates[1]}&retailerName=${item.retailer_name}`} target="_blank">
+        <a className="direction os s8" href={` https://www.google.com/maps/search/?api=1&query=${gpsCoordinates[0]},${gpsCoordinates[1]}`} target="_blank">
           <span style={{marginRight: '13px'}}>DIRECTIONS</span>
           <span style={{position: 'relative', top: '3px'}}><Icon name="rightArrowBlack" /></span>
         </a>
