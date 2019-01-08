@@ -428,9 +428,7 @@ class Payment extends React.Component {
                                 <input value={this.state.ccname} onBlur={(e) => { this.setState({ ccname: this.state.ccname.trim() })}} onChange={this.handleCardnameChange} type="text" />
                               </div>
 
-                              <div style={{  display: "flex", alignItems: "center", flexDirection: "row-reverse", justifyContent: "flex-end" }} className="form-group">
-                                {/* <label htmlFor="save-card" style={{ marginLeft: "10px", cursor: "pointer" }} >Save card for faster transactions</label>
-                                <input id="save-card" type="checkbox" onChange={this.handleSaveCard} /> */}
+                              {/* <div style={{  display: "flex", alignItems: "center", flexDirection: "row-reverse", justifyContent: "flex-end" }} className="form-group">
                                 <div onClick={() => this.handleSaveCard()} style={{marginBottom: '10px'}}>
                                   <span style={{marginRight: '10px', display: 'inline-block', verticalAlign: 'middle', cursor: 'pointer'}}>
                                     {
@@ -441,7 +439,7 @@ class Payment extends React.Component {
                                   </span>
                                   <span style={{ display: 'inline-block', cursor: 'pointer'}}>Save card for faster transactions</span>
                                 </div>
-                              </div>
+                              </div> */}
                             </AccordianItem>
 
                             <AccordianItem key={2} title="Net Banking" id={2} showRadioButton={true}>

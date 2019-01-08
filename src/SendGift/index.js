@@ -66,6 +66,7 @@ class SendGift extends React.Component {
     this.proceedToPayment = this.proceedToPayment.bind(this)
     this.toggleHowTo = this.toggleHowTo.bind(this)
     this.whatsappText = "Hey checkout hipbar gifting. http://192.168.0.113:8080"
+    this.getOtherAmountClassName = this.getOtherAmountClassName.bind(this)
   }
 
   componentDidMount() {
@@ -133,20 +134,30 @@ class SendGift extends React.Component {
   }
 
   handleAmountChange(e) {
+    this.setState({ amountErr: {status: false, value: ''}})
     if (e.target.name !== "price4") {
-      this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: "" })
+      this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: ""})
     } else {
       console.log(parseInt(e.target.value))
       if (parseInt(e.target.value) === 0) {
-       e.preventDefault()
-       console.log("45")
+        //console.log("if1")
+        e.preventDefault()
+        //console.log("45")
         return;
       } 
+      if (parseInt(e.target.value) < 100) {
+        //console.log("if2")
+        this.setState({ amountErr: {status: true, value: 'Minimum gift card value should be ₹100'}, otherValue: e.target.value})
+        //e.preventDefault()
+        return
+      }
       if (parseInt(e.target.value) > 10000) {
+       // console.log("if3")
+        //this.setState({amountErr: {status: false, value: ''} })
         return;
       }
-      console.log("35")
-      this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: e.target.value })
+      //console.log("35")
+      this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: e.target.value})
     }
   }
 
@@ -219,6 +230,18 @@ class SendGift extends React.Component {
     console.log("e", e.target.checked)
     this.setState({agreedTermsAndConditions: true})
   }
+
+  getOtherAmountClassName() {
+    let classname;
+    if(this.state.activePrice === "price4") {
+      classname += "focused"
+    } 
+    if(this.state.amountErr.status) {
+      classname += "mobile error"
+    }
+    //classname = undefined;
+    return classname;
+  }
   // componentDidMount() {
   //   POST({
   //     api: "/consumer/payment/gift/create",
@@ -230,7 +253,7 @@ class SendGift extends React.Component {
   render() {
     console.log("state in send gift", this.state)
     //console.log("sender nae", this.state.senderName)
-    const {receiverNameErr, receiverNumberErr} = this.state;
+    const {receiverNameErr, receiverNumberErr, isActive} = this.state;
     return (
       <div>
         <div id="send-gift">
@@ -239,7 +262,7 @@ class SendGift extends React.Component {
               <p style={{ padding: "0 0 0 30px", color: "#fff" }} className="os s3">
                 Using HipBar Gift Cards
               </p>
-              <span style={{ marginLeft: "15px" }}>
+              <span className={`icon ${isActive ? 'show' : 'hide'}`}>
                 <Icon name="filledDownArrowWhite" />
               </span>
             </div>
@@ -334,7 +357,7 @@ class SendGift extends React.Component {
                           <InputMask 
                             mask="99999"
                             maskChar={null}
-                            className={this.state.activePrice === "price4" ? "focused" : undefined}
+                            className={this.getOtherAmountClassName()}
                             onFocus={(e) => {
                               this.setState({ activePrice: "price4", amount: "" }) 
                             }}
