@@ -10,7 +10,7 @@ RUN npm install -g autoprefixer
 
 COPY ./ /app
 
-RUN yarn run build
+RUN yarn run build-p
 
 # ENV NODE_PATH /app/node_modules/
 # ENV NODE_PATH /usr/lib/node_modules/
