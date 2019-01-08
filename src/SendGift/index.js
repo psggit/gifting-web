@@ -83,7 +83,7 @@ class SendGift extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("componrnt fif update")
+    //console.log("componrnt fif update")
     //console.log("send gift", prevProps, this.props, prevProps.name, this.props.name)
     if (prevProps.paramObj.username !== this.props.paramObj.username || prevProps.paramObj.mobile !== this.props.paramObj.mobile || prevProps.paramObj.isLoggedIn !== this.props.paramObj.isLoggedIn ) {
       this.setState({ senderName: this.props.paramObj.username, senderNumber: this.props.paramObj.mobile, isLoggedIn: this.props.paramObj.isLoggedIn})

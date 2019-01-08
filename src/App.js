@@ -236,7 +236,7 @@ class App extends React.Component {
                         render={
                           props => (
                             <TransactionHistory {...props} 
-                              paramObj={paramObj}
+                              //paramObj={paramObj}
                               // name={this.state.username} 
                               // isLoggedIn={this.state.isLoggedIn}
                             />

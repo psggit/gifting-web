@@ -20,9 +20,10 @@ class Header extends React.Component {
       isMenuOpen: false,
       //errorInSignIn: false,
       showDropdown: false,
-      username: "",
-      isLoggedIn: false
+      username: localStorage.getItem("username"),
+      isLoggedIn: localStorage.getItem("hasura-id") ? true : false
     }
+    console.log("login", localStorage.getItem("hasura-id") ? true : false)
     this.navItems = [
       {
         label: "Send Gift Cards",
@@ -59,11 +60,12 @@ class Header extends React.Component {
     //   this.setState({isLoggedIn: true })
     // }
     //console.log("header mount", this.props)
-    this.setState({isLoggedIn: this.props.paramObj && this.props.paramObj.isLoggedIn ? this.props.paramObj.isLoggedIn  : ""})
-
-    if(this.props.paramObj && this.props.paramObj.username) {
-      this.setState({username: this.props.paramObj.username})
-    }
+    //this.setState({isLoggedIn: this.props.paramObj && this.props.paramObj.isLoggedIn ? this.props.paramObj.isLoggedIn  : ""})
+    this.setState({isLoggedIn: localStorage.getItem("hasura-id") ? true  : false})
+    this.setState({username: localStorage.getItem("username")})
+    // if(this.props.paramObj && this.props.paramObj.username) {
+    //   this.setState({username: this.props.paramObj.username})
+    // }
 
     // if(!this.state.isLoggedIn) {
     //   setTimeout(()=> {localStorage.setItem("showAgeGate", true)}, 1000)
@@ -163,7 +165,7 @@ class Header extends React.Component {
       <ThemeProvider>
         <ThemeConsumer>
           {(paramObj) => {
-            const isLoggedIn = paramObj.isLoggedIn
+            const {isLoggedIn} = this.state
             return (
             <div className="navbar">
         {/* <div className="logo"> */}
@@ -214,7 +216,7 @@ class Header extends React.Component {
               <span className="user">
                 <Icon name="appUser" style={{marginRight: '10px'}}/>
               </span>
-              <div className="os s7"  style={{marginRight: '8px'}} >{paramObj.username}</div>
+              <div className="os s7"  style={{marginRight: '8px'}} >{this.state.username}</div>
               <span style={{display: 'flex', alignSelf: 'center'}}>
                 <Icon name="filledDownArrow" />
               </span>
@@ -255,7 +257,7 @@ class Header extends React.Component {
                   <span className="user" style={{marginRight: '10px'}}>
                     <Icon name="mobileApplnUser" />
                   </span>
-                  <span style={{color: '#fff'}}>{paramObj.username}</span>
+                  <span style={{color: '#fff'}}>{this.state.username}</span>
                 </React.Fragment>
               }
             </li>
