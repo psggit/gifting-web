@@ -29,6 +29,7 @@ import PaymentStatus from "./payment-status"
 import {ThemeProvider, ThemeContext} from "./ThemeProvider"
 import Header from "Components/header"
 import Footer from "Components/footer"
+import NotFound from "./NotFound"
 // import makeAsyncComponent from './makeAsyncComponent'
 
 // const UsingGiftCard = makeAsyncComponent(() => import("./GiftCardInfo").then(module => module.default), { name: "Page 1" })
@@ -283,24 +284,18 @@ class App extends React.Component {
                         path="/transaction-successful" 
                         //component={TransactionSuccessful} 
                         render={
-                          props => (
-                            <TransactionSuccessful {...props} 
-                              // name={this.state.username} 
-                              // isLoggedIn={this.state.isLoggedIn}
-                            />
-                          )
+                          props => localStorage.getItem("txn")
+                            ? <TransactionSuccessful {...props} />
+                            : <NotFound />
                         } 
                       />
                       <Route exact 
                         path="/transaction-failure" 
                         //component={TransactionFail} 
                         render={
-                          props => (
-                            <TransactionFail {...props} 
-                              // name={this.state.username} 
-                              // isLoggedIn={this.state.isLoggedIn}
-                            />
-                          )
+                          props => localStorage.getItem("txn")
+                            ? <TransactionFail {...props} />
+                            : <NotFound />
                         } 
                       /> */}
                       <Route 

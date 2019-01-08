@@ -9,7 +9,7 @@ console.log(path.resolve(__dirname, "./../../src/payment-status.html"))
 module.exports = {
   entry: {
     transaction_success: path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
-    transaction_failure: path.resolve(__dirname, "./../../src/FailureTransaction"),
+    // transaction_failure: path.resolve(__dirname, "./../../src/FailureTransaction/root"),
     app: path.resolve(__dirname, "./../../src/App.js"),
   },
   plugins: [
@@ -30,7 +30,7 @@ module.exports = {
       template: path.resolve(__dirname, "./../../src/payment-status.html")
     }),
     new HtmlWebpackPlugin({
-      // chunks: ["transaction_failure"],
+      chunks: ["transaction_failure"],
       title: "Transaction Failed",
       filename: "transaction-failed.html",
       template: path.resolve(__dirname, "./../../src/payment-status.html")

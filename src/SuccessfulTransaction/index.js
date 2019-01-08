@@ -49,12 +49,12 @@ class SuccessfulTransaction extends React.Component {
                 <p className="subheader">Gift Card Details</p>
                 <p style={{marginTop: '20px', fontWeight: 'bold'}} className="os s8">To:</p>
                 <div className="section-content">
-                  <p className="os s8">{ res.firstname + res.lastname } </p>
-                  <p className="os s8">{ res.phone }</p>
+                  <p className="os s8">{ res.receiver_name } </p>
+                  <p className="os s8">{ res.receiver_num }</p>
                 </div>
                 <div className="section-content">
                   <span className="os s8" style={{fontWeight: 'bold'}}>Personal Message - </span>
-                  <span className="os s8">message</span>
+                  <span className="os s8">{res.message}</span>
                 </div>
               </div>
             </div>

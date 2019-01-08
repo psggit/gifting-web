@@ -28,7 +28,7 @@ class SendGift extends React.Component {
     this.storedState = JSON.parse(localStorage.getItem("send__gift__state"))
     this.defaultState = {
       activePrice: "price1",
-      amount: "499",
+      amount: "500",
       giftMessage: "",
       receiverName: "",
       receiverNumber: "",
@@ -304,7 +304,7 @@ class SendGift extends React.Component {
                             onClick={this.handleAmountChange}
                             name="price1"
                             type="text"
-                            defaultValue="499"
+                            defaultValue="500"
                             readOnly 
                           />
                         </div>
@@ -316,7 +316,7 @@ class SendGift extends React.Component {
                             onClick={this.handleAmountChange}
                             name="price2"
                             type="text"
-                            defaultValue="999"
+                            defaultValue="1000"
                             readOnly 
                           />
                         </div>
@@ -328,7 +328,7 @@ class SendGift extends React.Component {
                             onClick={this.handleAmountChange}
                             name="price3"
                             type="text"
-                            defaultValue="1999"
+                            defaultValue="2000"
                             readOnly
                           />
                         </div>
