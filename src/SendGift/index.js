@@ -76,7 +76,7 @@ class SendGift extends React.Component {
       left: 0,
       behavior: 'smooth'
     })
-    localStorage.removeItem("txn")
+    localStorage.removeItem("gift")
     //localStorage.setItem("showAgeGate", false)
     if(!readCookie("isAgeGateAgreed")) {
       mountModal(AgeGate({}))
@@ -129,7 +129,16 @@ class SendGift extends React.Component {
     console.log(amountErr, receiverNumberErr)
     
     if(senderName.length && !amountErr.status && !receiverNumberErr.status && !receiverNameErr.status) {
-      this.createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName)
+      // this.createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName)
+      localStorage.setItem("gift", JSON.stringify({
+        amount,
+        giftMessage,
+        receiverName,
+        receiverNumber,
+        senderName,
+        senderNumber: this.state.senderNumber,
+      }))
+      this.props.history.push("/checkout")
     }
   }
 

@@ -182,7 +182,7 @@ export default function SignUp(data) {
         },
         mobile: this.state.mobileNo,
         email: this.state.email,
-        username: this.state.name
+        username: this.state.email
       }
       const fetchOptions = {
         method: 'post',

@@ -53,11 +53,12 @@ class SuccessfulTransaction extends React.Component {
                   <p className="os s8">{ res.receiver_num }</p>
                 </div>
                 {
-                  res.message.length &&
-                  <div className="section-content">
-                    <span className="os s8" style={{fontWeight: 'bold'}}>Personal Message - </span>
-                    <span className="os s8">{res.message}</span>
-                  </div>
+                  res.message.length
+                    ? <div className="section-content">
+                      <span className="os s8" style={{fontWeight: 'bold'}}>Personal Message - </span>
+                      <span className="os s8">{res.message}</span>
+                    </div>
+                    : ""
                 }
               </div>
             </div>

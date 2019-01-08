@@ -82,23 +82,23 @@ app.get("/transaction-failure", (req, res) => {
 
 app.post("/transaction-successful", (req, res) => {
   request.post({ url: `https://orderman.${ENDPOINT_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
-    // console.log(err, httpRes, body)
-  })
-  const html = fs.readFileSync("./dist/transaction-success.html", "utf-8")
-  const [head, tail] = html.split("{content}")
-  res.write(head)
-  console.log(req.query)
-  req.body.message = req.query.message
-  req.body.receiver_name = req.query.receiver_name
-  req.body.receiver_num = req.query.receiver_num
-  //console.log("res body", req.body)
-  const reactElement = React.createElement(TransactionSuccess, { res: req.body })
-  // console.log(renderToString(reactElement))
-  const stream = renderToNodeStream(reactElement)
-  stream.pipe(res, { end: false })
-  stream.on("end", () => {
-    res.write(tail)
-    res.end()
+    console.log(httpRes)
+    const html = fs.readFileSync("./dist/transaction-success.html", "utf-8")
+    const [head, tail] = html.split("{content}")
+    res.write(head)
+    // console.log(req.query)
+    req.body.message = req.query.message
+    req.body.receiver_name = req.query.receiver_name
+    req.body.receiver_num = req.query.receiver_num
+    //console.log("res body", req.body)
+    const reactElement = React.createElement(TransactionSuccess, { res: req.body })
+    // console.log(renderToString(reactElement))
+    const stream = renderToNodeStream(reactElement)
+    stream.pipe(res, { end: false })
+    stream.on("end", () => {
+      res.write(tail)
+      res.end()
+    })
   })
   // const reactHTML = renderToString(reactElement)
   // res.send(reactHTML)
@@ -106,23 +106,22 @@ app.post("/transaction-successful", (req, res) => {
 
 app.post("/transaction-failure", (req, res) => {
   request.post({ url: `https://orderman.${ENDPOINT_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
-    // console.log(err, httpRes, body)
-  })
-  const html = fs.readFileSync("./dist/transaction-failed.html", "utf-8")
-  const [head, tail] = html.split("{content}")
-  res.write(head)
-  console.log(req.query)
-  req.body.message = req.query.message
-  req.body.receiver_name = req.query.receiver_name
-  req.body.receiver_num = req.query.receiver_num
+    const html = fs.readFileSync("./dist/transaction-failed.html", "utf-8")
+    const [head, tail] = html.split("{content}")
+    res.write(head)
+    console.log(req.query)
+    req.body.message = req.query.message
+    req.body.receiver_name = req.query.receiver_name
+    req.body.receiver_num = req.query.receiver_num
 
-  const reactElement = React.createElement(TransactionFailure, { res: req.body })
-  // console.log(renderToString(reactElement))
-  const stream = renderToNodeStream(reactElement)
-  stream.pipe(res, { end: false })
-  stream.on("end", () => {
-    res.write(tail)
-    res.end()
+    const reactElement = React.createElement(TransactionFailure, { res: req.body })
+    // console.log(renderToString(reactElement))
+    const stream = renderToNodeStream(reactElement)
+    stream.pipe(res, { end: false })
+    stream.on("end", () => {
+      res.write(tail)
+      res.end()
+    })
   })
   // const reactHTML = renderToString(reactElement)
   // res.send(reactHTML)

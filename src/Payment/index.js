@@ -8,7 +8,7 @@ import Collapsible from "Components/collapsible"
 import Button from "Components/button"
 import Accordian from "Components/accordian"
 import AccordianItem from "Components/accordian/accordian-item"
-import { GET } from "Utils/fetch"
+import { GET, POST } from "Utils/fetch"
 import GiftCard from "Components/gift-card"
 import Icon from "Components/icon"
 import InputMask from "react-input-mask"
@@ -20,18 +20,20 @@ class Payment extends React.Component {
   constructor(props) {
     super(props)
     // console.log(this.props.history.location.state)
-    this.txn = this.props.history.location.state || JSON.parse(localStorage.getItem("txn"))
+    this.gift = JSON.parse(localStorage.getItem("gift"))
+    // localStorage.removeItem("gift")
+    // this.txn = JSON.parse(localStorage.getItem("txn"))
     this.paymentMethods = {
       1: "card",
       2: "net_banking"
     }
     this.state = {
-      senderName: this.txn ? this.txn.sender_name : "",
-      sender_num: this.txn ? this.txn.sender_num : "",
-      gift_message: this.txn ? this.txn.gift_message : "",
-      receiver_name: this.txn ? this.txn.receiver_name : "",
-      receiver_number: this.txn ? this.txn.receiver_number : "",
-      amount: this.txn ? this.txn.amount : "",
+      senderName: this.gift ? this.gift.senderName : "",
+      sender_num: this.gift? this.gift.senderNumber: "",
+      gift_message: this.gift ? this.gift.giftMessage : "",
+      receiver_name: this.gift ? this.gift.receiverName : "",
+      receiver_number: this.gift ? this.gift.receiverNumber : "",
+      amount: this.gift ? this.gift.amount : "",
       popularBanks: [],
       banks: [],
       savedCards: [],
@@ -70,6 +72,7 @@ class Payment extends React.Component {
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
+    this.hasTransactionCreated = false
     this.getBanks = this.getBanks.bind(this)
     this.getSavedCards = this.getSavedCards.bind(this)
     this.setActiveAccordian = this.setActiveAccordian.bind(this)
@@ -86,6 +89,7 @@ class Payment extends React.Component {
     this.toggleHowTo = this.toggleHowTo.bind(this)
     this.handleSaveCard = this.handleSaveCard.bind(this)
     this.isNormalCardDetailsValid = this.isNormalCardDetailsValid.bind(this)
+    this.createTransaction = this.createTransaction.bind(this)
     // this.getButtonStatus = this.getButtonStatus.bind(this)
   }
 
@@ -95,7 +99,7 @@ class Payment extends React.Component {
       left: 0,
       behavior: 'smooth'
     })
-    if (!localStorage.getItem("txn")) {
+    if (!localStorage.getItem("gift")) {
       console.log("go back")
       this.props.history.goBack()
     }
@@ -196,7 +200,7 @@ class Payment extends React.Component {
     //console.log(this.state.ccname.length, this.state.ccnum.length,this.state.ccvv.length)
     if (this.state.ccname.length === 0) {
       ccNameErr.status = true,
-        ccNameErr.value = "Credit card name is required"
+        ccNameErr.value = "Card name is required"
       this.setState({ ccNameErr })
     }
 
@@ -207,7 +211,7 @@ class Payment extends React.Component {
 
     if (this.state.ccnum.length === 0) {
       ccNumErr.status = true,
-        ccNumErr.value = "Credit card number is required"
+        ccNumErr.value = "Card number is required"
       this.setState({ ccNumErr })
     }
 
@@ -248,28 +252,34 @@ class Payment extends React.Component {
   }
 
   handleSubmit() {
+    const { amount, gift_message, receiver_number, senderName, receiver_name } = this.state
     if (this.state.activeAccordian === 1) {
-      this.setState({ selectedPaymentMethod: "card" }, () => {
-        console.log("Processing normal card payment..")
         if (this.isNormalCardDetailsValid()) {
-          this.submit.click()
+          console.log("Processing normal card payment..")
+          this.createTransaction(amount, gift_message, receiver_number, senderName, receiver_name, () => {
+            this.setState({ selectedPaymentMethod: "card" }, () => {
+              this.submit.click()
+            })
+          })
         }
-      })
     } else if (this.state.activeAccordian === 2) {
-      this.setState({ selectedPaymentMethod: "net_banking" }, () => {
+      if (this.state.bankcode !== "null") {
         console.log("Processing net banking..")
-        // console.log(this.bankcode)
-        if (this.state.bankcode !== "null") {
-          this.submit.click()
-        }
-      })
+        this.createTransaction(amount, gift_message, receiver_number, senderName, receiver_name, () => {
+          this.setState({ selectedPaymentMethod: "net_banking" }, () => {
+            this.submit.click()
+          })
+        })
+      }
     } else {
-      this.setState({ selectedPaymentMethod: "card" }, () => {
+      if (this.isSavedCardDetailsValid()) {
         console.log("Processing saved card payment..")
-        if (this.isSavedCardDetailsValid()) {
-          this.submit.click()
-        }
-      })
+        this.createTransaction(amount, gift_message, receiver_number, senderName, receiver_name, () => {
+          this.setState({ selectedPaymentMethod: "card" }, () => {
+            this.submit.click()
+          })
+        })
+      }
     }
   }
 
@@ -330,71 +340,123 @@ class Payment extends React.Component {
     })
   }
 
-  getNetBankingForm() {
-    const { bankcode } = this.state
-    const postBody = {
-      key: this.txn.key,
-      txnid: this.txn.txnid,
-      amount: this.txn.amount,
-      productinfo: "gift",
-      firstname: this.txn.first_name,
-      email: this.txn.email,
-      phone: this.txn.phone,
-      lastname: "",
-      surl: `${location.origin}/transaction-successful?message=${this.txn.gift_message}&receiver_name=${this.txn.receiver_name}&receiver_num=${this.txn.receiver_number}`,
-      furl: `${location.origin}/transaction-failure?message=${this.txn.gift_message}&receiver_name=${this.txn.receiver_name}&receiver_num=${this.txn.receiver_number}`,
-      curl: `${location.origin}/transaction-cancelled?message=${this.txn.gift_message}&receiver_name=${this.txn.receiver_name}&receiver_num=${this.txn.receiver_number}`,
-      hash: this.txn.hash,
-      pg: "NB",
-      bankcode,
-      udf1: "web"
-    }
+  createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName, CB) {
+    POST({
+      api: "/consumer/payment/gift/create",
+      apiBase: "orderman",
+      data: {
+        amount: parseFloat(amount),
+        mode: "gift",
+        gift_message: giftMessage,
+        receiver_number: receiverNumber,
+        sender_name: senderName,
+        device: "web",
+        receiver_name: receiverName
+      },
+      handleError: true
+    })
+      .then((json) => {
+        this.txn = {
+          amount: json.amount,
+          txnid: json.txnid,
+          hash: json.hash,
+          key: json.key,
+          user_cred: json.user_cred,
+          email: json.email,
+          first_name: json.first_name,
+          // sender_name: senderName,
+          // sender_num: this.state.senderNumber,
+          // gift_message: giftMessage,
+          // receiver_name: receiverName,
+          // receiver_num: receiverNumber
+        }
 
-    return Object.entries(postBody).map(([key, value]) => (
-      <input type="hidden" name={key} value={value} />
-    ))
+        CB()
+        localStorage.removeItem("gift")
+
+        
+        // localStorage.setItem("txn", JSON.stringify(this.postBody))
+        // this.props.history.push("/checkout", this.postBody)
+        // location.href = "/checkout"
+        // this.setState({ canProceed: true }, () => {
+        //   this.submit.click()
+        // })
+      })
+  }
+
+  getNetBankingForm() {  
+    // if (this.state.hasTransactionCreated) {
+      const { bankcode } = this.state
+      const postBody = {
+        key: this.txn.key,
+        txnid: this.txn.txnid,
+        amount: this.txn.amount,
+        productinfo: "gift",
+        firstname: this.txn.first_name,
+        email: this.txn.email,
+        phone: this.txn.phone,
+        lastname: "",
+        surl: `${location.origin}/transaction-successful?message=${this.gift.giftMessage}&receiver_name=${this.gift.receiverName}&receiver_num=${this.gift.receiverNumber}`,
+        furl: `${location.origin}/transaction-failure?message=${this.gift.giftMessage}&receiver_name=${this.gift.receiverName}&receiver_num=${this.gift.receiverNumber}`,
+        curl: `${location.origin}/transaction-cancelled?message=${this.gift.giftMessage}&receiver_name=${this.gift.receiverName}&receiver_num=${this.gift.receiverNumber}`,
+        hash: this.txn.hash,
+        pg: "NB",
+        bankcode,
+        udf1: "web"
+      }
+
+      return Object.entries(postBody).map(([key, value]) => (
+        <input type="hidden" name={key} value={value} />
+      ))
+    // }
+    // sender_num: this.state.senderNumber,
+    // gift_message: giftMessage,
+    // receiver_name: receiverName,
+    // receiver_number: receiverNumber
   }
 
   getCardBankingForm() {
-    const postBody = {
-      key: this.txn.key,
-      txnid: this.txn.txnid,
-      amount: this.txn.amount,
-      productinfo: "gift",
-      firstname: this.txn.first_name,
-      email: this.txn.email,
-      phone: this.txn.sender_num,
-      lastname: "",
-      surl: `${location.origin}/transaction-successful?message=${this.txn.gift_message}&receiver_name=${this.txn.receiver_name}&receiver_num=${this.txn.receiver_number}`,
-      furl: `${location.origin}/transaction-failure?message=${this.txn.gift_message}&receiver_name=${this.txn.receiver_name}&receiver_num=${this.txn.receiver_number}`,
-      curl: `${location.origin}/transaction-cancelled?message=${this.txn.gift_message}&receiver_name=${this.txn.receiver_name}&receiver_num=${this.txn.receiver_number}`,
-      hash: this.txn.hash,
-      pg: "DC",
-      ccname: this.state.ccname,
-      // ccvv: this.state.ccvv,
-      ccexpmon: this.state.ccexp.split("/")[0],
-      ccexpyr: this.state.ccexp.split("/")[1],
-      user_credentials: this.txn.user_cred,
-      udf1: "web"
-    }
-
-    if (this.state.ccnum.length) {
-      postBody.ccnum = this.state.ccnum.split(" ").join("")
-      postBody.ccvv = this.state.ccvv
-    }
-
-    if (this.state.store_card) {
-      postBody.store_card = 1
-    }
-
-    if (this.state.cctoken.length) {
-      postBody.ccvv = this.state.savedccvv
-      postBody.store_card_token = this.state.cctoken
-    }
-
-    return Object.entries(postBody).map(([key, value]) => (
-      <input type="hidden" name={key} value={value} />
-    ))
+    // if (this.state.hasTransactionCreated) {
+      const postBody = {
+        key: this.txn.key,
+        txnid: this.txn.txnid,
+        amount: this.txn.amount,
+        productinfo: "gift",
+        firstname: this.txn.first_name,
+        email: this.txn.email,
+        phone: this.txn.sender_num,
+        lastname: "",
+        surl: `${location.origin}/transaction-successful?message=${this.gift.giftMessage}&receiver_name=${this.gift.receiverName}&receiver_num=${this.gift.receiverNumber}`,
+        furl: `${location.origin}/transaction-failure?message=${this.gift.giftMessage}&receiver_name=${this.gift.receiverName}&receiver_num=${this.gift.receiverNumber}`,
+        curl: `${location.origin}/transaction-cancelled?message=${this.gift.giftMessage}&receiver_name=${this.gift.receiverName}&receiver_num=${this.gift.receiverNumber}`,
+        hash: this.txn.hash,
+        pg: "DC",
+        ccname: this.state.ccname,
+        // ccvv: this.state.ccvv,
+        ccexpmon: this.state.ccexp.split("/")[0],
+        ccexpyr: this.state.ccexp.split("/")[1],
+        user_credentials: this.txn.user_cred,
+        udf1: "web"
+      }
+  
+      if (this.state.ccnum.length) {
+        postBody.ccnum = this.state.ccnum.split(" ").join("")
+        postBody.ccvv = this.state.ccvv
+      }
+  
+      if (this.state.store_card) {
+        postBody.store_card = 1
+      }
+  
+      if (this.state.cctoken.length) {
+        postBody.ccvv = this.state.savedccvv
+        postBody.store_card_token = this.state.cctoken
+      }
+  
+      return Object.entries(postBody).map(([key, value]) => (
+        <input type="hidden" name={key} value={value} />
+      ))
+    // }
   }
 
   setCardValues(id) {
@@ -416,7 +478,7 @@ class Payment extends React.Component {
     return (
       <div>
         {
-          localStorage.getItem("txn")
+          localStorage.getItem("gift")
             ? (
               <div>
                 <div id="checkout">
@@ -632,7 +694,7 @@ class Payment extends React.Component {
                           <Button disabled={this.state.activeAccordian === -1} onClick={this.handleSubmit} icon="rightArrowWhite" primary>Pay now</Button>
                         </div>
                         {
-                          this.state.selectedPaymentMethod === "card" &&
+                           this.state.selectedPaymentMethod === "card" &&
                           <form action="https://test.payu.in/_payment" method="post">
                             {this.getCardBankingForm()}
                             <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit"></input>

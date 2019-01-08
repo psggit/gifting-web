@@ -87,19 +87,23 @@ class TransactionHistory extends React.Component {
         <div className="item-body">
           <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px', marginRight: '24px'}}>
             <p className="os s9">
-              Gift Card ID
+              Transaction ID
             </p>
-            <span className="os s8">#{item.gift_card_number}</span>
+            <span className="os s8">#{item.txn_id}</span>
           </div>
           <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px', marginRight: '24px'}}>
             <p className="os s9">Transaction Date & Time</p>
             <span className="os s8">{Moment(item.gifted_on).format('DD/MM/YYYY, HH:mm A')}</span>
           </div>
         </div>
-        <div className="item-footer">
-          <p className="os s9">Personal Message</p>
-          <p className="os s8">{item.gift_message ? item.gift_message : '-'}</p>
-        </div>
+        {
+          item.gift_message
+            ? <div className="item-footer">
+              <p className="os s9">Personal Message</p>
+              <p className="os s8">{item.gift_message}</p>
+            </div>
+            : ""
+        }
       </div>
     ))
   }
