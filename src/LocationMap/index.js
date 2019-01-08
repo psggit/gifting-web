@@ -9,7 +9,8 @@ class LocationMap extends React.Component {
     //console.log("props", props)
     this.state = {
       lat: "",
-      lng: ""
+      lng: "",
+      retailerName: ""
     }
   }
 
@@ -50,13 +51,14 @@ class LocationMap extends React.Component {
     const queryObj = getQueryObj(queryUri)
 
     Object.entries(queryObj).forEach((item) => {
-      this.setState({[item[0]]: parseFloat(item[1]) },
+      console.log("item", item[0], item[1])
+      this.setState({[item[0]]: (item[1]) },
         () => {console.log("state", this.state)})
         //this.filter[item[0]] = item[1]
     })
 
     this.getGoogleMaps().then((google) => {
-      const location = {lat: this.state.lat, lng: this.state.lng};
+      const location = {lat: parseFloat(this.state.lat), lng: parseFloat(this.state.lng)};
       const map = new google.maps.Map(document.getElementById('map'), {
         // zoom: 4,
         // center: uluru
@@ -73,6 +75,7 @@ class LocationMap extends React.Component {
   render() {
     return (
       <div className="container">
+        <h1>Outlet name: {this.state.retailerName}</h1>
         <div id="map_container"></div>
         <div id="map"></div>
       </div>

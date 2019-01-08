@@ -83,12 +83,12 @@ class LandingPage extends React.Component {
                 <GiftCard amount="499" />
               </div>
             </div>
-            <h2 className="cm s2">
-              {/* Get 50%* off on your first HipBar Gift Card! */}
+            {/* <h2 className="cm s2">
+              Get 50%* off on your first HipBar Gift Card!
               <div style={{ marginTop: "20px", cursor: "pointer" }} onClick={this.handleScroll}>
                 <Icon name="downArrow" />
               </div>
-            </h2>
+            </h2> */}
           </div>
 
           <div className="brands" id="brands">

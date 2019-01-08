@@ -28,6 +28,12 @@
   .how-to-gift.mobile {
     display: none;
     background-color: #fff;
+    .icon {
+      margin-left: 15px;
+      &.show{
+        transform: rotate(180deg)
+      }
+    }
     svg {
       margin-top: 30px;
     }

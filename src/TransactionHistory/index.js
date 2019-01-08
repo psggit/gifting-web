@@ -16,7 +16,7 @@ class TransactionHistory extends React.Component {
       transactionData: [],
       loading: false,
       // username: props.username ? props.username : "",
-      isLoggedIn: this.props.paramObj ? this.props.paramObj.isLoggedIn : ""
+      isLoggedIn: localStorage.getItem("hasura-id") ? true : false
     }
     this.successCallback = this.successCallback.bind(this)
     this.failureCallback = this.failureCallback.bind(this)
@@ -25,7 +25,8 @@ class TransactionHistory extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.paramObj && this.props.paramObj.isLoggedIn) {
+    const isLoggedIn = localStorage.getItem("hasura-id") ? true : false
+    if(isLoggedIn) {
       this.showTransactions()
     }
     if(!readCookie("isAgeGateAgreed")) {
@@ -34,19 +35,19 @@ class TransactionHistory extends React.Component {
   }
 
   showTransactions() {
-    if(!this.props.paramObj.isLoggedIn) {
+    if(!this.state.isLoggedIn) {
       this.props.history.goBack()
     } else {
       this.fetchTransactionList()
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.paramObj.isLoggedIn !== this.props.paramObj.isLoggedIn ) {
-      this.showTransactions()
-      this.setState({isLoggedIn: this.props.paramObj.isLoggedIn})
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.paramObj.isLoggedIn !== this.props.paramObj.isLoggedIn ) {
+  //     this.showTransactions()
+  //     this.setState({isLoggedIn: this.props.paramObj.isLoggedIn})
+  //   }
+  // }
 
   fetchTransactionList() {
     const payload = {

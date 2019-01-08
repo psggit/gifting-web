@@ -38,7 +38,7 @@ class SendGift extends React.Component {
       count: 250,
       agreedTermsAndConditions: false,
       // username: props.username ? props.username : "",
-      // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false,
+      isLoggedIn: localStorage.getItem("hasura-id") ? true : false,
       isActive: false,
       receiverNameErr: {
         value: "",
@@ -66,6 +66,7 @@ class SendGift extends React.Component {
     this.proceedToPayment = this.proceedToPayment.bind(this)
     this.toggleHowTo = this.toggleHowTo.bind(this)
     this.whatsappText = "Hey checkout hipbar gifting. http://192.168.0.113:8080"
+    this.getOtherAmountClassName = this.getOtherAmountClassName.bind(this)
   }
 
   componentDidMount() {
@@ -83,7 +84,7 @@ class SendGift extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("componrnt fif update")
+    //console.log("componrnt fif update")
     //console.log("send gift", prevProps, this.props, prevProps.name, this.props.name)
     if (prevProps.paramObj.username !== this.props.paramObj.username || prevProps.paramObj.mobile !== this.props.paramObj.mobile || prevProps.paramObj.isLoggedIn !== this.props.paramObj.isLoggedIn ) {
       this.setState({ senderName: this.props.paramObj.username, senderNumber: this.props.paramObj.mobile, isLoggedIn: this.props.paramObj.isLoggedIn})
@@ -133,20 +134,30 @@ class SendGift extends React.Component {
   }
 
   handleAmountChange(e) {
+    this.setState({ amountErr: {status: false, value: ''}})
     if (e.target.name !== "price4") {
-      this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: "" })
+      this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: ""})
     } else {
       console.log(parseInt(e.target.value))
       if (parseInt(e.target.value) === 0) {
-       e.preventDefault()
-       console.log("45")
+        //console.log("if1")
+        e.preventDefault()
+        //console.log("45")
         return;
       } 
+      if (parseInt(e.target.value) < 100) {
+        //console.log("if2")
+        this.setState({ amountErr: {status: true, value: 'Minimum gift card value should be ₹100'}, otherValue: e.target.value})
+        //e.preventDefault()
+        return
+      }
       if (parseInt(e.target.value) > 10000) {
+       // console.log("if3")
+        //this.setState({amountErr: {status: false, value: ''} })
         return;
       }
-      console.log("35")
-      this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: e.target.value })
+      //console.log("35")
+      this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: e.target.value})
     }
   }
 
@@ -172,11 +183,7 @@ class SendGift extends React.Component {
   }
 
   handleTextChange(e) {
-    if (/^[a-zA-Z]*$/.test(e.target.value)) {
-      this.setState({ [e.target.name]: e.target.value.trim() })
-    } else {
-      return
-    }
+    this.setState({ [e.target.name]: e.target.value})
   }
 
   createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName) {
@@ -223,6 +230,18 @@ class SendGift extends React.Component {
     console.log("e", e.target.checked)
     this.setState({agreedTermsAndConditions: true})
   }
+
+  getOtherAmountClassName() {
+    let classname;
+    if(this.state.activePrice === "price4") {
+      classname += "focused"
+    } 
+    if(this.state.amountErr.status) {
+      classname += "mobile error"
+    }
+    //classname = undefined;
+    return classname;
+  }
   // componentDidMount() {
   //   POST({
   //     api: "/consumer/payment/gift/create",
@@ -232,8 +251,9 @@ class SendGift extends React.Component {
   // }
  
   render() {
+    console.log("state in send gift", this.state)
     //console.log("sender nae", this.state.senderName)
-    const {receiverNameErr, receiverNumberErr} = this.state;
+    const {receiverNameErr, receiverNumberErr, isActive} = this.state;
     return (
       <div>
         <div id="send-gift">
@@ -242,7 +262,7 @@ class SendGift extends React.Component {
               <p style={{ padding: "0 0 0 30px", color: "#fff" }} className="os s3">
                 Using HipBar Gift Cards
               </p>
-              <span style={{ marginLeft: "15px" }}>
+              <span className={`icon ${isActive ? 'show' : 'hide'}`}>
                 <Icon name="filledDownArrowWhite" />
               </span>
             </div>
@@ -337,7 +357,7 @@ class SendGift extends React.Component {
                           <InputMask 
                             mask="99999"
                             maskChar={null}
-                            className={this.state.activePrice === "price4" ? "focused" : undefined}
+                            className={this.getOtherAmountClassName()}
                             onFocus={(e) => {
                               this.setState({ activePrice: "price4", amount: "" }) 
                             }}
@@ -368,7 +388,7 @@ class SendGift extends React.Component {
                         // onKeyUp={() => {this.countChars('char_count',10)}}
                       >
                       </textarea>
-                      <p className="os s9"><span id="char_count">{this.state.count}</span> characters remaining</p>
+                      <p className="os s9"><span id="char_count">{this.state.count}</span> characters {this.state.count < 250 ? 'remaining' : ''}</p>
                       {/* <p>416 characters remaining</p> */}
                     </div>
                   </div>
@@ -380,7 +400,8 @@ class SendGift extends React.Component {
                       <label className="os">Name</label>
                       <input 
                         value={this.state.receiverName}
-                        onChange={this.handleTextChange} 
+                        onChange={this.handleTextChange}
+                        onBlur={(e) => { this.setState({ receiverName: this.state.receiverName.trim() })}}
                         name="receiverName" 
                         type="text" 
                         className={`${receiverNameErr.status ? 'error' : ''}`}
@@ -464,7 +485,7 @@ class SendGift extends React.Component {
                             : <Icon name="filledRectangle" />
                           }
                         </span>
-                        <span style={{width: 'calc(100% - 24px)', display: 'inline-block', cursor: 'pointer'}}> I agree that the recipient is of legal drinking age and I agree to the <a style={{ color: "#000" }} href="/user-terms" target="_blank">Terms & Conditions</a></span>
+                        <span style={{width: 'calc(100% - 24px)', display: 'inline-block', cursor: 'pointer'}}> I confirm that the recipient is of legal drinking age and I agree to the <a style={{color: "#000"}} href="/gifting-t-c" target="_blank">Terms & Conditions</a></span>
                       </div>
                     </div>
                   </div>

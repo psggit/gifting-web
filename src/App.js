@@ -173,7 +173,11 @@ class App extends React.Component {
               //console.log(paramObj)
               return (
                 <div>
-                  <Header />
+                  {
+                    !location.pathname.includes("locationMap") &&
+                    <Header />
+                  }
+                  
                   <Router history={history}>
                     <Switch>
                       <Route exact 
@@ -237,7 +241,7 @@ class App extends React.Component {
                         render={
                           props => (
                             <TransactionHistory {...props} 
-                              paramObj={paramObj}
+                              //paramObj={paramObj}
                               // name={this.state.username} 
                               // isLoggedIn={this.state.isLoggedIn}
                             />
@@ -306,7 +310,11 @@ class App extends React.Component {
                       <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
                     </Switch>
                   </Router>
-                  <Footer />
+                  {
+                    !location.pathname.includes("locationMap") &&
+                    <Footer />
+                  }
+                 
                 </div>
               )
             }}
