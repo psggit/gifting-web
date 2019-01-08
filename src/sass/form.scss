@@ -14,6 +14,7 @@
     border: 1px solid #dfdfdf;
     -webkit-transition: border 0.1s ease-in;
     transition: border 0.1s ease-in;
+    font-size: 14px;
     &:focus, &.focused {
       -webkit-transition: border 0.1s ease-in;
       transition: border 0.1s ease-in;
@@ -76,6 +77,9 @@
     font-size: 14px;
     color: #000;
     letter-spacing: 0.5px;
+    input {
+      font-family: $font-OpenSans;
+    }
     display: block;
     margin-bottom: 5px;
   }

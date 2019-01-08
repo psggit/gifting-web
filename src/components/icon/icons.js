@@ -340,7 +340,7 @@ export default {
     </svg>
   ),
   user: (
-    <svg width="124px" height="117px" viewBox="0 0 124 117" version="1.1">
+    <svg width="124px" height="117px" viewBox="0 0 124 117" version="1.1" fill="#f1f1f1">
         <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="Age-Gate" transform="translate(-273.000000, -46.000000)" stroke="#000000">
                 <g id="Content" transform="translate(25.000000, 49.000000)">

@@ -142,13 +142,12 @@ export default function SignIn(data) {
 
       const mobileNoErr = validateTextField(this.inputNameMap['mobileNo'], this.state.mobileNo)
       this.setState({mobileNoErr: validateTextField(this.inputNameMap['mobileNo'], this.state.mobileNo)})
-      
       if(otpSent) {
         otpErr = validateTextField(this.inputNameMap['otp'], this.state.otp)
         this.setState({otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp)})
       }
-    
-      if (!mobileNoErr.status && !otpErr.status && !otpSent) {
+      
+      if (!mobileNoErr.status && !otpErr.status) {
         return true
       }
       return false
@@ -174,7 +173,8 @@ export default function SignIn(data) {
     }
 
     signIn() {
-      if(!this.state.isSigningIn) {
+      console.log(!this.state.isSigningIn, "form valid", this.isFormValid())
+      if(!this.state.isSigningIn && this.isFormValid()) {
         const payload = {
           info: {},
           mobile: this.state.mobileNo,

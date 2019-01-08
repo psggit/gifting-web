@@ -87,7 +87,7 @@ app.post("/transaction-successful", (req, res) => {
   const html = fs.readFileSync("./dist/transaction-success.html", "utf-8")
   const [head, tail] = html.split("{content}")
   res.write(head)
-  //console.log("res body", req.body)
+  console.log("res body", req.body)
   const reactElement = React.createElement(TransactionSuccess, { res: req.body })
   // console.log(renderToString(reactElement))
   const stream = renderToNodeStream(reactElement)

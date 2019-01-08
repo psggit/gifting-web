@@ -38,7 +38,7 @@ class SendGift extends React.Component {
       count: 250,
       agreedTermsAndConditions: false,
       // username: props.username ? props.username : "",
-      // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false,
+      isLoggedIn: props.paramObj && props.paramObj.isLoggedIn ? props.paramObj.isLoggedIn : false,
       isActive: false,
       receiverNameErr: {
         value: "",
@@ -232,6 +232,7 @@ class SendGift extends React.Component {
   // }
  
   render() {
+    console.log("state in send gift", this.state)
     //console.log("sender nae", this.state.senderName)
     const {receiverNameErr, receiverNumberErr} = this.state;
     return (
@@ -368,7 +369,7 @@ class SendGift extends React.Component {
                         // onKeyUp={() => {this.countChars('char_count',10)}}
                       >
                       </textarea>
-                      <p className="os s9"><span id="char_count">{this.state.count}</span> characters remaining</p>
+                      <p className="os s9"><span id="char_count">{this.state.count}</span> characters {this.state.count < 250 ? 'remaining' : ''}</p>
                       {/* <p>416 characters remaining</p> */}
                     </div>
                   </div>
@@ -464,7 +465,7 @@ class SendGift extends React.Component {
                             : <Icon name="filledRectangle" />
                           }
                         </span>
-                        <span style={{width: 'calc(100% - 24px)', display: 'inline-block', cursor: 'pointer'}}> I agree that the recipient is of legal drinking age and I agree to the <a href="/gifting-t-c" target="_blank">Terms & Conditions</a></span>
+                        <span style={{width: 'calc(100% - 24px)', display: 'inline-block', cursor: 'pointer'}}> I agree that the recipient is of legal drinking age and I agree to the <a style={{color: "#000"}} href="/gifting-t-c" target="_blank">Terms & Conditions</a></span>
                       </div>
                     </div>
                   </div>

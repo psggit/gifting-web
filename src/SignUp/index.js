@@ -140,7 +140,7 @@ export default function SignUp(data) {
         return false
       }
 
-      if (!mobileNoErr.status && !otpErr.status && !otpSent && !emailErr.status && !nameErr.status && !dobErr.status && !pinErr.status && !confirmPinErr.status) {
+      if (!mobileNoErr.status && !otpErr.status && !emailErr.status && !nameErr.status && !dobErr.status && !pinErr.status && !confirmPinErr.status) {
         return true
       }
       return false
@@ -223,7 +223,7 @@ export default function SignUp(data) {
     }
 
     login() {
-      if (!this.state.isSigningUp) {
+      if (!this.state.isSigningUp && this.isFormValid()) {
         const payload = {
           info: {},
           mobile: this.state.mobileNo,
