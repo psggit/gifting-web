@@ -485,7 +485,7 @@ class SendGift extends React.Component {
                             : <Icon name="filledRectangle" />
                           }
                         </span>
-                        <span style={{width: 'calc(100% - 24px)', display: 'inline-block', cursor: 'pointer'}}> I agree that the recipient is of legal drinking age and I agree to the <a style={{color: "#000"}} href="/gifting-t-c" target="_blank">Terms & Conditions</a></span>
+                        <span style={{width: 'calc(100% - 24px)', display: 'inline-block', cursor: 'pointer'}}> I confirm that the recipient is of legal drinking age and I agree to the <a style={{color: "#000"}} href="/gifting-t-c" target="_blank">Terms & Conditions</a></span>
                       </div>
                     </div>
                   </div>

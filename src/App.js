@@ -173,7 +173,7 @@ class App extends React.Component {
               return (
                 <div>
                   {
-                    location.pathname.includes("locationMap") === -1 &&
+                    !location.pathname.includes("locationMap") &&
                     <Header />
                   }
                   
@@ -316,7 +316,7 @@ class App extends React.Component {
                     </Switch>
                   </Router>
                   {
-                    location.pathname.includes("locationMap") === -1 &&
+                    !location.pathname.includes("locationMap") &&
                     <Footer />
                   }
                  
