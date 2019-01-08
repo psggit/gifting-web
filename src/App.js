@@ -172,7 +172,11 @@ class App extends React.Component {
               //console.log(paramObj)
               return (
                 <div>
-                  <Header />
+                  {
+                    location.pathname.includes("locationMap") === -1 &&
+                    <Header />
+                  }
+                  
                   <Router history={history}>
                     <Switch>
                       <Route exact 
@@ -311,7 +315,11 @@ class App extends React.Component {
                       <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
                     </Switch>
                   </Router>
-                  <Footer />
+                  {
+                    location.pathname.includes("locationMap") === -1 &&
+                    <Footer />
+                  }
+                 
                 </div>
               )
             }}
