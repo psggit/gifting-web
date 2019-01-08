@@ -222,11 +222,7 @@ class Payment extends React.Component {
   }
 
   handleCardnameChange(e) {
-    if (/^[a-zA-Z]*$/.test(e.target.value)) {
-      this.setState({ ccname: e.target.value.trim() })
-    } else {
-      return
-    }
+    this.setState({ ccname: e.target.value })
   }
 
   getNetBankingForm() {
@@ -429,7 +425,7 @@ class Payment extends React.Component {
 
                               <div className="form-group">
                                 <label className="os">Name on card</label>
-                                <input value={this.state.ccname} onChange={this.handleCardnameChange} type="text" />
+                                <input value={this.state.ccname} onBlur={(e) => { this.setState({ ccname: this.state.ccname.trim() })}} onChange={this.handleCardnameChange} type="text" />
                               </div>
 
                               <div style={{  display: "flex", alignItems: "center", flexDirection: "row-reverse", justifyContent: "flex-end" }} className="form-group">

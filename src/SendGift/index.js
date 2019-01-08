@@ -38,7 +38,7 @@ class SendGift extends React.Component {
       count: 250,
       agreedTermsAndConditions: false,
       // username: props.username ? props.username : "",
-      isLoggedIn: props.paramObj && props.paramObj.isLoggedIn ? props.paramObj.isLoggedIn : false,
+      isLoggedIn: localStorage.getItem("hasura-id") ? true : false,
       isActive: false,
       receiverNameErr: {
         value: "",
@@ -172,11 +172,7 @@ class SendGift extends React.Component {
   }
 
   handleTextChange(e) {
-    if (/^[a-zA-Z]*$/.test(e.target.value)) {
-      this.setState({ [e.target.name]: e.target.value.trim() })
-    } else {
-      return
-    }
+    this.setState({ [e.target.name]: e.target.value})
   }
 
   createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName) {
@@ -381,7 +377,8 @@ class SendGift extends React.Component {
                       <label className="os">Name</label>
                       <input 
                         value={this.state.receiverName}
-                        onChange={this.handleTextChange} 
+                        onChange={this.handleTextChange}
+                        onBlur={(e) => { this.setState({ receiverName: this.state.receiverName.trim() })}}
                         name="receiverName" 
                         type="text" 
                         className={`${receiverNameErr.status ? 'error' : ''}`}
