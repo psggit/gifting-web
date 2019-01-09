@@ -149,12 +149,12 @@ class SendGift extends React.Component {
       this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: ""})
     } else {
       //console.log(parseInt(e.target.value))
-      if (parseInt(e.target.value) === 0) {
+      //if (parseInt(e.target.value) === 0) {
         //console.log("if1")
         //e.preventDefault()
         //console.log("45")
         //return;
-      } 
+      //} 
       if (parseInt(e.target.value) < 100) {
         //console.log("if2")
         this.setState({ amountErr: {status: true, value: 'Minimum gift card value should be ₹100'}, otherValue: e.target.value})
@@ -498,7 +498,7 @@ class SendGift extends React.Component {
                             : <Icon name="filledRectangle" />
                           }
                         </span>
-                        <span style={{width: 'calc(100% - 24px)', display: 'inline-block', cursor: 'pointer'}}> I confirm that the recipient is of legal drinking age and I agree to the <a style={{color: "#000"}} href="/gifting-t-c" target="_blank">Terms & Conditions</a></span>
+                        <span style={{width: 'calc(100% - 24px)', display: 'inline-block', cursor: 'pointer', userSelect: 'none'}}> I confirm that the recipient is of legal drinking age and I agree to the <a style={{color: "#000"}} href="/gifting-t-c" target="_blank">Terms & Conditions</a></span>
                       </div>
                     </div>
                   </div>
@@ -540,11 +540,11 @@ class SendGift extends React.Component {
 
               <div className="col">
                 <div className="how-to-gift" >
-                  <h2 className="cm s3">How to use Hipbar Gift Cards?</h2>
+                  <h2 className="cm s3 not-selectable">How to use Hipbar Gift Cards?</h2>
                   <Icon name="step1" />
                   <div className="desc">
-                    <p className="cm s6">Gift drinks with HipBar Gifting</p>
-                    <p className="os s7">
+                    <p className="cm s6 not-selectable">Gift drinks with HipBar Gifting</p>
+                    <p className="os s7 not-selectable">
                       Enter the amount to gift, the recipient’s information,<br />
                       pay for the gift card and you’re good to go!
                   </p>
@@ -552,26 +552,26 @@ class SendGift extends React.Component {
 
                   <Icon name="step2" />
                   <div className="desc">
-                    <p className="cm s6">Recipient gets notified via SMS</p>
-                    <p className="os s7">
+                    <p className="cm s6 not-selectable">Recipient gets notified via SMS</p>
+                    <p className="os s7 not-selectable">
                       With further information on how to use the gift <br /> cards, they have to download the HipBar app to use<br /> their HipBar Gift Card.
                   </p>
                   </div>
 
                   <Icon name="step3" />
                   <div className="desc">
-                    <p className="cm s6">Recipient downloads the HipBar app</p>
-                    <p className="os s7">
+                    <p className="cm s6 not-selectable">Recipient downloads the HipBar app</p>
+                    <p className="os s7 not-selectable">
                       With the HipBar app, they can easily view their Gift<br /> Cards and redeem it at 60+ HipBar powered retail<br /> outlets in Bengaluru and Goa.
                   </p>
                   </div>
 
                   <Icon name="step4" />
                   <div className="desc">
-                    <p className="cm s6">
+                    <p className="cm s6 not-selectable">
                       Redeem with HipBar Gift Card at Retail Outlets
                     </p>
-                    <p className="os s7">
+                    <p className="os s7 not-selectable">
                       Recipient pays for drinks with their HipBar Gift Card<br /> at select 60+ retail outlets across Bengaluru and Goa
                     </p>
                   </div>

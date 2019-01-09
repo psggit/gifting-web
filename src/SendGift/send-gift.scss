@@ -49,6 +49,10 @@
     justify-content: space-between;
   }
 
+  .not-selectable {
+    user-select: none;
+  }
+
   .gift-card-form {
     //max-width: 400px;
     z-index: 2;
