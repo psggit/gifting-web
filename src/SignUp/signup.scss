@@ -1,0 +1,383 @@
+@import "./../sass/base.scss";
+
+#SignUp {
+  padding: 8.5% 49px;
+  // border-radius: 5px;
+  box-shadow: 0 2px 28px -5px rgba(0, 0, 0, 0.5);
+  background-color: #f1f1f1;
+  font-family: $font-OpenSans;
+  max-height: 560px;
+  overflow: auto;
+  .page-body {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0px;
+
+    .country-code {
+      border: 1px solid #cccccc;
+      display: flex;
+      padding: 0 10px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .country-code.error {
+      //border: 1px solid #c23934 !important;
+      // border-right: 0 !important;
+      border-left: 1px solid #c23934 !important;
+      border-top: 1px solid #c23934 !important;
+      border-bottom: 1px solid #c23934 !important;
+    }
+    
+    .error-message {
+      color: #c23934;
+      font-weight: 600;
+      padding: 10px 0;
+    }
+
+    label {
+      //padding: 10px 0;
+      //height: 40px;
+      // margin: 10px 0;
+    }
+
+    input {
+      // padding: 10px;
+      // margin-top: 10px;
+      // padding: 10px 10px;
+      // width: 100%;
+      // border: 1px solid #CCCCCC !important;
+      //height: 40px;
+      // margin-top: 10px;
+      // line-height: 20px;
+      //height: 30px;
+      //line-height: 25px;
+      //height: 40px;
+    }
+    
+    input.error {
+      border: 1px solid #c23934 !important;
+    }
+
+    input.mobile.error {
+      border-left: 0 !important;
+      border-right: 1px solid #c23934 !important;
+      border-top: 1px solid #c23934 !important;
+      border-bottom: 1px solid #c23934 !important;
+    }
+
+    input { 
+      outline: none;
+    }
+
+    // input[type="password"] {
+    //   font-size: 27px;
+    // }
+
+    // input[type="date"]::-webkit-calendar-picker-indicator {
+    //   color: rgba(0, 0, 0, 0);
+    //   opacity: 1;
+    //   display: block;
+    //   background: url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png) no-repeat;
+    //   width: 20px;
+    //   height: 20px;
+    //   border-width: thin;
+    //   position: absolute;
+    //   left : 54px;
+    //   margin-right: 5px;
+    //   text-align: center;
+    // }
+
+    .calendar {
+      color: rgba(0, 0, 0, 0);
+      opacity: 1;
+      display: flex;
+      align-items: center;
+      //background: url() no-repeat;
+      width: 20px;
+      height: 38px;
+      border-width: thin;
+      position: absolute;
+      left : 10px;
+      margin-right: 5px;
+      text-align: center;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator:hover {
+      //background: transparent;
+      cursor: pointer;
+    }
+
+    input[type="date"] {
+      padding-left: 35px;
+    }
+
+    input::-webkit-inner-spin-button,
+    input::-webkit-clear-button {
+      display: none;
+    }
+
+    .input-otp-container {
+      position: relative;
+      .resend {
+        position: absolute;
+        top: 11px;
+        right: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        letter-spacing: 0.6px;
+        &.disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+          pointer-events: none;
+        }
+      }
+    }
+
+    .row {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+      border: 1px solid #dddbda;
+      border-radius: 5px;
+      .column {
+        border: none;
+        display: table-cell;
+        outline: none;
+        padding: 10px;
+        //background-color: #f1f1f1;
+        cursor: pointer;
+        //box-shadow: 0 2px 28px -5px rgba(0, 0, 0, 0.5);
+        background-color: #fff;
+        border-right: 1px solid #dddbda;
+        text-align: center;
+        vertical-align: middle;
+        color: #2b2826;
+        &.active {
+          background-color: #000;
+          color: #d1d2dd;
+          font-weight: bold;
+        }
+      }  
+    }
+   
+    .note {
+      color: #232a2e;
+      letter-spacing: 0;
+      margin: 10px 0;
+      font-weight: 600;
+    }
+
+    .alert-box {
+      display: flex;
+      padding: 10px 5px;
+      margin: 10px 0;
+      border: 1px solid #000;
+      border-radius: 4px;
+    }
+  }
+
+  .page-footer {
+
+    .button-section {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+
+      &.mobile {
+        display: none;
+      }
+    }
+    //display: flex;
+    // text-align: right;
+    // position: absolute;
+    // width: calc(100% - 98px);
+    // left: 0;
+    // right: 0;
+    // margin: 0 auto;
+    // bottom: 20px;
+    // display: flex;
+    // justify-content: center;
+    // .btn {
+    //   margin-right: 10px;
+    //   border-style: none;
+    //   border-radius: 2px;
+    //   padding: 0 30px;
+    //   // margin-right: -10px;
+    //   box-sizing: border-box;
+    //   border: 1px solid #000;
+    //   text-transform: uppercase;
+    //   text-align: center;
+    //   // font-size: 14px;
+    //   font-weight: 600;
+    //   // width: auto;
+    //   //width: 120px;
+    //   line-height: 40px;
+    //   &:focus {
+    //     outline: 0;
+    //     box-shadow: none;
+    //   }
+    //   // &:hover {
+    //   //   background: #f6f6f6;
+    //   // }
+    //   &.btn-primary {
+    //     color: #fff;
+    //     background: #000;
+    //   }
+    //   &.btn-secondary {
+    //     color: #000;
+    //     background: #fff;
+    //   }
+    // }
+  }
+}
+
+// #SignInMobile {
+//   padding: 11% 9%;
+//   // border-radius: 5px;
+//   // box-shadow: 0 2px 28px -5px rgba(0, 0, 0, 0.5);
+//   background-color: #f1f1f1;
+//   height: 100vh;
+//   font-family: $font-OpenSans;
+//   .page-body {
+//     display: flex;
+//     flex-direction: column;
+//     margin: 30px 0px;
+
+//     label {
+//       padding: 10px 0;
+//     }
+
+//     input {
+//       padding: 10px;
+//       //height: 40px;
+//     }
+//     input {
+//       // padding: 10px;
+//       // margin-top: 10px;
+//       padding: 10px 10px;
+//       width: 100%;
+//       //height: 40px;
+//       // margin-top: 10px;
+//       // line-height: 20px;
+//       //height: 30px;
+//       //line-height: 25px;
+//       //height: 40px;
+//     }
+//     .input-otp-container {
+//       position: relative;
+//       .resend {
+//         position: absolute;
+//         top: 5px;
+//         right: 10px;
+//         font-weight: 600;
+//         cursor: pointer;
+//       }
+//     }
+
+//     .note {
+//       color: #232a2e;
+//       letter-spacing: 0;
+//       margin: 10px 0;
+//     }
+
+//     .alert-box {
+//       display: flex;
+//       padding: 10px 5px;
+//       margin: 10px 0;
+//       border: 1px solid #000;
+//       border-radius: 4px;
+//     }
+//   }
+
+//   .page-footer {
+//     //display: flex;
+//     // text-align: right;
+//     // position: absolute;
+//     // width: calc(100% - 98px);
+//     // left: 0;
+//     // right: 0;
+//     // margin: 0 auto;
+//     // bottom: 20px;
+//     // display: flex;
+//     // justify-content: center;
+//     .btn {
+//       margin-right: 10px;
+//       border-style: none;
+//       border-radius: 2px;
+//       padding: 0 30px;
+//       // margin-right: -10px;
+//       box-sizing: border-box;
+//       border: 1px solid #000;
+//       text-transform: uppercase;
+//       text-align: center;
+//       // font-size: 14px;
+//       font-weight: 600;
+//       // width: auto;
+//       width: 120px;
+//       line-height: 40px;
+//       &:focus {
+//         outline: 0;
+//         box-shadow: none;
+//       }
+//       // &:hover {
+//       //   background: #f6f6f6;
+//       // }
+//       &.btn-primary {
+//         color: #fff;
+//         background: #000;
+//       }
+//       &.btn-secondary {
+//         color: #000;
+//         background: #fff;
+//       }
+//     }
+//   }
+// }
+
+@media only screen and (max-width: 560px) {
+  #SignUp {
+    max-height: 100vh;
+    overflow: auto;
+    border-radius: 0px;
+    padding: 8.5% 25px;
+    
+    .row {
+      display: block !important;
+      .column {
+        display: block !important;
+      }
+    }
+
+    .page-body {
+      .note {
+        position: relative !important;
+        padding: 12px 0;
+        text-align: left;
+        margin: 0;
+        width: 100% !important;
+      }
+    }
+    
+    .page-footer {
+      .button-section {
+        display: none !important;
+        &.mobile {
+          display: -webkit-box !important;
+          display: -ms-flexbox !important;
+          display: flex !important;
+          -webkit-box-orient: vertical !important;
+          -webkit-box-direction: normal !important;
+              -ms-flex-direction: column !important;
+                  flex-direction: column !important;
+        }
+      }
+
+      .button-section .btn:last-child {
+        margin-left: 0 !important;
+        margin-top: 15px;
+      }
+    }
+
+  }
+}

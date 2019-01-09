@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>HipBar Gifting - Gift your friends drinks online!</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500,600,700" rel="stylesheet">
+  <style media="screen">
+    body::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    body::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+    
+    body::-webkit-scrollbar-thumb {
+      background-color: #333;
+      outline: 1px solid slategrey;
+    }
+     * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+     }
+  </style>
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app" ></div>
+  <div id="confirm-modal"></div>
+</body>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+ 
+  gtag('config', 'UA-78394923-4');
+ </script>
+
+<script src="https://wchat.freshchat.com/js/widget.js"></script>
+<script async>
+  window.fcWidget.init({
+    token: "3a3ec830-f702-4f77-a001-b8e939438956",
+    host: "https://wchat.freshchat.com",
+    tags: ["conversation_general_queries", "conversation_gifting","conversation_basic_kyc", "denial_of_service", "stock_not_available"],
+    config: {
+      disableEvents: true,
+      cssNames: {
+        widget: 'fc_frame',
+        open: 'fc_open',
+        expanded: 'fc_expanded'
+      },
+      showFAQOnOpen: true,
+      hideFAQ: true,
+      agent: {
+        hideName: false,
+        hidePic: false,
+        hideBio: false,
+      },
+      headerProperty: {
+	      //If you have multiple sites you can use the appName and appLogo to overwrite the values.
+      	appName: 'Gadget God',
+        appLogo: 'https://d1qb2nb5cznatu.cloudfront.net/startups/i/2473-2c38490d8e4c91660d86ff54ba5391ea-medium_jpg.jpg?buster=1518574527',
+        backgroundColor: '#000',
+        foregroundColor: '#fff',
+        backgroundImage: 'https://wchat.freshchat.com/assets/images/texture_background_1-bdc7191884a15871ed640bcb0635e7e7.png'
+      }
+    }
+  });
+</script>
+<script>
+  // Check that service workers are registered
+if ('serviceWorker' in navigator) {
+  // Use the window load event to keep the page load performant
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js');
+  });
+}
+ </script>
+</html>

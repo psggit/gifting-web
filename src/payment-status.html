@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400, 600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500,600,700" rel="stylesheet">
+  <style media="screen">
+    body::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    body::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+    
+    body::-webkit-scrollbar-thumb {
+      background-color: #333;
+      outline: 1px solid slategrey;
+    }
+     * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+     }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+</head>
+<body>
+  <div style="max-width: 1440px;margin: 0 auto">
+    <div id="header"></div>
+    <div id="app" >{content}</div>
+    <div id="footer"></div>
+  </div>
+</body>
+<script src="https://wchat.freshchat.com/js/widget.js"></script>
+<script async>
+  window.fcWidget.init({
+    token: "3a3ec830-f702-4f77-a001-b8e939438956",
+    host: "https://wchat.freshchat.com",
+    tags: ["conversation_general_queries", "conversation_gifting","conversation_basic_kyc", "denial_of_service", "stock_not_available"],
+    config: {
+      disableEvents: true,
+      cssNames: {
+        widget: 'fc_frame',
+        open: 'fc_open',
+        expanded: 'fc_expanded'
+      },
+      showFAQOnOpen: true,
+      hideFAQ: true,
+      agent: {
+        hideName: false,
+        hidePic: false,
+        hideBio: false,
+      },
+      headerProperty: {
+	      //If you have multiple sites you can use the appName and appLogo to overwrite the values.
+      	appName: 'Gadget God',
+        appLogo: 'https://d1qb2nb5cznatu.cloudfront.net/startups/i/2473-2c38490d8e4c91660d86ff54ba5391ea-medium_jpg.jpg?buster=1518574527',
+        backgroundColor: '#000',
+        foregroundColor: '#fff',
+        backgroundImage: 'https://wchat.freshchat.com/assets/images/texture_background_1-bdc7191884a15871ed640bcb0635e7e7.png'
+      }
+    }
+  });
+</script>
+</html>

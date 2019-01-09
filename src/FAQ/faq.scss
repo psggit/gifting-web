@@ -1,0 +1,91 @@
+@import "./../sass/base.scss";
+
+#Faq {
+  width: 100%;
+  //font-family: $font-OpenSans;
+  //height: 100vh;
+  h4, h2 {
+    //font-family: $font-Cormorant;
+    text-align: left;
+  }
+  .content {
+    // padding: 0 20.5%;
+    position: relative;
+    // margin-top: calc(134px + 80px);
+    // margin-bottom: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    padding: 12% 15% 5% 15%;
+    background: #f1f1f1;
+
+    .faqContainer {
+      width: 100%;
+      margin: 50px 0;
+
+      .accordian-item {
+        margin-top: 24px;
+      }
+
+      .header {
+        border-bottom: 2px solid #555;
+        margin-bottom: 13px;
+      }
+
+      .accordian-item__header {
+        width: 100%;
+        cursor: pointer;
+        // position: relative;
+        // display: flex;
+        background: #fff;
+        border-radius: 4px;
+        border: 1px solid #dddbda;
+        // padding: 20px 10px;
+        position: relative;
+        //font-weight: 600 !important;
+
+        .os.s7 {
+          font-weight: 600;
+        }
+        label {
+          font-weight: 600;
+          width: 84%;
+          letter-spacing: 0.6px; 
+          //position: absolute;
+          //top: 0px;
+        }
+
+        span {
+          position: absolute;
+          right: 20px;
+          transform: translateY(-50%);
+          top: 50%;
+        }
+
+        // .hide {
+        //   position: absolute;
+        //   right: 16%;
+        //   display: none;
+        // }
+      }
+
+      .accordian-item__body {
+        border-radius: 4px;
+        background: #fff;
+        p {
+          letter-spacing: 0.5px;
+          color: #000000;
+        }
+      }
+    }
+  } 
+}
+
+
+@media only screen and (max-width: 720px) { 
+  content {
+    padding: 130px 7% 12% 7% !important;
+  }
+}

@@ -1,0 +1,93 @@
+@import "./../sass/base.scss";
+
+#TransactionHistory {
+  width: 100%;
+  //font-family: $font-OpenSans;
+  //height: 100vh;
+  h4, h2 {
+    //font-family: $font-Cormorant;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+  .content {
+    // padding: 0 20.5%;
+    position: relative;
+    // margin-top: calc(134px + 80px);
+    // margin-bottom: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    padding: 15% 12.5% 7% 12.5%;
+    background: #f1f1f1;
+
+    .note {
+      margin-top: 20px;
+      color: #555555;
+    }
+
+    .transaction-list {
+      //padding: 90px 40px;
+      padding-top: 30px;
+      width: 100%;
+
+      .header {
+        border-bottom: 2px solid #555555;
+        display: flex;
+      }
+
+      .transaction-item {
+        display: flex;
+        flex-direction: column;
+        padding: 12px 0px;
+        border-bottom: 1px solid #555555;
+        word-wrap: break-word;
+
+        .item-header {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 16px;
+          font-weight: bold;
+
+          .item-subheader {
+            display: flex;
+            flex-direction: row;
+            p {
+              margin-right: 4px;
+            }
+          }
+        }
+
+        .item-body {
+          width: 70%;
+          display: flex;
+        }
+
+        .item-footer {
+          //width: 70%;
+          margin-top: 16px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 720px) {
+
+  .content {
+    padding: 130px 7% 12% 7% !important;
+  }
+
+  .item-header {
+    .item-subheader {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+  }
+
+  .item-body {
+    display: flex;
+    flex-direction: column;
+  }
+}
