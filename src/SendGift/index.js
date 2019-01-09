@@ -12,7 +12,7 @@ import AgeGate from './../AgeGate'
 import InputMask from "react-input-mask"
 import {readCookie} from "Utils/session-utils"
 import { validateTextField, validateNumberField } from '../utils/validators';
-import { parse } from "path";
+// import { parse } from "path";
 
 class SendGift extends React.Component {
   constructor(props) {
