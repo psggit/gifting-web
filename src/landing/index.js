@@ -183,7 +183,7 @@ class LandingPage extends React.Component {
               <h2 className="cm s2">Recipient downloads the HipBar app</h2>
               <p className="os s3">
               With the HipBar app, they can easily<br/> view their Gift Cards and redeem it at<br/>
-          60+ HipBar powered retail outlets in<br/>Goa
+          60+ HipBar powered retail outlets in Goa
               </p>
 
               <div className="app-store-btn">
