@@ -64,7 +64,7 @@ class LandingPage extends React.Component {
                 </h2>
 
                 <p className="os s2">
-                With HipBar Gift Cards, gift drinks to your friends & family! Redeem drinks at 60+ retailers across Bengaluru and Goa!
+                With HipBar Gift Cards, gift drinks to your friends & family! Redeem drinks at 60+ retailers across Goa!
                 </p>
 
                 <div style={{ marginTop: "30px", }}>
@@ -73,7 +73,7 @@ class LandingPage extends React.Component {
                   </a>
                 </div>
                 <p className="os s7">
-                  Currently in Bengaluru and Goa<br />
+                  Currently in Goa<br />
                   Coming soon to 10+ cities across India!
                 </p>
 
@@ -130,7 +130,7 @@ class LandingPage extends React.Component {
             <div style={{ marginTop: "100px" }}>
               <h1 className="cm s1">What are HipBar Gift Cards?</h1>
               <p className="os s2">
-              With HipBar Gift Cards, gift drinks to your friends & family! Redeem drinks at 60+ retailers across Bengaluru and Goa!
+              With HipBar Gift Cards, gift drinks to your friends & family! Redeem drinks at 60+ retailers across Goa!
               </p>
             </div>
           </div>
@@ -183,7 +183,7 @@ class LandingPage extends React.Component {
               <h2 className="cm s2">Recipient downloads the HipBar app</h2>
               <p className="os s3">
               With the HipBar app, they can easily<br/> view their Gift Cards and redeem it at<br/>
-          60+ HipBar powered retail outlets in<br/> Bengaluru and Goa
+          60+ HipBar powered retail outlets in Goa
               </p>
 
               <div className="app-store-btn">
