@@ -1,7 +1,7 @@
 {
   "name": "gifting-web",
   "version": "1.0.1",
-  "description": "",
+  "description": "Web application for hipbar gifting",
   "main": "server.js",
   "dependencies": {
     "autoprefixer": "^9.4.3",
