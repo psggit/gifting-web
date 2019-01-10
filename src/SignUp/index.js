@@ -209,6 +209,11 @@ export default function SignUp(data) {
             } 
             // else if (response.status !== 400) {
             else {
+              window.fcWidget.user.clear().then(function() {
+                console.log('User cleared')
+              }, function() {
+                console.log("User Not cleared")
+              })
               this.getOtp()
             }
             this.setState({ isGettingOtp: false })

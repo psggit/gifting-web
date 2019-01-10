@@ -208,6 +208,11 @@ export default function SignIn(data) {
                 return
               }
               createSession(responseData, "true")
+              window.fcWidget.user.clear().then(function() {
+                console.log('User cleared')
+              }, function() {
+                console.log("User Not cleared")
+              })
               //localStorage.setItem("showAgegate", false)
               location.href= (location.pathname)
               unMountModal()

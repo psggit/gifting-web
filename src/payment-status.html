@@ -39,31 +39,14 @@
 <script async>
   window.fcWidget.init({
     token: "3a3ec830-f702-4f77-a001-b8e939438956",
-    host: "https://wchat.freshchat.com",
-    tags: ["conversation_general_queries", "conversation_gifting","conversation_basic_kyc", "denial_of_service", "stock_not_available"],
-    config: {
-      disableEvents: true,
-      cssNames: {
-        widget: 'fc_frame',
-        open: 'fc_open',
-        expanded: 'fc_expanded'
-      },
-      showFAQOnOpen: true,
-      hideFAQ: true,
-      agent: {
-        hideName: false,
-        hidePic: false,
-        hideBio: false,
-      },
-      headerProperty: {
-	      //If you have multiple sites you can use the appName and appLogo to overwrite the values.
-      	appName: 'Gadget God',
-        appLogo: 'https://d1qb2nb5cznatu.cloudfront.net/startups/i/2473-2c38490d8e4c91660d86ff54ba5391ea-medium_jpg.jpg?buster=1518574527',
-        backgroundColor: '#000',
-        foregroundColor: '#fff',
-        backgroundImage: 'https://wchat.freshchat.com/assets/images/texture_background_1-bdc7191884a15871ed640bcb0635e7e7.png'
-      }
-    }
+      host: "https://wchat.freshchat.com",
+      tags: ["conversation_gifting"],
+      externalId: "",   // user’s id unique to your system
+      firstName: localStorage.getItem("username"), // user’s first name
+      lastName: "", // user’s last name
+      email: "", // user’s email address
+      phone: localStorage.getItem("sender_mobile"), // phone number without country code
+      phoneCountryCode: "+91" // phone’s country code
   });
 </script>
 </html>
