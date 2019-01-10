@@ -12,7 +12,8 @@ import AgeGate from './../AgeGate'
 import InputMask from "react-input-mask"
 import {readCookie} from "Utils/session-utils"
 import { validateTextField, validateNumberField } from '../utils/validators';
-// import { parse } from "path";
+import { parse } from "path";
+import {supportedCities} from "Utils/constants"
 
 class SendGift extends React.Component {
   constructor(props) {
@@ -301,7 +302,7 @@ class SendGift extends React.Component {
               <div className="desc">
                 <p className="cm s6">Recipient downloads the HipBar app</p>
                 <p className="os s7">
-                  With the HipBar app, they can easily view their Gift<br /> Cards and redeem it at 50+ HipBar powered retail<br /> outlets in Goa.
+                  With the HipBar app, they can easily view their Gift<br /> Cards and redeem it at 50+ HipBar powered retail<br /> outlets in {supportedCities}.
                     </p>
               </div>
 
@@ -312,7 +313,7 @@ class SendGift extends React.Component {
                   Retail Outlets*
                     </p>
                 <p className="os s7">
-                  Recipient pays for drinks with their HipBar Gift Card<br /> at select 50+ retail outlets across Goa
+                  Recipient pays for drinks with their HipBar Gift Card<br /> at select 50+ retail outlets across {supportedCities}
                     </p>
               </div>
             </div>
@@ -562,7 +563,7 @@ class SendGift extends React.Component {
                   <div className="desc">
                     <p className="cm s6 not-selectable">Recipient downloads the HipBar app</p>
                     <p className="os s7 not-selectable">
-                      With the HipBar app, they can easily view their Gift<br /> Cards and redeem it at 60+ HipBar powered retail<br /> outlets in Goa.
+                      With the HipBar app, they can easily view their Gift<br /> Cards and redeem it at 60+ HipBar powered retail<br /> outlets in {supportedCities}.
                   </p>
                   </div>
 
@@ -572,7 +573,7 @@ class SendGift extends React.Component {
                       Redeem with HipBar Gift Card at Retail Outlets
                     </p>
                     <p className="os s7 not-selectable">
-                      Recipient pays for drinks with their HipBar Gift Card<br /> at select 60+ retail outlets across Goa
+                      Recipient pays for drinks with their HipBar Gift Card<br /> at select 60+ retail outlets across {supportedCities}
                     </p>
                   </div>
 

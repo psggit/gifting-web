@@ -107,6 +107,12 @@ class Header extends React.Component {
         location.href = "/"
         //setTimeout(() => {
         clearSession()
+        window.fcWidget.user.clear().then(function() {
+          console.log('User cleared')
+        }, function() {
+          console.log("User Not cleared")
+        })
+        //console.log("user status out", userStatus)
         //}, 1000)
       })
       .catch((err) => {

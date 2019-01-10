@@ -9,6 +9,7 @@ import AgeGate from './../AgeGate'
 import Header from "Components/header"
 import Footer from "Components/footer"
 import {readCookie} from "Utils/session-utils"
+import {supportedCities} from "Utils/constants"
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class LandingPage extends React.Component {
                 </h2>
 
                 <p className="os s2">
-                With HipBar Gift Cards, gift drinks to your friends & family! Redeem drinks at 60+ retailers across Goa!
+                With HipBar Gift Cards, gift drinks to your friends & family! Redeem drinks at 60+ retailers across {supportedCities}!
                 </p>
 
                 <div style={{ marginTop: "30px", }}>
@@ -73,7 +74,7 @@ class LandingPage extends React.Component {
                   </a>
                 </div>
                 <p className="os s7">
-                  Currently in Goa<br />
+                  Currently in {supportedCities}<br />
                   Coming soon to 10+ cities across India!
                 </p>
 
@@ -130,7 +131,7 @@ class LandingPage extends React.Component {
             <div style={{ marginTop: "100px" }}>
               <h1 className="cm s1">What are HipBar Gift Cards?</h1>
               <p className="os s2">
-              With HipBar Gift Cards, gift drinks to your friends & family! Redeem drinks at 60+ retailers across Goa!
+              With HipBar Gift Cards, gift drinks to your friends & family! Redeem drinks at 60+ retailers across {supportedCities}!
               </p>
             </div>
           </div>
@@ -141,7 +142,7 @@ class LandingPage extends React.Component {
             </h1>
             <div className="presence-counts">
               <div className="presence-item">
-                <h1 className="os s0">10k+</h1>
+                <h1 className="os s0">100k+</h1>
                 <h1 className="brands-heading os s1">HipBar users</h1>
               </div>
 
@@ -174,7 +175,8 @@ class LandingPage extends React.Component {
               <Icon name="stepTwo" />
               <h2 className="cm s2">Recipient notified via SMS!</h2>
               <p className="os s3">
-              Recipient is notified via SMS with more information on how to use the gift card.
+              Recipient is notified via SMS with more <br/>
+              information on how to use the gift card.
               </p>
             </div>
 
@@ -183,7 +185,7 @@ class LandingPage extends React.Component {
               <h2 className="cm s2">Recipient downloads the HipBar app</h2>
               <p className="os s3">
               With the HipBar app, they can easily<br/> view their Gift Cards and redeem it at<br/>
-          60+ HipBar powered retail outlets in Goa
+          60+ HipBar powered retail outlets in {supportedCities}
               </p>
 
               <div className="app-store-btn">
@@ -196,7 +198,9 @@ class LandingPage extends React.Component {
               <Icon name="stepFour" />
               <h2 className="cm s2">Redeem with HipBar Gift Card at Retail Outlets</h2>
               <p className="os s3">
-              Recipient pays for drinks with their HipBar<br/> Gift Card at any of the 60+ HipBar-affiliated stores in the city of operation<br/>
+              Recipient pays for drinks with their HipBar<br/>
+              Gift Card at any of the 60+ HipBar-affiliated<br/> 
+              stores in the city of operation
               </p>
             </div>
 
