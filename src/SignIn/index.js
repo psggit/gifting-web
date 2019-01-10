@@ -72,14 +72,14 @@ export default function SignIn(data) {
 
     countdown() {
       let timeoutHandle;
-      let seconds = 30;
-      let self = this;
+      let seconds = 30
+      let self = this
       function tick() {
-        var counter = document.getElementById("timer");
-        seconds--;
+        let counter = document.getElementById("timer")
+        seconds--
         counter.innerHTML ="OTP can be resent in" + " 00" + ":"  +(seconds < 10 ? "0" : "") + String(seconds) + " seconds";
         if( seconds > 0 ) {
-          timeoutHandle=setTimeout(tick, 1000);
+          timeoutHandle=setTimeout(tick, 1000)
         }else {
           self.setState({setTimer: false})
         }
