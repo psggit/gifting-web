@@ -214,7 +214,9 @@ export default function SignUp(data) {
               }, function() {
                 console.log("User Not cleared")
               })
-              this.getOtp()
+              this.setState({ otpSent: true, disableField: true, setTimer: true})
+              this.countdown()
+              //this.getOtp()
             }
             this.setState({ isGettingOtp: false })
           })

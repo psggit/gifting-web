@@ -142,7 +142,7 @@ class LandingPage extends React.Component {
             </h1>
             <div className="presence-counts">
               <div className="presence-item">
-                <h1 className="os s0">10k+</h1>
+                <h1 className="os s0">100k+</h1>
                 <h1 className="brands-heading os s1">HipBar users</h1>
               </div>
 
