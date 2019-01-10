@@ -175,7 +175,8 @@ class LandingPage extends React.Component {
               <Icon name="stepTwo" />
               <h2 className="cm s2">Recipient notified via SMS!</h2>
               <p className="os s3">
-              Recipient is notified via SMS with more information on how to use the gift card.
+              Recipient is notified via SMS with more <br/>
+              information on how to use the gift card.
               </p>
             </div>
 
@@ -197,7 +198,9 @@ class LandingPage extends React.Component {
               <Icon name="stepFour" />
               <h2 className="cm s2">Redeem with HipBar Gift Card at Retail Outlets</h2>
               <p className="os s3">
-              Recipient pays for drinks with their HipBar<br/> Gift Card at any of the 60+ HipBar-affiliated stores in the city of operation<br/>
+              Recipient pays for drinks with their HipBar<br/>
+              Gift Card at any of the 60+ HipBar-affiliated<br/> 
+              stores in the city of operation
               </p>
             </div>
 

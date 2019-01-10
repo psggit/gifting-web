@@ -33,7 +33,7 @@ class FailureTransaction extends React.Component {
               <div className="header section">
                 <Icon name="failure" />
                 <h2 className="cm s1 title">Transaction Failed!</h2>
-                <p className="info">Don't worry! If money has been debited, it will be credited to your mode of payment in 5 - 7 working days</p>
+                <p className="info">Don't worry! If incorrectly debited, money will be returned via your mode of payment within 5-7 working days</p>
               </div>
               <div className="body section">
                 <p className="subheader">Transaction Details</p>
@@ -55,7 +55,7 @@ class FailureTransaction extends React.Component {
                 </div>
               </div>
               <div className="footnote section">
-                <p className="os s8">Please get in touch with our customer support team through chat for further support</p>
+                <p className="os s8">Please get in touch with our support team for further assistance</p>
               </div>
             </div>
           </div>
