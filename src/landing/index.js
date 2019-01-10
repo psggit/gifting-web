@@ -9,6 +9,7 @@ import AgeGate from './../AgeGate'
 import Header from "Components/header"
 import Footer from "Components/footer"
 import {readCookie} from "Utils/session-utils"
+import {supportedCities} from "Utils/constants"
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class LandingPage extends React.Component {
                 </h2>
 
                 <p className="os s2">
-                With HipBar Gift Cards, gift drinks to your friends & family! Redeem drinks at 60+ retailers across Goa!
+                With HipBar Gift Cards, gift drinks to your friends & family! Redeem drinks at 60+ retailers across {supportedCities}!
                 </p>
 
                 <div style={{ marginTop: "30px", }}>
@@ -73,7 +74,7 @@ class LandingPage extends React.Component {
                   </a>
                 </div>
                 <p className="os s7">
-                  Currently in Goa<br />
+                  Currently in {supportedCities}<br />
                   Coming soon to 10+ cities across India!
                 </p>
 
@@ -130,7 +131,7 @@ class LandingPage extends React.Component {
             <div style={{ marginTop: "100px" }}>
               <h1 className="cm s1">What are HipBar Gift Cards?</h1>
               <p className="os s2">
-              With HipBar Gift Cards, gift drinks to your friends & family! Redeem drinks at 60+ retailers across Goa!
+              With HipBar Gift Cards, gift drinks to your friends & family! Redeem drinks at 60+ retailers across {supportedCities}!
               </p>
             </div>
           </div>
@@ -183,7 +184,7 @@ class LandingPage extends React.Component {
               <h2 className="cm s2">Recipient downloads the HipBar app</h2>
               <p className="os s3">
               With the HipBar app, they can easily<br/> view their Gift Cards and redeem it at<br/>
-          60+ HipBar powered retail outlets in Goa
+          60+ HipBar powered retail outlets in {supportedCities}
               </p>
 
               <div className="app-store-btn">
