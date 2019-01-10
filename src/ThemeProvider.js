@@ -37,6 +37,7 @@ export class ThemeProvider extends React.Component {
         response.json().then((data) => {
           this.setState({username: data.consumer.full_name, isLoggedIn: true, mobile: data.consumer.mobile_number})
           localStorage.setItem("sender_mobile", data.consumer.mobile_number)
+          localStorage.setItem("email", data.consumer.email)
           // localStorage.setItem("username", data.username)
         })
       })

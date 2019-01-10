@@ -44,7 +44,7 @@
       externalId: "",   // user’s id unique to your system
       firstName: localStorage.getItem("username"), // user’s first name
       lastName: "", // user’s last name
-      email: "", // user’s email address
+      email: localStorage.getItem("email"), // user’s email address
       phone: localStorage.getItem("sender_mobile"), // phone number without country code
       phoneCountryCode: "+91" // phone’s country code
   });
