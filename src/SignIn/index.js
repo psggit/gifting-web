@@ -213,6 +213,7 @@ export default function SignIn(data) {
               }, function() {
                 console.log("User Not cleared")
               })
+              gtag("event", "Sign in", {"method": "Google"})
               //localStorage.setItem("showAgegate", false)
               location.href= (location.pathname)
               unMountModal()
