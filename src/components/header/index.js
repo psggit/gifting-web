@@ -127,7 +127,6 @@ class Header extends React.Component {
   // }
   
   handleClick() {
-    gtag("event", "Sign in", {"method": "Google"})
     mountModal(SignIn({
       //reload: this.reloadHeader
     }))
