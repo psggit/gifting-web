@@ -1,1 +1,1 @@
-export const supportedCities = "Goa"
+export const supportedCities = "Goa and Mahe"
