@@ -186,6 +186,14 @@ app.get('/user-terms', (req, res) => {
   })
 })
 
+app.get('/hipbar-wallet', (req, res) => {
+  res.sendFile(path.join(__dirname, `src/hipbar-wallet.html`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 // client side app
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist/index.html"), (err) => {
