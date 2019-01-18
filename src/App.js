@@ -20,6 +20,7 @@ import FAQ from "./FAQ"
 import TransactionSuccessful from "./SuccessfulTransaction"
 import TransactionFail from "./FailureTransaction"
 import LocationMap from "./LocationMap"
+import ProductListing from './ProductListing'
 import { Api } from "Utils/config"
 import {clearSession} from 'Utils/session-utils'
 import { mountModal } from 'Components/modal-box/utils'
@@ -308,6 +309,7 @@ class App extends React.Component {
                       />
                       <Route exact path="/payment-status" component={PaymentStatus}  />
                       <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
+                      <Route exact path="/product-listing" component={ProductListing}  />
                     </Switch>
                   </Router>
                   {

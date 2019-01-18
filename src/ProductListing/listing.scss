@@ -1,0 +1,35 @@
+#ProductListing {
+  width: 100%;
+  //font-family: $font-OpenSans;
+  //height: 100vh;
+  h4, h2 {
+    //font-family: $font-Cormorant;
+    text-align: left;
+  }
+
+  .content {
+    // padding: 0 20.5%;
+    position: relative;
+    // margin-top: calc(134px + 80px);
+    // margin-bottom: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    //padding: 80px 40px;
+    padding: 12% 15% 5% 15%;
+    background: #ffffff;
+  }
+
+  .header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    p {
+      letter-spacing: 0.51px;
+      color: #555;
+    }
+  }
+}
