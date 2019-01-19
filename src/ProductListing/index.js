@@ -1,16 +1,32 @@
 import React from "react"
 import "./listing.scss"
 import Icon from "Components/icon"
-
+import { Suspense, lazy } from "react"
+const Albums = lazy(() => import('./albums.js'))
+ 
 class ProductListing extends React.Component {
   constructor() {
     super()
 
     this.state = {
-      search_text: ''
+      search_text: '',
+      products: [],
     }
 
     this.handleTextChange = this.handleTextChange.bind(this)
+  }
+
+  componentDidMount() {
+    fetch(`https://itunes.apple.com/in/rss/topalbums/limit=100/json`)
+      .then((response) => {
+        response.json().then((res) => {
+          console.log("res", res.feed.entry)
+          this.setState({products: res.feed.entry})
+        })
+      })
+      .catch((error) => {
+        console.log("error", error)
+      })
   }
 
   handleTextChange(e) {
@@ -18,6 +34,25 @@ class ProductListing extends React.Component {
   }
 
   render() {
+
+    const loadingImg = <div className="album-img">
+      <img alt="loading" src="https://media.giphy.com/media/y1ZBcOGOOtlpC/200.gif" />
+    </div>
+
+    const albums = this.state.products.map(e => {
+      return (
+        <Suspense key={e.id.label} fallback={loadingImg}>
+          <Albums
+            image={e["im:image"][2].label}
+            title={e.title.label}
+            link={e.id.label}
+            price={e["im:price"].label}
+            date={e["im:releaseDate"].label}
+          />
+        </Suspense>
+      );
+    });
+
     return (
       <div id="ProductListing">
         <div className="content">
@@ -56,6 +91,9 @@ class ProductListing extends React.Component {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="albums">
+            {albums}
           </div>
         </div>
       </div>
