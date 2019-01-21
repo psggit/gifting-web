@@ -2,6 +2,7 @@ import React from "react"
 import "./listing.scss"
 import Icon from "Components/icon"
 import { Suspense, lazy } from "react"
+import "intersection-observer"
 const Albums = lazy(() => import('./albums.js'))
  
 class ProductListing extends React.Component {
@@ -11,22 +12,80 @@ class ProductListing extends React.Component {
     this.state = {
       search_text: '',
       products: [],
+      offset: 0
     }
 
+    this.limit = 10;
+    //this.offset = 0;
+
     this.handleTextChange = this.handleTextChange.bind(this)
+    //this.findScroll = this.findScroll.bind(this)
+    this.findInterSection = this.findInterSection.bind(this)
   }
 
   componentDidMount() {
-    fetch(`https://itunes.apple.com/in/rss/topalbums/limit=100/json`)
-      .then((response) => {
-        response.json().then((res) => {
-          console.log("res", res.feed.entry)
-          this.setState({products: res.feed.entry})
+    this.findInterSection()
+  }
+
+  fetchProducts({limit, offset}) {
+    fetch(`http://jsonplaceholder.typicode.com/photos?_start=${offset}&_limit=${limit}`)
+    .then((response) => {
+      response.json().then((res) => {
+        // console.log("res", [...this.state.products, res])
+        this.setState({
+          products: this.state.products.concat(res)
         })
       })
-      .catch((error) => {
-        console.log("error", error)
-      })
+    })
+    .catch((error) => {
+      console.log("error", error)
+    })
+  }
+
+  findInterSection() {
+    const componentThis = this
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          console.log("calling from intersection")
+          componentThis.fetchProducts({ limit: componentThis.limit, offset: componentThis.state.offset })
+          componentThis.setState({ offset: componentThis.state.offset + 10 })
+        }
+      });
+    });
+
+    lazyImageObserver.POLL_INTERVAL = 100
+    lazyImageObserver.USE_MUTATION_OBSERVER = false
+    const target = document.getElementById("scroll-intersection")
+    lazyImageObserver.observe(target);
+  }
+
+  // findScroll() {
+  //   console.log("scrolling")
+  //   const scrollInterSection = document.getElementById("scroll-intersection")
+  //   const scrollInterSectionOffset = scrollInterSection.offsetTop
+  //   // var footerElement = document.getElementsByClassName('footer')[0];
+  //   //var scrollElement = document.getElementById('scrollDiv');
+  //   var scrollHeight = document.body.offsetHeight
+  //   var scrollPosition = (window.scrollY + window.innerHeight)
+
+  //   //console.log("footer length", footerElement.offsetHeight, "1", window.scrollY, "2",window.innerHeight, "3", (window.scrollY + window.innerHeight), "pos", scrollPosition, "hei", scrollHeight)
+  
+  //   if (this.intersectionIsInsideViewport(scrollInterSection)) {
+  //       console.log("scroll bottom")
+  //       this.fetchProducts({limit: this.limit, offset: this.state.offset})
+  //       this.setState({ offset: this.state.offset + 10 })
+  //   }
+  // }
+
+  intersectionIsInsideViewport(el) {
+    var rect = el.getBoundingClientRect()
+
+    return (
+       rect.top    >= 0
+    && rect.left   >= 0
+    && rect.top <= (window.innerHeight || document.documentElement.clientHeight)
+    )
   }
 
   handleTextChange(e) {
@@ -41,13 +100,14 @@ class ProductListing extends React.Component {
 
     const albums = this.state.products.map(e => {
       return (
-        <Suspense key={e.id.label} fallback={loadingImg}>
+        <Suspense key={e.id} fallback={loadingImg}>
           <Albums
-            image={e["im:image"][2].label}
-            title={e.title.label}
-            link={e.id.label}
-            price={e["im:price"].label}
-            date={e["im:releaseDate"].label}
+            id={e.id}
+            image={e.thumbnailUrl}
+            title={e.title}
+            link={e.url}
+            price=""
+            date=""
           />
         </Suspense>
       );
@@ -96,6 +156,7 @@ class ProductListing extends React.Component {
             {albums}
           </div>
         </div>
+        <div id="scroll-intersection"></div>
       </div>
     )
   }

@@ -34,16 +34,17 @@
   }
 
   .albums{
-    // display: grid;
-    // grid-template-columns: repeat(auto-fit,minmax(200px,300px));
-    // grid-gap: 1rem;
-    // justify-content: center;
-    // font-weight: 400;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,200px));
+    grid-gap: 50px;
+    justify-content: center;
+    font-weight: 400;
+    // display: flex;
+    // flex-wrap: wrap;
+    // align-items: center;
+    // justify-content: space-between;
+    // width: 100%;
   }
 
   .load{
