@@ -13,6 +13,7 @@ import RedeemingGiftCard from './RedeemingGiftCard'
 import LandingPage from "./landing"
 import UsingGiftCard from './GiftCardInfo'
 import SendGiftCards from './SendGift'
+import SendGiftWizardStep1 from './SendGiftWizardStep1'
 import TransactionHistory from "./TransactionHistory"
 import Checkout from "./Payment"
 import RetailOutlet from './RetailOutlet'
@@ -234,6 +235,16 @@ class App extends React.Component {
                             />
                           )
                         } 
+                      />
+                      <Route exact
+                        path="/send-gift-wizard-step1"
+                        render={
+                          props => (
+                            <SendGiftWizardStep1 {...props}
+                              paramObj={paramObj}
+                            />
+                          )
+                        }
                       />
                       <Route exact 
                         path="/transaction-history" 

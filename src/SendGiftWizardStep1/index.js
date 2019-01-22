@@ -40,7 +40,7 @@ class SendGiftWizardStep1 extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     <input 
-                                        name="senderName" 
+                                        name="receiverName" 
                                         type="text" 
                                         placeholder="Enter your name"
                                     />
