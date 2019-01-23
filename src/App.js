@@ -14,6 +14,10 @@ import LandingPage from "./landing"
 import UsingGiftCard from './GiftCardInfo'
 import SendGiftCards from './SendGift'
 import SendGiftWizardStep1 from './SendGiftWizardStep1'
+import MobileGetStarted from './MobileGetStarted'
+import MobileName from './MobileName'
+import MobileCity from './MobileCity'
+import MobileFavDrink from './MobileFavDrink'
 import TransactionHistory from "./TransactionHistory"
 import Checkout from "./Payment"
 import RetailOutlet from './RetailOutlet'
@@ -246,6 +250,51 @@ class App extends React.Component {
                           )
                         }
                       />
+
+                      <Route exact
+                        path="/mobile-get-started"
+                        render={
+                          props => (
+                            <MobileGetStarted {...props}
+                              paramObj={paramObj}
+                            />
+                          )
+                        }
+                      />
+
+                      <Route exact
+                        path="/mobile-name"
+                        render={
+                          props => (
+                            <MobileName {...props}
+                              paramObj={paramObj}
+                            />
+                          )
+                        }
+                      />
+
+                      <Route exact
+                        path="/mobile-city"
+                        render={
+                          props => (
+                            <MobileCity {...props}
+                              paramObj={paramObj}
+                            />
+                          )
+                        }
+                      />
+
+                      <Route exact
+                        path="/mobile-fav-drink"
+                        render={
+                          props => (
+                            <MobileFavDrink {...props}
+                              paramObj={paramObj}
+                            />
+                          )
+                        }
+                      />
+
                       <Route exact 
                         path="/transaction-history" 
                         //component={TransactionHistory} 

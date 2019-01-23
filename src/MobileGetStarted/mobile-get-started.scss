@@ -1,0 +1,59 @@
+@import "./../sass/base.scss";
+
+#mobile-get-started {
+    margin-top: 103px;
+    background-color: #f1f1f1;
+  
+    .container {
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            >div{
+              width:100%;
+            }
+            &:first-child{
+              margin-top: 40px;
+            }
+          }
+
+          
+
+          button {
+            background-color: #777777;
+            border-color: transparent;
+          }
+
+          .gift{
+            > svg {
+              width:80px; 
+              height:60px;
+              > g{
+                opacity: 1;
+                >g{
+                  fill:#777777;
+                }
+              }
+            }
+          }
+          .welcome-to-hipbar {
+            padding-top: 10px;
+            font-weight: 600;
+            line-height: 1.46;
+            text-align: center;
+            color: #777777;
+          }
+
+          .we-ll-help-you-choos {
+            padding-top: 5px;
+            line-height: 1.42;
+            text-align: center;
+            color: #777777;
+          }
+
+          .next{
+            padding-top: 20px;
+          }
+    }
+}
