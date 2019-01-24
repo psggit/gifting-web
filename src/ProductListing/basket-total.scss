@@ -1,0 +1,13 @@
+.basket--container {
+  padding: 20px;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2147483601;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #dfdfdf;
+  align-items: center;
+}
