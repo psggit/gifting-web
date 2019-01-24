@@ -1,71 +1,101 @@
 import React from "react"
 import "./listing.scss"
-import Icon from "Components/icon"
-import { Suspense, lazy } from "react"
+
+/* Polyfill for intersection observer API */
 import "intersection-observer"
-const Albums = lazy(() => import('./albums.js'))
+
+import BrandsList from "./BrandsList"
+import { GET } from "Utils/fetch"
+
+import Loader from "Components/loader"
+import GenreOverlay from "./genre-overlay"
+import Search from "Components/Search"
+import BasketTotal from "./BasketTotal"
+import Icon from "Components/icon"
  
 class ProductListing extends React.Component {
   constructor() {
     super()
 
     this.state = {
-      search_text: '',
+      search_text: "",
       products: [],
-      offset: 0
+      offset: 0,
+      isBrandsLoading: false,
+      shouldMountGenres: false,
+      cityName: "bengaluru"
     }
 
-    this.limit = 10;
-    //this.offset = 0;
+    this.limit = 8
+    //this.offset = 0
 
     this.handleTextChange = this.handleTextChange.bind(this)
     //this.findScroll = this.findScroll.bind(this)
     this.findInterSection = this.findInterSection.bind(this)
+    this.openGenres = this.openGenres.bind(this)
+    this.closeGenres = this.closeGenres.bind(this)
+    this.handleCityChange = this.handleCityChange.bind(this)
   }
 
   componentDidMount() {
     this.findInterSection()
+    this.fetchCities()
   }
 
-  fetchProducts({limit, offset}) {
-    fetch(`http://jsonplaceholder.typicode.com/photos?_start=${offset}&_limit=${limit}`)
-    .then((response) => {
-      response.json().then((res) => {
-        // console.log("res", [...this.state.products, res])
+  fetchCities() {
+    // fetch cities
+  }
+
+  fetchProducts({limit, offset}, cityName = this.state.cityName) {
+    console.log(cityName)
+    GET({
+      api: `http://jsonplaceholder.typicode.com/photos?_start=${offset}&_limit=${limit}`,
+      prependBaseUrl: false,
+      type: "public",
+      handleError: true
+    })
+      .then(json => {
         this.setState({
-          products: this.state.products.concat(res)
+          products: this.state.products.concat(json),
+          isBrandsLoading: false
         })
       })
-    })
-    .catch((error) => {
-      console.log("error", error)
-    })
   }
 
   findInterSection() {
-    const componentThis = this
-    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+    const target = document.getElementById("scroll-intersection")
+    const _self = this
+    let io = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
-          console.log("calling from intersection")
-          componentThis.fetchProducts({ limit: componentThis.limit, offset: componentThis.state.offset })
-          componentThis.setState({ offset: componentThis.state.offset + 10 })
+          _self.setState({ isBrandsLoading: true })
+          _self.fetchProducts({ limit: _self.limit, offset: _self.state.offset })
+          _self.setState({ offset: _self.state.offset + 10 })
         }
-      });
-    });
+      })
+    })
 
-    lazyImageObserver.POLL_INTERVAL = 100
-    lazyImageObserver.USE_MUTATION_OBSERVER = false
-    const target = document.getElementById("scroll-intersection")
-    lazyImageObserver.observe(target);
+    io.POLL_INTERVAL = 100
+    io.USE_MUTATION_OBSERVER = false
+    io.observe(target)
+  }
+
+  openGenres() {
+    this.setState({ shouldMountGenres: true })
+    document.body.style.overflow = "hidden"
+  }
+
+  closeGenres() {
+    this.setState({ shouldMountGenres: false })
+    document.body.style.overflow = ""
   }
 
   // findScroll() {
   //   console.log("scrolling")
   //   const scrollInterSection = document.getElementById("scroll-intersection")
   //   const scrollInterSectionOffset = scrollInterSection.offsetTop
-  //   // var footerElement = document.getElementsByClassName('footer')[0];
-  //   //var scrollElement = document.getElementById('scrollDiv');
+  //   // var footerElement = document.getElementsByClassName("footer")[0]
+  //   //var scrollElement = document.getElementById("scrollDiv")
   //   var scrollHeight = document.body.offsetHeight
   //   var scrollPosition = (window.scrollY + window.innerHeight)
 
@@ -78,82 +108,71 @@ class ProductListing extends React.Component {
   //   }
   // }
 
-  intersectionIsInsideViewport(el) {
-    var rect = el.getBoundingClientRect()
+  // intersectionIsInsideViewport(el) {
+  //   var rect = el.getBoundingClientRect()
 
-    return (
-       rect.top    >= 0
-    && rect.left   >= 0
-    && rect.top <= (window.innerHeight || document.documentElement.clientHeight)
-    )
-  }
+  //   return (
+  //      rect.top    >= 0
+  //   && rect.left   >= 0
+  //   && rect.top <= (window.innerHeight || document.documentElement.clientHeight)
+  //   )
+  // }
 
   handleTextChange(e) {
     this.setState({ [e.target.name]: e.target.value})
   }
 
+  handleSearch(query) {
+    // call search api here
+    console.log("Searching for " + query)
+  }
+
+  handleCityChange(e) {
+    const cityName = e.target.value
+    this.fetchProducts({ limit: this.limit, offset: 8 }, cityName)
+    this.setState({ cityName })
+  }
+
   render() {
-
-    const loadingImg = <div className="album-img">
-      <img alt="loading" src="https://media.giphy.com/media/y1ZBcOGOOtlpC/200.gif" />
-    </div>
-
-    const albums = this.state.products.map(e => {
-      return (
-        <Suspense key={e.id} fallback={loadingImg}>
-          <Albums
-            id={e.id}
-            image={e.thumbnailUrl}
-            title={e.title}
-            link={e.url}
-            price=""
-            date=""
-          />
-        </Suspense>
-      );
-    });
-
     return (
-      <div id="ProductListing">
-        <div className="content">
-          <div className="header">
-            <div style={{display: 'flex', alignItems: 'center'}}>
-              <p className="os s8" style={{marginRight: '16px'}}>Showing products in:</p>
-              <div className="form-group" style={{marginTop: '0'}}>
-                <div>
-                  <select>
-                    <option>Bangalore</option>
-                    <option>Chennai</option>
-                    <option>Erode</option>
+      <div id="BrandsListing">
+        <div className="container">
+          <div className="paper">
+
+            <div className="header">
+
+              <div className="row">
+                <div className="city--select">
+                  <Icon name="location" />
+                  <select onChange={this.handleCityChange} value={this.state.cityName}>
+                    <option value="bengaluru">Bengaluru</option>
+                    <option value="chennai">Chennai</option>
                   </select>
                 </div>
+                <Search placeholder="Search for products" onSearch={this.handleSearch} />
+              </div>
+
+              <div className="row">
+                <span className="os s1">Showing drinks for:</span>
+                <span
+                  className="os s1"
+                  onClick={this.openGenres}
+                  style={{
+                    textDecoration: "underline",
+                    fontWeight: "600",
+                    display: "inline",
+                    padding: "16px 10px"
+                  }}>
+                  Whiskey
+                </span>   
               </div>
             </div>
-            <div>
-              {/* <input type="text" placeholder="Search for products" />
-              <span><Icon name="plus" /></span> */}
-              <div className="form-group">
-                <div>
-                  <input
-                    type="text"
-                    name="search"
-                    placeholder="Search for products"
-                    //className={`${nameErr.status ? 'error' : ''}`}
-                    value={this.state.search_text}
-                    //disabled={this.state.disableField && this.state.otpSent}
-                    //style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
-                    autoComplete="off"
-                    onChange={(e) => this.handleTextChange(e)}
-                  />
-                </div>
-                <div >
-                  <span><Icon name="plus" /></span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="albums">
-            {albums}
+
+            <GenreOverlay closeGenres={this.closeGenres} shouldMountGenres={this.state.shouldMountGenres} />
+            <BasketTotal totalPrice="7050" noOfDrinks="3" />
+
+            <BrandsList data={this.state.products} />
+            { this.state.isBrandsLoading && <Loader /> }
           </div>
         </div>
         <div id="scroll-intersection"></div>
