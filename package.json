@@ -12,6 +12,7 @@
     "postcss-cli": "^6.1.0",
     "preact": "^8.4.2",
     "preact-compat": "^3.18.4",
+    "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-input-mask": "^2.0.4",
