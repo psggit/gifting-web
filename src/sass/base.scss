@@ -12,9 +12,17 @@
 //   @return $pixels / $context * 1rem;
 // }
 
+// @include calc(font-size, "14px + (#{px(52)} - 14) * ((100vw - 320px) / (1440 - 320))");
+
 @function px($size) {
-  @return $size/1.4 * 1px;
+  $pixels: $size/1.4 * 1px;
+  // $x: 14px + ($pixels - 14);
+  @return $pixels;
 }
+
+// @mixin calc($property, $expression) {
+//   #{$property}: calc(#{$expression});
+// }
 
 /* Layout */
 .container {
@@ -33,6 +41,8 @@ $font-Cormorant: "Cormorant Garamond", serif;
 /* Texts  */
 /* cm - Cormorant Garamond */
 /* os - Open Sans */
+//   #{$property}: calc(#{$expression});
+// }
 
 .cm {
   font-family: $font-Cormorant;
@@ -96,9 +106,9 @@ $font-Cormorant: "Cormorant Garamond", serif;
   }
 }
 
-@media only screen and (max-width: 640px) {
+// @media only screen and (max-width: 640px) {
   
-}
+// }
 
 
 @media only screen and (max-width: 970px) {
@@ -146,4 +156,72 @@ $font-Cormorant: "Cormorant Garamond", serif;
       font-size: 14px;
     }
   }
+}
+
+.animated {
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+.fadeOutDown {
+  animation-name: fadeOutDown;
+  animation-duration: 0.2s;
+}
+
+.fadeOut {
+  animation-name: fadeOut;
+  animation-duration: 0.5s;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+  animation-duration: 0.2s;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
 }
