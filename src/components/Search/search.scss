@@ -1,0 +1,15 @@
+.search--box input {
+  padding: 0 16px 0 40px;
+}
+
+.search--box {
+  position: relative;
+}
+
+.search--box svg {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
