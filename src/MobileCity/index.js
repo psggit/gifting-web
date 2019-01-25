@@ -2,12 +2,13 @@ import React from "react"
 import "./mobile-city.scss"
 import Button from "Components/button"
 import Icon from "Components/icon"
+import MobileNavBar from "Components/mobile-nav-bar"
 
 export default function MobileCity(props){
-    debugger;
     return(
       <div id="mobile-city">
           <div className="container os">
+            <MobileNavBar stepNo = {2} stepName = {"Recipient's City"}/>
             <div className="row place"> 
               <Icon name= "gift"/>
             </div>                           
@@ -26,8 +27,6 @@ export default function MobileCity(props){
                   />
               </div>
             </div>
-
-            
           </div>
           <div className="row next">
               <Button

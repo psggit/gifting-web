@@ -2,11 +2,13 @@ import React from "react"
 import "./mobile-fav-drink.scss"
 import Button from "Components/button"
 import Icon from "Components/icon"
+import MobileNavBar from "Components/mobile-nav-bar"
 
 export default function MobileFavDrink(props){
     return(
       <div id="mobile-fav-drink">
           <div className="container os">
+            <MobileNavBar stepNo = {3} stepName = {"Favourite drink"}/>
             <div className="row fav-drink"> 
               <Icon name= "gift"/>
             </div>                           
@@ -25,8 +27,6 @@ export default function MobileFavDrink(props){
                   />
               </div>
             </div>
-
-            
           </div>
           <div className="row next">
               <Button

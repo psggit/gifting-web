@@ -3,8 +3,6 @@
 #mobile-name {
     margin-top: 103px;
     background-color: #f1f1f1;
-  
-    
         .row {
             width: 100%;
             >div{
@@ -46,7 +44,6 @@
 
           .form-group {
             margin-top: 15px;
-            //justify-content: flex-start;
             input {
               color: #2b2826;
               padding: 20px;
@@ -68,11 +65,11 @@
             }            
         }
 
-          .next{
-            padding: 15px;
-            >button{
-              width:100%;
-            }
+        .next{
+          padding: 15px;
+          >button{
+            width:100%;
           }
-    
+        }
+  
 }
