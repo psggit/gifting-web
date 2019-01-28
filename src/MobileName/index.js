@@ -4,7 +4,7 @@ import Button from "Components/button"
 import Icon from "Components/icon"
 import MobileNavBar from "Components/mobile-nav-bar"
 
-export default function MobileName(props){
+export default function MobileName(props){    
     return(
       <div id="mobile-name">
           <div className="container os">

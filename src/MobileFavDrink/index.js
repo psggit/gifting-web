@@ -19,12 +19,35 @@ export default function MobileFavDrink(props){
               <div className="steps-result os s5">
               This will let us curate a special list of drinks that you can gift them.
               </div>
-              <div className="form-group">
-                  <input 
-                      name="receiverName" 
-                      type="text" 
-                      placeholder="Enter your name"
-                  />
+              <div class="list">
+                <div class="" >
+                  <Icon name="instagramLogo" />
+                  <div>Whiskey</div>
+                </div>
+                <div class="" >
+                  <Icon name="instagramLogo" />
+                  <div>Beer</div>
+                </div>
+                <div class="active" >
+                  <Icon name="instagramLogo" />
+                  <div>Rum</div>
+                </div>
+                <div class="" >
+                  <Icon name="instagramLogo" />
+                  <div>Vodka</div>
+                </div>
+                <div class="" >
+                  <Icon name="instagramLogo" />
+                  <div>Gin</div>
+                </div>
+                <div class="" >
+                  <Icon name="instagramLogo" />
+                  <div>Tequila</div>
+                </div>
+                <div class="" >
+                  <Icon name="instagramLogo" />
+                  <div>Liqueur</div>
+                </div>
               </div>
             </div>
           </div>
