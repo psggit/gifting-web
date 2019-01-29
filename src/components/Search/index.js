@@ -7,14 +7,27 @@ class Search extends React.Component {
   constructor() {
     super()
     this.state = {
-      query: ""
+      query: "",
+      isFocused: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleKeyDown = this.handleKeyDown.bind(this)
+    this.handleFocus = this.handleFocus.bind(this)
+    this.cancelSearch = this.cancelSearch.bind(this)
   }
 
   handleChange(e) {
     this.setState({ query: e.target.value })
+  }
+
+  cancelSearch() {
+    this.setState({ isFocused: false })
+    this.props.cancelSearch()
+  }
+
+  handleFocus() {
+    this.setState({ isFocused: true })
+    this.props.onFocus()
   }
 
   handleKeyDown(e) {
@@ -26,14 +39,16 @@ class Search extends React.Component {
   }
   render() {
     return (
-      <div className="search--box">
+      <div className={`search--box ${this.state.isFocused ? "focused" : ""}`}>
         <Icon name="search" />
         <input
+          onFocus={this.handleFocus}
           placeholder={this.props.placeholder}   
           type="text"
           onKeyDown={this.handleKeyDown}
           onChange={this.handleChange}
         />
+        <span onClick={this.cancelSearch} className="cancel--search os">Cancel</span>
       </div>
     )
   }
@@ -43,5 +58,7 @@ export default Search
 
 Search.propTypes = {
   onSearch: PropTypes.func,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  cancelSearch: PropTypes.func,
+  onFocus: PropTypes.func
 }
