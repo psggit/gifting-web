@@ -1,10 +1,10 @@
-import { POST, GET } from 'Utils/fetch'
-//import Notify from 'Components/notify'
+import { POST, GET } from "Utils/fetch"
+//import Notify from "Components/notify"
 
 export function fetchTransactionList (payloadObj, successCallback, failureCallback) {
   return POST({
     api: `/consumer/transactionsv3/gifts_sent_all`,
-    apiBase: 'orderman',
+    apiBase: "orderman",
     data: payloadObj,
     handleError: true
   })
@@ -22,7 +22,7 @@ export function fetchTransactionList (payloadObj, successCallback, failureCallba
 export function fetchAvailableHipbarDelivery(successCallback) {
   return GET({
     api: `/consumer/where_hipbar_delivery_available`,
-    apiBase: 'loki',
+    apiBase: "loki",
     //data: payloadObj,
     handleError: true
   })
@@ -37,7 +37,7 @@ export function fetchAvailableHipbarDelivery(successCallback) {
 export function fetchRetailers(payloadObj, successCallback, failureCallback) {
   return POST({
     api: `/retailerDiscovery/getRetailers`,
-    apiBase: 'catman',
+    apiBase: "catman",
     data: payloadObj,
     handleError: true
   })
@@ -48,5 +48,96 @@ export function fetchRetailers(payloadObj, successCallback, failureCallback) {
     .catch(err => {
       //console.log("Error in fetching available hipbar deliveries", err)
       failureCallback()
+    })
+}
+
+export function listCities(CB) {
+  POST({
+    api: "/city/availableCities",
+    handleError: true,
+    apiBase: "loki",
+    data: {
+      available: true,
+      delivery_available: false,
+      wallet_available: false
+    }
+  })
+    .then(json => {
+      CB(json.availableCities)
+    })
+}
+
+export function listBrandsUsingGenre(genre, CB) {
+  POST({
+    api: `/consumer/browse/genre/${genre}`,
+    handleError: true,
+    apiBase: "catman",
+    data: {
+      from: 0,
+      size: 9999,
+      km: "40km",
+      gps: "",
+      is_featured: false,
+      stateName: "KA"
+    }
+  })
+    .then(json => {
+      const brands = json.map(item => {
+        return {
+          id: item.id,
+          brand: item.brand_name,
+          shortName: item.brand_short_name,
+          genreShortName: item.genre_short_name
+        }
+      })
+      CB(brands, false)
+    })
+}
+
+export function listGenres(gps, CB) {
+  POST({
+    api: "/consumer/browse/stores/",
+    handleError: true,
+    apiBase: "catman",
+    data: {
+      gps
+    }
+  })
+    .then(json => {
+      CB(json.data, false)
+    })
+}
+
+export function listSKUUsingBrand(genreShortName, brandName, CB) {
+  POST({
+    api: `/support/browse/stores/${genreShortName}/${brandName}`,
+    handleError: true,
+    apiBase: "catman",
+    data: {
+      from: 0,
+      size: 9999,
+      km: "40km",
+      gps: "",
+      is_featured: false,
+      stateName: "KA"
+    }
+  })
+    .then(json => {
+      let id
+      let type
+      let cashbackTitle
+      const skus = json.brand.skus.map(item => {
+        id = item.offer ? item.offer.cash_back_offer_id : item.sku_pricing_id
+        type = item.offer ? "cashback" : "normal"
+        cashbackTitle = item.offer ? item.offer.title : ""
+        return {
+          id,
+          volume: item.volume,
+          price: item.price,
+          type,
+          cashbackTitle
+        }
+      })
+      CB(skus, false)
     })
 }

@@ -1,0 +1,118 @@
+#BrandsListing {
+  width: 100%;
+  margin-top: 100px;
+
+  .container {
+    background-color: #f1f1f1;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .paper {
+    position: relative;
+    background-color: #fff;
+    p, span {
+      color: #555;
+    }
+  }
+
+  .header {
+    position: sticky;
+    top: 100px;
+    width: 100%;
+    z-index: 2147483602;
+    // height: calc(100vh - 100px);
+    .row:first-child {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    .row:last-child {
+      padding: 16px 20px;
+      border-bottom: 1px solid #dfdfdf;
+      background-color: #fff;
+      span:last-child {
+        svg:first-child {
+          margin-right: 5px;
+          position: relative;
+          top: 1px;
+        }
+        svg:last-child {
+          margin-left: 5px;
+          position: relative;
+          top: -2px;
+        }
+      }
+    }
+
+    .city--select {
+      flex: 1;
+      height: 46px;
+      opacity: 1;
+      position: relative;
+      overflow: hidden;
+      transition: 0.2s all ease-in-out;
+      svg {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        &:first-child {
+          left: 10px;
+        }
+        &:last-child {
+          right: 10px;
+        }
+      }
+    }
+
+    select {
+      width: 100%;
+      height: 100%;
+      border: 1px solid #dfdfdf;
+      border-left: 0;
+      background-color: #fff;
+      border-right: 0;
+      color: #555;
+      letter-spacing: 0.4px;
+      text-indent: 24px;
+      padding: 0 5px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+  
+      option{
+        text-indent: 16px;
+      }
+  
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+
+  .brands{
+    width: 100%;
+  }
+
+  // search box styles
+  .search--box {
+    flex: 2;
+    &.focused ~ .city--select {
+      flex: 0;
+      transition: 0.2s all ease-in;
+    }
+  }
+  .search--box input {
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    border: 1px solid #dfdfdf;
+    border-right: 0;
+    line-height: 40px;
+    &:focus {
+      outline: 0;
+
+    }
+  }
+}

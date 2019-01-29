@@ -1,0 +1,21 @@
+{
+  "short_name": "Gifting - Hipbar",
+  "name": "Hipbar Gifting",
+  "icons": [
+    {
+      "src": "./images/favicon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./images/favicon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/product-listing?source=pwa",
+  "background_color": "#000",
+  "display": "standalone",
+  "scope": "/product-listing",
+  "theme_color": "#000"
+}

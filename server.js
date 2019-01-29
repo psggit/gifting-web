@@ -154,6 +154,14 @@ app.post("/transaction-failure", (req, res) => {
   // res.send(reactHTML)
 })
 
+app.get("/manifest.json", (req, res) => {
+  res.sendFile(path.join(__dirname, "manifest.json"), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 app.get('/grievance-policy', (req, res) => {
   res.sendFile(path.join(__dirname, `src/grievance-policy.html`), (err) => {
     if (err) {
