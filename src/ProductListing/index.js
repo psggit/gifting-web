@@ -12,6 +12,8 @@ import GenreOverlay from "./genre-overlay"
 import Search from "Components/Search"
 import BasketTotal from "./BasketTotal"
 import Icon from "Components/icon"
+import SearchResults from "./SearchResults"
+import { listCities, listGenres } from "./../api"
  
 class ProductListing extends React.Component {
   constructor() {
@@ -23,7 +25,11 @@ class ProductListing extends React.Component {
       offset: 0,
       isBrandsLoading: false,
       shouldMountGenres: false,
-      cityName: "bengaluru"
+      shouldMountSearchResults: false,
+      cityIdx: 0,
+      cities: [],
+      loadingCities: false,
+      genres: []
     }
 
     this.limit = 8
@@ -35,19 +41,27 @@ class ProductListing extends React.Component {
     this.openGenres = this.openGenres.bind(this)
     this.closeGenres = this.closeGenres.bind(this)
     this.handleCityChange = this.handleCityChange.bind(this)
+    this.handleFocus = this.handleFocus.bind(this)
+    this.cancelSearch = this.cancelSearch.bind(this)
   }
 
   componentDidMount() {
     this.findInterSection()
     this.fetchCities()
+    this.setState({ loadingCities: true })
+    listCities((data) => {
+      this.setState({ cities: data, loadingCities: false })
+      listGenres(data[this.state.cityIdx].gps, (data) => {
+        this.setState({ genres: data })
+      })
+    })
   }
 
   fetchCities() {
     // fetch cities
   }
 
-  fetchProducts({limit, offset}, cityName = this.state.cityName) {
-    console.log(cityName)
+  fetchProducts({limit, offset}, CB) {
     GET({
       api: `http://jsonplaceholder.typicode.com/photos?_start=${offset}&_limit=${limit}`,
       prependBaseUrl: false,
@@ -55,10 +69,7 @@ class ProductListing extends React.Component {
       handleError: true
     })
       .then(json => {
-        this.setState({
-          products: this.state.products.concat(json),
-          isBrandsLoading: false
-        })
+        CB(json)
       })
   }
 
@@ -69,7 +80,12 @@ class ProductListing extends React.Component {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           _self.setState({ isBrandsLoading: true })
-          _self.fetchProducts({ limit: _self.limit, offset: _self.state.offset })
+          _self.fetchProducts({ limit: _self.limit, offset: _self.state.offset }, (data) => {
+            _self.setState({
+              products: _self.state.products.concat(data),
+              isBrandsLoading: false,
+            })
+          })
           _self.setState({ offset: _self.state.offset + 10 })
         }
       })
@@ -127,10 +143,35 @@ class ProductListing extends React.Component {
     console.log("Searching for " + query)
   }
 
+  handleFocus() {
+    console.log("mounting search..")
+    this.setState({ shouldMountSearchResults: true })
+    document.body.style.overflow = "hidden"
+  }
+
+  cancelSearch() {
+    document.body.style.overflow = ""
+    this.setState({ shouldMountSearchResults: false })
+  }
+
   handleCityChange(e) {
-    const cityName = e.target.value
-    this.fetchProducts({ limit: this.limit, offset: 8 }, cityName)
-    this.setState({ cityName })
+    const target = e.target
+    // const nativeTarget = e.nativeEvent.target
+    // const index = nativeTarget.selectedIndex
+    
+    const cityIdx = target.value
+    const gps = this.state.cities[cityIdx].gps
+    listGenres(gps, (data) => {
+      this.setState({ genres: data })
+    })
+    this.setState({ cityIdx: parseInt(cityIdx) })
+    // this.setState({ isBrandsLoading: true })
+    this.fetchProducts({ limit: this.limit, offset: 0 }, (data) => {
+      this.setState({
+        products: data,
+        isBrandsLoading: false,
+      })
+    })
   }
 
   render() {
@@ -142,15 +183,34 @@ class ProductListing extends React.Component {
             <div className="header">
 
               <div className="row">
+                <Search
+                  onFocus={this.handleFocus}
+                  placeholder="Search for products"
+                  onSearch={this.handleSearch}
+                  cancelSearch={this.cancelSearch}
+                />
                 <div className="city--select">
                   <Icon name="location" />
-                  <select onChange={this.handleCityChange} value={this.state.cityName}>
-                    <option value="bengaluru">Bengaluru</option>
-                    <option value="chennai">Chennai</option>
+                  <select onChange={this.handleCityChange} value={this.state.cityIdx}>
+                    {/* <option>frwfefew</option>
+                    <option>fthis.state.loadingCitiesrwfefew2</option> */}
+                    {
+                      this.state.cities.map((item, i) => {
+                        return (
+                          <option
+                            key={item.id}
+                            value={i}>
+                            { item.name }
+                          </option>
+                        )
+                      })
+                    }
                   </select>
+                  <Icon name="caret" />
                 </div>
-                <Search placeholder="Search for products" onSearch={this.handleSearch} />
               </div>
+
+              { this.state.shouldMountSearchResults && <SearchResults data={[]} /> }
 
               <div className="row">
                 <span className="os s1">Showing drinks for:</span>
@@ -163,12 +223,16 @@ class ProductListing extends React.Component {
                     display: "inline",
                     padding: "16px 10px"
                   }}>
+                  <Icon name="drink" />
                   Whiskey
+                  <Icon name="caret" />
                 </span>   
               </div>
-            </div>
 
-            <GenreOverlay closeGenres={this.closeGenres} shouldMountGenres={this.state.shouldMountGenres} />
+              
+            </div>
+            
+            <GenreOverlay genres={this.state.genres} closeGenres={this.closeGenres} shouldMountGenres={this.state.shouldMountGenres} />
             <BasketTotal totalPrice="7050" noOfDrinks="3" />
 
             <BrandsList data={this.state.products} />
