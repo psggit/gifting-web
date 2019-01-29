@@ -5,7 +5,7 @@ import Icon from "Components/icon"
 import Button from "Components/button"
 import SignIn from "./../../SignIn"
 import SignUp from "./../../SignUp"
-import { mountModal } from 'Components/modal-box/utils'
+import { mountModal, unMountModal } from 'Components/modal-box/utils'
 import {Api} from 'Utils/config'
 import {createSession, clearSession, getUsername} from 'Utils/session-utils'
 import NotifyError from './../../NotifyError';
@@ -127,6 +127,7 @@ class Header extends React.Component {
   // }
   
   handleClick() {
+    this.setState({ isMenuOpen: false })
     mountModal(SignIn({
       //reload: this.reloadHeader
     }))
