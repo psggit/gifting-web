@@ -1,32 +1,57 @@
-// // body font size
-// $browser-context: 16;
-
-// // unitless function to convert px to em
-// @function em($pixels, $context: $browser-context) {
-//   @if (unitless($pixels)) {
-//     $pixels: $pixels * 1px;
-//   }
-//   @if (unitless($context)) {
-//     $context: $context * 1px;
-//   }
-//   @return $pixels / $context * 1rem;
-// }
-
-// @include calc(font-size, "14px + (#{px(52)} - 14) * ((100vw - 320px) / (1440 - 320))");
-
 @function px($size) {
-  $pixels: $size/1.4 * 1px;
+  $pixels: $size * (1/16) * 1rem;
   // $x: 14px + ($pixels - 14);
   @return $pixels;
 }
 
-// @mixin calc($property, $expression) {
-//   #{$property}: calc(#{$expression});
-// }
+// breakpoint mixin
+@mixin breakpoint($mq01: 0, $mq2: false, $maxmin: max-width) {
+  @if $mq2 == false {
+      @media ($maxmin: $mq01) {
+          @content;
+      }
+  }
+  @else {
+      @media (min-width: $mq01) and (max-width: $mq2) {
+          @content;
+      }
+  }
+}
+
+// breakpoint variables
+$lg: 1170px;
+$md: 1024px;
+$sm: 640px;
+$xs: 480px;
+
+// responsive font size mixin
+@mixin font-size-map($font-size-map) {
+  @each $breakpoint, $font-size in $font-size-map {
+      @if $breakpoint == null {
+          font-size: $font-size;
+      } @else {
+          @include breakpoint($breakpoint) {
+              font-size: $font-size;
+          }
+      }
+  }
+}
+
+// font sizes
+
+$html-font-size: (null: 16px, $md: 15px, $sm: 14px, $xs: 13px);
+
+$paragraph-font-size: (null: 18px, $lg: 17px, $md: 16px, $sm: 15px, $xs: 14px);
+
+// html
+
+html {
+  @include font-size-map($html-font-size);
+}
 
 /* Layout */
 .container {
-  padding: 5.6%;
+  padding: 24px 5.6%;
 }
 
 // @media only screen and (max-width: 33)
@@ -41,8 +66,6 @@ $font-Cormorant: "Cormorant Garamond", serif;
 /* Texts  */
 /* cm - Cormorant Garamond */
 /* os - Open Sans */
-//   #{$property}: calc(#{$expression});
-// }
 
 .cm {
   font-family: $font-Cormorant;
@@ -54,107 +77,55 @@ $font-Cormorant: "Cormorant Garamond", serif;
 
 .cm {
   &.s1 {
-    font-size: px(52);
+    font-size: px(37);
   }
   &.s2 {
-    font-size: px(40);
-  }
-  &.s3 {
-    font-size: px(38);
-  }
-  &.s4 {
-    font-size: px(36);
-  }
-  &.s5 {
-    font-size: px(32);
-  }
-  &.s6 {
     font-size: px(28);
   }
-}
-
-.os {
-  &.s1 {
-    font-size: px(32);
-  }
-  &.s2 {
-    font-size: px(30);
-  }
   &.s3 {
-    font-size: px(28);
+    font-size: px(27);
   }
   &.s4 {
     font-size: px(26);
   }
   &.s5 {
-    font-size: px(24);
+    font-size: px(23);
   }
   &.s6 {
-    font-size: px(22);
-  }
-  &.s7 {
     font-size: px(20);
   }
-  &.s8 {
+}
+
+.os {
+  &.s1 {
+    font-size: px(24);
+  }
+  &.s2 {
+    font-size: px(21);
+  }
+  &.s3 {
+    font-size: px(20);
+  }
+  &.s4 {
     font-size: px(18);
   }
-  &.s9 {
+  &.s5 {
+    font-size: px(17);
+  }
+  &.s6 {
     font-size: px(16);
   }
-  &.s10 {
+  &.s7 {
     font-size: px(14);
   }
-}
-
-// @media only screen and (max-width: 640px) {
-  
-// }
-
-
-@media only screen and (max-width: 970px) {
-  .cm {
-    &.s1 {
-      font-size: 28px;
-    }
-
-    &.s2 {
-      font-size: 22px;
-    }
+  &.s8 {
+    font-size: px(13);
   }
-}
-
-@media only screen and (max-width: 930px) {
-  .cm {
-    &.s1 {
-      font-size: 26px;
-    }
-
-    &.s2 {
-      font-size: 20px;
-    }
+  &.s9 {
+    font-size: px(12);
   }
-}
-
-@media only screen and (max-width: 640px) {
-  .cm {
-    &.s1 {
-      font-size: 24px;
-    }
-  }
-
-  .os {
-    &.s3 {
-      font-size: 14px;
-    }
-    &.s2 {
-      font-size: 16px;
-    }
-    &.s0 {
-      font-size: 20px;
-    }
-    &.s1 {
-      font-size: 14px;
-    }
+  &.s10 {
+    font-size: px(11);
   }
 }
 
