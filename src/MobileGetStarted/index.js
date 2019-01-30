@@ -3,32 +3,30 @@ import "./mobile-get-started.scss"
 import Button from "Components/button"
 import Icon from "Components/icon"
 
-export default function MobileGetStarted(props){
-    return(
-      <div id="mobile-get-started">
-          <div className="container os">
-            <div className="row gift"> 
-              <Icon name= "gift"/>
-            </div>                           
-            <div className="row">                            
-              <div className="welcome-to-hipbar os s0">
-                  Welcome to HipBar Gifting!
-              </div>
-              <div className="we-ll-help-you-choos os s5">
-                  We’ll help you choose the perfect drink to gift for your special someone!
-              </div>
-            </div>
-
-            <div className="row next">
+export default function MobileGetStarted(props) {
+  return (
+    <div id="mobile-get-started">
+      <div className="container os">
+        <div className="paper">
+          <div className="paper-content">
+            <div className="gift"><Icon name="giftIcon" /></div>
+            <p className="os s1">
+              Welcome to HipBar Gifting!
+            </p>
+            <p className="os s4">
+              We’ll help you choose the perfect drink to gift for your special someone!
+            </p>
+            <div style={{ marginTop: "24px" }}>
               <Button
-              primary 
-              icon="rightArrowWhite"
-              className="small"
+                primary
+                icon="rightArrowWhite"
               >
-              GET STARTED
+              Get started
               </Button>
             </div>
           </div>
+        </div>
       </div>
-    )
-    }
+    </div>
+  )
+}
