@@ -24,9 +24,7 @@ class BrandItem extends React.Component {
           <img onLoad={this.handleImageLoad} src={this.props.thumbnail} />
         </div>
         <div className="brand--item__desc">
-          <p className="os s1">Johnnie Walker Red Label</p>
-          {/* <p className="os s5">Starts from</p>
-          <p className="os s1">Rs. 135</p> */}
+          <p className="os s6">Johnnie Walker Red Label</p>
         </div>
       </div>
     )

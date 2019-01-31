@@ -1,16 +1,14 @@
+@import "./../sass/base.scss";
+
 #BrandsListing {
   width: 100%;
-  margin-top: 100px;
-
-  .container {
-    background-color: #f1f1f1;
-    padding-left: 0;
-    padding-right: 0;
-  }
+  margin-top: 87px;
 
   .paper {
     position: relative;
     background-color: #fff;
+    border: 1px solid #dfdfdf;
+    border-top: 0;
     p, span {
       color: #555;
     }
@@ -18,7 +16,7 @@
 
   .header {
     position: sticky;
-    top: 100px;
+    top: 87px;
     width: 100%;
     z-index: 2147483602;
     // height: calc(100vh - 100px);
@@ -113,6 +111,15 @@
     &:focus {
       outline: 0;
 
+    }
+  }
+}
+
+@media only screen and (max-device-width: $sm) {
+  #BrandsListing {
+    .container {
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 }

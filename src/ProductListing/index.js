@@ -180,7 +180,7 @@ class ProductListing extends React.Component {
         <div className="container">
           <div className="paper">
 
-            <div className="header">
+            {/* <div className="header">
 
               <div className="row">
                 <Search
@@ -192,8 +192,6 @@ class ProductListing extends React.Component {
                 <div className="city--select">
                   <Icon name="location" />
                   <select onChange={this.handleCityChange} value={this.state.cityIdx}>
-                    {/* <option>frwfefew</option>
-                    <option>fthis.state.loadingCitiesrwfefew2</option> */}
                     {
                       this.state.cities.map((item, i) => {
                         return (
@@ -213,7 +211,7 @@ class ProductListing extends React.Component {
               { this.state.shouldMountSearchResults && <SearchResults data={[]} /> }
 
               <div className="row">
-                <span className="os s1">Showing drinks for:</span>
+                <span className="os s7">Showing drinks for:</span>
                 <span
                   className="os s1"
                   onClick={this.openGenres}
@@ -230,10 +228,10 @@ class ProductListing extends React.Component {
               </div>
 
               
-            </div>
+            </div> */}
             
             <GenreOverlay genres={this.state.genres} closeGenres={this.closeGenres} shouldMountGenres={this.state.shouldMountGenres} />
-            <BasketTotal totalPrice="7050" noOfDrinks="3" />
+            {/* <BasketTotal totalPrice="7050" noOfDrinks="3" /> */}
 
             <BrandsList data={this.state.products} />
             { this.state.isBrandsLoading && <Loader /> }

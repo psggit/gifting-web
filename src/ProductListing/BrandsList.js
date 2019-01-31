@@ -1,5 +1,6 @@
 import React from "react"
 import BrandsListItem from "./BrandsListItem"
+import "./brand-list.scss"
 // import BrandsFilter from "./brands-filter"
 import PropTypes from "prop-types"
 
