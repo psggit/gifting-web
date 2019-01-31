@@ -3,18 +3,21 @@ import "./mobile-nav-bar.scss"
 import Icon from "Components/icon"
 
 export default function MobileNavBar(props){
-    const {stepNo,stepName, handleClick} = props
-    
+    const {stepNo,stepName} = props
+    var stepNo1 = 2
     return(
       <div className="nav-bar">              
         <div className="text-nav">
-          <div>
+          <div className="os">
             {stepName}
           </div>
           {stepNo > 1 ?
             <div className="nav">
-              <div className={`${(stepNo > 1)?"active":""}`} onClick={handleClick}><Icon name= "rightArrowBlack"/></div>
-              <div className={`${(stepNo < 3)?"active":""}`}><Icon name= "rightArrowBlack"/></div>
+              <div className={"active"} 
+                onClick={(e) => props.handleNavigatePageClick(e, stepNo-1)}
+                >
+                <Icon name= "rightArrowBlack"/></div>
+              <div ><Icon name= "rightArrowBlack"/></div>
             </div>
           : ""
           }

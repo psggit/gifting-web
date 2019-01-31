@@ -14,6 +14,7 @@ import LandingPage from "./landing"
 import UsingGiftCard from './GiftCardInfo'
 import SendGiftCards from './SendGift'
 import SendGiftWizardStep1 from './SendGiftWizardStep1'
+import SendGiftV2 from './SendGiftV2'
 import MobileGetStarted from './MobileGetStarted'
 import MobileName from './MobileName'
 import MobileCity from './MobileCity'
@@ -253,6 +254,16 @@ class App extends React.Component {
                         }
                       />
 
+                      <Route exact
+                        path="/sendgiftv2"
+                        render={
+                          props => (
+                            <SendGiftV2 {...props}
+                              paramObj={paramObj}
+                            />
+                          )
+                        }
+                      />
                       <Route exact
                         path="/mobile-get-started"
                         render={

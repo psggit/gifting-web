@@ -5,38 +5,41 @@ import Icon from "Components/icon"
 import MobileNavBar from "Components/mobile-nav-bar"
 
 export default function MobileName(props){    
-    return(
-      <div id="mobile-name">
-          <div className="container os">
-            <MobileNavBar stepNo = {1} stepName = {"Recipient's Name"}/>
-            <div className="row reciever"> 
-              <Icon name= "gift"/>
-            </div>                           
-            <div className="row">                            
-              <div className="steps os s0">
-              Start off by entering the name of your loved one
-              </div>
-              <div className="steps-result os s5">
-              Start off by entering the name of your loved one
-              </div>
-              <div className="form-group">
-                  <input 
-                      name="receiverName" 
-                      type="text" 
-                      placeholder="Enter your name"
-                  />
-              </div>
+    return(      
+      <div className="paper name">
+        <MobileNavBar stepNo = {1} stepName = {"Recipient's Name"}/>
+        <div className="paper-content">
+          <div className="row receiver"> 
+            <Icon name= "person"/>
+          </div>                           
+          <div className="row">                            
+            <p className="os s2">
+              Enter the name of your loved one
+            </p>
+            <p className="os s5">
+              This will help us provide a much better personalised experience to you.
+            </p>
+            <div className="form-group">
+                <input 
+                    name="receiverName" 
+                    type="text" 
+                    placeholder="Enter your name"
+                    value = {props.name}
+                    onChange= {props.handleReceiverChange}
+                />
             </div>
           </div>
-          <div className="row next">
-              <Button
-              primary 
-              icon="rightArrowWhite"
-              className="small"
-              >
-              SELECT CITY
-              </Button>
-            </div>
-      </div>
+        </div>
+        <div className="row next">
+          <Button
+          primary 
+          icon="rightArrowWhite"
+          className="small"
+          onClick={(e) => props.handleNavigatePageClick(e, 2)}
+          >
+            Select City
+          </Button>
+        </div>
+      </div>          
     )
     }

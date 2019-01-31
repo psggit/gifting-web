@@ -1,0 +1,42 @@
+@import "./../sass/base.scss";
+
+#sendgiftv2 {
+    margin-top: 87px;
+    background-color: #f1f1f1;
+   
+    .paper {
+      position: relative;
+      text-align: center;
+      background: #fff;
+      height: calc(95vh - 87px - 48px);
+
+
+
+      .os.s1 {
+        color: #777;
+        font-weight: 600;
+      }
+
+      .os.s2 {
+        color: #777;
+        font-weight: 600;
+      }
+
+      .os.s4 {
+        color: #777;
+      }
+
+      .os.s5 {
+        color: #777;
+      }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+  #sendgiftv2 {
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
