@@ -16,7 +16,7 @@ export default function MobileCity(props){
 
 
     return(
-      <div className="paper city">
+      <div id="city" className="paper">
         <MobileNavBar stepNo = {2} stepName = {"Recipient's City"} 
           handleNavigatePageClick = {props.handleNavigatePageClick} />
         <div className="paper-content">

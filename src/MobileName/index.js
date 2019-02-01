@@ -6,7 +6,7 @@ import MobileNavBar from "Components/mobile-nav-bar"
 
 export default function MobileName(props){    
     return(      
-      <div className="paper name">
+      <div id = "name" className="paper">
         <MobileNavBar stepNo = {1} stepName = {"Recipient's Name"}/>
         <div className="paper-content">
           <div className="row receiver"> 

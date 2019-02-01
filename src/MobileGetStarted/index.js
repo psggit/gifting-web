@@ -5,7 +5,7 @@ import Icon from "Components/icon"
 
 export default function MobileGetStarted(props) {
   return (
-    <div className="paper">
+    <div id = "getstarted" className="paper">
       <div className="paper-content">
         <div className="gift"><Icon name="giftIcon" /></div>
         <p className="os s1">

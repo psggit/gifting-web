@@ -19,7 +19,7 @@ export default function MobileFavDrink(props){
 
 
   return(
-    <div className="paper drink">
+    <div id="drink" className="paper">
       <MobileNavBar stepNo = {3} stepName = {"Favourite drink"} 
         handleNavigatePageClick = {props.handleNavigatePageClick}/>
       <div className="paper-content">

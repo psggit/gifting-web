@@ -1,6 +1,6 @@
 @import "./../sass/base.scss";
-.paper {
 
+#drink.paper {
   .flex-grid {
     display: flex;
     justify-content: space-between;
@@ -54,7 +54,7 @@
 }
 
 @media only screen and (max-width: 480px) {
-  #sendgiftv2 .paper.drink {
+  #drink.paper {
     text-align: left;
 
     .next{          

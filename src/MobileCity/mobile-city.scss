@@ -1,6 +1,6 @@
 @import "./../sass/base.scss";
-.paper {
 
+#city.paper {
   .flex-grid {
     display: flex;
     justify-content: space-between;
@@ -45,7 +45,7 @@
 }
 
 @media only screen and (max-width: 480px) {
-  #sendgiftv2 .paper.city {
+  #city.paper {
     text-align: left;
 
     .next{          
