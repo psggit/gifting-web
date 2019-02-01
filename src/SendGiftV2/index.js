@@ -25,6 +25,7 @@ class SendGiftV2 extends React.Component {
     this.handleCityClick = this.handleCityClick.bind(this)
     this.handleGenreClick = this.handleGenreClick.bind(this)    
     this.handleNavigatePageClick = this.handleNavigatePageClick.bind(this)
+    this.handleViewDrinksClick = this.handleViewDrinksClick.bind(this)
   }
 
   handleReceiverChange(e){
@@ -49,6 +50,11 @@ class SendGiftV2 extends React.Component {
     this.setState({
       pageNo:pageNo
     })
+  }
+
+  handleViewDrinksClick(e) {
+    const brandURL = `brands?city_id=${this.state.selectedCityId}&genre_id=${this.state.selectedGenreId}`
+    this.props.history.push(brandURL)
   }
 
   render() {
@@ -76,6 +82,7 @@ class SendGiftV2 extends React.Component {
             selectedGenreId = {this.state.selectedGenreId} 
             handleGenreClick={this.handleGenreClick}
             handleNavigatePageClick={this.handleNavigatePageClick}
+            handleViewDrinksClick={this.handleViewDrinksClick}
             />:""
           }
         </div>

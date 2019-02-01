@@ -54,7 +54,7 @@ export default function MobileFavDrink(props){
           primary 
           icon="rightArrowWhite"
           className="small"
-          //onClick={props.handleNavigatePageClick}
+          onClick={props.handleViewDrinksClick}
         >
           View Drinks
         </Button>
