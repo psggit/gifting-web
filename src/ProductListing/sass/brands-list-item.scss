@@ -1,0 +1,108 @@
+@import "./../../sass/base.scss";
+
+@mixin brandItemMargin($w, $n) {
+  margin: 40px calc(((100% - #{$w} * #{$n} * 1px) / #{$n}) / 2);
+}
+
+.brand--item {
+  position: relative;
+  width: 148px;
+  background-color: #fff;
+  @include brandItemMargin(148, 5);
+  .brand--item__img {
+    object-fit: contain;
+    margin-bottom: 12px;
+  }
+  .brand--item__desc p {
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    color: #777;
+  }
+}
+
+.brand--item {
+    svg {
+      display: none;
+    }
+    
+    &:last-child {
+      border: 0;
+    }
+    .brand--item__img {
+      width: 148px;
+      height: 148px;
+      position: relative;
+      img {
+        border-radius: 4px;
+        filter: grayscale(1);
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: 0.1s all ease-in;
+        &.img-loaded {
+          opacity: 1;
+          transition: 0.1s all ease-in;
+        }
+      }
+    }
+    
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      background-color: #dfdfdf;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+}
+
+// @media only screen and (max-width: $lg ) {
+  // .brand--item {
+  //   width: 148px;
+  //   margin: 40px calc(((100% - 740px) / 5) / 2);
+  //   .brand--item__img {
+  //     object-fit: contain;
+  //     margin-bottom: 12px;
+  //   }
+  //   .brand--item__desc p {
+  //     letter-spacing: 0.5px;
+  //     font-weight: 600;
+  //     color: #777;
+  //   }
+  // }
+// }
+
+@media only screen and (max-width: $md) {
+  .brand--item {
+    @include brandItemMargin(148, 4)
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .brand--item {
+    @include brandItemMargin(148, 3)
+  }
+}
+
+
+@media only screen and (max-width: $sm) {
+  .brand--item {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #dfdfdf;
+    border-left: 0;
+    border-right: 0;
+    padding: 16px 20px;
+    .brand--item__img {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 0;
+      margin-right: 16px;
+    }
+    svg {
+      display: inline;
+    }
+  }
+}

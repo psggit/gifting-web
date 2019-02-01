@@ -1,0 +1,19 @@
+@import "./../../sass/base.scss";
+
+.brands--list {
+  width: 100%;
+}
+
+.brands--list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+@media only screen and (max-width: $sm) {
+  .brands--list {
+    width: 100%;
+    display: block;
+  }
+}
