@@ -13,7 +13,13 @@ export default function MobileFavDrink(props){
     { name: "RTD", id: 4},
     { name: "Beer", id: 5},
     { name: "Tequila", id: 6},
-    { name: "Gin", id: 7}
+    { name: "Gin", id: 7},
+    { name: "RTD", id: 41},
+    { name: "Beer", id: 51},
+    { name: "Tequila", id: 61},
+    { name: "Gin", id: 71},
+    { name: "Tequila", id: 61},
+    { name: "Gin", id: 71}
   ]
 
 
