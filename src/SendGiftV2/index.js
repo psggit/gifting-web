@@ -1,14 +1,9 @@
 import React from "react"
 import "./sendgiftv2.scss"
-import Button from "Components/button"
-import Icon from "Components/icon"
-
-import MobileGetStarted from "../MobileGetStarted"
-import MobileName from "../MobileName"
-import MobileCity from "../MobileCity"
-import MobileFavDrink from "../MobileFavDrink"
-import { identity } from "rxjs";
-import { parse } from "terser";
+import GetStarted from "./get-started"
+import Name from "./name"
+import City from "./city"
+import FavDrink from "./fav-drink"
 
 class SendGiftV2 extends React.Component {
   constructor(props) {
@@ -62,14 +57,14 @@ class SendGiftV2 extends React.Component {
       <div id="sendgiftv2">
         <div className="container">
           {
-            this.state.pageNo ==0 ? <MobileGetStarted handleNavigatePageClick={this.handleNavigatePageClick} />:""
+            this.state.pageNo ==0 ? <GetStarted handleNavigatePageClick={this.handleNavigatePageClick} />:""
           }
           {
-            this.state.pageNo ==1 ? <MobileName name={this.state.receiverName} handleNavigatePageClick={this.handleNavigatePageClick} 
+            this.state.pageNo ==1 ? <Name name={this.state.receiverName} handleNavigatePageClick={this.handleNavigatePageClick} 
             handleReceiverChange={this.handleReceiverChange}/>:""
           }
           {
-            this.state.pageNo ==2 ? <MobileCity
+            this.state.pageNo ==2 ? <City
             receiverName= {this.state.receiverName}
             selectedCityId = {this.state.selectedCityId}
             handleCityClick={this.handleCityClick}
@@ -77,7 +72,7 @@ class SendGiftV2 extends React.Component {
             />:""
           }
           {
-            this.state.pageNo ==3 ? <MobileFavDrink
+            this.state.pageNo ==3 ? <FavDrink
             receiverName= {this.state.receiverName}
             selectedGenreId = {this.state.selectedGenreId} 
             handleGenreClick={this.handleGenreClick}
