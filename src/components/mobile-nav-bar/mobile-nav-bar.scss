@@ -1,6 +1,7 @@
 @import "./../../sass/base.scss";
 
 .nav-bar{
+  padding-top: 10px;  
   .text-nav{
     display: flex;
     flex-wrap: nowrap;
@@ -9,6 +10,7 @@
     color: #777777;
     font-weight: bold;
     .nav{
+      height: 10px;
       display: flex;
       flex-wrap: nowrap;
       justify-content: space-between;
