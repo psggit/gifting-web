@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Icon from "Components/icon"
-import "./brands-list-item.scss"
+import "./sass/brands-list-item.scss"
 import "Sass/base.scss"
 
 class BrandItem extends React.Component {

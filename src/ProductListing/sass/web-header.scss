@@ -2,6 +2,7 @@
 
 @mixin margin($w, $n) {
   padding: 40px calc(((100% - #{$w} * #{$n} * 1px) / #{$n}) / 2);
+  // padding-bottom: 0;
 }
 
 .product--listing__w-header {
@@ -24,6 +25,7 @@
       color: #777777;
       margin-right: 16px;
     }
+    padding-bottom: 40px;
   }
 
   .city--select select {

@@ -1,7 +1,7 @@
 import React from "react"
 import Button from "Components/button"
 import PropTypes from "prop-types"
-import "./basket-total.scss"
+import "./sass/basket-total.scss"
 
 function BasketTotal({ totalPrice, noOfDrinks }) {
   return (

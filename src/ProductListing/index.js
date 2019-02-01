@@ -1,5 +1,5 @@
 import React from "react"
-import "./listing.scss"
+import "./sass/listing.scss"
 
 /* Polyfill for intersection observer API */
 import "intersection-observer"
@@ -8,12 +8,14 @@ import BrandsList from "./BrandsList"
 import { GET } from "Utils/fetch"
 
 import Loader from "Components/loader"
-import GenreOverlay from "./genre-overlay"
+import GenreOverlay from "./GenreOverlay"
 import Search from "Components/Search"
 import BasketTotal from "./BasketTotal"
 import Icon from "Components/icon"
 import SearchResults from "./SearchResults"
-import { listCities, listGenres } from "./../api"
+import CitySelect from "./CitySelect"
+import MobileHeader from "./MobileHeader"
+import WebHeader from "./WebHeader"
  
 class ProductListing extends React.Component {
   constructor() {
@@ -36,11 +38,10 @@ class ProductListing extends React.Component {
     //this.offset = 0
 
     this.handleTextChange = this.handleTextChange.bind(this)
-    //this.findScroll = this.findScroll.bind(this)
+    this.onCityChange = this.onCityChange.bind(this)
     this.findInterSection = this.findInterSection.bind(this)
     this.openGenres = this.openGenres.bind(this)
     this.closeGenres = this.closeGenres.bind(this)
-    this.handleCityChange = this.handleCityChange.bind(this)
     this.handleFocus = this.handleFocus.bind(this)
     this.cancelSearch = this.cancelSearch.bind(this)
   }
@@ -49,10 +50,19 @@ class ProductListing extends React.Component {
     this.findInterSection()
     this.fetchCities()
     this.setState({ loadingCities: true })
-    listCities((data) => {
-      this.setState({ cities: data, loadingCities: false })
-      listGenres(data[this.state.cityIdx].gps, (data) => {
-        this.setState({ genres: data })
+    // listCities((data) => {
+    //   this.setState({ cities: data, loadingCities: false })
+    //   listGenres(data[this.state.cityIdx].gps, (data) => {
+    //     this.setState({ genres: data })
+    //   })
+    // })
+  }
+
+  onCityChange() {
+    this.fetchProducts({ limit: this.limit, offset: 0 }, (data) => {
+      this.setState({
+        products: data,
+        isBrandsLoading: false,
       })
     })
   }
@@ -154,32 +164,12 @@ class ProductListing extends React.Component {
     this.setState({ shouldMountSearchResults: false })
   }
 
-  handleCityChange(e) {
-    const target = e.target
-    // const nativeTarget = e.nativeEvent.target
-    // const index = nativeTarget.selectedIndex
-    
-    const cityIdx = target.value
-    const gps = this.state.cities[cityIdx].gps
-    listGenres(gps, (data) => {
-      this.setState({ genres: data })
-    })
-    this.setState({ cityIdx: parseInt(cityIdx) })
-    // this.setState({ isBrandsLoading: true })
-    this.fetchProducts({ limit: this.limit, offset: 0 }, (data) => {
-      this.setState({
-        products: data,
-        isBrandsLoading: false,
-      })
-    })
-  }
-
   render() {
     return (
       <div id="BrandsListing">
         <div className="container">
           <div className="paper">
-
+            {this .props.context.isMobile ? <MobileHeader /> : <WebHeader />}
             {/* <div className="header">
 
               <div className="row">
@@ -189,23 +179,6 @@ class ProductListing extends React.Component {
                   onSearch={this.handleSearch}
                   cancelSearch={this.cancelSearch}
                 />
-                <div className="city--select">
-                  <Icon name="location" />
-                  <select onChange={this.handleCityChange} value={this.state.cityIdx}>
-                    {
-                      this.state.cities.map((item, i) => {
-                        return (
-                          <option
-                            key={item.id}
-                            value={i}>
-                            { item.name }
-                          </option>
-                        )
-                      })
-                    }
-                  </select>
-                  <Icon name="caret" />
-                </div>
               </div>
 
               { this.state.shouldMountSearchResults && <SearchResults data={[]} /> }

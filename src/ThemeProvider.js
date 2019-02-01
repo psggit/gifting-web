@@ -16,6 +16,12 @@ export class ThemeProvider extends React.Component {
   }
 
   componentWillMount() {
+    const isMobile = window.innerWidth <= 640
+    const isTablet = window.innerWidth > 640 && window.innerWidth <= 1024
+    const isLaptop = window.innerWidth > 1024
+
+    this.setState({ isMobile, isTablet, isLaptop })
+
     const fetchOptions = {
       method: 'get',
       credentials: 'include',
@@ -55,7 +61,10 @@ export class ThemeProvider extends React.Component {
       username: this.state.username,
       mobile: this.state.mobile,
       isLoggedIn: this.state.isLoggedIn,
-      history
+      history,
+      isMobile: this.state.isMobile,
+      isTablet: this.state.isTablet,
+      isLaptop: this.state.isLaptop
     }
     //console.log("theme provider", paramObj)
     return (

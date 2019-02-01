@@ -51,7 +51,7 @@ export function fetchRetailers(payloadObj, successCallback, failureCallback) {
     })
 }
 
-export function listCities(CB) {
+export function fetchCities(CB) {
   POST({
     api: "/city/availableCities",
     handleError: true,
@@ -67,7 +67,7 @@ export function listCities(CB) {
     })
 }
 
-export function listBrandsUsingGenre(genre, CB) {
+export function fetchBrandsUsingGenre(genre, CB) {
   POST({
     api: `/consumer/browse/genre/${genre}`,
     handleError: true,
@@ -94,7 +94,7 @@ export function listBrandsUsingGenre(genre, CB) {
     })
 }
 
-export function listGenres(gps, CB) {
+export function fetchGenres(gps, CB) {
   POST({
     api: "/consumer/browse/stores/",
     handleError: true,
@@ -108,7 +108,7 @@ export function listGenres(gps, CB) {
     })
 }
 
-export function listSKUUsingBrand(genreShortName, brandName, CB) {
+export function fetchSKUUsingBrand(genreShortName, brandName, CB) {
   POST({
     api: `/support/browse/stores/${genreShortName}/${brandName}`,
     handleError: true,
