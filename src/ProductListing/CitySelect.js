@@ -17,7 +17,6 @@ class CitySelect extends React.Component {
   componentDidMount() {
     fetchCities((data) => {
       this.setState({ cities: data })
-      this.props.onCityChange(data[this.state.cityIdx])
     })
   }
 

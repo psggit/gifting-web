@@ -73,8 +73,8 @@ export function fetchBrandsUsingGenre(req, CB) {
     handleError: true,
     apiBase: "catman",
     data: {
-      from: 0,
-      size: 5,
+      from: req.offset,
+      size: req.limit,
       km: "40km",
       gps: req.gps,
       is_featured: false,
