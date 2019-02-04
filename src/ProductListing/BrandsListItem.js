@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Icon from "Components/icon"
-import "./brands-list-item.scss"
+import "./sass/brands-list-item.scss"
 import "Sass/base.scss"
 
 class BrandItem extends React.Component {
@@ -24,9 +24,7 @@ class BrandItem extends React.Component {
           <img onLoad={this.handleImageLoad} src={this.props.thumbnail} />
         </div>
         <div className="brand--item__desc">
-          <p className="os s1">Johnnie Walker Red Label</p>
-          {/* <p className="os s5">Starts from</p>
-          <p className="os s1">Rs. 135</p> */}
+          <p className="os s6">{this.props.name}</p>
         </div>
       </div>
     )

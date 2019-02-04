@@ -51,7 +51,7 @@ export function fetchRetailers(payloadObj, successCallback, failureCallback) {
     })
 }
 
-export function listCities(CB) {
+export function fetchCities(CB) {
   POST({
     api: "/city/availableCities",
     handleError: true,
@@ -67,34 +67,26 @@ export function listCities(CB) {
     })
 }
 
-export function listBrandsUsingGenre(genre, CB) {
+export function fetchBrandsUsingGenre(req, CB) {
   POST({
-    api: `/consumer/browse/genre/${genre}`,
+    api: `/consumer/browse/genre/${req.genre.shortName}`,
     handleError: true,
     apiBase: "catman",
     data: {
       from: 0,
-      size: 9999,
+      size: 5,
       km: "40km",
-      gps: "",
+      gps: req.gps,
       is_featured: false,
-      stateName: "KA"
+      stateName: req.state_short_name
     }
   })
     .then(json => {
-      const brands = json.map(item => {
-        return {
-          id: item.id,
-          brand: item.brand_name,
-          shortName: item.brand_short_name,
-          genreShortName: item.genre_short_name
-        }
-      })
-      CB(brands, false)
+      CB(json)
     })
 }
 
-export function listGenres(gps, CB) {
+export function fetchGenres(gps, CB) {
   POST({
     api: "/consumer/browse/stores/",
     handleError: true,
@@ -108,7 +100,7 @@ export function listGenres(gps, CB) {
     })
 }
 
-export function listSKUUsingBrand(genreShortName, brandName, CB) {
+export function fetchSKUUsingBrand(genreShortName, brandName, CB) {
   POST({
     api: `/support/browse/stores/${genreShortName}/${brandName}`,
     handleError: true,

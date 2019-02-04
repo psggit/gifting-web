@@ -1,5 +1,5 @@
 import React from "react"
-import "./genre-overlay.scss"
+import "./sass/genre-overlay.scss"
 import  Icon from "Components/icon"
 import GenreItem from "Components/GenreItem"
 import { listGenres } from  "./../api"

@@ -32,6 +32,7 @@ import PaymentStatus from "./payment-status"
 import {ThemeProvider, ThemeContext} from "./ThemeProvider"
 import Header from "Components/header"
 import Footer from "Components/footer"
+import GiftBasket from "./GiftBasket";
 // import NotFound from "./NotFound"
 // import makeAsyncComponent from './makeAsyncComponent'
 
@@ -93,7 +94,7 @@ class App extends React.Component {
   //         localStorage.setItem("sender_mobile", data.mobile)
   //       })
   //     })
-  //     .catch((err) => {
+  //     .catcconsth((err) => {
   //       // console.log('Fetch Error :-S', err)
   //       // if(location.pathname.split("/")[1] && location.pathname.split("/")[1] !== 0)
   //       // {
@@ -103,7 +104,7 @@ class App extends React.Component {
   // }
  
   componentDidMount() {
-    //window.addEventListener('pageshow', this.handleClick)
+   
   }
 
   // handleClick(e) {
@@ -321,7 +322,10 @@ class App extends React.Component {
                       />
                       <Route exact path="/payment-status" component={PaymentStatus}  />
                       <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
-                      <Route exact path="/brands" component={ProductListing}  />
+                      <Route exact path="/brands/:citySlug/:genreSlug"
+                        render={ props => (
+                          <ProductListing {...props} context={paramObj} />
+                        )}/>
                       <Route path="/brands/:id" component={ProductDetails}  />
                     </Switch>
                   </Router>

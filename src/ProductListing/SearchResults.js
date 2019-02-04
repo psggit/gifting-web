@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Icon from "Components/icon"
-import "./search-result.scss"
+import "./sass/search-result.scss"
 
 function SearchResults({ data }) {
   return (
