@@ -17,7 +17,7 @@ const skus = [
 class ProductDetaails extends React.Component {
   renderSkuItems() {
     return skus.map((item, i) => (
-      <input readOnly key={i} value={item.volume} className="os s3 sku--item" />
+      <input readOnly key={i} value={item.volume} className="os sku--item" />
     ))
   }
   render() {

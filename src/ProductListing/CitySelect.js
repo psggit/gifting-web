@@ -5,19 +5,26 @@ import { fetchCities, fetchGenres } from "./../api"
 import "./sass/city-select.scss"
 
 class CitySelect extends React.Component {
-  constructor() { 
-    super()
+  constructor(props) { 
+    super(props)
     this.handleCityChange = this.handleCityChange.bind(this)
+    this.getCityIndexByName = this.getCityIndexByName.bind(this)
     this.state = {
       cities: [],
-      cityIdx: 1
+      cityIdx: -1
     }
   }
 
+  getCityIndexByName(name) {
+    return this.state.cities.findIndex(city => city.name === name)
+  }
+  
   componentDidMount() {
-    fetchCities((data) => {
-      this.setState({ cities: data })
-    })
+    fetchCities()
+      .then(cities => {
+        this.setState({ cities })
+        this.setState({ cityIdx: this.getCityIndexByName(this.props.activeCity)})
+      })
   }
 
   handleCityChange(e) {
@@ -25,9 +32,6 @@ class CitySelect extends React.Component {
     const cityIdx = target.value
     const selectedCity = this.state.cities[cityIdx]
 
-    fetchGenres(selectedCity.gps, (data) => {
-      this.setState({ genres: data })
-    })
     this.setState({ cityIdx: parseInt(cityIdx) })
     this.props.onCityChange(selectedCity)
   }

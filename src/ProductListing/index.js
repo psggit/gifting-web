@@ -17,10 +17,12 @@ import CitySelect from "./CitySelect"
 import MobileHeader from "./MobileHeader"
 import WebHeader from "./WebHeader"
 import { fetchGenres, fetchBrandsUsingGenre } from "./../api"
+import { capitalize } from "Utils/logic-utils"
  
 class ProductListing extends React.Component {
   constructor() {
     super()
+    this.fetchBrandsReq = {}
     this.shouldFetchMore = true
     this.state = {
       search_text: "",
@@ -32,7 +34,7 @@ class ProductListing extends React.Component {
       genres: []
     }
 
-    this.limit = 10
+    this.limit = 8
     //this.offset = 0
 
     this.handleTextChange = this.handleTextChange.bind(this)
@@ -48,53 +50,68 @@ class ProductListing extends React.Component {
 
   componentDidMount() {
     this.setState({ loadingCities: true })
-    // gps will change to cityname
-    this.handleCityChange({
-      gps: this.props.match.params.citySlug
-    }, this.findInterSection)
+    // this.findInterSection()
+    const { params } = this.props.match
+    const fetchBrandsReq = {
+      city: capitalize(params.citySlug),
+      genre: params.genreSlug,
+      offset: 0,
+      limit: this.limit
+    }
+
+    const fetchGenresReq = {
+      city: capitalize(params.citySlug)
+    }
+
+    fetchGenres(fetchGenresReq)
+      .then(genres => this.sortGenres(genres))
+      .then(sortedGenres => this.setGenres(sortedGenres))
+    
+    fetchBrandsUsingGenre(fetchBrandsReq)
+      .then(brands => this.setBrands(brands))
+      .then(this.findInterSection())
   }
 
-  handleCityChange(city, CB) {
-    this.setState({ selectedCity: city })
-    this.shouldFetchMore = true
-    
-    fetchGenres(city.gps, (data) => {
-      const sortedGenres = data.sort((a, b) => a.ordinal_position - b.ordinal_position)
-      this.setState({ genres: sortedGenres })
+  setBrands(brands) {
+    this.setState({ brands })
+  }
 
-      const genre = { shortName: sortedGenres[0].short_name }
-      const req = {
-        ...city,
-        genre,
-        limit: this.limit,
-        offset: this.state.offset
-      }
+  setGenres(genres) {
+    this.setState({ genres })
+  }
 
-      this.fetchBrandsReq = req
+  sortGenres(genres) {
+    return genres.sort((a, b) => a.ordinal_position - b.ordinal_position)
+  }
 
-      fetchBrandsUsingGenre(req, (res) => {
-        this.setState({ brands: res })
-        if (CB) {
-          CB()
-        }
-      })
+  handleCityChange(city) {
+    const fetchGenresReq = {
+      city: capitalize(city.name)
+    }
+    const fetchBrandsReq = {
+      city: capitalize(city.name),
+      genre: this.props.match.params.genreSlug,
+      offset: 0,
+      limit: this.limit
+    }
+    fetchGenres(fetchGenresReq)
+      .then(genres => this.sortGenres(genres))
+      .then(sortedGenres => this.setGenres(sortedGenres))
 
-    })
+    fetchBrandsUsingGenre(fetchBrandsReq)
+      .then(brands => this.setBrands(brands))  
   }
 
   handleGenreChange(genre) {
-    this.setState({ offset: 0 })
-    this.fetchBrandsReq.offset = 0
-    this.shouldFetchMore = true
-    const req = {
-      ...this.state.selectedCity,
-      genre,
+    const fetchBrandsReq = {
+      city: capitalize(this.props.match.params.citySlug),
+      genre: genre.shortName,
       limit: this.limit,
       offset: 0
     }
-    fetchBrandsUsingGenre(req, (res) => {
-      this.setState({ brands: res })
-    })
+
+    fetchBrandsUsingGenre(fetchBrandsReq)
+      .then(brands => this.setBrands(brands))
   }
 
   setFetchMoreStatus(res) {
@@ -119,25 +136,18 @@ class ProductListing extends React.Component {
     const target = document.getElementById("scroll-intersection")
     const _self = this
     let io = new IntersectionObserver(function(entries) {
+      console.log("finding...")
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           _self.setState({ isBrandsLoading: true })
 
-          console.log(_self.shouldFetchMore)
-          if (_self.fetchBrandsReq.offset !== _self.state.offset && _self.shouldFetchMore) {
-            _self.fetchBrandsReq.offset = _self.state.offset
-            fetchBrandsUsingGenre(_self.fetchBrandsReq, (res) => {
-              _self.setState({
-                brands: _self.state.brands.concat(res),
-                isBrandsLoading: false,
-              })
-              _self.setFetchMoreStatus(res)
+          fetchBrandsUsingGenre(_self.fetchBrandsReq, (res) => {
+            _self.setState({
+              brands: _self.state.brands.concat(res),
+              isBrandsLoading: false,
             })
-          } else {
-            _self.setState({ isBrandsLoading: false })
-          }
-          
-          _self.setState({ offset: _self.state.offset + 10 })
+          })
+          _self.setState({ offset: _self.state.offset + 8 })
         }
       })
     })
@@ -211,12 +221,13 @@ class ProductListing extends React.Component {
         <div className="container">
           <div className="paper">
             {
-              this .props.context.isMobile
+              this.props.context.isMobile
                 ? <MobileHeader />
                 : <WebHeader
                   handleGenreChange={this.handleGenreChange}
                   genres={this.state.genres}
                   handleCityChange={this.handleCityChange}
+                  activeCity={capitalize(this.props.match.params.citySlug)}
                 />
             }
             {/* <div className="header">
