@@ -5,7 +5,7 @@ import "./sass/mobile-header.scss"
 class MobileHeader extends React.Component {
   render() {
     return (
-      <div className="product--listing__header">
+      <div id="product--listing__header">
         <CitySelect onCityChange={this.onCityChange} />
       </div>
     )

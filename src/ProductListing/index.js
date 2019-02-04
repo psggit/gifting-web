@@ -16,6 +16,7 @@ import SearchResults from "./SearchResults"
 import CitySelect from "./CitySelect"
 import MobileHeader from "./MobileHeader"
 import WebHeader from "./WebHeader"
+import { fetchGenres, fetchBrandsUsingGenre } from "./../api"
  
 class ProductListing extends React.Component {
   constructor() {
@@ -23,14 +24,11 @@ class ProductListing extends React.Component {
 
     this.state = {
       search_text: "",
-      products: [],
+      brands: [],
       offset: 0,
       isBrandsLoading: false,
       shouldMountGenres: false,
       shouldMountSearchResults: false,
-      cityIdx: 0,
-      cities: [],
-      loadingCities: false,
       genres: []
     }
 
@@ -38,7 +36,8 @@ class ProductListing extends React.Component {
     //this.offset = 0
 
     this.handleTextChange = this.handleTextChange.bind(this)
-    this.onCityChange = this.onCityChange.bind(this)
+    this.handleCityChange = this.handleCityChange.bind(this)
+    this.handleGenreChange = this.handleGenreChange.bind(this)
     this.findInterSection = this.findInterSection.bind(this)
     this.openGenres = this.openGenres.bind(this)
     this.closeGenres = this.closeGenres.bind(this)
@@ -47,28 +46,32 @@ class ProductListing extends React.Component {
   }
 
   componentDidMount() {
-    this.findInterSection()
-    this.fetchCities()
+    // this.findInterSection()
     this.setState({ loadingCities: true })
-    // listCities((data) => {
-    //   this.setState({ cities: data, loadingCities: false })
-    //   listGenres(data[this.state.cityIdx].gps, (data) => {
-    //     this.setState({ genres: data })
-    //   })
-    // })
   }
 
-  onCityChange() {
-    this.fetchProducts({ limit: this.limit, offset: 0 }, (data) => {
-      this.setState({
-        products: data,
-        isBrandsLoading: false,
+  handleCityChange(city) {
+    this.setState({ selectedCity: city })
+    
+    fetchGenres(city.gps, (data) => {
+      const sortedGenres = data.sort((a, b) => a.ordinal_position - b.ordinal_position)
+      this.setState({ genres: sortedGenres })
+
+      const genre = { shortName: sortedGenres[0].short_name }
+      const req = {...city, genre }
+
+      fetchBrandsUsingGenre(req, (res) => {
+        this.setState({ brands: res })
       })
+
     })
   }
 
-  fetchCities() {
-    // fetch cities
+  handleGenreChange(genre) {
+    const req = {...this.state.selectedCity, genre }
+    fetchBrandsUsingGenre(req, (res) => {
+      this.setState({ brands: res })
+    })
   }
 
   fetchProducts({limit, offset}, CB) {
@@ -92,7 +95,7 @@ class ProductListing extends React.Component {
           _self.setState({ isBrandsLoading: true })
           _self.fetchProducts({ limit: _self.limit, offset: _self.state.offset }, (data) => {
             _self.setState({
-              products: _self.state.products.concat(data),
+              brands: _self.state.brands.concat(data),
               isBrandsLoading: false,
             })
           })
@@ -169,7 +172,15 @@ class ProductListing extends React.Component {
       <div id="BrandsListing">
         <div className="container">
           <div className="paper">
-            {this .props.context.isMobile ? <MobileHeader /> : <WebHeader />}
+            {
+              this .props.context.isMobile
+                ? <MobileHeader />
+                : <WebHeader
+                  handleGenreChange={this.handleGenreChange}
+                  genres={this.state.genres}
+                  handleCityChange={this.handleCityChange}
+                />
+            }
             {/* <div className="header">
 
               <div className="row">
@@ -203,10 +214,10 @@ class ProductListing extends React.Component {
               
             </div> */}
             
-            <GenreOverlay genres={this.state.genres} closeGenres={this.closeGenres} shouldMountGenres={this.state.shouldMountGenres} />
+            {/* <GenreOverlay genres={this.state.genres} closeGenres={this.closeGenres} shouldMountGenres={this.state.shouldMountGenres} /> */}
             {/* <BasketTotal totalPrice="7050" noOfDrinks="3" /> */}
 
-            <BrandsList data={this.state.products} />
+            <BrandsList data={this.state.brands} />
             { this.state.isBrandsLoading && <Loader /> }
           </div>
         </div>

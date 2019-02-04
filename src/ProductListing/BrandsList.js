@@ -12,9 +12,10 @@ class BrandsList extends React.Component {
         {
           this.props.data.map((item) => (
             <BrandsListItem
-              key={item.id}
-              thumbnail={item.thumbnailUrl}
+              key={item.brand_id}
+              thumbnail={item.low_res_image}
               img={item.url}
+              name={item.brand_name}
             />
           ))
         }

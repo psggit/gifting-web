@@ -10,26 +10,27 @@ class CitySelect extends React.Component {
     this.handleCityChange = this.handleCityChange.bind(this)
     this.state = {
       cities: [],
-      cityIdx: 0
+      cityIdx: 1
     }
   }
 
   componentDidMount() {
     fetchCities((data) => {
       this.setState({ cities: data })
+      this.props.onCityChange(data[this.state.cityIdx])
     })
   }
 
   handleCityChange(e) {
     const target = e.target
     const cityIdx = target.value
-    const gps = this.state.cities[cityIdx].gps
+    const selectedCity = this.state.cities[cityIdx]
 
-    fetchGenres(gps, (data) => {
+    fetchGenres(selectedCity.gps, (data) => {
       this.setState({ genres: data })
     })
     this.setState({ cityIdx: parseInt(cityIdx) })
-    this.props.onCityChange()
+    this.props.onCityChange(selectedCity)
   }
   
   render() {

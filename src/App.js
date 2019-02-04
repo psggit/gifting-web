@@ -371,7 +371,7 @@ class App extends React.Component {
                       />
                       <Route exact path="/payment-status" component={PaymentStatus}  />
                       <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
-                      <Route exact path="/brands"
+                      <Route exact path="/brands/:citySlug/:genreSlug"
                         render={ props => (
                           <ProductListing {...props} context={paramObj} />
                         )}/>

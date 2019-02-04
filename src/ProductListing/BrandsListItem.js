@@ -24,7 +24,7 @@ class BrandItem extends React.Component {
           <img onLoad={this.handleImageLoad} src={this.props.thumbnail} />
         </div>
         <div className="brand--item__desc">
-          <p className="os s6">Johnnie Walker Red Label</p>
+          <p className="os s6">{this.props.name}</p>
         </div>
       </div>
     )
