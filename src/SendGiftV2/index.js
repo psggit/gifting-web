@@ -4,6 +4,7 @@ import GetStarted from "./get-started"
 import Name from "./name"
 import City from "./city"
 import FavDrink from "./fav-drink"
+import { capitalize } from "Utils/logic-utils"
 import { fetchGenres } from "./../api"
 
 class SendGiftV2 extends React.Component {
@@ -42,10 +43,14 @@ class SendGiftV2 extends React.Component {
       selectedCity: city
     })
 
-    fetchGenres(city.gps, (data) => {
+    const fetchGenresReq = {
+      city: capitalize(city.name)
+    }
+
+    fetchGenres(fetchGenresReq).then(data => {
       var sortedGenres = data.sort((a, b) => a.ordinal_position - b.ordinal_position)
       sortedGenres = sortedGenres.map((item) => ({id:item.ordinal_position, name:item.genre_name, shortName: item.short_name}) )
-      this.setState({ genres: sortedGenres })
+      this.setState({ genres: sortedGenres, selectedGenre:{} })
     })
   }
 

@@ -21,7 +21,7 @@ class City extends React.Component {
   }
 
   componentDidMount() {
-    fetchCities((data) => {
+    fetchCities().then(data => {
       const sortedCities = data.sort((a, b)=>{
         if(a.name<b.name){return -1}
         if(a.name>b.name){return 1}
