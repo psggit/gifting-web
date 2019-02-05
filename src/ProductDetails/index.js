@@ -56,14 +56,14 @@ class ProductDetaails extends React.Component {
           </div>
 
           <div className="paper add-to-basket">
-            {/* <Button primary>Add to gift basket</Button> */}
-            <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <Button primary>Add to gift basket</Button>
+            {/* <div style={{ display: "flex", justifyContent: "space-around" }}>
               <div>
                 <Icon name="gift" />
-                <p className="os">GIFT MORE DRINKS</p>
+                <p className="os s5">GIFT MORE DRINKS</p>
               </div>
               <Button primary icon="rightArrowWhite">Gift basket</Button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

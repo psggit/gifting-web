@@ -22,13 +22,35 @@ class SkuItem extends React.Component {
   }
   render() {
     return (
-      <div className="sku--item">
-        <div className="sku--item__img">
-          <div className="img-placeholder"></div>
-          <img />
+      <React.Fragment>
+        <div className="sku--item">
+          <div className="sku--item__img">
+            <div className="img-placeholder"></div>
+            <img />
+          </div>
+          <div className="sku--item__desc">
+            <p className="os s4">{this.props.brand}</p>
+            
+            <div className="volume--price--container-w">
+              <div className="volumes">
+                {
+                  this.renderVolumes()
+                }
+              </div>
+              <div className="volumes--border"></div>
+
+              <div className="sku--item__price">
+                <span className="os s6">MRP:</span>
+                <span className="os s4">Rs. 5,190</span>
+              </div>
+            </div>
+
+            <div className="add-to-basket">
+              <Button primary icon="giftBasket">Add to gift basket</Button>
+            </div>
+          </div>
         </div>
-        <div className="sku--item__desc">
-          <p className="os s4">{this.props.brand}</p>
+        <div className="volume--price--container-m">
           <div className="volumes">
             {
               this.renderVolumes()
@@ -40,12 +62,8 @@ class SkuItem extends React.Component {
             <span className="os s6">MRP:</span>
             <span className="os s4">Rs. 5,190</span>
           </div>
-
-          <div style={{ marginTop: "20px" }}>
-            <Button primary icon="giftBasket">Add to gift basket</Button>
-          </div>
         </div>
-      </div>
+      </React.Fragment>
     )
   }
 }
