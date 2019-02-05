@@ -90,4 +90,20 @@
       font-weight: 600;
     }
   }
+
+  .sku--item__price {
+    @include volumeItemMargin(65, 4);
+    margin-top: 16px;
+    span:first-child {
+      color: #777;
+      letter-spacing: 0.5px;
+      margin-right: 10px;
+    }
+
+    span:last-child {
+      color: #777777;
+      letter-spacing: 0.6px;
+      font-weight: 600;
+    }
+  }
 }

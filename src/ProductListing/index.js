@@ -46,11 +46,19 @@ class ProductListing extends React.Component {
     this.closeGenres = this.closeGenres.bind(this)
     this.handleFocus = this.handleFocus.bind(this)
     this.cancelSearch = this.cancelSearch.bind(this)
+    this.setDataFromUrl = this.setDataFromUrl.bind(this)
+  }
+
+  componentWillUnmount() {
+    window.onpopstate = null
   }
 
   componentDidMount() {
-    this.setState({ loadingCities: true })
-    // this.findInterSection()
+    window.onpopstate = this.setDataFromUrl
+    this.setDataFromUrl()
+  }
+
+  setDataFromUrl() {
     const { params } = this.props.match
     const fetchBrandsReq = {
       city: capitalize(params.citySlug),

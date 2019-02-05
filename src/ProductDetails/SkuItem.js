@@ -1,4 +1,5 @@
 import React from "react"
+import Button from "Components/button"
 import "./sass/sku-item.scss"
 
 const volumes = [
@@ -34,6 +35,15 @@ class SkuItem extends React.Component {
             }
           </div>
           <div className="volumes--border"></div>
+
+          <div className="sku--item__price">
+            <span className="os s6">MRP:</span>
+            <span className="os s4">Rs. 5,190</span>
+          </div>
+
+          <div style={{ marginTop: "20px" }}>
+            <Button primary icon="giftBasket">Add to gift basket</Button>
+          </div>
         </div>
       </div>
     )

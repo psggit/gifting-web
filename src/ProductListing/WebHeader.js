@@ -2,7 +2,7 @@ import React from "react"
 import CitySelect from "./CitySelect"
 import Search from "Components/Search"
 import Icon from "Components/icon"
-import GenreItem from "Components/GenreItem"
+import GenreList from "./GenreList"
 import "./sass/web-header.scss"
 
 const genres = [
@@ -18,26 +18,12 @@ const genres = [
 class WebHeader extends React.Component {
   constructor() {
     super()
-    this.handleGenreChange = this.handleGenreChange.bind(this)
     this.state = {
       active: -1,
       cityId: -1
     }
   }
-  componentDidUpdate(prevProps) {
-    if (this.props.genres.length !== prevProps.genres.length) {
-      const activeGenre = this.getGenreIndexByName(this.props.match.params.genreSlug)
-      this.setState({ active: activeGenre })
-    }
-  }
-  handleGenreChange(genre) {
-    this.setState({ active: genre.id })
-    this.props.history.push(`/brands/${this.props.match.params.citySlug}/${genre.shortName}`)
-    this.props.handleGenreChange(genre)
-  }
-  getGenreIndexByName(name) {
-    return this.props.genres.findIndex(genre => genre.short_name === name)
-  }
+
   render() {
     return (
       <div id="product--listing__w-header">
@@ -58,18 +44,7 @@ class WebHeader extends React.Component {
         </div>
 
         <div className="row">
-          {
-            this.props.genres.map((item, i) => (
-              <GenreItem
-                active={this.state.active}
-                onChange={this.handleGenreChange}
-                key={i}
-                id={i}
-                name={item.display_name}
-                shortName={item.short_name}
-              />
-            ))
-          }
+          <GenreList {...this.props} active={this.props.match.params.genreSlug} genres={this.props.genres} />
         </div>
       </div>
     )
