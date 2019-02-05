@@ -27,7 +27,6 @@ class ProductListing extends React.Component {
     this.state = {
       search_text: "",
       brands: [],
-      offset: 0,
       isBrandsLoading: false,
       shouldMountGenres: false,
       shouldMountSearchResults: false,
@@ -35,7 +34,7 @@ class ProductListing extends React.Component {
     }
 
     this.limit = 8
-    //this.offset = 0
+    this.offset = 0
 
     this.handleTextChange = this.handleTextChange.bind(this)
     this.handleCityChange = this.handleCityChange.bind(this)
@@ -69,7 +68,7 @@ class ProductListing extends React.Component {
     
     fetchBrandsUsingGenre(fetchBrandsReq)
       .then(brands => this.setBrands(brands))
-      // .then(this.findInterSection())
+      .then(this.findInterSection())
   }
 
   setBrands(brands) {
@@ -120,29 +119,6 @@ class ProductListing extends React.Component {
     }
   }
 
-  observerCallback(entries) {
-    console.log("finding...")
-    entries.forEach(function(entry) {
-      console.log(this)
-      // if (entry.isIntersecting) {
-      //   _self.setState({ isBrandsLoading: true })
-      //   const fetchBrandsReq = {
-      //     city: capitalize(this.props.match.params.citySlug),
-      //     genre: genre.shortName,
-      //     limit: this.limit,
-      //     offset: 0
-      //   }
-      //   fetchBrandsUsingGenre(, (res) => {
-      //     _self.setState({
-      //       brands: _self.state.brands.concat(res),
-      //       isBrandsLoading: false,
-      //     })
-      //   })
-      //   _self.setState({ offset: _self.state.offset + 8 })
-      // }
-    })
-  }
-
   // fetchProducts({limit, offset}, CB) {
   //   GET({
   //     api: `http://jsonplaceholder.typicode.com/photos?_start=${offset}&_limit=${limit}`,
@@ -158,7 +134,30 @@ class ProductListing extends React.Component {
   findInterSection() {
     const target = document.getElementById("scroll-intersection")
     const _self = this
-    let io = new IntersectionObserver(this.observerCallback)
+    let io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !_self.disableScrollIntersection) {
+          _self.setState({ isBrandsLoading: true })
+          const fetchBrandsReq = {
+            city: capitalize(_self.props.match.params.citySlug),
+            genre: _self.props.match.params.genreSlug,
+            limit: _self.limit,
+            offset: _self.offset + _self.limit
+          }
+          
+          fetchBrandsUsingGenre(fetchBrandsReq)
+            .then(brands => {
+              _self.setState({
+                brands: _self.state.brands.concat(brands),
+                isBrandsLoading: false
+              })
+              _self.disableScrollIntersection = brands.length < _self.limit
+              _self.offset += _self.limit
+            })
+            
+        }
+      })
+    })
 
     io.POLL_INTERVAL = 100
     io.USE_MUTATION_OBSERVER = false
