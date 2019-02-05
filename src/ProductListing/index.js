@@ -41,6 +41,7 @@ class ProductListing extends React.Component {
     this.handleGenreChange = this.handleGenreChange.bind(this)
     this.findInterSection = this.findInterSection.bind(this)
     this.setFetchMoreStatus = this.setFetchMoreStatus.bind(this)
+    this.resetScrollIntersectionParams = this.resetScrollIntersectionParams.bind(this)
     this.openGenres = this.openGenres.bind(this)
     this.closeGenres = this.closeGenres.bind(this)
     this.handleFocus = this.handleFocus.bind(this)
@@ -83,7 +84,13 @@ class ProductListing extends React.Component {
     return genres.sort((a, b) => a.ordinal_position - b.ordinal_position)
   }
 
+  resetScrollIntersectionParams() {
+    this.disableScrollIntersection = false
+    this.offset = 0
+  }
+
   handleCityChange(city) {
+    this.resetScrollIntersectionParams()
     const fetchGenresReq = {
       city: capitalize(city.name)
     }
@@ -102,6 +109,7 @@ class ProductListing extends React.Component {
   }
 
   handleGenreChange(genre) {
+    this.resetScrollIntersectionParams()
     const fetchBrandsReq = {
       city: capitalize(this.props.match.params.citySlug),
       genre: genre.shortName,
@@ -135,8 +143,10 @@ class ProductListing extends React.Component {
     const target = document.getElementById("scroll-intersection")
     const _self = this
     let io = new IntersectionObserver(function(entries) {
+      console.log("finding......")
       entries.forEach(function(entry) {
         if (entry.isIntersecting && !_self.disableScrollIntersection) {
+          console.log(_self.offset)
           _self.setState({ isBrandsLoading: true })
           const fetchBrandsReq = {
             city: capitalize(_self.props.match.params.citySlug),
