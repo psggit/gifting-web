@@ -378,7 +378,10 @@ class App extends React.Component {
                         render={ props => (
                           <ProductListing {...props} context={paramObj} />
                         )}/>
-                      <Route path="/brands/:citySlug/:genreSlug/:id" component={ProductDetails}  />
+                      <Route exact path="/brands/:citySlug/:genreSlug/:brandSlug"
+                        render={ props => (
+                          <ProductDetails {...props} context={paramObj} />
+                        )}/>
                     </Switch>
                   </Router>
                   {

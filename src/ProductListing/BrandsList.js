@@ -12,6 +12,9 @@ class BrandsList extends React.Component {
         {
           this.props.data.map((item) => (
             <BrandsListItem
+              activeCity={this.props.match.params.citySlug}
+              activeGenre={this.props.match.params.genreSlug}
+              id={item.brand_id}
               key={item.brand_id}
               thumbnail={item.low_res_image}
               img={item.url}

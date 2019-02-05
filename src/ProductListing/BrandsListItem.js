@@ -10,7 +10,9 @@ class BrandItem extends React.Component {
   }
   render() {
     return (
-      <div className="brand--item animated fadeIn">
+      <a
+        href={`/brands/${this.props.activeCity}/${this.props.activeGenre}/${this.props.name}`}
+        className="brand--item animated fadeIn">
         <div style={{
           position: "absolute",
           top: "50%",
@@ -24,9 +26,9 @@ class BrandItem extends React.Component {
           <img onLoad={this.handleImageLoad} src={this.props.thumbnail} />
         </div>
         <div className="brand--item__desc">
-          <p className="os s6">{this.props.name}</p>
+          <p className="os s7">{this.props.name}</p>
         </div>
-      </div>
+      </a>
     )
   }
 }
