@@ -20,13 +20,17 @@ class WebHeader extends React.Component {
     super()
     this.handleGenreChange = this.handleGenreChange.bind(this)
     this.state = {
-      active: 1,
-      cityId: 1
+      active: -1,
+      cityId: -1
     }
   }
   handleGenreChange(genre) {
     this.setState({ active: genre.id })
     this.props.handleGenreChange(genre)
+  }
+  getGenreIndexByName(name) {
+    console.log(name, this.props.genres)
+    return this.props.genres.findIndex(genre => genre.short_name === name)
   }
   render() {
     return (
@@ -34,10 +38,7 @@ class WebHeader extends React.Component {
         <div className="row">
           <div style={{ display: "flex", alignItems: "center" }}>
             <p className="os s6">Showing products in:</p>
-            <CitySelect
-              activeCity={this.props.activeCity}
-              onCityChange={this.props.handleCityChange} 
-            />
+            <CitySelect {...this.props} activeCity={this.props.match.params.citySlug} />
           </div>
           <Search placeholder="Search for products" />
         </div>
@@ -54,10 +55,10 @@ class WebHeader extends React.Component {
           {
             this.props.genres.map((item, i) => (
               <GenreItem
-                active={this.state.active}
+                active={this.getGenreIndexByName(this.props.match.params.genreSlug)}
                 onChange={this.handleGenreChange}
                 key={i}
-                id={item.ordinal_position}
+                id={i}
                 name={item.display_name}
                 shortName={item.short_name}
               />

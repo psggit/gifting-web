@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import Icon from "Components/icon"
 import { fetchCities, fetchGenres } from "./../api"
 import "./sass/city-select.scss"
+import { capitalize } from "Utils/logic-utils"
 
 class CitySelect extends React.Component {
   constructor(props) { 
@@ -23,7 +24,8 @@ class CitySelect extends React.Component {
     fetchCities()
       .then(cities => {
         this.setState({ cities })
-        this.setState({ cityIdx: this.getCityIndexByName(this.props.activeCity)})
+        const activeCity = capitalize(this.props.activeCity)
+        this.setState({ cityIdx: this.getCityIndexByName(activeCity) })
       })
   }
 

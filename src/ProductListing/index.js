@@ -69,7 +69,7 @@ class ProductListing extends React.Component {
     
     fetchBrandsUsingGenre(fetchBrandsReq)
       .then(brands => this.setBrands(brands))
-      .then(this.findInterSection())
+      // .then(this.findInterSection())
   }
 
   setBrands(brands) {
@@ -224,10 +224,10 @@ class ProductListing extends React.Component {
               this.props.context.isMobile
                 ? <MobileHeader />
                 : <WebHeader
+                  {...this.props}
                   handleGenreChange={this.handleGenreChange}
                   genres={this.state.genres}
                   handleCityChange={this.handleCityChange}
-                  activeCity={capitalize(this.props.match.params.citySlug)}
                 />
             }
             {/* <div className="header">
