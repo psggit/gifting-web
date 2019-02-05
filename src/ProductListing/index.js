@@ -94,18 +94,21 @@ class ProductListing extends React.Component {
     const fetchGenresReq = {
       city: capitalize(city.name)
     }
-    const fetchBrandsReq = {
-      city: capitalize(city.name),
-      genre: this.props.match.params.genreSlug,
-      offset: 0,
-      limit: this.limit
-    }
+
     fetchGenres(fetchGenresReq)
       .then(genres => this.sortGenres(genres))
-      .then(sortedGenres => this.setGenres(sortedGenres))
-
-    fetchBrandsUsingGenre(fetchBrandsReq)
-      .then(brands => this.setBrands(brands))  
+      .then(sortedGenres => {
+        this.props.history.push(`/brands/${city.name}/${sortedGenres[0].short_name}`)
+        this.setGenres(sortedGenres)
+        
+        fetchBrandsUsingGenre({
+          city: capitalize(city.name),
+          genre: sortedGenres[0].short_name,
+          offset: 0,
+          limit: this.limit
+        })
+          .then(brands => this.setBrands(brands))
+      })
   }
 
   handleGenreChange(genre) {

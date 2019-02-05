@@ -35,7 +35,6 @@ class CitySelect extends React.Component {
     const selectedCity = this.state.cities[cityIdx]
 
     this.setState({ cityIdx: parseInt(cityIdx) })
-    this.props.history.push(`/brands/${selectedCity.name}/${this.props.match.params.genreSlug}`)
     this.props.onCityChange(selectedCity)
   }
   
