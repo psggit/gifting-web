@@ -3,11 +3,18 @@ import "./city-checkbox.scss"
 import Icon from "Components/icon"
 
 export default function CityCheckBox(props){
-  const {name, id, active, handleClick} = props
+  const {name, id, active } = props
+
   return(
     <div
       id={id}
-      onClick={handleClick}
+      onClick={() => 
+        props.handleClick({
+          id: props.id,
+          gps: props.gps,
+          name: props.name
+        })
+      }
       className={`city--item ${active === id ? "active" : ""}`}>
       <span><Icon name="drinkChecked" /></span>
       <div style={{

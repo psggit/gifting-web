@@ -6,24 +6,6 @@ import MobileNavBar from "Components/mobile-nav-bar"
 import GenreItem from "Components/GenreItem"
 
 export default function FavDrink(props){
-  const genres = [
-    { name: "Whiskey", id: 1 },
-    { name: "Rum", id: 2},
-    { name: "Vodka", id: 3},
-    { name: "RTD", id: 4},
-    { name: "Beer", id: 5},
-    { name: "Tequila", id: 6},
-    { name: "Gin", id: 7},
-    { name: "RTD", id: 41},
-    { name: "Beer", id: 51},
-    { name: "Tequila", id: 61},
-    { name: "Gin", id: 71},
-    { name: "Tequila", id: 61},
-    { name: "Gin", id: 71}
-  ]
-
-
-
   return(
     <div id="drink" className="paper">
       <MobileNavBar stepNo = {3} stepName = {"Favourite drink"} 
@@ -34,20 +16,21 @@ export default function FavDrink(props){
         </div>                           
         <div className="row">                            
           <p className="os s2">
-            What’s {props.receiverName} favourite drink?
+            What’s {props.receiverName}'s favourite drink?
           </p>
           <p className="os s5">
             This will let us curate a special list of drinks that you can gift them.                          
           </p>
           <div className="flex-grid">
           {
-            genres.map((item, i) => (
+            props.genres.map((item, i) => (
               <div className="col" key={i}>
                 <GenreItem
                   active={props.selectedGenreId}
-                  handleClick={props.handleGenreClick}
+                  onChange={props.handleGenreClick}
                   id={item.id}
                   name={item.name}
+                  shortName={item.shortName}
                 />
               </div>
             ))

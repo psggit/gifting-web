@@ -5,25 +5,46 @@ import Icon from "Components/icon"
 import MobileNavBar from "Components/mobile-nav-bar"
 import CityCheckBox from "Components/city-checkbox"
 
-export default function City(props){
-    const cities = [
-      { name: "Bengaluru", id: 1 },
-      { name: "Goa", id: 2},
-      { name: "Mahe", id: 3},
-      { name: "New Delhi", id: 4},
-    ]
+import { fetchCities } from "./../api"
 
+class City extends React.Component {
+  constructor(props) { 
+    super(props)
+    this.handleCityClick = this.handleCityClick.bind(this)
+    this.state = {
+      cities: [],
+    }
+  }
+
+  handleCityClick(e) {
+    this.props.handleCityClick(e)
+  }
+
+  componentDidMount() {
+    fetchCities((data) => {
+      const sortedCities = data.sort((a, b)=>{
+        if(a.name<b.name){return -1}
+        if(a.name>b.name){return 1}
+        return 0;
+      })
+
+      this.setState({ cities: sortedCities })
+    })
+  }
+ 
+  
+  render() {
     return(
       <div id="city" className="paper">
         <MobileNavBar stepNo = {2} stepName = {"Recipient's City"} 
-          handleNavigatePageClick = {props.handleNavigatePageClick} />
+          handleNavigatePageClick = {this.props.handleNavigatePageClick} />
         <div className="paper-content">
           <div className="row city"> 
             <Icon name="locationOutlined" />
           </div>                           
           <div className="row">                            
             <p className="os s2">
-              Which city does the {props.receiverName} reside in?            
+              Which city does the {this.props.receiverName} reside in?            
             </p>
             <p className="os s5">
               This will let us show you the list of drinks available in that city.              
@@ -31,12 +52,13 @@ export default function City(props){
 
             <div className="flex-grid">
             {
-              cities.map((item, i) => (
+              this.state.cities.map((item, i) => (
                 <div className="col" key={i}>
                   <CityCheckBox
-                    active={props.selectedCityId}
-                    handleClick={props.handleCityClick}
+                    active={this.props.selectedCityId}
+                    handleClick={this.handleCityClick}
                     id={item.id}
+                    gps={item.gps}
                     name={item.name}
                   />
                 </div>
@@ -50,7 +72,7 @@ export default function City(props){
             primary 
             icon="rightArrowWhite"
             className="small"
-            onClick={(e) => props.handleNavigatePageClick(e, 3)}
+            onClick={(e) => this.props.handleNavigatePageClick(e, 3)}
             >
               Favourite Drink
             </Button>
@@ -58,3 +80,5 @@ export default function City(props){
       </div>
     )
     }
+  }
+  export default City
