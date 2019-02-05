@@ -109,9 +109,9 @@ class App extends React.Component {
   // }
  
   componentDidMount() {
-    history.listen(location => {
-      this.setState({ key: this.state.key + 1 })
-    })
+    // history.listen(location => {
+    //   this.setState({ key: this.state.key + 1 })
+    // })
   }
 
   // handleClick(e) {
@@ -374,13 +374,13 @@ class App extends React.Component {
                       />
                       <Route exact path="/payment-status" component={PaymentStatus}  />
                       <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
-                      <Route exact path="/brands/:citySlug/:genreSlug"
-                        render={ props => (
-                          <ProductListing {...props} context={paramObj} />
-                        )}/>
                       <Route exact path="/brands/:citySlug/:genreSlug/:brandSlug"
                         render={ props => (
                           <ProductDetails {...props} context={paramObj} />
+                        )}/>
+                      <Route exact path="/brands/:citySlug/:genreSlug"
+                        render={ props => (
+                          <ProductListing {...props} context={paramObj} />
                         )}/>
                     </Switch>
                   </Router>

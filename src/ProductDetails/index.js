@@ -1,38 +1,34 @@
 import React from "react"
 import PropTypes from "prop-types"
-import "./product-detail.scss"
+import "./sass/product-detail.scss"
 import Icon from "Components/icon"
-import BrandItem from "./../ProductListing/BrandsListItem"
+import SkuItem from "./SkuItem"
 import Button from "Components/button"
 
-const skus = [
-  { volume: "1 Ltr"  },
-  { volume: "750 ml" },
-  { volume: "500 ml" },
-  { volume: "350 ml" },
-  { volume: "180 ml" },
-  { volume: "90 ml" }
-]
-
 class ProductDetaails extends React.Component {
-  renderSkuItems() {
-    return skus.map((item, i) => (
-      <input readOnly key={i} value={item.volume} className="os sku--item" />
-    ))
-  }
+  
   render() {
     return (
       <div id="product--details">
         <div className="container">
-          <div className="paper">
+          <div className="paper price">
             
             <div className="header">
-              <Icon  name="back"/>
-              <span style={{ marginLeft: "10px", fontWeight: "600", color: "#777" }} className="os s3">View Products</span>
+              <div>
+                <Icon  name="back"/>
+                <span style={{ marginLeft: "10px", fontWeight: "600", color: "#777" }} className="os s5">View Products</span>
+              </div>
+
+              <div>
+                <Icon name="giftBasket" />
+                <span className="os s5" style={{ marginLeft: "10px" }}>Gift Basket (0)</span>
+              </div>
             </div>
 
-            <BrandItem  />
-            <div className="skus">
+            <div className="sku--container">
+              <SkuItem brand={this.props.match.params.brandSlug} />
+            </div>
+            {/* <div className="skus">
               {
                 this.renderSkuItems()
               }
@@ -41,7 +37,7 @@ class ProductDetaails extends React.Component {
 
             <div className="total--price">
               <p className="os s2">MRP: <span className="os s0">Rs. 5190</span></p>
-            </div>
+            </div> */}
           </div>
 
           <div className="paper about-drink">

@@ -1,26 +1,38 @@
-#product--details {
-  margin-top: 100px;
-  width: 100%;
+@import "./../../sass/base.scss";
 
-  .container {
-    background-color: #f1f1f1;
-    padding-left: 0;
-    padding-right: 0;
-  }
+#product--details {
+  margin-top: 87px;
+  width: 100%;
   
   .paper {
     position: relative;
     background-color: #fff;
-    .header {
-      padding: 16px 20px;
-    }
+    border: 1px solid #dfdfdf;
+    border-radius: 4px;
     p, span {
       color: #555;
     }
 
+    &.price {
+      padding: 40px 60px;
+      .header {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #dfdfdf;
+      }
+    }
+
+    .sku--container {
+      padding-top: 40px;
+      .sku--item__img{
+        width: 300px;
+        height: 300px;
+      }
+    }
+
     &.about-drink {
       margin-top: 32px;
-      padding: 12px 16px 16px 16px;
       p:first-child {
         font-weight: 600;
         color: #555;
@@ -34,7 +46,6 @@
 
     &.gs1-code {
       margin-top: 20px;
-      padding: 12px 16px 16px 16px;
       p {
         color: #555;
         font-weight: 600;
@@ -66,7 +77,6 @@
     &.add-to-basket {
       text-align: center;
       margin-top: 20px;
-      padding: 12px 16px;
       p {
         font-size: 12px;
       }
@@ -91,54 +101,25 @@
       display: none;
     }
   }
+}
 
-  .skus {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    padding: 16px 20px;
-    
-    .hr {
-      height: 2px;
-      width: 100%;
-      background-color: #dddbda;
-    }
-    .sku--item {
-      border: 1px solid #777;
-      border-radius: 2px;
-      width: 65px;
-      height: 35px;
-      text-align: center;
-      padding: 8px;
-      margin-bottom: 16px;
-      cursor: pointer;
-      font-size: 14px;
+// .total--price {
+//   padding: 16px 20px;
+//   padding-top: 0;
+//   p {
+//     color: #777;
+//     span {
+//       font-weight: 600;
+//     }
+//   }
+// }
 
-      margin-right: 16px;
 
-      &:first-child {
-        margin-left: 0;
-      }
-      &:last-child {
-        margin-right: 0;
-      }
-      color: #777;
-      &:focus {
-        background-color: #777;
-        color: #fff;
-        outline: 0;
-      }
-    }
-  }
-
-  .total--price {
-    padding: 16px 20px;
-    padding-top: 0;
-    p {
-      color: #777;
-      span {
-        font-weight: 600;
-      }
+@media only screen and (max-width: $md) {
+  #product--details {
+    .container {
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 }
