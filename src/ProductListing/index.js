@@ -33,7 +33,7 @@ class ProductListing extends React.Component {
       genres: []
     }
 
-    this.limit = 8
+    this.limit = 10
     this.offset = 0
 
     this.handleTextChange = this.handleTextChange.bind(this)
