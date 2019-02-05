@@ -69,7 +69,8 @@ class App extends React.Component {
     super() 
     this.state = {
       username: "",
-      isLoggedIn: false
+      isLoggedIn: false,
+      key: 0
     }
     //this.handleSignOut = this.handleSignOut.bind(this)
   }
@@ -108,7 +109,9 @@ class App extends React.Component {
   // }
  
   componentDidMount() {
-   
+    history.listen(location => {
+      this.setState({ key: this.state.key + 1 })
+    })
   }
 
   // handleClick(e) {
@@ -186,7 +189,7 @@ class App extends React.Component {
                     <Header />
                   }
                   
-                  <Router history={history}>
+                  <Router key={this.state.key} history={history}>
                     <Switch>
                       <Route exact 
                         path="/" 
