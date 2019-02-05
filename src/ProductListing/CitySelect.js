@@ -1,24 +1,32 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Icon from "Components/icon"
-import { fetchCities, fetchGenres } from "./../api"
+import { fetchCities } from "./../api"
 import "./sass/city-select.scss"
+import { capitalize } from "Utils/logic-utils"
 
 class CitySelect extends React.Component {
-  constructor() { 
-    super()
+  constructor(props) { 
+    super(props)
     this.handleCityChange = this.handleCityChange.bind(this)
+    this.getCityIndexByName = this.getCityIndexByName.bind(this)
     this.state = {
       cities: [],
-      cityIdx: 1
+      cityIdx: -1
     }
   }
 
+  getCityIndexByName(name) {
+    return this.state.cities.findIndex(city => city.name === name)
+  }
+  
   componentDidMount() {
-    fetchCities((data) => {
-      this.setState({ cities: data })
-      this.props.onCityChange(data[this.state.cityIdx])
-    })
+    fetchCities()
+      .then(cities => {
+        this.setState({ cities })
+        const activeCity = capitalize(this.props.activeCity)
+        this.setState({ cityIdx: this.getCityIndexByName(activeCity) })
+      })
   }
 
   handleCityChange(e) {
@@ -26,9 +34,6 @@ class CitySelect extends React.Component {
     const cityIdx = target.value
     const selectedCity = this.state.cities[cityIdx]
 
-    fetchGenres(selectedCity.gps, (data) => {
-      this.setState({ genres: data })
-    })
     this.setState({ cityIdx: parseInt(cityIdx) })
     this.props.onCityChange(selectedCity)
   }

@@ -51,8 +51,8 @@ export function fetchRetailers(payloadObj, successCallback, failureCallback) {
     })
 }
 
-export function fetchCities(CB) {
-  POST({
+export function fetchCities() {
+  return POST({
     api: "/city/availableCities",
     handleError: true,
     apiBase: "loki",
@@ -62,42 +62,30 @@ export function fetchCities(CB) {
       wallet_available: false
     }
   })
-    .then(json => {
-      CB(json.availableCities)
-    })
+    .then(json => json.availableCities)
 }
 
-export function fetchBrandsUsingGenre(req, CB) {
-  POST({
-    api: `/consumer/browse/genre/${req.genre.shortName}`,
+export function fetchBrandsUsingGenre(req) {
+  return POST({
+    api: `/consumer/browse/genres/${req.city}/${req.genre}`,
     handleError: true,
     apiBase: "catman",
     data: {
-      from: 0,
-      size: 5,
-      km: "40km",
-      gps: req.gps,
-      is_featured: false,
-      stateName: req.state_short_name
+      from: req.offset,
+      size: req.limit,
+      is_featured: false
     }
   })
-    .then(json => {
-      CB(json)
-    })
+    .then(json => json)
 }
 
-export function fetchGenres(gps, CB) {
-  POST({
-    api: "/consumer/browse/stores/",
+export function fetchGenres(req) {
+  return GET({
+    api: `/consumer/browse/genres/${req.city}`,
     handleError: true,
-    apiBase: "catman",
-    data: {
-      gps
-    }
+    apiBase: "catman"
   })
-    .then(json => {
-      CB(json.data, false)
-    })
+    .then(json => json.data)
 }
 
 export function fetchSKUUsingBrand(genreShortName, brandName, CB) {

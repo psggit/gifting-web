@@ -17,28 +17,31 @@ import CitySelect from "./CitySelect"
 import MobileHeader from "./MobileHeader"
 import WebHeader from "./WebHeader"
 import { fetchGenres, fetchBrandsUsingGenre } from "./../api"
+import { capitalize } from "Utils/logic-utils"
  
 class ProductListing extends React.Component {
   constructor() {
     super()
-
+    this.fetchBrandsReq = {}
+    this.shouldFetchMore = true
     this.state = {
       search_text: "",
       brands: [],
-      offset: 0,
       isBrandsLoading: false,
       shouldMountGenres: false,
       shouldMountSearchResults: false,
       genres: []
     }
 
-    this.limit = 8
-    //this.offset = 0
+    this.limit = 10
+    this.offset = 0
 
     this.handleTextChange = this.handleTextChange.bind(this)
     this.handleCityChange = this.handleCityChange.bind(this)
     this.handleGenreChange = this.handleGenreChange.bind(this)
     this.findInterSection = this.findInterSection.bind(this)
+    this.setFetchMoreStatus = this.setFetchMoreStatus.bind(this)
+    this.resetScrollIntersectionParams = this.resetScrollIntersectionParams.bind(this)
     this.openGenres = this.openGenres.bind(this)
     this.closeGenres = this.closeGenres.bind(this)
     this.handleFocus = this.handleFocus.bind(this)
@@ -46,60 +49,125 @@ class ProductListing extends React.Component {
   }
 
   componentDidMount() {
-    // this.findInterSection()
     this.setState({ loadingCities: true })
+    // this.findInterSection()
+    const { params } = this.props.match
+    const fetchBrandsReq = {
+      city: capitalize(params.citySlug),
+      genre: params.genreSlug,
+      offset: 0,
+      limit: this.limit
+    }
+
+    const fetchGenresReq = {
+      city: capitalize(params.citySlug)
+    }
+
+    fetchGenres(fetchGenresReq)
+      .then(genres => this.sortGenres(genres))
+      .then(sortedGenres => this.setGenres(sortedGenres))
+    
+    fetchBrandsUsingGenre(fetchBrandsReq)
+      .then(brands => this.setBrands(brands))
+      .then(this.findInterSection())
+  }
+
+  setBrands(brands) {
+    this.setState({ brands })
+  }
+
+  setGenres(genres) {
+    this.setState({ genres })
+  }
+
+  sortGenres(genres) {
+    return genres.sort((a, b) => a.ordinal_position - b.ordinal_position)
+  }
+
+  resetScrollIntersectionParams() {
+    this.disableScrollIntersection = false
+    this.offset = 0
   }
 
   handleCityChange(city) {
-    this.setState({ selectedCity: city })
-    
-    fetchGenres(city.gps, (data) => {
-      const sortedGenres = data.sort((a, b) => a.ordinal_position - b.ordinal_position)
-      this.setState({ genres: sortedGenres })
+    this.resetScrollIntersectionParams()
+    const fetchGenresReq = {
+      city: capitalize(city.name)
+    }
 
-      const genre = { shortName: sortedGenres[0].short_name }
-      const req = {...city, genre }
-
-      fetchBrandsUsingGenre(req, (res) => {
-        this.setState({ brands: res })
+    fetchGenres(fetchGenresReq)
+      .then(genres => this.sortGenres(genres))
+      .then(sortedGenres => {
+        this.props.history.push(`/brands/${city.name}/${sortedGenres[0].short_name}`)
+        this.setGenres(sortedGenres)
+        
+        fetchBrandsUsingGenre({
+          city: capitalize(city.name),
+          genre: sortedGenres[0].short_name,
+          offset: 0,
+          limit: this.limit
+        })
+          .then(brands => this.setBrands(brands))
       })
-
-    })
   }
 
   handleGenreChange(genre) {
-    const req = {...this.state.selectedCity, genre }
-    fetchBrandsUsingGenre(req, (res) => {
-      this.setState({ brands: res })
-    })
+    this.resetScrollIntersectionParams()
+    const fetchBrandsReq = {
+      city: capitalize(this.props.match.params.citySlug),
+      genre: genre.shortName,
+      limit: this.limit,
+      offset: 0
+    }
+
+    fetchBrandsUsingGenre(fetchBrandsReq)
+      .then(brands => this.setBrands(brands))
   }
 
-  fetchProducts({limit, offset}, CB) {
-    GET({
-      api: `http://jsonplaceholder.typicode.com/photos?_start=${offset}&_limit=${limit}`,
-      prependBaseUrl: false,
-      type: "public",
-      handleError: true
-    })
-      .then(json => {
-        CB(json)
-      })
+  setFetchMoreStatus(res) {
+    if (res.length < this.limit) {
+      this.shouldFetchMore = false
+    }
   }
+
+  // fetchProducts({limit, offset}, CB) {
+  //   GET({
+  //     api: `http://jsonplaceholder.typicode.com/photos?_start=${offset}&_limit=${limit}`,
+  //     prependBaseUrl: false,
+  //     type: "public",
+  //     handleError: true
+  //   })
+  //     .then(json => {
+  //       CB(json)
+  //     })
+  // }
 
   findInterSection() {
     const target = document.getElementById("scroll-intersection")
     const _self = this
     let io = new IntersectionObserver(function(entries) {
+      console.log("finding......")
       entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !_self.disableScrollIntersection) {
+          console.log(_self.offset)
           _self.setState({ isBrandsLoading: true })
-          _self.fetchProducts({ limit: _self.limit, offset: _self.state.offset }, (data) => {
-            _self.setState({
-              brands: _self.state.brands.concat(data),
-              isBrandsLoading: false,
+          const fetchBrandsReq = {
+            city: capitalize(_self.props.match.params.citySlug),
+            genre: _self.props.match.params.genreSlug,
+            limit: _self.limit,
+            offset: _self.offset + _self.limit
+          }
+          
+          fetchBrandsUsingGenre(fetchBrandsReq)
+            .then(brands => {
+              _self.setState({
+                brands: _self.state.brands.concat(brands),
+                isBrandsLoading: false
+              })
+              _self.disableScrollIntersection = brands.length < _self.limit
+              _self.offset += _self.limit
             })
-          })
-          _self.setState({ offset: _self.state.offset + 10 })
+            
         }
       })
     })
@@ -173,12 +241,13 @@ class ProductListing extends React.Component {
         <div className="container">
           <div className="paper">
             {
-              this .props.context.isMobile
+              this.props.context.isMobile
                 ? <MobileHeader />
                 : <WebHeader
+                  {...this.props}
                   handleGenreChange={this.handleGenreChange}
                   genres={this.state.genres}
-                  handleCityChange={this.handleCityChange}
+                  onCityChange={this.handleCityChange}
                 />
             }
             {/* <div className="header">

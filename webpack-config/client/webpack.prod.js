@@ -45,9 +45,15 @@ module.exports = merge(common, {
     },
     minimizer: [
       new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true // set to true if you want JS source maps
+        uglifyOptions: {
+          cache: true,
+          parallel: true,
+          sourceMap: true, // set to true if you want JS source maps,
+          warning: false,
+          compress: {
+            drop_console: true
+          }
+        }
       }),
       new OptimizeCSSAssetsPlugin({})
     ]

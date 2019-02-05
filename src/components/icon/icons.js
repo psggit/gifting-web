@@ -13,7 +13,7 @@ export default {
   ),
   hipbarLogo: (
     <svg width="100px" height="38.57px" viewBox="0 0 140 54" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="02a-Gifitng-Website---V0.7---Send-Gift-Cards---V0.2---Using-GCs" transform="translate(-80.000000, -40.000000)" fill="#000000">
           <g id="Header" transform="translate(80.000000, 40.000000)">
             <g id="HipBarLogoBlack">
@@ -124,12 +124,12 @@ export default {
     //     </g>
     // </svg>
     <svg width="98px" height="98px" viewBox="0 0 98 98" version="1.1" >
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="01a-Gifitng-Website---V0.7---Home-Page" transform="translate(-671.000000, -2476.000000)">
           <g id="How-to-use" transform="translate(331.000000, 2342.000000)">
             <g id="1" transform="translate(134.000000, 138.000000)">
               <g id="Nos" transform="translate(210.000000, 0.000000)">
-                <circle id="Oval-2" stroke="#555555" stroke-width="4" fill-rule="nonzero" cx="45" cy="45" r="47"></circle>
+                <circle id="Oval-2" stroke="#555555" strokeWidth="4" fillRule="nonzero" cx="45" cy="45" r="47"></circle>
                 <path d="M47.7017784,61 L42.5581395,61 L42.5581395,40.3378933 C42.5581395,37.8718527 42.6165065,35.9165599 42.7332421,34.4719562 C42.3976271,34.8221632 41.9854106,35.2088442 41.49658,35.6320109 C41.0077495,36.0551777 39.369827,37.3976175 36.5827633,39.6593707 L34,36.3980848 L43.4117647,29 L47.7017784,29 L47.7017784,61 Z" id="1" fill="#555555"></path>
               </g>
             </g>
@@ -150,12 +150,12 @@ export default {
     //     </g>
     // </svg>
     <svg width="98px" height="98px" viewBox="0 0 98 98" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="01a-Gifitng-Website---V0.7---Home-Page" transform="translate(-670.000000, -2844.000000)">
           <g id="How-to-use" transform="translate(331.000000, 2342.000000)">
             <g id="2" transform="translate(105.000000, 506.000000)">
               <g id="Nos-Copy-3" transform="translate(238.000000, 0.000000)">
-                <circle id="Oval-2" stroke="#555555" stroke-width="4" fill-rule="nonzero" cx="45" cy="45" r="47"></circle>
+                <circle id="Oval-2" stroke="#555555" strokeWidth="4" fillRule="nonzero" cx="45" cy="45" r="47"></circle>
                 <path d="M56.6181094,63.34375 L33,63.34375 L33,59.1015467 L41.9848913,50.0689902 C44.6382676,47.3520599 46.3978906,45.4256105 47.2638128,44.289584 C48.129735,43.1535576 48.7612927,42.0850733 49.1585047,41.084099 C49.5557168,40.0831246 49.7543198,39.0106682 49.7543198,37.8666976 C49.7543198,36.2937379 49.2816446,35.054455 48.3362799,34.1488115 C47.3909153,33.2431681 46.0841073,32.7903532 44.4158168,32.7903532 C43.0811843,32.7903532 41.7902646,33.0366209 40.5430188,33.5291639 C39.295773,34.0217068 37.853915,34.9114484 36.2174014,36.1984154 L33.1906608,32.5043619 C35.1290555,30.8678484 37.0118123,29.7080066 38.8389877,29.0248019 C40.666163,28.3415972 42.6124728,28 44.6779754,28 C47.9192256,28 50.5169533,28.8460489 52.4712365,30.5381722 C54.4255197,32.2302955 55.4026467,34.5062863 55.4026467,37.3662129 C55.4026467,38.9391726 55.1206303,40.4326674 54.5565893,41.8467422 C53.9925482,43.2608171 53.1266389,44.7185634 51.9588356,46.2200249 C50.7910322,47.7214864 48.8486945,49.7512094 46.1317642,52.3092549 L40.078283,58.1720752 L40.078283,58.4104012 L56.6181094,58.4104012 L56.6181094,63.34375 Z" id="2" fill="#555555"></path>
               </g>
             </g>
@@ -176,13 +176,13 @@ export default {
     //     </g>
     // </svg>
     <svg width="98px" height="98px" viewBox="0 0 98 98" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="01a-Gifitng-Website---V0.7---Home-Page" transform="translate(-671.000000, -3176.000000)">
           <g id="How-to-use" transform="translate(331.000000, 2342.000000)">
             <g id="3-+-Icons" transform="translate(95.000000, 838.000000)">
               <g id="3">
                 <g id="Nos-Copy-4" transform="translate(249.000000, 0.000000)">
-                  <circle id="Oval-2" stroke="#555555" stroke-width="4" fill-rule="nonzero" cx="45" cy="45" r="47"></circle>
+                  <circle id="Oval-2" stroke="#555555" strokeWidth="4" fillRule="nonzero" cx="45" cy="45" r="47"></circle>
                   <path d="M55.8895542,36.3133733 C55.8895542,38.4712905 55.260818,40.2682341 54.0033267,41.7042582 C52.7458354,43.1402822 50.9760593,44.1066731 48.6939454,44.6034597 L48.6939454,44.7897538 C51.4262723,45.1312947 53.4754866,45.9812529 54.84165,47.339654 C56.2078134,48.6980551 56.8908849,50.502761 56.8908849,52.7538257 C56.8908849,56.0295129 55.7343207,58.5561011 53.4211577,60.333666 C51.1079946,62.1112309 47.8168322,63 43.5475715,63 C39.7750976,63 36.5926056,62.3867881 34,61.160346 L34,56.2934132 C35.4437863,57.007544 36.9729349,57.5586585 38.5874917,57.9467731 C40.2020484,58.3348877 41.7544836,58.5289421 43.2448436,58.5289421 C45.884023,58.5289421 47.8556156,58.039925 49.1596806,57.0618762 C50.4637457,56.0838274 51.1157685,54.5702032 51.1157685,52.5209581 C51.1157685,50.7045817 50.3938861,49.3694875 48.9500998,48.5156354 C47.5063135,47.6617833 45.2397582,47.2348636 42.1503659,47.2348636 L39.1929474,47.2348636 L39.1929474,42.7870925 L42.1969395,42.7870925 C47.6305439,42.7870925 50.3473054,40.908646 50.3473054,37.1516966 C50.3473054,35.6923857 49.8738127,34.5668702 48.926813,33.7751164 C47.9798134,32.9833626 46.5826218,32.5874917 44.7351963,32.5874917 C43.4466558,32.5874917 42.2047077,32.7699028 41.0093147,33.1347305 C39.8139217,33.4995583 38.4012058,34.2097973 36.7711244,35.2654691 L34.093147,31.4464405 C37.2135885,29.148802 40.8385245,28 44.9680639,28 C48.398997,28 51.0769476,28.7374067 53.001996,30.2122422 C54.9270444,31.6870777 55.8895542,33.7207677 55.8895542,36.3133733 Z" id="3" fill="#555555"></path>
                 </g>
               </g>
@@ -204,12 +204,12 @@ export default {
     //     </g>
     // </svg>
     <svg width="98px" height="98px" viewBox="0 0 98 98" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="01a-Gifitng-Website---V0.7---Home-Page" transform="translate(-671.000000, -3718.000000)">
           <g id="How-to-use" transform="translate(331.000000, 2342.000000)">
             <g id="4" transform="translate(0.000000, 1380.000000)">
               <g id="Nos-Copy-5" transform="translate(344.000000, 0.000000)">
-                <circle id="Oval-2" stroke="#555555" stroke-width="4" fill-rule="nonzero" cx="45" cy="45" r="47"></circle>
+                <circle id="Oval-2" stroke="#555555" strokeWidth="4" fillRule="nonzero" cx="45" cy="45" r="47"></circle>
                 <path d="M55.9787688,55.237338 L51.3006907,55.237338 L51.3006907,62.8125 L45.8627217,62.8125 L45.8627217,55.237338 L30,55.237338 L30,50.9392053 L45.8627217,28 L51.3006907,28 L51.3006907,50.6067531 L55.9787688,50.6067531 L55.9787688,55.237338 Z M45.8627217,50.6067531 L45.8627217,41.8917548 C45.8627217,38.7888516 45.9418762,36.2479919 46.1001876,34.2690996 L45.9102149,34.2690996 C45.466943,35.3139547 44.7703833,36.5804268 43.820515,38.0685539 L35.2005031,50.6067531 L45.8627217,50.6067531 Z" id="4" fill="#555555"></path>
               </g>
             </g>
@@ -340,8 +340,8 @@ export default {
   ),
   filledDownArrowWhite: (
     <svg fill="#FFFFFF" width="12px" height="7px" viewBox="0 0 12 7" version="1.1">
-      <g id="V0.1" stroke="none" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd">
-        <g id="01a-Gifitng-Website---Product-Detail-Screen---Before-selecting-Stat" transform="translate(-1348.000000, -69.000000)" fill="#FFFFFF" fill-rule="nonzero">
+      <g id="V0.1" stroke="none" strokeWidth="1" fill="#FFFFFF" fillRule="evenodd">
+        <g id="01a-Gifitng-Website---Product-Detail-Screen---Before-selecting-Stat" transform="translate(-1348.000000, -69.000000)" fill="#FFFFFF" fillRule="nonzero">
           <g id="Header">
             <g id="Name" transform="translate(1198.000000, 57.000000)">
               <g id="DownArrow" transform="translate(150.000000, 12.000000)">
@@ -355,16 +355,16 @@ export default {
   ),
   user: (
     <svg width="124px" height="117px" viewBox="0 0 124 117" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="01a-Age-Gate" transform="translate(-659.000000, -315.000000)" stroke="#000000">
           <g id="Age-Gate" transform="translate(386.000000, 269.000000)">
             <g id="Content" transform="translate(25.000000, 49.000000)">
               <g id="Icon" transform="translate(251.000000, 0.000000)">
-                <path d="M70,38 C70,46.28375 63.059875,53 54.5,53 C45.940125,53 39,46.28375 39,38 C39,29.71625 45.940125,23 54.5,23 C63.059875,23 70,29.71625 70,38 Z" id="Fill-1" stroke-width="5"></path>
-                <path d="M54.5,60 C39.3127299,60 27,72.0888621 27,87 L82,87 C82,72.0888621 69.6872701,60 54.5,60 Z" id="Fill-2" stroke-width="5"></path>
-                <ellipse id="Oval" stroke-width="5" cx="53.5" cy="54.5" rx="53.5" ry="54.5"></ellipse>
-                <path d="M98,111 C97.9047321,111 97.8095536,110.983703 97.718125,110.948703 C90.841875,108.325999 78,99.1512911 78,88.8332861 L78,63.1666798 C78,62.6509764 78.2761607,62.198273 78.68,62.0489761 L97.7275893,55.0489727 C97.9066964,54.9836758 98.0952679,54.9836758 98.2742857,55.0489727 L117.321875,62.0489761 C117.723839,62.1959762 118,62.6509764 118,63.1666798 L118,88.8332861 C118,99.1512911 105.158125,108.328296 98.281875,110.948703 C98.1904464,110.983703 98.0952679,111 98,111 Z" id="Path" stroke-width="5" fill="#F1F1F1"></path>
-                <path d="M94.6018126,91.7262819 L87.2681355,84.2254908 C86.9106215,83.8598301 86.9106215,83.2654556 87.2681355,82.8997949 C87.6256494,82.5341342 88.2068675,82.5341342 88.5643814,82.8997949 L95.2508379,89.7366833 L107.435619,77.2742455 C107.793133,76.9085848 108.374351,76.9085848 108.731865,77.2742455 C109.089378,77.6399062 109.089378,78.2342807 108.731865,78.5999414 C105.465485,81.9407526 103.0157,84.446361 101.382511,86.1167666 C100.163724,87.3633256 98.335545,89.233164 95.8979726,91.7262819 C95.7201609,91.9081453 95.4854565,92 95.2508379,92 C95.0161334,92 94.781429,91.9081453 94.6018126,91.7262819 Z" id="Fill-1" stroke-width="3" fill="#0A090B"></path>
+                <path d="M70,38 C70,46.28375 63.059875,53 54.5,53 C45.940125,53 39,46.28375 39,38 C39,29.71625 45.940125,23 54.5,23 C63.059875,23 70,29.71625 70,38 Z" id="Fill-1" strokeWidth="5"></path>
+                <path d="M54.5,60 C39.3127299,60 27,72.0888621 27,87 L82,87 C82,72.0888621 69.6872701,60 54.5,60 Z" id="Fill-2" strokeWidth="5"></path>
+                <ellipse id="Oval" strokeWidth="5" cx="53.5" cy="54.5" rx="53.5" ry="54.5"></ellipse>
+                <path d="M98,111 C97.9047321,111 97.8095536,110.983703 97.718125,110.948703 C90.841875,108.325999 78,99.1512911 78,88.8332861 L78,63.1666798 C78,62.6509764 78.2761607,62.198273 78.68,62.0489761 L97.7275893,55.0489727 C97.9066964,54.9836758 98.0952679,54.9836758 98.2742857,55.0489727 L117.321875,62.0489761 C117.723839,62.1959762 118,62.6509764 118,63.1666798 L118,88.8332861 C118,99.1512911 105.158125,108.328296 98.281875,110.948703 C98.1904464,110.983703 98.0952679,111 98,111 Z" id="Path" strokeWidth="5" fill="#F1F1F1"></path>
+                <path d="M94.6018126,91.7262819 L87.2681355,84.2254908 C86.9106215,83.8598301 86.9106215,83.2654556 87.2681355,82.8997949 C87.6256494,82.5341342 88.2068675,82.5341342 88.5643814,82.8997949 L95.2508379,89.7366833 L107.435619,77.2742455 C107.793133,76.9085848 108.374351,76.9085848 108.731865,77.2742455 C109.089378,77.6399062 109.089378,78.2342807 108.731865,78.5999414 C105.465485,81.9407526 103.0157,84.446361 101.382511,86.1167666 C100.163724,87.3633256 98.335545,89.233164 95.8979726,91.7262819 C95.7201609,91.9081453 95.4854565,92 95.2508379,92 C95.0161334,92 94.781429,91.9081453 94.6018126,91.7262819 Z" id="Fill-1" strokeWidth="3" fill="#0A090B"></path>
               </g>
             </g>
           </g>
@@ -424,8 +424,8 @@ export default {
   ),
   mobileApplnUser: (
     <svg width="14px" height="13px" viewBox="0 0 14 13" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="01b-Mobile---Home-Page---Hamburger-Expanded---With-Sign-Out" transform="translate(-103.000000, -104.000000)" fill="#D1D2DD" fill-rule="nonzero">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="01b-Mobile---Home-Page---Hamburger-Expanded---With-Sign-Out" transform="translate(-103.000000, -104.000000)" fill="#D1D2DD" fillRule="nonzero">
           <g id="+-Name" transform="translate(0.000000, 100.000000)">
             <g id="Group-12" transform="translate(103.000000, 0.000000)">
               <g id="UserWhite" transform="translate(0.405797, 4.000000)">
@@ -440,7 +440,7 @@ export default {
   ),
   hipbarLogoMobile: (
     <svg width="100px" height="39px" viewBox="0 0 100 39" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="01b-Mobile---Home-Page---Hamburger-Expanded---With-Sign-Out" transform="translate(-24.000000, -22.000000)" fill="#D1D2DD">
           <g id="Header">
             <g id="Group-10" transform="translate(24.000000, 22.000000)">
@@ -461,8 +461,8 @@ export default {
   ),
   plus: (
     <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1">
-      <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="FAQNotExpanded" transform="translate(-1086.000000, -32.000000)" fill="#000000" fill-rule="nonzero">
+      <g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="FAQNotExpanded" transform="translate(-1086.000000, -32.000000)" fill="#000000" fillRule="nonzero">
           <g id="FAQNotExpanded-Copy">
             <g id="FAQPlus" transform="translate(1086.000000, 32.000000)">
               <path d="M17.9733522,8.9870087 C17.9733522,9.85574348 17.2693174,10.5597783 16.400113,10.5597783 L10.5593478,10.5597783 L10.5593478,16.4008174 C10.5593478,17.269787 9.85507826,17.9738217 8.98646087,17.973587 C8.55207391,17.973587 8.1588913,17.797813 7.87453043,17.5132957 C7.58981739,17.228387 7.4138087,16.8354 7.41400435,16.4012478 L7.41376957,10.5595435 L1.5723,10.5595435 C1.13818696,10.5595435 0.745317391,10.3837696 0.460369565,10.0988217 C0.176126087,9.81457826 0.000234782609,9.42139565 0.000234782609,8.9870087 C-4.80626823e-16,8.11843043 0.704034783,7.41423913 1.57312174,7.41423913 L7.41400435,7.41423913 L7.41400435,1.57312174 C7.41400435,0.704269565 8.11843043,0 8.98712609,0 C9.8555087,0.000234782609 10.5593087,0.7038 10.5597783,1.57253478 L10.5597783,7.41423913 L16.4012478,7.41423913 C17.269787,7.4147087 17.9729217,8.11843043 17.9733522,8.9870087 Z" id="Shape"></path>
@@ -474,8 +474,8 @@ export default {
   ),
   minus: (
     <svg width="18px" height="4px" viewBox="0 0 18 4" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="08b-Gifitng-Website---V0.7---FAQs---Expanded" transform="translate(-1238.000000, -492.000000)" fill="#000000" fill-rule="nonzero">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="08b-Gifitng-Website---V0.7---FAQs---Expanded" transform="translate(-1238.000000, -492.000000)" fill="#000000" fillRule="nonzero">
           <g id="FAQNotExpanded" transform="translate(152.000000, 453.000000)">
             <g id="FAQMinus" transform="translate(1086.000000, 39.000000)">
               <path d="M17.9733522,1.9870087 C17.9733522,2.85574348 17.2693174,3.55977826 16.400113,3.55977826 L1.5723,3.55954348 C1.13818696,3.55954348 0.745317391,3.38376957 0.460369565,3.09882174 C0.176126087,2.81457826 0.000234782609,2.42139565 0.000234782609,1.9870087 C-4.80653928e-16,1.11843043 0.704034783,0.41423913 1.57312174,0.41423913 L16.4012478,0.41423913 C17.269787,0.414708696 17.9729217,1.11843043 17.9733522,1.9870087 Z" id="Shape"></path>
@@ -487,8 +487,8 @@ export default {
   ),
   filledDownArrow: (
     <svg width="12px" height="7px" viewBox="0 0 12 7" version="1.1">
-      <g id="V0.1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="01a-Gifitng-Website---Product-Detail-Screen---Before-selecting-Stat" transform="translate(-1348.000000, -69.000000)" fill="#000000" fill-rule="nonzero">
+      <g id="V0.1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="01a-Gifitng-Website---Product-Detail-Screen---Before-selecting-Stat" transform="translate(-1348.000000, -69.000000)" fill="#000000" fillRule="nonzero">
           <g id="Header">
             <g id="Name" transform="translate(1198.000000, 57.000000)">
               <g id="DownArrow" transform="translate(150.000000, 12.000000)">
@@ -502,8 +502,8 @@ export default {
   ),
   calendar: (
     <svg width="18px" height="19px" viewBox="0 0 18 19" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="03a-Mobile---Sign-Up---Get-OTP" transform="translate(-48.000000, -392.000000)" fill="#555555" fill-rule="nonzero">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="03a-Mobile---Sign-Up---Get-OTP" transform="translate(-48.000000, -392.000000)" fill="#555555" fillRule="nonzero">
           <g id="Sign-In" transform="translate(36.000000, 48.000000)">
             <g id="Textfield---Name-Copy-4" transform="translate(0.000000, 307.000000)">
               <g id="Text-Field" transform="translate(0.000000, 26.000000)">
@@ -527,7 +527,7 @@ export default {
   ),
   fbLogo: (
     <svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1">
-      <g id="V0.1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="01a-Gifitng-Website---v0.1" transform="translate(-1062.000000, -3992.000000)" fill="#000000">
           <g id="Footer-Web" transform="translate(0.000000, 3740.000000)">
             <g id="Footer-Content" transform="translate(75.000000, 100.000000)">
@@ -535,7 +535,7 @@ export default {
                 <g id="Group-5" transform="translate(0.000000, 152.000000)">
                   <g id="facebook-logo-in-circular-button-outlined-social-symbol">
                     <path d="M25.9424332,39.7321429 L25.9424332,25.20376 L30.6827832,25.20376 L31.4317518,20.389208 L25.9424332,20.389208 L25.9424332,17.9750634 C25.9424332,16.7188001 26.3496971,15.5197069 28.1327272,15.5197069 L31.6964286,15.5197069 L31.6964286,10.7142857 L26.6370674,10.7142857 C22.3832055,10.7142857 21.222418,13.5471299 21.222418,17.47394 L21.222418,20.386987 L18.3035714,20.386987 L18.3035714,25.20376 L21.222418,25.20376 L21.222418,39.7321429 L25.9424332,39.7321429 Z" id="Path"></path>
-                    <path d="M50,25 C50,11.1931373 38.806781,0 25,0 C11.1931373,0 0,11.1931373 0,25 C0,38.806781 11.1931373,50 25,50 C38.806781,50 50,38.806781 50,25 Z M2.27271242,25 C2.27271242,12.4477124 12.4477124,2.27271242 25,2.27271242 C37.5522876,2.27271242 47.7272876,12.4477124 47.7272876,25 C47.7272876,37.5522876 37.5522876,47.7272876 25,47.7272876 C12.4477124,47.7272876 2.27271242,37.5522876 2.27271242,25 Z" id="Shape" fill-rule="nonzero"></path>
+                    <path d="M50,25 C50,11.1931373 38.806781,0 25,0 C11.1931373,0 0,11.1931373 0,25 C0,38.806781 11.1931373,50 25,50 C38.806781,50 50,38.806781 50,25 Z M2.27271242,25 C2.27271242,12.4477124 12.4477124,2.27271242 25,2.27271242 C37.5522876,2.27271242 47.7272876,12.4477124 47.7272876,25 C47.7272876,37.5522876 37.5522876,47.7272876 25,47.7272876 C12.4477124,47.7272876 2.27271242,37.5522876 2.27271242,25 Z" id="Shape" fillRule="nonzero"></path>
                   </g>
                 </g>
               </g>
@@ -547,7 +547,7 @@ export default {
   ),
   twitterLogo: (
     <svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1">
-      <g id="V0.1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="01a-Gifitng-Website---v0.1" transform="translate(-1135.000000, -3992.000000)" fill="#000000">
           <g id="Footer-Web" transform="translate(0.000000, 3740.000000)">
             <g id="Footer-Content" transform="translate(75.000000, 100.000000)">
@@ -555,7 +555,7 @@ export default {
                 <g id="Group-5" transform="translate(0.000000, 152.000000)">
                   <g id="twitter-circular-button" transform="translate(73.000000, 0.000000)">
                     <path d="M35.8260565,19.9497775 C35.8260565,19.6979513 35.8214739,19.4484085 35.8100993,19.2011492 C36.8914235,18.3980455 37.8292968,17.3931058 38.5714286,16.2429256 C37.5788917,16.6876174 36.5135247,16.9847853 35.393494,17.1094751 C36.5362739,16.408472 37.4126915,15.2878129 37.8270055,13.9425653 C36.7570558,14.5890931 35.5733601,15.0518889 34.3144611,15.2923797 C33.3060489,14.1489682 31.8673655,13.4208089 30.2760661,13.3935712 C27.2211246,13.3436627 24.744406,15.9162366 24.744406,19.1398236 C24.744406,19.5980527 24.7921957,20.0427444 24.8877751,20.4714524 C20.2871963,20.1765678 16.2101767,17.7900093 13.4829712,14.1921081 C13.0072016,15.0541723 12.7340474,16.0613955 12.7340474,17.1412796 C12.7340474,19.1830451 13.710627,20.9978571 15.1948088,22.0686076 C14.2865586,22.0278327 13.4351815,21.7533356 12.6885489,21.3040771 C12.6885489,21.3290314 12.6885489,21.3539856 12.6885489,21.3789399 C12.6885489,24.2328611 14.5962098,26.6239049 17.1275102,27.1819511 C16.6631152,27.3134911 16.1736797,27.3815853 15.6705784,27.3793835 C15.3132193,27.3771001 14.967153,27.3385269 14.6302518,27.265866 C15.3336772,29.6047994 17.3779152,31.3130257 19.7976789,31.3697029 C17.903684,32.9349721 15.5180441,33.8696158 12.9274975,33.8628472 C12.4812692,33.8628472 12.0397053,33.8334077 11.6071429,33.7789323 C14.0566115,35.4531523 16.9635194,36.428571 20.0889998,36.428571 C30.2624002,36.4309359 35.8260565,27.6061738 35.8260565,19.9497775 Z" id="Path"></path>
-                    <path d="M50,25 C50,11.1931373 38.806781,0 25,0 C11.1931373,0 0,11.1931373 0,25 C0,38.806781 11.1931373,50 25,50 C38.806781,50 50,38.806781 50,25 Z M2.27271242,25 C2.27271242,12.4477124 12.4477124,2.27271242 25,2.27271242 C37.5522876,2.27271242 47.7272876,12.4477124 47.7272876,25 C47.7272876,37.5522876 37.5522876,47.7272876 25,47.7272876 C12.4477124,47.7272876 2.27271242,37.5522876 2.27271242,25 Z" id="Shape" fill-rule="nonzero"></path>
+                    <path d="M50,25 C50,11.1931373 38.806781,0 25,0 C11.1931373,0 0,11.1931373 0,25 C0,38.806781 11.1931373,50 25,50 C38.806781,50 50,38.806781 50,25 Z M2.27271242,25 C2.27271242,12.4477124 12.4477124,2.27271242 25,2.27271242 C37.5522876,2.27271242 47.7272876,12.4477124 47.7272876,25 C47.7272876,37.5522876 37.5522876,47.7272876 25,47.7272876 C12.4477124,47.7272876 2.27271242,37.5522876 2.27271242,25 Z" id="Shape" fillRule="nonzero"></path>
                   </g>
                 </g>
               </g>
@@ -567,8 +567,8 @@ export default {
   ),
   instagramLogo: (
     <svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1">
-      <g id="V0.1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="01a-Gifitng-Website---v0.1" transform="translate(-1208.000000, -3992.000000)" fill="#000000" fill-rule="nonzero">
+      <g id="V0.1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="01a-Gifitng-Website---v0.1" transform="translate(-1208.000000, -3992.000000)" fill="#000000" fillRule="nonzero">
           <g id="Footer-Web" transform="translate(0.000000, 3740.000000)">
             <g id="Footer-Content" transform="translate(75.000000, 100.000000)">
               <g id="Group-6" transform="translate(987.000000, 0.000000)">
@@ -589,8 +589,8 @@ export default {
   ),
   success: (
     <svg width="110px" height="110px" viewBox="0 0 110 110" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="06-Gifitng-Website---V0.7---After-sending-GC" transform="translate(-665.000000, -194.000000)" fill="#000000" fill-rule="nonzero">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="06-Gifitng-Website---V0.7---After-sending-GC" transform="translate(-665.000000, -194.000000)" fill="#000000" fillRule="nonzero">
           <g id="Success" transform="translate(437.000000, 194.000000)">
             <g id="T2" transform="translate(228.000000, 0.000000)">
               <path d="M54.9989,0 C24.671075,0 0,24.673 0,55 C0,85.327 24.671075,110 54.9989,110 C85.326725,110 110,85.327 110,55 C110,24.673 85.326725,0 54.9989,0 Z M54.9989,102.78675 C28.6495,102.78675 7.21325,81.3494 7.21325,55 C7.21325,28.650325 28.649225,7.213525 54.9989,7.213525 C81.348575,7.213525 102.785925,28.6506 102.785925,55 C102.7862,81.3494 81.3483,102.78675 54.9989,102.78675 Z" id="Shape"></path>
@@ -603,8 +603,8 @@ export default {
   ),
   failure: (
     <svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="06b-Gifitng-Website---V0.7---Transaction-Failure" transform="translate(-680.000000, -268.000000)" fill="#000000" fill-rule="nonzero">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="06b-Gifitng-Website---V0.7---Transaction-Failure" transform="translate(-680.000000, -268.000000)" fill="#000000" fillRule="nonzero">
           <g id="Failed" transform="translate(374.000000, 204.000000)">
             <g id="Failed-text" transform="translate(84.000000, 64.000000)">
               <g id="Tick" transform="translate(222.000000, 0.000000)">
@@ -619,10 +619,10 @@ export default {
   ),
   step1: (
     <svg width="39px" height="39px" viewBox="0 0 39 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="Artboard" transform="translate(-166.000000, -58.000000)">
           <g id="Nos-1" transform="translate(168.000000, 60.000000)">
-            <circle id="Oval-2" stroke="#555555" stroke-width="1.55555556" fill="#F1F1F1" fill-rule="nonzero" cx="17.5" cy="17.5" r="18.2777778"></circle>
+            <circle id="Oval-2" stroke="#555555" strokeWidth="1.55555556" fill="#F1F1F1" fillRule="nonzero" cx="17.5" cy="17.5" r="18.2777778"></circle>
             <path d="M18.5506916,23.7222222 L16.5503876,23.7222222 L16.5503876,15.6869585 C16.5503876,14.7279427 16.5730859,13.9675511 16.6184831,13.4057608 C16.4879661,13.5419523 16.3276597,13.6923283 16.1375589,13.8568931 C15.9474581,14.021458 15.3104883,14.5435179 14.2266302,15.4230886 L13.2222222,14.1548108 L16.8823529,11.2777778 L18.5506916,11.2777778 L18.5506916,23.7222222 Z" id="1" fill="#555555"></path>
           </g>
         </g>
@@ -631,10 +631,10 @@ export default {
   ),
   step2: (
     <svg width="39px" height="39px" viewBox="0 0 39 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="Artboard" transform="translate(-118.000000, -288.000000)">
           <g id="Nos-2" transform="translate(120.000000, 290.000000)">
-            <circle id="Oval-2" stroke="#555555" stroke-width="1.55555556" fill="#F1F1F1" fill-rule="nonzero" cx="17.5" cy="17.5" r="18.2777778"></circle>
+            <circle id="Oval-2" stroke="#555555" strokeWidth="1.55555556" fill="#F1F1F1" fillRule="nonzero" cx="17.5" cy="17.5" r="18.2777778"></circle>
             <path d="M22.0181537,24.6336806 L12.8333333,24.6336806 L12.8333333,22.9839348 L16.3274577,19.471274 C17.3593263,18.41469 18.0436241,17.6655152 18.3803716,17.2237271 C18.7171192,16.7819391 18.9627249,16.3664174 19.1171963,15.9771496 C19.2716676,15.5878818 19.3489021,15.1708154 19.3489021,14.7259379 C19.3489021,14.1142314 19.165084,13.632288 18.7974422,13.2800934 C18.4298004,12.9278987 17.9215973,12.751804 17.2728176,12.751804 C16.7537939,12.751804 16.2517696,12.8475748 15.7667295,13.0391193 C15.2816895,13.2306637 14.7209669,13.5766744 14.084545,14.0771615 L12.9074792,12.6405852 C13.6612994,12.0041633 14.3934826,11.5531137 15.1040508,11.287423 C15.814619,11.0217323 16.5715172,10.8888889 17.3747682,10.8888889 C18.6352544,10.8888889 19.6454818,11.2179079 20.4054809,11.8759559 C21.1654799,12.5340038 21.5454737,13.4191113 21.5454737,14.531305 C21.5454737,15.1430116 21.4358007,15.7238151 21.2164514,16.2737331 C20.9971021,16.8236511 20.6603596,17.3905524 20.2062138,17.9744541 C19.7520681,18.5583558 18.9967145,19.3476925 17.9401305,20.342488 L15.585999,22.6224737 L15.585999,22.715156 L22.0181537,22.715156 L22.0181537,24.6336806 Z" id="2" fill="#555555"></path>
           </g>
         </g>
@@ -643,10 +643,10 @@ export default {
   ),
   step3: (
     <svg width="39px" height="40px" viewBox="0 0 39 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="Artboard" transform="translate(-263.000000, -164.000000)">
           <g id="Nos-3" transform="translate(265.000000, 166.000000)">
-            <ellipse id="Oval-2" stroke="#555555" stroke-width="1.62790698" fill="#F1F1F1" fill-rule="nonzero" cx="17.5" cy="17.7034884" rx="18.3139535" ry="18.5174419"></ellipse>
+            <ellipse id="Oval-2" stroke="#555555" strokeWidth="1.62790698" fill="#F1F1F1" fillRule="nonzero" cx="17.5" cy="17.7034884" rx="18.3139535" ry="18.5174419"></ellipse>
             <path d="M21.585086,14.2750545 C21.585086,15.1281846 21.3391635,15.8386042 20.8473113,16.4063346 C20.355459,16.9740651 19.6632328,17.3561266 18.770612,17.5525306 L18.770612,17.6261817 C19.8393281,17.7612095 20.6408531,18.0972395 21.1752111,18.6342818 C21.7095692,19.1713241 21.9767442,19.8848125 21.9767442,20.7747683 C21.9767442,22.0698074 21.5243683,23.0686911 20.619603,23.7714493 C19.7148377,24.4742076 18.42754,24.8255814 16.7576711,24.8255814 C15.2821143,24.8255814 14.0373216,24.5831488 13.0232558,24.0982763 L13.0232558,22.1741401 C13.5879751,22.4564709 14.1860828,22.6743534 14.8175968,22.827794 C15.4491109,22.9812347 16.0563268,23.0579539 16.6392628,23.0579539 C17.6715454,23.0579539 18.4427096,22.8646215 18.9527786,22.4779511 C19.4628477,22.0912806 19.7178784,21.492871 19.7178784,20.6827044 C19.7178784,19.9646021 19.4355229,19.4367741 18.8708037,19.0992047 C18.3060844,18.7616352 17.4195491,18.5928531 16.2111713,18.5928531 L15.0544134,18.5928531 L15.0544134,16.8344319 L16.229388,16.8344319 C18.3546756,16.8344319 19.4173035,16.0917903 19.4173035,14.6064847 C19.4173035,14.0295478 19.2321026,13.5845766 18.8616953,13.2715577 C18.4912881,12.9585387 17.9447937,12.8020316 17.2221959,12.8020316 C16.7181992,12.8020316 16.2324264,12.8741476 15.7648631,13.0183818 C15.2972999,13.1626161 14.7447334,13.4434083 14.1071471,13.8607668 L13.0596891,12.3509183 C14.2802115,11.4425496 15.6980606,10.9883721 17.3132792,10.9883721 C18.6552466,10.9883721 19.702694,11.279905 20.4556531,11.8629795 C21.2086121,12.446054 21.585086,13.250071 21.585086,14.2750545 Z" id="3" fill="#555555"></path>
           </g>
         </g>
@@ -655,10 +655,10 @@ export default {
   ),
   step4: (
     <svg width="39px" height="39px" viewBox="0 0 39 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="Artboard" transform="translate(-250.000000, -279.000000)">
           <g id="Nos-4" transform="translate(252.000000, 281.000000)">
-            <circle id="Oval-2" stroke="#555555" stroke-width="1.32510288" fill="#F1F1F1" fill-rule="nonzero" cx="17.5" cy="17.5" r="18.1625514"></circle>
+            <circle id="Oval-2" stroke="#555555" strokeWidth="1.32510288" fill="#F1F1F1" fillRule="nonzero" cx="17.5" cy="17.5" r="18.1625514"></circle>
             <path d="M21.7695212,21.481187 L19.9502686,21.481187 L19.9502686,24.4270833 L17.8355029,24.4270833 L17.8355029,21.481187 L11.6666667,21.481187 L11.6666667,19.809691 L17.8355029,10.8888889 L19.9502686,10.8888889 L19.9502686,19.680404 L21.7695212,19.680404 L21.7695212,21.481187 Z M17.8355029,19.680404 L17.8355029,16.291238 C17.8355029,15.0845534 17.8662852,14.0964413 17.9278507,13.3268721 L17.8539724,13.3268721 C17.6815889,13.7332046 17.4107046,14.2257216 17.0413114,14.8044376 L13.6890845,19.680404 L17.8355029,19.680404 Z" id="4" fill="#555555"></path>
           </g>
         </g>
@@ -667,8 +667,8 @@ export default {
   ),
   bacardi: (
     <svg width="103px" height="70px" viewBox="0 0 114 67" version="1.1" xmlns="http://www.w3.org/2000/svg">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="01a-Gifitng-Website---V0.7---Home-Page" transform="translate(-488.000000, -956.000000)" fill="#555555" fill-rule="nonzero">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="01a-Gifitng-Website---V0.7---Home-Page" transform="translate(-488.000000, -956.000000)" fill="#555555" fillRule="nonzero">
           <g id="Brand-Partners" transform="translate(0.000000, 828.000000)">
             <g id="Brands" transform="translate(180.000000, 128.000000)">
               <g id="BacardiGiftingWebsite" transform="translate(308.268932, 0.500000)">
@@ -685,8 +685,8 @@ export default {
   ),
   diageo: (
     <svg width="130px" height="71px" viewBox="0 0 146 32" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="01a-Gifitng-Website---V0.7---Home-Page" transform="translate(-180.000000, -974.000000)" fill="#555555" fill-rule="nonzero">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="01a-Gifitng-Website---V0.7---Home-Page" transform="translate(-180.000000, -974.000000)" fill="#555555" fillRule="nonzero">
           <g id="Brand-Partners" transform="translate(0.000000, 828.000000)">
             <g id="Brands" transform="translate(180.000000, 128.000000)">
               <g id="DiageoGiftingWebsite" transform="translate(0.000000, 18.000000)">
@@ -728,8 +728,8 @@ export default {
   ),
   pernado: (
     <svg width="183px" height="67px" viewBox="0 0 183 67" version="1.1" >
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="01a-Gifitng-Website---V0.7---Home-Page" transform="translate(-764.000000, -956.000000)" fill="#555555" fill-rule="nonzero">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="01a-Gifitng-Website---V0.7---Home-Page" transform="translate(-764.000000, -956.000000)" fill="#555555" fillRule="nonzero">
           <g id="Brand-Partners" transform="translate(0.000000, 828.000000)">
             <g id="Brands" transform="translate(180.000000, 128.000000)">
               <g id="PernodRicardGiftingWebsite" transform="translate(584.722479, 0.500000)">
@@ -773,7 +773,7 @@ export default {
   ),
   circle: (
     <svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="03b-Mobile---Payment---Net-Banking---Not-Expanded" transform="translate(-24.000000, -348.000000)" fill="#000000">
           <g id="Payment-Options" transform="translate(-1.000000, 321.000000)">
             <g id="DB/CC">
@@ -790,7 +790,7 @@ export default {
   ),
   filledCircle: (
     <svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="03b-Mobile---Payment---Net-Banking---Not-Expanded" transform="translate(-21.000000, -416.000000)" fill="#000000">
           <g id="Payment-Options" transform="translate(-1.000000, 321.000000)">
             <g id="Net-Banking" transform="translate(0.000000, 68.000000)">
@@ -805,8 +805,8 @@ export default {
   ),
   rectangle: (
     <svg width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="02d-Gifitng-Website---V0.7---Send-Gift-Cards---Before-selecting-the-checkbox" transform="translate(-86.000000, -1647.000000)" stroke="#000000" stroke-width="2">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="02d-Gifitng-Website---V0.7---Send-Gift-Cards---Before-selecting-the-checkbox" transform="translate(-86.000000, -1647.000000)" stroke="#000000" strokeWidth="2">
           <g id="Agree" transform="translate(86.000000, 1641.000000)">
             <g id="CheckBoxTicked" transform="translate(0.000000, 6.000000)">
               <rect id="Rectangle-2" x="1" y="1" width="22" height="22" rx="2"></rect>
@@ -818,12 +818,12 @@ export default {
   ),
   filledRectangle: (
     <svg width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
-      <g id="V0.3---With-Mobile-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="02b-Gifitng-Website---V0.7---Send-Gift-Cards---V0.2---Using-GCs---Aftering-Signin-In" transform="translate(-86.000000, -1647.000000)">
           <g id="Agree" transform="translate(86.000000, 1641.000000)">
             <g id="CheckBoxTicked" transform="translate(0.000000, 6.000000)">
               <rect id="Rectangle-2" fill="#000000" x="0" y="0" width="24" height="24" rx="2"></rect>
-              <path d="M10.346165,17.6632653 C10.1655572,17.8469388 9.90969609,18 9.68393632,18 C9.45817656,18 9.20231548,17.8392857 9.01418234,17.6556122 L4.8,13.369898 L6.13950796,12.0076531 L9.69146165,15.619898 L19.083068,6 L20.4,7.38520408 L10.346165,17.6632653 Z" id="Shape" fill="#D1D2DD" fill-rule="nonzero"></path>
+              <path d="M10.346165,17.6632653 C10.1655572,17.8469388 9.90969609,18 9.68393632,18 C9.45817656,18 9.20231548,17.8392857 9.01418234,17.6556122 L4.8,13.369898 L6.13950796,12.0076531 L9.69146165,15.619898 L19.083068,6 L20.4,7.38520408 L10.346165,17.6632653 Z" id="Shape" fill="#D1D2DD" fillRule="nonzero"></path>
             </g>
           </g>
         </g>
@@ -832,8 +832,8 @@ export default {
   ),
   chevronRight: (    
     <svg width="8px" height="16px" viewBox="0 0 8 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-        <g id="V0.41" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="05a-Mobile---Product-Listing" transform="translate(-328.000000, -184.000000)" fill="#555555" fill-rule="nonzero">
+        <g id="V0.41" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+            <g id="05a-Mobile---Product-Listing" transform="translate(-328.000000, -184.000000)" fill="#555555" fillRule="nonzero">
                 <g id="Listing" transform="translate(0.000000, 165.000000)">
                     <g id="BListing">
                         <g id="Brand-Listing" transform="translate(24.000000, 16.000000)">
@@ -847,8 +847,8 @@ export default {
   ),
   search: (
     <svg width="16px" height="15px" viewBox="0 0 16 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-      <g id="V0.41" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="05a-Mobile---Product-Listing" transform="translate(-151.000000, -90.000000)" fill="#777777" fill-rule="nonzero" stroke="#777777">
+      <g id="V0.41" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="05a-Mobile---Product-Listing" transform="translate(-151.000000, -90.000000)" fill="#777777" fillRule="nonzero" stroke="#777777">
           <g id="City-+-Search" transform="translate(0.000000, 80.000000)">
             <g id="Search-Icon+Text" transform="translate(152.000000, 9.000000)">
               <path d="M14,15.1505208 L9.86927083,11.0161458 C10.6276042,10.0682292 11.0833333,8.86145833 11.0833333,7.54895833 C11.0833333,4.4828125 8.60052083,2 5.54166667,2 C2.47916667,2 0,4.48645833 0,7.54895833 C0,10.6114583 2.4828125,13.0979167 5.54166667,13.0979167 C6.86145833,13.0979167 8.071875,12.6348958 9.0234375,11.865625 L13.1505208,16 L14,15.1505208 Z M2.034375,11.0635417 C1.09739583,10.1265625 0.583333333,8.8796875 0.583333333,7.55260417 C0.583333333,6.22552083 1.10104167,4.97864583 2.034375,4.04166667 C2.96770833,3.1046875 4.21822917,2.58333333 5.54166667,2.58333333 C6.86510417,2.58333333 8.11197917,3.10104167 9.04895833,4.03802083 C9.9859375,4.975 10.5,6.221875 10.5,7.54895833 C10.5,8.87604167 9.98229167,10.1229167 9.04895833,11.0598958 C8.11197917,11.996875 6.86510417,12.5145833 5.54166667,12.5145833 C4.21822917,12.5182292 2.97135417,12.0005208 2.034375,11.0635417 Z" id="Atoms/Icons/Search"></path>
@@ -860,8 +860,8 @@ export default {
   ),
   location: (
     <svg width="12px" height="17px" viewBox="0 0 12 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-        <g id="V0.41" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="05a-Mobile---Product-Listing" transform="translate(-24.000000, -90.000000)" fill="#777777" fill-rule="nonzero">
+        <g id="V0.41" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+            <g id="05a-Mobile---Product-Listing" transform="translate(-24.000000, -90.000000)" fill="#777777" fillRule="nonzero">
                 <g id="City-+-Search" transform="translate(0.000000, 80.000000)">
                     <g id="City-Selection" transform="translate(24.000000, 9.000000)">
                         <g id="City" transform="translate(0.000000, 1.000000)">
@@ -875,8 +875,8 @@ export default {
   ),
   drink: (
     <svg width="14px" height="16px" viewBox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-        <g id="V0.41" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="05a-Mobile---Product-Listing" transform="translate(-163.000000, -132.000000)" fill="#777777" fill-rule="nonzero">
+        <g id="V0.41" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+            <g id="05a-Mobile---Product-Listing" transform="translate(-163.000000, -132.000000)" fill="#777777" fillRule="nonzero">
                 <g id="Genre-Selection" transform="translate(0.000000, 117.000000)">
                     <g transform="translate(24.000000, 14.000000)" id="Genre">
                         <g transform="translate(139.000000, 0.000000)">
@@ -894,8 +894,8 @@ export default {
   ),
   caret: (
     <svg width="7px" height="4px" viewBox="0 0 7 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-        <g id="V0.41" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="05a-Mobile---Product-Listing" transform="translate(-121.000000, -98.000000)" fill="#777777" fill-rule="nonzero">
+        <g id="V0.41" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+            <g id="05a-Mobile---Product-Listing" transform="translate(-121.000000, -98.000000)" fill="#777777" fillRule="nonzero">
                 <g id="City-+-Search" transform="translate(0.000000, 80.000000)">
                     <g id="City-Selection" transform="translate(24.000000, 9.000000)">
                         <path d="M102.098516,10.7299796 L98.5364059,7.83426242 C98.390118,7.71575442 98.2072581,7.86517755 98.2072581,8.10219355 L98.2072581,13.8987804 C98.2072581,14.1357964 98.390118,14.2852196 98.5364059,14.1667116 L102.098516,11.2709944 C102.244804,11.1472823 102.244804,10.8484876 102.098516,10.7299796 Z" id="Right" transform="translate(100.207745, 11.000487) rotate(90.000000) translate(-100.207745, -11.000487) "></path>
@@ -907,7 +907,7 @@ export default {
   ),
   drinkChecked: (
     <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-        <g id="V0.41" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="V0.41" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="04-Mobile---Fav-Drink" transform="translate(-132.000000, -330.000000)">
                 <g id="Beer" transform="translate(24.000000, 330.000000)">
                     <g id="1" transform="translate(108.000000, 0.000000)">
@@ -921,8 +921,8 @@ export default {
   ),
   back: (
     <svg width="14px" height="12px" viewBox="0 0 14 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-        <g id="V0.41" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="03-Mobile---City" transform="translate(-301.000000, -96.000000)" fill="#555555" fill-rule="nonzero">
+        <g id="V0.41" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+            <g id="03-Mobile---City" transform="translate(-301.000000, -96.000000)" fill="#555555" fillRule="nonzero">
                 <g id="Arrow" transform="translate(308.000000, 102.000000) rotate(180.000000) translate(-308.000000, -102.000000) translate(301.000000, 96.000000)">
                     <path d="M13.2130437,4.71629267 L13.2348973,4.72107315 L3.86673474,4.72107315 L6.81174286,1.76957723 C6.95595424,1.62547967 7.03505994,1.43027642 7.03505994,1.22539837 C7.03505994,1.02052032 6.95595424,0.826682924 6.81174286,0.6822439 L6.35349896,0.223772357 C6.2094014,0.0796747965 6.01738514,0 5.81262092,0 C5.60774287,0 5.41561279,0.0791056908 5.27151523,0.223203251 L0.223206301,5.27105689 C0.0785396345,5.41572356 -0.000566056265,5.60842274 3.04942372e-06,5.81341461 C-0.000566056265,6.01954469 0.0785396345,6.2123577 0.223206301,6.35679673 L5.27151523,11.4051057 C5.41561279,11.5490894 5.60762905,11.6283089 5.81262092,11.6283089 C6.01738514,11.6283089 6.2094014,11.5489756 6.35349896,11.4051057 L6.81174286,10.9466341 C6.95595424,10.8027642 7.03505994,10.6106341 7.03505994,10.4057561 C7.03505994,10.2009918 6.95595424,10.0189918 6.81174286,9.8750081 L3.83349897,6.90700811 L13.2235152,6.90700811 C13.6454502,6.90700811 14.000003,6.54334957 14.000003,6.12164225 L14.000003,5.47320323 C14.000003,5.05149592 13.6349786,4.71629267 13.2130437,4.71629267 Z" id="Shape" transform="translate(7.000001, 5.814154) rotate(180.000000) translate(-7.000001, -5.814154) "></path>
                 </g>
@@ -932,8 +932,8 @@ export default {
   ),
   giftIcon: (
     <svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-        <g id="V0.41" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="01-Mobile---Get-Started" transform="translate(-135.000000, -215.000000)" fill="#777777" fill-rule="nonzero">
+        <g id="V0.41" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+            <g id="01-Mobile---Get-Started" transform="translate(-135.000000, -215.000000)" fill="#777777" fillRule="nonzero">
                 <g id="Info" transform="translate(23.000000, 215.000000)">
                     <path d="M196.375,23.9135371 L178.5775,23.9135371 C179.854375,22.9823188 180.95125,22.0571083 181.71625,21.2280236 C186.25,16.3556489 186.25,8.42527339 181.71625,3.55289872 C177.311875,-1.18129517 169.628125,-1.18730303 165.218125,3.55289872 C162.7825,6.16631793 156.308125,16.8062385 157.2025,23.9135371 L156.7975,23.9135371 C157.68625,16.8062385 151.2175,6.16631793 148.781875,3.55289872 C144.371875,-1.18730303 136.688125,-1.18129517 132.28375,3.55289872 C127.75,8.42527339 127.75,16.3556489 132.278125,21.2280236 C133.04875,22.0571083 134.145625,22.9823188 135.4225,23.9135371 L117.625,23.9135371 C114.525625,23.9135371 112,26.6110664 112,29.9213974 L112,44.941048 C112,46.5992175 113.26,47.9449782 114.8125,47.9449782 L117.625,47.9449782 L117.625,83.9921397 C117.625,87.3024707 120.150625,90 123.25,90 L190.75,90 C193.849375,90 196.375,87.3024707 196.375,83.9921397 L196.375,47.9449782 L199.1875,47.9449782 C200.74,47.9449782 202,46.5992175 202,44.941048 L202,29.9213974 C202,26.6110664 199.474375,23.9135371 196.375,23.9135371 Z M136.271875,7.7884402 C137.41375,6.56283671 138.926875,5.88995636 140.535625,5.88995636 C142.13875,5.88995636 143.651875,6.56283671 144.79375,7.7884402 C148.585,11.8617695 152.35375,22.2673834 151.043125,23.7152778 C151.043125,23.7152778 150.806875,23.9135371 150.0025,23.9135371 C146.115625,23.9135371 138.69625,19.5998935 136.271875,16.9924821 C133.915,14.4571651 133.915,10.3237572 136.271875,7.7884402 Z M154.1875,83.9921397 L123.25,83.9921397 L123.25,47.9449782 L154.1875,47.9449782 L154.1875,83.9921397 Z M154.1875,41.9371179 L117.625,41.9371179 L117.625,29.9213974 L150.0025,29.9213974 L154.1875,29.9213974 L154.1875,41.9371179 Z M169.20625,7.7884402 C171.49,5.34324108 175.45,5.34924894 177.728125,7.7884402 C180.085,10.3237572 180.085,14.4571651 177.728125,16.9924821 C175.30375,19.5998935 167.884375,23.9135371 163.9975,23.9135371 C163.193125,23.9135371 162.956875,23.7212856 162.95125,23.7152778 C161.64625,22.2673834 165.415,11.8617695 169.20625,7.7884402 Z M190.75,83.9921397 L159.8125,83.9921397 L159.8125,47.9449782 L190.75,47.9449782 L190.75,83.9921397 Z M196.375,41.9371179 L159.8125,41.9371179 L159.8125,29.9213974 L163.9975,29.9213974 L196.375,29.9213974 L196.375,41.9371179 Z" id="GiftIcon"></path>
                 </g>
@@ -943,8 +943,8 @@ export default {
   ),
   giftBasket: (
     <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-        <g id="V0.41" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="07a-Mobile---Product-Detail---Before-Adding" transform="translate(-86.000000, -754.000000)" fill="#777777" fill-rule="nonzero">
+        <g id="V0.41" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+            <g id="07a-Mobile---Product-Detail---Before-Adding" transform="translate(-86.000000, -754.000000)" fill="#777777" fillRule="nonzero">
                 <g id="Drinks" transform="translate(0.000000, 725.000000)">
                     <g id="Gifitng-CTA" transform="translate(24.000000, 12.000000)">
                         <g id="Icon" transform="translate(62.000000, 17.000000)">

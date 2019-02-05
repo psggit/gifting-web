@@ -23,7 +23,7 @@ class Header extends React.Component {
       username: localStorage.getItem("username"),
       isLoggedIn: localStorage.getItem("hasura-id") ? true : false
     }
-    console.log("login", localStorage.getItem("hasura-id") ? true : false)
+    // console.log("login", localStorage.getItem("hasura-id") ? true : false)
     this.navItems = [
       {
         label: "Send Gift Cards",
