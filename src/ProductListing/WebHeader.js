@@ -24,12 +24,18 @@ class WebHeader extends React.Component {
       cityId: -1
     }
   }
+  componentDidUpdate(prevProps) {
+    if (this.props.genres.length !== prevProps.genres.length) {
+      const activeGenre = this.getGenreIndexByName(this.props.match.params.genreSlug)
+      this.setState({ active: activeGenre })
+    }
+  }
   handleGenreChange(genre) {
     this.setState({ active: genre.id })
+    this.props.history.push(`/brands/${this.props.match.params.citySlug}/${genre.shortName}`)
     this.props.handleGenreChange(genre)
   }
   getGenreIndexByName(name) {
-    console.log(name, this.props.genres)
     return this.props.genres.findIndex(genre => genre.short_name === name)
   }
   render() {
@@ -55,7 +61,7 @@ class WebHeader extends React.Component {
           {
             this.props.genres.map((item, i) => (
               <GenreItem
-                active={this.getGenreIndexByName(this.props.match.params.genreSlug)}
+                active={this.state.active}
                 onChange={this.handleGenreChange}
                 key={i}
                 id={i}

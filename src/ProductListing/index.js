@@ -120,6 +120,29 @@ class ProductListing extends React.Component {
     }
   }
 
+  observerCallback(entries) {
+    console.log("finding...")
+    entries.forEach(function(entry) {
+      console.log(this)
+      // if (entry.isIntersecting) {
+      //   _self.setState({ isBrandsLoading: true })
+      //   const fetchBrandsReq = {
+      //     city: capitalize(this.props.match.params.citySlug),
+      //     genre: genre.shortName,
+      //     limit: this.limit,
+      //     offset: 0
+      //   }
+      //   fetchBrandsUsingGenre(, (res) => {
+      //     _self.setState({
+      //       brands: _self.state.brands.concat(res),
+      //       isBrandsLoading: false,
+      //     })
+      //   })
+      //   _self.setState({ offset: _self.state.offset + 8 })
+      // }
+    })
+  }
+
   // fetchProducts({limit, offset}, CB) {
   //   GET({
   //     api: `http://jsonplaceholder.typicode.com/photos?_start=${offset}&_limit=${limit}`,
@@ -135,22 +158,7 @@ class ProductListing extends React.Component {
   findInterSection() {
     const target = document.getElementById("scroll-intersection")
     const _self = this
-    let io = new IntersectionObserver(function(entries) {
-      console.log("finding...")
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          _self.setState({ isBrandsLoading: true })
-
-          fetchBrandsUsingGenre(_self.fetchBrandsReq, (res) => {
-            _self.setState({
-              brands: _self.state.brands.concat(res),
-              isBrandsLoading: false,
-            })
-          })
-          _self.setState({ offset: _self.state.offset + 8 })
-        }
-      })
-    })
+    let io = new IntersectionObserver(this.observerCallback)
 
     io.POLL_INTERVAL = 100
     io.USE_MUTATION_OBSERVER = false
@@ -227,7 +235,7 @@ class ProductListing extends React.Component {
                   {...this.props}
                   handleGenreChange={this.handleGenreChange}
                   genres={this.state.genres}
-                  handleCityChange={this.handleCityChange}
+                  onCityChange={this.handleCityChange}
                 />
             }
             {/* <div className="header">

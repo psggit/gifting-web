@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Icon from "Components/icon"
-import { fetchCities, fetchGenres } from "./../api"
+import { fetchCities } from "./../api"
 import "./sass/city-select.scss"
 import { capitalize } from "Utils/logic-utils"
 
@@ -35,6 +35,7 @@ class CitySelect extends React.Component {
     const selectedCity = this.state.cities[cityIdx]
 
     this.setState({ cityIdx: parseInt(cityIdx) })
+    this.props.history.push(`/brands/${selectedCity.name}/${this.props.match.params.genreSlug}`)
     this.props.onCityChange(selectedCity)
   }
   
