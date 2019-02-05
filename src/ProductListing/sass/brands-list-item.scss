@@ -105,6 +105,9 @@
       margin-bottom: 0;
       margin-right: 16px;
     }
+    .brand--item__desc {
+      max-width: calc(100% - 72px - 16px);
+    }
     svg {
       display: inline;
     }

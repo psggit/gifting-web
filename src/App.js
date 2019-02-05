@@ -378,7 +378,7 @@ class App extends React.Component {
                         render={ props => (
                           <ProductListing {...props} context={paramObj} />
                         )}/>
-                      <Route path="/brands/:id" component={ProductDetails}  />
+                      <Route path="/brands/:citySlug/:genreSlug/:id" component={ProductDetails}  />
                     </Switch>
                   </Router>
                   {

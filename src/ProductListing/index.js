@@ -242,7 +242,12 @@ class ProductListing extends React.Component {
           <div className="paper">
             {
               this.props.context.isMobile
-                ? <MobileHeader />
+                ? <MobileHeader
+                  {...this.props}
+                  handleGenreChange={this.handleGenreChange}
+                  genres={this.state.genres}
+                  onCityChange={this.handleCityChange}
+                />
                 : <WebHeader
                   {...this.props}
                   handleGenreChange={this.handleGenreChange}
