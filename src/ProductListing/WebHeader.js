@@ -2,7 +2,7 @@ import React from "react"
 import CitySelect from "./CitySelect"
 import Search from "Components/Search"
 import Icon from "Components/icon"
-import GenreList from "./GenreList"
+import GenresList from "./GenreList"
 import "./sass/web-header.scss"
 
 const genres = [
@@ -44,7 +44,7 @@ class WebHeader extends React.Component {
         </div>
 
         <div className="row">
-          <GenreList {...this.props} active={this.props.match.params.genreSlug} genres={this.props.genres} />
+          <GenresList {...this.props} active={this.props.match.params.genreSlug} genres={this.props.genres} />
         </div>
       </div>
     )
