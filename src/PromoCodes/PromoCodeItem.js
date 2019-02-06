@@ -2,7 +2,8 @@ import React from "react"
 import Icon from "Components/icon"
 import "./sass/promo-code-item.scss"
 
-function PromoCodeItem(promo) {
+function PromoCodeItem(props) {
+  console.log(props)
   return (
     <div className="promo--code__item">
       <div className="row">
@@ -11,7 +12,7 @@ function PromoCodeItem(promo) {
           <p className="os s8">Expires in 2 days</p>
         </div>
         <div>
-          <p className="os s8">APPLY</p>
+          <p onClick={props.onApply} style={{ cursor: "pointer" }} className="os s8">APPLY</p>
         </div>
       </div>
 
