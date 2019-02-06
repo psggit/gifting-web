@@ -1,0 +1,21 @@
+.promo--header {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  padding: 20px;
+  .close {
+    cursor: pointer;
+  }
+  .close svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .close svg g g {
+    stroke: #555;
+  }
+}
+
+.promo--code__form {
+  padding-top: 0 !important;
+}
