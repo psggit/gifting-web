@@ -1,0 +1,15 @@
+.gift--more-drinks {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  background: #fff;
+  > div {
+    text-align: center;
+  }
+
+  > div svg {
+    width: 36px;
+    height: 36px;
+  }
+}
