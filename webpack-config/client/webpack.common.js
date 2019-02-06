@@ -8,6 +8,7 @@ module.exports = {
   entry: {
     transaction_success: path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
     transaction_failure: path.resolve(__dirname, "./../../src/FailureTransaction"),
+    brand_detail: path.resolve(__dirname, "./../../src/ProductDetails"),
     app: path.resolve(__dirname, "./../../src/App.js"),
   },
   plugins: [
@@ -20,6 +21,12 @@ module.exports = {
     // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,
       skipWaiting: true
+    }),
+    new HtmlWebpackPlugin({
+      excludeChunks: ["transaction_success", "transaction_failure"],
+      title: "",
+      filename: "ssr.html",
+      template: path.resolve(__dirname, "./../../src/payment-status.html")
     }),
     new HtmlWebpackPlugin({
       // chunks: ["transaction_success"],

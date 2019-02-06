@@ -1,6 +1,7 @@
 @import "./base.scss";
 
 .form-group {
+  position: relative;
   margin-top: 24px;
   &:first-child {
     margin-top: 0;

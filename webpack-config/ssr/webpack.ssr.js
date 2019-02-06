@@ -10,7 +10,8 @@ const config = {
   externals: [nodeExternals()],
   entry: {
     "transaction_success": path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
-    "transaction_failure": path.resolve(__dirname, "./../../src/FailureTransaction")
+    "transaction_failure": path.resolve(__dirname, "./../../src/FailureTransaction"),
+    "brand_detail": path.resolve(__dirname, "./../../src/ProductDetails")
   },
   output: {
     path: path.resolve(__dirname, "./../../dist-ssr"),

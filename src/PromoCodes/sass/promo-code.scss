@@ -1,0 +1,23 @@
+#promo--codes {
+  width: 100%;
+  // border: 1px solid #dfdfdf;
+  max-width: 100%;
+
+  .promo--code__body {
+    background: #f1f1f1;
+    padding: 20px;
+  }
+
+  .promo--code__header {
+    background: #fff;
+    padding: 20px;
+  }
+
+  .promo--code__header .form-group span {
+    cursor: pointer;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

@@ -20,6 +20,7 @@ class BrandsList extends React.Component {
               thumbnail={item.low_res_image}
               img={item.url}
               name={item.brand_name}
+              shortName={item.brand_short_name}
             />
           ))
         }

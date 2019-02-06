@@ -7,11 +7,6 @@ import "Sass/base.scss"
 class BrandItem extends React.Component {
   constructor() {
     super()
-    this.handleClick = this.handleClick.bind(this)
-  }
-  handleClick(e) {
-    e.preventDefault()
-    this.props.history.push(`/brands/${this.props.activeCity}/${this.props.activeGenre}/${this.props.name}`)
   }
   handleImageLoad(e) {
     e.target.setAttribute("class", "img-loaded")
@@ -19,7 +14,7 @@ class BrandItem extends React.Component {
   render() {
     return (
       <a
-        href={`/brands/${this.props.activeCity}/${this.props.activeGenre}/${this.props.name}`}
+        href={`/brands/${this.props.activeCity}/${this.props.activeGenre}/${this.props.shortName}-${this.props.id}`}
         className="brand--item animated fadeIn">
         <div style={{
           position: "absolute",

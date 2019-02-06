@@ -11,6 +11,7 @@ const request = require("request")
 // global.location = {}
 const TransactionSuccess = require("./dist-ssr/transaction_success").default
 const TransactionFailure = require("./dist-ssr/transaction_failure").default
+const BrandDetailPage = require("./dist-ssr/brand_detail").default
 
 // 
 app.disable("x-powered-by")
@@ -199,6 +200,20 @@ app.get('/hipbar-wallet', (req, res) => {
     if (err) {
       res.status(500).send(err)
     }
+  })
+})
+
+app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
+  const html = fs.readFileSync("./dist/ssr.html", "utf-8")
+  const [head, tail] = html.split("{content}")
+  res.write(head)
+  const reactElement = React.createElement(BrandDetailPage, { res: req.body })
+  // console.log(renderToString(reactElement))
+  const stream = renderToNodeStream(reactElement)
+  stream.pipe(res, { end: false })
+  stream.on("end", () => {
+    res.write(tail)
+    res.end()
   })
 })
 

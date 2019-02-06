@@ -1,10 +1,10 @@
 import React from "react"
-import PropTypes from "prop-types"
 import "./sass/product-detail.scss"
 import Icon from "Components/icon"
 import SkuItem from "./SkuItem"
 import Button from "Components/button"
 import GiftMoreDrinks from "Components/GiftMoreDrinks"
+import PromoCodes from "./../PromoCodes"
 
 class ProductDetaails extends React.Component {
   
@@ -27,18 +27,8 @@ class ProductDetaails extends React.Component {
             </div>
 
             <div className="sku--container">
-              <SkuItem brand={this.props.match.params.brandSlug} />
+              <SkuItem brand="fefef" />
             </div>
-            {/* <div className="skus">
-              {
-                this.renderSkuItems()
-              }
-              <div className="hr"></div>
-            </div>
-
-            <div className="total--price">
-              <p className="os s2">MRP: <span className="os s0">Rs. 5190</span></p>
-            </div> */}
           </div>
 
           <div className="paper about-drink">
@@ -63,6 +53,8 @@ class ProductDetaails extends React.Component {
           <div className="paper gift-more-drinks-paper">
             <GiftMoreDrinks />
           </div>
+
+          <PromoCodes />
         </div>
       </div>
     )
