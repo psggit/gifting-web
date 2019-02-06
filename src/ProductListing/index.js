@@ -33,7 +33,7 @@ class ProductListing extends React.Component {
       genres: []
     }
 
-    this.limit = 10
+    this.limit = 11
     this.offset = 0
 
     this.handleTextChange = this.handleTextChange.bind(this)
@@ -56,6 +56,19 @@ class ProductListing extends React.Component {
   componentDidMount() {
     window.onpopstate = this.setDataFromUrl
     this.setDataFromUrl()
+  }
+  
+  buildThresholdList() {
+    var thresholds = [];
+    var numSteps = 20;
+  
+    for (var i=1.0; i<=numSteps; i++) {
+      var ratio = i/numSteps;
+      thresholds.push(ratio);
+    }
+  
+    thresholds.push(0);
+    return thresholds;
   }
 
   setDataFromUrl() {
@@ -159,11 +172,12 @@ class ProductListing extends React.Component {
         if (entry.isIntersecting && !_self.disableScrollIntersection) {
           console.log(_self.offset)
           _self.setState({ isBrandsLoading: true })
+          _self.offset += _self.limit
           const fetchBrandsReq = {
             city: capitalize(_self.props.match.params.citySlug),
             genre: _self.props.match.params.genreSlug,
             limit: _self.limit,
-            offset: _self.offset + _self.limit
+            offset: _self.offset
           }
           
           fetchBrandsUsingGenre(fetchBrandsReq)
@@ -173,7 +187,6 @@ class ProductListing extends React.Component {
                 isBrandsLoading: false
               })
               _self.disableScrollIntersection = brands.length < _self.limit
-              _self.offset += _self.limit
             })
             
         }
@@ -182,7 +195,9 @@ class ProductListing extends React.Component {
 
     io.POLL_INTERVAL = 100
     io.USE_MUTATION_OBSERVER = false
-    io.observe(target)
+    io.observe(target, {
+      threshold: 1.0
+    })
   }
 
   openGenres() {
