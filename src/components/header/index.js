@@ -287,13 +287,13 @@ class Header extends React.Component {
             {
               isLoggedIn &&
               <li>
-                <button onClick={() => this.handleSignOut()} className="btn btn-secondary os s2">SIGN OUT</button>
+                <Button onClick={() => this.handleSignOut()} secondary>SIGN OUT</Button>
               </li>
             }
             {
               !isLoggedIn &&
               <li>
-                <button onClick={() => this.handleClick()} className="btn btn-secondary os s2">SIGN IN</button>
+                <Button onClick={() => this.handleClick()} secondary>SIGN IN</Button>
               </li>
             }
           </ul>

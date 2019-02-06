@@ -43,7 +43,6 @@
     }
 
     &.gs1-code {
-      border-bottom: 0;
       border-top: 0;
       padding: 40px 60px;
       p {
@@ -93,6 +92,10 @@
           }
         }
       }
+    }
+
+    &.gift-more-drinks-paper {
+      display: none;
     }
   }
 
@@ -146,6 +149,10 @@
         .btn {
           width: 100%;
         }
+      }
+      &.gift-more-drinks-paper {
+        padding: 16px 20px;
+        display: block;
       }
     }
     .paper .sku--container {

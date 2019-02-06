@@ -3,8 +3,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CleanWebpackPlugin = require("clean-webpack-plugin")
 const webpack = require("webpack")
 const WorkboxPlugin = require('workbox-webpack-plugin')
-
-console.log(path.resolve(__dirname, "./../../src/payment-status.html"))
   
 module.exports = {
   entry: {

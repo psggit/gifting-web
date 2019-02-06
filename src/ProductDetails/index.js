@@ -4,6 +4,7 @@ import "./sass/product-detail.scss"
 import Icon from "Components/icon"
 import SkuItem from "./SkuItem"
 import Button from "Components/button"
+import GiftMoreDrinks from "Components/GiftMoreDrinks"
 
 class ProductDetaails extends React.Component {
   
@@ -56,14 +57,11 @@ class ProductDetaails extends React.Component {
           </div>
 
           <div className="paper add-to-basket">
-            <Button primary>Add to gift basket</Button>
-            {/* <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <div>
-                <Icon name="gift" />
-                <p className="os s5">GIFT MORE DRINKS</p>
-              </div>
-              <Button primary icon="rightArrowWhite">Gift basket</Button>
-            </div> */}
+            <Button iconAlignment="left" icon="giftBasket" primary>Add to gift basket</Button>
+          </div>
+
+          <div className="paper gift-more-drinks-paper">
+            <GiftMoreDrinks />
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import ModalBody from 'Components/modal-box/ModalBody'
 import ModalBox from 'Components/modal-box'
 import Icon from "Components/icon"
 import { unMountModal } from 'Components/modal-box/utils'
+import Button from "Components/button"
 
 export default function NotifyError(data) {
   return class NotifyError extends React.Component {
@@ -25,7 +26,7 @@ export default function NotifyError(data) {
             </p>
           </ModalBody>
           <ModalFooter>
-            <button className='btn btn-primary' onClick={unMountModal}>RETRY</button>
+            <Button primary onClick={unMountModal}>RETRY</Button>
           </ModalFooter>
         </ModalBox>
       )

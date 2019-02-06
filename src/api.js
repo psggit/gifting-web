@@ -88,9 +88,9 @@ export function fetchGenres(req) {
     .then(json => json.data)
 }
 
-export function fetchSKUUsingBrand(genreShortName, brandName, CB) {
-  POST({
-    api: `/support/browse/stores/${genreShortName}/${brandName}`,
+export function fetchSKUUsingBrand(req) {
+  return POST({
+    api: `/consumer/browse/stores/${req.genreShortName}/${req.brandName}`,
     handleError: true,
     apiBase: "catman",
     data: {
@@ -102,22 +102,5 @@ export function fetchSKUUsingBrand(genreShortName, brandName, CB) {
       stateName: "KA"
     }
   })
-    .then(json => {
-      let id
-      let type
-      let cashbackTitle
-      const skus = json.brand.skus.map(item => {
-        id = item.offer ? item.offer.cash_back_offer_id : item.sku_pricing_id
-        type = item.offer ? "cashback" : "normal"
-        cashbackTitle = item.offer ? item.offer.title : ""
-        return {
-          id,
-          volume: item.volume,
-          price: item.price,
-          type,
-          cashbackTitle
-        }
-      })
-      CB(skus, false)
-    })
+    .then(json => json)
 }

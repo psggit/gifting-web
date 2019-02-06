@@ -17,21 +17,32 @@ class Button extends React.Component {
       className += " small"
     }
 
+    if (this.props.iconAlignment === "left") {
+      className += " icon-left"
+    }
+
     return className
   }
 
   render() {
+    const style = this.props.icon
+      ? {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      }
+      : undefined 
     return (
       <button
         disabled={this.props.disabled}
-        style={this.props.style}
+        style={style}
         onClick={this.props.onClick}
         className={`btn ${this.getClassName()}`}
       >
         { this.props.children }
         {
           this.props.icon &&
-          <span style={{ position: "relative", top: "5px", left: "10px" }}><Icon name={this.props.icon} /></span>
+          <Icon name={this.props.icon} />
         }
       </button>
     )

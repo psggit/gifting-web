@@ -1,6 +1,8 @@
 import React from "react"
 import Button from "Components/button"
 import "./sass/sku-item.scss"
+import { mountModal } from "Components/modal-box/utils"
+import AddedToBasketModal from "./AddedToBasketModal"
 
 const volumes = [
   { volume: "1 Ltr"  },
@@ -14,6 +16,11 @@ const volumes = [
 class SkuItem extends React.Component {
   constructor() {
     super()
+  }
+  addToBasket() {
+    // const { selectedVolume } = this.state
+    // call add to basket api
+    mountModal(AddedToBasketModal({}))
   }
   renderVolumes() {
     return volumes.map((item, i) => (
@@ -46,7 +53,14 @@ class SkuItem extends React.Component {
             </div>
 
             <div className="add-to-basket">
-              <Button primary icon="giftBasket">Add to gift basket</Button>
+              <Button
+                onClick={this.addToBasket}
+                iconAlignment="left"
+                primary
+                icon="giftBasket"
+              >
+                Add to gift basket
+              </Button>
             </div>
           </div>
         </div>
