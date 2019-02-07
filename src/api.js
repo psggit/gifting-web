@@ -89,18 +89,10 @@ export function fetchGenres(req) {
 }
 
 export function fetchSKUUsingBrand(req) {
-  return POST({
-    api: `/consumer/browse/stores/${req.genreShortName}/${req.brandName}`,
+  return GET({
+    api: `/consumer/browse/stores/${req.cityName}/${req.genreShortName}/${req.brandShortName}`,
     handleError: true,
-    apiBase: "catman",
-    data: {
-      from: 0,
-      size: 9999,
-      km: "40km",
-      gps: "",
-      is_featured: false,
-      stateName: "KA"
-    }
+    apiBase: "catman"
   })
     .then(json => json)
 }
