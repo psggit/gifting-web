@@ -57,19 +57,6 @@ class ProductListing extends React.Component {
     window.onpopstate = this.setDataFromUrl
     this.setDataFromUrl()
   }
-  
-  buildThresholdList() {
-    var thresholds = [];
-    var numSteps = 20;
-  
-    for (var i=1.0; i<=numSteps; i++) {
-      var ratio = i/numSteps;
-      thresholds.push(ratio);
-    }
-  
-    thresholds.push(0);
-    return thresholds;
-  }
 
   setDataFromUrl() {
     const { params } = this.props.match
@@ -195,9 +182,7 @@ class ProductListing extends React.Component {
 
     io.POLL_INTERVAL = 100
     io.USE_MUTATION_OBSERVER = false
-    io.observe(target, {
-      threshold: 1.0
-    })
+    io.observe(target)
   }
 
   openGenres() {
