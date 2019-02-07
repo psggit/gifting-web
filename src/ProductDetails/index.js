@@ -5,10 +5,28 @@ import SkuItem from "./SkuItem"
 import Button from "Components/button"
 import GiftMoreDrinks from "Components/GiftMoreDrinks"
 import PromoCodes from "./../PromoCodes"
+import { fetchSKUUsingBrand } from "./../api"
 
-class ProductDetaails extends React.Component {
-  
+class ProductDetails extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      brand: null
+    }
+  }
+  componentDidMount() {
+    const { params } = this.props.match
+    fetchSKUUsingBrand({
+      cityName: params.citySlug,
+      genreShortName: params.genreSlug,
+      brandShortName: params.brandSlug
+    })
+      .then(res => {
+        this.setState({ brand: res.brand })
+      })
+  }
   render() {
+    const { brand } = this.state
     return (
       <div id="product--details">
         <div className="container">
@@ -17,7 +35,7 @@ class ProductDetaails extends React.Component {
             <div className="header">
               <div>
                 <Icon  name="back"/>
-                <span style={{ marginLeft: "10px", fontWeight: "600", color: "#777" }} className="os s5">View Products</span>
+                <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">View Products</span>
               </div>
 
               <div>
@@ -27,14 +45,18 @@ class ProductDetaails extends React.Component {
             </div>
 
             <div className="sku--container">
-              <SkuItem brand="fefef" />
+              <SkuItem
+                volumes={brand ? brand.skus : []}
+                brand={brand ? brand.brand_name : ""}
+                image={brand ? brand.high_res_image : ""}
+              />
             </div>
           </div>
 
           <div className="paper about-drink">
             <p className="os">About this drink</p>
-            <p className="os s3">
-            Johnnie Walker is a brand of Scotch whisky now owned by Diageo that originated in the Scottish town of Kilmarnock, East Ayrshire. The brand was first established by grocer John Walker. It is the most widely distributed brand of blended Scotch whisky in the world, sold in almost every country, with annual sales of the equivalent of over 223.7 million 700 ml bottles in 2016 (156.6 million litres).
+            <p className="os s5">
+              { brand && brand.description }
             </p>
           </div>
 
@@ -42,7 +64,7 @@ class ProductDetaails extends React.Component {
             <p className="os">GS1 Code</p>
             <div className="gs1-img">
               <div className="placeholder"></div>
-              <img />
+              <img src={brand && brand.high_res_image} />
             </div>
           </div>
 
@@ -51,14 +73,12 @@ class ProductDetaails extends React.Component {
           </div>
 
           <div className="paper gift-more-drinks-paper">
-            <GiftMoreDrinks />
+            {/* <GiftMoreDrinks /> */}
           </div>
-
-          <PromoCodes />
         </div>
       </div>
     )
   }
 }
 
-export default ProductDetaails
+export default ProductDetails
