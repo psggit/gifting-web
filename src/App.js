@@ -36,7 +36,7 @@ import PaymentStatus from "./payment-status"
 import {ThemeProvider, ThemeContext} from "./ThemeProvider"
 import Header from "Components/header"
 import Footer from "Components/footer"
-import GiftBasket from "./GiftBasket";
+import GiftBasket from "./GiftBasket"
 // import NotFound from "./NotFound"
 // import makeAsyncComponent from './makeAsyncComponent'
 
@@ -382,6 +382,10 @@ class App extends React.Component {
                         render={ props => (
                           <ProductListing {...props} context={paramObj} />
                         )}/>
+                      <Route exact path="/basket"
+                        render={ props => (
+                          <GiftBasket {...props} context={paramObj} />
+                        )}/> 
                     </Switch>
                   </Router>
                   {
