@@ -3,12 +3,15 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  background: #fff;
-  > div {
+  background: #fff; 
+  > a {
+    text-decoration: none
+  }
+  > a {
     text-align: center;
   }
 
-  > div svg {
+  > a svg {
     width: 36px;
     height: 36px;
   }
