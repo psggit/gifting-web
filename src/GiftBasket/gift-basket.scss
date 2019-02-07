@@ -1,0 +1,95 @@
+@import "./../sass/base.scss";
+
+#gift--basket {
+  margin-top: 87px;
+
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    .col:last-child {
+      position: sticky;
+      top: calc(87px + 30px);
+    }
+  }
+
+  .paper {
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+  }
+
+  .paper.basket {
+    padding: 40px;
+    width: 764px;
+    max-width: 100%;
+    margin-right: 48px;
+
+    .header {
+      border-bottom: 1px solid #dfdfdf;
+      padding-bottom: 12px;
+    }
+
+    .basket-body {
+      margin-top: 40px;
+    }
+  }
+
+  .paper.coupon {
+    padding: 20px;
+    width: 360px;
+    max-width: 100%;
+  }
+
+  .paper.total {
+    margin-top: 20px;
+    padding: 20px;
+    width: 360px;
+    max-width: 100%;
+  }
+}
+
+
+@media only screen and (max-width: $sm) {
+  #gift--basket {
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .row {
+      flex-direction: column;
+      align-items: inherit;
+      .col:last-child {
+        position: relative;
+        top: auto;
+      }
+    }
+
+    .paper {
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+    }
+
+    .paper.basket {
+      padding: 20px;
+      margin-right: 0;
+      width: 100%;
+
+      .basket-body {
+        margin-top: 16px;
+      }
+    }
+
+    .paper.coupon {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .paper.total {
+      width: 100%;
+    }
+  }
+}
