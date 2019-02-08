@@ -3,6 +3,7 @@ import CitySelect from "./CitySelect"
 import Search from "Components/Search"
 import Icon from "Components/icon"
 import GenresList from "./GenreList"
+import { getBasketTotal } from "./../ProductDetails/SkuItem"
 import "./sass/web-header.scss"
 
 const genres = [
@@ -18,6 +19,8 @@ const genres = [
 class WebHeader extends React.Component {
   constructor() {
     super()
+    const basket = JSON.parse(localStorage.getItem("basket"))
+    this.basketTotal = basket ? getBasketTotal(basket) : 0
     this.state = {
       active: -1,
       cityId: -1
@@ -37,10 +40,10 @@ class WebHeader extends React.Component {
 
         <div className="row">
           <p className="os s6">Showing products for:</p>
-          <p className="os s6">
+          <a href="/basket" className="os s6">
             <Icon name="giftBasket" />
-            <span style={{ marginLeft: "10px" }}>Gift Basket (0)</span>
-          </p>
+            <span style={{ marginLeft: "10px" }}>Gift Basket ({this.basketTotal})</span>
+          </a>
         </div>
 
         <div className="row">

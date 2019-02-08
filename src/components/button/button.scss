@@ -1,8 +1,6 @@
 @import "./../../sass/base.scss";
 
 .btn {
-  font-family: $font-OpenSans;
-  font-size: 12px;
   font-weight: bold;
   text-align: center;
   border: 0;
@@ -13,6 +11,11 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.2s ease;
+  span {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+  }
   cursor: pointer;
   &:focus {
     outline: 0;

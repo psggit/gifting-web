@@ -25,25 +25,19 @@ class Button extends React.Component {
   }
 
   render() {
-    const style = this.props.icon
-      ? {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
-      }
-      : undefined 
     return (
       <button
         disabled={this.props.disabled}
-        style={style}
         onClick={this.props.onClick}
         className={`btn ${this.getClassName()}`}
       >
-        { this.props.children }
-        {
-          this.props.icon &&
-          <Icon name={this.props.icon} />
-        }
+        <span className="os">
+          { this.props.children }
+          {
+            this.props.icon &&
+            <Icon name={this.props.icon} />
+          }
+        </span>
       </button>
     )
   }

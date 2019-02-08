@@ -5,6 +5,9 @@ import Icon from "Components/icon"
 import "./sass/mobile-header.scss"
 
 class MobileHeader extends React.Component {
+  constructor() {
+    super()
+  }
   handleFocus() {
 
   }

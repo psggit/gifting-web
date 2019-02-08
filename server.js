@@ -13,7 +13,10 @@ const TransactionSuccess = require("./dist-ssr/transaction_success").default
 const TransactionFailure = require("./dist-ssr/transaction_failure").default
 const BrandDetailPage = require("./dist-ssr/brand_detail").default
 
-// 
+function capitalize(str) {
+  return `${str.split("")[0].toUpperCase()}${str.slice(1)}`
+}
+
 app.disable("x-powered-by")
 
 // ENV variables
@@ -204,27 +207,26 @@ app.get('/hipbar-wallet', (req, res) => {
 })
 
 // app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
-//   const city = req.params.citySlug
+//   const city = capitalize(req.params.citySlug)
 //   const genre = req.params.genreSlug
 //   const brand = req.params.brandSlug
   
 //   request({
 //     method: "GET",
 //     uri: `https://catman.${BASE_URL}/consumer/browse/stores/${city}/${genre}/${brand}`,
-//   }, (err, res, body) => {
-//     console.log(body)
-//   })
-
-//   const html = fs.readFileSync("./dist/ssr.html", "utf-8")
-//   const [head, tail] = html.split("{content}")
-//   res.write(head)
-//   const reactElement = React.createElement(BrandDetailPage, { res: req.body })
-//   // console.log(renderToString(reactElement))
-//   const stream = renderToNodeStream(reactElement)
-//   stream.pipe(res, { end: false })
-//   stream.on("end", () => {
-//     res.write(tail)
-//     res.end()
+//   }, (err, httpRes, body) => {
+//     const parsed = JSON.parse(body)
+//     const html = fs.readFileSync("./dist/ssr.html", "utf-8")
+//     const [head, tail] = html.split("{content}")
+//     res.write(head)
+//     const reactElement = React.createElement(BrandDetailPage, { brand: parsed.brand })
+//     console.log(reactElement)
+//     const stream = renderToNodeStream(reactElement)
+//     stream.pipe(res, { end: false })
+//     stream.on("end", () => {
+//       res.write(tail)
+//       res.end()
+//     })
 //   })
 // })
 

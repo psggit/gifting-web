@@ -297,7 +297,9 @@ class ProductListing extends React.Component {
             </div> */}
             
             {/* <GenreOverlay genres={this.state.genres} closeGenres={this.closeGenres} shouldMountGenres={this.state.shouldMountGenres} /> */}
-            {/* <BasketTotal totalPrice="7050" noOfDrinks="3" /> */}
+            {
+              this.props.context.isMobile && <BasketTotal />
+            }
 
             <BrandsList {...this.props} data={this.state.brands} />
             { this.state.isBrandsLoading && <Loader /> }

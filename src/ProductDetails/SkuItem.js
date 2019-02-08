@@ -23,6 +23,12 @@ export function getBasketTotal(basket) {
   }, 0)
 }
 
+export function getBasketTotalPrice(basket) {
+  return basket.reduce((a, b) => {
+    return a + b.count * parseFloat(b.sku.price.slice(1))
+  }, 0)
+}
+
 class SkuItem extends React.Component {
   constructor() {
     super()

@@ -177,236 +177,226 @@ class App extends React.Component {
   render() {
     //console.log("this.state", this.state)
     return (
-      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
-        <ThemeProvider>
-          <ThemeConsumer>
-            {(paramObj) => {
-              //console.log(paramObj)
-              return (
-                <div>
-                  {
-                    !location.pathname.includes("locationMap") &&
-                    <Header />
-                  }
+      <ThemeProvider>
+        <ThemeConsumer>
+          {(paramObj) => {
+            //console.log(paramObj)
+            return (       
+              <Router key={this.state.key} history={history}>
+                <Switch>
+                  <Route exact 
+                    path="/" 
+                    render={
+                      props => (
+                        <LandingPage {...props} 
+                        />
+                      )
+                    } 
+                  />
+                  {/* <Route exact path="/sign-in" component={SignIn} /> */}
+                  {/* <Route 
+                    path='/sign-in' 
+                    render={
+                      props => (
+                        <SignIn isMobile={this.state.isMobile} />
+                      )
+                    } 
+                  /> */}
                   
-                  <Router key={this.state.key} history={history}>
-                    <Switch>
-                      <Route exact 
-                        path="/" 
-                        render={
-                          props => (
-                            <LandingPage {...props} 
-                            />
-                          )
-                        } 
-                      />
-                      {/* <Route exact path="/sign-in" component={SignIn} /> */}
-                      {/* <Route 
-                        path='/sign-in' 
-                        render={
-                          props => (
-                            <SignIn isMobile={this.state.isMobile} />
-                          )
-                        } 
-                      /> */}
-                      
-                      {/* <Route exact 
-                        path="/using-gift-card"
-                        render={
-                          props => (
-                            <UsingGiftCard {...props} 
-                              // name={this.state.username} 
-                              // isLoggedIn={this.state.isLoggedIn}
-                            />
-                          )
-                        } 
-                        //component={UsingGiftCard} 
-                      /> */}
+                  {/* <Route exact 
+                    path="/using-gift-card"
+                    render={
+                      props => (
+                        <UsingGiftCard {...props} 
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
+                    //component={UsingGiftCard} 
+                  /> */}
 
-                      <Route exact 
-                        path="/how-to-redeem"
-                        render={
-                          props => (
-                            <RedeemingGiftCard {...props} 
-                              // name={this.state.username} 
-                              // isLoggedIn={this.state.isLoggedIn}
-                            />
-                          )
-                        } 
-                        //component={UsingGiftCard} 
-                      />
-                      <Route exact 
-                        path="/send-gift" 
-                        //component={SendGiftCards} 
-                        render={
-                          props => (
-                            <SendGiftCards {...props} 
-                              paramObj={paramObj}
-                            />
-                          )
-                        } 
-                      />
-                      <Route exact
-                        path="/send-gift-wizard-step1"
-                        render={
-                          props => (
-                            <SendGiftWizardStep1 {...props}
-                              paramObj={paramObj}
-                            />
-                          )
-                        }
-                      />
+                  <Route exact 
+                    path="/how-to-redeem"
+                    render={
+                      props => (
+                        <RedeemingGiftCard {...props} 
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
+                    //component={UsingGiftCard} 
+                  />
+                  <Route exact 
+                    path="/send-gift" 
+                    //component={SendGiftCards} 
+                    render={
+                      props => (
+                        <SendGiftCards {...props} 
+                          paramObj={paramObj}
+                        />
+                      )
+                    } 
+                  />
+                  <Route exact
+                    path="/send-gift-wizard-step1"
+                    render={
+                      props => (
+                        <SendGiftWizardStep1 {...props}
+                          paramObj={paramObj}
+                        />
+                      )
+                    }
+                  />
 
-                      <Route exact
-                        path="/mobile-get-started"
-                        render={
-                          props => (
-                            <MobileGetStarted {...props}
-                              paramObj={paramObj}
-                            />
-                          )
-                        }
-                      />
+                  <Route exact
+                    path="/mobile-get-started"
+                    render={
+                      props => (
+                        <MobileGetStarted {...props}
+                          paramObj={paramObj}
+                        />
+                      )
+                    }
+                  />
 
-                      <Route exact
-                        path="/mobile-name"
-                        render={
-                          props => (
-                            <MobileName {...props}
-                              paramObj={paramObj}
-                            />
-                          )
-                        }
-                      />
+                  <Route exact
+                    path="/mobile-name"
+                    render={
+                      props => (
+                        <MobileName {...props}
+                          paramObj={paramObj}
+                        />
+                      )
+                    }
+                  />
 
-                      <Route exact
-                        path="/mobile-city"
-                        render={
-                          props => (
-                            <MobileCity {...props}
-                              paramObj={paramObj}
-                            />
-                          )
-                        }
-                      />
+                  <Route exact
+                    path="/mobile-city"
+                    render={
+                      props => (
+                        <MobileCity {...props}
+                          paramObj={paramObj}
+                        />
+                      )
+                    }
+                  />
 
-                      <Route exact
-                        path="/mobile-fav-drink"
-                        render={
-                          props => (
-                            <MobileFavDrink {...props}
-                              paramObj={paramObj}
-                            />
-                          )
-                        }
-                      />
+                  <Route exact
+                    path="/mobile-fav-drink"
+                    render={
+                      props => (
+                        <MobileFavDrink {...props}
+                          paramObj={paramObj}
+                        />
+                      )
+                    }
+                  />
 
-                      <Route exact 
-                        path="/transaction-history" 
-                        //component={TransactionHistory} 
-                        render={
-                          props => (
-                            <TransactionHistory {...props} 
-                              //paramObj={paramObj}
-                              // name={this.state.username} 
-                              // isLoggedIn={this.state.isLoggedIn}
-                            />
-                          )
-                        } 
-                      />
-                      <Route exact 
-                        path="/checkout" 
-                        //component={Checkout} 
-                        render={
-                          props => (
-                            <Checkout {...props} 
-                              // name={this.state.username} 
-                              // isLoggedIn={this.state.isLoggedIn}
-                            />
-                          )
-                        } 
-                      />
-                      <Route exact 
-                        path="/retail-outlet" 
-                        //component={RetailOutlet} 
-                        render={
-                          props => (
-                            <RetailOutlet {...props} 
-                              // name={this.state.username} 
-                              // isLoggedIn={this.state.isLoggedIn}
-                            />
-                          )
-                        } 
-                      />
-                      <Route exact 
-                        path="/FAQs" 
-                        //component={FAQ} 
-                        render={
-                          props => (
-                            <FAQ {...props} 
-                              // name={this.state.username} 
-                              // isLoggedIn={this.state.isLoggedIn}
-                            />
-                          )
-                        } 
-                      />
-                      {/* <Route exact 
-                        path="/transaction-successful" 
-                        //component={TransactionSuccessful} 
-                        render={
-                          props => localStorage.getItem("txn")
-                            ? <TransactionSuccessful {...props} />
-                            : <NotFound />
-                        } 
-                      />
-                      <Route exact 
-                        path="/transaction-failure" 
-                        //component={TransactionFail} 
-                        render={
-                          props => localStorage.getItem("txn")
-                            ? <TransactionFail {...props} />
-                            : <NotFound />
-                        } 
-                      /> */}
-                      <Route 
-                        path="/locationMap" 
-                        component={LocationMap} 
-                      />
-                      <Route exact path="/payment-status" component={PaymentStatus}  />
-                      <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
-                      <Route exact path="/brands/:citySlug/:genreSlug/:brandSlug"
-                        render={ props => (
-                          <ProductDetails {...props} context={paramObj} />
-                        )}/>
-                      <Route exact path="/brands/:citySlug/:genreSlug"
-                        render={ props => (
-                          <ProductListing {...props} context={paramObj} />
-                        )}/>
-                      <Route exact path="/basket"
-                        render={ props => (
-                          <GiftBasket {...props} context={paramObj} />
-                        )}/> 
-                    </Switch>
-                  </Router>
-                  {
-                    !location.pathname.includes("locationMap") &&
-                    <Footer />
-                  }
-                 
-                </div>
-              )
-            }}
-          </ThemeConsumer>
-        </ThemeProvider>
-      </div>
+                  <Route exact 
+                    path="/transaction-history" 
+                    //component={TransactionHistory} 
+                    render={
+                      props => (
+                        <TransactionHistory {...props} 
+                          //paramObj={paramObj}
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
+                  />
+                  <Route exact 
+                    path="/checkout" 
+                    //component={Checkout} 
+                    render={
+                      props => (
+                        <Checkout {...props} 
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
+                  />
+                  <Route exact 
+                    path="/retail-outlet" 
+                    //component={RetailOutlet} 
+                    render={
+                      props => (
+                        <RetailOutlet {...props} 
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
+                  />
+                  <Route exact 
+                    path="/FAQs" 
+                    //component={FAQ} 
+                    render={
+                      props => (
+                        <FAQ {...props} 
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
+                  />
+                  {/* <Route exact 
+                    path="/transaction-successful" 
+                    //component={TransactionSuccessful} 
+                    render={
+                      props => localStorage.getItem("txn")
+                        ? <TransactionSuccessful {...props} />
+                        : <NotFound />
+                    } 
+                  />
+                  <Route exact 
+                    path="/transaction-failure" 
+                    //component={TransactionFail} 
+                    render={
+                      props => localStorage.getItem("txn")
+                        ? <TransactionFail {...props} />
+                        : <NotFound />
+                    } 
+                  /> */}
+                  <Route 
+                    path="/locationMap" 
+                    component={LocationMap} 
+                  />
+                  <Route exact path="/payment-status" component={PaymentStatus}  />
+                  <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
+                  <Route exact path="/brands/:citySlug/:genreSlug/:brandSlug"
+                    render={ props => (
+                      <ProductDetails {...props} context={paramObj} />
+                    )}/>
+                  <Route exact path="/brands/:citySlug/:genreSlug"
+                    render={ props => (
+                      <ProductListing {...props} context={paramObj} />
+                    )}/>
+                  <Route exact path="/basket"
+                    render={ props => (
+                      <GiftBasket {...props} context={paramObj} />
+                    )}/> 
+                </Switch>
+              </Router>   
+            )
+          }}
+        </ThemeConsumer>
+      </ThemeProvider>
     )
   }
 }
 
-
+// ReactDOM.hydrate(<App />, document.getElementById("app"))
+// ReactDOM.render(<Header />, document.getElementById("header"))
+// ReactDOM.render(<Footer />, document.getElementById("footer"))
 
 if (!document.getElementById("app").childNodes.length) {
+  ReactDOM.render(<Header />, document.getElementById("header"))
   ReactDOM.render(<App />, document.getElementById("app"))
+  ReactDOM.render(<Footer />, document.getElementById("footer"))
 } else {
   ReactDOM.render(<Header />, document.getElementById("header"))
   ReactDOM.render(<Footer />, document.getElementById("footer"))
