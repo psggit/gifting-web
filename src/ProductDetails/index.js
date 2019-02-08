@@ -18,7 +18,8 @@ class ProductDetails extends React.Component {
     this.setBasketCount = this.setBasketCount.bind(this)
   }
   componentDidMount() {
-    this.setState({ basketCount: getBasketTotal(JSON.parse(localStorage.getItem("basket"))) })
+    const basket = JSON.parse(localStorage.getItem("basket"))
+    this.setState({ basketCount: basket ? getBasketTotal(basket) : 0 })
     const { params } = this.props.match  
     fetchSKUUsingBrand({
       cityName: capitalize(params.citySlug),
