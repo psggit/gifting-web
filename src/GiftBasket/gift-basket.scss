@@ -37,14 +37,18 @@
   }
 
   .paper.coupon {
-    padding: 20px;
+    > div {
+      padding: 20px;
+    }
     width: 360px;
     max-width: 100%;
   }
 
   .paper.total {
     margin-top: 20px;
-    padding: 20px;
+    > div {
+      padding: 20px;
+    }
     width: 360px;
     max-width: 100%;
   }

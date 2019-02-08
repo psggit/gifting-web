@@ -1,6 +1,7 @@
 import React from "react"
 import Icon from "Components/icon"
 import GiftBasketItem from "./GiftBasketItem"
+import { getBasketTotalPrice } from "./../ProductDetails/SkuItem"
 
 class Basket extends React.Component {
   constructor() {
@@ -29,6 +30,7 @@ class Basket extends React.Component {
 
     this.setState({ basket: updatedBasket })
     localStorage.setItem("basket", JSON.stringify(updatedBasket))
+    this.props.setBasketTotalPrice(getBasketTotalPrice(updatedBasket))
   }
   
   render() {

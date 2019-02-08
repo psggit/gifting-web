@@ -1,11 +1,19 @@
 import React from "react"
 import Basket from "./basket"
 import Icon from "Components/icon"
+import BasketTotal from "./BasketTotal"
+import { getBasketTotalPrice } from "./../ProductDetails/SkuItem"
+import PromoCodesWeb from "./../PromoCodesWeb"
+import { mountModal } from "Components/modal-box2/utils"
 import "./gift-basket.scss"
+
+function mountPromoCodesWeb() {
+  mountModal(PromoCodesWeb())
+}
 
 function PromoBeforeApply() {
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
+    <div onClick={mountPromoCodesWeb} style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
       <Icon name="promoCode" />
       <span className="os s5" style={{ marginLeft: "10px" }}>Apply Promo Code</span>
     </div>
@@ -24,30 +32,18 @@ function PromoAfterApply() {
   )
 }
 
-function BasketTotal() {
-  return (
-    <div>
-      <p style={{ paddingBottom: "12px", borderBottom: "1px solid #dfdfdf" }} className="os s5">Total</p>
-      <div style={{ padding: "16px 0", borderBottom: "1px solid #dfdfdf" }}>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <p className="os s8">Gift Card Subtotal</p>
-          <p className="os s8">Rs. 7,050</p>
-        </div>
-
-        <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
-          <p className="os s8">Promo Applied</p>
-          <p className="os s8">-Rs. 350</p>
-        </div>
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
-        <p className="os s8">To Pay</p>
-        <p className="os s8">Rs. 6,700</p>
-      </div>
-    </div>
-  )
-}
-
 class GiftBasket extends React.Component {
+  constructor() {
+    super()
+    const basket = JSON.parse(localStorage.getItem("basket"))
+    this.state = {
+      subtotal: basket ? getBasketTotalPrice(basket) : 0
+    }
+    this.setBasketTotalPrice = this.setBasketTotalPrice.bind(this)
+  }
+  setBasketTotalPrice(price) {
+    this.setState({ subtotal: price })
+  }
   render() {
     const isPromoApplied = true
     return (
@@ -56,7 +52,7 @@ class GiftBasket extends React.Component {
           <div className="row">
             <div className="col">
               <div className="paper basket">
-                <Basket />
+                <Basket setBasketTotalPrice={this.setBasketTotalPrice} />
               </div>
             </div>
 
@@ -68,7 +64,7 @@ class GiftBasket extends React.Component {
               </div>
 
               <div className="paper total">
-                <BasketTotal />
+                <BasketTotal subtotal={this.state.subtotal} />
               </div>
             </div>
 

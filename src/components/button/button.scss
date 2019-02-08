@@ -14,6 +14,7 @@
   span {
     display: flex;
     align-items: center;
+    justify-content: center;
     font-size: 12px;
   }
   cursor: pointer;
@@ -26,9 +27,11 @@
   }
 
   &.icon-left {
-    flex-direction: row-reverse;
-    svg {
-      margin-right: 10px;
+    span {
+      flex-direction: row-reverse;
+      svg {
+        margin-right: 10px;
+      }
     }
   }
 
