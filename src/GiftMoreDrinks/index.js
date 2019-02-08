@@ -16,7 +16,9 @@ function GiftMoreDrinks() {
         <Icon name="giftIcon" />
         <p className="os s5">Gift more drinks</p>
       </a>
-      <Button primary icon="rightArrowWhite">Gift basket</Button>
+      <a href="/basket">
+        <Button primary icon="rightArrowWhite">Gift basket</Button>
+      </a>
     </div>
   )
 }

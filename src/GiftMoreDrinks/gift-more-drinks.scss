@@ -4,15 +4,20 @@
   align-items: center;
   width: 100%;
   background: #fff; 
-  > a {
+  a {
     text-decoration: none
   }
-  > a {
+  a:first-child {
     text-align: center;
   }
 
-  > a svg {
+  a:first-child svg {
     width: 36px;
     height: 36px;
   }
+
+  // a:last-child {
+  //   wid
+  // }
+  
 }
