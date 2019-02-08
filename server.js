@@ -203,19 +203,30 @@ app.get('/hipbar-wallet', (req, res) => {
   })
 })
 
-app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
-  const html = fs.readFileSync("./dist/ssr.html", "utf-8")
-  const [head, tail] = html.split("{content}")
-  res.write(head)
-  const reactElement = React.createElement(BrandDetailPage, { res: req.body })
-  // console.log(renderToString(reactElement))
-  const stream = renderToNodeStream(reactElement)
-  stream.pipe(res, { end: false })
-  stream.on("end", () => {
-    res.write(tail)
-    res.end()
-  })
-})
+// app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
+//   const city = req.params.citySlug
+//   const genre = req.params.genreSlug
+//   const brand = req.params.brandSlug
+  
+//   request({
+//     method: "GET",
+//     uri: `https://catman.${BASE_URL}/consumer/browse/stores/${city}/${genre}/${brand}`,
+//   }, (err, res, body) => {
+//     console.log(body)
+//   })
+
+//   const html = fs.readFileSync("./dist/ssr.html", "utf-8")
+//   const [head, tail] = html.split("{content}")
+//   res.write(head)
+//   const reactElement = React.createElement(BrandDetailPage, { res: req.body })
+//   // console.log(renderToString(reactElement))
+//   const stream = renderToNodeStream(reactElement)
+//   stream.pipe(res, { end: false })
+//   stream.on("end", () => {
+//     res.write(tail)
+//     res.end()
+//   })
+// })
 
 // client side app
 app.get("/*", (req, res) => {
