@@ -3,9 +3,8 @@ import "./sass/product-detail.scss"
 import Icon from "Components/icon"
 import SkuItem from "./SkuItem"
 import Button from "Components/button"
-import GiftMoreDrinks from "Components/GiftMoreDrinks"
-import PromoCodes from "./../PromoCodes"
 import { fetchSKUUsingBrand } from "./../api"
+import { capitalize } from "Utils/logic-utils"
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -13,11 +12,12 @@ class ProductDetails extends React.Component {
     this.state = {
       brand: null
     }
+    this.getBrandsUrl = this.getBrandsUrl.bind(this)
   }
   componentDidMount() {
-    const { params } = this.props.match
+    const { params } = this.props.match  
     fetchSKUUsingBrand({
-      cityName: params.citySlug,
+      cityName: capitalize(params.citySlug),
       genreShortName: params.genreSlug,
       brandShortName: params.brandSlug
     })
@@ -25,6 +25,13 @@ class ProductDetails extends React.Component {
         this.setState({ brand: res.brand })
       })
   }
+
+  getBrandsUrl() {
+    const u = this.props.location.pathname.split("/")
+    u.pop()
+    return u.join("/")
+  }
+
   render() {
     const { brand } = this.state
     return (
@@ -33,10 +40,10 @@ class ProductDetails extends React.Component {
           <div className="paper price">
             
             <div className="header">
-              <div>
-                <Icon  name="back"/>
+              <a href={this.getBrandsUrl()}>
+                <Icon name="back"/>
                 <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">View Products</span>
-              </div>
+              </a>
 
               <div>
                 <Icon name="giftBasket" />
@@ -46,8 +53,9 @@ class ProductDetails extends React.Component {
 
             <div className="sku--container">
               <SkuItem
+                brand={brand}
                 volumes={brand ? brand.skus : []}
-                brand={brand ? brand.brand_name : ""}
+                name={brand ? brand.brand_name : ""}
                 image={brand ? brand.high_res_image : ""}
               />
             </div>

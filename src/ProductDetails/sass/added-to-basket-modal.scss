@@ -1,4 +1,16 @@
 #added-to-basket--modal {
+  .modal-header {
+    text-align: right;
+    background: #fff;
+    padding: 10px;
+    padding-bottom: 0;
+    span {
+      cursor: pointer;
+    }
+    svg g g {
+      stroke: #555;
+    }
+  }
   .modal-body {
     background: #fff;
     height: auto !important;

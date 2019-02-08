@@ -24,9 +24,18 @@ class SkuItem extends React.Component {
       activeSku: 0
     }
     this.handleVolumeChange = this.handleVolumeChange.bind(this)
+    this.addToBasket = this.addToBasket.bind(this)
   }
   addToBasket() {
-    // const { selectedVolume } = this.state
+    const { activeSku } = this.state
+    const currentBasket = localStorage.getItem("basket")
+    const basket = currentBasket ? JSON.parse(currentBasket) : []
+    const basketItem = {
+      brand: this.props.brand,
+      sku: this.props.volumes[activeSku]
+    }
+    basket.push(basketItem)
+    localStorage.setItem("basket", JSON.stringify(basket))
     // call add to basket api
     mountModal(AddedToBasketModal({}))
   }
@@ -57,7 +66,7 @@ class SkuItem extends React.Component {
             <img onLoad={this.handleImageLoad} src={this.props.image} />
           </div>
           <div className="sku--item__desc">
-            <p className="os s4">{this.props.brand}</p>
+            <p className="os s4">{this.props.name}</p>
             
             <div className="volume--price--container-w">
               <div className="volumes">
