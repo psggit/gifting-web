@@ -25,7 +25,7 @@ export function getBasketTotal(basket) {
 
 export function getBasketTotalPrice(basket) {
   return basket.reduce((a, b) => {
-    return a + b.count * parseFloat(b.sku.price.slice(1))
+    return a + b.count * parseFloat(b.sku.price.slice(1).split(",").join(""))
   }, 0)
 }
 
