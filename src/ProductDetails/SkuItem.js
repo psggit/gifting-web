@@ -14,7 +14,7 @@ import AddedToBasketModal from "./AddedToBasketModal"
 // ]
 
 function getUnit(val) {
-  return val / 1000 < 1 ? val +" ml" : val/1000 +  " Ltr"
+  return val / 1000 < 1 ? val +" ml" : (val/1000).toFixed(2) +  " Ltr"
 }
 
 class SkuItem extends React.Component {
@@ -26,15 +26,38 @@ class SkuItem extends React.Component {
     this.handleVolumeChange = this.handleVolumeChange.bind(this)
     this.addToBasket = this.addToBasket.bind(this)
   }
+
+  itemAlreadyExist(basket, id) {
+    const res = basket.findIndex(function(item) {
+      return item.sku.sku_id === id
+    })
+    console.log(res)
+    return res > -1
+  }
+
   addToBasket() {
     const { activeSku } = this.state
     const currentBasket = localStorage.getItem("basket")
-    const basket = currentBasket ? JSON.parse(currentBasket) : []
+    let basket = currentBasket ? JSON.parse(currentBasket) : []
     const basketItem = {
       brand: this.props.brand,
-      sku: this.props.volumes[activeSku]
+      sku: this.props.volumes[activeSku],
+      count: 1
     }
-    basket.push(basketItem)
+
+    const activeSkuId = this.props.volumes[activeSku].sku_id
+
+    if (this.itemAlreadyExist(basket, activeSkuId)) {
+      basket = basket.map(item => {
+        if (item.sku.sku_id === activeSkuId) {
+          item.count += 1
+        }
+        return item
+      })
+    } else {
+      basket.push(basketItem)
+    }
+
     localStorage.setItem("basket", JSON.stringify(basket))
     // call add to basket api
     mountModal(AddedToBasketModal({}))

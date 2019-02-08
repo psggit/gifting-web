@@ -3,8 +3,35 @@ import Icon from "Components/icon"
 import GiftBasketItem from "./GiftBasketItem"
 
 class Basket extends React.Component {
+  constructor() {
+    super()
+    // this.removeItemFromBasket = this.removeItemFromBasket.bind(this)
+    // this.addItemToBasket = this.addItemToBasket.bind(this)
+    this.updateBasket = this.updateBasket.bind(this)
+    this.state = {
+      basket: JSON.parse(localStorage.getItem("basket")) || []
+    }
+  }
+
+  updateBasket(skudId, count) {
+    const { basket } = this.state
+    let updatedBasket = basket.slice(1)
+    if (count > 0) {
+      updatedBasket = basket.map(item => {
+        if (skudId === item.sku.sku_id) {
+          item.count = count
+        }
+        return item
+      })
+    } else {
+      updatedBasket = basket.filter(item => item.sku.sku_id !== skudId)
+    }
+
+    this.setState({ basket: updatedBasket })
+    localStorage.setItem("basket", JSON.stringify(updatedBasket))
+  }
+  
   render() {
-    const basket = JSON.parse(localStorage.getItem("basket")) || []
     return (
       <div>
         <div className="header">
@@ -22,7 +49,13 @@ class Basket extends React.Component {
           </div>
 
           {
-            basket.map(item => <GiftBasketItem item={item} />)
+            this.state.basket.map(item => (
+              <GiftBasketItem
+                updateBasket={this.updateBasket}
+                key={item.sku.sku_id}
+                item={item}
+              />
+            ))
           }
         </div>
       </div>
