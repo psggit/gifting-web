@@ -5,16 +5,20 @@ import SkuItem from "./SkuItem"
 import Button from "Components/button"
 import { fetchSKUUsingBrand } from "./../api"
 import { capitalize } from "Utils/logic-utils"
+import { getBasketTotal } from "./SkuItem"
 
 class ProductDetails extends React.Component {
   constructor() {
     super()
     this.state = {
-      brand: null
+      brand: null,
+      basketCount: 0
     }
     this.getBrandsUrl = this.getBrandsUrl.bind(this)
+    this.setBasketCount = this.setBasketCount.bind(this)
   }
   componentDidMount() {
+    this.setState({ basketCount: getBasketTotal(JSON.parse(localStorage.getItem("basket"))) })
     const { params } = this.props.match  
     fetchSKUUsingBrand({
       cityName: capitalize(params.citySlug),
@@ -32,6 +36,11 @@ class ProductDetails extends React.Component {
     return u.join("/")
   }
 
+  setBasketCount(basketCount) {
+    console.log(basketCount)
+    this.setState({ basketCount })
+  }
+
   render() {
     const { brand } = this.state
     return (
@@ -45,14 +54,15 @@ class ProductDetails extends React.Component {
                 <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">View Products</span>
               </a>
 
-              <div>
+              <a href="/basket">
                 <Icon name="giftBasket" />
-                <span className="os s5" style={{ marginLeft: "10px" }}>Gift Basket (0)</span>
-              </div>
+                <span className="os s5" style={{ marginLeft: "10px" }}>Gift Basket ({this.state.basketCount})</span>
+              </a>
             </div>
 
             <div className="sku--container">
               <SkuItem
+                setBasketCount={this.setBasketCount}
                 brand={brand}
                 volumes={brand ? brand.skus : []}
                 name={brand ? brand.brand_name : ""}

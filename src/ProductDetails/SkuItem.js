@@ -17,11 +17,17 @@ function getUnit(val) {
   return val / 1000 < 1 ? val +" ml" : (val/1000).toFixed(2) +  " Ltr"
 }
 
+export function getBasketTotal(basket) {
+  return basket.reduce((a, b) => {
+    return a + b.count
+  }, 0)
+}
+
 class SkuItem extends React.Component {
   constructor() {
     super()
     this.state = {
-      activeSku: 0
+      activeSku: 0,
     }
     this.handleVolumeChange = this.handleVolumeChange.bind(this)
     this.addToBasket = this.addToBasket.bind(this)
@@ -31,7 +37,6 @@ class SkuItem extends React.Component {
     const res = basket.findIndex(function(item) {
       return item.sku.sku_id === id
     })
-    console.log(res)
     return res > -1
   }
 
@@ -59,6 +64,7 @@ class SkuItem extends React.Component {
     }
 
     localStorage.setItem("basket", JSON.stringify(basket))
+    this.props.setBasketCount(getBasketTotal(basket))
     // call add to basket api
     mountModal(AddedToBasketModal({}))
   }
