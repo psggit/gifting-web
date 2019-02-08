@@ -4,6 +4,7 @@ import GiftBasketItem from "./GiftBasketItem"
 
 class Basket extends React.Component {
   render() {
+    const basket = JSON.parse(localStorage.getItem("basket")) || []
     return (
       <div>
         <div className="header">
@@ -21,7 +22,7 @@ class Basket extends React.Component {
           </div>
 
           {
-            [1, 2, 3, 4, 5 , 6, 7, 8, 9, 10].map(item => <GiftBasketItem />)
+            basket.map(item => <GiftBasketItem item={item} />)
           }
         </div>
       </div>

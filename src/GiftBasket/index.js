@@ -63,7 +63,7 @@ class GiftBasket extends React.Component {
             <div className="col">
               <div className="paper coupon">
                 {
-                  isPromoApplied ? <PromoAfterApply /> : <PromoBeforeApply />
+                  !isPromoApplied ? <PromoAfterApply /> : <PromoBeforeApply />
                 }
               </div>
 

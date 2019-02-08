@@ -12,15 +12,36 @@
     border-bottom: 0;
   }
   .gift--basket__item-img {
+    position: relative;
     width: 65px;
     height: 65px;
     margin-right: 16px;
-  }
 
-  .gift--basket__item-img .img-placeholder {
-    width: 100%;
-    height: 100%;
-    background: #dfdfdf;
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      background-color: #dfdfdf;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    
+    img {
+      border-radius: 4px;
+      // filter: grayscale(1);
+      // z-index: 1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: 0.1s all ease-in;
+      &.img-loaded {
+        opacity: 1;
+        transition: 0.1s all ease-in;
+      }
+    }
   }
 
   .gift--basket__item-desc {

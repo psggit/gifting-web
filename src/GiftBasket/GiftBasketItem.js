@@ -3,21 +3,25 @@ import Icon from "Components/icon"
 import "./gift-basket-item.scss"
 
 class GiftBasketItem extends React.Component {
+  handleImageLoad(e) {
+    e.target.setAttribute("class", "img-loaded")
+  }
   render() {
+    const { brand, sku } = this.props.item
     return (
       <div className="gift--basket__item">
         <div className="gift--basket__item-img">
           <div className="img-placeholder"></div>
-          <img />
+          <img onLoad={this.handleImageLoad} src={brand.high_res_image} />
         </div>
 
         <div className="gift--basket__item-desc">
-          <p className="os s6">Johinnie Walker Black Label</p>
+          <p className="os s6">{brand.brand_name}</p>
           <div className="row price--quantity">
 
             <div className="col">
-              <span style={{ paddingRight: "10px", borderRight: "1px solid #777" }} className="os s6">&#8377; 3,250</span>
-              <span style={{ paddingLeft: "10px" }} className="os s6">750 ml</span>
+              <span style={{ paddingRight: "10px", borderRight: "1px solid #777" }} className="os s6">&#8377; {sku.price}</span>
+              <span style={{ paddingLeft: "10px" }} className="os s6">{sku.volume}</span>
             </div>
 
             <div className="col">
