@@ -64,6 +64,9 @@ const styles = {
   }
 }
 
+const brandProps = window.BRAND_STATE
+delete window.BRAND_STATE
+
 class App extends React.Component {
   constructor() {
     super() 
@@ -369,7 +372,7 @@ class App extends React.Component {
                   <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
                   <Route exact path="/brands/:citySlug/:genreSlug/:brandSlug"
                     render={ props => (
-                      <ProductDetails {...props} context={paramObj} />
+                      <ProductDetails brand={brandProps} {...props} context={paramObj} />
                     )}/>
                   <Route exact path="/brands/:citySlug/:genreSlug"
                     render={ props => (
@@ -398,6 +401,7 @@ if (!document.getElementById("app").childNodes.length) {
   ReactDOM.render(<App />, document.getElementById("app"))
   ReactDOM.render(<Footer />, document.getElementById("footer"))
 } else {
+  ReactDOM.hydrate(<App />, document.getElementById("app"))
   ReactDOM.render(<Header />, document.getElementById("header"))
   ReactDOM.render(<Footer />, document.getElementById("footer"))
 }

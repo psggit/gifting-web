@@ -8,34 +8,34 @@ import { capitalize } from "Utils/logic-utils"
 import { getBasketTotal } from "./SkuItem"
 
 class ProductDetails extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      brand: null,
+      brand: props.brand,
       basketCount: 0
     }
-    this.getBrandsUrl = this.getBrandsUrl.bind(this)
+    // this.getBrandsUrl = this.getBrandsUrl.bind(this)
     this.setBasketCount = this.setBasketCount.bind(this)
   }
   componentDidMount() {
     const basket = JSON.parse(localStorage.getItem("basket"))
     this.setState({ basketCount: basket ? getBasketTotal(basket) : 0 })
     const { params } = this.props.match  
-    fetchSKUUsingBrand({
-      cityName: capitalize(params.citySlug),
-      genreShortName: params.genreSlug,
-      brandShortName: params.brandSlug
-    })
-      .then(res => {
-        this.setState({ brand: res.brand })
-      })
+    // fetchSKUUsingBrand({
+    //   cityName: capitalize(params.citySlug),
+    //   genreShortName: params.genreSlug,
+    //   brandShortName: params.brandSlug
+    // })
+    //   .then(res => {
+    //     this.setState({ brand: res.brand })
+    //   })
   }
 
-  getBrandsUrl() {
-    const u = this.props.location.pathname.split("/")
-    u.pop()
-    return u.join("/")
-  }
+  // getBrandsUrl() {
+  //   const u = this.props.location.pathname.split("/")
+  //   u.pop()
+  //   return u.join("/")
+  // }
 
   setBasketCount(basketCount) {
     console.log(basketCount)
@@ -50,7 +50,7 @@ class ProductDetails extends React.Component {
           <div className="paper price">
             
             <div className="header">
-              <a href={this.getBrandsUrl()}>
+              <a href="/">
                 <Icon name="back"/>
                 <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">View Products</span>
               </a>

@@ -206,29 +206,38 @@ app.get('/hipbar-wallet', (req, res) => {
   })
 })
 
-// app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
-//   const city = capitalize(req.params.citySlug)
-//   const genre = req.params.genreSlug
-//   const brand = req.params.brandSlug
+app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
+  const city = capitalize(req.params.citySlug)
+  const genre = req.params.genreSlug
+  const brand = req.params.brandSlug
   
-//   request({
-//     method: "GET",
-//     uri: `https://catman.${BASE_URL}/consumer/browse/stores/${city}/${genre}/${brand}`,
-//   }, (err, httpRes, body) => {
-//     const parsed = JSON.parse(body)
-//     const html = fs.readFileSync("./dist/ssr.html", "utf-8")
-//     const [head, tail] = html.split("{content}")
-//     res.write(head)
-//     const reactElement = React.createElement(BrandDetailPage, { brand: parsed.brand })
-//     console.log(reactElement)
-//     const stream = renderToNodeStream(reactElement)
-//     stream.pipe(res, { end: false })
-//     stream.on("end", () => {
-//       res.write(tail)
-//       res.end()
-//     })
-//   })
-// })
+  request({
+    method: "GET",
+    uri: `https://catman.${BASE_URL}/consumer/browse/stores/${city}/${genre}/${brand}`,
+  }, (err, httpRes, body) => {
+    const parsed = JSON.parse(body)
+    const html = fs.readFileSync("./dist/ssr.html", "utf-8")
+    const [head, tail] = html.split("{content}")
+    res.write(head)
+
+    const newTail = tail.split("{script}")
+      .join(`
+      <script>
+        window.BRAND_STATE = ${JSON.stringify(parsed.brand)}
+      </script>
+      `)
+
+
+    const reactElement = React.createElement(BrandDetailPage, { brand: parsed.brand })
+    console.log(reactElement)
+    const stream = renderToNodeStream(reactElement)
+    stream.pipe(res, { end: false })
+    stream.on("end", () => {
+      res.write(newTail)
+      res.end()
+    })
+  })
+})
 
 // client side app
 app.get("/*", (req, res) => {

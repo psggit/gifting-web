@@ -37,6 +37,7 @@ class SkuItem extends React.Component {
     }
     this.handleVolumeChange = this.handleVolumeChange.bind(this)
     this.addToBasket = this.addToBasket.bind(this)
+    this.handleImageLoad = this.handleImageLoad.bind(this)
   }
 
   itemAlreadyExist(basket, id) {
@@ -74,8 +75,8 @@ class SkuItem extends React.Component {
     // call add to basket api
     mountModal(AddedToBasketModal({}))
   }
-  handleImageLoad(e) {
-    e.target.setAttribute("class", "img-loaded")
+  handleImageLoad() {
+    this.img.className = "img-loaded"
   }
   handleVolumeChange(e) {
     this.setState({ activeSku: e.target.id })
@@ -92,13 +93,18 @@ class SkuItem extends React.Component {
       />
     ))
   }
+  componentDidMount() {
+    if (this.img && this.img.complete) {
+      this.handleImageLoad()
+    }
+  }
   render() {
     return (
       <React.Fragment>
         <div className="sku--item">
           <div className="sku--item__img">
             <div className="img-placeholder"></div>
-            <img onLoad={this.handleImageLoad} src={this.props.image} />
+            <img ref={(node) => this.img = node} onLoad={this.handleImageLoad} src={this.props.image} />
           </div>
           <div className="sku--item__desc">
             <p className="os s4">{this.props.name}</p>

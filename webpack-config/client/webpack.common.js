@@ -26,7 +26,7 @@ module.exports = {
       excludeChunks: ["transaction_success", "transaction_failure"],
       title: "",
       filename: "ssr.html",
-      template: path.resolve(__dirname, "./../../src/payment-status.html")
+      template: path.resolve(__dirname, "./../../src/ssr.html")
     }),
     new HtmlWebpackPlugin({
       // chunks: ["transaction_success"],
