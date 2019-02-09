@@ -30,7 +30,8 @@ class ProductListing extends React.Component {
       isBrandsLoading: false,
       shouldMountGenres: false,
       shouldMountSearchResults: false,
-      genres: []
+      genres: [],
+      WebHeaderKey: 0
     }
 
     this.limit = 11
@@ -98,6 +99,11 @@ class ProductListing extends React.Component {
   }
 
   handleCityChange(city) {
+    localStorage.setItem("gps", city.gps)
+    localStorage.removeItem("basket")
+    const { WebHeaderKey } = this.state
+    const key = WebHeaderKey + 1
+    this.setState({ WebHeaderKey: key })
     this.resetScrollIntersectionParams()
     const fetchGenresReq = {
       city: capitalize(city.name)
@@ -258,6 +264,7 @@ class ProductListing extends React.Component {
                 />
                 : <WebHeader
                   {...this.props}
+                  key={this.state.WebHeaderKey}
                   handleGenreChange={this.handleGenreChange}
                   genres={this.state.genres}
                   onCityChange={this.handleCityChange}

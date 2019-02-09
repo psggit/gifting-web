@@ -1,6 +1,7 @@
 import React from "react"
 import PromoCodeItem from "./PromoCodeItem"
 import "./sass/promo-code.scss"
+import { fetchCoupons } from "./../api"
 
 class PromoCodes extends React.Component {
   constructor() {
@@ -8,8 +9,18 @@ class PromoCodes extends React.Component {
     this.handleApplyPromo = this.handleApplyPromo.bind(this)
     this.handlePromoChange = this.handlePromoChange.bind(this)
     this.state = {
-      promoCode: null
+      promoCode: null,
+      coupons: null
     }
+  }
+
+  componentDidMount() {
+    fetchCoupons({
+      gps: localStorage.getItem("gps")
+    })
+      .then(coupons => {
+        this.setState({ coupons })
+      })
   }
 
   handlePromoChange(e) {
@@ -32,9 +43,19 @@ class PromoCodes extends React.Component {
         </div>
         <div className="promo--code__body">
           {
-            [1,2,3,4,5].map((item, i) => (
-              <PromoCodeItem onApply={this.props.onApply} key={i} />
-            ))
+            this.state.coupons && this.state.coupons.length
+              ? this.state.coupons.map((item, i) => (
+                <PromoCodeItem onApply={this.props.onApply} key={i} />
+              ))
+              : ""   
+          }
+          {
+            this.state.coupons && !this.state.coupons.length &&
+            <p className="os s6">No Coupons available</p>
+          }
+          {
+            !this.state.coupons && 
+            <p className="os s6">Loading coupons...</p>
           }
         </div>
       </div>

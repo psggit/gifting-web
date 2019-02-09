@@ -96,3 +96,30 @@ export function fetchSKUUsingBrand(req) {
   })
     .then(json => json)
 }
+
+export function fetchCoupons(req) {
+  return POST({
+    api: "/consumer/listCoupons",
+    handleError: true,
+    apiBase: "promoman",
+    data: {
+      order_type: "pickup",
+      gps: req.gps
+    }
+  })
+    .then(json => json.data)
+}
+
+export function fetchGiftCardSummary(req){ 
+  return POST({
+    api: "/consumer/gift_card/summary",
+    handleError: true,
+    apiBase: "orderman",
+    data: {
+      products: req.products,
+      promo_code: req.promoCode,
+      gps: req.gps
+    }
+  })
+    .then(json => json)
+}

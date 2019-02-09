@@ -25,7 +25,9 @@ class CitySelect extends React.Component {
       .then(cities => {
         this.setState({ cities })
         const activeCity = capitalize(this.props.activeCity)
-        this.setState({ cityIdx: this.getCityIndexByName(activeCity) })
+        const cityIdx = this.getCityIndexByName(activeCity)
+        localStorage.setItem("gps", cities[cityIdx].gps)
+        this.setState({ cityIdx })
       })
   }
 
