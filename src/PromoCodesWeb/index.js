@@ -8,7 +8,7 @@ import Icon from "Components/icon"
 import PromoCodes from "./../PromoCodes"
 import "./promo-codes-web.scss"
 
-export default function PromoCodesWeb() {
+export default function PromoCodesWeb(data) {
   return class AddedToBasketModal extends React.Component {
     render() {
       return (
@@ -24,7 +24,7 @@ export default function PromoCodesWeb() {
             </div>
           </ModalHeader>
           <ModalBody>
-            <PromoCodes />
+            <PromoCodes data={data} />
           </ModalBody>
           <ModalFooter>
           </ModalFooter>

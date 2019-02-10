@@ -44,8 +44,8 @@ class PromoCodes extends React.Component {
         <div className="promo--code__body">
           {
             this.state.coupons && this.state.coupons.length
-              ? this.state.coupons.map((item, i) => (
-                <PromoCodeItem onApply={this.props.onApply} key={i} />
+              ? this.state.coupons.map(item => (
+                <PromoCodeItem promo={item} onApply={this.props.data.onApply} key={item.id} />
               ))
               : ""   
           }

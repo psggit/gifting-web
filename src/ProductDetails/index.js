@@ -12,10 +12,12 @@ class ProductDetails extends React.Component {
     super(props)
     this.state = {
       brand: props.brand,
-      basketCount: 0
+      basketCount: 0,
+      viewProductsUrl: ""
     }
-    // this.getBrandsUrl = this.getBrandsUrl.bind(this)
+
     this.setBasketCount = this.setBasketCount.bind(this)
+    this.setBrandsUrl = this.setBrandsUrl.bind(this)
   }
   componentDidMount() {
     const basket = JSON.parse(localStorage.getItem("basket"))
@@ -29,13 +31,15 @@ class ProductDetails extends React.Component {
       .then(res => {
         this.setState({ brand: res.brand })
       })
+
+    this.setBrandsUrl()
   }
 
-  // getBrandsUrl() {
-  //   const u = this.props.location.pathname.split("/")
-  //   u.pop()
-  //   return u.join("/")
-  // }
+  setBrandsUrl() {
+    const u = this.props.location.pathname.split("/")
+    u.pop()
+    this.setState({ viewProductsUrl: u.join("/") })
+  }
 
   setBasketCount(basketCount) {
     console.log(basketCount)
@@ -50,7 +54,7 @@ class ProductDetails extends React.Component {
           <div className="paper price">
             
             <div className="header">
-              <a href="/">
+              <a href={this.state.viewProductsUrl}>
                 <Icon name="back"/>
                 <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">View Products</span>
               </a>
@@ -79,13 +83,13 @@ class ProductDetails extends React.Component {
             </p>
           </div>
 
-          <div className="paper gs1-code">
+          {/* <div className="paper gs1-code">
             <p className="os">GS1 Code</p>
             <div className="gs1-img">
               <div className="placeholder"></div>
               <img src={brand && brand.high_res_image} />
             </div>
-          </div>
+          </div> */}
 
           <div className="paper add-to-basket">
             <Button iconAlignment="left" icon="giftBasket" primary>Add to gift basket</Button>

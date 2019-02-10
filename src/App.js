@@ -13,11 +13,7 @@ import RedeemingGiftCard from './RedeemingGiftCard'
 import LandingPage from "./landing"
 import UsingGiftCard from './GiftCardInfo'
 import SendGiftCards from './SendGift'
-import SendGiftWizardStep1 from './SendGiftWizardStep1'
-import MobileGetStarted from './MobileGetStarted'
-import MobileName from './MobileName'
-import MobileCity from './MobileCity'
-import MobileFavDrink from './MobileFavDrink'
+import SendGiftV2 from './SendGiftV2'
 import TransactionHistory from "./TransactionHistory"
 import Checkout from "./Payment"
 import RetailOutlet from './RetailOutlet'
@@ -243,6 +239,16 @@ class App extends React.Component {
                     } 
                   />
                   <Route exact
+                    path="/sendgiftv2"
+                    render={
+                      props => (
+                        <SendGiftV2 {...props}
+                          paramObj={paramObj}
+                        />
+                      )
+                    }
+                  />
+                  {/* <Route exact
                     path="/send-gift-wizard-step1"
                     render={
                       props => (
@@ -295,7 +301,7 @@ class App extends React.Component {
                         />
                       )
                     }
-                  />
+                  /> */}
 
                   <Route exact 
                     path="/transaction-history" 

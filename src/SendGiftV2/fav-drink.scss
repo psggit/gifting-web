@@ -1,0 +1,94 @@
+@import "./../sass/base.scss";
+
+#drink.paper {
+  .flex-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 0 20px 0;
+    .col {
+      margin-top: 20px;
+    }
+  }
+
+  >div{
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  .paper-content{
+    padding: 20px; 
+    padding-bottom: 60px;       
+  }
+
+  .fav-drink{
+    > svg {
+      width:50px; 
+      height:50px;
+    }
+  }
+
+  .steps {
+    // font-weight: 600;
+    color: #777777;
+  }
+
+  .steps-result {
+    line-height: 1.42;
+    color: #777777;
+    padding-top: 20px;
+  }
+
+  .form-group {
+    margin-top: 15px;
+  }
+
+  .next{
+    width: 100%;
+    padding-top: 10px;
+    position: unset;        
+  }
+  input{
+    max-width: 400px;
+  }
+
+  .genre--item__content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #drink.paper {
+    text-align: left;
+
+    .next{          
+      width: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background-color: #f1f1f1;
+      position: fixed;
+      //z-index: 2147483601;
+      bottom: 0;
+      >button{
+        width:100%;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 481px) {
+  #drink.paper {
+    .flex-grid {
+      padding: 0 20% 20px 20%;
+      justify-content: center;
+      .col {
+        padding-right: 10px;
+        padding-right: 10px;
+      }
+    }
+  }
+}

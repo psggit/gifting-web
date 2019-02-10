@@ -5,15 +5,18 @@ import BasketTotal from "./BasketTotal"
 import { getBasketTotalPrice } from "./../ProductDetails/SkuItem"
 import PromoCodesWeb from "./../PromoCodesWeb"
 import { mountModal } from "Components/modal-box2/utils"
+import { fetchGiftCardSummary } from "./../api"
 import "./gift-basket.scss"
 
-function mountPromoCodesWeb() {
-  mountModal(PromoCodesWeb())
+function mountPromoCodesWeb(props) {
+  mountModal(PromoCodesWeb({
+    onApply: props.onApply
+  }))
 }
 
-function PromoBeforeApply() {
+function PromoBeforeApply(props) {
   return (
-    <div onClick={mountPromoCodesWeb} style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+    <div onClick={() => { mountPromoCodesWeb(props) }} style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
       <Icon name="promoCode" />
       <span className="os s5" style={{ marginLeft: "10px" }}>Apply Promo Code</span>
     </div>
@@ -41,8 +44,17 @@ class GiftBasket extends React.Component {
     }
     this.setBasketTotalPrice = this.setBasketTotalPrice.bind(this)
   }
+  
   setBasketTotalPrice(price) {
     this.setState({ subtotal: price })
+  }
+
+  onApplyPromo(promoCode) {
+    fetchGiftCardSummary({
+      promoCode,
+      products: localStorage.getItem("basket") ,
+      gps: localStorage.getItem("gps")
+    })
   }
   render() {
     const isPromoApplied = true
@@ -59,7 +71,7 @@ class GiftBasket extends React.Component {
             <div className="col">
               <div className="paper coupon">
                 {
-                  !isPromoApplied ? <PromoAfterApply /> : <PromoBeforeApply />
+                  !isPromoApplied ? <PromoAfterApply /> : <PromoBeforeApply onApply={this.onApplyPromo} />
                 }
               </div>
 
