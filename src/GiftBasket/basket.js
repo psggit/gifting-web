@@ -10,8 +10,13 @@ class Basket extends React.Component {
     // this.addItemToBasket = this.addItemToBasket.bind(this)
     this.updateBasket = this.updateBasket.bind(this)
     this.state = {
-      basket: JSON.parse(localStorage.getItem("basket")) || []
+      basket: JSON.parse(localStorage.getItem("basket")) || [],
+      backUrl: ""
     }
+  }
+
+  componentDidMount() {
+    this.setState({ backUrl: document.referrer })
   }
 
   updateBasket(skudId, count) {
@@ -37,11 +42,14 @@ class Basket extends React.Component {
     return (
       <div>
         <div className="header">
-          <Icon name="back" />
-          <span
+          <a
+            href={this.state.backUrl}
             style={{
-              marginLeft: "10px",
-            }} className="os s5">Back</span>
+              cursor: "pointer",
+            }} className="os s5">
+            <Icon name="back" />
+            <span style={{ marginLeft: "10px" }}>Back</span>
+          </a>
         </div>
 
         <div className="basket-body">

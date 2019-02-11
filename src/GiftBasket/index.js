@@ -64,7 +64,7 @@ class GiftBasket extends React.Component {
           <div className="row">
             <div className="col">
               <div className="paper basket">
-                <Basket setBasketTotalPrice={this.setBasketTotalPrice} />
+                <Basket {...this.props} setBasketTotalPrice={this.setBasketTotalPrice} />
               </div>
             </div>
 
