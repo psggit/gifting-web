@@ -34,7 +34,7 @@ class MobileHeader extends React.Component {
           <span className="os s4">Showing drinks for:</span>
           <span
             className="os s4"
-            onClick={this.openGenres}
+            onClick={this.props.openGenres}
             style={{
               textDecoration: "underline",
               fontWeight: "600",
@@ -42,7 +42,7 @@ class MobileHeader extends React.Component {
               padding: "16px 10px"
             }}>
             <Icon name="drink" />
-            Whiskey
+            {this.props.match.params.genreSlug}
             <Icon name="caret" />
           </span>   
         </div>

@@ -18,7 +18,7 @@ class GenreOverlay extends React.Component {
   constructor() {
     super()
     this.state = {
-      active: -1
+      active: 1
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -48,7 +48,7 @@ class GenreOverlay extends React.Component {
                   <GenreItem
                     shortName={item.short_name}
                     active={this.state.active}
-                    handleClick={this.handleClick}
+                    onChange={this.handleClick}
                     id={item.ordinal_position}
                     name={item.display_name}
                   />

@@ -7,6 +7,10 @@ import { fetchSKUUsingBrand } from "./../api"
 import { capitalize } from "Utils/logic-utils"
 import { getBasketTotal } from "./SkuItem"
 
+function getImageUrl(image) {
+  return `https://api2.${process.env.BASE_URL}/get?fs_url=${image}`
+}
+
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props)
@@ -23,14 +27,14 @@ class ProductDetails extends React.Component {
     const basket = JSON.parse(localStorage.getItem("basket"))
     this.setState({ basketCount: basket ? getBasketTotal(basket) : 0 })
     const { params } = this.props.match  
-    fetchSKUUsingBrand({
-      cityName: capitalize(params.citySlug),
-      genreShortName: params.genreSlug,
-      brandShortName: params.brandSlug
-    })
-      .then(res => {
-        this.setState({ brand: res.brand })
-      })
+    // fetchSKUUsingBrand({
+    //   cityName: capitalize(params.citySlug),
+    //   genreShortName: params.genreSlug,
+    //   brandShortName: params.brandSlug
+    // })
+    //   .then(res => {
+    //     this.setState({ brand: res.brand })
+    //   })
 
     this.setBrandsUrl()
   }
@@ -71,7 +75,7 @@ class ProductDetails extends React.Component {
                 brand={brand}
                 volumes={brand ? brand.skus : []}
                 name={brand ? brand.brand_name : ""}
-                image={brand ? brand.high_res_image : ""}
+                image={brand ? (brand.high_res_image || getImageUrl(brand.image)) : ""}
               />
             </div>
           </div>

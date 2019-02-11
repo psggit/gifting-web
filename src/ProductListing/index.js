@@ -18,6 +18,7 @@ import MobileHeader from "./MobileHeader"
 import WebHeader from "./WebHeader"
 import { fetchGenres, fetchBrandsUsingGenre } from "./../api"
 import { capitalize } from "Utils/logic-utils"
+import NoBrandsAvailable from "./NobrandsAvailable"
  
 class ProductListing extends React.Component {
   constructor() {
@@ -28,9 +29,11 @@ class ProductListing extends React.Component {
       search_text: "",
       brands: [],
       isBrandsLoading: false,
+      isBrandsAvailable: true,
       shouldMountGenres: false,
       shouldMountSearchResults: false,
       genres: [],
+      scrollUp: false,
       WebHeaderKey: 0
     }
 
@@ -48,14 +51,17 @@ class ProductListing extends React.Component {
     this.handleFocus = this.handleFocus.bind(this)
     this.cancelSearch = this.cancelSearch.bind(this)
     this.setDataFromUrl = this.setDataFromUrl.bind(this)
+    this.observeScrollDirection = this.observeScrollDirection.bind(this)
   }
 
   componentWillUnmount() {
     window.onpopstate = null
+    window.removeEventListener("scroll", this.observeScrollDirection, false)
   }
 
   componentDidMount() {
     window.onpopstate = this.setDataFromUrl
+    window.addEventListener("scroll", this.observeScrollDirection, false)
     this.setDataFromUrl()
   }
 
@@ -77,7 +83,10 @@ class ProductListing extends React.Component {
       .then(sortedGenres => this.setGenres(sortedGenres))
     
     fetchBrandsUsingGenre(fetchBrandsReq)
-      .then(brands => this.setBrands(brands))
+      .then(brands => {if (brands)
+        this.setState({ isBrandsAvailable: brands.length > 0 })
+        this.setBrands(brands)
+      })
       .then(this.findInterSection())
   }
 
@@ -201,33 +210,17 @@ class ProductListing extends React.Component {
     document.body.style.overflow = ""
   }
 
-  // findScroll() {
-  //   console.log("scrolling")
-  //   const scrollInterSection = document.getElementById("scroll-intersection")
-  //   const scrollInterSectionOffset = scrollInterSection.offsetTop
-  //   // var footerElement = document.getElementsByClassName("footer")[0]
-  //   //var scrollElement = document.getElementById("scrollDiv")
-  //   var scrollHeight = document.body.offsetHeight
-  //   var scrollPosition = (window.scrollY + window.innerHeight)
-
-  //   //console.log("footer length", footerElement.offsetHeight, "1", window.scrollY, "2",window.innerHeight, "3", (window.scrollY + window.innerHeight), "pos", scrollPosition, "hei", scrollHeight)
-  
-  //   if (this.intersectionIsInsideViewport(scrollInterSection)) {
-  //       console.log("scroll bottom")
-  //       this.fetchProducts({limit: this.limit, offset: this.state.offset})
-  //       this.setState({ offset: this.state.offset + 10 })
-  //   }
-  // }
-
-  // intersectionIsInsideViewport(el) {
-  //   var rect = el.getBoundingClientRect()
-
-  //   return (
-  //      rect.top    >= 0
-  //   && rect.left   >= 0
-  //   && rect.top <= (window.innerHeight || document.documentElement.clientHeight)
-  //   )
-  // }
+  observeScrollDirection() {
+    var lastScrollTop = 0
+    // element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
+    var st = window.pageYOffset || document.documentElement.scrollTop
+    if (st > lastScrollTop){
+      this.setState({ scrollUp: false })
+    } else {
+      this.setState({ scrollUp: true })
+    }
+    lastScrollTop = st <= 0 ? 0 : st // For Mobile or negative scrolling
+  }
 
   handleTextChange(e) {
     this.setState({ [e.target.name]: e.target.value})
@@ -258,6 +251,7 @@ class ProductListing extends React.Component {
               this.props.context.isMobile
                 ? <MobileHeader
                   {...this.props}
+                  openGenres={this.openGenres}
                   handleGenreChange={this.handleGenreChange}
                   genres={this.state.genres}
                   onCityChange={this.handleCityChange}
@@ -303,12 +297,20 @@ class ProductListing extends React.Component {
               
             </div> */}
             
-            {/* <GenreOverlay genres={this.state.genres} closeGenres={this.closeGenres} shouldMountGenres={this.state.shouldMountGenres} /> */}
+            <GenreOverlay
+              genres={this.state.genres}
+              closeGenres={this.closeGenres}
+              shouldMountGenres={this.state.shouldMountGenres}
+            />
             {
-              this.props.context.isMobile && <BasketTotal />
+              this.props.context.isMobile && this.state.scrollUp && <BasketTotal />
             }
 
-            <BrandsList {...this.props} data={this.state.brands} />
+            {
+              this.state.isBrandsAvailable
+                ? <BrandsList {...this.props} data={this.state.brands} />
+                : <NoBrandsAvailable />
+            }
             { this.state.isBrandsLoading && <Loader /> }
           </div>
         </div>
