@@ -4,6 +4,10 @@ import "./sass/brand-list.scss"
 // import BrandsFilter from "./brands-filter"
 import PropTypes from "prop-types"
 
+function getImageUrl(image) {
+  return `https://api2.${process.env.BASE_URL}/get?fs_url=${image}`
+}
+
 class BrandsList extends React.Component {
   render() {
     return (
@@ -17,7 +21,7 @@ class BrandsList extends React.Component {
               activeGenre={this.props.match.params.genreSlug}
               id={item.brand_id}
               key={item.brand_id}
-              thumbnail={item.low_res_image}
+              thumbnail={item.low_res_image || item.high_res_image || getImageUrl(item.brand_image)}
               img={item.url}
               name={item.brand_name}
               shortName={item.brand_short_name}
