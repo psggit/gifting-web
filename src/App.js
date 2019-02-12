@@ -6,27 +6,30 @@ import {
   Route
 } from "react-router-dom"
 import { Router } from "react-router"
-import CreateHistory from 'history/createBrowserHistory'
-import LegalDrinkingAge from './LegalDrinkingAge'
-import RedeemingGiftCard from './RedeemingGiftCard'
+import CreateHistory from "history/createBrowserHistory"
+import LegalDrinkingAge from "./LegalDrinkingAge"
+import RedeemingGiftCard from "./RedeemingGiftCard"
 import LandingPage from "./landing"
-import SendGiftCards from './SendGift'
-import SendGiftV2 from './SendGiftV2'
+// import SendGiftCards from "./SendGift"
 import TransactionHistory from "./TransactionHistory"
 import Checkout from "./Payment"
-import RetailOutlet from './RetailOutlet'
+import RetailOutlet from "./RetailOutlet"
 import FAQ from "./FAQ"
 import LocationMap from "./LocationMap"
-import ProductListing from './ProductListing'
+import ProductListing from "./ProductListing"
 import ProductDetails from "./ProductDetails"
 import PaymentStatus from "./payment-status"
 
 import {ThemeProvider, ThemeContext} from "./ThemeProvider"
 import Header from "Components/header"
-import Footer from "Components/footer"
 import GiftBasket from "./GiftBasket"
+
+import GetStarted from "./SendGiftWizard/GetStarted"
+import SelectName from "./SendGiftWizard/SelectName"
+import SelectCity from "./SendGiftWizard/SelectCity"
+import SelectFavDrink from "./SendGiftWizard/FavDrink"
 // import NotFound from "./NotFound"
-// import makeAsyncComponent from './makeAsyncComponent'
+// import makeAsyncComponent from "./makeAsyncComponent"
 
 // const UsingGiftCard = makeAsyncComponent(() => import("./GiftCardInfo").then(module => module.default), { name: "Page 1" })
 // const SendGiftCards = makeAsyncComponent(() => import("./SendGift").then(module => module.default), { name: "Page 1" })
@@ -107,25 +110,59 @@ class App extends React.Component {
                     //component={UsingGiftCard} 
                   />
                   <Route exact 
-                    path="/send-gift" 
+                    path="/send-gift/get-started" 
                     //component={SendGiftCards} 
                     render={
                       props => (
-                        <SendGiftCards {...props} 
+                        <GetStarted {...props} 
                           paramObj={paramObj}
                         />
                       )
                     } 
                   />
-                  <Route exact
-                    path="/sendgiftv2"
+
+                  <Route exact 
+                    path="/send-gift" 
                     render={
                       props => (
-                        <SendGiftV2 {...props}
+                        <GetStarted {...props} 
                           paramObj={paramObj}
                         />
                       )
-                    }
+                    } 
+                  />
+
+                  <Route exact 
+                    path="/send-gift/select-name" 
+                    render={
+                      props => (
+                        <SelectName {...props} 
+                          paramObj={paramObj}
+                        />
+                      )
+                    } 
+                  />
+
+                  <Route exact 
+                    path="/send-gift/select-city" 
+                    render={
+                      props => (
+                        <SelectCity {...props} 
+                          paramObj={paramObj}
+                        />
+                      )
+                    } 
+                  />
+
+                  <Route exact 
+                    path="/send-gift/select-drink" 
+                    render={
+                      props => (
+                        <SelectFavDrink {...props} 
+                          paramObj={paramObj}
+                        />
+                      )
+                    } 
                   />
 
                   <Route exact 
@@ -209,10 +246,8 @@ class App extends React.Component {
 if (!document.getElementById("app").childNodes.length) {
   ReactDOM.render(<Header />, document.getElementById("header"))
   ReactDOM.render(<App />, document.getElementById("app"))
-  ReactDOM.render(<Footer />, document.getElementById("footer"))
 } else {
   ReactDOM.hydrate(<App />, document.getElementById("app"))
   ReactDOM.render(<Header />, document.getElementById("header"))
-  ReactDOM.render(<Footer />, document.getElementById("footer"))
 }
 export default App

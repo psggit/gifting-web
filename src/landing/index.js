@@ -6,7 +6,6 @@ import GiftCard from "Components/gift-card"
 import FirstGiftCard from "Components/first-gift-card"
 import { mountModal } from 'Components/modal-box/utils'
 import AgeGate from './../AgeGate'
-import Header from "Components/header"
 import Footer from "Components/footer"
 import {readCookie} from "Utils/session-utils"
 import {supportedCities} from "Utils/constants"
@@ -212,6 +211,7 @@ class LandingPage extends React.Component {
           </div>
 
           <FirstGiftCard />
+          <Footer />
         </div>
       </div>
     )

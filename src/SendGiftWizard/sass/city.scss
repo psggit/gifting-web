@@ -1,0 +1,59 @@
+@import "./../../sass/base.scss";
+
+#send-gift-city {
+  .flex-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 0 20px 0;
+    .col {
+      margin-top: 20px;
+    }
+  }
+
+  .paper {
+    padding: 20px;
+    background: #fff;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 87px - 96px);
+  }
+
+  .paper-content{
+   text-align: center;
+   margin-top: 10vh;
+
+   .os.s1 {
+     line-height: 1.56;
+   }
+
+   .os.s2 {
+     margin-top: 20px;
+     margin-bottom: 10px;
+   }
+  }
+
+  input{
+    max-width: 400px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #city.paper {
+    text-align: left;
+
+    .next{          
+      width: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background-color: #f1f1f1;
+      position: fixed;
+      //z-index: 2147483601;
+      bottom: 0;
+      >button{
+        width:100%;
+      }
+    }
+  }
+}

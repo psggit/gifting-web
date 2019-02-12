@@ -4,7 +4,7 @@ import './footer.scss'
 
 const Footer = () => (
   <div>
-    <div className="container footer">
+    <div className="footer">
       <div className="upper">
         <div className="col">
           <Icon name="hipbarLogoFooter" />

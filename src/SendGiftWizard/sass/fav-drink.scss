@@ -1,6 +1,15 @@
-@import "./../sass/base.scss";
+@import "./../../sass/base.scss";
 
-#drink.paper {
+#send-gift-drink {
+  .paper {
+    padding: 20px;
+    background: #fff;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 87px - 96px);
+  }
+
   .flex-grid {
     display: flex;
     justify-content: space-between;
@@ -11,15 +20,20 @@
     }
   }
 
-  >div{
-    padding-left:20px;
-    padding-right:20px;
-  }
-
   .paper-content{
-    padding: 20px; 
-    padding-bottom: 60px;       
-  }
+    text-align: center;
+    margin-top: 10vh;
+ 
+    .os.s1 {
+      line-height: 1.56;
+    }
+ 
+    .os.s2 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+   }
+ 
 
   .fav-drink{
     > svg {
@@ -28,26 +42,6 @@
     }
   }
 
-  .steps {
-    // font-weight: 600;
-    color: #777777;
-  }
-
-  .steps-result {
-    line-height: 1.42;
-    color: #777777;
-    padding-top: 20px;
-  }
-
-  .form-group {
-    margin-top: 15px;
-  }
-
-  .next{
-    width: 100%;
-    padding-top: 10px;
-    position: unset;        
-  }
   input{
     max-width: 400px;
   }
@@ -75,19 +69,6 @@
       bottom: 0;
       >button{
         width:100%;
-      }
-    }
-  }
-}
-
-@media only screen and (min-width: 481px) {
-  #drink.paper {
-    .flex-grid {
-      padding: 0 20% 20px 20%;
-      justify-content: center;
-      .col {
-        padding-right: 10px;
-        padding-right: 10px;
       }
     }
   }

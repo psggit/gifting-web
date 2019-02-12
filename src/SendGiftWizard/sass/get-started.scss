@@ -1,0 +1,51 @@
+@import "./../../sass/base.scss";
+
+#getstarted {
+  position: relative;
+  .gift{
+    margin-bottom: 10px;
+  }
+
+  .paper {
+    padding: 20px;
+    background: #fff;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 87px - 96px);
+  }
+
+  .paper-content{
+   text-align: center;
+   margin-top: 10vh;
+
+   .os.s1 {
+     line-height: 1.56;
+   }
+  }
+
+  > svg {
+    width:80px; 
+    height:60px;
+    > g{
+      opacity: 1;
+      >g{
+        fill:#777777;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $sm) {
+  #getstarted {
+    .paper {
+      align-items: center;
+    }
+    .paper-content {
+      margin-top: 0;
+      p br{
+        display: none;
+      }
+    }
+  }
+}
