@@ -2,6 +2,10 @@ import React from "react"
 import Icon from "Components/icon"
 import "./gift-basket-item.scss"
 
+function getImageUrl(image) {
+  return `https://api2.${process.env.BASE_URL}/get?fs_url=${image}`
+}
+
 class GiftBasketItem extends React.Component {
   constructor(props) {
     super(props)
@@ -42,7 +46,7 @@ class GiftBasketItem extends React.Component {
       <div className="gift--basket__item">
         <div className="gift--basket__item-img">
           <div className="img-placeholder"></div>
-          <img onLoad={this.handleImageLoad} src={brand.high_res_image} />
+          <img onLoad={this.handleImageLoad} src={brand.high_res_image || getImageUrl(brand.image) || ""} />
         </div>
 
         <div className="gift--basket__item-desc">

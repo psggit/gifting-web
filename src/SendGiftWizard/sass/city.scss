@@ -17,7 +17,7 @@
     position: relative;
     display: flex;
     justify-content: center;
-    height: calc(100vh - 87px - 96px);
+    min-height: calc(100vh - 87px - 96px);
   }
 
   .paper-content{
@@ -36,24 +36,5 @@
 
   input{
     max-width: 400px;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  #city.paper {
-    text-align: left;
-
-    .next{          
-      width: 100%;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      background-color: #f1f1f1;
-      position: fixed;
-      //z-index: 2147483601;
-      bottom: 0;
-      >button{
-        width:100%;
-      }
-    }
   }
 }
