@@ -37,8 +37,12 @@ class SelectCity extends React.Component {
   }
 
   handleClick(e) {
+    e.preventDefault()
     if (this.state.activeCity === -1) {
-      e.preventDefault()
+      return false
+    } else {
+      const path = "/" + e.currentTarget.href.split("/").slice(3).join("/")
+      this.props.history.push(path)
     }
   }
 

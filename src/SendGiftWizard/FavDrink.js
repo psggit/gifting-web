@@ -48,8 +48,12 @@ class FavDrink extends React.Component {
   }
 
   handleClick(e) {
+    e.preventDefault()
     if (!this.state.selectedGenre) {
-      e.preventDefault()
+      return false
+    } else {
+      const path = "/" + e.currentTarget.href.split("/").slice(3).join("/")
+      this.props.history.push(path)
     }
   }
 
