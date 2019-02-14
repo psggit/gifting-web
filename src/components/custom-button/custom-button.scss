@@ -1,0 +1,93 @@
+@import "./../../sass/base.scss";
+
+.box1 {
+  margin: 0px auto;
+  cursor: pointer;
+  width: 284px;
+  height: 47px;
+  border-left: 4px solid #d6b352;
+  border-right: 4px solid #864c13;
+  position: relative;
+  box-sizing: border-box;
+  background-position: 0 0, 0 100%;
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% 4px;
+  -moz-background-size: 100% 4px;
+  background-size: 100% 4px;
+  background-image:
+   -webkit-linear-gradient(left,  #d6b352, #784a23, #c27b24, 
+                                  #c68530, #d4a353, #dfbd71, 
+                                  #e9d28a, #f0e29d, #f5edaa, 
+                                  #f8f4b2, #f9f6b4, #f5e283, 
+                                  #cf863a, #663808, #d19e3d, 
+                                  #743d08, #4a3109, #864c13), 
+    -webkit-linear-gradient(left, #d6b352, #784a23, #c27b24, 
+                                  #c68530, #d4a353, #dfbd71, 
+                                  #e9d28a, #f0e29d, #f5edaa, 
+                                  #f8f4b2, #f9f6b4, #f5e283, 
+                                  #cf863a, #663808, #d19e3d, 
+                                  #743d08, #4a3109, #864c13);
+
+  span {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #bcbec0;
+    text-transform: uppercase;
+  }
+}
+
+.box2 {
+  margin: 0px auto;
+  width: 270px;
+  height: 60px;
+  border-left: 4px solid #d6b352;
+  border-right: 4px solid #864c13;
+  position: absolute;
+  top:-6.2px;
+  left: 3px;
+  box-sizing: border-box;
+  background-position: 0 0, 0 100%;
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% 20px;
+  -moz-background-size: 100% 20px;
+  background-size: 100% 4px;
+  background-image: 
+    -webkit-linear-gradient(left, #d6b352, #784a23, #c27b24, 
+                                  #c68530, #d4a353, #dfbd71, 
+                                  #e9d28a, #f0e29d, #f5edaa, 
+                                  #f8f4b2, #f9f6b4, #f5e283, 
+                                  #cf863a, #663808, #d19e3d, 
+                                  #743d08, #4a3109, #864c13), 
+    -webkit-linear-gradient(left, #d6b352, #784a23, #c27b24, 
+                                  #c68530, #d4a353, #dfbd71, 
+                                  #e9d28a, #f0e29d, #f5edaa, 
+                                  #f8f4b2, #f9f6b4, #f5e283, 
+                                  #cf863a, #663808, #d19e3d, 
+                                  #743d08, #4a3109, #864c13);
+}
+
+@media only screen and (max-width: 411px) {
+  .box1 {
+    width: 103px;
+    height: 21px;
+    border-left: 1px solid #d6b352;
+    border-right: 1px solid hsl(30, 75%, 30%);
+    -webkit-background-size: 100% 1px;
+    -moz-background-size: 100% 1px;
+    background-size: 100% 1px;
+  }
+  .box2 {
+    width: 97px;
+    height: 27px;
+    top:-3px;
+    left: 1.5px;
+    border-left: 1px solid #d6b352;
+    border-right: 1px solid hsl(30, 75%, 30%);
+    -webkit-background-size: 100% 1px;
+    -moz-background-size: 100% 1px;
+    background-size: 100% 1px;
+  }
+}
