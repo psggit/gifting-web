@@ -21,18 +21,18 @@ class GiftBasketItem extends React.Component {
     let { count } = this.state
     count += 1
     this.props.updateBasket(id, count)
-    this.setState({ count })
+    // this.setState({ count })
   }
 
   handleRemove(id) {
     let { count } = this.state
     count -= 1
     this.props.updateBasket(id, count)
-    this.setState({ count })
+    // this.setState({ count })
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.item.count !== this.props.item.count) {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.count !== this.props.item.count) {
       this.setState({ count: this.props.item.count })
     }
   }

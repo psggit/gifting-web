@@ -2,6 +2,7 @@ import React from "react"
 import Icon from "Components/icon"
 import GiftBasketItem from "./GiftBasketItem"
 import { getBasketTotalPrice } from "./../ProductDetails/SkuItem"
+import { fetchGiftCardSummary } from "../api"
 
 class Basket extends React.Component {
   constructor() {
@@ -33,12 +34,12 @@ class Basket extends React.Component {
       updatedBasket = basket.filter(item => item.sku.sku_id !== skudId)
     }
 
-    this.setState({ basket: updatedBasket })
-    localStorage.setItem("basket", JSON.stringify(updatedBasket))
-    this.props.setBasketTotalPrice(getBasketTotalPrice(updatedBasket))
+    const promoCode = localStorage.getItem("promo_code")
+    this.props.setGiftSummary(promoCode, updatedBasket)
   }
   
   render() {
+    console.log(this.state.basket)
     return (
       <div>
         <div className="header">
@@ -64,6 +65,7 @@ class Basket extends React.Component {
                 updateBasket={this.updateBasket}
                 key={item.sku.sku_id}
                 item={item}
+                count={item.count}
               />
             ))
           }

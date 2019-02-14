@@ -11,8 +11,12 @@ class BasketTotal extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.subtotal !== this.props.subtotal) {
-      this.setState({ subtotal: this.props.subtotal })
+    if ((prevProps.subtotal !== this.props.subtotal) || (prevProps.discount !== this.props.discount)) {
+      this.setState({
+        subtotal: this.props.subtotal,
+        discount: this.props.discount,
+        total: this.props.total
+      })
     }
   }
 
@@ -23,17 +27,21 @@ class BasketTotal extends React.Component {
         <div style={{ padding: "16px 0", borderBottom: "1px solid #dfdfdf" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <p className="os s8">Gift Card Subtotal</p>
-            <p className="os s8">Rs. {this.state.subtotal}</p>
+            <p className="os s8">Rs. {this.props.subtotal}</p>
           </div>
   
-          <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
-            <p className="os s8">Promo Applied</p>
-            <p className="os s8">-Rs. 350</p>
-          </div>
+          {
+            parseFloat(this.props.discount)
+              ?   <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
+                <p className="os s8">Promo Applied</p>
+                <p className="os s8">-Rs. { this.props.discount }</p>
+              </div>
+              : "" 
+          }
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
           <p className="os s8">To Pay</p>
-          <p className="os s8">Rs. {this.state.subtotal - 350}</p>
+          <p className="os s8">Rs. {this.props.total}</p>
         </div>
       </div>
     )
