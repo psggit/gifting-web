@@ -6,19 +6,24 @@ import {
   Route
 } from "react-router-dom"
 import { Router } from "react-router"
-import CreateHistory from "history/createBrowserHistory"
-import LegalDrinkingAge from "./LegalDrinkingAge"
-import RedeemingGiftCard from "./RedeemingGiftCard"
-import LandingPage from "./landing"
-// import SendGiftCards from "./SendGift"
+import CreateHistory from 'history/createBrowserHistory'
+import LegalDrinkingAge from './LegalDrinkingAge'
+import RedeemingGiftCard from './RedeemingGiftCard'
+import LandingPage from "./landing-new"
+import UsingGiftCard from './GiftCardInfo'
+import SendGiftCards from './SendGift'
 import TransactionHistory from "./TransactionHistory"
 import Checkout from "./Payment"
 import RetailOutlet from "./RetailOutlet"
 import FAQ from "./FAQ"
+import GiftInputForm from "./gift-input-form"
+import TransactionSuccessful from "./SuccessfulTransaction"
+import TransactionFail from "./FailureTransaction"
 import LocationMap from "./LocationMap"
 import ProductListing from "./ProductListing"
 import ProductDetails from "./ProductDetails"
 import PaymentStatus from "./payment-status"
+import AgeGateAlert from "./AgeGateAlert"
 
 import {ThemeProvider, ThemeContext} from "./ThemeProvider"
 import Header from "Components/header"
@@ -28,6 +33,7 @@ import GetStarted from "./SendGiftWizard/GetStarted"
 import SelectName from "./SendGiftWizard/SelectName"
 import SelectCity from "./SendGiftWizard/SelectCity"
 import SelectFavDrink from "./SendGiftWizard/FavDrink"
+import Footer from "Components/footer"
 // import NotFound from "./NotFound"
 // import makeAsyncComponent from "./makeAsyncComponent"
 
@@ -178,6 +184,19 @@ class App extends React.Component {
                       )
                     } 
                   />
+
+                  <Route exact 
+                    path="/personalise" 
+                    //component={Checkout} 
+                    render={
+                      props => (
+                        <GiftInputForm {...props} 
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
+                  />
                   <Route exact 
                     path="/checkout" 
                     //component={Checkout} 
@@ -219,6 +238,7 @@ class App extends React.Component {
                     path="/locationMap" 
                     component={LocationMap} 
                   />
+                  <Route exact path="/age-gate" component={AgeGateAlert} />
                   <Route exact path="/payment-status" component={PaymentStatus}  />
                   <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
                   <Route exact path="/brands/:citySlug/:genreSlug/:brandSlug"

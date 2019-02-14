@@ -103,7 +103,7 @@ export function fetchCoupons(req) {
     handleError: true,
     apiBase: "promoman",
     data: {
-      order_type: "pickup",
+      order_type: "gifting_sku",
       gps: req.gps
     }
   })
@@ -115,11 +115,7 @@ export function fetchGiftCardSummary(req){
     api: "/consumer/gift_card/summary",
     handleError: true,
     apiBase: "orderman",
-    data: {
-      products: req.products,
-      promo_code: req.promoCode,
-      gps: req.gps
-    }
+    data: req
   })
     .then(json => json)
 }

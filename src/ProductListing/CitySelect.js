@@ -50,7 +50,7 @@ class CitySelect extends React.Component {
   render() {
     return (
       <div className="city--select">
-        <Icon name="location" />
+        <Icon name="locationCitySelect" />
         <select onChange={this.handleCityChange} value={this.state.cityIdx}>
           {
             this.state.cities.map((item, i) => {

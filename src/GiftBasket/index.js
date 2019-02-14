@@ -93,6 +93,7 @@ class GiftBasket extends React.Component {
     fetchGiftCardSummary(giftCardSummaryReq)
       .then(giftSummary => {
         this.updateLocalBasket(giftSummary.products)
+        localStorage.setItem("amount", giftSummary.balance)
         this.setState({
           settingGiftSummary: false,
           promoCode,
@@ -150,7 +151,7 @@ class GiftBasket extends React.Component {
                 />
               </div>
               <div style={{ marginTop: "20px", width: "100%" }}>
-                <a onClick={() => { localStorage.setItem("amount", this.state.total)  }} href="/personalise">
+                <a href="/personalise">
                   <Button icon="rightArrowWhite" primary>Personalise</Button>
                 </a>
               </div>

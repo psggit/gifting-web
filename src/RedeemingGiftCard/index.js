@@ -22,7 +22,8 @@ class GiftCards extends React.Component {
       behavior: 'smooth'
     })
     if(!readCookie("isAgeGateAgreed")) {
-      mountModal(AgeGate({}))
+      //mountModal(AgeGate({}))
+      this.props.history.push("/age-gate", { navigateTo: "/how-to-redeem"})
     }
     //localStorage.setItem("showAgeGate", false)
   }

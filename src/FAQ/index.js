@@ -9,6 +9,7 @@ import AccordianItem from "Components/accordian/accordian-item"
 import AgeGate from './../AgeGate'
 import {readCookie} from "Utils/session-utils"
 import { mountModal } from 'Components/modal-box/utils'
+import { timingSafeEqual } from "crypto";
 
 class FAQ extends React.Component {
   constructor(props) {
@@ -33,7 +34,8 @@ class FAQ extends React.Component {
     })
     this.setState({sendingGiftCardQuestions})
     if(!readCookie("isAgeGateAgreed")) {
-      mountModal(AgeGate({}))
+      //mountModal(AgeGate({}))
+      this.props.history.push("/age-gate", { navigateTo: "/FAQs"})
     }
   }
 

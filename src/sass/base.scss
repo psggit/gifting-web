@@ -68,6 +68,7 @@ span, p {
 $font-OpenSans: "Open Sans", sans-serif;
 $font-Montserrat: "Montserrat", sans-serif;
 $font-Cormorant: "Cormorant Garamond", serif;
+$font-Futura: futura-pt;
 
 
 /* Texts  */
@@ -80,6 +81,10 @@ $font-Cormorant: "Cormorant Garamond", serif;
 
 .os {
   font-family: $font-OpenSans;
+}
+
+.ft {
+  font-family: $font-Futura;
 }
 
 .cm {
@@ -136,10 +141,58 @@ $font-Cormorant: "Cormorant Garamond", serif;
   }
 }
 
+.ft {
+  &.s1 {
+    font-size: px(80);
+  }
+  &.s2 {
+    font-size: px(35);
+  }
+  &.s3 {
+    font-size: px(26);
+  }
+  &.s4 {
+    font-size: px(45);
+  }
+  &.s5 {
+    font-size: px(31);
+  }
+  &.s6 {
+    font-size: px(16);
+  }
+  &.s7 {
+    font-size: px(21);
+  }
+}
+
 
 @media only screen and (max-width: $sm) {
   .container {
     padding-left: 0;
     padding-right: 0;
   }
+
+  // .ft {
+  //   &.s1 {
+  //     font-size: px(40);
+  //   }
+  //   &.s2 {
+  //     font-size: px(17);
+  //   }
+  //   &.s3 {
+  //     font-size: px(13);
+  //   }
+  //   &.s4 {
+  //     font-size: px(22);
+  //   }
+  //   &.s5 {
+  //     font-size: px(15);
+  //   }
+  //   &.s6 {
+  //     font-size: px(8);
+  //   }
+  //   &.s7 {
+  //     font-size: px(10);
+  //   }
+  // }
 }

@@ -34,7 +34,7 @@ class Payment extends React.Component {
       gift_message: this.gift ? this.gift.giftMessage : "",
       receiver_name: this.gift ? this.gift.receiverName : "",
       receiver_number: this.gift ? this.gift.receiverNumber : "",
-      amount: this.gift ? this.gift.amount : "",
+      amount: localStorage.getItem("amount") ? localStorage.getItem("amount") : "",
       popularBanks: [],
       banks: [],
       savedCards: [],
@@ -95,11 +95,11 @@ class Payment extends React.Component {
   }
 
   componentWillMount() {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    })
+    // window.scrollTo({
+    //   top: 0,
+    //   left: 0,
+    //   behavior: 'smooth'
+    // })
     if (!localStorage.getItem("gift")) {
       console.log("go back")
       this.props.history.goBack()
@@ -479,15 +479,19 @@ class Payment extends React.Component {
     }
   }
 
+  handleBackClick() {
+    location.href="/personalise"
+  }
+
   render() {
     return (
       <div>
         {
           localStorage.getItem("gift")
             ? (
-              <div>
-                <div id="checkout">
-                  <div className="how-to-gift mobile">
+              <div id="checkout">
+                <div className="layout">
+                  {/* <div className="how-to-gift mobile">
                     <div onClick={this.toggleHowTo} className="how-to-gift-header">
                       <p style={{ padding: "0 30px", color: "#fff" }} className="os s3">
                         Gift Card Summary
@@ -515,11 +519,35 @@ class Payment extends React.Component {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="container">
                     <div className="row">
+                      <div>
+                        <p 
+                          style={{ 
+                            borderBottom: "1px solid #c2c2c2", 
+                            paddingBottom: "12px", 
+                            marginBottom: "30px", 
+                            cursor: 'pointer', 
+                            color: '#000',
+                            fontWeight: 'bold'
+                          }} 
+                          className="os s8"
+                        >
+                          <span 
+                            style={{
+                              marginRight: "8px",
+                              verticalAlign: 'middle'
+                            }}
+                            onClick={() => this.handleBackClick()}
+                          >
+                            <Icon name="rightArrowBlack" />
+                          </span>
+                          Personalise
+                        </p>
+                      </div>
                       <div className="col">
-                        <p style={{ borderBottom: "1px solid #c2c2c2", paddingBottom: "20px" }} className="os s5">To Pay: &#8377;{this.state.amount}</p>
+                        <p style={{ borderBottom: "1px solid #c2c2c2", paddingBottom: "20px" }} className="os s5">To Pay: &#8377;{localStorage.getItem("amount")}</p>
                         <div className="payment-methods-wrapper">
                           <p className="os s5">Payment Method</p>
                           <p className="os s8">All transactions are secure and encrypted.</p>
@@ -695,8 +723,8 @@ class Payment extends React.Component {
                           </div>
                         </div>
 
-                        <div style={{ marginTop: "30px" }}>
-                          <Button disabled={this.state.activeAccordian === -1 || this.state.isSubmitting} onClick={this.handleSubmit} icon="rightArrowWhite" primary>Pay now</Button>
+                        <div style={{ marginTop: "30px" }} className="final-payment-button">
+                          <Button style={{textTransform: 'none'}} disabled={this.state.activeAccordian === -1 || this.state.isSubmitting} onClick={this.handleSubmit} icon="rightArrowWhite" primary>PAY Rs. {this.state.amount}</Button>
                         </div>
                         {
                            this.state.selectedPaymentMethod === "card" &&
@@ -715,7 +743,7 @@ class Payment extends React.Component {
                         }
                       </div>
 
-                      <div className="col">
+                      {/* <div className="col">
                         <GiftCard amount={this.state.amount} />
                         <div className="gift-card-info">
                           <div>
@@ -737,9 +765,12 @@ class Payment extends React.Component {
                             <p className="os s7">{this.state.senderName}<br /> +91 - {this.state.sender_num}</p>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
+                </div>
+                <div className="final-payment-button mobile">
+                  <Button style={{textTransform: 'none'}} disabled={this.state.activeAccordian === -1 || this.state.isSubmitting} onClick={this.handleSubmit} icon="rightArrowWhite" primary>PAY Rs. {this.state.amount}</Button>
                 </div>
               </div>
             )

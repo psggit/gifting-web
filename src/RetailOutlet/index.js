@@ -40,7 +40,8 @@ class RetailOutlet extends React.Component {
     })
     this.fetchAvailableHipbarDelivery()
     if(!readCookie("isAgeGateAgreed")) {
-      mountModal(AgeGate({}))
+      //mountModal(AgeGate({}))
+      this.props.history.push("/age-gate", { navigateTo: "/retail-outlet"})
     }
   }
 
