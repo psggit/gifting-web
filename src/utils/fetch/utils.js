@@ -2,7 +2,7 @@
  * utility methods for constructing `Fetch` API
  */
 
-// import 'whatwg-fetch'
+// import "whatwg-fetch"
 // import Session from "./../session"
 import { Api } from "./../config"
 /**
@@ -10,15 +10,16 @@ import { Api } from "./../config"
  */
 
 const getToken = () => ({
-  // "Authorization": `Bearer ${localStorage.getItem('auth-token')}`,
-  "x-hasura-role": `${localStorage.getItem('x-hasura-role')}`,
-  "hasura-id": `${localStorage.getItem('hasura-id')}`
+  // "Authorization": `Bearer ${localStorage.getItem("auth-token")}`,
+  "x-hasura-role": `${localStorage.getItem("x-hasura-role")}`,
+  "hasura-id": `${localStorage.getItem("hasura-id")}`
 })
 
 function getHeaders(type) {
   const json_headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "App-Name": "HipBar-Delivery"
   }
 
   switch (type) {
@@ -26,10 +27,10 @@ function getHeaders(type) {
       return getToken()
     case "Public":
       return Object.assign({}, json_headers)
-    case 'RSS':
-      return Object.assign({}, {'Accept': 'application/xml', 'Content-Type': 'application/xml'})
+    case "RSS":
+      return Object.assign({}, {"Accept": "application/xml", "Content-Type": "application/xml"})
     default:
-      return Object.assign({}, json_headers, getToken())
+      return Object.assign({}, json_headers)
   }
 }
 
@@ -76,11 +77,11 @@ export function constructFetchUtility(options) {
   // construct options for creating `window.fetch` instance
   let fetchOptions = {
     method,
-    credentials: 'include',
+    credentials: "include",
     headers: getHeaders(type),
   }
 
-  if(cors) fetchOptions.mode = 'cors'
+  if(cors) fetchOptions.mode = "cors"
   // add data to request
   if (data && method !== "GET") {
     fetchOptions.body = constructBody({type, data})
