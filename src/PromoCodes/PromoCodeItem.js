@@ -8,10 +8,10 @@ function PromoCodeItem(props) {
       <div className="row">
         <div>
           <p className="os s6">{props.promo.value}</p>
-          <p className="os s8">Expires in { props.promo.expiryDate  } days</p>
+          <p className="os s8">{ props.promo.expiresIn }</p>
         </div>
         <div>
-          <p onClick={() => { props.onApply(props.promo.id) }} style={{ cursor: "pointer" }} className="os s8">APPLY</p>
+          <p onClick={() => { props.onApply(props.promo.value) }} style={{ cursor: "pointer" }} className="os s8">APPLY</p>
         </div>
       </div>
 
