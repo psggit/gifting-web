@@ -101,7 +101,6 @@ class GiftBasket extends React.Component {
     }
     return fetchGiftCardSummary(giftCardSummaryReq)
       .then(giftSummary => {
-        this.updateLocalBasket(giftSummary.products)
         localStorage.setItem("amount", giftSummary.balance)
         this.setState({
           settingGiftSummary: false,
