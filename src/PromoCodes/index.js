@@ -1,5 +1,6 @@
 import React from "react"
 import PromoCodeItem from "./PromoCodeItem"
+import Input from "Components/input"
 import "./sass/promo-code.scss"
 import { fetchCoupons } from "./../api"
 
@@ -10,7 +11,8 @@ class PromoCodes extends React.Component {
     this.handlePromoChange = this.handlePromoChange.bind(this)
     this.state = {
       promoCode: null,
-      coupons: null
+      coupons: null,
+      error: null
     }
   }
 
@@ -23,13 +25,20 @@ class PromoCodes extends React.Component {
       })
   }
 
-  handlePromoChange(e) {
-    this.setState({ promoCode: e.target.value })
+  handlePromoChange(val) {
+    console.log(val)
+    this.setState({ promoCode: val.toUpperCase() })
   }
 
   handleApplyPromo() {
     const { promoCode } = this.state
-    this.props.onApply(promoCode)
+    if (promoCode && promoCode.length) {
+      this.props.data.onApply(promoCode, (err) => {
+        err.response.json().then(json => {
+          this.setState({ error: json.message })
+        })
+      })
+    }
   }
   
   render() {
@@ -37,9 +46,10 @@ class PromoCodes extends React.Component {
       <div id="promo--codes">
         <div className="promo--code__form">
           <div className="form-group">
-            <input value={this.state.promoCode} onChange={this.handlePromoChange} placeholder="Enter Coupon Code" />
+            <Input value={this.state.promoCode} onChange={this.handlePromoChange} placeholder="Enter Coupon Code" />
             <span onClick={this.handleApplyPromo} className="os s8">APPLY</span>
           </div>
+          <p style={{ color: "#ff3b34", marginTop: "5px" }} className="os s8">{this.state.error}</p>
         </div>
         <div className="promo--code__body">
           {

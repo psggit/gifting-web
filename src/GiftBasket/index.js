@@ -41,9 +41,10 @@ function PromoAfterApply({promoCode, discount, onRemove}) {
 class GiftBasket extends React.Component {
   constructor() {
     super()
-    const basket = JSON.parse(localStorage.getItem("basket"))
+    const basket = JSON.parse(localStorage.getItem("basket")) || []
     const subtotal = basket ? getBasketTotalPrice(basket) : "N/A"
     this.state = {
+      basket: basket,
       subtotal,
       total: subtotal,
       discount: null,
@@ -55,18 +56,25 @@ class GiftBasket extends React.Component {
     this.onApplyPromo = this.onApplyPromo.bind(this)
     this.setGiftSummary = this.setGiftSummary.bind(this)
     this.handleRemovePromo = this.handleRemovePromo.bind(this)
+    this.updateLocalBasket = this.updateLocalBasket.bind(this)
   }
   
   setBasketTotalPrice(price) {
     this.setState({ subtotal: price })
   }
 
-  onApplyPromo(promoCode) {
+  onApplyPromo(promoCode, CB) {
     const basket = JSON.parse(localStorage.getItem("basket"))
-    localStorage.setItem("promo_code", promoCode)
-    this.setGiftSummary(promoCode, basket)
-    this.setState({ isPromoApplied: true, promoCode })
-    unmountModal()
+    this.setGiftSummary(promoCode, basket, (err) => {
+      if (err) {
+        CB(err)
+        this.setState({ settingGiftSummary: false })
+      } else {
+        localStorage.setItem("promo_code", promoCode)
+        this.setState({ isPromoApplied: true, promoCode })
+        unmountModal()
+      }
+    })
   }
 
   handleRemovePromo() {
@@ -77,6 +85,7 @@ class GiftBasket extends React.Component {
   }
 
   setGiftSummary(promoCode, basket, CB) {
+    localStorage.setItem("basket", JSON.stringify(basket))
     this.setState({ settingGiftSummary: true })
     const products = basket.map(item => {
       return {
@@ -90,7 +99,7 @@ class GiftBasket extends React.Component {
       gps: localStorage.getItem("gps"),
       products
     }
-    fetchGiftCardSummary(giftCardSummaryReq)
+    return fetchGiftCardSummary(giftCardSummaryReq)
       .then(giftSummary => {
         this.updateLocalBasket(giftSummary.products)
         localStorage.setItem("amount", giftSummary.balance)
@@ -101,70 +110,104 @@ class GiftBasket extends React.Component {
           subtotal: giftSummary.total.slice(1).split(" ").join(""),
           total: giftSummary.format_balance.slice(1).split(" ").join(""),
           discount: giftSummary.promo_discount.slice(1).split(" ").join("")
-        }, CB)
+        }, () => {
+          if (CB) CB(null)
+        })
+      })
+      .catch((err) => {
+        if (CB) CB(err)
       })
   }
 
-  updateLocalBasket(skus) {
-    
+  updateLocalBasket(basket) {
+    this.setState({ basket })
+    if (!basket.length) {
+      localStorage.removeItem("basket")
+    } else {
+      localStorage.setItem("basket", basket)
+    }
+    // you were here..
   }
 
   componentDidMount() {
-    // const promoCode = localStorage.getItem("promo_code")
-    // const basket = JSON.parse(localStorage.getItem("basket"))
-    // this.setGiftSummary(promoCode, basket, () => {
-    //   if (promoCode) {
-    //     this.setState({ promoCode, isPromoApplied: true })
-    //   }
-    // })
+    const basket = JSON.parse(localStorage.getItem("basket"))
+    if (basket) {
+      const promoCode = localStorage.getItem("promo_code")
+      this.setGiftSummary(promoCode, basket, () => {
+        if (promoCode) {
+          this.setState({ promoCode, isPromoApplied: true })
+        }
+      })
+    }
   }
 
   render() {
     return (
       <div id="gift--basket">
         <div className="container">
-          <div className="row">
-            <div className="col">
-              <div className="paper basket">
-                <Basket getGiftSummary={this.getGiftSummary} setGiftSummary={this.setGiftSummary} {...this.props} setBasketTotalPrice={this.setBasketTotalPrice} />
-              </div>
-            </div>
+          {
+            this.state.basket.length
+              ? (
+                <React.Fragment>
+                  <div className="row">
+                    <div className="col">
+                      <div className="paper basket">
+                        <Basket
+                          updateLocalBasket={this.updateLocalBasket}
+                          getGiftSummary={this.getGiftSummary}
+                          setGiftSummary={this.setGiftSummary}
+                          {...this.props}
+                          setBasketTotalPrice={this.setBasketTotalPrice} 
+                        />
+                      </div>
+                    </div>
 
-            <div className="col">
-              <div className="paper coupon">
-                {
-                  this.state.isPromoApplied
-                    ? <PromoAfterApply
-                      promoCode={this.state.promoCode}
-                      discount={this.state.giftSummary.promo_discount}
-                      onRemove={this.handleRemovePromo}
-                    />
-                    : <PromoBeforeApply onApply={this.onApplyPromo} />
-                }
-              </div>
+                    <div className="col">
+                      <div className="paper coupon">
+                        {
+                          this.state.isPromoApplied
+                            ? <PromoAfterApply
+                              promoCode={this.state.promoCode}
+                              discount={this.state.discount}
+                              onRemove={this.handleRemovePromo}
+                            />
+                            : <PromoBeforeApply onApply={this.onApplyPromo} />
+                        }
+                      </div>
 
-              <div className="paper total">
-                <BasketTotal
-                  subtotal={this.state.subtotal}
-                  total={this.state.total}
-                  discount={this.state.discount}
-                />
-              </div>
-              <div style={{ marginTop: "20px", width: "100%" }}>
-                <a href="/personalise">
-                  <Button icon="rightArrowWhite" primary>Personalise</Button>
-                </a>
-              </div>
-            </div>
+                      <div className="paper total">
+                        <BasketTotal
+                          subtotal={this.state.subtotal}
+                          total={this.state.total}
+                          discount={this.state.discount}
+                        />
+                      </div>
+                      <div style={{ marginTop: "20px", width: "100%" }}>
+                        <a href="/personalise">
+                          <Button icon="rightArrowWhite" primary>Personalise</Button>
+                        </a>
+                      </div>
+                    </div>
 
-          </div>
+                  </div>
+                  {
+                    this.state.settingGiftSummary &&
+                    <div className="updating--cart-loader">
+                      <p className="os s3">Loading basket...</p>
+                    </div>
+                  }
+                </React.Fragment>
+              )
+              : (
+                <div className="paper no-basket">
+                  <p className="os s4">Gift basket is empty</p>
+                  <div style={{ marginTop: "20px" }}>
+                    <a href="/"><Button primary>Add products</Button></a>
+                  </div>
+                </div>
+              )
+          }
         </div>
-        {
-          this.state.settingGiftSummary &&
-          <div className="updating--cart-loader">
-            <p className="os s3">Loading cart...</p>
-          </div>
-        }
       </div>
     )
   }

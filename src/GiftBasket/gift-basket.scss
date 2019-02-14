@@ -2,8 +2,11 @@
 
 #gift--basket {
   position: relative;
+  .container {
+    min-height: calc(100vh - 87px);
+  }
   .updating--cart-loader {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -33,6 +36,16 @@
     background: #fff;
     border: 1px solid #dfdfdf;
     border-radius: 5px;
+  }
+
+  .paper.no-basket {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 87px - 96px);
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   .paper.basket {

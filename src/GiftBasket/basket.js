@@ -35,7 +35,10 @@ class Basket extends React.Component {
     }
 
     const promoCode = localStorage.getItem("promo_code")
-    this.props.setGiftSummary(promoCode, updatedBasket)
+    this.props.updateLocalBasket(updatedBasket)
+    if (updatedBasket.length) {
+      this.props.setGiftSummary(promoCode, updatedBasket)
+    }
   }
   
   render() {
