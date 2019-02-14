@@ -858,7 +858,7 @@ export default {
       </g>
     </svg>
   ),
-  location: (
+  locationCitySelect: (
     <svg width="12px" height="17px" viewBox="0 0 12 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         <g id="V0.41" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="05a-Mobile---Product-Listing" transform="translate(-24.000000, -90.000000)" fill="#777777" fillRule="nonzero">
