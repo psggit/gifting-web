@@ -110,13 +110,13 @@ class GiftBasket extends React.Component {
   }
 
   componentDidMount() {
-    const promoCode = localStorage.getItem("promo_code")
-    const basket = JSON.parse(localStorage.getItem("basket"))
-    this.setGiftSummary(promoCode, basket, () => {
-      if (promoCode) {
-        this.setState({ promoCode, isPromoApplied: true })
-      }
-    })
+    // const promoCode = localStorage.getItem("promo_code")
+    // const basket = JSON.parse(localStorage.getItem("basket"))
+    // this.setGiftSummary(promoCode, basket, () => {
+    //   if (promoCode) {
+    //     this.setState({ promoCode, isPromoApplied: true })
+    //   }
+    // })
   }
 
   render() {
