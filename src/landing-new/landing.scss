@@ -1,4 +1,15 @@
-.landing-wrapper {
+@import "./../sass/base.scss";
+
+#landing-new {
+  .btn {
+    background: #ff9300;
+    color: #fff;
+    width: 220px;
+    height: 52px;
+    span {
+      font-size: 16px;
+    }
+  }
   .header-container {
     width: 100%;
     text-align: center;
@@ -9,10 +20,7 @@
 
     .header {
       text-transform: uppercase;
-      background: linear-gradient(to right, #ff4100, #ff9300);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      //font-size: 80px;
+      color: #ff9300;
       letter-spacing: -1.3px;
       line-height: 1.04;
       font-weight: 600;
@@ -32,17 +40,15 @@
   }  
 
   .steps {
-    background-image: linear-gradient(70deg, rgba(0, 0, 0, 0), #313131);
     //padding: 11% 10%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     //justify-content: space-between;
-    height: 512px;
     
     .step-image {
       width: 50%;
-      height: 100%;
+      height: 512px;
       img {
         width: 100%;
         height: 100%;
@@ -51,19 +57,25 @@
     }
 
     .step-notes {
+      position: relative;
+      background-image: linear-gradient(70deg, rgba(0, 0, 0, 1), #313131);
+      height: 512px;
       width: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0px 150px;
+      > div {
+        position: absolute;
+        display: inline-block;
+        // flex-direction: column;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      
       .step-no {
-        background-image: linear-gradient(to right, #ff4100, #ff9300);
+        text-transform: uppercase;
+        color: #ff9300;
         font-size: 40px;
         font-weight: bold;
         letter-spacing: -0.6px;
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
         margin-bottom: 10px;
       }
 
@@ -101,41 +113,76 @@
   }
 }
 
-@media only screen and (min-width: 411px)  and (max-width: 768px) {
-  .landing-wrapper {
-    .header-container {
-      padding: 0 14%;
-    }
+// @media only screen and (min-width: 411px)  and (max-width: 768px) {
+//   #landing-new {
+//     .header-container {
+//       padding: 0 14%;
+//     }
+//   }
+// }
+
+@media only screen and (max-width: 412px) {
+  #landing-new {
+
+    // .header-container {
+    //   .company-logo {
+    //     display: block;
+    //     margin-bottom: 30px;
+    //   }
+    // }
+
+    // .steps {
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: center;
+    //   height: 128px;
+
+    //   .step-notes {
+    //     padding: 0px 30px;
+    //   }
+
+    //   .step-no {
+    //     margin-bottom: 60px;
+    //   }
+    // }
+
+    // .located-cities {
+    //   padding: 12% 15%;
+    //   .city-wrapper {
+    //     display: flex;
+    //     flex-direction: column;
+
+    //     .city {
+    //       margin-right: 0px !important;
+    //       margin-bottom: 24px;
+    //     }
+    //   }
+    // }
   }
 }
 
-@media only screen and (max-width: 412px) {
-  .landing-wrapper {
-
+@media only screen and (max-width: $sm) {
+  #landing-new {
+    .ft.s1 {
+      font-size: 36px;
+    }
     .header-container {
+      padding: 20px;
       .company-logo {
         display: block;
         margin-bottom: 30px;
       }
     }
-
     .steps {
-      display: flex;
       flex-direction: column;
-      justify-content: center;
-      height: 128px;
-
-      .step-notes {
-        padding: 0px 30px;
-      }
-
-      .step-no {
-        margin-bottom: 60px;
+      .step-image, .step-notes {
+        width: 100%;
+        height: 400px;
       }
     }
 
     .located-cities {
-      padding: 12% 15%;
+      padding: 20px;
       .city-wrapper {
         display: flex;
         flex-direction: column;
@@ -148,3 +195,5 @@
     }
   }
 }
+
+

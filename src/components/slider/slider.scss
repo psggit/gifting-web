@@ -1,7 +1,18 @@
 #slider {
-  .container {
-    padding: 10% 20%;
-    background: #000;
+  background: #000;
+  padding: 40px;
+  .brands {
+    margin: 0 auto;
+    max-width: 960px;
+  }
+
+  .slick-slide {
+    height: 240px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
   .brands {
     .brand {
@@ -9,8 +20,8 @@
       display: flex;
 
       .brand-icon {
-        width: 231px;
-        height: 259px;
+        // width: 231px;
+        // height: 259px;
       }
     }
   }
@@ -18,7 +29,9 @@
 
 
 @media only screen and (max-width: 640px) {
- 
+ #slider {
+  //  padding: 40px x;
+ }
 }
 
 @media only screen and (max-width: 480px) {

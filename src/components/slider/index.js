@@ -33,17 +33,17 @@ const settings = {
     {
       breakpoint: 1024,
       settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToShow: 2,
+        slidesToScroll: 2,
         infinite: true,
         dots: true
       }
     },
     {
-      breakpoint: 600,
+      breakpoint: 640,
       settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2
+        slidesToShow: 1,
+        slidesToScroll: 1
       }
     },
     {
@@ -58,29 +58,29 @@ const settings = {
 
 const BrandPartner = () => (
   <div id="slider">
-    <div className="container brands">
+    <div className="brands">
       <div className="item">
         <Slider {...settings}>
           <div className="brand">
             {/* <Icon name="bacardi" /> */}
-            <img className="brand-icon" src="./../../images/Bacardi_Logo_White.png" />
+            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_180/v1550240040/Gifting-website/Bacardi_Logo_White.png" />
           </div>
           <div className="brand">
             {/* <Icon name="bacardi" /> */}
-            <img className="brand-icon" src="./../../images/AB_InBev_Logo_BW.png" />
+            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_240/v1550240038/Gifting-website/AB_InBev_Logo_BW.png" />
           </div>
           <div className="brand">
             {/* <Icon name="bacardi" /> */}
-            <img className="brand-icon" src="./../../images/Beam Suntory_Logo_White.png" />
+            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_240/v1550240038/Gifting-website/Beam_Suntory_Logo_White.png" />
           </div>
           <div className="brand">
-            <img className="brand-icon" src="./../../images/Bira-91_Logo_White.png" />
+            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_120/v1550240040/Gifting-website/Bira-91_Logo_White.png" />
           </div>
           <div className="brand">
-            <img className="brand-icon" src="./../../images/Brown-Forman_Logo_White.png" />
+            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_200/v1550240040/Gifting-website/Brown-Forman_Logo_White.png" />
           </div>
           <div className="brand">
-            <img className="brand-icon" src="./../../images/Carlsberg_Logo_White.png" />
+            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_180/v1550240041/Gifting-website/Carlsberg_Logo_White.png" />
           </div>
           {/* <div className="brand">
             <img className="brand-icon" src="./../../images/Diageo_Logo_White.png" />
