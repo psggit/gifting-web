@@ -83,15 +83,20 @@ class ProductListing extends React.Component {
       .then(sortedGenres => this.setGenres(sortedGenres))
     
     fetchBrandsUsingGenre(fetchBrandsReq)
-      .then(brands => {if (brands)
+      .then(brands => {
         this.setState({ isBrandsAvailable: brands.length > 0 })
-        this.setBrands(brands)
+        this.setBrands(brands, () => {
+          this.findInterSection()
+        })
       })
-      .then(this.findInterSection())
   }
 
-  setBrands(brands) {
-    this.setState({ brands })
+  setBrands(brands, CB) {
+    if (CB) {
+      this.setState({ brands }, CB)
+    } else {
+      this.setState({ brands })
+    }
   }
 
   setGenres(genres) {
@@ -184,6 +189,7 @@ class ProductListing extends React.Component {
           
           fetchBrandsUsingGenre(fetchBrandsReq)
             .then(brands => {
+              console.log(brands)
               _self.setState({
                 brands: _self.state.brands.concat(brands),
                 isBrandsLoading: false
