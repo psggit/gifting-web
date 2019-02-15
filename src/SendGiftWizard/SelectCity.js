@@ -76,21 +76,27 @@ class SelectCity extends React.Component {
                   This will let us show you the list of drinks available in that city.              
                 </p>
 
-                <div className="flex-grid">
-                  {
-                    this.state.cities.map((item, i) => (
-                      <div className="col" key={i}>
-                        <CityCheckBox
-                          active={this.state.activeCity}
-                          handleClick={this.handleCityClick}
-                          id={item.id}
-                          gps={item.gps}
-                          name={item.name}
-                        />
+                {
+                  this.state.cities.length
+                    ? (
+                      <div className="flex-grid">
+                        {
+                          this.state.cities.map((item, i) => (
+                            <div className="col" key={i}>
+                              <CityCheckBox
+                                active={this.state.activeCity}
+                                handleClick={this.handleCityClick}
+                                id={item.id}
+                                gps={item.gps}
+                                name={item.name}
+                              />
+                            </div>
+                          ))
+                        }
                       </div>
-                    ))
-                  }
-                </div>
+                    )
+                    : <p style={{ marginTop: "20px" }} className="os s5">Loading Genres...</p>
+                }
                 <div style={{ marginTop: "40px" }}>
                   <a onClick={this.handleClick} href={"/send-gift/select-drink"}>
                     <Button 

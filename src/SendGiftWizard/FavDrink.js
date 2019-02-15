@@ -109,7 +109,7 @@ class FavDrink extends React.Component {
                     : <p style={{ marginTop: "20px" }} className="os s5">Loading Genres...</p>
                 }
 
-                <div style={{ marginTop: "40px" }}>
+                <div style={{ marginTop: "20px" }}>
                   <a onClick={this.handleClick} href={`/brands/${this.state.selectedCity}/${this.state.selectedGenre}`}>
                     <Button 
                       primary

@@ -4,14 +4,14 @@
   border: 1px solid #555;
   padding: 10px;
   border-radius: 4px;
-  width: 140px;
+  width: 135px;
 
   * {
     pointer-events: none;
   }
 
   &.active {
-    border-width: 2px;
+    border-color: #000;
     span svg {
       display: block;
     }

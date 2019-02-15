@@ -56,3 +56,14 @@
   //   text-align: center;
   // }
 }
+
+@media only screen and (max-width: $sm) {
+  #send-gift-drink .flex-grid {
+    width: 100%;
+    justify-content: space-around;
+    .col {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+  }
+}

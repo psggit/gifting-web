@@ -6,7 +6,7 @@ export default {
       <g id="First-Launch" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="Logo/Icon/Woodsmoke" transform="translate(-1.000000, 0.000000)">
           <rect id="Rectangle-2" fillOpacity="0" fill="#4C6088" x="0" y="0" width="64" height="64"></rect>
-          <path d="M19.1939447,23.2897675 L26.8994081,23.2897675 L37.0533916,23.2897675 L42.1901799,31.8749062 L44.8237555,27.3449208 L44.8237555,5.03752517 L53.6148278,0 L62.4,5.03752517 L62.4,31.9824272 L62.4,58.9566172 L53.6148278,64 L44.8237555,58.9566172 L44.8237555,40.745378 L37.0179913,40.745378 L37.0214069,40.7395204 L26.8994081,40.7395204 L21.7224712,32.0828829 L19.1939447,36.4292556 L19.1939447,58.9624748 L10.4028724,64 L1.6118001,58.9624748 L1.6118001,32.0384137 L1.6,32.0175728 L1.6118001,31.9967178 L1.6118001,5.04338276 L10.4028724,0 L19.1939447,5.04338276 L19.1939447,23.2897675 Z" id="Combined-Shape" fill="#0C0D0F"></path>
+          <path d="M19.1939447,23.2897675 L26.8994081,23.2897675 L37.0533916,23.2897675 L42.1901799,31.8749062 L44.8237555,27.3449208 L44.8237555,5.03752517 L53.6148278,0 L62.4,5.03752517 L62.4,31.9824272 L62.4,58.9566172 L53.6148278,64 L44.8237555,58.9566172 L44.8237555,40.745378 L37.0179913,40.745378 L37.0214069,40.7395204 L26.8994081,40.7395204 L21.7224712,32.0828829 L19.1939447,36.4292556 L19.1939447,58.9624748 L10.4028724,64 L1.6118001,58.9624748 L1.6118001,32.0384137 L1.6,32.0175728 L1.6118001,31.9967178 L1.6118001,5.04338276 L10.4028724,0 L19.1939447,5.04338276 L19.1939447,23.2897675 Z" id="Combined-Shape" fill="#D1D3DF"></path>
         </g>
       </g>
     </svg>
@@ -528,7 +528,7 @@ export default {
   fbLogo: (
     <svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1">
       <g id="V0.1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-        <g id="01a-Gifitng-Website---v0.1" transform="translate(-1062.000000, -3992.000000)" fill="#000000">
+        <g id="01a-Gifitng-Website---v0.1" transform="translate(-1062.000000, -3992.000000)" fill="#D1D3DF">
           <g id="Footer-Web" transform="translate(0.000000, 3740.000000)">
             <g id="Footer-Content" transform="translate(75.000000, 100.000000)">
               <g id="Group-6" transform="translate(987.000000, 0.000000)">
@@ -548,7 +548,7 @@ export default {
   twitterLogo: (
     <svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1">
       <g id="V0.1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-        <g id="01a-Gifitng-Website---v0.1" transform="translate(-1135.000000, -3992.000000)" fill="#000000">
+        <g id="01a-Gifitng-Website---v0.1" transform="translate(-1135.000000, -3992.000000)" fill="#D1D3DF">
           <g id="Footer-Web" transform="translate(0.000000, 3740.000000)">
             <g id="Footer-Content" transform="translate(75.000000, 100.000000)">
               <g id="Group-6" transform="translate(987.000000, 0.000000)">
@@ -568,7 +568,7 @@ export default {
   instagramLogo: (
     <svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1">
       <g id="V0.1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-        <g id="01a-Gifitng-Website---v0.1" transform="translate(-1208.000000, -3992.000000)" fill="#000000" fillRule="nonzero">
+        <g id="01a-Gifitng-Website---v0.1" transform="translate(-1208.000000, -3992.000000)" fill="#D1D3DF" fillRule="nonzero">
           <g id="Footer-Web" transform="translate(0.000000, 3740.000000)">
             <g id="Footer-Content" transform="translate(75.000000, 100.000000)">
               <g id="Group-6" transform="translate(987.000000, 0.000000)">
@@ -1128,7 +1128,7 @@ export default {
     </svg>
   ),
   'location': (
-    <svg version="1.1" id="Capa_1" x="0px" y="0px" width='30px' height='30px'
+    <svg fill="#FFFFFF" version="1.1" id="Capa_1" x="0px" y="0px" width='52px' height='52px'
     viewBox="0 0 512 512" style={{enableBackground:'new 0 0 512 512'}}>
 		<g>
 			<g>

@@ -16,7 +16,7 @@ import TransactionHistory from "./TransactionHistory"
 import Checkout from "./Payment"
 import RetailOutlet from "./RetailOutlet"
 import FAQ from "./FAQ"
-import GiftInputForm from "./gift-input-form"
+import Personalise from "./Personalise"
 import TransactionSuccessful from "./SuccessfulTransaction"
 import TransactionFail from "./FailureTransaction"
 import LocationMap from "./LocationMap"
@@ -190,7 +190,7 @@ class App extends React.Component {
                     //component={Checkout} 
                     render={
                       props => (
-                        <GiftInputForm {...props} 
+                        <Personalise {...props} 
                           // name={this.state.username} 
                           // isLoggedIn={this.state.isLoggedIn}
                         />

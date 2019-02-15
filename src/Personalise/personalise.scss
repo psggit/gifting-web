@@ -1,8 +1,13 @@
 @import "./../sass/base.scss";
 
 #giftInputForm {
-  margin-top: 100px;
-  background-color: #f1f1f1;
+ 
+  .paper {
+    background: #fff;
+    padding: 48px;
+    border: 1px solid #dfdfdf;
+    border-radius: 4px;
+  }
 
   .payment-button.mobile {
     display: none;
@@ -12,32 +17,11 @@
     }
   }
 
-  .layout {
-    // margin: 0 auto;
-    // background: #fff;
-    // border: 1px solid #c1c1c1;
-    // padding: 62px 48px;
-    //padding: 48px 100px;
-
-    .container {
-      border: 1px solid #c1c1c1;
-      border-radius: 4px;
-      // padding: 5.6%;
-      // margin: 0% 5.6%;
-      background: #fff;
-      
-    }
-  }
-
   .not-selectable {
     user-select: none;
   }
 
   &.gift-card-form {
-    //max-width: 400px;
-    z-index: 2;
-    padding: 48px 100px;
-
     .terms-and-conditions {
       display: flex;
       width: 50%;
@@ -47,11 +31,10 @@
   &.gift-card-form .form-item {
     margin-bottom: 60px;
     width: 50%;
+    
     .form-group {
-      margin-top: 15px;
       input, textarea {
         font-family: $font-OpenSans;
-        color: #2b2826;
         padding: 20px;
         border-radius: 4px;
         border: 1px solid #dfdfdf;
@@ -78,8 +61,6 @@
     }
 
     label {
-      font-size: 14px;
-      color: #000;
       letter-spacing: 0.5px;
       display: block;
       margin-bottom: 5px;
@@ -87,15 +68,15 @@
   }
 }
 
-@media only screen and (max-width: 560px) {
+@media only screen and (max-width: $sm) {
   #giftInputForm {
     &.gift-card-form {
       padding: 0;
       //background: #fff;
     }
 
-    .layout {
-      padding: 12px 0;
+    .paper {
+      padding: 20px;
     }
 
     .payment-button.mobile {
@@ -123,19 +104,3 @@
     }
   }
 }
-
-// @media only screen and (max-width: 560px) {
-//   #giftInputForm {
-//     .layout {
-//       padding: 12px 0px;
-//     }
-
-//     .payment-button.mobile {
-//       display: block !important;
-//       text-align: center !important;
-//       padding: 12px 24px;
-//       text-align: center;
-//       background: #fff;
-//     }
-//   }
-// }
