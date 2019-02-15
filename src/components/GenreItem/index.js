@@ -25,7 +25,6 @@ class GenreItem extends React.Component {
         className={`genre--item ${this.props.active === this.props.id ? "active" : ""}`}>
         <span><Icon name="drinkChecked" /></span>
         <div className="genre--item__content" >
-          <Icon name="drink" />
           <p className="os" style={{ color: "#777", fontWeight: "bold" }}>{this.props.name}</p>
         </div>
       </div>

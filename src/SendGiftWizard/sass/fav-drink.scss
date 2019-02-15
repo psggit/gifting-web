@@ -12,11 +12,13 @@
 
   .flex-grid {
     display: flex;
-    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
     flex-wrap: wrap;
     padding: 0 0 20px 0;
+    margin-top: 20px;
     .col {
-      margin-top: 20px;
+      margin: 10px;
     }
   }
 
@@ -46,11 +48,11 @@
     max-width: 400px;
   }
 
-  .genre--item__content{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
+  // .genre--item__content{
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  //   text-align: center;
+  // }
 }

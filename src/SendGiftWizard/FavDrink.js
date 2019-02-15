@@ -14,6 +14,7 @@ class FavDrink extends React.Component {
     this.state = {
       name: "",
       genres: [],
+      loadingGenres: true,
       active: -1,
       selectedCity: "",
       selectedGenre: null,
@@ -42,8 +43,9 @@ class FavDrink extends React.Component {
       city: receiverInfo.cityName
     }
     fetchGenres(fetchGenresReq)
-      .then(data => {
-        this.setState({ genres: data })
+      .then(genres => {
+        const sortedGenres = genres.sort((a, b) => a.ordinal_position - b.ordinal_position)
+        this.setState({ genres: sortedGenres, loadingGenres: false })
       })
   }
 
@@ -85,21 +87,27 @@ class FavDrink extends React.Component {
                 <p className="os s5">
                   This will let us curate a special list of drinks that you can gift them.                          
                 </p>
-                <div className="flex-grid">
-                  {
-                    this.state.genres.map((item, i) => (
-                      <div className="col" key={i}>
-                        <GenreItem
-                          active={this.state.active}
-                          onChange={this.handleGenreChange}
-                          id={i}
-                          name={item.display_name}
-                          shortName={item.short_name}
-                        />
+                {
+                  !this.state.loadingGenres
+                    ? (
+                      <div className="flex-grid">
+                        {
+                          this.state.genres.map((item, i) => (
+                            <div className="col" key={i}>
+                              <GenreItem
+                                active={this.state.active}
+                                onChange={this.handleGenreChange}
+                                id={i}
+                                name={item.display_name}
+                                shortName={item.short_name}
+                              />
+                            </div>
+                          ))
+                        }
                       </div>
-                    ))
-                  }
-                </div>
+                    )
+                    : <p style={{ marginTop: "20px" }} className="os s5">Loading Genres...</p>
+                }
 
                 <div style={{ marginTop: "40px" }}>
                   <a onClick={this.handleClick} href={`/brands/${this.state.selectedCity}/${this.state.selectedGenre}`}>

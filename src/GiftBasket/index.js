@@ -6,6 +6,7 @@ import BasketTotal from "./BasketTotal"
 import { getBasketTotalPrice } from "./../ProductDetails/SkuItem"
 import PromoCodesWeb from "./../PromoCodesWeb"
 import { mountModal, unmountModal } from "Components/modal-box2/utils"
+import SignIn from "./../SignIn"
 import { fetchGiftCardSummary } from "./../api"
 import "./gift-basket.scss"
 
@@ -34,6 +35,16 @@ function PromoAfterApply({promoCode, discount, onRemove}) {
       <div style={{ cursor: "pointer" }} onClick={onRemove}>
         <Icon name="promoCodeClose" />
       </div>
+    </div>
+  )
+}
+
+function PromoBeforeSignIn(props) {
+  return (
+    <div onClick={() => { mountModal(SignIn({})) }} style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+      <Icon name="promoCode" />
+      <span className="os s5" style={{ margin: "0 10px" }}>Sign in to view promo codes</span>
+      <Icon name="rightArrowBlack" />
     </div>
   )
 }
@@ -164,13 +175,17 @@ class GiftBasket extends React.Component {
                     <div className="col">
                       <div className="paper coupon">
                         {
-                          this.state.isPromoApplied
-                            ? <PromoAfterApply
-                              promoCode={this.state.promoCode}
-                              discount={this.state.discount}
-                              onRemove={this.handleRemovePromo}
-                            />
-                            : <PromoBeforeApply onApply={this.onApplyPromo} />
+                          localStorage.getItem("hasura-id")
+                            ? (
+                              this.state.isPromoApplied
+                                ? <PromoAfterApply
+                                  promoCode={this.state.promoCode}
+                                  discount={this.state.discount}
+                                  onRemove={this.handleRemovePromo}
+                                />
+                                : <PromoBeforeApply onApply={this.onApplyPromo} />
+                            )
+                            : <PromoBeforeSignIn />
                         }
                       </div>
 

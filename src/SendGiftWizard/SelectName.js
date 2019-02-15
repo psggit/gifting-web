@@ -2,6 +2,7 @@ import React from "react"
 import "./sass/name.scss"
 import Button from "Components/button"
 import Icon from "Components/icon"
+import Input from "Components/input"
 // import MobileNavBar from "Components/mobile-nav-bar"
 
 class SelectName extends React.Component {
@@ -18,11 +19,11 @@ class SelectName extends React.Component {
     localStorage.removeItem("receiver_info")
   }
 
-  handleChange(e) {
+  handleChange(val) {
     const receiverInfo = {}
-    receiverInfo.name = e.target.value
+    receiverInfo.name = val
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
-    this.setState({ name: e.target.value })
+    this.setState({ name: val })
   }
 
   handleClick(e) {
@@ -53,7 +54,7 @@ class SelectName extends React.Component {
                   This will help us provide a much better personalised experience to you.
                 </p>
                 <div className="form-group">
-                  <input
+                  <Input
                     name="receiverName"
                     type="text"
                     placeholder="Enter your name"
