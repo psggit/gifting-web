@@ -50,7 +50,7 @@ class Landing extends React.Component {
             <p className="ft s3 sub-header">
               Make great memories. Gift your friend a drink today
             </p>
-            <Button>Start gifting</Button>
+            <a href="/send-gift"><Button icon="rightArrowWhite">Start gifting</Button></a>
             {/* <CustomButton text="Start Gifting" navigateTo="/send-gift" /> */}
           </div>
         </Layout>

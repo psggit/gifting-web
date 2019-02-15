@@ -34,7 +34,7 @@ class GiftCardAd extends React.Component {
         <p className="ft s3 sub-header" style={{color: "#bcbec0", marginBottom: "56px"}}>
           Gift drinks to your friends &amp; family with hipbar gift cards!
         </p>
-        <Button>Start gifting</Button>
+        <a href="/send-gift"><Button icon="rightArrowWhite">Start gifting</Button></a>
       </div>
     )
   }
