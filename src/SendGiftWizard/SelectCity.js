@@ -18,6 +18,10 @@ class SelectCity extends React.Component {
     }
   }
 
+  getCityIdByName(cities, name) {
+    return cities.find(city => city.name === name).id
+  }
+
   componentWillMount() {
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     if (!receiverInfo) {
@@ -30,7 +34,6 @@ class SelectCity extends React.Component {
     if (receiverInfo) {
       receiverInfo.gps = activeCity.gps
       receiverInfo.cityName = activeCity.name
-      receiverInfo.cityId = activeCity.id
     }
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.setState({ activeCity: activeCity.id })
@@ -48,10 +51,10 @@ class SelectCity extends React.Component {
 
   componentDidMount() {
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
-    if (receiverInfo) {
-      this.setState({ activeCity: receiverInfo.cityId || -1, name: receiverInfo.name })
-    }
     fetchCities().then(data => {
+      if (receiverInfo) {
+        this.setState({ activeCity: this.getCityIdByName(data, receiverInfo.cityName) || -1, name: receiverInfo.name })
+      }
       this.setState({ cities: data })
     })
   }

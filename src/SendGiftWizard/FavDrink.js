@@ -28,12 +28,16 @@ class FavDrink extends React.Component {
     }
   }
 
+  getGenreIdByName(genres, name) {
+    return genres.findIndex(genre => genre.short_name === name)
+  }
+
   componentDidMount() {
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     if (receiverInfo) {
       this.setState({
         name: receiverInfo.name,
-        active: receiverInfo.genreId,
+        // active: receiverInfo.genreId,
         selectedGenre: receiverInfo.genreName || null,
         selectedCity: receiverInfo.cityName
       })
@@ -45,7 +49,7 @@ class FavDrink extends React.Component {
     fetchGenres(fetchGenresReq)
       .then(genres => {
         const sortedGenres = genres.sort((a, b) => a.ordinal_position - b.ordinal_position)
-        this.setState({ genres: sortedGenres, loadingGenres: false })
+        this.setState({ genres: sortedGenres, active: this.getGenreIdByName(sortedGenres, receiverInfo.genreName), loadingGenres: false })
       })
   }
 
@@ -62,7 +66,6 @@ class FavDrink extends React.Component {
   handleGenreChange(genre) {
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     if (receiverInfo) {
-      receiverInfo.genreId = genre.id
       receiverInfo.genreName = genre.shortName
     }
 
