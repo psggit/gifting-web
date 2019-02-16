@@ -95,7 +95,7 @@ class SelectCity extends React.Component {
                         }
                       </div>
                     )
-                    : <p style={{ marginTop: "20px" }} className="os s5">Loading Genres...</p>
+                    : <p style={{ marginTop: "20px" }} className="os s5">Loading Cities...</p>
                 }
                 <div style={{ marginTop: "40px" }}>
                   <a onClick={this.handleClick} href={"/send-gift/select-drink"}>

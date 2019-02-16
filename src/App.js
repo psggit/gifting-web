@@ -15,8 +15,8 @@ import Checkout from "./Payment"
 import RetailOutlet from "./RetailOutlet"
 import FAQ from "./FAQ"
 import Personalise from "./Personalise"
-// import TransactionSuccessful from "./SuccessfulTransaction"
-// import TransactionFail from "./FailureTransaction"
+import TransactionSuccessful from "./SuccessfulTransaction"
+import TransactionFail from "./FailureTransaction"
 import LocationMap from "./LocationMap"
 import ProductListing from "./ProductListing"
 import ProductDetails from "./ProductDetails"
@@ -210,6 +210,33 @@ class App extends React.Component {
                       )
                     } 
                   />
+
+                  <Route exact 
+                    path="/transaction-successful" 
+                    //component={Checkout} 
+                    render={
+                      props => (
+                        <TransactionSuccessful {...props} 
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
+                  />
+
+                  <Route exact 
+                    path="/transaction-failure" 
+                    //component={Checkout} 
+                    render={
+                      props => (
+                        <TransactionFail {...props} 
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
+                  />
+
                   <Route exact 
                     path="/retail-outlet" 
                     //component={RetailOutlet} 

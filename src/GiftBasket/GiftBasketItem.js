@@ -58,17 +58,20 @@ class GiftBasketItem extends React.Component {
               <span style={{ paddingLeft: "10px" }} className="os s6">{sku.volume}</span>
             </div>
 
-            <div className="col">
-              <div className="quantity">
-                <span onClick={() => { this.handleRemove(sku.sku_id) }} className="os s6">
-                  <Icon name="basketMinus" />
-                </span>
-                <span className="os s8">{count}</span>
-                <span onClick={() => { this.handleAdd(sku.sku_id) }} className="os s6">
-                  <Icon name="basketPlus" />
-                </span>
+            {
+              !this.props.readOnly &&
+              <div className="col">
+                <div className="quantity">
+                  <span onClick={() => { this.handleRemove(sku.sku_id) }} className="os s6">
+                    <Icon name="basketMinus" />
+                  </span>
+                  <span className="os s8">{count}</span>
+                  <span onClick={() => { this.handleAdd(sku.sku_id) }} className="os s6">
+                    <Icon name="basketPlus" />
+                  </span>
+                </div>
               </div>
-            </div>
+            }
 
           </div>
         </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import Icon from "Components/icon"
 import "Sass/transaction-status.scss"
 import Moment from "moment"
+import GiftBasketItem from "./../GiftBasket/GiftBasketItem"
 
 class SuccessfulTransaction extends React.Component {
   constructor(props) {
@@ -11,97 +12,104 @@ class SuccessfulTransaction extends React.Component {
       "DC": "Debit Card",
       "NB": "Netbanking"
     }
+    this.state = {
+      basket: []
+    }
+  }
+
+  componentDidMount() {
+    const basket = JSON.parse(localStorage.getItem("basket"))
+    const receiver = JSON.parse(localStorage.getItem("receiver_info"))
+    this.setState({ basket, receiver })
   }
 
   render() {
-    const { res } = this.props
+    // const { res } = this.props
+    const res = {
+      net_amount_debit: "",
+      mode: "CC",
+      txnid: "",
+      addedon: "",
+      receiver_name: "",
+      receiver_num: "",
+      message: ""
+    }
     //console.log("response", res)
     return (
-      <div>
-        <div id="SuccessfulTransaction" className="transaction-status"> 
-          <div className="content">
-            <div className="successful">
-              <div className="header section">
-                <Icon name="success" />
-                <h2 className="cm s1 title">Transaction Successful!</h2>
-                <p className="info">We've informed the recipient about the gift card via SMS</p>
-              </div>
-              <div className="body section">
-                <p className="subheader">Transaction Details</p>
-                <div className="section-content">
-                  <span className="os s9">Amount Paid</span>
-                  <p className="os s8">Rs. { res.net_amount_debit }</p>
-                </div>
-                <div className="section-content">
-                  <span className="os s9">Paid using</span>
-                  <p className="os s8">{ res.mode === "CC" || res.mode === "DC" ? res.cardnum : this.modeMap[res.mode] }</p>
-                </div>
-                <div className="section-content">
-                  <span className="os s9">Transaction ID</span>
-                  <p className="os s8">#{ res.txnid }</p>
-                </div>
-                <div className="section-content">
-                  <span className="os s9">Transaction Date and Time</span>
-                  <p className="os s8">{ res.addedon }</p>
-                </div>
-              </div>
-              <div className="footnote section">
-                <p className="subheader">Gift Card Details</p>
-                <p style={{marginTop: '20px', fontWeight: 'bold'}} className="os s8">To:</p>
-                <div className="section-content">
-                  <p className="os s8">{ res.receiver_name } </p>
-                  <p className="os s8">{ res.receiver_num }</p>
-                </div>
+      <div id="TransactionStatus"> 
+        <div className="container">
+
+          <div style={{ textAlign: "center" }}>
+            <Icon name="success" />
+            <p className="os s1">Transaction Successful!</p>
+            <p style={{ marginTop: "10px" }} className="os s4">
+              We’ve informed the recipient <br />
+              about the gift card via SMS
+            </p>
+          </div>
+
+          <div style={{ marginTop: "40px" }} className="row">
+            <div className="col">
+              <div className="paper gift--basket">
+                <p style={{ borderBottom: "1px solid #dfdfdf", paddingBottom: "12px" }} className="os s5">Drinks Gifted</p>
                 {
-                  res.message.length
-                    ? <div className="section-content">
-                      <span className="os s8" style={{fontWeight: 'bold'}}>Personal Message - </span>
-                      <span className="os s8">{res.message}</span>
-                    </div>
-                    : ""
+                  this.state.basket.map(item => {
+                    const arr = new Array(item.count).fill(1)
+                    return arr.map((x, i) => (
+                      <GiftBasketItem
+                        readOnly
+                        updateBasket={this.updateBasket}
+                        key={i}
+                        item={item}
+                        count={item.count}
+                      />  
+                    ))
+                  })
                 }
               </div>
             </div>
-            <div className="note">
-              <div>
-                <h2>Here's what you can do next</h2>
-                <div className="info">
-                  <span className="steps">
-                    <Icon name="step1" />
-                  </span>
-                  <div className="detail">
-                    <p className="cm s6">
-                      Make it personal!
-                    </p>
-                    <span className="os s7">
-                      Inform your friend about the gift card via Whatsapp
-                    </span>
-                  </div>
+
+            <div className="col">
+              <div className="paper transaction--detail">
+                <p style={{ borderBottom: "1px solid #dfdfdf", paddingBottom: "12px" }} className="os s5">Transaction Details</p>
+                <div>
+                  <p className="os s7">Amount Paid</p>
+                  <p className="os s7">Rs. 5150</p>
                 </div>
-                <div className="info">
-                  <span className="steps">
-                    <Icon name="step2" />
-                  </span>
-                  <div className="detail">
-                    <p className="cm s6">
-                      Download the HipBar app!
-                    </p>
-                    <span className="os s7">
-                      Download the HipBar app to manage your gift cards on the go
-                    </span>
-                  </div>
+
+                <div>
+                  <p className="os s7">Paid Using</p>
+                  <p className="os s7">Rs. 5150</p>
                 </div>
-                <div className="info icon">
-                  <a rel="noopener noreferrer" target="_blank" href="https://itunes.apple.com/in/app/hipbar-delivery/id1179371753?mt=8">
-                    <Icon name="appStore" />
-                  </a>
-                  <a rel="noopener noreferrer" target="_blank" href="https://play.google.com/store/apps/details?id=in.hipbar.hipbar_user_app&hl=en_IN">
-                    <Icon name="googleStore" />
-                  </a>
+
+                <div>
+                  <p className="os s7">Transaction ID</p>
+                  <p className="os s7">Rs. 5150</p>
+                </div>
+
+                <div>
+                  <p className="os s7">Transaction Date and Time</p>
+                  <p className="os s7">Rs. 5150</p>
+                </div>
+              </div>
+              
+              <div className="paper sent--to">
+                <p style={{ borderBottom: "1px solid #dfdfdf", paddingBottom: "12px" }} className="os s5">Sent To</p>
+                <div>
+                  <p className="os s7">gautham bobby</p>
+                  <p className="os s7">+91 8989415866</p>
+                </div>
+
+                <div>
+                  <p className="os s7">Personal Message</p>
+                  <p className="os s7">
+                  Wish you Happy Valentine’s Day and Wish you Happy Valentine’s Day :)
+                  </p>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     )
