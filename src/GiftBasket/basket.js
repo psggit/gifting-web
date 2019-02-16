@@ -5,19 +5,25 @@ import { getBasketTotalPrice } from "./../ProductDetails/SkuItem"
 import { fetchGiftCardSummary } from "../api"
 
 class Basket extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     // this.removeItemFromBasket = this.removeItemFromBasket.bind(this)
     // this.addItemToBasket = this.addItemToBasket.bind(this)
     this.updateBasket = this.updateBasket.bind(this)
     this.state = {
-      basket: JSON.parse(localStorage.getItem("basket")) || [],
+      basket: props.basket || [],
       backUrl: ""
     }
   }
 
   componentDidMount() {
     this.setState({ backUrl: document.referrer })
+  }
+
+  componentDidUpdate() {
+    if (this.props.basket.length !== this.state.basket.length) {
+      this.setState({ basket: this.props.basket })
+    }
   }
 
   updateBasket(skudId, count) {
@@ -35,9 +41,11 @@ class Basket extends React.Component {
     }
 
     const promoCode = localStorage.getItem("promo_code")
-    this.props.updateLocalBasket(updatedBasket)
     if (updatedBasket.length) {
       this.props.setGiftSummary(promoCode, updatedBasket)
+    } else {
+      this.props.updateLocalBasket(updatedBasket)
+      localStorage.removeItem("amount")
     }
   }
   

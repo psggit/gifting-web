@@ -112,6 +112,8 @@ class GiftBasket extends React.Component {
     }
     return fetchGiftCardSummary(giftCardSummaryReq)
       .then(giftSummary => {
+        const updatedBasket = this.getUpdatedBasket(giftSummary.products)
+        this.updateLocalBasket(updatedBasket)
         localStorage.setItem("amount", giftSummary.balance)
         this.setState({
           settingGiftSummary: false,
@@ -134,9 +136,21 @@ class GiftBasket extends React.Component {
     if (!basket.length) {
       localStorage.removeItem("basket")
     } else {
-      localStorage.setItem("basket", basket)
+      localStorage.setItem("basket", JSON.stringify(basket))
     }
     // you were here..
+  }
+
+  getUpdatedBasket(products) {
+    const basket = JSON.parse(localStorage.getItem("basket"))
+    return basket.map((item) => {
+      item.sku.price = this.getPriceUsingSkuId(item.sku.sku_id, products)
+      return item
+    })
+  }
+
+  getPriceUsingSkuId(id, products) {
+    return products.find((item) => item.sku_id === id).display_price
   }
 
   componentDidMount() {
@@ -163,6 +177,7 @@ class GiftBasket extends React.Component {
                     <div className="col">
                       <div className="paper basket">
                         <Basket
+                          basket={this.state.basket}
                           updateLocalBasket={this.updateLocalBasket}
                           getGiftSummary={this.getGiftSummary}
                           setGiftSummary={this.setGiftSummary}
