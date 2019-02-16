@@ -17,10 +17,12 @@ class Personalise extends React.Component {
 
     this.characterLimit = 250
     this.receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
+    this.senderName = localStorage.getItem("username") || ""
+    this.senderNumber = localStorage.getItem("sender_mobile") || ""
     this.state = {
-      senderName: this.gift ? this.gift.senderName : "",
-      senderNumber: this.gift? this.gift.senderNumber: "",
-      giftMessage: this.gift ? this.gift.giftMessage : "",
+      senderName: this.senderName,
+      senderNumber: this.senderNumber,
+      giftMessage: "",
       receiverName: this.receiverInfo ? this.receiverInfo.name : "",
       receiverNumber: this.receiverInfo ? this.receiverInfo.phone : "",
       count: this.gift 
