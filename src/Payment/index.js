@@ -95,11 +95,11 @@ class Payment extends React.Component {
   }
 
   componentWillMount() {
-    // window.scrollTo({
-    //   top: 0,
-    //   left: 0,
-    //   behavior: 'smooth'
-    // })
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
     if (!localStorage.getItem("receiver_info")) {
       console.log("go back")
       this.props.history.goBack()
@@ -490,288 +490,208 @@ class Payment extends React.Component {
           localStorage.getItem("receiver_info")
             ? (
               <div id="checkout">
-                <div className="layout">
-                  {/* <div className="how-to-gift mobile">
-                    <div onClick={this.toggleHowTo} className="how-to-gift-header">
-                      <p style={{ padding: "0 30px", color: "#fff" }} className="os s3">
-                        Gift Card Summary
-                        <span style={{ marginLeft: "10px" }}>
-                          <Icon name="filledDownArrowWhite" />
-                        </span>
-                      </p>
-                    </div>
-                    <div className={`how-to-gift-body ${this.state.isActive ? "active" : ""}`}>
-                      <div className="gift-card-info">
-                        <div>
-                          <p className="os s6">To</p>
-                          <p className="os s7">{this.state.sender_name}<br /> +91 {this.state.sender_num}</p>
-                        </div>
-
-                        <div style={{ marginTop: "20px", borderBottom: "1px solid #dfdfdf", paddingBottom: "20px" }}>
-                          <p className="os s7">
-                            <span className="os s6">Personal Message -</span>{this.state.gift_message}
-                          </p>
-                        </div>
-
-                        <div style={{ marginTop: "20px" }} >
-                          <p className="os s6">From</p>
-                          <p className="os s7">{this.state.receiver_name}<br /> +91 {this.state.receiver_number}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div> */}
-                  <div className="container">
+                <div className="container">
+                  <div className="paper">
                     <div className="row">
-                      <div>
-                        <p 
-                          style={{ 
-                            borderBottom: "1px solid #c2c2c2", 
-                            paddingBottom: "12px", 
-                            marginBottom: "30px", 
-                            cursor: 'pointer', 
-                            color: '#000',
-                            fontWeight: 'bold'
-                          }} 
-                          className="os s8"
+                    <div
+                    style={{
+                      borderBottom: "1px solid #dfdfdf",
+                      paddingBottom: "12px"
+                    }}
+                  >
+                    <a href="/personalise">
+                      <Icon name="back"/>
+                      <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">Peronsalise</span>
+                    </a>
+                  </div>
+
+                    <p style={{ marginTop: "20px", borderBottom: "1px solid #c2c2c2", paddingBottom: "20px" }} className="os s5">To Pay: &#8377;{localStorage.getItem("amount")}</p>
+                    <div className="payment-methods-wrapper">
+                      <p className="os s5">Payment Method</p>
+                      <p className="os s8">All transactions are secure and encrypted.</p>
+
+                      <div className="payment-methods-container">
+                        <Accordian
+                          middleware={this.setCardValues}
+                          setActiveAccordian={this.setActiveAccordian}
+                          activeAccordian={this.state.activeAccordian}
                         >
-                          <span 
-                            style={{
-                              marginRight: "8px",
-                              verticalAlign: 'middle'
-                            }}
-                            onClick={() => this.handleBackClick()}
-                          >
-                            <Icon name="rightArrowBlack" />
-                          </span>
-                          Personalise
-                        </p>
-                      </div>
-                      <div className="col">
-                        <p style={{ borderBottom: "1px solid #c2c2c2", paddingBottom: "20px" }} className="os s5">To Pay: &#8377;{localStorage.getItem("amount")}</p>
-                        <div className="payment-methods-wrapper">
-                          <p className="os s5">Payment Method</p>
-                          <p className="os s8">All transactions are secure and encrypted.</p>
-
-                          <div className="payment-methods-container">
-                            <Accordian
-                              middleware={this.setCardValues}
-                              setActiveAccordian={this.setActiveAccordian}
-                              activeAccordian={this.state.activeAccordian}
-                            >
-                              {
-                                this.state.savedCards.map((item, i) => (
-                                  <AccordianItem key={i + 3} title={item.card_name} id={i + 3} showRadioButton={true}>
-                                    <div className="form-group">
-                                      <label className="os">Card Number</label>
-                                      <input ref={(node) => { this[`cardNum${i + 3}`] = node }} name="saved" defaultValue={item.card_no} disabled type="text" />
-                                    </div>
-
-                                    <div className="form-group">
-                                      <div style={{ width: "130px" }}>
-                                        {/* <label className="os">Expiry Date</label> */}
-                                        <input ref={(node) => { this[`cardExp${i + 3}`] = node }} name="saved" defaultValue={`${item.expiry_month}/${item.expiry_year}`} type="hidden" maxLength={4} />
-                                      </div>
-
-                                      <div style={{ width: "130px", position: "relative" }}>
-                                        <label className="os">CVV</label>
-                                        <input onChange={this.handleCVVChange} ref={(node) => { this[`cardCvv${i + 3}`] = node }} name="saved" type="password" maxLength={4} />
-                                        <div style={{ position: "absolute", top: 0, left: 0 }}></div>
-                                      </div>
-                                      {
-                                        this.state.savedccvvErr.status &&
-                                        <p className="error-message os s9">{this.state.savedccvvErr.value}</p>
-                                      }
-                                    </div>
-
-                                    <div className="form-group">
-                                      {/* <label className="os">Name on card</label> */}
-                                      <input ref={(node) => { this[`cardToken${i + 3}`] = node }} name="saved" defaultValue={item.card_token} type="hidden" />
-                                    </div>
-
-                                    <div className="form-group">
-                                      {/* <label className="os">Name on card</label> */}
-                                      <input ref={(node) => { this[`cardName${i + 3}`] = node }} name="saved" defaultValue={item.name_on_card} type="hidden" />
-                                    </div>
-                                  </AccordianItem>
-                                ))
-                              }
-
-                              <AccordianItem key={1} title="Debit Card / Credit Card" id={1} showRadioButton={true}>
+                          {
+                            this.state.savedCards.map((item, i) => (
+                              <AccordianItem key={i + 3} title={item.card_name} id={i + 3} showRadioButton={true}>
                                 <div className="form-group">
                                   <label className="os">Card Number</label>
-                                  <InputMask
-                                    mask="9999 9999 9999 9999"
-                                    maskChar={null}
-                                    onChange={this.handleCardNumberChange}
-                                  />
-                                  {
-                                    this.state.ccNumErr.status &&
-                                    <p className="error-message os s9">{this.state.ccNumErr.value}</p>
-                                  }
-                                </div>
-
-                                <div className="form-group" style={{ display: "flex" }}>
-                                  <div style={{ width: "130px" }}>
-                                    <label className="os">Expiry Date</label>
-                                    <InputMask
-                                      value={this.state.ccexpyr}
-                                      mask="99 / 9999"
-                                      maskChar={null}
-                                      onChange={this.handleCardExpiryChange}
-                                    />
-                                    {
-                                      this.state.ccexpErr.status &&
-                                      <p className="error-message os s9">{this.state.ccexpErr.value}</p>
-                                    }
-                                  </div>
-
-                                  <div style={{ width: "130px", marginLeft: "30px" }}>
-                                    <label className="os">CVV</label>
-                                    <InputMask mask="9999" maskChar={null} className="cvv--input" value={this.state.ccvv} onChange={this.handleCVVChange} type="password" />
-                                    {
-                                      this.state.ccvvErr.status &&
-                                      <p className="error-message os s9">{this.state.ccvvErr.value}</p>
-                                    }
-                                  </div>
+                                  <input ref={(node) => { this[`cardNum${i + 3}`] = node }} name="saved" defaultValue={item.card_no} disabled type="text" />
                                 </div>
 
                                 <div className="form-group">
-                                  <label className="os">Name on card</label>
-                                  <input value={this.state.ccname} onBlur={(e) => { this.setState({ ccname: this.state.ccname.trim() }) }} onChange={this.handleCardnameChange} type="text" />
+                                  <div style={{ width: "130px" }}>
+                                    {/* <label className="os">Expiry Date</label> */}
+                                    <input ref={(node) => { this[`cardExp${i + 3}`] = node }} name="saved" defaultValue={`${item.expiry_month}/${item.expiry_year}`} type="hidden" maxLength={4} />
+                                  </div>
+
+                                  <div style={{ width: "130px", position: "relative" }}>
+                                    <label className="os">CVV</label>
+                                    <input onChange={this.handleCVVChange} ref={(node) => { this[`cardCvv${i + 3}`] = node }} name="saved" type="password" maxLength={4} />
+                                    <div style={{ position: "absolute", top: 0, left: 0 }}></div>
+                                  </div>
                                   {
-                                    this.state.ccNameErr.status &&
-                                    <p className="error-message os s9">{this.state.ccNameErr.value}</p>
+                                    this.state.savedccvvErr.status &&
+                                    <p className="error-message os s9">{this.state.savedccvvErr.value}</p>
                                   }
                                 </div>
 
-                                {/* <div style={{  display: "flex", alignItems: "center", flexDirection: "row-reverse", justifyContent: "flex-end" }} className="form-group">
-                                <div onClick={() => this.handleSaveCard()} style={{marginBottom: '10px'}}>
-                                  <span style={{marginRight: '10px', display: 'inline-block', verticalAlign: 'middle', cursor: 'pointer'}}>
-                                    {
-                                      this.state.store_card
-                                      ? <Icon name="rectangle" />
-                                      : <Icon name="filledRectangle" />
-                                    }
-                                  </span>
-                                  <span style={{ display: 'inline-block', cursor: 'pointer'}}>Save card for faster transactions</span>
+                                <div className="form-group">
+                                  {/* <label className="os">Name on card</label> */}
+                                  <input ref={(node) => { this[`cardToken${i + 3}`] = node }} name="saved" defaultValue={item.card_token} type="hidden" />
                                 </div>
-                              </div> */}
-                              </AccordianItem>
 
-                              <AccordianItem key={2} title="Net Banking" id={2} showRadioButton={true}>
-                                <div style={{ padding: "0 20px" }}>
-                                  <p style={{ fontWeight: "bold", color: "#000", letterSpacing: "0.5px" }} className="os s8">Popular Banks</p>
-                                  <div ref={(node) => { this.radios = node }} style={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}>
-                                    {
-                                      this.state.popularBanks.slice(0, 3).map((item, i) => (
-                                        <div style={{ width: "120px", cursor: "pointer" }} key={i}>
-                                          {/* <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
-
-                                        <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label> */}
-                                          <div onClick={() => this.handleRadioChange(item.ibibo_code)} style={{ marginBottom: '10px' }}>
-                                            <span style={{ marginRight: '10px', verticalAlign: "middle" }}>
-                                              {
-                                                this.state.bankcode === item.ibibo_code
-                                                  ? <Icon name="filledCircle" />
-                                                  : <Icon name="circle" />
-                                              }
-                                            </span>
-                                            <span style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px", verticalAlign: "middle" }} className="os s8">{item.name}</span>
-                                          </div>
-                                        </div>
-                                      ))
-                                    }
-
-                                    {
-                                      this.state.popularBanks.slice(3).map((item, i) => (
-                                        <div style={{ width: "120px", cursor: "pointer" }} key={i}>
-                                          {/* <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
-                                        <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label> */}
-                                          <div onClick={() => this.handleRadioChange(item.ibibo_code)} style={{ marginBottom: '10px' }}>
-                                            <span style={{ marginRight: '10px', verticalAlign: "middle" }}>
-                                              {
-                                                this.state.bankcode === item.ibibo_code
-                                                  ? <Icon name="filledCircle" />
-                                                  : <Icon name="circle" />
-                                              }
-                                            </span>
-                                            <span style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px", verticalAlign: "middle" }} className="os s8">{item.name}</span>
-                                          </div>
-                                        </div>
-                                      ))
-                                    }
-                                  </div>
-                                  <div>
-                                    <div style={{ marginTop: "20px" }} className="form-group">
-                                      <p style={{ fontWeight: "bold", color: "#000", letterSpacing: "0.5px" }} className="os s8">Other Banks</p>
-                                      <select value={this.state.bankcode} onChange={this.handleSelectChange} style={{ marginTop: "15px", width: "100%" }}>
-                                        {
-                                          (this.state.isPopularSelected || this.state.noBankSelected) &&
-                                          <option value="null">-- Select a Bank --</option>
-                                        }
-                                        {
-                                          this.state.banks.map((item, i) => (
-                                            <option value={item.ibibo_code} key={i}>{item.name}</option>
-                                          ))
-                                        }
-                                      </select>
-                                    </div>
-                                  </div>
+                                <div className="form-group">
+                                  {/* <label className="os">Name on card</label> */}
+                                  <input ref={(node) => { this[`cardName${i + 3}`] = node }} name="saved" defaultValue={item.name_on_card} type="hidden" />
                                 </div>
                               </AccordianItem>
-                            </Accordian>
-                          </div>
-                        </div>
-
-                        <div style={{ marginTop: "30px" }} className="final-payment-button">
-                          <Button style={{textTransform: 'none'}} disabled={this.state.activeAccordian === -1 || this.state.isSubmitting} onClick={this.handleSubmit} icon="rightArrowWhite" primary>PAY Rs. {this.state.amount}</Button>
-                        </div>
-                        {
-                           this.state.selectedPaymentMethod === "card" &&
-                          <form action={`https://${process.env.PAYU_BASE}.payu.in/_payment`} method="post">
-                            {this.getCardBankingForm()}
-                            <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit"></input>
-                          </form>
-                        }
-
-                        {
-                          this.state.selectedPaymentMethod === "net_banking" &&
-                          <form action={`https://${process.env.PAYU_BASE}.payu.in/_payment`} method="post">
-                            {this.getNetBankingForm()}
-                            <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit"></input>
-                          </form>
-                        }
-                      </div>
-
-                      {/* <div className="col">
-                        <GiftCard amount={this.state.amount} />
-                        <div className="gift-card-info">
-                          <div>
-                            <p className="os s6">To</p>
-                            <p className="os s7">{this.state.receiver_name}<br /> +91 - {this.state.receiver_number}</p>
-                          </div>
-                          {
-                            this.state.gift_message.length > 0 &&
-                            <div style={{ marginTop: "20px", borderBottom: "1px solid #dfdfdf", paddingBottom: "20px" }}>
-                              <p className="os s7">
-                                <span className="os s6">Personal Message</span>
-                                <p>{this.state.gift_message}</p>
-                              </p>
-                            </div>
+                            ))
                           }
 
-                          <div style={{ marginTop: "20px" }} >
-                            <p className="os s6">From</p>
-                            <p className="os s7">{this.state.senderName}<br /> +91 - {this.state.sender_num}</p>
-                          </div>
-                        </div>
-                      </div> */}
+                          <AccordianItem key={1} title="Debit Card / Credit Card" id={1} showRadioButton={true}>
+                            <div className="form-group">
+                              <label className="os">Card Number</label>
+                              <InputMask
+                                mask="9999 9999 9999 9999"
+                                maskChar={null}
+                                onChange={this.handleCardNumberChange}
+                              />
+                              {
+                                this.state.ccNumErr.status &&
+                                <p className="error-message os s9">{this.state.ccNumErr.value}</p>
+                              }
+                            </div>
+
+                            <div className="form-group" style={{ display: "flex" }}>
+                              <div style={{ width: "130px" }}>
+                                <label className="os">Expiry Date</label>
+                                <InputMask
+                                  value={this.state.ccexpyr}
+                                  mask="99 / 9999"
+                                  maskChar={null}
+                                  onChange={this.handleCardExpiryChange}
+                                />
+                                {
+                                  this.state.ccexpErr.status &&
+                                  <p className="error-message os s9">{this.state.ccexpErr.value}</p>
+                                }
+                              </div>
+
+                              <div style={{ width: "130px", marginLeft: "30px" }}>
+                                <label className="os">CVV</label>
+                                <InputMask mask="9999" maskChar={null} className="cvv--input" value={this.state.ccvv} onChange={this.handleCVVChange} type="password" />
+                                {
+                                  this.state.ccvvErr.status &&
+                                  <p className="error-message os s9">{this.state.ccvvErr.value}</p>
+                                }
+                              </div>
+                            </div>
+
+                            <div className="form-group">
+                              <label className="os">Name on card</label>
+                              <input value={this.state.ccname} onBlur={(e) => { this.setState({ ccname: this.state.ccname.trim() }) }} onChange={this.handleCardnameChange} type="text" />
+                              {
+                                this.state.ccNameErr.status &&
+                                <p className="error-message os s9">{this.state.ccNameErr.value}</p>
+                              }
+                            </div>
+                          </AccordianItem>
+
+                          <AccordianItem key={2} title="Net Banking" id={2} showRadioButton={true}>
+                            <div style={{ padding: "0 20px" }}>
+                              <p style={{ fontWeight: "bold", color: "#000", letterSpacing: "0.5px" }} className="os s8">Popular Banks</p>
+                              <div ref={(node) => { this.radios = node }} style={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}>
+                                {
+                                  this.state.popularBanks.slice(0, 3).map((item, i) => (
+                                    <div style={{ width: "120px", cursor: "pointer" }} key={i}>
+                                      {/* <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
+
+                                    <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label> */}
+                                      <div onClick={() => this.handleRadioChange(item.ibibo_code)} style={{ marginBottom: '10px' }}>
+                                        <span style={{ marginRight: '10px', verticalAlign: "middle" }}>
+                                          {
+                                            this.state.bankcode === item.ibibo_code
+                                              ? <Icon name="filledCircle" />
+                                              : <Icon name="circle" />
+                                          }
+                                        </span>
+                                        <span style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px", verticalAlign: "middle" }} className="os s8">{item.name}</span>
+                                      </div>
+                                    </div>
+                                  ))
+                                }
+
+                                {
+                                  this.state.popularBanks.slice(3).map((item, i) => (
+                                    <div style={{ width: "120px", cursor: "pointer" }} key={i}>
+                                      {/* <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
+                                    <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label> */}
+                                      <div onClick={() => this.handleRadioChange(item.ibibo_code)} style={{ marginBottom: '10px' }}>
+                                        <span style={{ marginRight: '10px', verticalAlign: "middle" }}>
+                                          {
+                                            this.state.bankcode === item.ibibo_code
+                                              ? <Icon name="filledCircle" />
+                                              : <Icon name="circle" />
+                                          }
+                                        </span>
+                                        <span style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px", verticalAlign: "middle" }} className="os s8">{item.name}</span>
+                                      </div>
+                                    </div>
+                                  ))
+                                }
+                              </div>
+                              <div>
+                                <div style={{ marginTop: "20px" }} className="form-group">
+                                  <p style={{ fontWeight: "bold", color: "#000", letterSpacing: "0.5px" }} className="os s8">Other Banks</p>
+                                  <select value={this.state.bankcode} onChange={this.handleSelectChange} style={{ marginTop: "15px", width: "100%" }}>
+                                    {
+                                      (this.state.isPopularSelected || this.state.noBankSelected) &&
+                                      <option value="null">-- Select a Bank --</option>
+                                    }
+                                    {
+                                      this.state.banks.map((item, i) => (
+                                        <option value={item.ibibo_code} key={i}>{item.name}</option>
+                                      ))
+                                    }
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </AccordianItem>
+                        </Accordian>
+                      </div>
+                    </div>
+
+                    <div style={{ marginTop: "30px" }} className="final-payment-button">
+                      <Button style={{textTransform: 'none'}} disabled={this.state.activeAccordian === -1 || this.state.isSubmitting} onClick={this.handleSubmit} icon="rightArrowWhite" primary>PAY Rs. {this.state.amount}</Button>
+                    </div>
+                    {
+                        this.state.selectedPaymentMethod === "card" &&
+                      <form action={`https://${process.env.PAYU_BASE}.payu.in/_payment`} method="post">
+                        {this.getCardBankingForm()}
+                        <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit"></input>
+                      </form>
+                    }
+
+                    {
+                      this.state.selectedPaymentMethod === "net_banking" &&
+                      <form action={`https://${process.env.PAYU_BASE}.payu.in/_payment`} method="post">
+                        {this.getNetBankingForm()}
+                        <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit"></input>
+                      </form>
+                    }
                     </div>
                   </div>
                 </div>
-                <div className="final-payment-button mobile">
+                {/* <div className="final-payment-button mobile">
                   <Button style={{textTransform: 'none'}} disabled={this.state.activeAccordian === -1 || this.state.isSubmitting} onClick={this.handleSubmit} icon="rightArrowWhite" primary>PAY Rs. {this.state.amount}</Button>
-                </div>
+                </div> */}
               </div>
             )
             : ""

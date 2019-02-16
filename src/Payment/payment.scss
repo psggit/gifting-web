@@ -1,19 +1,20 @@
 @import "./../sass/base.scss";
 
 #checkout {
-  margin-top: 100px;
-  background-color: #f1f1f1;
-
-  // .cvv--input::-webkit-input-placeholder {
-  //   transform: scale(1.4);
-  //   transform-origin: 0 50%;
-  // }
-  .layout {
-    padding: 48px 100px;
-  }
 
   .final-payment-button.mobile {
     display: none;
+  }
+
+  .paper {
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    border-radius: 4px;
+    padding: 40px;
+  }
+
+  .row {
+    max-width: 560px;
   }
 
   .gift-card-info {
@@ -35,17 +36,6 @@
     }
   }
 
-  .how-to-gift.mobile {
-    display: none;
-    background-color: #fff;
-    svg {
-      margin-top: 30px;
-    }
-    .gift-card-info {
-      margin-top: 0;
-    }
-  }
-
   .os.s5 {
     font-weight: bold;
     letter-spacing: 0.6px;
@@ -57,61 +47,6 @@
     letter-spacing: 0.5px;
   }
 
-  // .row {
-  //   display: flex;
-  //   justify-content: flex-start;
-  // }
-
-  .container {
-    border: 1px solid #c1c1c1;
-    border-radius: 4px;
-    // padding: 5.6%;
-    // margin: 0% 5.6%;
-    background: #fff;
-    
-    p span {
-      svg {
-        width: 16px;
-        height: 13px;
-      }
-    }
-  }
-
-  .col {
-    &:first-child {
-      width: 500px;
-      max-width: 100%;
-    }
-
-    &:last-child {
-      width: 400px;
-      text-align: left;
-    }
-
-    svg {
-      width: 16px;
-      height: 13px;
-    }
-
-  //  .gift-card-info {
-  //    display: inline-block;
-  //    width: 100%;
-  //    margin-top: 30px;
-  //    text-align: left;
-  //    padding: 20px;
-  //    background-color: #fff;
-  //    .os.s7 {
-  //     line-height: 1.6;
-  //     letter-spacing: 0.5px;
-  //     color: #000000;
-  //    }
-  //    .os.s6 {
-  //      font-weight: 600;
-  //     letter-spacing: 0.6px;
-  //     color: #000000;
-  //    }
-  //  }
-  }
 
   .payment-methods-wrapper {
     margin-top: 20px;
@@ -119,97 +54,17 @@
 
   .payment-methods-container {
     margin-top: 20px;
-    // background-color: #f5f5f5;
     border: 1px solid #dddbda;
     input[type=checkbox] {
       width: inherit;
     }
-    // padding: 20px;
-
-    // select {
-    //   background-color: #fff;
-    //   height: 38px;
-    //   padding: 0 20px;
-    // }
   }
 }
 
-
-@media only screen and (max-width: 1060px) {
+@media only screen and (max-width: $sm) {
   #checkout {
-    .how-to-gift.mobile {
-      z-index: 1;
-      display: block;
-    }
-    .how-to-gift-body {
-      margin-top: 162px;
-      max-height: 0;
-      padding: 0 20px;
-      overflow: hidden;
-      transition: all 0.2s ease-in;
-    }
-    .how-to-gift-body.active {
+    .paper {
       padding: 20px;
-      max-height: 1000px;
-    }
-    .how-to-gift.mobile .how-to-gift-header {
-      position: fixed;
-      top: 100px;
-      left: 0;
-      text-align: left;
-      background-color: #000;
-      line-height: 60px;
-      width: 100%;
-      z-index: 2;
-      p {
-        font-size: 16px;
-      }
-    }
-    // .row {
-    //   justify-content: space-around;
-    //   // flex-direction: column;
-    //   .col:last-child {
-    //     display: none;
-    //   }
-    // }
-  }
-}
-
-@media only screen and (max-width: 1125px) {
-  #checkout {
-    .row {
-      justify-content: space-between;
-    }
-  }
-}
-
-@media only screen and (max-width: 560px) {
-  #checkout {
-    .row {
-      display: block;
-
-      .col:last-child {
-        width: 100%;
-
-        .final-payment-button {
-          display: none;
-        }
-      }
-    }
-
-    .layout {
-      padding: 12px 0px;
-    }
-
-    .final-payment-button.mobile {
-      display: block;
-      background: #fff;
-      padding: 12px 24px;
-      text-align: center;
-  
-      button {
-        width: 100%;
-      }
     }
   }
 }
