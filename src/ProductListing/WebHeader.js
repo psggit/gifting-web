@@ -41,7 +41,7 @@ class WebHeader extends React.Component {
             <p className="os s6">Showing products in:</p>
             <CitySelect clearBasket={this.clearBasket} {...this.props} activeCity={this.props.match.params.citySlug} />
           </div>
-          <Search placeholder="Search for products" />
+          {/* <Search placeholder="Search for products" /> */}
         </div>
 
         <div className="row">

@@ -21,12 +21,12 @@ class MobileHeader extends React.Component {
     return (
       <div id="product--listing__m-header">
         <div className="row">
-          <Search
+          {/* <Search
             onFocus={this.handleFocus}
             placeholder="Search for products"
             onSearch={this.handleSearch}
             cancelSearch={this.cancelSearch}
-          />
+          /> */}
           <CitySelect {...this.props} activeCity={this.props.match.params.citySlug} />
         </div>
 
