@@ -18,6 +18,7 @@ class SelectName extends React.Component {
   componentDidMount() {
     localStorage.removeItem("receiver_info")
     localStorage.removeItem("amount")
+    localStorage.removeItem("basket")
   }
 
   handleChange(val) {
