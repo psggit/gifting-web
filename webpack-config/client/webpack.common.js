@@ -29,6 +29,12 @@ module.exports = {
       filename: "landing.html",
       template: path.resolve(__dirname, "./../../html/landing.html")
     }),
+    new HtmlWebpackPlugin({
+      // excludeChunks: ["transaction_success", "transaction_failure"],
+      title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "ssr.html",
+      template: path.resolve(__dirname, "./../../src/ssr.html")
+    }),
     // new HtmlWebpackPlugin({
     //   excludeChunks: ["transaction_success", "transaction_failure"],
     //   title: "",

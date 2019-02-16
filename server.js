@@ -78,17 +78,19 @@ app.post("/transaction-successful", (req, res) => {
     const html = fs.readFileSync("./dist/transaction-success.html", "utf-8")
     const [head, tail] = html.split("{content}")
     res.write(head)
-    // console.log(req.query)
-    req.body.message = req.query.message
-    req.body.receiver_name = req.query.receiver_name
-    req.body.receiver_num = req.query.receiver_num
-    //console.log("res body", req.body)
-    const reactElement = React.createElement(TransactionSuccess, { res: req.body })
+ 
+    const newTail = tail.split("{script}")
+      .join(`
+      <script id="ssr__script">
+        window.__TXN__ = ${JSON.stringify(req.body)}
+      </script>
+      `)
+    const reactElement = React.createElement(TransactionSuccess)
     // console.log(renderToString(reactElement))
     const stream = renderToNodeStream(reactElement)
     stream.pipe(res, { end: false })
     stream.on("end", () => {
-      res.write(tail)
+      res.write(newTail)
       res.end()
     })
   })
@@ -101,17 +103,19 @@ app.post("/transaction-cancelled", (req, res) => {
     const html = fs.readFileSync("./dist/transaction-failed.html", "utf-8")
     const [head, tail] = html.split("{content}")
     res.write(head)
-    console.log(req.query)
-    req.body.message = req.query.message
-    req.body.receiver_name = req.query.receiver_name
-    req.body.receiver_num = req.query.receiver_num
+    const newTail = tail.split("{script}")
+      .join(`
+      <script>
+        window.__TXN__ = ${JSON.stringify(req.body)}
+      </script>
+      `)
 
     const reactElement = React.createElement(TransactionFailure, { res: req.body })
     // console.log(renderToString(reactElement))
     const stream = renderToNodeStream(reactElement)
     stream.pipe(res, { end: false })
     stream.on("end", () => {
-      res.write(tail)
+      res.write(newTail)
       res.end()
     })
   })
@@ -124,17 +128,19 @@ app.post("/transaction-failure", (req, res) => {
     const html = fs.readFileSync("./dist/transaction-failed.html", "utf-8")
     const [head, tail] = html.split("{content}")
     res.write(head)
-    console.log(req.query)
-    req.body.message = req.query.message
-    req.body.receiver_name = req.query.receiver_name
-    req.body.receiver_num = req.query.receiver_num
+    const newTail = tail.split("{script}")
+      .join(`
+      <script>
+        window.__TXN__ = ${JSON.stringify(req.body)}
+      </script>
+      `)
 
-    const reactElement = React.createElement(TransactionFailure, { res: req.body })
+    const reactElement = React.createElement(TransactionFailure)
     // console.log(renderToString(reactElement))
     const stream = renderToNodeStream(reactElement)
     stream.pipe(res, { end: false })
     stream.on("end", () => {
-      res.write(tail)
+      res.write(newTail)
       res.end()
     })
   })
@@ -230,7 +236,6 @@ app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
 
 
     const reactElement = React.createElement(BrandDetailPage, { brand: parsed.brand })
-    console.log(reactElement)
     const stream = renderToNodeStream(reactElement)
     stream.pipe(res, { end: false })
     stream.on("end", () => {

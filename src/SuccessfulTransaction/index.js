@@ -14,10 +14,10 @@ class SuccessfulTransaction extends React.Component {
     }
     this.state = {
       basket: [],
-      amount_paid: props.res ? props.res.net_amount_debit : "",
-      paid_using: props.res ? (props.res.mode === "CC" || res.mode === "DC" ? props.res.cardnum : this.modeMap[props.res.mode]) : "",
-      txnid: props.res ? props.res.txnid : "",
-      txn_time: props.res ? props.res.addedon : "",
+      amount_paid: "",
+      paid_using: "",
+      txnid: "",
+      txn_time: "",
       receiver_name: "",
       receiver_num: "",
       message: ""
@@ -25,23 +25,24 @@ class SuccessfulTransaction extends React.Component {
   }
 
   componentDidMount() {
+    const txn = window.__TXN__
+    delete window.__TXN__
+    document.getElementById("ssr__script").innerHTML = ""
     const basket = JSON.parse(localStorage.getItem("basket"))
     const receiver = JSON.parse(localStorage.getItem("receiver_info"))
-    this.setState({ basket, messge: receiver.message, receiver_name: receiver.name, receiver_num: receiver.mobile })
+    this.setState({
+      basket,
+      message: receiver.message,
+      receiver_name: receiver.name,
+      receiver_num: receiver.mobile,
+      amount_paid: txn.net_amount_debit,
+      paid_using: txn.mode === "CC" || txn.mode === "DC" ? txn.cardnum : this.modeMap[txn.mode],
+      txnid: txn.txnid,
+      txn_time: Moment(txn.addedon).format("DD/MM/YYYY, hh:mm A")
+    })
   }
 
   render() {
-    // const { res } = this.props
-    const res = {
-      net_amount_debit: "",
-      mode: "CC",
-      txnid: "",
-      addedon: "",
-      receiver_name: "",
-      receiver_num: "",
-      message: ""
-    }
-    //console.log("response", res)
     return (
       <div id="TransactionStatus"> 
         <div className="container">
