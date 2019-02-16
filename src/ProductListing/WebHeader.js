@@ -19,12 +19,18 @@ const genres = [
 class WebHeader extends React.Component {
   constructor() {
     super()
+    this.clearBasket = this.clearBasket.bind(this)
     const basket = JSON.parse(localStorage.getItem("basket"))
-    this.basketTotal = basket ? getBasketTotal(basket) : 0
     this.state = {
       active: -1,
-      cityId: -1
+      cityId: -1,
+      basketTotal:  basket ? getBasketTotal(basket) : 0
     }
+  }
+
+  clearBasket() {
+    localStorage.removeItem("basket")
+    this.setState({ basket: [], basketTotal: 0 })
   }
 
   render() {
@@ -33,7 +39,7 @@ class WebHeader extends React.Component {
         <div className="row">
           <div style={{ display: "flex", alignItems: "center" }}>
             <p className="os s6">Showing products in:</p>
-            <CitySelect {...this.props} activeCity={this.props.match.params.citySlug} />
+            <CitySelect clearBasket={this.clearBasket} {...this.props} activeCity={this.props.match.params.citySlug} />
           </div>
           <Search placeholder="Search for products" />
         </div>
@@ -42,7 +48,7 @@ class WebHeader extends React.Component {
           <p className="os s6">Showing products for:</p>
           <a href="/basket" className="os s6">
             <Icon name="giftBasket" />
-            <span style={{ marginLeft: "10px" }}>Gift Basket ({this.basketTotal})</span>
+            <span style={{ marginLeft: "10px" }}>Gift Basket ({this.state.basketTotal})</span>
           </a>
         </div>
 

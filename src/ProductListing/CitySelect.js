@@ -23,10 +23,15 @@ class CitySelect extends React.Component {
   componentDidMount() {
     fetchCities()
       .then(cities => {
-        this.setState({ cities })
+        this.setState({ cities: cities.sort((a, b) => a.id - b.id) })
         const activeCity = capitalize(this.props.activeCity)
         const cityIdx = this.getCityIndexByName(activeCity)
-        localStorage.setItem("gps", cities[cityIdx].gps)
+        const city = {
+          gps: cities[cityIdx].gps,
+          name: cities[cityIdx].name
+        }
+        console.log(city)
+        localStorage.setItem("city", JSON.stringify(city))
         this.setState({ cityIdx })
       })
   }
@@ -45,6 +50,7 @@ class CitySelect extends React.Component {
 
     this.setState({ cityIdx: parseInt(cityIdx) })
     this.props.onCityChange(selectedCity)
+    this.props.clearBasket()
   }
   
   render() {

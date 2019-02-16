@@ -113,7 +113,7 @@ class ProductListing extends React.Component {
   }
 
   handleCityChange(city) {
-    localStorage.setItem("gps", city.gps)
+    localStorage.setItem("city", JSON.stringify({ name: city.name, gps: city.gps }))
     localStorage.removeItem("basket")
     const { WebHeaderKey } = this.state
     const key = WebHeaderKey + 1
@@ -264,7 +264,7 @@ class ProductListing extends React.Component {
                 />
                 : <WebHeader
                   {...this.props}
-                  key={this.state.WebHeaderKey}
+                  // key={this.state.WebHeaderKey}
                   handleGenreChange={this.handleGenreChange}
                   genres={this.state.genres}
                   onCityChange={this.handleCityChange}
