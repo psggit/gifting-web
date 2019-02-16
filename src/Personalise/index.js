@@ -201,13 +201,12 @@ class Personalise extends React.Component {
                   </div>
                   <input 
                     value={this.state.senderNumber} 
-                    disabled={true}
                     onChange={this.handlePhoneChange} 
                     name="senderNumber" 
                     maxLength="10" 
                     className={`mobile`}
                     placeholder="Enter your phone number"
-                    type="text" readOnly={this.state.isLoggedIn} 
+                    type="text" readOnly={localStorage.getItem("hasura-id") ? true : false} 
                   />
                 </div>
               </div>
@@ -256,7 +255,7 @@ class Personalise extends React.Component {
                     <div style={{ marginTop: "20px" }} className="payment-button">
                       <Button
                         disabled={!this.state.agreement}
-                        onClick={() => { mountModal(SignIn({})) }}
+                        onClick={() => { mountModal(SignIn({ mobile: this.state.senderNumber })) }}
                         primary 
                         icon="rightArrowWhite">
                         Sign in to proceed
@@ -266,7 +265,7 @@ class Personalise extends React.Component {
                     <div className="payment-button mobile">
                       <Button
                         disabled={!this.state.agreement}
-                        onClick={() => { mountModal(SignIn({})) }}
+                        onClick={() => { mountModal(SignIn({ mobile: this.state.senderNumber })) }}
                         primary 
                         icon="rightArrowWhite">
                         Sign in to proceed
