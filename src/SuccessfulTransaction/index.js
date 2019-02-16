@@ -13,14 +13,21 @@ class SuccessfulTransaction extends React.Component {
       "NB": "Netbanking"
     }
     this.state = {
-      basket: []
+      basket: [],
+      amount_paid: props.res ? props.res.net_amount_debit : "",
+      paid_using: props.res ? (props.res.mode === "CC" || res.mode === "DC" ? props.res.cardnum : this.modeMap[props.res.mode]) : "",
+      txnid: props.res ? props.res.txnid : "",
+      txn_time: props.res ? props.res.addedon : "",
+      receiver_name: "",
+      receiver_num: "",
+      message: ""
     }
   }
 
   componentDidMount() {
     const basket = JSON.parse(localStorage.getItem("basket"))
     const receiver = JSON.parse(localStorage.getItem("receiver_info"))
-    this.setState({ basket, receiver })
+    this.setState({ basket, messge: receiver.message, receiver_name: receiver.name, receiver_num: receiver.mobile })
   }
 
   render() {
@@ -74,36 +81,36 @@ class SuccessfulTransaction extends React.Component {
                 <p style={{ borderBottom: "1px solid #dfdfdf", paddingBottom: "12px" }} className="os s5">Transaction Details</p>
                 <div>
                   <p className="os s7">Amount Paid</p>
-                  <p className="os s7">Rs. 5150</p>
+                  <p className="os s7">Rs. {this.state.amount_paid}</p>
                 </div>
 
                 <div>
                   <p className="os s7">Paid Using</p>
-                  <p className="os s7">Rs. 5150</p>
+                  <p className="os s7">{this.state.paid_using}</p>
                 </div>
 
                 <div>
                   <p className="os s7">Transaction ID</p>
-                  <p className="os s7">Rs. 5150</p>
+                  <p className="os s7">{this.state.txnid}</p>
                 </div>
 
                 <div>
                   <p className="os s7">Transaction Date and Time</p>
-                  <p className="os s7">Rs. 5150</p>
+                  <p className="os s7">{this.state.txn_time}</p>
                 </div>
               </div>
               
               <div className="paper sent--to">
                 <p style={{ borderBottom: "1px solid #dfdfdf", paddingBottom: "12px" }} className="os s5">Sent To</p>
                 <div>
-                  <p className="os s7">gautham bobby</p>
-                  <p className="os s7">+91 8989415866</p>
+                  <p className="os s7">{this.state.receiver_name}</p>
+                  <p className="os s7">{this.state.receiver_num}</p>
                 </div>
 
                 <div>
                   <p className="os s7">Personal Message</p>
                   <p className="os s7">
-                  Wish you Happy Valentine’s Day and Wish you Happy Valentine’s Day :)
+                    {this.state.message}
                   </p>
                 </div>
               </div>

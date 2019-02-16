@@ -84,14 +84,11 @@ class Personalise extends React.Component {
 
     if(senderName.length && !receiverNumberErr.status && !receiverNameErr.status) {
       // this.createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName)
-      // localStorage.setItem("gift", JSON.stringify({
-      //   amount,
-      //   giftMessage,
-      //   receiverName,
-      //   receiverNumber,
-      //   senderName,
-      //   senderNumber: this.state.senderNumber,
-      // }))
+      const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
+      receiverInfo.message = giftMessage
+      receiverInfo.mobile = receiverNumber
+      receiverInfo.name = receiverName
+      localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
       this.props.history.push("/checkout")
     }
   }

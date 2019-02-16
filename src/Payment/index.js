@@ -100,7 +100,7 @@ class Payment extends React.Component {
     //   left: 0,
     //   behavior: 'smooth'
     // })
-    if (!localStorage.getItem("gift")) {
+    if (!localStorage.getItem("receiver_info")) {
       console.log("go back")
       this.props.history.goBack()
     }
@@ -487,7 +487,7 @@ class Payment extends React.Component {
     return (
       <div>
         {
-          localStorage.getItem("gift")
+          localStorage.getItem("receiver_info")
             ? (
               <div id="checkout">
                 <div className="layout">
@@ -776,6 +776,7 @@ class Payment extends React.Component {
             )
             : ""
         }
+        <Footer />
       </div>
     )
   }

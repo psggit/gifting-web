@@ -61,7 +61,8 @@ class GiftBasket extends React.Component {
       discount: null,
       giftSummary: null,
       isPromoApplied: false,
-      settingGiftSummary: false
+      settingGiftSummary: false,
+      viewProductsUrl: ""
     }
     this.setBasketTotalPrice = this.setBasketTotalPrice.bind(this)
     this.onApplyPromo = this.onApplyPromo.bind(this)
@@ -153,8 +154,18 @@ class GiftBasket extends React.Component {
     return products.find((item) => item.sku_id === id).display_price
   }
 
+  componentWillMount() {
+    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
+    if (!receiverInfo) {
+      location.href = "/send-gift"
+    }
+  }
+
   componentDidMount() {
     const basket = JSON.parse(localStorage.getItem("basket"))
+    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
+    this.setState({ viewProductsUrl: `/brands/${receiverInfo.cityName}/${receiverInfo.genreName}`})
+
     if (basket) {
       const promoCode = localStorage.getItem("promo_code")
       this.setGiftSummary(promoCode, basket, () => {
@@ -231,7 +242,7 @@ class GiftBasket extends React.Component {
                 <div className="paper no-basket">
                   <p className="os s4">Gift basket is empty</p>
                   <div style={{ marginTop: "20px" }}>
-                    <a href="/"><Button primary>Add products</Button></a>
+                    <a href={this.state.viewProductsUrl}><Button primary>Add products</Button></a>
                   </div>
                 </div>
               )
