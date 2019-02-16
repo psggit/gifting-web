@@ -52,10 +52,10 @@ class SelectCity extends React.Component {
   componentDidMount() {
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     fetchCities().then(data => {
-      if (receiverInfo) {
-        this.setState({ activeCity: this.getCityIdByName(data, receiverInfo.cityName) || -1, name: receiverInfo.name })
+      if (receiverInfo.cityName) {
+        this.setState({ activeCity: this.getCityIdByName(data, receiverInfo.cityName) || -1 })
       }
-      this.setState({ cities: data })
+      this.setState({ cities: data, name: receiverInfo.name })
     })
   }
  

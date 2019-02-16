@@ -37,16 +37,17 @@
   .row:last-child {
     justify-content: flex-start;
     align-items: baseline;
-    padding-top: 10px;
+    padding-top: 40px;
     .genre--item {
       margin-bottom: 10px;
       cursor: pointer;
-      opacity: 0.4;
+      opacity: 0.5;
+      border: 1px solid #333;
       margin-right: 10px;
       text-align: left;
       width: 160px;
       line-height: 32px;
-      border-radius: 32px;
+      border-radius: 2px;
       padding: 0 20px;
       > span {
         display: none;
@@ -58,10 +59,6 @@
           color: #fff !important;
         }
       }
-    }
-
-    .genre--item:not(.active) {
-      border: 0;
     }
 
     .genre--item.active {

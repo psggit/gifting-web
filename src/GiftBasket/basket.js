@@ -17,7 +17,8 @@ class Basket extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ backUrl: document.referrer })
+    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
+    this.setState({ backUrl: `/brands/${receiverInfo.cityName}/${receiverInfo.genreName}` })
   }
 
   componentDidUpdate() {

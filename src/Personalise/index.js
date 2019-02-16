@@ -112,7 +112,7 @@ class Personalise extends React.Component {
                 paddingBottom: "12px"
               }}
             >
-              <a href={this.state.viewProductsUrl}>
+              <a href="/basket">
                 <Icon name="back"/>
                 <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">Back</span>
               </a>
