@@ -6,9 +6,10 @@ const WorkboxPlugin = require('workbox-webpack-plugin')
   
 module.exports = {
   entry: {
-    transaction_success: path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
-    transaction_failure: path.resolve(__dirname, "./../../src/FailureTransaction"),
-    brand_detail: path.resolve(__dirname, "./../../src/ProductDetails"),
+    // transaction_success: path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
+    // transaction_failure: path.resolve(__dirname, "./../../src/FailureTransaction"),
+    // brand_detail: path.resolve(__dirname, "./../../src/ProductDetails"),
+    // landing: path.resolve(__dirname, "./../../src/landing-new"),
     app: path.resolve(__dirname, "./../../src/App.js"),
   },
   plugins: [
@@ -23,11 +24,17 @@ module.exports = {
       skipWaiting: true
     }),
     new HtmlWebpackPlugin({
-      excludeChunks: ["transaction_success", "transaction_failure"],
-      title: "",
-      filename: "ssr.html",
-      template: path.resolve(__dirname, "./../../src/ssr.html")
+      // excludeChunks: ["transaction_success", "transaction_failure"],
+      title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "landing.html",
+      template: path.resolve(__dirname, "./../../html/landing.html")
     }),
+    // new HtmlWebpackPlugin({
+    //   excludeChunks: ["transaction_success", "transaction_failure"],
+    //   title: "",
+    //   filename: "ssr.html",
+    //   template: path.resolve(__dirname, "./../../src/ssr.html")
+    // }),
     new HtmlWebpackPlugin({
       // chunks: ["transaction_success"],
       title: "Transaction Successful",
@@ -41,9 +48,9 @@ module.exports = {
       template: path.resolve(__dirname, "./../../src/payment-status.html")
     }),
     new HtmlWebpackPlugin({
-      excludeChunks: ["transaction_success", "transaction_failure"],
+      // excludeChunks: ["transaction_success", "transaction_failure"],
       filename: "index.html",
-      title: "Output Management",
+      title: "",
       template: path.resolve(__dirname, "./../../index.html")
     }),
     new webpack.DefinePlugin({

@@ -11,7 +11,8 @@ const config = {
   entry: {
     "transaction_success": path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
     "transaction_failure": path.resolve(__dirname, "./../../src/FailureTransaction"),
-    "brand_detail": path.resolve(__dirname, "./../../src/ProductDetails")
+    "brand_detail": path.resolve(__dirname, "./../../src/ProductDetails"),
+    "landing": path.resolve(__dirname, "./../../src/landing-new")
   },
   output: {
     path: path.resolve(__dirname, "./../../dist-ssr"),

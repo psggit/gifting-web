@@ -7,7 +7,6 @@ import FirstGiftCard from "Components/gift-card-ad"
 import Icon from "Components/icon"
 import {readCookie} from "Utils/session-utils"
 import Footer from "Components/footer"
-import bgImage from "./../../images/frame0141.png"
 import Button from "Components/button"
 
 class Landing extends React.Component {
@@ -37,7 +36,7 @@ class Landing extends React.Component {
     }
     return(
       <div id="landing-new">
-        <Layout image={bgImage}>
+        <Layout image={""}>
           <div className="header-container">
             <div className="company-logo" >
               <span style={{cursor: 'pointer'}} onClick={() => {location.href="/"}}>
@@ -57,7 +56,7 @@ class Landing extends React.Component {
         <Slider />
         <div className="steps">
           <div className="step-image">
-            <img src="https://res.cloudinary.com/www-hipbar-com/image/upload/q_auto:good/v1550240057/Gifting-website/Step1.jpg" />
+            <img src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240057/Gifting-website/Step1.webp" />
           </div>
           <div className="step-notes">
             <div>
@@ -69,7 +68,7 @@ class Landing extends React.Component {
 
         <div className="steps">
           <div className="step-image">
-            <img src="https://res.cloudinary.com/www-hipbar-com/image/upload/q_auto:good/v1550240053/Gifting-website/Step2.jpg" />
+            <img src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240053/Gifting-website/Step2.webp" />
           </div>
           <div className="step-notes">
             <div>
@@ -81,7 +80,7 @@ class Landing extends React.Component {
 
         <div className="steps">
           <div className="step-image">
-            <img src="https://res.cloudinary.com/www-hipbar-com/image/upload/q_auto:good/v1550240058/Gifting-website/Step3.jpg" />
+            <img src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240058/Gifting-website/Step3.webp" />
           </div>
           <div className="step-notes">
             <div>

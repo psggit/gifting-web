@@ -10,15 +10,13 @@ import CreateHistory from 'history/createBrowserHistory'
 import LegalDrinkingAge from './LegalDrinkingAge'
 import RedeemingGiftCard from './RedeemingGiftCard'
 import LandingPage from "./landing-new"
-import UsingGiftCard from './GiftCardInfo'
-import SendGiftCards from './SendGift'
 import TransactionHistory from "./TransactionHistory"
 import Checkout from "./Payment"
 import RetailOutlet from "./RetailOutlet"
 import FAQ from "./FAQ"
 import Personalise from "./Personalise"
-import TransactionSuccessful from "./SuccessfulTransaction"
-import TransactionFail from "./FailureTransaction"
+// import TransactionSuccessful from "./SuccessfulTransaction"
+// import TransactionFail from "./FailureTransaction"
 import LocationMap from "./LocationMap"
 import ProductListing from "./ProductListing"
 import ProductDetails from "./ProductDetails"
@@ -33,12 +31,15 @@ import GetStarted from "./SendGiftWizard/GetStarted"
 import SelectName from "./SendGiftWizard/SelectName"
 import SelectCity from "./SendGiftWizard/SelectCity"
 import SelectFavDrink from "./SendGiftWizard/FavDrink"
-import Footer from "Components/footer"
+// import Footer from "Components/footer"
 // import NotFound from "./NotFound"
 // import makeAsyncComponent from "./makeAsyncComponent"
 
-// const UsingGiftCard = makeAsyncComponent(() => import("./GiftCardInfo").then(module => module.default), { name: "Page 1" })
-// const SendGiftCards = makeAsyncComponent(() => import("./SendGift").then(module => module.default), { name: "Page 1" })
+// const GetStarted = makeAsyncComponent(() => import("./SendGiftWizard/GetStarted").then(module => module.default), { name: "Page 1" })
+// const SelectName = makeAsyncComponent(() => import("./SendGiftWizard/SelectName").then(module => module.default), { name: "Page 1" })
+// const SelectCity = makeAsyncComponent(() => import("./SendGiftWizard/SelectCity").then(module => module.default), { name: "Page 1" })
+// const SelectFavDrink = makeAsyncComponent(() => import("./SendGiftWizard/FavDrink").then(module => module.default), { name: "Page 1" })
+// const RedeemingGiftCard = makeAsyncComponent(() => import("./RedeemingGiftCard").then(module => module.default), { name: "Page 1" })
 // const TransactionHistory = makeAsyncComponent(() => import("./TransactionHistory").then(module => module.default), { name: "Page 1" })
 // const Checkout = makeAsyncComponent(() => import("./Payment").then(module => module.default), { name: "Page 1" })
 // const RetailOutlet = makeAsyncComponent(() => import("./RetailOutlet").then(module => module.default), { name: "Page 1" })

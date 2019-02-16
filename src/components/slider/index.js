@@ -63,51 +63,51 @@ const BrandPartner = () => (
         <Slider {...settings}>
           <div className="brand">
             {/* <Icon name="bacardi" /> */}
-            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_180/v1550240040/Gifting-website/Bacardi_Logo_White.png" />
+            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_180/v1550240040/Gifting-website/Bacardi_Logo_White.webp" />
           </div>
           <div className="brand">
             {/* <Icon name="bacardi" /> */}
-            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_240/v1550240038/Gifting-website/AB_InBev_Logo_BW.png" />
+            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_240/v1550240038/Gifting-website/AB_InBev_Logo_BW.webp" />
           </div>
           <div className="brand">
             {/* <Icon name="bacardi" /> */}
-            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_240/v1550240038/Gifting-website/Beam_Suntory_Logo_White.png" />
+            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_240/v1550240038/Gifting-website/Beam_Suntory_Logo_White.webp" />
           </div>
           <div className="brand">
-            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_120/v1550240040/Gifting-website/Bira-91_Logo_White.png" />
+            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_120/v1550240040/Gifting-website/Bira-91_Logo_White.webp" />
           </div>
           <div className="brand">
-            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_200/v1550240040/Gifting-website/Brown-Forman_Logo_White.png" />
+            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_200/v1550240040/Gifting-website/Brown-Forman_Logo_White.webp" />
           </div>
           <div className="brand">
-            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_180/v1550240041/Gifting-website/Carlsberg_Logo_White.png" />
+            <img className="brand-icon" src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_lpad,w_180/v1550240041/Gifting-website/Carlsberg_Logo_White.webp" />
           </div>
           {/* <div className="brand">
-            <img className="brand-icon" src="./../../images/Diageo_Logo_White.png" />
+            <img className="brand-icon" src="./../../images/Diageo_Logo_White.webp" />
           </div>
           <div className="brand">
-            <img className="brand-icon" src="./../../images/Fratelli_Logo_White.png" />
+            <img className="brand-icon" src="./../../images/Fratelli_Logo_White.webp" />
           </div>
           <div className="brand">
-            <img className="brand-icon" src="./../../images/Grover Zampa_Logo_White.png" />
+            <img className="brand-icon" src="./../../images/Grover Zampa_Logo_White.webp" />
           </div>
           <div className="brand">
-            <img className="brand-icon" src="./../../images/Johnnie Walker_Logo_White.png" />
+            <img className="brand-icon" src="./../../images/Johnnie Walker_Logo_White.webp" />
           </div>
           <div className="brand">
-            <img className="brand-icon" src="./../../images/Moet Hennessy_White.png" />
+            <img className="brand-icon" src="./../../images/Moet Hennessy_White.webp" />
           </div>
           <div className="brand">
-            <img className="brand-icon" src="./../../images/Paul John_Logo_White.png" />
+            <img className="brand-icon" src="./../../images/Paul John_Logo_White.webp" />
           </div>
           <div className="brand">
-            <img className="brand-icon" src="./../../images/Pernod Ricard_Logo_White.png" />
+            <img className="brand-icon" src="./../../images/Pernod Ricard_Logo_White.webp" />
           </div>
           <div className="brand">
-            <img className="brand-icon" src="./../../images/Sula_Logo_White.png" />
+            <img className="brand-icon" src="./../../images/Sula_Logo_White.webp" />
           </div>
           <div className="brand">
-            <img className="brand-icon" src="./../../images/UB Group_Logo_White.png" />
+            <img className="brand-icon" src="./../../images/UB Group_Logo_White.webp" />
           </div> */}
         </Slider>
       </div>

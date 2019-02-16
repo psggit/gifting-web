@@ -4,7 +4,7 @@ const app = express()
 const fs = require("fs")
 const React = require("react")
 const { renderToNodeStream, renderToString } = require("react-dom/server")
-const bodyParser = require('body-parser')
+const bodyParser = require("body-parser")
 // const FormData = require("form-data")
 const request = require("request")
 // const PaymentStatus = require("./dist-ssr/payment-status").default
@@ -12,6 +12,7 @@ const request = require("request")
 const TransactionSuccess = require("./dist-ssr/transaction_success").default
 const TransactionFailure = require("./dist-ssr/transaction_failure").default
 const BrandDetailPage = require("./dist-ssr/brand_detail").default
+const LandingPage = require("./dist-ssr/landing").default
 
 function capitalize(str) {
   return `${str.split("")[0].toUpperCase()}${str.slice(1)}`
@@ -26,24 +27,7 @@ const BASE_URL = process.env.BASE_URL || "amebae21.hasura-app.io"
 console.log(BASE_URL)
 
 
-// middleware for processing js files
-app.get("*.js", (req, res, next) => {
-  console.log("Processing js files....")
-  console.log("Gzipping....")
-  if (/app.*.js/.test(req.url) || /vendor.*.js/.test(req.url)) {
-    req.url += ".gz"
-    res.set("Content-Encoding", "gzip")
-    res.set("Content-type", "text/javascript")
-  }
-  const vendorUrlRegex = /vendor.*.js/
-  if (vendorUrlRegex.test(req.url)) {
-    console.log("Setting cache for vendor....")
-    res.setHeader("Cache-Control", "private, max-age=31536000")
-  }
-  next()
-})
-
-app.get('/images/:name', (req, res) => {
+app.get("/images/:name", (req, res) => {
   res.sendFile(path.join(__dirname, `images/${req.params.name}`), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -51,7 +35,7 @@ app.get('/images/:name', (req, res) => {
   })
 })
 
-app.use(express.static(path.join(__dirname, "dist")))
+// app.use(express.static(path.join(__dirname, "dist")))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
@@ -59,7 +43,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 //   const html = fs.readFileSync("./dist/index.html", "utf-8")
 //   const [head, tail] = html.split("{content}")
 //   res.write(head)
-//   const reactElement = React.createElement('div', null, `Hello World`)
+//   const reactElement = React.createElement("div", null, `Hello World`)
 //   const stream = renderToNodeStream(reactElement)
 //   stream.pipe(res, { end: false })
 //   stream.on("end", () => {
@@ -68,7 +52,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 //   })
 // })
 
-app.get('/privacy', (req, res) => {
+app.get("/privacy", (req, res) => {
   res.sendFile(path.join(__dirname, `src/privacy.html`), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -166,7 +150,7 @@ app.get("/manifest.json", (req, res) => {
   })
 })
 
-app.get('/grievance-policy', (req, res) => {
+app.get("/grievance-policy", (req, res) => {
   res.sendFile(path.join(__dirname, `src/grievance-policy.html`), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -174,7 +158,7 @@ app.get('/grievance-policy', (req, res) => {
   })
 })
 
-app.get('/merchants-t-c', (req, res) => {
+app.get("/merchants-t-c", (req, res) => {
   res.sendFile(path.join(__dirname, `src/merchants-t-c.html`), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -182,7 +166,7 @@ app.get('/merchants-t-c', (req, res) => {
   })
 })
 
-app.get('/gifting-t-c', (req, res) => {
+app.get("/gifting-t-c", (req, res) => {
   res.sendFile(path.join(__dirname, `src/gifting-t-c.html`), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -190,7 +174,7 @@ app.get('/gifting-t-c', (req, res) => {
   })
 })
 
-app.get('/user-terms', (req, res) => {
+app.get("/user-terms", (req, res) => {
   res.sendFile(path.join(__dirname, `src/user-terms.html`), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -198,12 +182,29 @@ app.get('/user-terms', (req, res) => {
   })
 })
 
-app.get('/hipbar-wallet', (req, res) => {
+app.get("/hipbar-wallet", (req, res) => {
   res.sendFile(path.join(__dirname, `src/hipbar-wallet.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
   })
+})
+
+function renderStaticMarkup(component, req, res, file) {
+  const html = fs.readFileSync(`./dist/${file}.html`, "utf-8")
+  const [head, tail] = html.split("{content}")
+  res.write(head)
+  const reactElement = React.createElement(component)
+  const stream = renderToNodeStream(reactElement)
+  stream.pipe(res, { end: false })
+  stream.on("end", () => {
+    res.write(tail)
+    res.end()
+  })
+}
+
+app.get("/", (req, res) => {
+  renderStaticMarkup(LandingPage, req, res, "landing")
 })
 
 app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
@@ -239,6 +240,33 @@ app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
   })
 })
 
+// middleware for processing js files
+app.get("*.js", (req, res, next) => {
+  console.log("Processing js files....")
+  console.log("Gzipping....")
+  if (/app.*.js/.test(req.url) || /vendor.*.js/.test(req.url)) {
+    req.url += ".gz"
+    res.set("Content-Encoding", "gzip")
+    res.set("Content-type", "text/javascript")
+  }
+  const vendorUrlRegex = /vendor.*.js/
+  if (vendorUrlRegex.test(req.url)) {
+    console.log("Setting cache for vendor....")
+    res.setHeader("Cache-Control", "private, max-age=31536000")
+  }
+  next()
+})
+
+app.get("*.css", (req, res, next) => {
+  console.log("Processing css files..")
+  req.url += ".gz"
+  res.set("Content-Encoding", "gzip")
+  res.set("Content-type", "text/css")
+  next()
+})
+
+app.use(express.static(path.join(__dirname, "dist")))
+
 // client side app
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist/index.html"), (err) => {
@@ -247,8 +275,6 @@ app.get("/*", (req, res) => {
     }
   })
 })
-
-// app.use(express.static(path.join(__dirname, "dist")))
 
 
 app.listen(8080, () => {

@@ -21,7 +21,14 @@ module.exports = merge(common, {
       algorithm: "gzip",
       threshold: 10240,
       minRatio: 0.8
-    })
+    }),
+    // new BrotliPlugin({  
+    //   test: /\.js$|\.css$|\.html$/,
+    //   asset: "[path].br[query]",
+    //   exclude: /node_modules/,
+    //   threshold: 10240,
+    //   minRatio: 0.8
+    // })
   ],
   module: {
     rules: [
@@ -41,7 +48,13 @@ module.exports = merge(common, {
   },
   optimization: {
     splitChunks: {
-      chunks: "all"
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all"
+        }
+      }
     },
     minimizer: [
       new UglifyJsPlugin({
