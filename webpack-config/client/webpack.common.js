@@ -39,6 +39,11 @@ module.exports = {
       template: path.resolve(__dirname, "./../../src/ssr.html")
     }),
     new HtmlWebpackPlugin({
+      title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "product-detail.html",
+      template: path.resolve(__dirname, "./../../html/product-detail.html")
+    }),
+    new HtmlWebpackPlugin({
       title: "Transaction Successful",
       filename: "transaction-success.html",
       template: path.resolve(__dirname, "./../../src/payment-status.html")

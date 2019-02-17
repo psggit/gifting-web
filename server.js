@@ -223,6 +223,11 @@ function withHeader(head) {
   return head.split("{header}").join(renderToString(React.createElement(Header)))
 }
 
+
+function withTitle(head, title) {
+  return head.split("{title}").join(title)
+}
+
 app.get("/age-gate", (req, res) => {
   renderStaticMarkup(AgeGate, req, res, "age-gate")
 })
@@ -259,17 +264,15 @@ app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
   const city = capitalize(req.params.citySlug)
   const genre = req.params.genreSlug
   const brand = req.params.brandSlug
-
-  console.log(brand)
   
   request({
     method: "GET",
     uri: `https://catman.${BASE_URL}/consumer/browse/stores/${city}/${genre}/${brand}`,
   }, (err, httpRes, body) => {
     const parsed = JSON.parse(body)
-    const html = fs.readFileSync("./dist/ssr.html", "utf-8")
+    const html = fs.readFileSync("./dist/product-detail.html", "utf-8")
     const [head, tail] = html.split("{content}")
-    const headWithNavbar = withHeader(head)
+    const headWithNavbar = withTitle(withHeader(head), `Hipbar Gifting | ${parsed.brand.brand_name}`)
     res.write(headWithNavbar)
 
     const newTail = tail.split("{script}")
