@@ -1,5 +1,5 @@
 {
-  "short_name": "Gifting - Hipbar",
+  "short_name": "Hipbar Gifting",
   "name": "Hipbar Gifting",
   "icons": [
     {
@@ -13,9 +13,9 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/product-listing?source=pwa",
+  "start_url": "/send-gift?source=pwa",
   "background_color": "#000",
   "display": "standalone",
-  "scope": "/product-listing",
+  "scope": "/send-gift",
   "theme_color": "#000"
 }
