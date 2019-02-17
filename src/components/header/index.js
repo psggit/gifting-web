@@ -9,7 +9,7 @@ import { mountModal, unMountModal } from 'Components/modal-box/utils'
 // import {createSession, clearSession, getUsername} from 'Utils/session-utils'
 import NotifyError from './../../NotifyError';
 // import {ThemeProvider, ThemeContext} from "./../../ThemeProvider"
-import { POST } from "Utils/fetch"
+import { GET } from "Utils/fetch"
 // const ThemeConsumer = ThemeContext.Consumer
 
 class Header extends React.Component {
@@ -54,7 +54,7 @@ class Header extends React.Component {
 
   handleSignOut() {
     this.setState({showDropdown: false})
-    POST({
+    GET({
       api: "/consumer/auth/user/logout",
       apiBase: "blogicUrl",
       handleError: true
