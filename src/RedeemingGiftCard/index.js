@@ -3,37 +3,13 @@ import './redeeming-gift-card.scss'
 import Icon from "Components/icon"
 import Button from "Components/button"
 import FirstGiftCard from "Components/first-gift-card"
-import Header from "Components/header"
 import Footer from "Components/footer"
-import AgeGate from './../AgeGate'
-import {readCookie} from "Utils/session-utils"
-import { mountModal } from 'Components/modal-box/utils'
 
 class GiftCards extends React.Component {
   constructor(props) {
     super(props) 
     //console.log("props", props, props.data, props.name, props.isLoggedIn)
   }
-
-  componentDidMount() {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    })
-    if(!readCookie("isAgeGateAgreed")) {
-      //mountModal(AgeGate({}))
-      this.props.history.push("/age-gate", { navigateTo: "/how-to-redeem"})
-    }
-    //localStorage.setItem("showAgeGate", false)
-  }
-
-  // componentWillReceiveProps(newProps) {
-  //   //console.log("helo", newProps)
-  //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-  //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-  //   }
-  // }
 
   render() {
     //console.log("props in card", this.props)

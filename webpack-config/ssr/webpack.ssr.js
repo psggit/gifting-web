@@ -9,6 +9,12 @@ const config = {
   target: "node",
   externals: [nodeExternals()],
   entry: {
+    "header": path.resolve(__dirname, "./../../src/components/header"),
+    "age_gate": path.resolve(__dirname, "./../../src/AgeGateAlert"),
+    "send_gift": path.resolve(__dirname, "./../../src/SendGiftWizard/GetStarted"),
+    "redeem_gift_card": path.resolve(__dirname, "./../../src/RedeemingGiftCard"),
+    "retail_outlet": path.resolve(__dirname, "./../../src/RetailOutlet"),
+    "faq": path.resolve(__dirname, "./../../src/FAQ"),
     "transaction_success": path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
     "transaction_failure": path.resolve(__dirname, "./../../src/FailureTransaction"),
     "brand_detail": path.resolve(__dirname, "./../../src/ProductDetails"),

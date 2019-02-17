@@ -5,14 +5,20 @@ const fs = require("fs")
 const React = require("react")
 const { renderToNodeStream, renderToString } = require("react-dom/server")
 const bodyParser = require("body-parser")
-// const FormData = require("form-data")
 const request = require("request")
-// const PaymentStatus = require("./dist-ssr/payment-status").default
-// global.location = {}
+
 const TransactionSuccess = require("./dist-ssr/transaction_success").default
 const TransactionFailure = require("./dist-ssr/transaction_failure").default
 const BrandDetailPage = require("./dist-ssr/brand_detail").default
+const Header = require("./dist-ssr/header").default
+
+// Static pages
 const LandingPage = require("./dist-ssr/landing").default
+const AgeGate = require("./dist-ssr/age_gate").default
+const GetStartedPage = require("./dist-ssr/send_gift").default
+const RedeemGiftCard = require("./dist-ssr/redeem_gift_card").default
+const RetailOutlet = require("./dist-ssr/retail_outlet").default
+const FAQ = require("./dist-ssr/faq").default
 
 function capitalize(str) {
   return `${str.split("")[0].toUpperCase()}${str.slice(1)}`
@@ -77,7 +83,8 @@ app.post("/transaction-successful", (req, res) => {
     console.log(httpRes)
     const html = fs.readFileSync("./dist/transaction-success.html", "utf-8")
     const [head, tail] = html.split("{content}")
-    res.write(head)
+    const headWithNavbar = withHeader(head)
+    res.write(headWithNavbar)
  
     const newTail = tail.split("{script}")
       .join(`
@@ -102,7 +109,8 @@ app.post("/transaction-cancelled", (req, res) => {
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync("./dist/transaction-failed.html", "utf-8")
     const [head, tail] = html.split("{content}")
-    res.write(head)
+    const headWithNavbar = withHeader(head)
+    res.write(headWithNavbar)
     const newTail = tail.split("{script}")
       .join(`
       <script>
@@ -127,7 +135,8 @@ app.post("/transaction-failure", (req, res) => {
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync("./dist/transaction-failed.html", "utf-8")
     const [head, tail] = html.split("{content}")
-    res.write(head)
+    const headWithNavbar = withHeader(head)
+    res.write(headWithNavbar)
     const newTail = tail.split("{script}")
       .join(`
       <script>
@@ -199,7 +208,8 @@ app.get("/hipbar-wallet", (req, res) => {
 function renderStaticMarkup(component, req, res, file) {
   const html = fs.readFileSync(`./dist/${file}.html`, "utf-8")
   const [head, tail] = html.split("{content}")
-  res.write(head)
+  const headWithNavbar = withHeader(head)
+  res.write(headWithNavbar)
   const reactElement = React.createElement(component)
   const stream = renderToNodeStream(reactElement)
   stream.pipe(res, { end: false })
@@ -209,8 +219,32 @@ function renderStaticMarkup(component, req, res, file) {
   })
 }
 
+function withHeader(head) {
+  return head.split("{header}").join(renderToString(React.createElement(Header)))
+}
+
+app.get("/age-gate", (req, res) => {
+  renderStaticMarkup(AgeGate, req, res, "age-gate")
+})
+
 app.get("/", (req, res) => {
   renderStaticMarkup(LandingPage, req, res, "landing")
+})
+
+app.get("/send-gift", (req, res) => {
+  renderStaticMarkup(GetStartedPage, req, res, "ssr")
+})
+
+app.get("/how-to-redeem", (req, res) => {
+  renderStaticMarkup(RedeemGiftCard, req, res, "ssr")
+})
+
+app.get("/retail-outlet", (req, res) => {
+  renderStaticMarkup(RetailOutlet, req, res, "ssr")
+})
+
+app.get("/FAQs", (req, res) => {
+  renderStaticMarkup(FAQ, req, res, "ssr")
 })
 
 app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
@@ -274,11 +308,11 @@ app.use(express.static(path.join(__dirname, "dist")))
 
 // client side app
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist/index.html"), (err) => {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
+  const html = fs.readFileSync("./dist/index.html", "utf-8")
+  const [head, tail] = html.split("{content}")
+  const headWithNavbar = withHeader(head)
+  res.write(headWithNavbar)
+  res.end()
 })
 
 

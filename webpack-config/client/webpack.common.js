@@ -24,37 +24,31 @@ module.exports = {
       skipWaiting: true
     }),
     new HtmlWebpackPlugin({
-      // excludeChunks: ["transaction_success", "transaction_failure"],
       title: "HipBar Gifting - Gift your friends drinks online!",
       filename: "landing.html",
       template: path.resolve(__dirname, "./../../html/landing.html")
     }),
     new HtmlWebpackPlugin({
-      // excludeChunks: ["transaction_success", "transaction_failure"],
+      title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "age-gate.html",
+      template: path.resolve(__dirname, "./../../html/age-gate.html")
+    }),
+    new HtmlWebpackPlugin({
       title: "HipBar Gifting - Gift your friends drinks online!",
       filename: "ssr.html",
       template: path.resolve(__dirname, "./../../src/ssr.html")
     }),
-    // new HtmlWebpackPlugin({
-    //   excludeChunks: ["transaction_success", "transaction_failure"],
-    //   title: "",
-    //   filename: "ssr.html",
-    //   template: path.resolve(__dirname, "./../../src/ssr.html")
-    // }),
     new HtmlWebpackPlugin({
-      // chunks: ["transaction_success"],
       title: "Transaction Successful",
       filename: "transaction-success.html",
       template: path.resolve(__dirname, "./../../src/payment-status.html")
     }),
     new HtmlWebpackPlugin({
-      // chunks: ["transaction_failure"],
       title: "Transaction Failed",
       filename: "transaction-failed.html",
       template: path.resolve(__dirname, "./../../src/payment-status.html")
     }),
     new HtmlWebpackPlugin({
-      // excludeChunks: ["transaction_success", "transaction_failure"],
       filename: "index.html",
       title: "",
       template: path.resolve(__dirname, "./../../index.html")

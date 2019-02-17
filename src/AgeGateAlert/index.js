@@ -1,6 +1,5 @@
 import React from "react"
 import Button from "Components/button"
-import Icon from "Components/icon"
 import Layout from "Components/Layout"
 import "./age-gate.scss"
 
@@ -15,7 +14,7 @@ class AgeGate extends React.Component {
   }
 
   componentDidMount() {
-    //localStorage.setItem("agreedAgeGate", false)
+    localStorage.removeItem("age-gate__agreed")
   }
 
   closeWindow() {
@@ -23,10 +22,13 @@ class AgeGate extends React.Component {
   }
 
   agreeAgeGate() {
-    document.cookie = "isAgeGateAgreed=true; path=/; expires=" + (new Date(new Date().getTime() + 60 * 60 * 1000)).toUTCString() + `;path=/;  domain=${location.hostname}`
+    localStorage.setItem("age-gate__agreed", 1)
+    location.href = document.referrer
+
+    // document.cookie = "isAgeGateAgreed=true; path=/; expires=" + (new Date(new Date().getTime() + 60 * 60 * 1000)).toUTCString() + `;path=/;  domain=${location.hostname}`
     // if(this.props.history.location.state) {
     //   console.log("props", this.props.history)
-    location.href = this.props.history.location.state.navigateTo
+    // location.href = this.props.history.location.state.navigateTo
     // } else {
     //   location.href = "/"  
     // }
@@ -37,14 +39,14 @@ class AgeGate extends React.Component {
   render() {
     const {showNote} = this.state
     return (
-      <Layout image="backgroundImage.jpg">
+      <Layout image="https://res.cloudinary.com/www-hipbar-com/image/upload/q_auto:good/v1550240044/Gifting-website/bg-gift.webp">
         <div className="agegate-container">
           <span className="ft s2 header">
             Agree if you are of legal drinking age in your current state of residence
           </span>
-          <div style={{marginBottom: '55px'}}>
+          <div style={{ margin: "20px 0 40px 0" }}>
             <a 
-              className="ft s2 sub-header" 
+              className="ft s3 sub-header" 
               href="/legal-drinking-age" 
               target="_blank"
             >

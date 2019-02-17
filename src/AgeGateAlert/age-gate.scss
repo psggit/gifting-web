@@ -7,44 +7,41 @@
   padding: 0 294px;
 
   .header {
+    color: #ff9300;
     text-transform: uppercase;
-    background: linear-gradient(to right, #ff4100, #ff9300);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     //font-size: 35px;
-    letter-spacing: -0.6px;
+    
     font-weight: 600;
-    margin-bottom: 18px;
   }
 
   .sub-header {
     //font-size: 35px;
     font-weight: 500;
     color: #f1f2f2;
+    padding-bottom: 2px;
+    border-bottom: 2px solid #fff;
   }
 
   .note {
-    border: 1px solid #000;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    padding: 16px 12px;
     margin-top: 20px;
+    color: #ff3b34;
   }
-}
 
-@media only screen and (max-width: 916px) {
-  .agegate-container {
-    padding: 20px;
+  .button-group .btn:first-child {
+    margin-right: 20px;
+  }
 
-    .button-group {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      .btn.btn-secondary {
-        margin-right: 0px !important;
-        margin-bottom: 20px;
-      }
+  .button-group .btn {
+    &:first-child {
+      border: 2px solid #ff9300;
+      color: #ff9300;
+      background: #333;
+    }
+
+    &:last-child {
+      border: 2px solid #ff9300;
+      background: #ff9300;
+      color: #fff;
     }
   }
 }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta charset="utf-8">
+
+  <link rel="preconnect" href="https://use.typekit.net">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://res.cloudinary.com">
+
+  <link rel="stylesheet" href="https://use.typekit.net/djr0bfk.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"> 
+
+  <link href="/images/For-Webflow-01.png" rel="shortcut icon" type="image/x-icon">
+  <link href="/images/For-Webflow-02.png" rel="apple-touch-icon">
+  <link rel="manifest" href="./manifest.json">
+
+  <title>HipBar Gifting - Gift your friends drinks online!</title>
+
+  <style media="screen">
+    body::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    body::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+    
+    body::-webkit-scrollbar-thumb {
+      background-color: #333;
+      outline: 1px solid slategrey;
+    }
+     * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+     }
+     a {
+       text-decoration: none;
+     }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+    <div style="max-width: 1440px;margin: 0 auto">
+      <div id="app" >{content}</div>
+    </div>
+  <div id="confirm-modal"></div>
+</body>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-3"></script> -->
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+ 
+  gtag('config', 'UA-89806318-4');
+ </script>
+
+<script src="https://wchat.freshchat.com/js/widget.js"></script>
+<script>
+  // Check that service workers are registered
+if ('serviceWorker' in navigator) {
+  // Use the window load event to keep the page load performant
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js');
+  });
+}
+ </script>
+</html>

@@ -1,15 +1,10 @@
 import React from "react"
-import Header from "Components/header"
 import Footer from "Components/footer"
 import './faq.scss'
 import Icon from "Components/icon"
 import {sendingGiftCardQuestions, redeemingGiftCardQuestions} from './QA'
 import Accordian from "Components/accordian"
 import AccordianItem from "Components/accordian/accordian-item"
-import AgeGate from './../AgeGate'
-import {readCookie} from "Utils/session-utils"
-import { mountModal } from 'Components/modal-box/utils'
-import { timingSafeEqual } from "crypto";
 
 class FAQ extends React.Component {
   constructor(props) {
@@ -27,16 +22,7 @@ class FAQ extends React.Component {
   }
 
   componentDidMount() {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    })
     this.setState({sendingGiftCardQuestions})
-    if(!readCookie("isAgeGateAgreed")) {
-      //mountModal(AgeGate({}))
-      this.props.history.push("/age-gate", { navigateTo: "/FAQs"})
-    }
   }
 
   setActiveAccordian(activeAccordian) {

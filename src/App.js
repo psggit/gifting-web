@@ -84,6 +84,14 @@ class App extends React.Component {
     })
   }
 
+  componentWillMount() {
+    if (location.pathname !== "/age-gate") {
+      if (!localStorage.getItem("age-gate__agreed")) {
+        location.href = "/age-gate"
+      }
+    }
+  }
+
   render() {
     //console.log("this.state", this.state)
     return (
@@ -292,10 +300,14 @@ class App extends React.Component {
 }
 
 if (!document.getElementById("app").childNodes.length) {
-  ReactDOM.render(<Header />, document.getElementById("header"))
+  if (location.pathname !== "/age-gate") {
+    ReactDOM.render(<Header />, document.getElementById("header"))
+  } else {
+    document.getElementById("header").innerHTML = ""
+  }
   ReactDOM.render(<App />, document.getElementById("app"))
 } else {
   ReactDOM.hydrate(<App />, document.getElementById("app"))
-  ReactDOM.render(<Header />, document.getElementById("header"))
+  // ReactDOM.render(<Header />, document.getElementById("header"))
 }
 export default App
