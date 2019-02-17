@@ -4,9 +4,10 @@ import "./navbar.scss"
 import Icon from "Components/icon"
 import Button from "Components/button"
 import SignIn from "./../../SignIn"
+import { Api } from "Utils/config"
 // import SignUp from "./../../SignUp"
 import { mountModal, unMountModal } from 'Components/modal-box/utils'
-// import {createSession, clearSession, getUsername} from 'Utils/session-utils'
+import {createSession, clearSession, getUsername} from 'Utils/session-utils'
 import NotifyError from './../../NotifyError';
 // import {ThemeProvider, ThemeContext} from "./../../ThemeProvider"
 import { GET } from "Utils/fetch"
@@ -54,19 +55,32 @@ class Header extends React.Component {
 
   handleSignOut() {
     this.setState({showDropdown: false})
-    GET({
-      api: "/consumer/auth/user/logout",
-      apiBase: "blogicUrl",
-      handleError: true
-    })
-      .then(() => {
+    const fetchOptions = {
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      mode: 'cors',
+    }
+
+    fetch(`${Api.blogicUrl}/consumer/auth/user/logout`, fetchOptions)
+      .then((response) => {
+        this.setState({isLoggedIn: false})
+        location.href = "/"
+        //setTimeout(() => {
+        clearSession()
         window.fcWidget.user.clear().then(function() {
           console.log('User cleared')
         }, function() {
           console.log("User Not cleared")
         })
+        //console.log("user status out", userStatus)
+        //}, 1000)
       })
-      .catch(() => {
+      .catch((err) => {
+        //console.log("Error in logout", err)
         mountModal(NotifyError({}))
       })
   }
