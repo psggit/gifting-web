@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://gifting-web.amebae21.hasura-app.io/sitemap.xml

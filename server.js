@@ -247,10 +247,20 @@ app.get("/FAQs", (req, res) => {
   renderStaticMarkup(FAQ, req, res, "ssr")
 })
 
+app.get("/robots.txt", (req, res) => {
+  res.sendFile(path.join(__dirname, "robots.txt"), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
   const city = capitalize(req.params.citySlug)
   const genre = req.params.genreSlug
   const brand = req.params.brandSlug
+
+  console.log(brand)
   
   request({
     method: "GET",
@@ -259,7 +269,8 @@ app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
     const parsed = JSON.parse(body)
     const html = fs.readFileSync("./dist/ssr.html", "utf-8")
     const [head, tail] = html.split("{content}")
-    res.write(head)
+    const headWithNavbar = withHeader(head)
+    res.write(headWithNavbar)
 
     const newTail = tail.split("{script}")
       .join(`

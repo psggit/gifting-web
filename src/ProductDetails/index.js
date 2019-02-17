@@ -15,7 +15,7 @@ class ProductDetails extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      brand: props.brand,
+      brand: props.brand || null,
       basketCount: 0,
       viewProductsUrl: ""
     }
@@ -27,14 +27,16 @@ class ProductDetails extends React.Component {
     const basket = JSON.parse(localStorage.getItem("basket"))
     this.setState({ basketCount: basket ? getBasketTotal(basket) : 0 })
     const { params } = this.props.match  
-    fetchSKUUsingBrand({
-      cityName: capitalize(params.citySlug),
-      genreShortName: params.genreSlug,
-      brandShortName: params.brandSlug
-    })
-      .then(res => {
-        this.setState({ brand: res.brand })
+    if (!this.state.brand){
+      fetchSKUUsingBrand({
+        cityName: capitalize(params.citySlug),
+        genreShortName: params.genreSlug,
+        brandShortName: params.brandSlug
       })
+        .then(res => {
+          this.setState({ brand: res.brand })
+        })
+    }
 
     this.setBrandsUrl()
   }
