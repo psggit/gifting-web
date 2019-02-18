@@ -1,15 +1,17 @@
+@import "./../sass/base.scss";
+
 .agegate-container {
-  width: 100%;
+  width: 80%;
   text-align: center;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  padding: 0 294px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   .header {
     color: #ff9300;
     text-transform: uppercase;
-    //font-size: 35px;
+    line-height: 1.5;
     
     font-weight: 600;
   }
@@ -45,3 +47,14 @@
     }
   }
 }
+
+@media only screen and (max-width: $sm) {
+  .agegate-container {
+    width: 100%;
+    .header {
+      font-size: 24px !important;
+      padding: 20px;
+    }
+  }
+}
+

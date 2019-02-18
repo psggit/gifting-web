@@ -52,7 +52,7 @@ class FailureTransaction extends React.Component {
       <div id="TransactionStatus"> 
         <div className="container">
 
-          <div style={{ textAlign: "center" }}>
+          <div style={{ textAlign: "center", padding: "0 20px" }}>
             <Icon name="success" />
             <p className="os s1">Transaction Failed!</p>
             <p style={{ marginTop: "10px" }} className="os s4">
@@ -82,7 +82,7 @@ class FailureTransaction extends React.Component {
               <p className="os s7">{this.state.txn_time}</p>
             </div>
           </div>
-          <p style={{ textAlign: "center" }} className="os s4">
+          <p style={{ textAlign: "center", padding: "0 20px" }} className="os s4">
           Please get in touch with our customer support team<br />
 through chat for further support
           </p>

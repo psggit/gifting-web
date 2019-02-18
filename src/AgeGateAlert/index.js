@@ -45,9 +45,9 @@ class AgeGate extends React.Component {
     return (
       <Layout image="https://res.cloudinary.com/www-hipbar-com/image/upload/q_auto:good/v1550240044/Gifting-website/bg-gift.webp">
         <div className="agegate-container">
-          <span className="ft s2 header">
+          <p className="ft s2 header">
             Agree if you are of legal drinking age in your current state of residence
-          </span>
+          </p>
           <div style={{ margin: "20px 0 40px 0" }}>
             <a 
               className="ft s3 sub-header" 

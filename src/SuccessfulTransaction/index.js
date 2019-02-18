@@ -53,7 +53,7 @@ class SuccessfulTransaction extends React.Component {
       <div id="TransactionStatus"> 
         <div className="container">
 
-          <div style={{ textAlign: "center" }}>
+          <div style={{ textAlign: "center", padding: "0 20px" }}>
             <Icon name="success" />
             <p className="os s1">Transaction Successful!</p>
             <p style={{ marginTop: "10px" }} className="os s4">
