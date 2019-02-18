@@ -6,6 +6,7 @@ const React = require("react")
 const { renderToNodeStream, renderToString } = require("react-dom/server")
 const bodyParser = require("body-parser")
 const request = require("request")
+const urlencode = require("urlencode")
 
 const TransactionSuccess = require("./dist-ssr/transaction_success").default
 const TransactionFailure = require("./dist-ssr/transaction_failure").default
@@ -263,13 +264,14 @@ app.get("/robots.txt", (req, res) => {
 app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
   const city = capitalize(req.params.citySlug)
   const genre = req.params.genreSlug
-  const brand = req.params.brandSlug
-  
+  const brand = urlencode(req.params.brandSlug)
+  console.log(brand)
   request({
     method: "GET",
-    uri: `https://catman.${BASE_URL}/consumer/browse/stores/${city}/${genre}/${brand}`,
+    url: `https://catman.${BASE_URL}/consumer/browse/stores/${city}/${genre}/${brand}`,
   }, (err, httpRes, body) => {
     const parsed = JSON.parse(body)
+    console.log(parsed)
     const html = fs.readFileSync("./dist/product-detail.html", "utf-8")
     const [head, tail] = html.split("{content}")
     const headWithNavbar = withTitle(withHeader(head), `Hipbar Gifting | ${parsed.brand.brand_name}`)
