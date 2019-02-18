@@ -22,13 +22,21 @@ class GenreOverlay extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
   }
-  componentDidMount() {
-    // listGenres((data, status) => {
-    //   this.setState({ genres: data })
-    // })
+
+  getGenreIdByName(genres, name) {
+    console.log(genres, name)
+    return genres.findIndex(genre => genre.short_name === name)
   }
-  handleClick(active) {
-    this.setState({ active })
+
+  componentDidMount() {
+    this.setState({ active: this.getGenreIdByName(this.props.genres, this.props.activeGenre)})
+  }
+  
+  handleClick(genre){
+    this.setState({ active: genre.id })
+    this.props.history.push(`/brands/${this.props.activeCity}/${genre.shortName}`)
+    this.props.handleGenreChange(genre)
+    this.props.closeGenres()
   }
   render() {
     return (
@@ -49,7 +57,7 @@ class GenreOverlay extends React.Component {
                     shortName={item.short_name}
                     active={this.state.active}
                     onChange={this.handleClick}
-                    id={item.ordinal_position}
+                    id={i}
                     name={item.display_name}
                   />
                 </div>

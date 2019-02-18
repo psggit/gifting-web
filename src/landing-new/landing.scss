@@ -20,7 +20,10 @@
 
     .header {
       text-transform: uppercase;
-      color: #ff9300;
+      background: linear-gradient(to right, #ff4100, #ff9300);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      // color: #ff9300;
       // letter-spacing: -1.3px;
       line-height: 1.04;
       font-weight: 600;

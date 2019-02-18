@@ -322,11 +322,18 @@ class ProductListing extends React.Component {
               
             </div> */}
             
-            <GenreOverlay
-              genres={this.state.genres}
-              closeGenres={this.closeGenres}
-              shouldMountGenres={this.state.shouldMountGenres}
-            />
+            {
+              this.state.shouldMountGenres &&
+              <GenreOverlay
+                {...this.props}
+                activeGenre={this.props.match.params.genreSlug}
+                activeCity={this.props.match.params.citySlug}
+                genres={this.state.genres}
+                closeGenres={this.closeGenres}
+                handleGenreChange={this.handleGenreChange}
+                shouldMountGenres={this.state.shouldMountGenres}
+              />
+            }
             {
               this.props.context.isMobile && this.state.scrollUp && localStorage.getItem("basket") && <BasketTotal />
             }
