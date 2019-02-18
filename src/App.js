@@ -85,7 +85,9 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    if (location.pathname !== "/age-gate") {
+    if (location.pathname === "/age-gate" || location.pathname === "/legal-drinking-age") {
+      return true
+    } else {
       if (!localStorage.getItem("age-gate__agreed")) {
         location.href = "/age-gate"
       }
@@ -307,7 +309,9 @@ if (!document.getElementById("app").childNodes.length) {
   }
   ReactDOM.render(<App />, document.getElementById("app"))
 } else {
+  if (document.getElementById("header")) {
+    ReactDOM.hydrate(<Header />, document.getElementById("header"))
+  }
   ReactDOM.hydrate(<App />, document.getElementById("app"))
-  // ReactDOM.render(<Header />, document.getElementById("header"))
 }
 export default App
