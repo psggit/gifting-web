@@ -10,6 +10,7 @@ import Header from "Components/header"
 import Footer from "Components/footer"
 import {readCookie} from "Utils/session-utils"
 import {supportedCities} from "Utils/constants"
+//import GroverZampa from "./../../images/Grover Zampa_Logo_Grey.png"
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -109,7 +110,7 @@ class LandingPage extends React.Component {
               <span className="brand"><Icon name="diageo" /></span>
               <span className="brand"><Icon name="bacardi" /></span>
               <span className="brand"><Icon name="carlsberg" /></span>
-              <span className="brand">  <Icon name="pernado" /></span>
+              {/* <span className="brand"><Icon name="zampa" /></span> */}
               {/* <img src="https://hipbar.com/a0ee9f2c10e0e287bc9c05d64cffa171.png" />
               <img src="https://hipbar.com/d38974e5f50a5ae0f40ba9e323f03b63.png" />
               <img src="https://hipbar.com/9e9ee179bf9d959bef56c681e6670b9b.png" /> */}
