@@ -44,6 +44,17 @@
       }
     }
 
+    &.transaction--detail-fail {
+      width: 360px;
+      padding: 20px;
+      margin: 40px auto;
+
+      div {
+        margin-top: 10px;
+      }
+    }
+
+
     &.sent--to {
       margin-top: 20px;
       width: 360px;

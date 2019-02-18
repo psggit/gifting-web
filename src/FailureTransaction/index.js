@@ -1,6 +1,7 @@
 import React from 'react'
 import Icon from "Components/icon"
-import 'Sass/transaction-status.scss'
+import "Sass/transaction-status.scss"
+import Moment from "moment"
 
 class FailureTransaction extends React.Component {
   constructor(props) {
@@ -10,55 +11,81 @@ class FailureTransaction extends React.Component {
       "DC": "Debit Card",
       "NB": "Netbanking"
     }
-    // this.state = {
-    //   username: props.username ? props.username : "",
-    //   isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
-    // }
+    this.state = {
+      basket: [],
+      amount_paid: "",
+      paid_using: "",
+      txnid: "",
+      txn_time: "",
+      receiver_name: "",
+      receiver_num: "",
+      message: ""
+    }
   }
 
-  // componentWillReceiveProps(newProps) {
-  //   //console.log("helo", newProps)
-  //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-  //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-  //   }
-  // }
+  componentWillUnmount() {
+    localStorage.removeItem("basket")
+    localStorage.removeItem("receiver_info")
+    localStorage.removeItem("amount")
+  }
+
+  componentDidMount() {
+    const txn = window.__TXN__
+    delete window.__TXN__
+    document.getElementById("ssr__script").innerHTML = ""
+    const basket = JSON.parse(localStorage.getItem("basket"))
+    const receiver = JSON.parse(localStorage.getItem("receiver_info"))
+    this.setState({
+      basket,
+      message: receiver.message,
+      receiver_name: receiver.name,
+      receiver_num: receiver.mobile,
+      amount_paid: txn.net_amount_debit,
+      paid_using: txn.mode === "CC" || txn.mode === "DC" ? txn.cardnum : this.modeMap[txn.mode],
+      txnid: txn.txnid,
+      txn_time: Moment(txn.addedon).format("DD/MM/YYYY, hh:mm A")
+    })
+  }
 
   render() {
-    const { res } = this.props
     return (
-      <div>
-        <div id="FailureTransaction" className="transaction-status fail"> 
-          <div className="content">
-            <div className="successful">
-              <div className="header section">
-                <Icon name="failure" />
-                <h2 className="cm s1 title">Transaction Failed!</h2>
-                <p className="info"> Don't worry! If incorrectly debited, money will be refunded via your mode of payment within 5-7 working days</p>
-              </div>
-              <div className="body section">
-                <p className="subheader">Transaction Details</p>
-                <div className="section-content">
-                  <span className="os s9">Amount Paid</span>
-                  <p className="os s8">Rs. {res.net_amount_debit}</p>
-                </div>
-                <div className="section-content">
-                  <span className="os s9">Paid using</span>
-                  <p className="os s8">{ res.mode === "CC" || res.mode === "DC" ? res.cardnum : this.modeMap[res.mode] }</p>
-                </div>
-                <div className="section-content">
-                  <span className="os s9">Transaction ID</span>
-                  <p className="os s8">#{ res.txnid } </p>
-                </div>
-                <div className="section-content">
-                  <span className="os s9">Transaction Date and Time</span>
-                  <p className="os s8">{ res.addedon }</p>
-                </div>
-              </div>
-              <div className="footnote section">
-                <p className="os s8">Please get in touch with our customer support team through chat for further support</p>
-              </div>
+      <div id="TransactionStatus"> 
+        <div className="container">
+
+          <div style={{ textAlign: "center" }}>
+            <Icon name="success" />
+            <p className="os s1">Transaction Failed!</p>
+            <p style={{ marginTop: "10px" }} className="os s4">
+            Don't worry! If incorrectly debited, money will be <br /> refunded via your mode of payment within 5-7 working days
+            </p>
+          </div>
+
+          <div className="paper transaction--detail-fail">
+            <p style={{ borderBottom: "1px solid #dfdfdf", paddingBottom: "12px" }} className="os s5">Transaction Details</p>
+            <div>
+              <p className="os s7">Amount Paid</p>
+              <p className="os s7">Rs. {this.state.amount_paid}</p>
+            </div>
+
+            <div>
+              <p className="os s7">Paid Using</p>
+              <p className="os s7">{this.state.paid_using}</p>
+            </div>
+
+            <div>
+              <p className="os s7">Transaction ID</p>
+              <p className="os s7">{this.state.txnid}</p>
+            </div>
+
+            <div>
+              <p className="os s7">Transaction Date and Time</p>
+              <p className="os s7">{this.state.txn_time}</p>
             </div>
           </div>
+          <p style={{ textAlign: "center" }} className="os s4">
+          Please get in touch with our customer support team<br />
+through chat for further support
+          </p>
         </div>
       </div>
     )

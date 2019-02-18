@@ -114,7 +114,7 @@ app.post("/transaction-cancelled", (req, res) => {
     res.write(headWithNavbar)
     const newTail = tail.split("{script}")
       .join(`
-      <script>
+      <script id="ssr__script">
         window.__TXN__ = ${JSON.stringify(req.body)}
       </script>
       `)
@@ -140,7 +140,7 @@ app.post("/transaction-failure", (req, res) => {
     res.write(headWithNavbar)
     const newTail = tail.split("{script}")
       .join(`
-      <script>
+      <script id="ssr__script">
         window.__TXN__ = ${JSON.stringify(req.body)}
       </script>
       `)
