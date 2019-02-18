@@ -24,6 +24,12 @@ class SuccessfulTransaction extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    localStorage.removeItem("basket")
+    localStorage.removeItem("receiver_info")
+    localStorage.removeItem("amount")
+  }
+
   componentDidMount() {
     const txn = window.__TXN__
     delete window.__TXN__

@@ -157,8 +157,14 @@
       }
     }
     .paper .sku--container {
-      .btn {
-        display: none;
+      .add-to-basket {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #fff;
+        padding: 20px;
+        z-index: 1;
+        left: 0;
       }
     }
     .paper.add-to-basket {

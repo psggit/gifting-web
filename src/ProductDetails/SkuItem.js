@@ -150,7 +150,12 @@ class SkuItem extends React.Component {
 
           <div className="sku--item__price">
             <span className="os s6">MRP:</span>
-            <span className="os s4">Rs. 5,190</span>
+            <span className="os s4">
+              {
+                this.props.volumes.length &&
+                this.props.volumes[this.state.activeSku].price
+              }
+            </span>
           </div>
         </div>
       </React.Fragment>

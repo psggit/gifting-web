@@ -6,7 +6,7 @@ import { getBasketTotal, getBasketTotalPrice } from "./../ProductDetails/SkuItem
 
 const basket = JSON.parse(localStorage.getItem("basket"))
 const basketTotal = basket ? getBasketTotal(basket) : 0
-const basketTotalPrice = basket ? getBasketTotalPrice(basket) : "N/A"
+const basketTotalPrice = basket ? localStorage.getItem("amount") : "N/A"
 
 function BasketTotal() {
   return (

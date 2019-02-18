@@ -97,9 +97,9 @@ class ProductDetails extends React.Component {
             </div>
           </div> */}
 
-          <div className="paper add-to-basket">
+          {/* <div className="paper add-to-basket">
             <Button iconAlignment="left" icon="giftBasket" primary>Add to gift basket</Button>
-          </div>
+          </div> */}
 
           <div className="paper gift-more-drinks-paper">
             {/* <GiftMoreDrinks /> */}

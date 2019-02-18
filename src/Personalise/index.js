@@ -53,8 +53,12 @@ class Personalise extends React.Component {
   }
 
   handlePhoneChange(e) {
-    this.receiverInfo.phone = e.target.value
-    localStorage.setItem("receiver_info", JSON.stringify(this.receiverInfo))
+    if (e.target.name === "receiverNumber") {
+      this.receiverInfo.phone = e.target.value
+      localStorage.setItem("receiver_info", JSON.stringify(this.receiverInfo))
+    } else {
+      localStorage.setItem("sender_mobile", e.target.value)
+    }
     this.setState({ [e.target.name]: e.target.value })
   }
 

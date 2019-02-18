@@ -1,3 +1,5 @@
+@import "./../../sass/base.scss";
+
 #added-to-basket--modal {
   .modal-header {
     text-align: right;
@@ -20,5 +22,19 @@
   .modal-footer .gift--more-drinks{
     padding: 16px 20px;
     border-top: 1px solid #dfdfdf;
+  }
+}
+
+@media only screen and (max-width: $sm) {
+  #added-to-basket--modal {
+    .modal-container {
+      width: 90%;
+    }
+
+    .modal-footer {
+      a:first-child {
+        display: none;
+      }
+    }
   }
 }

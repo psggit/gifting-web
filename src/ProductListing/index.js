@@ -328,7 +328,7 @@ class ProductListing extends React.Component {
               shouldMountGenres={this.state.shouldMountGenres}
             />
             {
-              this.props.context.isMobile && this.state.scrollUp && <BasketTotal />
+              this.props.context.isMobile && this.state.scrollUp && localStorage.getItem("basket") && <BasketTotal />
             }
 
             {

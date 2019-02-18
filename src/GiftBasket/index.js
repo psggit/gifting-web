@@ -108,7 +108,7 @@ class GiftBasket extends React.Component {
     })
     const giftCardSummaryReq = {
       promo_code: promoCode,
-      gps: localStorage.getItem("gps"),
+      gps: JSON.parse(localStorage.getItem("city")).gps,
       products
     }
     return fetchGiftCardSummary(giftCardSummaryReq)
