@@ -6,6 +6,10 @@ function getImageUrl(image) {
   return `https://api2.${process.env.BASE_URL}/get?fs_url=${image}`
 }
 
+function getUnit(val) {
+  return val / 1000 < 1 ? val +" ml" : (val/1000).toFixed(2) +  " Ltr"
+}
+
 class GiftBasketItem extends React.Component {
   constructor(props) {
     super(props)
@@ -54,8 +58,8 @@ class GiftBasketItem extends React.Component {
           <div className="row price--quantity">
 
             <div className="col">
-              <span style={{ paddingRight: "10px", borderRight: "1px solid #777" }} className="os s6">{sku.price}</span>
-              <span style={{ paddingLeft: "10px" }} className="os s6">{sku.volume}</span>
+              <span style={{ paddingRight: "10px", borderRight: "1px solid #777" }} className="os s6">Rs. {sku.price.slice(1)}</span>
+              <span style={{ paddingLeft: "10px" }} className="os s6">{getUnit(sku.volume)}</span>
             </div>
 
             {

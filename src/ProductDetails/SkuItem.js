@@ -122,7 +122,7 @@ class SkuItem extends React.Component {
                 <span className="os s4">
                   {
                     this.props.volumes.length &&
-                    this.props.volumes[this.state.activeSku].price
+                    `Rs. ${this.props.volumes[this.state.activeSku].price.slice(1)}`
                   }
                 </span>
               </div>
