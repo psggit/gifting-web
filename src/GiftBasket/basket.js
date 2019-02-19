@@ -51,7 +51,6 @@ class Basket extends React.Component {
   }
   
   render() {
-    console.log(this.state.basket)
     return (
       <div>
         <div className="header">

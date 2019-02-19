@@ -115,13 +115,14 @@ class GiftBasket extends React.Component {
       .then(giftSummary => {
         const updatedBasket = this.getUpdatedBasket(giftSummary.products)
         this.updateLocalBasket(updatedBasket)
-        localStorage.setItem("amount", giftSummary.balance)
+        const total = giftSummary.format_balance.slice(1).split(" ").join("")
+        localStorage.setItem("amount", total)
         this.setState({
           settingGiftSummary: false,
           promoCode,
           giftSummary,
           subtotal: giftSummary.total.slice(1).split(" ").join(""),
-          total: giftSummary.format_balance.slice(1).split(" ").join(""),
+          total,
           discount: giftSummary.promo_discount.slice(1).split(" ").join("")
         }, () => {
           if (CB) CB(null)
