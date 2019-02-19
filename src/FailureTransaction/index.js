@@ -40,8 +40,8 @@ class FailureTransaction extends React.Component {
       message: receiver.message,
       receiver_name: receiver.name,
       receiver_num: `+91 ${receiver.mobile}`,
-      amount_paid: parseFloat(txn.net_amount_debit).toFixed(),
-      paid_using: txn.mode === "CC" || txn.mode === "DC" ? txn.cardnum : this.modeMap[txn.mode],
+      amount_paid: parseFloat(txn.net_amount_debit).toFixed(2),
+      paid_using: txn.mode === "CC" || txn.mode === "DC" ? txn.cardnum.split("X").join("*") : this.modeMap[txn.mode],
       txnid: txn.txnid,
       txn_time: Moment(txn.addedon).format("DD/MM/YYYY, hh:mm A")
     })
