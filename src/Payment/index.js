@@ -343,6 +343,14 @@ class Payment extends React.Component {
 
   createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName, CB) {
     this.setState({ isSubmitting: true })
+    const basket = JSON.parse(localStorage.getItem("basket"))
+    const products = basket.map(item => {
+      return {
+        count: item.count,
+        product_id: item.sku.sku_pricing_id,
+        type: "normal"
+      }
+    })
     POST({
       api: "/consumer/payment/gift/create",
       apiBase: "orderman",
@@ -353,7 +361,8 @@ class Payment extends React.Component {
         receiver_number: receiverNumber,
         sender_name: senderName,
         device: "web",
-        receiver_name: receiverName
+        receiver_name: receiverName,
+        products
       },
       handleError: true
     })
