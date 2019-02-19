@@ -93,6 +93,7 @@ class Personalise extends React.Component {
       receiverInfo.mobile = receiverNumber
       receiverInfo.name = receiverName
       localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
+      localStorage.setItem("sender_name", senderName)
       this.props.history.push("/checkout")
     }
   }

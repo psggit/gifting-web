@@ -20,7 +20,7 @@ class Payment extends React.Component {
   constructor(props) {
     super(props)
     // console.log(this.props.history.location.state)
-    this.gift = JSON.parse(localStorage.getItem("gift"))
+    this.receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     // localStorage.removeItem("gift")
     // this.txn = JSON.parse(localStorage.getItem("txn"))
     this.paymentMethods = {
@@ -29,11 +29,11 @@ class Payment extends React.Component {
     }
     this.state = {
       isSubmitting: false,
-      senderName: this.gift ? this.gift.senderName : "",
-      sender_num: this.gift? this.gift.senderNumber: "",
-      gift_message: this.gift ? this.gift.giftMessage : "",
-      receiver_name: this.gift ? this.gift.receiverName : "",
-      receiver_number: this.gift ? this.gift.receiverNumber : "",
+      senderName: localStorage.getItem("sender_name"),
+      sender_num: "",
+      gift_message: this.receiverInfo ? this.receiverInfo.message : "",
+      receiver_name: this.receiverInfo ? this.receiverInfo.name : "",
+      receiver_number: this.receiverInfo ? this.receiverInfo.phone : "",
       amount: localStorage.getItem("amount") ? localStorage.getItem("amount") : "",
       popularBanks: [],
       banks: [],
