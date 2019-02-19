@@ -29,10 +29,6 @@ class TransactionHistory extends React.Component {
     if(isLoggedIn) {
       this.showTransactions()
     }
-    if(!readCookie("isAgeGateAgreed")) {
-      //mountModal(AgeGate({}))
-      this.props.history.push("/age-gate", { navigateTo: "/transaction-history"})
-    }
   }
 
   showTransactions() {

@@ -85,7 +85,7 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    if (location.pathname === "/age-gate" || location.pathname === "/legal-drinking-age") {
+    if (localStorage.getItem("hasura-id") || location.pathname === "/age-gate" || location.pathname === "/legal-drinking-age") {
       return true
     } else {
       if (!localStorage.getItem("age-gate__agreed")) {

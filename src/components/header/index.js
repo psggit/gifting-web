@@ -21,7 +21,8 @@ class Header extends React.Component {
       //errorInSignIn: false,
       showDropdown: false,
       username: "",
-      isLoggedIn: null
+      isLoggedIn: null,
+      activePath: ""
     }
 
     this.navItems = [
@@ -45,12 +46,14 @@ class Header extends React.Component {
     this.onToggle = this.onToggle.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleSignOut = this.handleSignOut.bind(this)
+    this.checkActiveClass = this.checkActiveClass.bind(this)
   }
 
   componentDidMount() {
     this.links = document.querySelectorAll(".nav-items a div")
     this.setState({isLoggedIn: localStorage.getItem("hasura-id") ? true  : false})
     this.setState({username: localStorage.getItem("username")})
+    this.setState({ activePath: location.pathname.slice(1) })
   }
 
   handleSignOut() {
@@ -109,6 +112,10 @@ class Header extends React.Component {
     location.href="/transaction-history"
   }
 
+  checkActiveClass(path) {
+    return this.state.activePath === path ? "active" : undefined
+  }
+
   render() {
     const {showDropdown} = this.state
     const { isLoggedIn } = this.state
@@ -118,7 +125,7 @@ class Header extends React.Component {
         <div className="nav-items">
           {
             this.navItems.map((item, index) => (
-              <a id={`nav-item-${index+1}`} href={`/${item.value}`}  key={`nav-item-${index+1}`}>
+              <a id={`nav-item-${index+1}`} className={this.checkActiveClass(item.value)} href={`/${item.value}`}  key={`nav-item-${index+1}`}>
                 <div
                   onClick={this.handleLink}
                   className="nav-item os s7" 
@@ -182,8 +189,8 @@ class Header extends React.Component {
             </li>
             {
               this.navItems.map((item, index) => (
-                <li key={index}>
-                  <a onClick={this.handleLink} href={`/${item.value}`} className="os s2">
+                <li  className={this.checkActiveClass(item.value)} key={index}>
+                  <a onClick={this.handleLink} href={`/${item.value}`}>
                     {item.label}
                   </a>
                 </li>

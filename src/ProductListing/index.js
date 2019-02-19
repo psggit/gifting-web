@@ -1,3 +1,7 @@
+/*
+  This page need to be server side renderesd
+*/
+
 import React from "react"
 import "./sass/listing.scss"
 
@@ -177,17 +181,10 @@ class ProductListing extends React.Component {
     }
   }
 
-  // fetchProducts({limit, offset}, CB) {
-  //   GET({
-  //     api: `http://jsonplaceholder.typicode.com/photos?_start=${offset}&_limit=${limit}`,
-  //     prependBaseUrl: false,
-  //     type: "public",
-  //     handleError: true
-  //   })
-  //     .then(json => {
-  //       CB(json)
-  //     })
-  // }
+  updateIntersectionTarget() {
+    const brandNodes = document.querySelectorAll("brand--item")
+    const newTarget = brandNodes[brandNodes.length - 1]
+  }
 
   findInterSection() {
     const target = document.getElementById("scroll-intersection")
@@ -214,15 +211,16 @@ class ProductListing extends React.Component {
                 isBrandsLoading: false
               })
               _self.disableScrollIntersection = brands.length < _self.limit
-            })
-            
+            })  
         }
       })
     })
 
     io.POLL_INTERVAL = 100
     io.USE_MUTATION_OBSERVER = false
-    io.observe(target)
+    io.observe(target, {
+
+    })
   }
 
   openGenres() {

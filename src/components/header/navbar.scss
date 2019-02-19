@@ -165,14 +165,18 @@
         width: 100%;
         width: 100%;
         display: block;
-        padding: 20px;
         color: #fff;
+        &:first-child {
+            padding: 20px;
+        }
 
         span {
             margin-right: 10px;
         }
         a {
-            
+            padding: 20px;
+            width: 100%;
+            display: block;
             text-decoration: none;
             color: #fff;
         }
