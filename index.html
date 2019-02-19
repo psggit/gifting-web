@@ -56,99 +56,57 @@
       <div id="app" ></div>
     </div>
   <div id="confirm-modal"></div>
-</body>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-3"></script> -->
-<script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
- 
-  gtag('config', 'UA-89806318-4');
- </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-3"></script> -->
+  <script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-89806318-4');
+  </script>
 
-<script src="https://wchat.freshchat.com/js/widget.js"></script>
-<script async>
-  //var userStatus = false;
-  //console.log("user status", userStatus)
-  if(!localStorage.getItem("hasura-id")) {
-    window.fcWidget.init({
-      token: "3a3ec830-f702-4f77-a001-b8e939438956",
-      host: "https://wchat.freshchat.com",
-      tags: ["conversation_gifting"],
-    });
-  } else if(localStorage.getItem("hasura-id")) {
+  <script src="https://wchat.freshchat.com/js/widget.js"></script>
+  <script async>
+    if(!localStorage.getItem("hasura-id")) {
       window.fcWidget.init({
         token: "3a3ec830-f702-4f77-a001-b8e939438956",
         host: "https://wchat.freshchat.com",
         tags: ["conversation_gifting"],
-        //externalId: '1234567',
-        //restoreId: restoreId ? restoreId : null
       });
-    window.fcWidget.user.get(function(resp) {
-      var status = resp && resp.status,
-          data = resp && resp.data;
-      if (status !== 200) {
-        window.fcWidget.user.setProperties({
-          externalId: "",   // user’s id unique to your system
-          firstName: localStorage.getItem("username"), // user’s first name
-          lastName: "", // user’s last name
-          email: localStorage.getItem("email"), // user’s email address
-          phone: localStorage.getItem("sender_mobile"), // phone number without country code
-          phoneCountryCode: "+91" // phone’s country code
+    } else if(localStorage.getItem("hasura-id")) {
+        window.fcWidget.init({
+          token: "3a3ec830-f702-4f77-a001-b8e939438956",
+          host: "https://wchat.freshchat.com",
+          tags: ["conversation_gifting"],
         });
-        // window.fcWidget.on('user:created', function(resp) {
-        //   var status = resp && resp.status,
-        //       data = resp && resp.data;
-        //   if (status === 200) {
-        //     if (data.restoreId) {
-        //       // Update restoreId in your database
-        //     }
-        //   }
-        // });
-      }
+      window.fcWidget.user.get(function(resp) {
+        var status = resp && resp.status,
+            data = resp && resp.data;
+        if (status !== 200) {
+          window.fcWidget.user.setProperties({
+            externalId: "",
+            firstName: localStorage.getItem("username"),
+            lastName: "",
+            email: localStorage.getItem("email"),
+            phone: localStorage.getItem("sender_mobile"),
+            phoneCountryCode: "+91"
+          });
+        }
+      });
+    }
+  </script>
+
+  <script>
+    // Check that service workers are registered
+  if ('serviceWorker' in navigator) {
+    // Use the window load event to keep the page load performant
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js');
     });
   }
-  //   console.log("username", localStorage.getItem("username"), "number", localStorage.getItem("sender_mobile"))
-   
-  //   window.fcWidget.user.create().then(function() {
-  //   console.log('User Created');
-  //   }, function() {
-  //   console.log("User Not Created");
-  //   });    
-  //   window.fcWidget.init({
-  //   token: "3a3ec830-f702-4f77-a001-b8e939438956",
-  //     host: "https://wchat.freshchat.com",
-  //     tags: ["conversation_gifting"],
-  //     externalId: "",   // user’s id unique to your system
-  //     firstName: localStorage.getItem("username"), // user’s first name
-  //     lastName: "", // user’s last name
-  //     email: "", // user’s email address
-  //     phone: localStorage.getItem("sender_mobile"), // phone number without country code
-  //     phoneCountryCode: "+91" // phone’s country code
-  //   });
-  // }
-  // window.fcWidget.on("user:created", function(resp) {
-  //   console.log('User has been created');
-  //   //Function to do some task
-  // });
-
-  // window.fcWidget.user.get().then(function(result) {
-  //   console.log(result);
-  //   var userInfo = result.data;
-  //   //Do Something
-  // });
-</script>
-
-<script>
-  // Check that service workers are registered
-if ('serviceWorker' in navigator) {
-  // Use the window load event to keep the page load performant
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js');
-  });
-}
- </script>
+  </script>
+</body>
 </html>

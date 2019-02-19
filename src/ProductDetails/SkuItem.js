@@ -79,7 +79,7 @@ class SkuItem extends React.Component {
     this.img.className = "img-loaded"
   }
   handleVolumeChange(e) {
-    this.setState({ activeSku: e.target.id })
+    this.setState({ activeSku: parseInt(e.target.id) })
   }
   renderVolumes() {
     return this.props.volumes.map((item, i) => (

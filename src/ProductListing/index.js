@@ -38,7 +38,8 @@ class ProductListing extends React.Component {
       shouldMountSearchResults: false,
       genres: [],
       scrollUp: false,
-      WebHeaderKey: 0
+      WebHeaderKey: 0,
+      intersectionTarget: null
     }
 
     this.limit = 11
@@ -64,6 +65,8 @@ class ProductListing extends React.Component {
   }
 
   componentDidMount() {
+    const el = document.getElementById("scroll-intersection")
+    this.setState({ intersectionTarget: el })
     window.onpopstate = this.setDataFromUrl
     window.addEventListener("scroll", this.observeScrollDirection, false)
     this.setDataFromUrl()
@@ -181,19 +184,13 @@ class ProductListing extends React.Component {
     }
   }
 
-  updateIntersectionTarget() {
-    const brandNodes = document.querySelectorAll("brand--item")
-    const newTarget = brandNodes[brandNodes.length - 1]
-  }
-
   findInterSection() {
-    const target = document.getElementById("scroll-intersection")
+    const { intersectionTarget } = this.state
     const _self = this
+
     let io = new IntersectionObserver(function(entries) {
-      console.log("finding......")
       entries.forEach(function(entry) {
         if (entry.isIntersecting && !_self.disableScrollIntersection) {
-          console.log(_self.offset)
           _self.setState({ isBrandsLoading: true })
           _self.offset += _self.limit
           const fetchBrandsReq = {
@@ -205,11 +202,11 @@ class ProductListing extends React.Component {
           
           fetchBrandsUsingGenre(fetchBrandsReq)
             .then(brands => {
-              console.log(brands)
               _self.setState({
                 brands: _self.state.brands.concat(brands),
                 isBrandsLoading: false
               })
+              // _self.updateIntersectionTarget()
               _self.disableScrollIntersection = brands.length < _self.limit
             })  
         }
@@ -218,9 +215,7 @@ class ProductListing extends React.Component {
 
     io.POLL_INTERVAL = 100
     io.USE_MUTATION_OBSERVER = false
-    io.observe(target, {
-
-    })
+    io.observe(intersectionTarget)
   }
 
   openGenres() {
@@ -342,9 +337,9 @@ class ProductListing extends React.Component {
                 : <NoBrandsAvailable />
             }
             { this.state.isBrandsLoading && <Loader /> }
+            <div style={{ position: "absolute", bottom: "20%" }} id="scroll-intersection"></div>
           </div>
         </div>
-        <div id="scroll-intersection"></div>
       </div>
     )
   }
