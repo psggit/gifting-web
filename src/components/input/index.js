@@ -20,6 +20,7 @@ class Input extends React.Component {
         onChange={this.handleChange}
         value={this.props.value}
         placeholder={this.props.placeholder}
+        maxLength={this.props.maxLength}
       />
     )
   }

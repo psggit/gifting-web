@@ -63,6 +63,7 @@ class SelectName extends React.Component {
                     placeholder="Enter your name"
                     value={this.state.name}
                     onChange={this.handleChange}
+                    maxLength="30"
                   />
                 </div>
               </div>
