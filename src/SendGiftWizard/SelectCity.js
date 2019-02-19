@@ -49,13 +49,22 @@ class SelectCity extends React.Component {
     }
   }
 
+  getSortedCities(cities) {
+    return cities.sort((a, b) => {
+      if(a.name < b.name) { return -1 }
+      if(a.name > b.name) { return 1 }
+      return 0
+    })
+  }
+
   componentDidMount() {
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
-    fetchCities().then(data => {
+    this.setState({ name: receiverInfo.name })
+    fetchCities().then(cities => {
       if (receiverInfo.cityName) {
-        this.setState({ activeCity: this.getCityIdByName(data, receiverInfo.cityName) || -1 })
+        this.setState({ activeCity: this.getCityIdByName(cities, receiverInfo.cityName) || -1 })
       }
-      this.setState({ cities: data, name: receiverInfo.name })
+      this.setState({ cities: this.getSortedCities(cities) })
     })
   }
  
@@ -63,8 +72,6 @@ class SelectCity extends React.Component {
   render() {
     return(
       <div id="send-gift-city">
-        {/* <MobileNavBar stepNo = {2} stepName = {"Recipient's City"}  */}
-          {/* handleNavigatePageClick = {this.props.handleNavigatePageClick} /> */}
         <div className="container">
           <div className="paper">
             <div className="paper-content">
