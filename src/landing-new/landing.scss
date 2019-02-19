@@ -110,57 +110,9 @@
         text-align: center;
         padding: 19px 0;
         border: 1px solid #6d6e71;
-        margin-right: 42px;
+        margin: 0 20px;
       }
     }
-  }
-}
-
-// @media only screen and (min-width: 411px)  and (max-width: 768px) {
-//   #landing-new {
-//     .header-container {
-//       padding: 0 14%;
-//     }
-//   }
-// }
-
-@media only screen and (max-width: 412px) {
-  #landing-new {
-
-    // .header-container {
-    //   .company-logo {
-    //     display: block;
-    //     margin-bottom: 30px;
-    //   }
-    // }
-
-    // .steps {
-    //   display: flex;
-    //   flex-direction: column;
-    //   justify-content: center;
-    //   height: 128px;
-
-    //   .step-notes {
-    //     padding: 0px 30px;
-    //   }
-
-    //   .step-no {
-    //     margin-bottom: 60px;
-    //   }
-    // }
-
-    // .located-cities {
-    //   padding: 12% 15%;
-    //   .city-wrapper {
-    //     display: flex;
-    //     flex-direction: column;
-
-    //     .city {
-    //       margin-right: 0px !important;
-    //       margin-bottom: 24px;
-    //     }
-    //   }
-    // }
   }
 }
 
@@ -191,7 +143,6 @@
         flex-direction: column;
 
         .city {
-          margin-right: 0px !important;
           margin-bottom: 24px;
         }
       }
