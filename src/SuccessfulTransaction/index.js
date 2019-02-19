@@ -40,8 +40,8 @@ class SuccessfulTransaction extends React.Component {
       basket,
       message: receiver.message,
       receiver_name: receiver.name,
-      receiver_num: receiver.mobile,
-      amount_paid: txn.net_amount_debit,
+      receiver_num: `+91 ${receiver.mobile}`,
+      amount_paid: parseFloat(txn.net_amount_debit).toFixed(),
       paid_using: txn.mode === "CC" || txn.mode === "DC" ? txn.cardnum : this.modeMap[txn.mode],
       txnid: txn.txnid,
       txn_time: Moment(txn.addedon).format("DD/MM/YYYY, hh:mm A")
