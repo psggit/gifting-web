@@ -30,8 +30,10 @@ class CitySelect extends React.Component {
           gps: cities[cityIdx].gps,
           name: cities[cityIdx].name
         }
-        console.log(city)
-        localStorage.setItem("city", JSON.stringify(city))
+        const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
+        receiverInfo.gps = city.gps
+        localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
+        localStorage.setItem()
         this.setState({ cityIdx })
       })
   }

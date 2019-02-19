@@ -19,6 +19,7 @@ class SelectName extends React.Component {
     localStorage.removeItem("receiver_info")
     localStorage.removeItem("amount")
     localStorage.removeItem("basket")
+    localStorage.removeItem("promo_code")
   }
 
   handleChange(val) {

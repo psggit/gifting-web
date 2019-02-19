@@ -81,12 +81,10 @@ class ProductListing extends React.Component {
       limit: this.limit
     }
 
-    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
-    if (receiverInfo) {
-      receiverInfo.cityName = params.citySlug
-      receiverInfo.genreName = params.genreSlug
-      localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
-    }
+    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
+    receiverInfo.cityName = params.citySlug
+    receiverInfo.genreName = params.genreSlug
+    localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
 
     const fetchGenresReq = {
       city: capitalize(params.citySlug)
@@ -127,13 +125,10 @@ class ProductListing extends React.Component {
   }
 
   handleCityChange(city) {
-    localStorage.setItem("city", JSON.stringify({ name: city.name, gps: city.gps }))
-    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
-    if (receiverInfo) {
-      receiverInfo.cityName = city.name
-      receiverInfo.gps = city.gps
-      localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
-    }
+    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
+    receiverInfo.cityName = city.name
+    receiverInfo.gps = city.gps
+    localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     localStorage.removeItem("basket")
 
     const { WebHeaderKey } = this.state
@@ -161,11 +156,9 @@ class ProductListing extends React.Component {
   }
 
   handleGenreChange(genre) {
-    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
-    if (receiverInfo) {
-      receiverInfo.genreName = genre.shortName
-      localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
-    }
+    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) ||{}
+    receiverInfo.genreName = genre.shortName
+    localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.resetScrollIntersectionParams()
     const fetchBrandsReq = {
       city: capitalize(this.props.match.params.citySlug),

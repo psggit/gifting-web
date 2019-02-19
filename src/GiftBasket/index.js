@@ -108,7 +108,7 @@ class GiftBasket extends React.Component {
     })
     const giftCardSummaryReq = {
       promo_code: promoCode,
-      gps: JSON.parse(localStorage.getItem("city")).gps,
+      gps: JSON.parse(localStorage.getItem("receiver_info")).gps,
       products
     }
     return fetchGiftCardSummary(giftCardSummaryReq)
@@ -156,7 +156,8 @@ class GiftBasket extends React.Component {
 
   componentWillMount() {
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
-    if (!receiverInfo) {
+    if (!receiverInfo || !receiverInfo.gps) {
+      localStorage.removeItem("basket")
       location.href = "/send-gift"
     }
   }

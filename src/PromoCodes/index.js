@@ -18,7 +18,7 @@ class PromoCodes extends React.Component {
 
   componentDidMount() {
     fetchCoupons({
-      gps: JSON.parse(localStorage.getItem("city")).gps
+      gps: JSON.parse(localStorage.getItem("receiver_info")).gps
     })
       .then(coupons => {
         this.setState({ coupons })
