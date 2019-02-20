@@ -27,7 +27,7 @@ class MobileHeader extends React.Component {
             onSearch={this.handleSearch}
             cancelSearch={this.cancelSearch}
           /> */}
-          <CitySelect {...this.props} activeCity={this.props.match.params.citySlug} />
+          <CitySelect clearBasket={this.clearBasket} {...this.props} activeCity={this.props.match.params.citySlug} />
         </div>
 
         <div className="row">

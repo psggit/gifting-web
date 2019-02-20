@@ -189,7 +189,7 @@ class Header extends React.Component {
             </li>
             {
               this.navItems.map((item, index) => (
-                <li  className={this.checkActiveClass(item.value)} key={index}>
+                <li className={this.checkActiveClass(item.value)} key={index}>
                   <a onClick={this.handleLink} href={`/${item.value}`}>
                     {item.label}
                   </a>
@@ -199,7 +199,7 @@ class Header extends React.Component {
             {
               isLoggedIn &&
               <li>
-                <a onClick={this.handleTransactionHistory} href={`/transaction-history`} className="os s2">
+                <a onClick={this.handleTransactionHistory} href={`/transaction-history`}>
                     Transaction History
                 </a>
               </li>

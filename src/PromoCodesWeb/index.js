@@ -12,23 +12,25 @@ export default function PromoCodesWeb(data) {
   return class AddedToBasketModal extends React.Component {
     render() {
       return (
-        <ModalBox>
-          <ModalHeader> 
-            <div className="promo--header">
-              <div>
-                <p className="os s6">Promo Codes</p>
+        <div id="promocodes--web">
+          <ModalBox>
+            <ModalHeader> 
+              <div className="promo--header">
+                <div>
+                  <p className="os s6">Promo Codes</p>
+                </div>
+                <div onClick={unmountModal} className="close">
+                  <Icon name="cross" />
+                </div>
               </div>
-              <div onClick={unmountModal} className="close">
-                <Icon name="cross" />
-              </div>
-            </div>
-          </ModalHeader>
-          <ModalBody>
-            <PromoCodes data={data} />
-          </ModalBody>
-          <ModalFooter>
-          </ModalFooter>
-        </ModalBox>
+            </ModalHeader>
+            <ModalBody>
+              <PromoCodes data={data} />
+            </ModalBody>
+            <ModalFooter>
+            </ModalFooter>
+          </ModalBox>
+        </div>
       )
     }
   }

@@ -49,7 +49,7 @@ class CitySelect extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.activeCity !== this.props.activeCity) {
       const activeCity = capitalize(this.props.activeCity)
-      this.setState({ cityIdx: this.getCityIndexByName(activeCity) })
+      this.setState({ cityIdx: this.getCityIndexByName(this.state.cities, activeCity) })
     }
   }
 
