@@ -24,10 +24,10 @@ class Personalise extends React.Component {
       senderNumber: this.senderNumber,
       giftMessage: "",
       receiverName: this.receiverInfo ? this.receiverInfo.name : "",
-      receiverNumber: this.receiverInfo ? this.receiverInfo.phone : "",
+      receiverNumber: this.receiverInfo ? (this.receiverInfo.phone || "") : "",
       count: this.gift 
-              ? this.gift.giftMessage ?  this.characterLimit - this.gift.giftMessage.length : this.characterLimit
-              : this.characterLimit,
+        ? this.gift.giftMessage ?  this.characterLimit - this.gift.giftMessage.length : this.characterLimit
+        : this.characterLimit,
   
       receiverNameErr: {
         value: "",
@@ -78,10 +78,12 @@ class Personalise extends React.Component {
 
 
   proceedToPayment() {
-    const { amount, giftMessage, receiverNumber, senderName, receiverName } = this.state
+    const { giftMessage, receiverNumber, senderName, receiverName } = this.state
 
     const receiverNumberErr = validateNumberField(this.inputNameMap["receiverNumber"], receiverNumber)
     this.setState({receiverNumberErr: validateNumberField(this.inputNameMap["receiverNumber"], receiverNumber)})
+
+    console.log(receiverNumberErr)
 
     const receiverNameErr = validateTextField(this.inputNameMap["receiverName"], receiverName)
     this.setState({receiverNameErr: validateTextField(this.inputNameMap["receiverName"], receiverName)})
@@ -96,10 +98,6 @@ class Personalise extends React.Component {
       localStorage.setItem("sender_name", senderName)
       this.props.history.push("/checkout")
     }
-  }
-
-  handleBackClick() {
-    location.href = "/basket"
   }
 
   render() {
