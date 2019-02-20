@@ -277,7 +277,7 @@ class Payment extends React.Component {
         console.log("Processing saved card payment..")
         this.createTransaction(amount, gift_message, receiver_number, senderName, receiver_name, () => {
           this.setState({ selectedPaymentMethod: "card" }, () => {
-            this.submit.click()
+            // this.submit.click()
           })
         })
       }
@@ -357,6 +357,7 @@ class Payment extends React.Component {
       data: {
         amount: parseFloat(amount),
         mode: "gift",
+        promo_code: localStorage.getItem("promo_code"),
         gift_message: giftMessage,
         receiver_number: receiverNumber,
         sender_name: senderName,
@@ -381,9 +382,7 @@ class Payment extends React.Component {
           // receiver_name: receiverName,
           // receiver_num: receiverNumber
         }
-
         CB()
-        localStorage.removeItem("gift")
 
         
         // localStorage.setItem("txn", JSON.stringify(this.postBody))
