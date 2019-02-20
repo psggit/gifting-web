@@ -277,7 +277,7 @@ class Payment extends React.Component {
         console.log("Processing saved card payment..")
         this.createTransaction(amount, gift_message, receiver_number, senderName, receiver_name, () => {
           this.setState({ selectedPaymentMethod: "card" }, () => {
-            // this.submit.click()
+            this.submit.click()
           })
         })
       }
