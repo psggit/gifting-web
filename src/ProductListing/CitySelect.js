@@ -16,16 +16,25 @@ class CitySelect extends React.Component {
     }
   }
 
-  getCityIndexByName(name) {
-    return this.state.cities.findIndex(city => city.name === name)
+  getCityIndexByName(cities, name) {
+    return cities.findIndex(city => city.name === name)
+  }
+
+  getSortedCities(cities) {
+    return cities.sort((a, b) => {
+      if(a.name < b.name) { return -1 }
+      if(a.name > b.name) { return 1 }
+      return 0
+    })
   }
   
   componentDidMount() {
     fetchCities()
       .then(cities => {
-        this.setState({ cities: cities.sort((a, b) => a.id - b.id) })
+        this.setState({ cities: this.getSortedCities(cities) })
         const activeCity = capitalize(this.props.activeCity)
-        const cityIdx = this.getCityIndexByName(activeCity)
+
+        const cityIdx = this.getCityIndexByName(cities, activeCity)
         const city = {
           gps: cities[cityIdx].gps,
           name: cities[cityIdx].name
@@ -33,7 +42,6 @@ class CitySelect extends React.Component {
         const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
         receiverInfo.gps = city.gps
         localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
-        localStorage.setItem()
         this.setState({ cityIdx })
       })
   }
