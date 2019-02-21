@@ -13,7 +13,6 @@ class GenresList extends React.Component {
 
   handleGenreChange(genre) {
     this.setState({ active: genre.id })
-    this.props.history.push(`/brands/${this.props.match.params.citySlug}/${genre.shortName}`)
     this.props.handleGenreChange(genre)
   }
   

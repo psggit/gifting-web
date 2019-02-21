@@ -77,7 +77,7 @@ class ProductDetails extends React.Component {
                 brand={brand}
                 volumes={brand ? brand.skus : []}
                 name={brand ? brand.brand_name : ""}
-                image={brand ? (brand.high_res_image || getImageUrl(brand.image)) : ""}
+                image={brand ? brand.high_res_image : ""}
               />
             </div>
           </div>

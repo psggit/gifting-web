@@ -34,7 +34,6 @@ class GenreOverlay extends React.Component {
   
   handleClick(genre){
     this.setState({ active: genre.id })
-    this.props.history.push(`/brands/${this.props.activeCity}/${genre.shortName}`)
     this.props.handleGenreChange(genre)
     this.props.closeGenres()
   }

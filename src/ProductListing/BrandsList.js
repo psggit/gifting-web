@@ -21,7 +21,7 @@ class BrandsList extends React.Component {
               activeGenre={this.props.activeGenre}
               id={item.brand_id}
               key={item.brand_id}
-              thumbnail={item.low_res_image || item.high_res_image || getImageUrl(item.brand_image)}
+              thumbnail={item.low_res_image || item.high_res_image || ""}
               // thumbnail={item.text_high_res_image || item.text_low_res_image}
               img={item.url}
               name={item.brand_name}

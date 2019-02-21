@@ -26,6 +26,12 @@ function capitalize(str) {
   return `${str.split("")[0].toUpperCase()}${str.slice(1)}`
 }
 
+function isMobile(req) {
+  const userAgent = req.get("User-Agent")
+  const userAgentRegex = /Mobile|iPhone|Android|BlackBerry|IEMobile/
+  return userAgentRegex.test(userAgent)
+}
+
 app.disable("x-powered-by")
 
 // ENV variables
@@ -280,7 +286,8 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
     const reactElement = React.createElement(BrandListingPage, {
       brands: body,
       activeGenre: genre,
-      activeCity: city
+      activeCity: city,
+      isMobile: isMobile(req)
     })
     const stream = renderToNodeStream(reactElement)
     stream.pipe(res, { end: false })
@@ -295,12 +302,14 @@ app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
   const city = capitalize(req.params.citySlug)
   const genre = req.params.genreSlug
   const brand = urlencode(req.params.brandSlug)
+  console.log(brand)
 
   request({
     method: "GET",
     url: `https://catman.${BASE_URL}/consumer/browse/stores/${city}/${genre}/${brand}`,
   }, (err, httpRes, body) => {
     const parsed = JSON.parse(body)
+    console.log(parsed)
     const html = fs.readFileSync("./dist/product-detail.html", "utf-8")
     const [head, tail] = html.split("{content}")
     const headWithNavbar = withTitle(withHeader(head), `Hipbar Gifting | ${parsed.brand.brand_name}`)

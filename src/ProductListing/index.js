@@ -36,9 +36,9 @@ class ProductListing extends React.Component {
       scrollUp: false,
       WebHeaderKey: 0,
       intersectionTarget: null,
-      isMobile: false,
-      isLaptop: false,  
-      isTablet: false,
+      isMobile: props.isMobile,
+      isLaptop: !props.isMobile,  
+      isTablet: !props.isMobile,
       basket: null,
       activeCity: props.activeCity,
       activeGenre: props.activeGenre
@@ -74,13 +74,22 @@ class ProductListing extends React.Component {
     delete window.__active_genre__
     delete window.__BRANDS__
     this.setState({ brands, activeCity, activeGenre })
-    this.setState(this.getViewPortWidth())
     this.setState({ basket: localStorage.getItem("basket") })
     window.onpopstate = this.setDataFromUrl
     window.addEventListener("scroll", this.observeScrollDirection, false)
+
+    const fetchGenresReq = {
+      city: capitalize(activeCity)
+    }
+
+    fetchGenres(fetchGenresReq)
+      .then(genres => this.sortGenres(genres))
+      .then(sortedGenres => this.setGenres(sortedGenres))
     /* Polyfill for intersection observer API */
     require("intersection-observer")
-    this.setDataFromUrl()
+    if (!brands.length) {
+      this.setDataFromUrl()
+    }
   }
 
   getViewPortWidth() {
@@ -104,14 +113,6 @@ class ProductListing extends React.Component {
     receiverInfo.cityName = params.citySlug
     receiverInfo.genreName = params.genreSlug
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
-
-    const fetchGenresReq = {
-      city: capitalize(params.citySlug)
-    }
-
-    fetchGenres(fetchGenresReq)
-      .then(genres => this.sortGenres(genres))
-      .then(sortedGenres => this.setGenres(sortedGenres))
     
     fetchBrandsUsingGenre(fetchBrandsReq)
       .then(brands => {
@@ -149,10 +150,6 @@ class ProductListing extends React.Component {
     receiverInfo.gps = city.gps
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     localStorage.removeItem("basket")
-
-    const { WebHeaderKey } = this.state
-    const key = WebHeaderKey + 1
-    this.setState({ WebHeaderKey: key })
     this.resetScrollIntersectionParams()
     const fetchGenresReq = {
       city: capitalize(city.name)
@@ -162,6 +159,7 @@ class ProductListing extends React.Component {
       .then(genres => this.sortGenres(genres))
       .then(sortedGenres => {
         this.props.history.push(`/brands/${city.name}/${sortedGenres[0].short_name}`)
+        this.setState({ activeCity: city.name, activeGenre: sortedGenres[0].short_name })
         this.setGenres(sortedGenres)
         
         fetchBrandsUsingGenre({
@@ -175,6 +173,8 @@ class ProductListing extends React.Component {
   }
 
   handleGenreChange(genre) {
+    this.props.history.push(`/brands/${this.props.match.params.citySlug}/${genre.shortName}`)
+    this.setState({ activeGenre: genre.shortName })
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) ||{}
     receiverInfo.genreName = genre.shortName
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
