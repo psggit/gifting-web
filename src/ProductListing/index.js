@@ -4,10 +4,6 @@
 
 import React from "react"
 import "./sass/listing.scss"
-
-/* Polyfill for intersection observer API */
-import "intersection-observer"
-
 import BrandsList from "./BrandsList"
 import { GET } from "Utils/fetch"
 
@@ -25,13 +21,13 @@ import { capitalize } from "Utils/logic-utils"
 import NoBrandsAvailable from "./NobrandsAvailable"
  
 class ProductListing extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.fetchBrandsReq = {}
     this.shouldFetchMore = true
     this.state = {
       search_text: "",
-      brands: [],
+      brands: props.brands || [],
       isBrandsLoading: false,
       isBrandsAvailable: true,
       shouldMountGenres: false,
@@ -39,7 +35,13 @@ class ProductListing extends React.Component {
       genres: [],
       scrollUp: false,
       WebHeaderKey: 0,
-      intersectionTarget: null
+      intersectionTarget: null,
+      isMobile: false,
+      isLaptop: false,  
+      isTablet: false,
+      basket: null,
+      activeCity: props.activeCity,
+      activeGenre: props.activeGenre
     }
 
     this.limit = 11
@@ -65,11 +67,28 @@ class ProductListing extends React.Component {
   }
 
   componentDidMount() {
-    const el = document.getElementById("scroll-intersection")
-    this.setState({ intersectionTarget: el })
+    const brands = window.__BRANDS__ || []
+    const activeCity = window.__active_city__ || this.props.match.params.citySlug
+    const activeGenre = window.__active_genre__ || this.props.match.params.genreSlug
+    delete window.__active_city__
+    delete window.__active_genre__
+    delete window.__BRANDS__
+    this.setState({ brands, activeCity, activeGenre })
+    this.setState(this.getViewPortWidth())
+    this.setState({ basket: localStorage.getItem("basket") })
     window.onpopstate = this.setDataFromUrl
     window.addEventListener("scroll", this.observeScrollDirection, false)
+    /* Polyfill for intersection observer API */
+    require("intersection-observer")
     this.setDataFromUrl()
+  }
+
+  getViewPortWidth() {
+    const isMobile = window.innerWidth <= 640
+    const isTablet = window.innerWidth > 640 && window.innerWidth <= 1024
+    const isLaptop = window.innerWidth > 1024
+
+    return { isMobile, isTablet, isLaptop }
   }
 
   setDataFromUrl() {
@@ -178,7 +197,7 @@ class ProductListing extends React.Component {
   }
 
   findInterSection() {
-    const { intersectionTarget } = this.state
+    const intersectionTarget = document.getElementById("scroll-intersection")
     const _self = this
 
     let io = new IntersectionObserver(function(entries) {
@@ -259,9 +278,11 @@ class ProductListing extends React.Component {
         <div className="container">
           <div className="paper">
             {
-              this.props.context.isMobile
+              this.state.isMobile
                 ? <MobileHeader
                   {...this.props}
+                  activeGenre={this.state.activeGenre}
+                  activeCity={this.state.activeCity}
                   openGenres={this.openGenres}
                   handleGenreChange={this.handleGenreChange}
                   genres={this.state.genres}
@@ -270,6 +291,8 @@ class ProductListing extends React.Component {
                 : <WebHeader
                   {...this.props}
                   // key={this.state.WebHeaderKey}
+                  activeGenre={this.state.activeGenre}
+                  activeCity={this.state.activeCity}
                   handleGenreChange={this.handleGenreChange}
                   genres={this.state.genres}
                   onCityChange={this.handleCityChange}
@@ -312,8 +335,8 @@ class ProductListing extends React.Component {
               this.state.shouldMountGenres &&
               <GenreOverlay
                 {...this.props}
-                activeGenre={this.props.match.params.genreSlug}
-                activeCity={this.props.match.params.citySlug}
+                activeGenre={this.state.activeGenre}
+                activeCity={this.state.activeCity}
                 genres={this.state.genres}
                 closeGenres={this.closeGenres}
                 handleGenreChange={this.handleGenreChange}
@@ -321,12 +344,16 @@ class ProductListing extends React.Component {
               />
             }
             {
-              this.props.context.isMobile && this.state.scrollUp && localStorage.getItem("basket") && <BasketTotal />
+              this.state.isMobile && this.state.scrollUp && this.state.basket && <BasketTotal />
             }
 
             {
               this.state.isBrandsAvailable
-                ? <BrandsList {...this.props} data={this.state.brands} />
+                ? <BrandsList
+                  activeGenre={this.state.activeGenre}
+                  activeCity={this.state.activeCity}
+                  data={this.state.brands} 
+                />
                 : <NoBrandsAvailable />
             }
             { this.state.isBrandsLoading && <Loader /> }

@@ -11,6 +11,7 @@ const urlencode = require("urlencode")
 const TransactionSuccess = require("./dist-ssr/transaction_success").default
 const TransactionFailure = require("./dist-ssr/transaction_failure").default
 const BrandDetailPage = require("./dist-ssr/brand_detail").default
+const BrandListingPage = require("./dist-ssr/brand_listing").default
 const Header = require("./dist-ssr/header").default
 
 // Static pages
@@ -31,8 +32,6 @@ app.disable("x-powered-by")
 // const PROD_API_BASE = process.env.PROD_API_BASE
 // const BASE_URL = "amebae21.hasura-app.io";
 const BASE_URL = process.env.BASE_URL || "amebae21.hasura-app.io"
-console.log(BASE_URL)
-
 
 app.get("/images/:name", (req, res) => {
   res.sendFile(path.join(__dirname, `images/${req.params.name}`), (err) => {
@@ -44,20 +43,6 @@ app.get("/images/:name", (req, res) => {
 
 // app.use(express.static(path.join(__dirname, "dist")))
 app.use(bodyParser.urlencoded({ extended: true }))
-
-
-// app.get("/*", (req, res,) => {  
-//   const html = fs.readFileSync("./dist/index.html", "utf-8")
-//   const [head, tail] = html.split("{content}")
-//   res.write(head)
-//   const reactElement = React.createElement("div", null, `Hello World`)
-//   const stream = renderToNodeStream(reactElement)
-//   stream.pipe(res, { end: false })
-//   stream.on("end", () => {
-//     res.write(tail)
-//     res.end()
-//   })
-// })
 
 app.get("/privacy", (req, res) => {
   res.sendFile(path.join(__dirname, `src/privacy.html`), (err) => {
@@ -261,17 +246,61 @@ app.get("/robots.txt", (req, res) => {
   })
 })
 
+app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
+  const city = capitalize(req.params.citySlug)
+  const genre = req.params.genreSlug
+
+  const url = `https://catman.${BASE_URL}/consumer/browse/genres/${city}/${genre}`
+  const options = {
+    method: "post",
+    body: {
+      from: 0,
+      size: 11
+    },
+    json: true,
+    url
+  }
+
+  request(options, (err, httpRes, body) => {
+    const html = fs.readFileSync("./dist/product-listing.html", "utf-8")
+    const [head, tail] = html.split("{content}")
+    const headWithNavbar = withTitle(withHeader(head), `Gift your friends ${genre} in ${city}`)
+    res.write(headWithNavbar)
+
+    const newTail = tail.split("{script}")
+      .join(`
+      <script id="ssr_script">
+        window.__active_city__ = ${JSON.stringify(city)}
+        window.__active_genre__ = ${JSON.stringify(genre)}
+        window.__BRANDS__ = ${JSON.stringify(body)}
+      </script>
+      `)
+
+
+    const reactElement = React.createElement(BrandListingPage, {
+      brands: body,
+      activeGenre: genre,
+      activeCity: city
+    })
+    const stream = renderToNodeStream(reactElement)
+    stream.pipe(res, { end: false })
+    stream.on("end", () => {
+      res.write(newTail)
+      res.end()
+    })
+  })
+})
+
 app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
   const city = capitalize(req.params.citySlug)
   const genre = req.params.genreSlug
   const brand = urlencode(req.params.brandSlug)
-  console.log(brand)
+
   request({
     method: "GET",
     url: `https://catman.${BASE_URL}/consumer/browse/stores/${city}/${genre}/${brand}`,
   }, (err, httpRes, body) => {
     const parsed = JSON.parse(body)
-    console.log(parsed)
     const html = fs.readFileSync("./dist/product-detail.html", "utf-8")
     const [head, tail] = html.split("{content}")
     const headWithNavbar = withTitle(withHeader(head), `Hipbar Gifting | ${parsed.brand.brand_name}`)

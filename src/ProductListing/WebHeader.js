@@ -20,11 +20,10 @@ class WebHeader extends React.Component {
   constructor() {
     super()
     this.clearBasket = this.clearBasket.bind(this)
-    const basket = JSON.parse(localStorage.getItem("basket"))
     this.state = {
       active: -1,
       cityId: -1,
-      basketTotal:  basket ? getBasketTotal(basket) : 0
+      basketTotal: null
     }
   }
 
@@ -33,13 +32,18 @@ class WebHeader extends React.Component {
     this.setState({ basket: [], basketTotal: 0 })
   }
 
+  componentDidMount() {
+    const basket = JSON.parse(localStorage.getItem("basket"))
+    this.setState({ basketTotal: basket ? getBasketTotal(basket) : 0 })
+  }
+
   render() {
     return (
       <div id="product--listing__w-header">
         <div className="row">
           <div style={{ display: "flex", alignItems: "center" }}>
             <p className="os s6">Showing products in:</p>
-            <CitySelect clearBasket={this.clearBasket} {...this.props} activeCity={this.props.match.params.citySlug} />
+            <CitySelect clearBasket={this.clearBasket} {...this.props} activeCity={this.props.activeCity} />
           </div>
           {/* <Search placeholder="Search for products" /> */}
         </div>
@@ -53,7 +57,7 @@ class WebHeader extends React.Component {
         </div>
 
         <div className="row">
-          <GenresList {...this.props} active={this.props.match.params.genreSlug} genres={this.props.genres} />
+          <GenresList {...this.props} active={this.props.activeGenre} genres={this.props.genres} />
         </div>
       </div>
     )

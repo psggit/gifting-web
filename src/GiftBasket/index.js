@@ -62,7 +62,7 @@ class GiftBasket extends React.Component {
       giftSummary: null,
       isPromoApplied: false,
       settingGiftSummary: false,
-      viewProductsUrl: ""
+      key: 0
     }
     this.setBasketTotalPrice = this.setBasketTotalPrice.bind(this)
     this.onApplyPromo = this.onApplyPromo.bind(this)
@@ -129,7 +129,23 @@ class GiftBasket extends React.Component {
         })
       })
       .catch((err) => {
-        if (CB) CB(err)
+        this.setState({ settingGiftSummary: false })
+        if (CB) {
+          CB(err)
+        }
+        err.response.json().then(json => {
+          if (json.errorCode === "Promo not Valid") {
+            localStorage.removeItem("promo_code")
+            const amount = (parseFloat(this.state.subtotal) - parseFloat(this.state.discount)).toFixed(2)
+            localStorage.setItem("amount", amount)
+            this.setState({
+              isPromoApplied: false,
+              discount: 0,
+              total: amount,
+              subtotal: amount
+            })
+          }
+        })
       })
   }
 
@@ -219,6 +235,7 @@ class GiftBasket extends React.Component {
 
                       <div className="paper total">
                         <BasketTotal
+                          key={this.state.key}
                           subtotal={this.state.subtotal}
                           total={this.state.total}
                           discount={this.state.discount}

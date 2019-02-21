@@ -30,6 +30,11 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "product-listing.html",
+      template: path.resolve(__dirname, "./../../html/product-listing.html")
+    }),
+    new HtmlWebpackPlugin({
+      title: "HipBar Gifting - Gift your friends drinks online!",
       filename: "age-gate.html",
       template: path.resolve(__dirname, "./../../html/age-gate.html")
     }),

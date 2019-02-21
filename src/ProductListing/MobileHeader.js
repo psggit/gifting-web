@@ -27,7 +27,7 @@ class MobileHeader extends React.Component {
             onSearch={this.handleSearch}
             cancelSearch={this.cancelSearch}
           /> */}
-          <CitySelect clearBasket={this.clearBasket} {...this.props} activeCity={this.props.match.params.citySlug} />
+          <CitySelect clearBasket={this.clearBasket} {...this.props} activeCity={this.props.activeCity} />
         </div>
 
         <div className="row">
@@ -42,7 +42,7 @@ class MobileHeader extends React.Component {
               padding: "16px 10px"
             }}>
             <Icon name="drink" />
-            {this.props.match.params.genreSlug}
+            {this.props.activeGenre}
             <Icon name="caret" />
           </span>   
         </div>
