@@ -276,6 +276,7 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
     const newTail = tail.split("{script}")
       .join(`
       <script id="ssr_script">
+        window.__isMobile__ = ${JSON.stringify(isMobile(req))}
         window.__active_city__ = ${JSON.stringify(city)}
         window.__active_genre__ = ${JSON.stringify(genre)}
         window.__BRANDS__ = ${JSON.stringify(body)}

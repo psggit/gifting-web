@@ -70,10 +70,13 @@ class ProductListing extends React.Component {
     const brands = window.__BRANDS__ || []
     const activeCity = window.__active_city__ || this.props.match.params.citySlug
     const activeGenre = window.__active_genre__ || this.props.match.params.genreSlug
+    const isMobile = window.__isMobile__ || false
+    delete window.__isMobile__
     delete window.__active_city__
     delete window.__active_genre__
     delete window.__BRANDS__
-    this.setState({ brands, activeCity, activeGenre })
+    document.getElementById("ssr_script").innerHTML = ""
+    this.setState({ brands, activeCity, activeGenre, isMobile })
     this.setState({ basket: localStorage.getItem("basket") })
     window.onpopstate = this.setDataFromUrl
     window.addEventListener("scroll", this.observeScrollDirection, false)
@@ -90,6 +93,7 @@ class ProductListing extends React.Component {
     if (!brands.length) {
       this.setDataFromUrl()
     }
+    this.findInterSection()
   }
 
   getViewPortWidth() {
@@ -117,9 +121,7 @@ class ProductListing extends React.Component {
     fetchBrandsUsingGenre(fetchBrandsReq)
       .then(brands => {
         this.setState({ isBrandsAvailable: brands.length > 0 })
-        this.setBrands(brands, () => {
-          this.findInterSection()
-        })
+        this.setBrands(brands)
       })
   }
 
