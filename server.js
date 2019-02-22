@@ -22,6 +22,9 @@ const RedeemGiftCard = require("./dist-ssr/redeem_gift_card").default
 const RetailOutlet = require("./dist-ssr/retail_outlet").default
 const FAQ = require("./dist-ssr/faq").default
 
+//HTML Templates
+const ProductListingHTML = fs.readFileSync("./dist/product-listing.html", "utf-8")
+
 function capitalize(str) {
   return `${str.split("")[0].toUpperCase()}${str.slice(1)}`
 }
@@ -268,8 +271,7 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
   }
 
   request(options, (err, httpRes, body) => {
-    const html = fs.readFileSync("./dist/product-listing.html", "utf-8")
-    const [head, tail] = html.split("{content}")
+    const [head, tail] = ProductListingHTML.split("{content}")
     const headWithNavbar = withTitle(withHeader(head), `Gift your friends ${genre} in ${city}`)
     res.write(headWithNavbar)
 

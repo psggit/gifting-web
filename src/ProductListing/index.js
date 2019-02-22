@@ -75,7 +75,10 @@ class ProductListing extends React.Component {
     delete window.__active_city__
     delete window.__active_genre__
     delete window.__BRANDS__
-    document.getElementById("ssr_script").innerHTML = ""
+    const ssrScript = document.getElementById("ssr_script")
+    if (ssrScript) {
+      ssrScript.innerHTML = ""
+    }
     this.setState({ brands, activeCity, activeGenre, isMobile })
     this.setState({ basket: localStorage.getItem("basket") })
     window.onpopstate = this.setDataFromUrl

@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import Icon from "Components/icon"
 import "./sass/brands-list-item.scss"
 import "Sass/base.scss"
+// import ChevronRight from "./../../images/chevron-right.svg"
 
 class BrandItem extends React.Component {
   constructor() {
@@ -22,7 +23,7 @@ class BrandItem extends React.Component {
           transform: "translateY(-50%)",
           right: "20px"
         }}>
-          <Icon name="chevronRight" />
+          <img src={"/images/chevron-right.svg"} />
         </div>
         <div className="brand--item__img">
           <div className="img-placeholder"></div>
