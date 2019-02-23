@@ -20,7 +20,6 @@ module.exports = {
     new WorkboxPlugin.GenerateSW({
     // these options encourage the ServiceWorkers to get in there fast 
     // and not allow any straggling "old" SWs to hang around
-      swDest: "sw.js",
       clientsClaim: true,
       skipWaiting: true
     }),
@@ -42,7 +41,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "HipBar Gifting - Gift your friends drinks online!",
       filename: "ssr.html",
-      template: path.resolve(__dirname, "./../../src/ssr.html")
+      template: path.resolve(__dirname, "./../../html/ssr.html")
     }),
     new HtmlWebpackPlugin({
       title: "HipBar Gifting - Gift your friends drinks online!",
@@ -52,12 +51,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "Transaction Successful",
       filename: "transaction-success.html",
-      template: path.resolve(__dirname, "./../../src/payment-status.html")
+      template: path.resolve(__dirname, "./../../html/payment-status.html")
     }),
     new HtmlWebpackPlugin({
       title: "Transaction Failed",
       filename: "transaction-failed.html",
-      template: path.resolve(__dirname, "./../../src/payment-status.html")
+      template: path.resolve(__dirname, "./../../html/payment-status.html")
     }),
     new HtmlWebpackPlugin({
       filename: "index.html",

@@ -54,7 +54,7 @@ app.get("/images/:name", (req, res) => {
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get("/privacy", (req, res) => {
-  res.sendFile(path.join(__dirname, `src/privacy.html`), (err) => {
+  res.sendFile(path.join(__dirname, `html/privacy.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -161,7 +161,7 @@ app.get("/manifest.json", (req, res) => {
 })
 
 app.get("/grievance-policy", (req, res) => {
-  res.sendFile(path.join(__dirname, `src/grievance-policy.html`), (err) => {
+  res.sendFile(path.join(__dirname, `html/grievance-policy.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -169,7 +169,7 @@ app.get("/grievance-policy", (req, res) => {
 })
 
 app.get("/merchants-t-c", (req, res) => {
-  res.sendFile(path.join(__dirname, `src/merchants-t-c.html`), (err) => {
+  res.sendFile(path.join(__dirname, `html/merchants-t-c.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -177,7 +177,7 @@ app.get("/merchants-t-c", (req, res) => {
 })
 
 app.get("/gifting-t-c", (req, res) => {
-  res.sendFile(path.join(__dirname, `src/gifting-t-c.html`), (err) => {
+  res.sendFile(path.join(__dirname, `html/gifting-t-c.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -185,7 +185,7 @@ app.get("/gifting-t-c", (req, res) => {
 })
 
 app.get("/user-terms", (req, res) => {
-  res.sendFile(path.join(__dirname, `src/user-terms.html`), (err) => {
+  res.sendFile(path.join(__dirname, `html/user-terms.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -193,7 +193,7 @@ app.get("/user-terms", (req, res) => {
 })
 
 app.get("/hipbar-wallet", (req, res) => {
-  res.sendFile(path.join(__dirname, `src/hipbar-wallet.html`), (err) => {
+  res.sendFile(path.join(__dirname, `html/hipbar-wallet.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
