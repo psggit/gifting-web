@@ -9,11 +9,15 @@
   }
   a:first-child {
     text-align: center;
+    text-transform: uppercase;
+    p {
+      letter-spacing: 0.5px;
+    }
   }
 
   a:first-child svg {
-    width: 36px;
-    height: 36px;
+    width: 26px;
+    height: 26px;
   }
 
   // a:last-child {

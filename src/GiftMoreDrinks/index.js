@@ -14,7 +14,7 @@ function GiftMoreDrinks() {
     <div className="gift--more-drinks">
       <a href={getUrl()}>
         <Icon name="giftIcon" />
-        <p className="os s5">Gift more drinks</p>
+        <p className="os s7">Gift more drinks</p>
       </a>
       <a href="/basket">
         <Button primary icon="rightArrowWhite">Gift basket</Button>

@@ -20,7 +20,8 @@ function PromoBeforeApply(props) {
   return (
     <div onClick={() => { mountPromoCodesWeb(props) }} style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
       <Icon name="promoCode" />
-      <span className="os s5" style={{ marginLeft: "10px" }}>Apply Promo Code</span>
+      <span className="os s5" style={{ margin: "0 10px" }}>Apply Promo Code</span>
+      <Icon name="rightArrowBlack" />
     </div>
   )
 }
