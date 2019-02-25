@@ -36,7 +36,7 @@ class ProductListing extends React.Component {
       scrollUp: false,
       WebHeaderKey: 0,
       intersectionTarget: null,
-      isMobile: !props.isMobile,
+      isMobile: props.isMobile,
       isLaptop: !props.isMobile,  
       isTablet: !props.isMobile,
       basket: null,
@@ -70,7 +70,7 @@ class ProductListing extends React.Component {
     const brands = window.__BRANDS__ || []
     const activeCity = window.__active_city__ || this.props.match.params.citySlug
     const activeGenre = window.__active_genre__ || this.props.match.params.genreSlug
-    const isMobile = window.__isMobile__ || true
+    const isMobile = window.__isMobile__ || false
     delete window.__isMobile__
     delete window.__active_city__
     delete window.__active_genre__
