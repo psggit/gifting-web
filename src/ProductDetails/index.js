@@ -24,6 +24,15 @@ class ProductDetails extends React.Component {
     this.setBrandsUrl = this.setBrandsUrl.bind(this)
   }
   componentDidMount() {
+    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
+    const activeCity = window.__active_city__ || this.props.match.params.citySlug
+    const activeGenre = window.__active_genre__ || this.props.match.params.genreSlug
+
+    receiverInfo.cityName = activeCity
+    receiverInfo.genreName = activeGenre
+
+    localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
+    
     const basket = JSON.parse(localStorage.getItem("basket"))
     this.setState({ basketCount: basket ? getBasketTotal(basket) : 0 })
     const { params } = this.props.match  

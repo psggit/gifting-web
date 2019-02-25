@@ -46,6 +46,7 @@ class GiftBasketItem extends React.Component {
   }
   render() {
     const { brand, sku, count } = this.state
+    console.log(sku)
     return (
       <div className="gift--basket__item">
         <div className="gift--basket__item-img">

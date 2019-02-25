@@ -25,7 +25,7 @@ class BasketTotal extends React.Component {
       <div className="basket--container">
         <div>
           <p className="os s4">{ basketTotal } drink{`${basketTotal > 1 ? "s" : ""}`} in basket</p>
-          <p className="os s4" style={{ fontWeight: "600" }}>Rs {basketTotalPrice} </p>
+          <p className="os s4" style={{ fontWeight: "600" }}>Rs. {basketTotalPrice} </p>
         </div>
         <a href="/basket">
           <Button icon="rightArrowWhite" primary>Gift basket</Button>

@@ -36,7 +36,7 @@ class ProductListing extends React.Component {
       scrollUp: false,
       WebHeaderKey: 0,
       intersectionTarget: null,
-      isMobile: props.isMobile,
+      isMobile: !props.isMobile,
       isLaptop: !props.isMobile,  
       isTablet: !props.isMobile,
       basket: null,
@@ -70,7 +70,7 @@ class ProductListing extends React.Component {
     const brands = window.__BRANDS__ || []
     const activeCity = window.__active_city__ || this.props.match.params.citySlug
     const activeGenre = window.__active_genre__ || this.props.match.params.genreSlug
-    const isMobile = window.__isMobile__ || false
+    const isMobile = window.__isMobile__ || true
     delete window.__isMobile__
     delete window.__active_city__
     delete window.__active_genre__
@@ -80,7 +80,12 @@ class ProductListing extends React.Component {
       ssrScript.innerHTML = ""
     }
     this.setState({ brands, activeCity, activeGenre, isMobile })
-    this.setState({ basket: localStorage.getItem("basket") })
+    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
+    receiverInfo.cityName = activeCity
+    receiverInfo.genreName = activeGenre
+
+    localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
+    this.setState({ basket: JSON.parse(localStorage.getItem("basket")) })
     window.onpopstate = this.setDataFromUrl
     window.addEventListener("scroll", this.observeScrollDirection, false)
 
@@ -155,6 +160,7 @@ class ProductListing extends React.Component {
     receiverInfo.gps = city.gps
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     localStorage.removeItem("basket")
+    this.setState({ basket: null })
     this.resetScrollIntersectionParams()
     const fetchGenresReq = {
       city: capitalize(city.name)
@@ -278,10 +284,11 @@ class ProductListing extends React.Component {
   }
 
   render() {
+    const showMobileBasket = this.state.isMobile && this.state.basket
     return (
       <div id="BrandsListing">
         <div className="container">
-          <div className="paper">
+          <div style={showMobileBasket ? { marginBottom:"85px"} :{}} className="paper">
             {
               this.state.isMobile
                 ? <MobileHeader
@@ -349,7 +356,7 @@ class ProductListing extends React.Component {
               />
             }
             {
-              this.state.isMobile && this.state.scrollUp && this.state.basket && <BasketTotal />
+              showMobileBasket && <BasketTotal />
             }
 
             {

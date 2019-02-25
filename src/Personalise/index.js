@@ -47,7 +47,7 @@ class Personalise extends React.Component {
   }
 
   componentWillMount() {
-    if (!localStorage.getItem("receiver_info")) {
+    if (!localStorage.getItem("basket")) {
       location.href = "/send-gift"
     }
   }

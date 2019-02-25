@@ -6,7 +6,7 @@ class BasketTotal extends React.Component {
     super()
     const basket = JSON.parse(localStorage.getItem('basket'))
     this.state = {
-      subtotal: basket ? getBasketTotalPrice(basket) : 0
+      subtotal: null
     }
   }
 

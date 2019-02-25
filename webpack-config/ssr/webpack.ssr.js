@@ -4,7 +4,7 @@ const nodeExternals = require("webpack-node-externals")
 const CleanWebpackPlugin = require("clean-webpack-plugin")
 
 const config = {
-  mode: "development",
+  mode: "production",
   target: "node",
   externals: [nodeExternals()],
   entry: {

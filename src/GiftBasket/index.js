@@ -53,11 +53,10 @@ class GiftBasket extends React.Component {
   constructor() {
     super()
     const basket = JSON.parse(localStorage.getItem("basket")) || []
-    const subtotal = basket ? getBasketTotalPrice(basket) : "N/A"
     this.state = {
       basket: basket,
-      subtotal,
-      total: subtotal,
+      subtotal: null,
+      total: null,
       discount: null,
       giftSummary: null,
       isPromoApplied: false,

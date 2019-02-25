@@ -5,6 +5,10 @@
   .container {
     min-height: calc(100vh - 87px);
   }
+
+  a {
+    color: #555;
+  }
   .updating--cart-loader {
     position: fixed;
     top: 0;

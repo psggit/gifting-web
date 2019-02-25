@@ -3,6 +3,7 @@ import Button from "Components/button"
 import "./sass/sku-item.scss"
 import { mountModal } from "Components/modal-box/utils"
 import AddedToBasketModal from "./AddedToBasketModal"
+import { fetchGiftCardSummary } from "./../api"
 
 // const volumes = [
 //   { volume: "1 Ltr"  },
@@ -24,9 +25,10 @@ export function getBasketTotal(basket) {
 }
 
 export function getBasketTotalPrice(basket) {
-  return basket.reduce((a, b) => {
-    return a + b.count * parseFloat(b.sku.price.slice(1).split(",").join(""))
+  const total = basket.reduce((a, b) => {
+    return a + b.count * parseFloat(b.sku.price.toFixed(2))
   }, 0)
+  localStorage.setItem("amount", total)
 }
 
 class SkuItem extends React.Component {
@@ -34,6 +36,7 @@ class SkuItem extends React.Component {
     super()
     this.state = {
       activeSku: 0,
+      addingToBasket: false
     }
     this.handleVolumeChange = this.handleVolumeChange.bind(this)
     this.addToBasket = this.addToBasket.bind(this)
@@ -45,6 +48,58 @@ class SkuItem extends React.Component {
       return item.sku.sku_id === id
     })
     return res > -1
+  }
+
+  setBasketFromApi(basket, promoCode, CB) {
+    const products = basket.map(item => {
+      return {
+        count: item.count,
+        product_id: item.sku.sku_pricing_id,
+        type: "normal"
+      }
+    })
+
+    const giftCardSummaryReq = {
+      promo_code: promoCode,
+      gps: JSON.parse(localStorage.getItem("receiver_info")).gps,
+      products
+    }
+
+    this.setState({ addingToBasket: true })
+
+    fetchGiftCardSummary(giftCardSummaryReq)
+      .then(giftSummary => {
+        this.setState({ addingToBasket: false })
+        localStorage.setItem("basket", JSON.stringify(basket))
+        const updatedBasket = this.getUpdatedBasket(giftSummary.products)
+        this.props.setBasketCount(getBasketTotal(basket))
+        this.updateLocalBasket(updatedBasket)
+        const total = giftSummary.format_balance.slice(1).split(" ").join("")
+        localStorage.setItem("amount", total)
+        CB()
+      })
+  }
+
+  updateLocalBasket(basket) {
+    if (!basket.length) {
+      localStorage.removeItem("basket")
+    } else {
+      localStorage.setItem("basket", JSON.stringify(basket))
+    }
+  }
+
+  getProductUsingSkuId(id, products) {
+    return products.find((item) => item.sku_id === id)
+  }
+
+  getUpdatedBasket(products) {
+    const basket = JSON.parse(localStorage.getItem("basket"))
+    return basket.map((item) => {
+      const product = this.getProductUsingSkuId(item.sku.sku_id, products)
+      item.sku.price = product.display_price
+      item.count = product.count
+      return item
+    })
   }
 
   addToBasket() {
@@ -70,17 +125,18 @@ class SkuItem extends React.Component {
       basket.push(basketItem)
     }
 
-    localStorage.setItem("basket", JSON.stringify(basket))
-    this.props.setBasketCount(getBasketTotal(basket))
-    // call add to basket api
-    mountModal(AddedToBasketModal({}))
+    this.setBasketFromApi(basket, localStorage.getItem("promo_code"), () => {
+      mountModal(AddedToBasketModal({}))
+    })
   }
   handleImageLoad() {
     this.img.className = "img-loaded"
   }
+
   handleVolumeChange(e) {
     this.setState({ activeSku: parseInt(e.target.id) })
   }
+
   renderVolumes() {
     return this.props.volumes.map((item, i) => (
       <input
@@ -130,6 +186,7 @@ class SkuItem extends React.Component {
 
             <div className="add-to-basket">
               <Button
+                disabled={this.state.addingToBasket}
                 onClick={this.addToBasket}
                 iconAlignment="left"
                 primary

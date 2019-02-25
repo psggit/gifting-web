@@ -3,6 +3,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CleanWebpackPlugin = require("clean-webpack-plugin")
 const webpack = require("webpack")
 const WorkboxPlugin = require('workbox-webpack-plugin')
+const minfyConfigHTML = {
+  collapseWhitespace: true,
+  minifyCSS: true,
+  minifyJS: true,
+  minifyURLs: true,
+  removeComments: true
+}
   
 module.exports = {
   entry: {
@@ -26,42 +33,50 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "HipBar Gifting - Gift your friends drinks online!",
       filename: "landing.html",
-      template: path.resolve(__dirname, "./../../html/landing.html")
+      template: path.resolve(__dirname, "./../../html/landing.html"),
+      minify: minfyConfigHTML
     }),
     new HtmlWebpackPlugin({
       title: "HipBar Gifting - Gift your friends drinks online!",
       filename: "product-listing.html",
-      template: path.resolve(__dirname, "./../../html/product-listing.html")
+      template: path.resolve(__dirname, "./../../html/product-listing.html"),
+      minify: minfyConfigHTML
     }),
     new HtmlWebpackPlugin({
       title: "HipBar Gifting - Gift your friends drinks online!",
       filename: "age-gate.html",
-      template: path.resolve(__dirname, "./../../html/age-gate.html")
+      template: path.resolve(__dirname, "./../../html/age-gate.html"),
+      minify: minfyConfigHTML
     }),
     new HtmlWebpackPlugin({
       title: "HipBar Gifting - Gift your friends drinks online!",
       filename: "ssr.html",
-      template: path.resolve(__dirname, "./../../html/ssr.html")
+      template: path.resolve(__dirname, "./../../html/ssr.html"),
+      minify: minfyConfigHTML
     }),
     new HtmlWebpackPlugin({
       title: "HipBar Gifting - Gift your friends drinks online!",
       filename: "product-detail.html",
-      template: path.resolve(__dirname, "./../../html/product-detail.html")
+      template: path.resolve(__dirname, "./../../html/product-detail.html"),
+      minify: minfyConfigHTML
     }),
     new HtmlWebpackPlugin({
       title: "Transaction Successful",
       filename: "transaction-success.html",
-      template: path.resolve(__dirname, "./../../html/payment-status.html")
+      template: path.resolve(__dirname, "./../../html/payment-status.html"),
+      minify: minfyConfigHTML
     }),
     new HtmlWebpackPlugin({
       title: "Transaction Failed",
       filename: "transaction-failed.html",
-      template: path.resolve(__dirname, "./../../html/payment-status.html")
+      template: path.resolve(__dirname, "./../../html/payment-status.html"),
+      minify: minfyConfigHTML
     }),
     new HtmlWebpackPlugin({
       filename: "index.html",
       title: "",
-      template: path.resolve(__dirname, "./../../index.html")
+      template: path.resolve(__dirname, "./../../index.html"),
+      minify: minfyConfigHTML
     }),
     new webpack.DefinePlugin({
       "process.env.BASE_URL": JSON.stringify(process.env.BASE_URL || "amebae21.hasura-app.io"),
