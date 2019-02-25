@@ -114,12 +114,15 @@ class SuccessfulTransaction extends React.Component {
                   <p className="os s7">{this.state.receiver_num}</p>
                 </div>
 
-                <div>
-                  <p className="os s7">Personal Message</p>
-                  <p className="os s7">
-                    {this.state.message}
-                  </p>
-                </div>
+                {
+                  this.state.message &&
+                  <div>
+                    <p className="os s7">Personal Message</p>
+                    <p className="os s7">
+                      {this.state.message}
+                    </p>
+                  </div>
+                }
               </div>
             </div>
           </div>

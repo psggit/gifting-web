@@ -13,6 +13,14 @@ class GetStarted extends React.Component {
     const path = "/" + e.currentTarget.href.split("/").slice(3).join("/")
     this.props.history.push(path)
   }
+
+  componentWillUnmount() {
+    document.body.setAttribute("style", "overflow:auto")
+  }
+
+  componentDidMount() {
+    document.body.setAttribute("style", "overflow:hidden")
+  }
   render() {
     return (
       <div id="getstarted">

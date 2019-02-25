@@ -31,13 +31,6 @@ class RetailOutlet extends React.Component {
     this.fetchAvailableHipbarDelivery()
   }
 
-  // componentWillReceiveProps(newProps) {
-  //   //console.log("helo", newProps)
-  //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-  //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-  //   }
-  // }
-
   fetchAvailableHipbarDelivery() {
     Api.fetchAvailableHipbarDelivery(this.successCallback)
   }
@@ -90,8 +83,9 @@ class RetailOutlet extends React.Component {
     const {selectedCityId} = this.state
     if(selectedCityId && selectedCityId !== "select city") {
       this.findRetailer(selectedCityId)
+      // this.props.history.push(`/retail-outlet/${this.state.selectedCity}`)
       return
-    } 
+    }
     this.setState({retailerOutletData: []})
   }
 

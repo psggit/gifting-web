@@ -33,11 +33,6 @@ class Landing extends React.Component {
         <div id="landing-new">
           <Layout image="https://res.cloudinary.com/www-hipbar-com/image/upload/q_auto:good/v1550240044/Gifting-website/bg-gift.webp">
             <div className="header-container">
-              <div className="company-logo" >
-                <span style={{cursor: 'pointer'}} onClick={() => {location.href="/"}}>
-                  <Icon name="hipbarLogoWhite" />
-                </span>
-              </div>
               <p className="ft s1 header">
                 Gifting a drink is now possible!
               </p>
