@@ -45,7 +45,7 @@ app.disable("x-powered-by")
 const BASE_URL = process.env.BASE_URL || "amebae21.hasura-app.io"
 
 app.get("/images/:name", (req, res) => {
-  res.sendFile(path.join(__dirname, `images/${req.params.name}`), (err) => {
+  res.sendFile(path.join(__dirname, `./../images/${req.params.name}`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -228,8 +228,8 @@ function withTitle(head, title) {
 function attachGenreMetaTags(head, genre) {
   return head.split("{meta}").join(`
     <title>${GenreMetaTags[genre].title}</title>
-    <meta keywords="${GenreMetaTags[genre].keywords}">
-    <meta description="${GenreMetaTags[genre].description}">
+    <meta name="keywords" content="${GenreMetaTags[genre].keywords}">
+    <meta name="description" content="${GenreMetaTags[genre].description}">
   `)
 }
 
