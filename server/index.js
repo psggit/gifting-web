@@ -8,22 +8,24 @@ const bodyParser = require("body-parser")
 const request = require("request")
 const urlencode = require("urlencode")
 
-const TransactionSuccess = require("./dist-ssr/transaction_success").default
-const TransactionFailure = require("./dist-ssr/transaction_failure").default
-const BrandDetailPage = require("./dist-ssr/brand_detail").default
-const BrandListingPage = require("./dist-ssr/brand_listing").default
-const Header = require("./dist-ssr/header").default
+const TransactionSuccess = require("../dist-ssr/transaction_success").default
+const TransactionFailure = require("../dist-ssr/transaction_failure").default
+const BrandDetailPage = require("../dist-ssr/brand_detail").default
+const BrandListingPage = require("../dist-ssr/brand_listing").default
+const Header = require("../dist-ssr/header").default
 
 // Static pages
-const LandingPage = require("./dist-ssr/landing").default
-const AgeGate = require("./dist-ssr/age_gate").default
-const GetStartedPage = require("./dist-ssr/send_gift").default
-const RedeemGiftCard = require("./dist-ssr/redeem_gift_card").default
-const RetailOutlet = require("./dist-ssr/retail_outlet").default
-const FAQ = require("./dist-ssr/faq").default
+const LandingPage = require("../dist-ssr/landing").default
+const AgeGate = require("../dist-ssr/age_gate").default
+const GetStartedPage = require("../dist-ssr/send_gift").default
+const RedeemGiftCard = require("../dist-ssr/redeem_gift_card").default
+const RetailOutlet = require("../dist-ssr/retail_outlet").default
+const FAQ = require("../dist-ssr/faq").default
 
 //HTML Templates
-const ProductListingHTML = fs.readFileSync("./dist/product-listing.html", "utf-8")
+const ProductListingHTML = fs.readFileSync(path.resolve(__dirname, "../dist/product-listing.html"), "utf-8")
+
+const GenreMetaTags = require("./genre-meta-tags")
 
 function capitalize(str) {
   return `${str.split("")[0].toUpperCase()}${str.slice(1)}`
@@ -76,7 +78,7 @@ app.get("/transaction-cancelled", (req, res) => {
 app.post("/transaction-successful", (req, res) => {
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     console.log(httpRes)
-    const html = fs.readFileSync("./dist/transaction-success.html", "utf-8")
+    const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-success.html"), "utf-8")
     const [head, tail] = html.split("{content}")
     const headWithNavbar = withHeader(head)
     res.write(headWithNavbar)
@@ -102,7 +104,7 @@ app.post("/transaction-successful", (req, res) => {
 
 app.post("/transaction-cancelled", (req, res) => {
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
-    const html = fs.readFileSync("./dist/transaction-failed.html", "utf-8")
+    const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-failed.html"), "utf-8")
     const [head, tail] = html.split("{content}")
     const headWithNavbar = withHeader(head)
     res.write(headWithNavbar)
@@ -128,7 +130,7 @@ app.post("/transaction-cancelled", (req, res) => {
 
 app.post("/transaction-failure", (req, res) => {
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
-    const html = fs.readFileSync("./dist/transaction-failed.html", "utf-8")
+    const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-failed.html"), "utf-8")
     const [head, tail] = html.split("{content}")
     const headWithNavbar = withHeader(head)
     res.write(headWithNavbar)
@@ -201,7 +203,7 @@ app.get("/hipbar-wallet", (req, res) => {
 })
 
 function renderStaticMarkup(component, req, res, file) {
-  const html = fs.readFileSync(`./dist/${file}.html`, "utf-8")
+  const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withHeader(head)
   res.write(headWithNavbar)
@@ -221,6 +223,14 @@ function withHeader(head) {
 
 function withTitle(head, title) {
   return head.split("{title}").join(title)
+}
+
+function attachGenreMetaTags(head, genre) {
+  return head.split("{meta}").join(`
+    <title>${GenreMetaTags[genre].title}</title>
+    <meta keywords="${GenreMetaTags[genre].keywords}">
+    <meta description="${GenreMetaTags[genre].description}">
+  `)
 }
 
 app.get("/age-gate", (req, res) => {
@@ -272,8 +282,8 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
 
   request(options, (err, httpRes, body) => {
     const [head, tail] = ProductListingHTML.split("{content}")
-    const headWithNavbar = withTitle(withHeader(head), `Gift your friends ${genre} in ${city}`)
-    res.write(headWithNavbar)
+    const headWithNavbar = withHeader(head)
+    res.write(attachGenreMetaTags(headWithNavbar, genre))
 
     const newTail = tail.split("{script}")
       .join(`
@@ -313,7 +323,7 @@ app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
   }, (err, httpRes, body) => {
     const parsed = JSON.parse(body)
     console.log(parsed)
-    const html = fs.readFileSync("./dist/product-detail.html", "utf-8")
+    const html = fs.readFileSync(path.resolve(__dirname, "./../dist/product-detail.html"), "utf-8")
     const [head, tail] = html.split("{content}")
     const headWithNavbar = withTitle(withHeader(head), `Hipbar Gifting | ${parsed.brand.brand_name}`)
     res.write(headWithNavbar)
@@ -363,11 +373,11 @@ app.get("*.css", (req, res, next) => {
   next()
 })
 
-app.use(express.static(path.join(__dirname, "dist")))
+app.use(express.static(path.join(__dirname, "./../dist")))
 
 // client side app
 app.get("/*", (req, res) => {
-  const html = fs.readFileSync("./dist/index.html", "utf-8")
+  const html = fs.readFileSync(path.resolve(__dirname, "./../dist/index.html"), "utf-8")
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withHeader(head)
   res.write(headWithNavbar)
