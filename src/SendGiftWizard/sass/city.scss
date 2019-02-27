@@ -3,11 +3,11 @@
 #send-gift-city {
   .flex-grid {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     padding: 0 0 20px 0;
     .col {
-      margin-top: 20px;
+      margin: 20px 15px 0 15px;
     }
   }
 

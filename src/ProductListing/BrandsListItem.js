@@ -27,7 +27,7 @@ class BrandItem extends React.Component {
         </div>
         <div className="brand--item__img">
           <div className="img-placeholder"></div>
-          <img onLoad={this.handleImageLoad} src={this.props.thumbnail} />
+          <img onLoad={this.handleImageLoad} alt="" src={this.props.thumbnail} />
         </div>
         <div className="brand--item__desc">
           <p className="os s7">{this.props.name}</p>

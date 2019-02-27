@@ -25,7 +25,8 @@ const FAQ = require("../dist-ssr/faq").default
 //HTML Templates
 const ProductListingHTML = fs.readFileSync(path.resolve(__dirname, "../dist/product-listing.html"), "utf-8")
 
-const GenreMetaTags = require("./genre-meta-tags")
+const getMetaTags = require("./meta-tags")
+// const PageWiseMetaTags = require("./page-wise-meta-tags")
 
 function capitalize(str) {
   return `${str.split("")[0].toUpperCase()}${str.slice(1)}`
@@ -56,7 +57,7 @@ app.get("/images/:name", (req, res) => {
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get("/privacy", (req, res) => {
-  res.sendFile(path.join(__dirname, `html/privacy.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../html/privacy.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -155,7 +156,7 @@ app.post("/transaction-failure", (req, res) => {
 })
 
 app.get("/manifest.json", (req, res) => {
-  res.sendFile(path.join(__dirname, "manifest.json"), (err) => {
+  res.sendFile(path.join(__dirname, "./../manifest.json"), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -163,7 +164,7 @@ app.get("/manifest.json", (req, res) => {
 })
 
 app.get("/grievance-policy", (req, res) => {
-  res.sendFile(path.join(__dirname, `html/grievance-policy.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../html/grievance-policy.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -171,7 +172,7 @@ app.get("/grievance-policy", (req, res) => {
 })
 
 app.get("/merchants-t-c", (req, res) => {
-  res.sendFile(path.join(__dirname, `html/merchants-t-c.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../html/merchants-t-c.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -179,7 +180,7 @@ app.get("/merchants-t-c", (req, res) => {
 })
 
 app.get("/gifting-t-c", (req, res) => {
-  res.sendFile(path.join(__dirname, `html/gifting-t-c.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../html/gifting-t-c.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -187,7 +188,7 @@ app.get("/gifting-t-c", (req, res) => {
 })
 
 app.get("/user-terms", (req, res) => {
-  res.sendFile(path.join(__dirname, `html/user-terms.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../html/user-terms.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -195,17 +196,18 @@ app.get("/user-terms", (req, res) => {
 })
 
 app.get("/hipbar-wallet", (req, res) => {
-  res.sendFile(path.join(__dirname, `html/hipbar-wallet.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../html/hipbar-wallet.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
   })
 })
 
-function renderStaticMarkup(component, req, res, file) {
+function renderStaticMarkup({component, req, res, file}) {
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
-  const headWithNavbar = withHeader(head)
+  console.log(req.url)
+  const headWithNavbar = withMetaTags(withHeader(head), req.url)
   res.write(headWithNavbar)
   const reactElement = React.createElement(component)
   const stream = renderToNodeStream(reactElement)
@@ -225,40 +227,79 @@ function withTitle(head, title) {
   return head.split("{title}").join(title)
 }
 
-function attachGenreMetaTags(head, genre) {
+function withMetaTags(head, name) {
   return head.split("{meta}").join(`
-    <title>${GenreMetaTags[genre].title}</title>
-    <meta name="keywords" content="${GenreMetaTags[genre].keywords}">
-    <meta name="description" content="${GenreMetaTags[genre].description}">
+    <title>${getMetaTags(name).title}</title>
+    <meta name="keywords" content="${getMetaTags(name).keywords}">
+    <meta name="description" content="${getMetaTags(name).description}">
   `)
 }
 
+// function attachPageWiseMetaTags(head, pageName) {
+//   return head.split("{meta}").join(`
+//     <title>${PageWiseMetaTags[pageName].title}</title>
+//     <meta name="keywords" content="${PageWiseMetaTags[pageName].keywords}">
+//     <meta name="description" content="${PageWiseMetaTags[pageName].description}">
+//   `)
+// }
+
 app.get("/age-gate", (req, res) => {
-  renderStaticMarkup(AgeGate, req, res, "age-gate")
+  renderStaticMarkup({
+    component: AgeGate,
+    req,
+    res, 
+    file: "age-gate",
+    pageName: "age-gate"
+  })
 })
 
 app.get("/", (req, res) => {
-  renderStaticMarkup(LandingPage, req, res, "landing")
+  renderStaticMarkup({
+    component: LandingPage, 
+    req,
+    res, 
+    file: "landing",
+  })
 })
 
 app.get("/send-gift", (req, res) => {
-  renderStaticMarkup(GetStartedPage, req, res, "ssr")
+  renderStaticMarkup({
+    component: GetStartedPage,
+    req,
+    res, 
+    file: "ssr"
+  })
 })
 
 app.get("/how-to-redeem", (req, res) => {
-  renderStaticMarkup(RedeemGiftCard, req, res, "ssr")
+  renderStaticMarkup({
+    component: RedeemGiftCard,
+    req,
+    res, 
+    file: "ssr"
+  })
 })
 
 app.get("/retail-outlet", (req, res) => {
-  renderStaticMarkup(RetailOutlet, req, res, "ssr")
+  renderStaticMarkup({
+    component: RetailOutlet,
+    req,
+    res, 
+    file: "ssr"
+  })
 })
 
 app.get("/FAQs", (req, res) => {
-  renderStaticMarkup(FAQ, req, res, "ssr")
+  renderStaticMarkup({
+    component: FAQ,
+    req,
+    res, 
+    file: "ssr"
+  })
 })
 
 app.get("/robots.txt", (req, res) => {
-  res.sendFile(path.join(__dirname, "robots.txt"), (err) => {
+  res.sendFile(path.join(__dirname, "./../robots.txt"), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -283,7 +324,7 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
   request(options, (err, httpRes, body) => {
     const [head, tail] = ProductListingHTML.split("{content}")
     const headWithNavbar = withHeader(head)
-    res.write(attachGenreMetaTags(headWithNavbar, genre))
+    res.write(withMetaTags(headWithNavbar, `/${city.toLowerCase()}/${genre}`))
 
     const newTail = tail.split("{script}")
       .join(`

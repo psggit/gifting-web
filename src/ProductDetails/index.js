@@ -6,6 +6,7 @@ import Button from "Components/button"
 import { fetchSKUUsingBrand } from "./../api"
 import { capitalize } from "Utils/logic-utils"
 import { getBasketTotal } from "./SkuItem"
+import GiftMoreDrinks from "./../GiftMoreDrinks"
 
 function getImageUrl(image) {
   return `https://api2.${process.env.BASE_URL}/get?fs_url=${image}`
@@ -110,9 +111,9 @@ class ProductDetails extends React.Component {
             <Button iconAlignment="left" icon="giftBasket" primary>Add to gift basket</Button>
           </div> */}
 
-          <div className="paper gift-more-drinks-paper">
+          {/* <div className="paper gift-more-drinks-paper"> */}
             {/* <GiftMoreDrinks /> */}
-          </div>
+          {/* </div> */}
         </div>
       </div>
     )

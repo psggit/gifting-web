@@ -160,7 +160,7 @@ class SkuItem extends React.Component {
         <div className="sku--item">
           <div className="sku--item__img">
             <div className="img-placeholder"></div>
-            <img ref={(node) => this.img = node} onLoad={this.handleImageLoad} src={this.props.image} />
+            <img alt="" ref={(node) => this.img = node} onLoad={this.handleImageLoad} src={this.props.image} />
           </div>
           <div className="sku--item__desc">
             <p className="os s4">{this.props.name}</p>

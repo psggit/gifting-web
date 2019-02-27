@@ -31,18 +31,23 @@ class Landing extends React.Component {
     return(
       <React.Fragment>
         <div id="landing-new">
-          <Layout image="https://res.cloudinary.com/www-hipbar-com/image/upload/q_auto:good/v1550240044/Gifting-website/bg-gift.webp">
-            <div className="header-container">
-              <p className="ft s1 header">
-                Gifting a drink is now possible!
-              </p>
-              <p className="ft s3 sub-header">
-                Make great memories. Gift your friend a drink today
-              </p>
-              <a href="/send-gift"><Button icon="rightArrowWhite">Start gifting</Button></a>
-              {/* <CustomButton text="Start Gifting" navigateTo="/send-gift" /> */}
-            </div>
-          </Layout>
+          <div className="video-bg-container">
+            <video autoPlay="true" preload="true" loop="loop" muted="true">
+              <source src="https://res.cloudinary.com/www-hipbar-com/video/upload/v1551262512/Gifting-website/video.mp4" type="video/mp4" />
+            </video>
+          </div>
+          {/* <Layout image="https://res.cloudinary.com/www-hipbar-com/image/upload/q_auto:good/v1550240044/Gifting-website/bg-gift.webp"> */}
+          <div className="header-container">
+            <p className="ft s1 header">
+              Gifting a drink is now possible!
+            </p>
+            <p className="ft s3 sub-header">
+              Make great memories. Gift your friend a drink today
+            </p>
+            <a href="/send-gift"><Button icon="rightArrowWhite">Start gifting</Button></a>
+            {/* <CustomButton text="Start Gifting" navigateTo="/send-gift" /> */}
+          </div>
+          {/* </Layout> */}
           <Slider />
           <div className="steps">
             <div className="step-image">

@@ -36,9 +36,7 @@ class ProductListing extends React.Component {
       scrollUp: false,
       WebHeaderKey: 0,
       intersectionTarget: null,
-      isMobile: props.isMobile,
-      isLaptop: !props.isMobile,  
-      isTablet: !props.isMobile,
+      isMobile: props.context ? props.context.isMobile : props.isMobile,
       basket: null,
       activeCity: props.activeCity,
       activeGenre: props.activeGenre
@@ -70,7 +68,7 @@ class ProductListing extends React.Component {
     const brands = window.__BRANDS__ || []
     const activeCity = window.__active_city__ || this.props.match.params.citySlug
     const activeGenre = window.__active_genre__ || this.props.match.params.genreSlug
-    const isMobile = window.__isMobile__ || false
+    const isMobile = window.__isMobile__ || this.props.context.isMobile
     delete window.__isMobile__
     delete window.__active_city__
     delete window.__active_genre__
@@ -106,10 +104,7 @@ class ProductListing extends React.Component {
 
   getViewPortWidth() {
     const isMobile = window.innerWidth <= 640
-    const isTablet = window.innerWidth > 640 && window.innerWidth <= 1024
-    const isLaptop = window.innerWidth > 1024
-
-    return { isMobile, isTablet, isLaptop }
+    return { isMobile }
   }
 
   setDataFromUrl() {
