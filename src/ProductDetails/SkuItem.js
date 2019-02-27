@@ -126,6 +126,7 @@ class SkuItem extends React.Component {
     }
 
     this.setBasketFromApi(basket, localStorage.getItem("promo_code"), () => {
+      this.props.toggleProductAdded()
       if (this.props.isMobile === false) {
         mountModal(AddedToBasketModal({}))
       }

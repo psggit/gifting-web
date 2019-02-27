@@ -246,7 +246,7 @@ class GiftBasket extends React.Component {
                       <div className="personalise-btn" style={{ marginTop: "20px", width: "100%" }}>
                         <div>
                           <p className="os s7">{this.state.totalDrinks} drinks in basket</p>
-                          <p className="os s7">Rs. {this.state.total}</p>
+                          <p className="os s7"><b>Rs. {this.state.total}</b></p>
                         </div>
                         <a href="/personalise">
                           <Button icon="rightArrowWhite" primary>Personalise</Button>

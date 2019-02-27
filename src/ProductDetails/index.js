@@ -18,11 +18,13 @@ class ProductDetails extends React.Component {
     this.state = {
       brand: props.brand || null,
       basketCount: 0,
-      viewProductsUrl: ""
+      viewProductsUrl: "",
+      isProductAdded: false
     }
 
     this.setBasketCount = this.setBasketCount.bind(this)
     this.setBrandsUrl = this.setBrandsUrl.bind(this)
+    this.toggleProductAdded = this.toggleProductAdded.bind(this)
   }
   componentDidMount() {
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
@@ -53,6 +55,10 @@ class ProductDetails extends React.Component {
     }
 
     this.setBrandsUrl()
+  }
+
+  toggleProductAdded() {
+    this.setState({ isProductAdded: true })
   }
 
   setBrandsUrl() {
@@ -87,6 +93,7 @@ class ProductDetails extends React.Component {
 
             <div className="sku--container">
               <SkuItem
+                toggleProductAdded={this.toggleProductAdded}
                 isMobile={this.state.isMobile}
                 setBasketCount={this.setBasketCount}
                 brand={brand}
@@ -112,12 +119,85 @@ class ProductDetails extends React.Component {
             </div>
           </div> */}
 
+          <div className="paper about-hipbar">
+            <p className="os heading">About HipBar</p>
+            <div className="about--hipbar__content">
+              <div>
+                <p className="os s5">HipBar: Your One-Stop Destination for Gifting Drinks in India</p>
+              </div>
+
+              <div>
+                <p className="os s5"><b>Cheers to a Digital future!</b></p>
+                <p className="os s5">
+                Founded with a vision to create a safe, transparent and responsible digital ecosystem, HipBar is here to help India drink wiser, one drink at a time.
+                </p>
+              </div>
+
+              <div>
+                <p className="os s5"><b>Gift Your Friends Drinks Online in a flash!</b></p>
+                <p className="os s5">
+                  <b>100% Cashless:&nbsp;</b>
+                No tangible money/wallet needed to explore, buy, and gift drinks. Gift drinks effortlessly in just a few swipes. It's safe & secure!
+                </p>
+              </div>
+
+              <div>
+                <p className="os s5">
+                  <b>Gift Drinks Online:&nbsp;</b>
+                  For the first time in India, you can gift drinks to friends in just a few clicks!
+                </p>
+              </div>
+
+              <div>
+                <p className="os s5">
+                  <b>Responsible:&nbsp;</b>
+                  As an RBI-certified wallet, we are 100% compliant and strive to create a safer, more responsible drinking environment across India.
+                </p>
+              </div>
+
+              <div>
+                <p className="os s5">Personalize your gifts. Every celebration & occasion deserves a toast - Gift Drinks Online.</p>
+              </div>
+
+              <div>
+                <p className="os s5">
+                  <b>Our Partners:&nbsp;</b>
+                  Beam Suntory
+                  Bacardi
+                  Carlsberg
+                  Bira
+                  Brown Forman
+                  ABInBev
+                  Diageo
+                  Paul John
+
+                </p>
+              </div>
+
+              <div>
+                <p className="os s5">
+                  <b>Our Products:&nbsp;</b>
+                  Beam Suntory
+                  Bacardi
+                  Carlsberg
+                  Bira
+                  Brown Forman
+                  ABInBev
+                  Diageo
+                  Paul John
+
+                </p>
+              </div>
+
+            </div>
+          </div>
+
           {/* <div className="paper add-to-basket">
             <Button iconAlignment="left" icon="giftBasket" primary>Add to gift basket</Button>
           </div> */}
 
           {
-            this.state.isMobile && this.state.basketCount
+            this.state.isMobile && this.state.isProductAdded
               ? <div className="paper gift-more-drinks-paper">
                 <GiftMoreDrinks url={this.state.viewProductsUrl} />
               </div>
