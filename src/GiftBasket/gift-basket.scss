@@ -85,6 +85,10 @@
     width: 360px;
     max-width: 100%;
   }
+
+  .personalise-btn > div {
+    display: none;
+  }
 }
 
 
@@ -127,6 +131,20 @@
 
     .paper.total {
       width: 100%;
+    }
+
+    .personalise-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      padding: 20px 30px;
+      > div {
+        display: block;
+      }
+      .btn {
+        width: 100%;
+      }
     }
   }
 }

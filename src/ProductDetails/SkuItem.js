@@ -126,7 +126,9 @@ class SkuItem extends React.Component {
     }
 
     this.setBasketFromApi(basket, localStorage.getItem("promo_code"), () => {
-      mountModal(AddedToBasketModal({}))
+      if (this.props.isMobile === false) {
+        mountModal(AddedToBasketModal({}))
+      }
     })
   }
   handleImageLoad() {

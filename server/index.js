@@ -372,6 +372,7 @@ app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
     const newTail = tail.split("{script}")
       .join(`
       <script>
+        window.__isMobile__ = ${JSON.stringify(isMobile(req))}_
         window.__active_city__ = ${JSON.stringify(city)}
         window.__active_genre__ = ${JSON.stringify(genre)}
         window.BRAND_STATE = ${JSON.stringify(parsed.brand)}

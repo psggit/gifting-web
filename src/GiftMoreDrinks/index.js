@@ -3,16 +3,10 @@ import Icon from "Components/icon"
 import Button from "Components/button"
 import "./gift-more-drinks.scss"
 
-// function getUrl() {
-//   const u = location.pathname.split("/")
-//   u.pop()
-//   return u.join("/")
-// }
-
-function GiftMoreDrinks() {
+function GiftMoreDrinks({ url }) {
   return (
     <div className="gift--more-drinks">
-      <a>
+      <a href={url}>
         <Icon name="giftIcon" />
         <p className="os s7">Gift more drinks</p>
       </a>

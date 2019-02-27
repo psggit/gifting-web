@@ -28,6 +28,10 @@ class ProductDetails extends React.Component {
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     const activeCity = window.__active_city__ || this.props.match.params.citySlug
     const activeGenre = window.__active_genre__ || this.props.match.params.genreSlug
+    const isMobile = window.__isMobile__ || this.props.context.isMobile
+    delete window.__isMobile__
+
+    this.setState({ isMobile })
 
     receiverInfo.cityName = activeCity
     receiverInfo.genreName = activeGenre
@@ -83,6 +87,7 @@ class ProductDetails extends React.Component {
 
             <div className="sku--container">
               <SkuItem
+                isMobile={this.state.isMobile}
                 setBasketCount={this.setBasketCount}
                 brand={brand}
                 volumes={brand ? brand.skus : []}
@@ -111,9 +116,13 @@ class ProductDetails extends React.Component {
             <Button iconAlignment="left" icon="giftBasket" primary>Add to gift basket</Button>
           </div> */}
 
-          {/* <div className="paper gift-more-drinks-paper"> */}
-            {/* <GiftMoreDrinks /> */}
-          {/* </div> */}
+          {
+            this.state.isMobile && this.state.basketCount
+              ? <div className="paper gift-more-drinks-paper">
+                <GiftMoreDrinks url={this.state.viewProductsUrl} />
+              </div>
+              : ""
+          }
         </div>
       </div>
     )

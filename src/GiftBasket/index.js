@@ -3,7 +3,7 @@ import Basket from "./basket"
 import Icon from "Components/icon"
 import Button from "Components/button"
 import BasketTotal from "./BasketTotal"
-import { getBasketTotalPrice } from "./../ProductDetails/SkuItem"
+import { getBasketTotal } from "./../ProductDetails/SkuItem"
 import PromoCodesWeb from "./../PromoCodesWeb"
 import { mountModal, unmountModal } from "Components/modal-box2/utils"
 import SignIn from "./../SignIn"
@@ -62,6 +62,7 @@ class GiftBasket extends React.Component {
       giftSummary: null,
       isPromoApplied: false,
       settingGiftSummary: false,
+      totalDrinks: null,
       key: 0
     }
     this.setBasketTotalPrice = this.setBasketTotalPrice.bind(this)
@@ -123,7 +124,8 @@ class GiftBasket extends React.Component {
           giftSummary,
           subtotal: giftSummary.total.slice(1).split(" ").join(""),
           total,
-          discount: giftSummary.promo_discount.slice(1).split(" ").join("")
+          discount: giftSummary.promo_discount.slice(1).split(" ").join(""),
+          totalDrinks: getBasketTotal(updatedBasket)
         }, () => {
           if (CB) CB(null)
         })
@@ -241,7 +243,11 @@ class GiftBasket extends React.Component {
                           discount={this.state.discount}
                         />
                       </div>
-                      <div style={{ marginTop: "20px", width: "100%" }}>
+                      <div className="personalise-btn" style={{ marginTop: "20px", width: "100%" }}>
+                        <div>
+                          <p className="os s7">{this.state.totalDrinks} drinks in basket</p>
+                          <p className="os s7">Rs. {this.state.total}</p>
+                        </div>
                         <a href="/personalise">
                           <Button icon="rightArrowWhite" primary>Personalise</Button>
                         </a>

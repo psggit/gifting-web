@@ -15,10 +15,6 @@
     border-radius: 4px;
     // color: #fff;
 
-    &:last-child {
-      margin-bottom: 84px;
-    }
-
     &.price {
       padding: 40px 60px;
       border-bottom: 0;
@@ -50,6 +46,7 @@
         line-height: 1.57;
         margin-top: 8px;
       }
+      margin-bottom: 84px;
     }
 
     &.gs1-code {
@@ -160,8 +157,13 @@
         }
       }
       &.gift-more-drinks-paper {
-        padding: 16px 20px;
         display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+        margin-bottom: 0;
       }
     }
     .paper .sku--container {
