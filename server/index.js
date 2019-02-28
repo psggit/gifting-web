@@ -229,7 +229,7 @@ function withTitle(head, title) {
 
 function withMetaTags(head, name, extraKeyWord, url) {
   const meta = getMetaTags(name, extraKeyWord)
-  const canonicalTag = `<link rel="canonical" href="https://www.gifting.hipbar.com${url}">`
+  const canonicalTag = `<link rel="canonical" href="https://gifting.hipbar.com${url}">`
   return head.split("{meta}").join(`
     <title>${meta.title}</title>
     ${canonicalTag}
