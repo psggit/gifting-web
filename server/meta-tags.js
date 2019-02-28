@@ -49,7 +49,7 @@ const pageMetaTags = {
 function getMetaTags(name, extraKeyWord) {
   console.log("keyword", extraKeyWord)
   const metaTags = { ...goa, ...mahe, ...chennai, ...pageMetaTags}
-  if (extraKeyWord) {
+  if (extraKeyWord && metaTags[name]) {
     metaTags[name].keywords = metaTags[name].keywords.concat(`, ${extraKeyWord}`)
   }
   return metaTags[name] || defaultMetaTags
