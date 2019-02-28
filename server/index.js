@@ -227,10 +227,12 @@ function withTitle(head, title) {
   return head.split("{title}").join(title)
 }
 
-function withMetaTags(head, name, extraKeyWord) {
+function withMetaTags(head, name, extraKeyWord, url) {
   const meta = getMetaTags(name, extraKeyWord)
+  const canonicalTag = `<link rel="canonical" href="https://www.gifting.hipbar.com${url}">`
   return head.split("{meta}").join(`
     <title>${meta.title}</title>
+    ${canonicalTag}
     <meta name="keywords" content="${meta.keywords}">
     <meta name="description" content="${meta.description}">
   `)
@@ -325,7 +327,7 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
   request(options, (err, httpRes, body) => {
     const [head, tail] = ProductListingHTML.split("{content}")
     const headWithNavbar = withHeader(head)
-    res.write(withMetaTags(headWithNavbar, `/${city.toLowerCase()}/${genre}`))
+    res.write(withMetaTags(headWithNavbar, `/${city.toLowerCase()}/${genre}`, undefined, req.url))
 
     const newTail = tail.split("{script}")
       .join(`
@@ -366,7 +368,7 @@ app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/product-detail.html"), "utf-8")
     const [head, tail] = html.split("{content}")
     const headWithNavbar = withHeader(head)
-    res.write(withMetaTags(headWithNavbar, `/${city.toLowerCase()}/${genre}`, parsed.brand.brand_name))
+    res.write(withMetaTags(headWithNavbar, `/${city.toLowerCase()}/${genre}`, parsed.brand.brand_name, req.url))
 
     const newTail = tail.split("{script}")
       .join(`
