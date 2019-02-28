@@ -207,7 +207,7 @@ function renderStaticMarkup({component, req, res, file}) {
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
   console.log(req.url)
-  const headWithNavbar = withMetaTags(withHeader(head), req.url)
+  const headWithNavbar = withMetaTags(withHeader(head), req.url, undefined, req.url)
   res.write(headWithNavbar)
   const reactElement = React.createElement(component)
   const stream = renderToNodeStream(reactElement)
