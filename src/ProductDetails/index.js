@@ -55,6 +55,7 @@ class ProductDetails extends React.Component {
     }
 
     this.setBrandsUrl()
+
   }
 
   toggleProductAdded() {
@@ -137,7 +138,7 @@ class ProductDetails extends React.Component {
                 <p className="os s5"><b>Gift Your Friends Drinks Online in a flash!</b></p>
                 <p className="os s5">
                   <b>100% Cashless:&nbsp;</b>
-                No tangible money/wallet needed to explore, buy, and gift drinks. Gift drinks effortlessly in just a few swipes. It's safe & secure!
+                  You don't need to carry your wallet anymore. Gift a drink in just a few clicks with the built-in RBI authorised digital wallet. It's safe and secure!
                 </p>
               </div>
 
@@ -156,36 +157,162 @@ class ProductDetails extends React.Component {
               </div>
 
               <div>
-                <p className="os s5">Personalize your gifts. Every celebration & occasion deserves a toast - Gift Drinks Online.</p>
+                <p className="os s5">
+                Gifting never goes out of fashion. Make every moment memorable with HipBar Gifting. Gift a drink now!
+                </p>
               </div>
+
 
               <div>
                 <p className="os s5">
                   <b>Our Partners:&nbsp;</b>
-                  Beam Suntory
-                  Bacardi
-                  Carlsberg
-                  Bira
-                  Brown Forman
-                  ABInBev
-                  Diageo
+                  Beam Suntory,
+                  Bacardi,
+                  Carlsberg,
+                  Bira,
+                  Brown Forman,
+                  ABInBev,
+                  Diageo,
                   Paul John
 
                 </p>
               </div>
 
               <div>
+                <p className="os s5"><b>Available products</b></p>
                 <p className="os s5">
-                  <b>Our Products:&nbsp;</b>
-                  Beam Suntory
-                  Bacardi
-                  Carlsberg
-                  Bira
-                  Brown Forman
-                  ABInBev
-                  Diageo
-                  Paul John
+                  <b>Beer:&nbsp;</b>
+                  Budweiser,
+                  Leffe (Pint),
+                  Stella Artois (Pint),
+                  Hoegaarden (Pint),
+                  Corona Extra (Pint),
+                  Budweiser (Can),
+                  Bira 91 White (Can),
+                  Bira 91 Blonde (Can),
+                  Bira 91 White,
+                  Bira 91 Blonde,
+                  Budweiser Magnum
+                </p>
+              </div>
 
+              <div>
+                <p className="os s5">
+                  <b>Domestic Whiskey:&nbsp;</b>
+                  VAT 69,
+                  Black & White,
+                  Black Dog Triple Gold Reserve,
+                  Signature Rare Aged,
+                  Antiquity Blue,
+                  Royal Challenge,
+                  Signature Premier,
+                  Black Dog Black Reserve,
+                  McDowell’s No.1 Reserve Whisky,
+                  Black & White 12,
+                  McDowell’s No.1 Luxury Premium Whisky,
+                  TI Mansion House Premium Whisky
+                </p>
+              </div>
+
+              <div>
+                <p className="os s5">
+                  <b>Imported Whiskey:&nbsp;</b>
+                  Johnnie Walker Red Label,
+                  Johnnie Walker Black Label,
+                  Johnnie Walker Double Black,
+                  J&B Rare,
+                  Johnnie Walker Platinum Label 18 Year Old,
+                  Johnnie Walker Gold Label Reserve,
+                  Johnnie Walker Green Label
+                </p>
+              </div>
+
+              <div>
+                <p className="os s5">
+                  <b>Single Malt Whiskey:&nbsp;</b>
+                  Talisker 10 Year Old,
+                  The Singleton of Glen Ord 12 Year Old,
+                  Paul John Brilliance,
+                  Paul John Edited,
+                  Paul John Bold,
+                  Glenkinchie Single Malt Whisky 12 Year Old
+                </p>
+              </div>
+
+              <div>
+                <p className="os s5">
+                  <b>Rum:&nbsp;</b>
+                  Captain Morgan The Original Rum
+                </p>
+              </div>
+
+              <div>
+                <p className="os s5">
+                  <b>Domestic Wine:&nbsp;</b>
+                  Big Banyan Cabernet Sauvignon,
+                  Big Banyan Shiraz,
+                  Big Banyan Chenin Blanc,
+                  Big Banyan Sauvignon Blanc,
+                  Big Banyan Rosa Rossa,
+                  Big Banyan Merlot,
+                  Big Banyan Chardonnay,
+                  Ampersand White Wine,
+                  Ampersand Red Wine,
+                  Big Banyan Limited Shiraz,
+                  Big Banyan Bellissima
+                </p>
+              </div>
+
+              <div>
+                <p className="os s5">
+                  <b>Vodka:&nbsp;</b>
+                  Smirnoff Red,
+                  Ciroc,
+                  Ketel One,
+                  Resolute Pink Vodka,
+                  Resolute Black Vodka,
+                  Smirnoff Green Apple,
+                  Smirnoff Orange,
+                  Smirnoff Espresso,
+                  Smirnoff Vanilla
+                </p>
+              </div>
+
+              <div>
+                <p className="os s5">
+                  <b>Gin:&nbsp;</b>
+                  Tanqueray,
+                  Greater Than,
+                  Gordon’s London Dry Gin
+                </p>
+              </div>
+
+              <div>
+                <p className="os s5">
+                  <b>Brandy:&nbsp;</b>
+                  TI Mansion House French Brandy,
+                  Courrier Napoleon Finest French Brandy Green,
+                  TI Mansion House Silk Premium Brandy,
+                  TI Courrier Napoleon Finest Pure Grape French Brandy
+                </p>
+              </div>
+
+              <div>
+                <p className="os s5">
+                  <b>Tequila:&nbsp;</b>
+                  Hoist Gold Tequila,
+                  Hoist Silver Tequila,
+                  DesmondJi 100% Agave,
+                  DesmondJi 51% Agave,
+                  DesmondJi Blue Margarita
+                </p>
+              </div>
+
+              <div>
+                <p className="os s5">
+                  <b>Liqueur:&nbsp;</b>
+                  Baileys The Original Irish Cream,
+                  DesmondJi Orange Liqueur
                 </p>
               </div>
 

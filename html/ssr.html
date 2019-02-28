@@ -17,7 +17,7 @@
 
   <link href="/images/For-Webflow-01.png" rel="shortcut icon" type="image/x-icon">
   <link href="/images/For-Webflow-02.png" rel="apple-touch-icon">
-  <link rel="manifest" href="/manifest.json">
+  <!-- <link rel="manifest" href="/manifest.json"> -->
 
   <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
   <meta content='FVz8vJPDa60jzuyoOc9W7jZZqA_TA-lVwHO2OwPJGPg' name='google-site-verification'/>
@@ -48,9 +48,6 @@
      a {
        text-decoration: none;
      }
-     #fc_frame {
-       display: none !important;
-     }
   </style>
 </head>
 <body>
@@ -71,79 +68,6 @@
  
   gtag('config', 'UA-89806318-4');
  </script>
-
-<script src="https://wchat.freshchat.com/js/widget.js"></script>
-<script async>
-  //var userStatus = false;
-  //console.log("user status", userStatus)
-  if(!localStorage.getItem("hasura-id")) {
-    window.fcWidget.init({
-      token: "3a3ec830-f702-4f77-a001-b8e939438956",
-      host: "https://wchat.freshchat.com",
-      tags: ["conversation_gifting"],
-    });
-  } else if(localStorage.getItem("hasura-id")) {
-      window.fcWidget.init({
-        token: "3a3ec830-f702-4f77-a001-b8e939438956",
-        host: "https://wchat.freshchat.com",
-        tags: ["conversation_gifting"],
-        //externalId: '1234567',
-        //restoreId: restoreId ? restoreId : null
-      });
-    window.fcWidget.user.get(function(resp) {
-      var status = resp && resp.status,
-          data = resp && resp.data;
-      if (status !== 200) {
-        window.fcWidget.user.setProperties({
-          externalId: "",   // user’s id unique to your system
-          firstName: localStorage.getItem("username"), // user’s first name
-          lastName: "", // user’s last name
-          email: localStorage.getItem("email"), // user’s email address
-          phone: localStorage.getItem("sender_mobile"), // phone number without country code
-          phoneCountryCode: "+91" // phone’s country code
-        });
-        // window.fcWidget.on('user:created', function(resp) {
-        //   var status = resp && resp.status,
-        //       data = resp && resp.data;
-        //   if (status === 200) {
-        //     if (data.restoreId) {
-        //       // Update restoreId in your database
-        //     }
-        //   }
-        // });
-      }
-    });
-  }
-  //   console.log("username", localStorage.getItem("username"), "number", localStorage.getItem("sender_mobile"))
-   
-  //   window.fcWidget.user.create().then(function() {
-  //   console.log('User Created');
-  //   }, function() {
-  //   console.log("User Not Created");
-  //   });    
-  //   window.fcWidget.init({
-  //   token: "3a3ec830-f702-4f77-a001-b8e939438956",
-  //     host: "https://wchat.freshchat.com",
-  //     tags: ["conversation_gifting"],
-  //     externalId: "",   // user’s id unique to your system
-  //     firstName: localStorage.getItem("username"), // user’s first name
-  //     lastName: "", // user’s last name
-  //     email: "", // user’s email address
-  //     phone: localStorage.getItem("sender_mobile"), // phone number without country code
-  //     phoneCountryCode: "+91" // phone’s country code
-  //   });
-  // }
-  // window.fcWidget.on("user:created", function(resp) {
-  //   console.log('User has been created');
-  //   //Function to do some task
-  // });
-
-  // window.fcWidget.user.get().then(function(result) {
-  //   console.log(result);
-  //   var userInfo = result.data;
-  //   //Do Something
-  // });
-</script>
 
 <script>
   // Check that service workers are registered

@@ -16,7 +16,7 @@
 
   <link href="/images/For-Webflow-01.png" rel="shortcut icon" type="image/x-icon">
   <link href="/images/For-Webflow-02.png" rel="apple-touch-icon">
-  <link rel="manifest" href="/manifest.json">
+  <!-- <link rel="manifest" href="/manifest.json"> -->
   <link rel="canonical" href="https://www.gifting.hipbar.com/age-gate">
 
   <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
@@ -64,37 +64,6 @@
     gtag('js', new Date());
   
     gtag('config', 'UA-89806318-4');
-  </script>
-
-  <script src="https://wchat.freshchat.com/js/widget.js"></script>
-  <script async>
-    if(!localStorage.getItem("hasura-id")) {
-      window.fcWidget.init({
-        token: "3a3ec830-f702-4f77-a001-b8e939438956",
-        host: "https://wchat.freshchat.com",
-        tags: ["conversation_gifting"],
-      });
-    } else if(localStorage.getItem("hasura-id")) {
-        window.fcWidget.init({
-          token: "3a3ec830-f702-4f77-a001-b8e939438956",
-          host: "https://wchat.freshchat.com",
-          tags: ["conversation_gifting"],
-        });
-      window.fcWidget.user.get(function(resp) {
-        var status = resp && resp.status,
-            data = resp && resp.data;
-        if (status !== 200) {
-          window.fcWidget.user.setProperties({
-            externalId: "",
-            firstName: localStorage.getItem("username"),
-            lastName: "",
-            email: localStorage.getItem("email"),
-            phone: localStorage.getItem("sender_mobile"),
-            phoneCountryCode: "+91"
-          });
-        }
-      });
-    }
   </script>
 
   <script>

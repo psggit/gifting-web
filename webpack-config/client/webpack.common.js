@@ -50,6 +50,12 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "static.html",
+      template: path.resolve(__dirname, "./../../html/static.html"),
+      minify: minfyConfigHTML
+    }),
+    new HtmlWebpackPlugin({
+      title: "HipBar Gifting - Gift your friends drinks online!",
       filename: "ssr.html",
       template: path.resolve(__dirname, "./../../html/ssr.html"),
       minify: minfyConfigHTML

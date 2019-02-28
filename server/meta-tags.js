@@ -1,132 +1,57 @@
+const goa = require("./city-meta-tags/goa")
+const mahe = require("./city-meta-tags/mahe")
+const chennai = require("./city-meta-tags/chennai")
+
 const defaultMetaTags = {
   title: "",
   description: "",
   keywords: ""
 }
 
-function getMetaTags(name) {
-  const metaTags = {
-    "/chennai/beer": {
-      title: "HipBar gifting - Gift your friends their favourite beers online!",
-      description: "Explore HipBar’s gamut of beers, incl. Carlsberg, Budweiser, Tuborg, and much more; pick your favourite(s) and start gifting drinks online for all occasions.",
-      keywords: "Gift drinks online, beers online, carlsberg beer, budweiser, tuborg, Hipbar"
-    },
+const pageMetaTags = {
+  "/age-gate": {
+    title: "",
+    description: "",
+    keywords: ""
+  },
 
-    "/chennai/whiskey": {
-      title: "Start gifting your favourite whisky online with HipBar Gifting!",
-      description: "Gift whisky online, incl. Johnnie Walker, Jack Daniels, Black & White, Royal Stag, etc., for all occasions. Starting from xxxml, INR xxx. Explore HipBar Gifting Now!",
-      keywords: "Gift whisky online, Johnnie Walker, Royal Stag, black and white, jack daniels, HipBar"
-    },
+  "/": {
+    title: "HipBar Gifting - Gift your friends drinks online!",
+    description: "Gift your friends their favourite drinks - Beers, Whiskys, Vodkas & More! Send gift cards online to celebrate all occasions and say 'Cheers' in style. Use HipBar Gifting today!",
+    keywords: "Gifts Online, Gifting in India, Alcohol Online, Drinks Online, Hipbar"
+  },
 
-    "/chennai/rtd": {
-      title: "Gift your friends their choice of breezer/rtd online with HipBar Gifting!",
-      description: "Start gifting rtd/breezers online incl. Bacardi with HipBar Gifting. Starting from xxxml, INR xxx. Your gift in various breezer flavours is just a click away!",
-      keywords: "Gift rtd online, breezer, HipBar, bacardi, breezer flavours"
-    },
+  "/send-gift": {
+    title: "HipBar Gifting - Gift your friends drinks online!",
+    description: "",
+    keywords: ""
+  },
 
-    "/chennai/rum": {
-      title: "Gift your friends their choice of rum online with HipBar Gifting!",
-      description: "Start gifting your friends with their choice of rum online, incl. Bacardi, Mcdowell, Old Monk, Captain Morgan, etc., with HipBar Gifting. Starting from xxxml, INR xxx. Explore Today!",
-      keywords: "Gift rum online, bacardi, mcdowell, old monk, captain morgan"
-    },
+  "/how-to-redeem": {
+    title: "HipBar Gifting - Gift your friends drinks online!",
+    description: "Redeem your drink gifts cards by downloading HipBar App. 4 Easy Steps to Redeem Your Drink Gift Cards! Download HipBar App Now!",
+    keywords: "Redeem gift cards, Hipbar, Hipbar Gifting"
+  },
 
-    "/chennai/domestic-whiskey": {
-      title: "Send Whisky Gift Cards Online to  Your Friends - HipBar Gifting!",
-      description: "Personalize your gifts by sending HipBar’s whisky gift cards online, incl. Royal Stag, Blenders Pride, etc. Starting from xxxml, INR xxx. Use HipBar Gifting to send whisky online!",
-      keywords: "Gift whisky/domestic whisky online, Royal Stag, Blenders Pride, Black & White"
-    },
+  "/retail-outlet": {
+    title: "",
+    description: "",
+    keywords: ""
+  },
 
-    "/chennai/imported-whiskey": {
-      title: "Send Whisky Gift Cards Online to Your Friends - HipBar Gifting!",
-      description: "Personalize your gifts by sending HipBar’s whisky gift cards online, incl. Johnnie Walker, Jack Daniels, Jim Beam, etc. Starting from xxxml, INR xxx. Use HipBar Gifting to send whisky online!",
-      keywords: "Gift whisky/imported whisky online, Jack Daniels, Johnnie Walker, Jim Beam"
-    },
-
-    "/chennai/single-malt-whiskey": {
-      title: "Send Whisky Gift Cards Online to Your Friends - HipBar Gifting!",
-      description: "Personalize your gifts by sending HipBar’s whisky gift cards online, incl. Monkey Shoulder, Paul John, etc. Starting from xxxml, INR xxx. Use HipBar Gifting to send whisky online!",
-      keywords: "Gift whisky/imported whisky online, Single Malt Whisky, Monkey Shoulder, Paul John"
-    },
-
-    "/chennai/domestic-wine": {
-      title: "Send Wine Gift Cards Online to Your Friends - HipBar Gifting!",
-      description: "A perfect gift is sending your friends wine gift cards online, incl.Big Banyan, Grover, Sante, La Reserve, One Tree Hill, etc. Starting from xxxml, INR xxx. Use HipBar Gifting to send wine online!",
-      keywords: "wine online, best wine, Grover, Sante, Big Banyan, La Reserve, One Tree Hill"
-    },
-
-    "/chennai/imported-wine": {
-      title: "Send Wine Gift Cards Online to Your Friends - HipBar Gifting!",
-      description: "A perfect gift is sending your friends wine gift cards online, incl. Sensi and Lancers. Starting from xxxml, INR xxx. Use HipBar Gifting to send wine online!",
-      keywords: "wine online, Sensi, Lancers"
-    },
-
-    "/chennai/vodka": {
-      title: "Send Vodka Gift Cards Online to Your Friends - HipBar Gifting!",
-      description: "Start gifting your friends with their choice of Vodka online, incl. Smirnoff, Absolut, Resolute, Artic, etc., with HipBar Gifting. Starting from xxxml, INR xxx. Use HipBar Gifting to send vodka online!",
-      keywords: "vodka online, smirnoff, absolut, resolute, artic"
-    },
-
-    "/chennai/gin": {
-      title: "Send Gin Gift Cards Online to Your Friends - HipBar Gifting!",
-      description: "Start gifting your friends with their choice of Gin online, incl. Bombay Sapphire, Tanqueray, etc., with HipBar Gifting. Starting from xxxml, INR xxx. Use HipBar Gifting to send gin online!",
-      keywords: "gin online, bombay sapphire, tanqueray"
-    },
-
-    "/chennai/brandy": {
-      title: "Send Brandy Gift Cards Online to Your Friends - HipBar Gifting!",
-      description: "Start sending your friends brandy online, incl. L’affaire and Mansion House with HipBar Gifting.  Starting from xxxml, INR xxx. Use HipBar Gifting to send brandy online!",
-      keywords: "Brandy online, laffaire, mansion house"
-    },
-
-    "/chennai/tequila": {
-      title: "Send Tequila Gift Cards Online to Your Friends - HipBar Gifting!",
-      description: "Start sending your friends tequila online, incl. Hoist, Don Julio, el Jimador, etc., with HipBar Gifting. Starting from xxxml, INR xxx. Use HipBar Gifting to send tequila online!",
-      keywords: "tequila online, hoist, don julio, el jimador"
-    },
-
-    "/chennai/liqueur": {
-      title: "Send Liqueur Gift Cards Online to Your Friends - HipBar Gifting!",
-      description: "Start sending your friends liqueur online, incl. Kahlua, Malibu Original,  Peppermint Liqueur, etc., with HipBar Gifting. Starting from xxxml, INR xxx. Use HipBar Gifting to send liqueur online!",
-      keywords: "liqueur online, kahlua, malibu original,  peppermint liqueur"
-    },
-
-    "/age-gate": {
-      title: "",
-      description: "",
-      keywords: ""
-    },
-
-    "/": {
-      title: "",
-      description: "",
-      keywords: ""
-    },
-
-    "/send-gift": {
-      title: "",
-      description: "",
-      keywords: ""
-    },
-    
-    "/how-to-redeem": {
-      title: "",
-      description: "",
-      keywords: ""
-    },
-
-    "/retail-outlet": {
-      title: "",
-      description: "",
-      keywords: ""
-    },
-
-    "/FAQs": {
-      title: "",
-      description: "",
-      keywords: ""
-    }
+  "/FAQs": {
+    title: "HipBar Gifting - Gift your friends drinks online!",
+    description: "HipBar Gifting - FAQs for gifting online",
+    keywords: ""
   }
+}
 
+function getMetaTags(name, extraKeyWord) {
+  console.log("keyword", extraKeyWord)
+  const metaTags = { ...goa, ...mahe, ...chennai, ...pageMetaTags}
+  if (extraKeyWord) {
+    metaTags[name].keywords = metaTags[name].keywords.concat(`, ${extraKeyWord}`)
+  }
   return metaTags[name] || defaultMetaTags
 }
 

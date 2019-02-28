@@ -227,11 +227,12 @@ function withTitle(head, title) {
   return head.split("{title}").join(title)
 }
 
-function withMetaTags(head, name) {
+function withMetaTags(head, name, extraKeyWord) {
+  const meta = getMetaTags(name, extraKeyWord)
   return head.split("{meta}").join(`
-    <title>${getMetaTags(name).title}</title>
-    <meta name="keywords" content="${getMetaTags(name).keywords}">
-    <meta name="description" content="${getMetaTags(name).description}">
+    <title>${meta.title}</title>
+    <meta name="keywords" content="${meta.keywords}">
+    <meta name="description" content="${meta.description}">
   `)
 }
 
@@ -276,7 +277,7 @@ app.get("/how-to-redeem", (req, res) => {
     component: RedeemGiftCard,
     req,
     res, 
-    file: "ssr"
+    file: "static"
   })
 })
 
@@ -285,7 +286,7 @@ app.get("/retail-outlet", (req, res) => {
     component: RetailOutlet,
     req,
     res, 
-    file: "ssr"
+    file: "static"
   })
 })
 
@@ -294,7 +295,7 @@ app.get("/FAQs", (req, res) => {
     component: FAQ,
     req,
     res, 
-    file: "ssr"
+    file: "static"
   })
 })
 
@@ -356,23 +357,21 @@ app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
   const city = capitalize(req.params.citySlug)
   const genre = req.params.genreSlug
   const brand = urlencode(req.params.brandSlug)
-  console.log(brand)
 
   request({
     method: "GET",
     url: `https://catman.${BASE_URL}/consumer/browse/stores/${city}/${genre}/${brand}`,
   }, (err, httpRes, body) => {
     const parsed = JSON.parse(body)
-    console.log(parsed)
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/product-detail.html"), "utf-8")
     const [head, tail] = html.split("{content}")
-    const headWithNavbar = withTitle(withHeader(head), `Hipbar Gifting | ${parsed.brand.brand_name}`)
-    res.write(headWithNavbar)
+    const headWithNavbar = withHeader(head)
+    res.write(withMetaTags(headWithNavbar, `/${city.toLowerCase()}/${genre}`, parsed.brand.brand_name))
 
     const newTail = tail.split("{script}")
       .join(`
       <script>
-        window.__isMobile__ = ${JSON.stringify(isMobile(req))}_
+        window.__isMobile__ = ${JSON.stringify(isMobile(req))}
         window.__active_city__ = ${JSON.stringify(city)}
         window.__active_genre__ = ${JSON.stringify(genre)}
         window.BRAND_STATE = ${JSON.stringify(parsed.brand)}
