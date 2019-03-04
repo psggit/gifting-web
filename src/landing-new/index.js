@@ -28,30 +28,32 @@ class Landing extends React.Component {
       fontWeight: '600',
       color: '#bcbec0'
     }
-    return(
+
+    const alt = "Gifts Online, Gifting in India, Alcohol Online, Drinks Online, Hipbar"
+    return (
       <React.Fragment>
         <div id="landing-new">
-          <div className="video-bg-container">
-            <video autoPlay="true" preload="true" loop="loop" muted="true">
-              <source src="https://res.cloudinary.com/www-hipbar-com/video/upload/v1551262512/Gifting-website/video.mp4" type="video/mp4" />
-            </video>
+          <div className="hero-container">
+            <div className="video-bg-container">
+              <video autoPlay="true" preload="true" loop="loop" muted="true">
+                <source src="https://res.cloudinary.com/www-hipbar-com/video/upload/v1551262512/Gifting-website/video.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div className="hero-content">
+              <p className="ft s1 header">
+                Gifting a drink is now possible!
+              </p>
+              <p className="ft s3 sub-header">
+                Make great memories. Gift your friend a drink today
+              </p>
+              <a href="/send-gift"><Button icon="rightArrowWhite">Start gifting</Button></a>
+              {/* <CustomButton text="Start Gifting" navigateTo="/send-gift" /> */}
+            </div>
           </div>
-          {/* <Layout image="https://res.cloudinary.com/www-hipbar-com/image/upload/q_auto:good/v1550240044/Gifting-website/bg-gift.webp"> */}
-          <div className="header-container">
-            <p className="ft s1 header">
-              Gifting a drink is now possible!
-            </p>
-            <p className="ft s3 sub-header">
-              Make great memories. Gift your friend a drink today
-            </p>
-            <a href="/send-gift"><Button icon="rightArrowWhite">Start gifting</Button></a>
-            {/* <CustomButton text="Start Gifting" navigateTo="/send-gift" /> */}
-          </div>
-          {/* </Layout> */}
           <Slider />
           <div className="steps">
             <div className="step-image">
-              <img src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240057/Gifting-website/Step1.webp" />
+              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240057/Gifting-website/Step1.webp" />
             </div>
             <div className="step-notes">
               <div>
@@ -63,7 +65,7 @@ class Landing extends React.Component {
 
           <div className="steps">
             <div className="step-image">
-              <img src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240053/Gifting-website/Step2.webp" />
+              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240053/Gifting-website/Step2.webp" />
             </div>
             <div className="step-notes">
               <div>
@@ -75,7 +77,7 @@ class Landing extends React.Component {
 
           <div className="steps">
             <div className="step-image">
-              <img src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240058/Gifting-website/Step3.webp" />
+              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240058/Gifting-website/Step3.webp" />
             </div>
             <div className="step-notes">
               <div>

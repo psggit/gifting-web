@@ -1,6 +1,7 @@
 const express = require("express")
 const path = require("path")
 const app = express()
+const helmet = require("helmet")
 const fs = require("fs")
 const React = require("react")
 const { renderToNodeStream, renderToString } = require("react-dom/server")
@@ -38,7 +39,9 @@ function isMobile(req) {
   return userAgentRegex.test(userAgent)
 }
 
-app.disable("x-powered-by")
+app.use(helmet({
+  noSniff: false
+}))
 
 // ENV variables
 // const PROD_API_BASE = process.env.PROD_API_BASE
