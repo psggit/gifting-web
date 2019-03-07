@@ -1,0 +1,114 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+/* Font sizes */
+$html-font-size: (null: 16px, $md: 15px, $sm: 14px, $xs: 13px);
+
+$paragraph-font-size: (null: 18px, $lg: 17px, $md: 16px, $sm: 15px, $xs: 14px);
+
+html {
+  @include font-size-map($html-font-size);
+}
+
+span, p {
+  @include font-size-map($paragraph-font-size);
+}
+
+/* Font families */
+$font-OpenSans: "Open Sans", sans-serif;
+$font-Montserrat: "Montserrat", sans-serif;
+$font-Cormorant: "Cormorant Garamond", serif;
+$font-Futura: futura-pt;
+
+/* cm - Cormorant Garamond */
+/* os - Open Sans */
+/* ft - Futura-pt */
+.cm {
+  font-family: $font-Cormorant;
+}
+
+.os {
+  font-family: $font-OpenSans;
+}
+
+.ft {
+  font-family: $font-Futura;
+}
+
+.cm {
+  &.s1 {
+    font-size: px(37);
+  }
+  &.s2 {
+    font-size: px(28);
+  }
+  &.s3 {
+    font-size: px(27);
+  }
+  &.s4 {
+    font-size: px(26);
+  }
+  &.s5 {
+    font-size: px(23);
+  }
+  &.s6 {
+    font-size: px(20);
+  }
+}
+
+.os {
+  &.s1 {
+    font-size: px(24);
+  }
+  &.s2 {
+    font-size: px(21);
+  }
+  &.s3 {
+    font-size: px(20);
+  }
+  &.s4 {
+    font-size: px(18);
+  }
+  &.s5 {
+    font-size: px(17);
+  }
+  &.s6 {
+    font-size: px(16);
+  }
+  &.s7 {
+    font-size: px(14);
+  }
+  &.s8 {
+    font-size: px(13);
+  }
+  &.s9 {
+    font-size: px(12);
+  }
+  &.s10 {
+    font-size: px(11);
+  }
+}
+
+.ft {
+  &.s1 {
+    font-size: px(52);
+  }
+  &.s2 {
+    font-size: px(35);
+  }
+  &.s3 {
+    font-size: px(26);
+  }
+  &.s4 {
+    font-size: px(45);
+  }
+  &.s5 {
+    font-size: px(31);
+  }
+  &.s6 {
+    font-size: px(16);
+  }
+  &.s7 {
+    font-size: px(21);
+  }
+}

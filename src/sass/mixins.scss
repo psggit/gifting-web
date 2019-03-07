@@ -1,0 +1,56 @@
+@import "./theme.scss";
+
+@mixin themify($themes: $themes) {
+  @each $theme, $map in $themes {
+
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+
+      @content;
+      $theme-map: null !global;
+    }
+
+  }
+}
+
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+
+/* Pixel to rem function */
+@function px($size) {
+  $pixels: $size * (1/16) * 1rem;
+  @return $pixels;
+}
+
+/* Breakpoint mixin */
+@mixin breakpoint($mq01: 0, $mq2: false, $maxmin: max-width) {
+  @if $mq2 == false {
+      @media ($maxmin: $mq01) {
+          @content;
+      }
+  }
+  @else {
+      @media (min-width: $mq01) and (max-width: $mq2) {
+          @content;
+      }
+  }
+}
+
+/* Responsive font size mixin */
+@mixin font-size-map($font-size-map) {
+  @each $breakpoint, $font-size in $font-size-map {
+      @if $breakpoint == null {
+          font-size: $font-size;
+      } @else {
+          @include breakpoint($breakpoint) {
+              font-size: $font-size;
+          }
+      }
+  }
+}

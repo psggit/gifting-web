@@ -1,0 +1,26 @@
+$themes: (
+  light: (
+    container-color: #f1f1f1,
+    paper-color: #fff,
+    text-color: #333,
+    sku-focus-color: #000,
+    sku-border-color: #000,
+    sku-text-color: #333,
+    sku-text-focus-color: #fff,
+    button-primary-color: #000,
+    border-bottom-color: #333,
+    add-to-basket-bg-color: #fff
+  ),
+  dark: (
+    container-color: #111,
+    paper-color: #222,
+    text-color: #d1d2dd,
+    sku-focus-color: #d1d2dd,
+    sku-border-color: #d1d2dd,
+    sku-text-color: #d1d2dd,
+    sku-text-focus-color: #222,
+    button-primary-color: #e97c07,
+    border-bottom-color: #9b9b9b,
+    add-to-basket-bg-color: #222
+  )
+)

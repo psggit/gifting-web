@@ -1,197 +1,31 @@
 @import "./animation.scss";
+@import "./fonts.scss";
+@import "./layout.scss";
 
-@function px($size) {
-  $pixels: $size * (1/16) * 1rem;
-  @return $pixels;
+*::-webkit-scrollbar {
+  width: 8px;
 }
 
-// breakpoint mixin
-@mixin breakpoint($mq01: 0, $mq2: false, $maxmin: max-width) {
-  @if $mq2 == false {
-      @media ($maxmin: $mq01) {
-          @content;
-      }
-  }
-  @else {
-      @media (min-width: $mq01) and (max-width: $mq2) {
-          @content;
-      }
-  }
+*::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 
-// breakpoint variables
-$lg: 1440px;
-$md: 1024px;
-$sm: 640px;
-$xs: 480px;
-
-// responsive font size mixin
-@mixin font-size-map($font-size-map) {
-  @each $breakpoint, $font-size in $font-size-map {
-      @if $breakpoint == null {
-          font-size: $font-size;
-      } @else {
-          @include breakpoint($breakpoint) {
-              font-size: $font-size;
-          }
-      }
-  }
+*::-webkit-scrollbar-thumb {
+  background-color: #333;
+  outline: 1px solid slategrey;
 }
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
 
-// font sizes
+ a {
+   text-decoration: none;
+ }
 
-$html-font-size: (null: 16px, $md: 15px, $sm: 14px, $xs: 13px);
-
-$paragraph-font-size: (null: 18px, $lg: 17px, $md: 16px, $sm: 15px, $xs: 14px);
-
-// html
-
-html {
-  @include font-size-map($html-font-size);
-}
-
-span, p {
-  @include font-size-map($paragraph-font-size);
-}
-
-/* Layout */
-.container {
-  margin-top: 87px;
-  padding: 48px 5.6%;
-  background-color: #f1f1f1;
-}
-
-// @media only screen and (max-width: 33)
-
-/* Font families */
-
-$font-OpenSans: "Open Sans", sans-serif;
-$font-Montserrat: "Montserrat", sans-serif;
-$font-Cormorant: "Cormorant Garamond", serif;
-$font-Futura: futura-pt;
-
-
-/* Texts  */
-/* cm - Cormorant Garamond */
-/* os - Open Sans */
-
-.cm {
-  font-family: $font-Cormorant;
-}
-
-.os {
-  font-family: $font-OpenSans;
-}
-
-.ft {
-  font-family: $font-Futura;
-}
-
-.cm {
-  &.s1 {
-    font-size: px(37);
-  }
-  &.s2 {
-    font-size: px(28);
-  }
-  &.s3 {
-    font-size: px(27);
-  }
-  &.s4 {
-    font-size: px(26);
-  }
-  &.s5 {
-    font-size: px(23);
-  }
-  &.s6 {
-    font-size: px(20);
-  }
-}
-
-.os {
-  &.s1 {
-    font-size: px(24);
-  }
-  &.s2 {
-    font-size: px(21);
-  }
-  &.s3 {
-    font-size: px(20);
-  }
-  &.s4 {
-    font-size: px(18);
-  }
-  &.s5 {
-    font-size: px(17);
-  }
-  &.s6 {
-    font-size: px(16);
-  }
-  &.s7 {
-    font-size: px(14);
-  }
-  &.s8 {
-    font-size: px(13);
-  }
-  &.s9 {
-    font-size: px(12);
-  }
-  &.s10 {
-    font-size: px(11);
-  }
-}
-
-.ft {
-  &.s1 {
-    font-size: px(52);
-  }
-  &.s2 {
-    font-size: px(35);
-  }
-  &.s3 {
-    font-size: px(26);
-  }
-  &.s4 {
-    font-size: px(45);
-  }
-  &.s5 {
-    font-size: px(31);
-  }
-  &.s6 {
-    font-size: px(16);
-  }
-  &.s7 {
-    font-size: px(21);
-  }
-}
-
-
-@media only screen and (max-width: $sm) {
-  .container {
-    padding: 20px 0;
-  }
-
-  // .ft {
-  //   &.s1 {
-  //     font-size: px(40);
-  //   }
-  //   &.s2 {
-  //     font-size: px(17);
-  //   }
-  //   &.s3 {
-  //     font-size: px(13);
-  //   }
-  //   &.s4 {
-  //     font-size: px(22);
-  //   }
-  //   &.s5 {
-  //     font-size: px(15);
-  //   }
-  //   &.s6 {
-  //     font-size: px(8);
-  //   }
-  //   &.s7 {
-  //     font-size: px(10);
-  //   }
-  // }
-}
+ p, a, span {
+   @include themify($themes) {
+     color: themed("text-color")
+   }
+ }
