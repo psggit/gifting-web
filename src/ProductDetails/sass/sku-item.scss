@@ -40,7 +40,13 @@
   //   background-color: #dddbda;
   // }
   .volume--item {
-    border: 1px solid #777;
+    border-width: 1px;
+    border-style: solid;
+    background-color: transparent;
+    @include themify($themes) {
+      border-color: themed("sku-border-color");
+      color: themed("sku-text-color");
+    }
     border-radius: 2px;
     width: 65px;
     height: 35px;
@@ -51,12 +57,12 @@
     margin-bottom: 16px;
     cursor: pointer;
     font-size: 14px;
-    color: #777;
     
     &:focus, &.focused {
-      background-color: #777;
-      color: #fff;
-      outline: 0;
+      @include themify($themes) {
+        background-color: themed("sku-focus-color");
+        color: themed("sku-text-focus-color");
+      }
     }
   }
 }

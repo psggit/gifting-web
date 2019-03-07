@@ -4,17 +4,11 @@
   width: 100%;
 
   .container {
-    height: calc(100vh - 87px);
-    overflow: auto;
+    // height: calc(100vh - 87px);
+    // overflow: auto;
   }
   
   .paper {
-    position: relative;
-    background-color: #fff;
-    border: 1px solid #dfdfdf;
-    border-radius: 4px;
-    // color: #fff;
-
     &.price {
       padding: 40px 60px;
       border-bottom: 0;
@@ -22,7 +16,9 @@
         display: flex;
         justify-content: space-between;
         padding-bottom: 12px;
-        border-bottom: 1px solid #dfdfdf;
+        @include themify($themes) {
+          border-bottom: 1px solid themed("border-bottom-color");
+        }
         a {
           text-decoration: none;
         }
@@ -40,7 +36,9 @@
       p:first-child {
         font-weight: 600;
         padding-bottom: 10px;
-        border-bottom: 1px solid #dfdfdf;
+        @include themify($themes) {
+          border-bottom: 1px solid themed("border-bottom-color");
+        }
       }
       p:last-child {
         line-height: 1.57;
@@ -56,7 +54,9 @@
       .heading {
         font-weight: 600;
         padding-bottom: 10px;
-        border-bottom: 1px solid #dfdfdf;
+        @include themify($themes) {
+          border-bottom: 1px solid themed("border-bottom-color");
+        }
       }
       .about--hipbar__content {
         font-family: $font-OpenSans;
@@ -79,7 +79,9 @@
       p {
         font-weight: 600;
         padding-bottom: 10px;
-        border-bottom: 1px solid #dfdfdf;
+        @include themify($themes) {
+          border-bottom: 1px solid themed("border-bottom-color");
+        }
       }
       .gs1-img {
         margin-top: 16px;
@@ -205,7 +207,12 @@
         position: fixed;
         bottom: 0;
         width: 100%;
-        background: #fff;
+        @include themify($themes) {
+          box-shadow: 0 0 2px 0 darken(themed("add-to-basket-bg-color"), 5%);
+        }
+        @include themify($themes) {
+          background: themed("add-to-basket-bg-color");
+        }
         padding: 20px;
         z-index: 1;
         left: 0;
