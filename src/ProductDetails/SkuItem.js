@@ -128,7 +128,9 @@ class SkuItem extends React.Component {
     this.setBasketFromApi(basket, localStorage.getItem("promo_code"), () => {
       this.props.toggleProductAdded()
       if (this.props.isMobile === false) {
-        mountModal(AddedToBasketModal({}))
+        mountModal(AddedToBasketModal({
+          viewProductsUrl: this.props.viewProductsUrl
+        }))
       }
     })
   }
@@ -213,7 +215,7 @@ class SkuItem extends React.Component {
             <span className="os s4">
               {
                 this.props.volumes.length &&
-                this.props.volumes[this.state.activeSku].price
+                `Rs. ${this.props.volumes[this.state.activeSku].price.slice(1)}`
               }
             </span>
           </div>

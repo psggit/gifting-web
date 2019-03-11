@@ -36,13 +36,12 @@ class MobileHeader extends React.Component {
             className="os s4"
             onClick={this.props.openGenres}
             style={{
-              textDecoration: "underline",
               fontWeight: "600",
               display: "inline",
               padding: "16px 10px"
             }}>
             <Icon name="drink" />
-            {this.props.activeGenre}
+            <span style={{ margin: "0 10px 0 5px" }}>{this.props.activeGenre}</span>
             <Icon name="caret" />
           </span>   
         </div>

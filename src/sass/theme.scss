@@ -9,7 +9,11 @@ $themes: (
     sku-text-focus-color: #fff,
     button-primary-color: #000,
     border-bottom-color: #333,
-    add-to-basket-bg-color: #fff
+    add-to-basket-bg-color: #fff,
+    input-bg-color: #fff,
+    input-border-color: #dfdfdf,
+    city-box-color: #333,
+    city-box-focus-color: #000
   ),
   dark: (
     container-color: #111,
@@ -21,6 +25,10 @@ $themes: (
     sku-text-focus-color: #222,
     button-primary-color: #e97c07,
     border-bottom-color: #9b9b9b,
-    add-to-basket-bg-color: #222
+    add-to-basket-bg-color: #222,
+    input-bg-color: #272729,
+    input-border-color: #2c2c33,
+    city-box-color: #2c2c33,
+    city-box-focus-color: #e97c07
   )
 )

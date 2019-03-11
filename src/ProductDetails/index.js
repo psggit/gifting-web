@@ -94,6 +94,7 @@ class ProductDetails extends React.Component {
 
             <div className="sku--container">
               <SkuItem
+                viewProductsUrl={this.state.viewProductsUrl}
                 toggleProductAdded={this.toggleProductAdded}
                 isMobile={this.state.isMobile}
                 setBasketCount={this.setBasketCount}

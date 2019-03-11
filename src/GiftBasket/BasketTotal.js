@@ -23,8 +23,8 @@ class BasketTotal extends React.Component {
   render() {
     return (
       <div>
-        <p style={{ paddingBottom: "12px", borderBottom: "1px solid #dfdfdf" }} className="os s5">Total</p>
-        <div style={{ padding: "16px 0", borderBottom: "1px solid #dfdfdf" }}>
+        <p style={{ paddingBottom: "12px" }} className="os s5 b-bottom">Total</p>
+        <div className="b-bottom" style={{ padding: "16px 0" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <p className="os s8">Gift Card Subtotal</p>
             <p className="os s8">Rs. {this.props.subtotal}</p>

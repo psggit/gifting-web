@@ -31,7 +31,7 @@ class SelectName extends React.Component {
 
   handleClick(e) {
     e.preventDefault()
-    if (this.state.name.length < 3 || !/^[A-Za-z]+$/.test(this.state.name)) {
+    if (this.state.name.length < 3 || !/^[A-Za-z ]*$/.test(this.state.name)) {
       return false
     } else {
       const path = "/" + e.currentTarget.href.split("/").slice(3).join("/")
@@ -65,7 +65,7 @@ class SelectName extends React.Component {
                     onChange={this.handleChange}
                     maxLength="30"
                   />
-                  <p className="os s9" style={{ marginTop: "5px", color: "#777" }}>Only alphabets allowed / Minimum character limit: 3</p>
+                  <p className="os s9" style={{ marginTop: "5px" }}>Only alphabets allowed / Minimum character limit: 3</p>
                 </div>
               </div>
               <div style={{ marginTop: "40px" }}>

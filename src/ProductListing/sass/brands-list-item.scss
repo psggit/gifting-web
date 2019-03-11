@@ -8,7 +8,6 @@
   text-decoration: none;
   position: relative;
   width: 148px;
-  background-color: #fff;
   @include brandItemMargin(148, 5);
   .brand--item__img {
     object-fit: contain;
@@ -17,7 +16,6 @@
   .brand--item__desc p {
     letter-spacing: 0.5px;
     font-weight: 600;
-    color: #777;
   }
 }
 
@@ -34,7 +32,7 @@
       height: 148px;
       position: relative;
       img {
-        border-radius: 4px;
+        // border-radius: 4px;
         // filter: grayscale(1);
         // z-index: 1;
         position: absolute;
@@ -54,7 +52,7 @@
     .img-placeholder {
       width: 100%;
       height: 100%;
-      background-color: #dfdfdf;
+      background-color: #333;
       position: absolute;
       top: 0;
       left: 0;
@@ -96,7 +94,9 @@
     width: 100%;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #dfdfdf;
+    @include themify($themes) {
+      border-bottom: 1px solid themed("city-box-color");
+    }
     border-left: 0;
     border-right: 0;
     padding: 16px 20px;

@@ -1,3 +1,5 @@
+@import "./../../sass/base.scss";
+
 .city--select {
   // flex: 1;
   width: 200px;
@@ -6,6 +8,11 @@
   position: relative;
   overflow: hidden;
   transition: 0.2s all ease-in-out;
+  @include themify($themes) {
+    svg g g {
+      fill: themed("text-color")
+    }
+  }
   svg {
     position: absolute;
     top: 50%;
@@ -22,11 +29,13 @@
 
 .city--select {
   select {
+    @include themify($themes) {
+      border: 1px solid themed("input-border-color");
+      background-color: themed("input-bg-color");
+      color: themed("text-color")
+    }
     width: 100%;
     height: 100%;
-    border: 1px solid #dfdfdf;
-    background-color: #fff;
-    color: #555;
     letter-spacing: 0.4px;
     text-indent: 24px;
     padding: 0 5px;

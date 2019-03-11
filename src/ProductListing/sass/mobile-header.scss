@@ -2,7 +2,9 @@
 
 @media only screen and (max-width: $sm) {
   #product--listing__m-header {
-    background: #fff;
+    @include themify($themes) {
+      background-color: themed("paper-color")
+    }
     position: sticky;
     top: 87px;
     z-index: 2;
@@ -13,9 +15,16 @@
       flex-direction: row-reverse;
     }
     .row:last-child {
+      @include themify($themes) {
+        svg g g {
+          fill: themed("text-color")
+        }
+      }
       align-items: center;
       padding: 0 20px;
-      border-bottom: 1px solid #dfdfdf;
+      @include themify($themes) {
+        border-bottom: 1px solid themed("city-box-color");
+      }
     }
     .city--select {
       flex: 1;

@@ -1,6 +1,13 @@
+@import "./../../sass/base.scss";
+
 .city--item {
   position: relative;
-  border: 1px solid #777777;
+  @include themify($themes) {
+    border-width: 2px;
+    border-style: solid;
+    border-color: themed("city-box-color");
+    background-color: themed("input-bg-color")
+  }
   width: 130px;
   height: 65px;
   border-radius: 4px;
@@ -11,7 +18,9 @@
   }
 
   &.active {
-    border-width: 2px;
+    @include themify($themes) {
+      border-color: themed("city-box-focus-color")
+    }
     span svg {
       display: block;
     }
@@ -23,10 +32,19 @@
     right: -10px;
     width: 20px;
     display: none;
+    @include themify($themes) {
+      circle {
+        fill: themed("button-primary-color")
+      }
+    }
   }
 
   div p {
     font-size: 12px;
+    font-weight: 600;
+    @include themify($themes) {
+      color: 1px solid themed("text-color")
+    }
   }
 
   div svg {

@@ -24,7 +24,7 @@ export default function CityCheckBox(props){
         transform: "translate(-50%, -50%)",
         textAlign: "center"
       }}>
-        <p className="os" style={{ color: "#777", fontWeight: "bold" }}>{name}</p>
+        <p className="os">{name}</p>
       </div>
     </div>
   )

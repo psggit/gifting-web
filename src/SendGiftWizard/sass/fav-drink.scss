@@ -5,10 +5,13 @@
 }
 
 #send-gift-drink {
+  @include themify($themes) {
+    svg g g {
+      fill: themed("text-color")
+    }
+  }
   .paper {
     padding: 20px;
-    background: #fff;
-    position: relative;
     display: flex;
     justify-content: center;
     min-height: calc(100vh - 87px - 96px);

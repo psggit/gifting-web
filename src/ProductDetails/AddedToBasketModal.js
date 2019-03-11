@@ -8,7 +8,7 @@ import GiftMoreDrinks from "./../GiftMoreDrinks"
 import Icon from "Components/icon"
 import "./sass/added-to-basket-modal.scss"
 
-export default function AddToBasketModal() {
+export default function AddToBasketModal(data) {
   return class AddedToBasketModal extends React.Component {
     render() {
       return (
@@ -22,7 +22,7 @@ export default function AddToBasketModal() {
               <p className="os s4">Added to Gift Basket</p>
             </ModalBody>
             <ModalFooter>
-              <GiftMoreDrinks />
+              <GiftMoreDrinks url={data.viewProductsUrl} />
             </ModalFooter>
           </ModalBox>
         </div>

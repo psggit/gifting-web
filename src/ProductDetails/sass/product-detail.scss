@@ -19,6 +19,11 @@
         @include themify($themes) {
           border-bottom: 1px solid themed("border-bottom-color");
         }
+        svg g g {
+          @include themify($themes) {
+            fill: themed("text-color")
+          } 
+        }
         a {
           text-decoration: none;
         }

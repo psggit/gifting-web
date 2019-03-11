@@ -3,6 +3,7 @@ import CitySelect from "./CitySelect"
 import Search from "Components/Search"
 import Icon from "Components/icon"
 import GenresList from "./GenreList"
+import GenreSlider from "./GenreSlider"
 import { getBasketTotal } from "./../ProductDetails/SkuItem"
 import "./sass/web-header.scss"
 
@@ -57,7 +58,8 @@ class WebHeader extends React.Component {
         </div>
 
         <div className="row">
-          <GenresList {...this.props} active={this.props.activeGenre} genres={this.props.genres} />
+          <GenreSlider {...this.props} active={this.props.activeGenre} genres={this.props.genres} />
+          {/* <GenresList {...this.props} active={this.props.activeGenre} genres={this.props.genres} /> */}
         </div>
       </div>
     )

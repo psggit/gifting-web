@@ -1,10 +1,13 @@
 @import "./../../sass/base.scss";
     
 #send-gift-name {
+  @include themify($themes) {
+    svg g g {
+      fill: themed("text-color")
+    }
+  }
   .paper {
     padding: 20px;
-    background: #fff;
-    position: relative;
     display: flex;
     justify-content: center;
     height: calc(100vh - 87px - 96px);

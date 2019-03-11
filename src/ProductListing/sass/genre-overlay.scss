@@ -1,5 +1,9 @@
+@import "./../../sass/base.scss";
+
 .genre--container {
-  background-color: #fff;
+  @include themify($themes) {
+    background-color: themed("paper-color")
+  }
   position: fixed;
   left: 0;
   width: 100%;
@@ -11,6 +15,11 @@
     align-items: center;
     justify-content: space-between;
     padding-left: 24px;
+    @include themify($themes) {
+      svg g g {
+        stroke: themed("text-color")
+      }
+    }
     p {
       font-weight: 600;
       letter-spacing: 0.6px;
