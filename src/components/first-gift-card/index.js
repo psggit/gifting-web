@@ -14,7 +14,7 @@ with HipBar Gift Cards!
     </p>
 
     <a href="/send-gift">
-      <Button secondary  icon="rightArrowBlack">start gifting!</Button>
+      <Button primary icon="rightArrowBlack">start gifting!</Button>
     </a>
   </div>
 )

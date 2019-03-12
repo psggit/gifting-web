@@ -2,18 +2,47 @@
 @import "./fonts.scss";
 @import "./layout.scss";
 
-*::-webkit-scrollbar {
-  width: 8px;
+body {
+  background-color: #111;
 }
 
-*::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 87px;
+  width: 100%;
+  @include themify($themes) {
+    background: themed("paper-color");
+    box-shadow: 0 1px 1px 0 themed("container-color");
+  }
+  z-index: 3;
+  display: flex;
+  justify-content: center;
 }
 
-*::-webkit-scrollbar-thumb {
-  background-color: #333;
-  outline: 1px solid slategrey;
+#footer-wrapper {
+  width: 100%;
+  background-color: #222;
+  // position: absolute;
+  // bottom: 0;
+  // left: 0;
+  display: flex;
+  justify-content: center;
 }
+
+// *::-webkit-scrollbar {
+//   width: 8px;
+// }
+
+// *::-webkit-scrollbar-track {
+//   box-shadow: inset 0 0 6px #111;
+// }
+
+// *::-webkit-scrollbar-thumb {
+//   background-color: #222;
+//   outline: 1px solid slategrey;
+// }
  * {
    margin: 0;
    padding: 0;
@@ -25,7 +54,7 @@
    text-decoration: none;
  }
 
- p, a, span {
+h1, h3, h2, label, p, a, span {
    @include themify($themes) {
      color: themed("text-color")
    }

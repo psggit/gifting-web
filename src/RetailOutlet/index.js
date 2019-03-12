@@ -153,7 +153,7 @@ class RetailOutlet extends React.Component {
             </div>
           </div>
           <FirstGiftCard />
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </div>
     )

@@ -13,7 +13,8 @@ $themes: (
     input-bg-color: #fff,
     input-border-color: #dfdfdf,
     city-box-color: #333,
-    city-box-focus-color: #000
+    city-box-focus-color: #000,
+    image-placeholder-color: #dfdfdf
   ),
   dark: (
     container-color: #111,
@@ -29,6 +30,7 @@ $themes: (
     input-bg-color: #272729,
     input-border-color: #2c2c33,
     city-box-color: #2c2c33,
-    city-box-focus-color: #e97c07
+    city-box-focus-color: #e97c07,
+    image-placeholder-color: #333
   )
 )

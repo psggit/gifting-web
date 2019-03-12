@@ -3,25 +3,35 @@
 #added-to-basket--modal {
   .modal-header {
     text-align: right;
-    background: #fff;
     padding: 10px;
     padding-bottom: 0;
     span {
       cursor: pointer;
     }
-    svg g g {
-      stroke: #555;
+    @include themify($themes) {
+      svg g g {
+        stroke: themed("text-color");
+      }
     }
   }
   .modal-body {
-    background: #fff;
     height: auto !important;
     text-align: center;
     padding: 40px;
+    @include themify($themes) {
+      svg g g {
+        fill: themed("text-color");
+      }
+    }
   }
   .modal-footer .gift--more-drinks{
     padding: 16px 20px;
-    border-top: 1px solid #dfdfdf;
+    @include themify($themes) {
+      border-top: 1px solid themed("border-bottom-color");
+      svg g g {
+        fill: themed("text-color");
+      }
+    }
   }
 }
 

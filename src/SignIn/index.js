@@ -266,7 +266,7 @@ export default function SignIn(data) {
                   <label className="os s7">Phone Number</label>
                   <div style={{display: 'flex'}}>
                     <div className={`country-code ${mobileNoErr.status ? 'error' : ''}`}>
-                      +91
+                      <span className="os s7">+91</span>
                     </div>
                     {/* <div style={{width: 'calc(100% - 40px'}}> */}
                       {/* <input 
@@ -307,13 +307,15 @@ export default function SignIn(data) {
                   {
                     otpSent &&
                     <React.Fragment>
-                      <div className="note os s9">OTP has been sent!</div>
+                      <div className="note"><span className="os s9">OTP has been sent!</span></div>
                       <div className="alert-box">
                         <div style={{marginRight: '10px', display: 'flex'}}>
                           <Icon name="alert" />
                         </div>
-                        <div className="os s8">
+                        <div>
+                          <p className="os s8">
                           Welcome back to HipBar! Please enter the OTP to sign in.
+                          </p>
                         </div>
                       </div>
                       <div className="form-group">
@@ -335,16 +337,16 @@ export default function SignIn(data) {
                             onChange={this.handleTextChange} 
                             name="otp"
                             mask="999999"
-                            className={`${otpErr.status ? 'error' : ''}`}
+                            className={`${otpErr.status ? 'error' : ''}`} 
                             placeholder="Enter the OTP"
                             autoComplete="off"
                             maskChar={null}
                             type="text"
                           />
-                          <div className={`resend os s10 ${setTimer ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND OTP</div>
+                          <div className={`resend os s10 ${setTimer ? 'disabled': ''}`} onClick={this.resendOtp}><span>RESEND OTP</span></div>
                           {
                             this.state.setTimer && 
-                            <div className="note os s9" id="timer"></div>
+                            <p className="note os s9" id="timer"></p>
                           }
                         </div>
                         {

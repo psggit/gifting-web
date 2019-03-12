@@ -1,20 +1,20 @@
 @import "./../sass/base.scss";
 
 #checkout {
-
-  a {
-    color: #555;
-  }
-
   .final-payment-button.mobile {
     display: none;
   }
 
   .paper {
-    background: #fff;
-    border: 1px solid #dfdfdf;
-    border-radius: 4px;
     padding: 40px;
+    .header {
+      @include themify($themes) {
+        border-bottom: 1px solid themed("border-bottom-color");
+        svg g g {
+          fill: themed("text-color")
+        }
+      }
+    }
   }
 
   .row {
@@ -31,7 +31,6 @@
     .os.s7 {
      line-height: 1.6;
      letter-spacing: 0.5px;
-     color: #000;
     }
     .os.s6 {
       font-weight: 600;
@@ -43,11 +42,9 @@
   .os.s5 {
     font-weight: bold;
     letter-spacing: 0.6px;
-    color: #000;
   }
 
   .os.s8 {
-    color: #555;
     letter-spacing: 0.5px;
   }
 
@@ -61,6 +58,14 @@
     border: 1px solid #dddbda;
     input[type=checkbox] {
       width: inherit;
+    }
+  }
+
+  .net--banking {
+    @include themify($themes) {
+      svg g g {
+        fill: themed("text-color")
+      }
     }
   }
 }

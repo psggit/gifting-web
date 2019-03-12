@@ -106,19 +106,14 @@ class Personalise extends React.Component {
       <div id="giftInputForm" className="gift-card-form">
         <div className="container">
           <div className="paper">
-            <div
-              style={{
-                borderBottom: "1px solid #dfdfdf",
-                paddingBottom: "12px"
-              }}
-            >
+            <div className="header">
               <a href="/basket">
                 <Icon name="back"/>
                 <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">Back</span>
               </a>
             </div>
             
-            <div style={{ margin: "30px 0" }}>
+            <div className="personalise-icon" style={{ margin: "30px 0" }}>
               <Icon name="appUser" />
               <span style={{ marginLeft: "10px" }} className="os s7">Personalise</span>
             </div>
@@ -161,7 +156,7 @@ class Personalise extends React.Component {
                 <label className="os">Recipients Phone Number</label>
                 <div style={{display: "flex"}}>
                   <div className={`country-code ${receiverNumberErr.status ? "error" : ""}`}>
-                    +91
+                    <span>+91</span>
                   </div>
                   <InputMask
                     onChange={this.handlePhoneChange} 
@@ -199,15 +194,15 @@ class Personalise extends React.Component {
               <div className="form-group">
                 <label className="os">Senders Phone Number</label>
                 <div style={{display: "flex"}}>
-                  <div className={`country-code`}>
-                    +91
+                  <div className="country-code">
+                    <span>+91</span>
                   </div>
                   <input 
                     value={this.state.senderNumber} 
                     onChange={this.handlePhoneChange} 
                     name="senderNumber" 
                     maxLength="10" 
-                    className={`mobile`}
+                    className="mobile"
                     placeholder="Enter your phone number"
                     type="text" readOnly={localStorage.getItem("hasura-id") ? true : false} 
                   />

@@ -4,9 +4,11 @@
   padding: 30px 5.6%;
   font-family: Montserrat;
   background-color: #222;
+  width: 100%;
+  max-width: 1440px;
   a {
     text-decoration: none;
-    color: #D1D3DF;
+    color: #d1d2dd;
     // color: #000;
     transition: all 0.2s ease-in;
     // &:hover {

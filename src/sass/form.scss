@@ -30,7 +30,9 @@
   }
 
   .country-code {
-    border: 1px solid #cccccc;
+    @include themify($themes) {
+      border: 1px solid themed("input-border-color");
+    }
     display: flex;
     padding: 0 10px;
     align-items: center;

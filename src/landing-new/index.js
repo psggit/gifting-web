@@ -46,7 +46,7 @@ class Landing extends React.Component {
               <p className="ft s3 sub-header">
                 Make great memories. Gift your friend a drink today
               </p>
-              <a href="/send-gift"><Button icon="rightArrowWhite">Start gifting</Button></a>
+              <a href="/send-gift"><Button primary icon="rightArrowWhite">Start gifting</Button></a>
               {/* <CustomButton text="Start Gifting" navigateTo="/send-gift" /> */}
             </div>
           </div>
@@ -120,7 +120,7 @@ class Landing extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </React.Fragment>
     )
   }

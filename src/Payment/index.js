@@ -500,20 +500,19 @@ class Payment extends React.Component {
               <div id="checkout">
                 <div className="container">
                   <div className="paper">
-                    <div className="row">
                     <div
-                    style={{
-                      borderBottom: "1px solid #dfdfdf",
-                      paddingBottom: "12px"
-                    }}
-                  >
-                    <a href="/personalise">
-                      <Icon name="back"/>
-                      <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">Peronsalise</span>
-                    </a>
-                  </div>
-
-                    <p style={{ marginTop: "20px", borderBottom: "1px solid #c2c2c2", paddingBottom: "20px" }} className="os s5">To Pay: &#8377;{localStorage.getItem("amount")}</p>
+                        className="header"
+                        style={{
+                          paddingBottom: "12px"
+                        }}
+                      >
+                      <a href="/personalise">
+                        <Icon name="back"/>
+                        <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">Peronsalise</span>
+                      </a>
+                    </div>
+                    <div className="row">
+                    <p style={{ marginTop: "20px", borderBottom: "1px solid #c2c2c2", paddingBottom: "20px" }} className="os s5">To Pay: Rs. {localStorage.getItem("amount")}</p>
                     <div className="payment-methods-wrapper">
                       <p className="os s5">Payment Method</p>
                       <p className="os s8">All transactions are secure and encrypted.</p>
@@ -612,8 +611,8 @@ class Payment extends React.Component {
                           </AccordianItem>
 
                           <AccordianItem key={2} title="Net Banking" id={2} showRadioButton={true}>
-                            <div style={{ padding: "0 20px" }}>
-                              <p style={{ fontWeight: "bold", color: "#000", letterSpacing: "0.5px" }} className="os s8">Popular Banks</p>
+                            <div className="net--banking" style={{ padding: "0 20px" }}>
+                              <p style={{ fontWeight: "bold", letterSpacing: "0.5px" }} className="os s8">Popular Banks</p>
                               <div ref={(node) => { this.radios = node }} style={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}>
                                 {
                                   this.state.popularBanks.slice(0, 3).map((item, i) => (
@@ -629,7 +628,7 @@ class Payment extends React.Component {
                                               : <Icon name="circle" />
                                           }
                                         </span>
-                                        <span style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px", verticalAlign: "middle" }} className="os s8">{item.name}</span>
+                                        <span style={{ letterSpacing: "0.5px", marginLeft: "5px", verticalAlign: "middle" }} className="os s8">{item.name}</span>
                                       </div>
                                     </div>
                                   ))
@@ -648,7 +647,7 @@ class Payment extends React.Component {
                                               : <Icon name="circle" />
                                           }
                                         </span>
-                                        <span style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px", verticalAlign: "middle" }} className="os s8">{item.name}</span>
+                                        <span style={{ letterSpacing: "0.5px", marginLeft: "5px", verticalAlign: "middle" }} className="os s8">{item.name}</span>
                                       </div>
                                     </div>
                                   ))
@@ -656,7 +655,7 @@ class Payment extends React.Component {
                               </div>
                               <div>
                                 <div style={{ marginTop: "20px" }} className="form-group">
-                                  <p style={{ fontWeight: "bold", color: "#000", letterSpacing: "0.5px" }} className="os s8">Other Banks</p>
+                                  <p style={{ fontWeight: "bold", letterSpacing: "0.5px" }} className="os s8">Other Banks</p>
                                   <select value={this.state.bankcode} onChange={this.handleSelectChange} style={{ marginTop: "15px", width: "100%" }}>
                                     {
                                       (this.state.isPopularSelected || this.state.noBankSelected) &&
@@ -704,7 +703,7 @@ class Payment extends React.Component {
             )
             : ""
         }
-        <Footer />
+        {/* <Footer /> */}
       </div>
     )
   }

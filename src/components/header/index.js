@@ -122,6 +122,13 @@ class Header extends React.Component {
     //console.log("header state", this.props)
     return (
       <div className="navbar">
+        <div className="navbar-logo" >
+          {
+            this.state.isMenuOpen 
+              ? <a href="/"><Icon name="hipbarLogoMobile" /></a>
+              : <a href="/"><Icon name="hipbarLogoMobile" /></a>
+          }
+        </div>
         <div className="nav-items">
           {
             this.navItems.map((item, index) => (
@@ -165,13 +172,6 @@ class Header extends React.Component {
             !this.state.isMenuOpen ? 
               <span onClick={() => this.onToggle()}><Icon name="menu" /></span>
               : <span onClick={() => this.onToggle()}><Icon name="cross" /></span>
-          }
-        </div>
-        <div className="navbar-logo" >
-          {
-            this.state.isMenuOpen 
-              ? <a href="/"><Icon name="hipbarLogoMobile" /></a>
-              : <a href="/"><Icon name="hipbarLogo" /></a>
           }
         </div>
         <div className={`navbar-mobile ${this.state.isMenuOpen ? "show" : "hide"}`}>

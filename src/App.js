@@ -31,7 +31,7 @@ import GetStarted from "./SendGiftWizard/GetStarted"
 import SelectName from "./SendGiftWizard/SelectName"
 import SelectCity from "./SendGiftWizard/SelectCity"
 import SelectFavDrink from "./SendGiftWizard/FavDrink"
-// import Footer from "Components/footer"
+import Footer from "Components/footer"
 // import NotFound from "./NotFound"
 // import makeAsyncComponent from "./makeAsyncComponent"
 
@@ -305,6 +305,7 @@ class App extends React.Component {
 if (!document.getElementById("app").childNodes.length) {
   if (location.pathname !== "/age-gate") {
     ReactDOM.render(<Header />, document.getElementById("header"))
+    ReactDOM.render(<Footer />, document.getElementById("footer-wrapper"))
   } else {
     document.getElementById("header").innerHTML = ""
   }
@@ -312,6 +313,9 @@ if (!document.getElementById("app").childNodes.length) {
 } else {
   if (document.getElementById("header")) {
     ReactDOM.hydrate(<Header />, document.getElementById("header"))
+  }
+  if (document.getElementById("footer-wrapper")) {
+    ReactDOM.render(<Footer />, document.getElementById("footer-wrapper"))
   }
   ReactDOM.hydrate(<App />, document.getElementById("app"))
 }

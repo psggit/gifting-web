@@ -89,7 +89,7 @@ class FAQ extends React.Component {
               }
             </div>
           </div>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </div>
     )

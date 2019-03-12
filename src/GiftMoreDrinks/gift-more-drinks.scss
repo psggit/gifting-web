@@ -1,10 +1,12 @@
+@import "./../sass/base.scss";
+
 .gift--more-drinks {
   padding: 20px 30px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  background: #fff; 
+  
   a {
     text-decoration: none
   }

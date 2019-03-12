@@ -11,10 +11,11 @@
     //height: 134px;
     height: 87px;
     margin: 0 auto;
-    background-color: #fff;
+    @include themify($themes) {
+      background: themed("paper-color");
+    }
     display: flex;
     align-items: center;
-    box-shadow: 0 1px 1px 0 #dfdfdf;
     font-family: $font-OpenSans;
     .logo {
         margin-right: 14px;
@@ -67,7 +68,10 @@
 
     .logout {
         display: flex;
-        //align-items: center;
+        align-items: center;
+        @include themify($themes) {
+          color: themed("text-color");
+        }
         justify-content: center;
         position: absolute;
         right: 5.6%;
@@ -81,6 +85,11 @@
             width: 10px;
             height: 5.83px;
             margin-right: 8px;
+            @include themify($themes) {
+              g g {
+                fill: themed("text-color");
+              }
+            }
         }
     }
 
@@ -96,15 +105,14 @@
         right: 4.6%;
         // left: 0px;
         background: #000;
-        color: #fff;
         width: 160px;
         //transition: all 0.2s ease;
         .menu-item {
             display: block;
             //text-align: center;
             padding: 10px 20px;
-            color: #d1d2dd;
             letter-spacing: 0.4px;
+            color: #fff;
         }
     }
 
@@ -112,7 +120,6 @@
         //margin-right: 64px;
         padding: 0 20px;
         text-decoration: none;
-        color: #000;
         //opacity: 0.7;
         // &:last-child {
         //     padding: 11px 20px;
