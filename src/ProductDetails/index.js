@@ -326,7 +326,7 @@ class ProductDetails extends React.Component {
 
           {
             this.state.isMobile && this.state.isProductAdded
-              ? <div className="paper gift-more-drinks-paper">
+              ? <div className="gift-more-drinks-paper">
                 <GiftMoreDrinks url={this.state.viewProductsUrl} />
               </div>
               : ""

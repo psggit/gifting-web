@@ -248,6 +248,11 @@
             cursor: pointer;
             width: 25px;
             height: 20px;;
+            @include themify($themes) {
+                g g {
+                    stroke: themed("text-color")
+                }
+            }
         }
     }
 

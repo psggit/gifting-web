@@ -4,6 +4,7 @@ import './retailOutlet.scss'
 import Icon from "Components/icon"
 import FirstGiftCard from "Components/first-gift-card"
 import * as Api from './../api'
+import Button from "Components/button"
 
 class RetailOutlet extends React.Component {
   constructor(props) {
@@ -99,8 +100,8 @@ class RetailOutlet extends React.Component {
         </div>
         {/* <p className="direction os s8" onClick={() => this.loadMap(item.retailer_gps)}>DIRECTIONS</p> */}
         <a className="direction os s8" href={` https://www.google.com/maps/search/?api=1&query=${gpsCoordinates[0]},${gpsCoordinates[1]}`} target="_blank">
-          <span style={{marginRight: '13px'}}>DIRECTIONS</span>
-          <span style={{position: 'relative', top: '3px'}}><Icon name="rightArrowBlack" /></span>
+          <span className="os s6" style={{marginRight: '13px'}}>DIRECTIONS</span>
+          <span style={{position: 'relative', top: '3px'}}><Icon name="rightArrowWhite" /></span>
         </a>
       </div>
     )
@@ -116,17 +117,15 @@ class RetailOutlet extends React.Component {
             <h2 className="cm s1">Find a HipBar powered retailer near you</h2>
             <div className="retailer-list-container">
               <div className="options">
-                <span class="custom-dropdown">
-                  <select class="custom-dropdown-select" onChange={(e) => this.handleChange(e)} selected={this.state.selectedCity}>
-                    <option className="os s8" value="select city">-- Select a city --</option>
-                    {
-                      availableDeliveryList.map((item) => (
-                        this.renderItem(item)
-                      ))
-                    }
-                  </select>
-                </span>
-                <button className={`btn btn-primary ${selectedCity.length === 0 ? 'disabled' : ''} `} size="small" onClick={() => this.handleClick()}>FIND</button>
+                <select onChange={(e) => this.handleChange(e)} selected={this.state.selectedCity}>
+                  <option className="os s8" value="select city">-- Select a city --</option>
+                  {
+                    availableDeliveryList.map((item) => (
+                      this.renderItem(item)
+                    ))
+                  }
+                </select>
+                <Button primary onClick={() => this.handleClick()}>FIND</Button>
               </div>
               <div className="retailer-list">
                 {

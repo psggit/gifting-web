@@ -132,10 +132,10 @@
         }
       }
     }
+  }
 
-    &.gift-more-drinks-paper {
-      display: none;
-    }
+  .gift-more-drinks-paper {
+    display: none;
   }
 
   .brand--item {
@@ -194,30 +194,34 @@
           width: 100%;
         }
       }
-      &.gift-more-drinks-paper {
-        display: block;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1;
-        margin-bottom: 0;
-        .gift--more-drinks {
-          a:first-child {
-            margin-right: 10px;
-          }
+    }
+
+    .gift-more-drinks-paper {
+      display: block;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+      margin-bottom: 0;
+      @include themify($themes) {
+        box-shadow: 0 0 2px 0 themed("container-color");
+        background: themed("add-to-basket-bg-color");
+      }
+      .gift--more-drinks {
+        a:first-child {
+          margin-right: 10px;
         }
       }
     }
+    
     .paper .sku--container {
       .add-to-basket {
         position: fixed;
         bottom: 0;
         width: 100%;
         @include themify($themes) {
-          box-shadow: 0 0 2px 0 darken(themed("add-to-basket-bg-color"), 5%);
-        }
-        @include themify($themes) {
+          box-shadow: 0 0 2px 0 themed("container-color");
           background: themed("add-to-basket-bg-color");
         }
         padding: 20px;

@@ -113,7 +113,7 @@ class FavDrink extends React.Component {
                 }
 
                 <div style={{ marginTop: "20px" }}>
-                  <a onClick={this.handleClick} href={`/brands/${this.state.selectedCity}/${this.state.selectedGenre}`}>
+                  <a href={`/brands/${this.state.selectedCity}/${this.state.selectedGenre}`}>
                     <Button 
                       primary
                       icon="rightArrowWhite"

@@ -7,6 +7,9 @@
   h4, h2 {
     //font-family: $font-Cormorant;
     text-align: left;
+    @include themify($themes) {
+      color: themed("text-color")
+    }
   }
   .content {
     // padding: 0 20.5%;
@@ -19,7 +22,7 @@
     align-items: center;
     z-index: 1;
     padding: 12% 15% 5% 15%;
-    background: #f1f1f1;
+    // background: #f1f1f1;
 
     .faqContainer {
       width: 100%;
@@ -30,7 +33,10 @@
       }
 
       .header {
-        border-bottom: 2px solid #555;
+        padding-bottom: 5px;
+        @include themify($themes) {
+          border-bottom: 1px solid themed("border-bottom-color");
+        }
         margin-bottom: 13px;
       }
 
@@ -38,10 +44,10 @@
         width: 100%;
         cursor: pointer;
         // position: relative;
-        // display: flex;
-        background: #fff;
         border-radius: 4px;
-        border: 1px solid #dddbda;
+        @include themify($themes) {
+          border: 1px solid themed("input-border-color")
+        }
         // padding: 20px 10px;
         position: relative;
         //font-weight: 600 !important;
@@ -73,10 +79,8 @@
 
       .accordian-item__body {
         border-radius: 4px;
-        background: #fff;
         p {
           letter-spacing: 0.5px;
-          color: #000000;
         }
       }
     }

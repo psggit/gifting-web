@@ -19,7 +19,7 @@
     align-items: center;
     z-index: 1;
     padding: 15% 15% 8% 15%;
-    background: #f1f1f1;
+
     h4 {
       font-size: 28px;
       letter-spacing: 1.3px;
@@ -33,6 +33,14 @@
       svg {
         width: 70px;
         height: 70px;
+        @include themify($themes) {
+          circle {
+            stroke: themed("text-color")
+          }
+          path {
+            fill: themed("text-color")
+          }
+        }
       }
     }
     .step-text {
@@ -45,8 +53,6 @@
         width: calc(39.5% - 62px); 
         line-height: 1.38;
         letter-spacing: 0.7px;
-        text-align: center;
-        color: #555555;
       }
     }
 

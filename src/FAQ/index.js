@@ -42,7 +42,7 @@ class FAQ extends React.Component {
             <h2 className="cm s1">Frequently Asked Questions</h2>
             <div className="faqContainer">
               <div className="header">
-                <div className="os s7" style={{fontWeight: '600'}}> SENDING A GIFT CARD </div>
+                <p className="os s7" style={{fontWeight: '600'}}> SENDING A GIFT CARD </p>
               </div>
               <div style={{marginBottom: '70px'}}>
                 {
@@ -66,7 +66,7 @@ class FAQ extends React.Component {
                 }
               </div>
               <div className="header">
-                <div className="os s7" style={{fontWeight: '600'}}> REDEEMING A GIFT CARD </div>
+                <p className="os s7" style={{fontWeight: '600'}}> REDEEMING A GIFT CARD </p>
               </div>
               {
                 redeemingGiftCardQuestions.length > 0 && 

@@ -18,7 +18,8 @@
   border-style: solid;
   width: 100%;
   @include themify($themes) {
-    background-color: themed("paper-color")
+    background-color: themed("paper-color");
+    border-color: themed("input-border-color")
   }
 }
 

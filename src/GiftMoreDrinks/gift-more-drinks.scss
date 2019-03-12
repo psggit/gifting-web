@@ -21,6 +21,11 @@
   a:first-child svg {
     width: 26px;
     height: 26px;
+    @include themify($themes) {
+      g g {
+        fill: themed("text-color")
+      }
+    }
   }
 
   // a:last-child {

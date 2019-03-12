@@ -116,10 +116,19 @@ class ProductListing extends React.Component {
       limit: this.limit
     }
 
+    const fetchGenresReq = {
+      city: capitalize(params.citySlug)
+    }
+
+    this.setState({ activeCity: params.citySlug, activeGenre: params.genreSlug })
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     receiverInfo.cityName = params.citySlug
     receiverInfo.genreName = params.genreSlug
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
+
+    fetchGenres(fetchGenresReq)
+      .then(genres => this.sortGenres(genres))
+      .then(sortedGenres => this.setGenres(sortedGenres))
     
     fetchBrandsUsingGenre(fetchBrandsReq)
       .then(brands => {
