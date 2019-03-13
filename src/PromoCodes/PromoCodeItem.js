@@ -32,7 +32,7 @@ class PromoCodeItem extends React.Component {
   
         <div className="row">
           <p className="os s7">
-            {this.props.promo.attributes.shortDescription}
+            {this.props.promo.attributes.description}
           </p>
         </div>
   

@@ -161,7 +161,7 @@
       @include themify($themes) {
         background-color: themed("add-to-basket-bg-color")
       }
-      padding: 20px 30px;
+      padding: 20px;
       > div {
         display: block;
       }

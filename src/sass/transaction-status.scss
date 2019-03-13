@@ -9,8 +9,10 @@
     width: 64px;
     height: 64px;
   }
-  svg g g {
-    fill: #777;
+  @include themify($themes) {
+    svg g g {
+      fill: themed("text-color");
+    }
   }
 
   .row {
@@ -25,9 +27,12 @@
   }
 
   .paper {
-    background: #fff;
-    border: 1px solid #dfdfdf;
     border-radius: 4px;
+    .header {
+      @include themify($themes) {
+        border-bottom: 1px solid themed("border-bottom-color")
+      }
+    }
 
     &.gift--basket {
       padding: 40px;

@@ -13,6 +13,7 @@ class GenresSlider extends React.Component {
       speed: 500,
       slidesToShow: 7,
       slidesToScroll: 7,
+      variableWidth: true,
       prevArrow: <div><Icon name="chevronRight" /></div>,
       nextArrow: <div><Icon name="chevronRight" /></div>
     }

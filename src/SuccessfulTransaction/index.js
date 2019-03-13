@@ -85,7 +85,7 @@ class SuccessfulTransaction extends React.Component {
 
             <div className="col">
               <div className="paper transaction--detail">
-                <p style={{ borderBottom: "1px solid #dfdfdf", paddingBottom: "12px" }} className="os s5">Transaction Details</p>
+                <p style={{ paddingBottom: "12px" }} className="os s5 header">Transaction Details</p>
                 <div>
                   <p className="os s7">Amount Paid</p>
                   <p className="os s7">Rs. {this.state.amount_paid}</p>
@@ -108,7 +108,7 @@ class SuccessfulTransaction extends React.Component {
               </div>
               
               <div className="paper sent--to">
-                <p style={{ borderBottom: "1px solid #dfdfdf", paddingBottom: "12px" }} className="os s5">Sent To</p>
+                <p style={{ paddingBottom: "12px" }} className="os s5 header">Sent To</p>
                 <div>
                   <p className="os s7">{this.state.receiver_name}</p>
                   <p className="os s7">{this.state.receiver_num}</p>

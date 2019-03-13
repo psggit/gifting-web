@@ -47,6 +47,37 @@
     gtag('config', 'UA-89806318-4');
   </script>
 
+<script src="https://wchat.freshchat.com/js/widget.js"></script>
+<script async>
+  if(!localStorage.getItem("hasura-id")) {
+    window.fcWidget.init({
+      token: "3a3ec830-f702-4f77-a001-b8e939438956",
+      host: "https://wchat.freshchat.com",
+      tags: ["conversation_gifting"],
+    });
+  } else if(localStorage.getItem("hasura-id")) {
+      window.fcWidget.init({
+        token: "3a3ec830-f702-4f77-a001-b8e939438956",
+        host: "https://wchat.freshchat.com",
+        tags: ["conversation_gifting"],
+      });
+    window.fcWidget.user.get(function(resp) {
+      var status = resp && resp.status,
+          data = resp && resp.data;
+      if (status !== 200) {
+        window.fcWidget.user.setProperties({
+          externalId: "",
+          firstName: localStorage.getItem("username"),
+          lastName: "",
+          email: localStorage.getItem("email"),
+          phone: localStorage.getItem("sender_mobile"),
+          phoneCountryCode: "+91"
+        });
+      }
+    });
+  }
+</script>
+
   <script>
     // Check that service workers are registered
   if ('serviceWorker' in navigator) {

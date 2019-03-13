@@ -61,7 +61,7 @@ class FailureTransaction extends React.Component {
           </div>
 
           <div className="paper transaction--detail-fail">
-            <p style={{ borderBottom: "1px solid #dfdfdf", paddingBottom: "12px" }} className="os s5">Transaction Details</p>
+            <p style={{ paddingBottom: "12px" }} className="os s5 header">Transaction Details</p>
             <div>
               <p className="os s7">Amount Paid</p>
               <p className="os s7">Rs. {this.state.amount_paid}</p>

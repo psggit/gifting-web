@@ -6,9 +6,13 @@
     position: relative;
   }
 
+  .slick-slide {
+    // width: 1 !important;
+  }
+
   .slick-disabled {
     opacity: 0;
-    cursor: auto;
+    pointer-events: none;
   }
   
   .slick-prev::before, .slick-next::before {

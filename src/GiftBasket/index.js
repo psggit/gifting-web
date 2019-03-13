@@ -26,12 +26,12 @@ function PromoBeforeApply(props) {
   )
 }
 
-function PromoAfterApply({promoCode, discount, onRemove}) {
+function PromoAfterApply({promoCode, discount, onRemove, shortDescription}) {
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
       <div>
         <p className="os s5">{promoCode}</p>
-        <p className="os s8">Rs. {discount} off</p>
+        <p className="os s8">{shortDescription}</p>
       </div>
       <div style={{ cursor: "pointer" }} onClick={onRemove}>
         <Icon name="promoCodeClose" />
@@ -122,6 +122,7 @@ class GiftBasket extends React.Component {
           settingGiftSummary: false,
           promoCode,
           giftSummary,
+          shortDescription: giftSummary.short_description,
           subtotal: giftSummary.total.slice(1).split(" ").join(""),
           total,
           discount: giftSummary.promo_discount.slice(1).split(" ").join(""),
@@ -227,6 +228,7 @@ class GiftBasket extends React.Component {
                                 ? <PromoAfterApply
                                   promoCode={this.state.promoCode}
                                   discount={this.state.discount}
+                                  shortDescription={this.state.shortDescription}
                                   onRemove={this.handleRemovePromo}
                                 />
                                 : <PromoBeforeApply onApply={this.onApplyPromo} />
@@ -245,8 +247,8 @@ class GiftBasket extends React.Component {
                       </div>
                       <div className="personalise-btn" style={{ marginTop: "20px", width: "100%" }}>
                         <div>
-                          <p className="os s7">{this.state.totalDrinks} drinks in basket</p>
-                          <p className="os s7"><b>Rs. {this.state.total}</b></p>
+                          <p className="os s4">{this.state.totalDrinks} drinks in basket</p>
+                          <p className="os s4"><b>Rs. {this.state.total}</b></p>
                         </div>
                         <a href="/personalise">
                           <Button icon="rightArrowWhite" primary>Personalise</Button>

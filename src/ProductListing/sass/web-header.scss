@@ -43,16 +43,21 @@
     // align-items: baseline;
     padding-top: 20px;
     .genre--item {
+      width: auto;
+      // border: 1px solid;
       // margin-bottom: 10px;
       cursor: pointer;
       opacity: 0.5;
       border: 0;
       text-align: left;
-      margin-right: 10px;
-      width: 160px;
+      margin-right: 32px;
+      // width: 160px;
       // line-height: 32px;
       border-radius: 2px;
-      padding: 0 20px;
+      // padding: 0 20px 0 10px;
+      &:first-child {
+        padding-left: 40px;
+      }
       > span {
         display: none;
       }

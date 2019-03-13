@@ -12,13 +12,7 @@ class PromoCodes extends React.Component {
     this.handlePromoChange = this.handlePromoChange.bind(this)
     this.state = {
       promoCode: null,
-      coupons: [{
-        value: "Fef",
-        expiresIn: "fef",
-        attributes: {
-          shortDescription: "fef"
-        }
-      }],
+      coupons: null,
       error: null
     }
   }
@@ -28,7 +22,7 @@ class PromoCodes extends React.Component {
       gps: JSON.parse(localStorage.getItem("receiver_info")).gps
     })
       .then(coupons => {
-        // this.setState({ coupons })
+        this.setState({ coupons })
       })
   }
 
