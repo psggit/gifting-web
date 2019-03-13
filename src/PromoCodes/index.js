@@ -3,6 +3,7 @@ import PromoCodeItem from "./PromoCodeItem"
 import Input from "Components/input"
 import "./sass/promo-code.scss"
 import { fetchCoupons } from "./../api"
+import { attribute } from "postcss-selector-parser";
 
 class PromoCodes extends React.Component {
   constructor() {
@@ -11,7 +12,13 @@ class PromoCodes extends React.Component {
     this.handlePromoChange = this.handlePromoChange.bind(this)
     this.state = {
       promoCode: null,
-      coupons: null,
+      coupons: [{
+        value: "Fef",
+        expiresIn: "fef",
+        attributes: {
+          shortDescription: "fef"
+        }
+      }],
       error: null
     }
   }
@@ -21,7 +28,7 @@ class PromoCodes extends React.Component {
       gps: JSON.parse(localStorage.getItem("receiver_info")).gps
     })
       .then(coupons => {
-        this.setState({ coupons })
+        // this.setState({ coupons })
       })
   }
 
@@ -47,7 +54,7 @@ class PromoCodes extends React.Component {
         <div className="promo--code__form">
           <div className="form-group">
             <Input maxLength="20" value={this.state.promoCode} onChange={this.handlePromoChange} placeholder="Enter Coupon Code" />
-            <span onClick={this.handleApplyPromo} className="os s8">APPLY</span>
+            <span onClick={this.handleApplyPromo} className="os s8 apply-btn">APPLY</span>
           </div>
           <p style={{ color: "#ff3b34", marginTop: "5px" }} className="os s8">{this.state.error}</p>
         </div>

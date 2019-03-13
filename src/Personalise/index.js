@@ -136,7 +136,7 @@ class Personalise extends React.Component {
               <h1 className="os s5">To</h1>
 
               <div className="form-group">
-                <label className="os">Recipients Name</label>
+                <label className="os">Recipient's Name</label>
                 <input 
                   value={this.state.receiverName}
                   onChange={this.handleTextChange}
@@ -153,7 +153,7 @@ class Personalise extends React.Component {
               </div>
 
               <div className="form-group">
-                <label className="os">Recipients Phone Number</label>
+                <label className="os">Recipient's Phone Number</label>
                 <div style={{display: "flex"}}>
                   <div className={`country-code ${receiverNumberErr.status ? "error" : ""}`}>
                     <span>+91</span>
@@ -180,7 +180,7 @@ class Personalise extends React.Component {
               <h3 className="os s5">From</h3>
 
               <div className="form-group">
-                <label className="os">Senders Name</label>
+                <label className="os">Sender's Name</label>
                 <input 
                   onChange={this.handleTextChange} 
                   value={this.state.senderName}  
@@ -192,7 +192,7 @@ class Personalise extends React.Component {
               </div>
 
               <div className="form-group">
-                <label className="os">Senders Phone Number</label>
+                <label className="os">Sender's Phone Number</label>
                 <div style={{display: "flex"}}>
                   <div className="country-code">
                     <span>+91</span>

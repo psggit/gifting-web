@@ -305,7 +305,9 @@ class App extends React.Component {
 if (!document.getElementById("app").childNodes.length) {
   if (location.pathname !== "/age-gate") {
     ReactDOM.render(<Header />, document.getElementById("header"))
-    ReactDOM.render(<Footer />, document.getElementById("footer-wrapper"))
+    if (document.getElementById("footer-wrapper")) {
+      ReactDOM.render(<Footer />, document.getElementById("footer-wrapper"))
+    }
   } else {
     document.getElementById("header").innerHTML = ""
   }

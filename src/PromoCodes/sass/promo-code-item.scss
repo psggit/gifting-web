@@ -1,11 +1,15 @@
+@import "./../../sass/base.scss";
+
 .promo--code__item:not(:last-child) {
   margin-bottom: 20px;
 }
 
 .promo--code__item {
-  border: 1px solid #dfdfdf;
+  @include themify($themes) {
+    border: 1px solid themed("input-border-color");
+    background: themed("paper-color");
+  }
   border-radius: 4px;
-  background: #fff;
   padding: 20px;
 
   .row {
@@ -19,6 +23,7 @@
 
   .row:nth-child(2) {
     max-width: 90%;
+    margin-bottom: 0;
   }
 
   .row:nth-child(3) {

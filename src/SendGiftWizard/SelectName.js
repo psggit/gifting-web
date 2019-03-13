@@ -60,7 +60,7 @@ class SelectName extends React.Component {
                   <Input
                     name="receiverName"
                     type="text"
-                    placeholder="Enter your name"
+                    placeholder="Enter recipient's name"
                     value={this.state.name}
                     onChange={this.handleChange}
                     maxLength="30"

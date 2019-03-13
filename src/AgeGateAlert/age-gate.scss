@@ -35,17 +35,17 @@
 
   .button-group .btn {
     width: 120px;
-    &:first-child {
-      border: 2px solid #ff9300;
-      color: #ff9300;
-      background: #333;
-    }
+    // &:first-child {
+    //   border: 2px solid #ff9300;
+    //   color: #ff9300;
+    //   background: #333;
+    // }
 
-    &:last-child {
-      border: 2px solid #ff9300;
-      background: #ff9300;
-      color: #fff;
-    }
+    // &:last-child {
+    //   border: 2px solid #ff9300;
+    //   background: #ff9300;
+    //   color: #fff;
+    // }
   }
 }
 

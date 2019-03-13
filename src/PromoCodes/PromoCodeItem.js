@@ -26,7 +26,7 @@ class PromoCodeItem extends React.Component {
             <p className="os s8">{this.props.promo.expiresIn }</p>
           </div>
           <div>
-            <p onClick={() => { this.handleClick(this.props.promo.value) }} style={{ cursor: "pointer" }} className="os s8">APPLY</p>
+            <p onClick={() => { this.handleClick(this.props.promo.value) }} style={{ cursor: "pointer" }} className="os s8 apply-btn">APPLY</p>
           </div>
         </div>
   
@@ -36,10 +36,10 @@ class PromoCodeItem extends React.Component {
           </p>
         </div>
   
-        <div className="row">
+        {/* <div className="row">
           <p className="os s8">LEARN MORE</p>
           <Icon name="rightArrowBlack" />
-        </div>
+        </div> */}
 
         <div className="row">
           <p style={{ color: "#ff3b34" }} className="os s8">{this.state.error}</p>

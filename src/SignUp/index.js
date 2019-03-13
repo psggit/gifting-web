@@ -377,9 +377,9 @@ export default function SignUp(data) {
                   <div className="form-group">
                     <label className="os s7">Phone Number</label>
                     <div style={{ display: 'flex' }}>
-                      <div className={`country-code ${mobileNoErr.status ? 'error' : ''}`}>
+                      <span className={`country-code ${mobileNoErr.status ? 'error' : ''}`}>
                         +91
-                      </div>
+                      </span>
                       <div style={{ width: 'calc(100% - 40px' }}>
                         {/* <input
                           type="text"
@@ -558,7 +558,7 @@ export default function SignUp(data) {
                   }
                   {
                     //!otpSent &&
-                    <div className="note os s9">Set account pin for secure transactions on the HipBar mobile app</div>
+                    <p className="note os s9">Set account pin for secure transactions on the HipBar mobile app</p>
                   }
                   {
                     //!otpSent &&

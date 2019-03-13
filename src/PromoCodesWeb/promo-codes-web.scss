@@ -3,7 +3,13 @@
 .promo--header {
   display: flex;
   justify-content: space-between;
-  background: #fff;
+  @include themify($themes) {
+    background: themed("paper-color");
+    border-bottom: 1px solid themed("border-bottom-color");
+    .close svg g g {
+      stroke: themed("text-color")
+    }
+  }
   padding: 20px;
   .close {
     cursor: pointer;
@@ -11,10 +17,6 @@
   .close svg {
     width: 16px;
     height: 16px;
-  }
-
-  .close svg g g {
-    stroke: #555;
   }
 }
 

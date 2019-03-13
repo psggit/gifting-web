@@ -1,15 +1,24 @@
+@import "./../../sass/base.scss";
+
 #promo--codes {
   width: 100%;
   // border: 1px solid #dfdfdf;
   max-width: 100%;
+  @include themify($themes) {
+    .apply-btn {
+      color: themed("button-primary-color")
+    }
+  }
 
   .promo--code__body {
-    background: #f1f1f1;
+    @include themify($themes) {
+      background: themed("container-color");
+    }
     padding: 20px;
   }
 
   .promo--code__form {
-    background: #fff;
+    
     padding: 20px;
   }
 
