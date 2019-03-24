@@ -45,13 +45,13 @@ class SuccessfulTransaction extends React.Component {
       product_name: item.brand_name
     }))
 
-    ga("send", {
-      hitType: "event",
-      eventCategory: "",
-      eventAction: "",
-      eventLabel: "transaction_success",
-      products: gaProducts
-    })
+    // ga("send", {
+    //   hitType: "event",
+    //   eventCategory: "",
+    //   eventAction: "",
+    //   eventLabel: "transaction_success",
+    //   products: gaProducts
+    // })
   }
 
   render() {

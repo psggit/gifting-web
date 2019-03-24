@@ -9,9 +9,9 @@ class GenresSlider extends React.Component {
     super(props)
     this.settings = {
       dots: false,
-      infinite: false,
+      infinite: true,
       speed: 400,
-      slidesToShow: 7,
+      slidesToShow: 3,
       initialSlide: this.getGenreIndexByName(props.active),
       slidesToScroll: 1,
       variableWidth: true,

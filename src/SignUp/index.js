@@ -253,31 +253,31 @@ export default function SignUp(data) {
               if (response.status === 400 && responseData.errorCode.includes("invalid-otp")) {
                 this.setState({ otpErr: { status: true, value: "Incorrect OTP. Please enter again or resend OTP" } })
                 this.setState({ isSigningUp: false })
-                ga("send", {
-                  hitType: "event",
-                  eventCategory: "",
-                  eventAction: "",
-                  eventLabel: "sign_up_failure"
-                })
+                // ga("send", {
+                //   hitType: "event",
+                //   eventCategory: "",
+                //   eventAction: "",
+                //   eventLabel: "sign_up_failure"
+                // })
                 return
               } else if (response.status === 400 && responseData.errorCode === "expired-otp") {
                 this.setState({ otpErr: { status: true, value: responseData.message } })
                 this.setState({ isSigningUp: false })
-                ga("send", {
-                  hitType: "event",
-                  eventCategory: "",
-                  eventAction: "",
-                  eventLabel: "sign_up_failure"
-                })
+                // ga("send", {
+                //   hitType: "event",
+                //   eventCategory: "",
+                //   eventAction: "",
+                //   eventLabel: "sign_up_failure"
+                // })
                 return
               }
 
-              ga("send", {
-                hitType: "event",
-                eventCategory: "",
-                eventAction: "",
-                eventLabel: "sign_up_success"
-              })
+              // ga("send", {
+              //   hitType: "event",
+              //   eventCategory: "",
+              //   eventAction: "",
+              //   eventLabel: "sign_up_success"
+              // })
               createSession(responseData)
               location.href = (location.pathname)
               unMountModal()
@@ -287,12 +287,12 @@ export default function SignUp(data) {
           })
           .catch((err) => {
             this.setState({ errorInSignUp: true, isSigningUp: false })
-            ga("send", {
-              hitType: "event",
-              eventCategory: "",
-              eventAction: "",
-              eventLabel: "sign_up_failure"
-            })
+            // ga("send", {
+            //   hitType: "event",
+            //   eventCategory: "",
+            //   eventAction: "",
+            //   eventLabel: "sign_up_failure"
+            // })
             mountModal(NotifyError({}))
           })
       }
