@@ -51,16 +51,16 @@ class GiftBasketItem extends React.Component {
       <div className="gift--basket__item">
         <div className="gift--basket__item-img">
           <div className="img-placeholder"></div>
-          <img onLoad={this.handleImageLoad} src={brand.high_res_image || getImageUrl(brand.image) || ""} />
+          <img onLoad={this.handleImageLoad} src={sku.brand_low_res_image || sku.brand_high_res_image || ""} />
         </div>
 
         <div className="gift--basket__item-desc">
-          <p className="os s6">{brand.brand_name}</p>
+          <p style={{ fontWeight: "600" }} className="os s6">{brand.brand_name}</p>
           <div className="row price--quantity">
 
             <div className="col">
-              <span style={{ paddingRight: "10px", borderRight: "1px solid #777" }} className="os s6">Rs. {sku.price.slice(1)}</span>
-              <span style={{ paddingLeft: "10px" }} className="os s6">{getUnit(sku.volume)}</span>
+              <span style={{ paddingRight: "10px", borderRight: "1px solid #777" }} className="os s6">{getUnit(sku.volume)}</span>
+              <span style={{ paddingLeft: "10px" }} className="os s6">&#8377; {sku.price.slice(1)}</span>
             </div>
 
             {

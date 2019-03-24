@@ -32,6 +32,8 @@ import SelectName from "./SendGiftWizard/SelectName"
 import SelectCity from "./SendGiftWizard/SelectCity"
 import SelectFavDrink from "./SendGiftWizard/FavDrink"
 import Footer from "Components/footer"
+import SuccessfulTransaction from "./SuccessfulTransaction";
+import FailureTransaction from "./FailureTransaction";
 // import NotFound from "./NotFound"
 // import makeAsyncComponent from "./makeAsyncComponent"
 
@@ -61,9 +63,6 @@ const styles = {
     color: "black"
   }
 }
-
-const brandProps = window.BRAND_STATE
-delete window.BRAND_STATE
 
 class App extends React.Component {
   constructor() {
@@ -126,6 +125,46 @@ class App extends React.Component {
                     } 
                     //component={UsingGiftCard} 
                   />
+
+                  <Route exact 
+                    path="/transaction-successful"
+                    render={
+                      props => (
+                        <SuccessfulTransaction {...props} 
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
+                    //component={UsingGiftCard} 
+                  />
+
+                  <Route exact 
+                    path="/transaction-failure"
+                    render={
+                      props => (
+                        <FailureTransaction {...props} 
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
+                    //component={UsingGiftCard} 
+                  />
+
+                  <Route exact 
+                    path="/transaction-cancelled"
+                    render={
+                      props => (
+                        <FailureTransaction {...props} 
+                          // name={this.state.username} 
+                          // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    } 
+                    //component={UsingGiftCard} 
+                  />
+
                   <Route exact 
                     path="/send-gift/get-started" 
                     //component={SendGiftCards} 
@@ -221,7 +260,7 @@ class App extends React.Component {
                     } 
                   />
 
-                  <Route exact 
+                  {/* <Route exact 
                     path="/transaction-successful" 
                     //component={Checkout} 
                     render={
@@ -245,7 +284,7 @@ class App extends React.Component {
                         />
                       )
                     } 
-                  />
+                  /> */}
 
                   <Route exact 
                     path="/retail-outlet" 
@@ -282,7 +321,7 @@ class App extends React.Component {
                   <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
                   <Route exact path="/brands/:citySlug/:genreSlug/:brandSlug"
                     render={ props => (
-                      <ProductDetails brand={brandProps} {...props} context={paramObj} />
+                      <ProductDetails {...props} context={paramObj} />
                     )}/>
                   <Route exact path="/brands/:citySlug/:genreSlug"
                     render={ props => (

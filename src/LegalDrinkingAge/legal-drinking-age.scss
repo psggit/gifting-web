@@ -1,3 +1,5 @@
+@import "./../sass/base.scss";
+
 #LegalDrinkingAge {
   width: 100%;
   //font-family: $font-OpenSans;
@@ -18,10 +20,14 @@
     align-items: center;
     z-index: 1;
     padding: 15% 12.5% 7% 12.5%;
-    background: #f1f1f1;
+    @include themify($themes) {
+      background: themed("paper-color")
+    }
 
     .header {
-      border-bottom: 2px solid #555;
+      @include themify($themes) {
+        border-bottom: 1px solid themed("border-bottom-color");
+      }
       text-align: left;
     }
 
@@ -35,7 +41,9 @@
         padding: 10px 0;
         align-items: center;
         justify-content: space-between;
-        border-bottom: 1px solid #555;
+        @include themify($themes) {
+          border-bottom: 1px solid themed("input-border-color");
+        }
 
         span {
           width: calc(50% - 12.5%)

@@ -52,7 +52,15 @@
     }
   }
 
-  .paper {
+  .row.main {
+    .col.main:first-child {
+      width: 70%;
+      margin-right: 48px;
+    }
+
+    .col.main:last-child {
+      width: 30%;
+    }
   }
 
   .paper.no-basket {
@@ -67,7 +75,7 @@
 
   .paper.basket {
     padding: 40px;
-    width: 764px;
+    width: 100%;
     max-width: 100%;
     margin-right: 48px;
 
@@ -87,7 +95,7 @@
     > div {
       padding: 20px;
     }
-    width: 360px;
+    width: 100%;
     max-width: 100%;
   }
 
@@ -96,8 +104,15 @@
     > div {
       padding: 20px;
     }
-    width: 360px;
+    width: 100%;
     max-width: 100%;
+    p:first-child {
+      font-weight: 600;
+    }
+  }
+
+  .personalise-btn .btn {
+    width: 100%;
   }
 
   .personalise-btn > div {
@@ -105,6 +120,22 @@
   }
 }
 
+
+@media only screen and (max-width: 768px) {
+  #gift--basket {
+    .row.main {
+      flex-direction: column;
+      .col.main:first-child {
+        width: 100%;
+        margin-bottom: 48px;
+      }
+
+      .col.main:last-child {
+        width: 100%;
+      }
+    }
+  }
+}
 
 @media only screen and (max-width: $sm) {
   #gift--basket {

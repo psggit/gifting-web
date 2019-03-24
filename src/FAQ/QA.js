@@ -9,19 +9,16 @@ export const sendingGiftCardQuestions = [
   {
     ques_number: "two",
     question: "What are HipBar gift cards?",
-    answer: `Gifting on the HipBar app/website can be done only through HipBar gift cards. 
-    A gift card has a certain value attached to it and can be used to redeem any 
-    drink on the HipBar platform that is proportionate to the gift card value. 
-    The sender determines the value of the gift card and can send over a gift card of 
-    any value of choice.`
+    answer: `
+    Gifting on the HipBar app/website can be done only through HipBar gift cards. Every product on the catalog can be redeemed with a gift card associated with that product. Senders can choose a drink they want to gift and send over the appropriate product gift card.
+    `
   },
   {
     ques_number: "three",
-    question: "How to send a gift card?",
-    answer: `Tap START GIFTING on the homepage
-    Enter the amount you wish to gift with a personal message
-    Enter sender & receiver information
-    Pay`
+    question: "How do I send a gift card?",
+    answer: `
+    Tap START GIFTING on the homepage -> Enter recipient details -> Choose drink -> Add to gift basket -> Add a personal message (optional) -> Pay & Checkout
+    `
   },
   {
     ques_number: "four",
@@ -84,22 +81,24 @@ export const redeemingGiftCardQuestions = [
   {
     ques_number: "twelve",
     question: "I have received a gift card, how do I redeem it?",
-    answer: `If you’ve received a gift card, the value of the gift card is automatically added to your gift wallet. 
-
+    answer: ` 
               To redeem a gift card, follow the steps below:
               
-              1. Visit a HipBar-affiliated store as indicated on the app
-              2. Select the desired products on the app & add to cart
-              3. Tap “Check Out” and select “Sef Pickup” option. The gift wallet amount is selected by default. 
-              4. Scan the QR code/ enter the shop code to complete the transaction
-              5. Collect product(s)`
+              1. Visit a HipBar-affiliated store as indicated on the app 
+              2. Click on the "Gifting" icon on the bottom of the screen to see the product(s) gifted to you. 
+              3. Add to cart & pay  
+              4. Scan the QR code/ enter the shop code to complete the transaction 
+              5. Collect product(s).
+              `
   },
   {
     ques_number: "thirteen",
     question: "The product I want to redeem isn't available at the store. What do I do?",
-    answer: `You can...
-    1) Try another HipBar-affiliated store or 
-    2) Choose to redeem another product whose price falls within the gift card value
+    answer: `
+      In case this unfortunate incident occurs, you can... 
+
+      1) Try another HipBar-affiliated store (or)
+      2) Choose to add the value of the gift card to your gift wallet and use it to redeem any product of your choice (You can also add money to this amount to redeem a higher value product)
     `
   },
   {

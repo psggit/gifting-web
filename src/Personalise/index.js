@@ -107,7 +107,7 @@ class Personalise extends React.Component {
         <div className="container">
           <div className="paper">
             <div className="header">
-              <a href="/basket">
+              <a href={"javascript:history.back()"}>
                 <Icon name="back"/>
                 <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">Back</span>
               </a>
@@ -127,7 +127,7 @@ class Personalise extends React.Component {
                   placeholder="Enter a personal message for a more personalized experience"
                 >
                 </textarea>
-                <p className="os s9"><span id="char_count">{this.state.count}</span> characters {this.state.count < 250 ? "remaining" : ""}</p>
+                <p className="os s9">{this.state.count} characters {this.state.count < 250 ? "remaining" : ""}</p>
                 {/* <p>416 characters remaining</p> */}
               </div>
             </div>
@@ -156,7 +156,7 @@ class Personalise extends React.Component {
                 <label className="os">Recipient's Phone Number</label>
                 <div style={{display: "flex"}}>
                   <div className={`country-code ${receiverNumberErr.status ? "error" : ""}`}>
-                    <span>+91</span>
+                    <span className="os s7">+91</span>
                   </div>
                   <InputMask
                     onChange={this.handlePhoneChange} 
@@ -195,7 +195,7 @@ class Personalise extends React.Component {
                 <label className="os">Sender's Phone Number</label>
                 <div style={{display: "flex"}}>
                   <div className="country-code">
-                    <span>+91</span>
+                    <span className="os s7">+91</span>
                   </div>
                   <input 
                     value={this.state.senderNumber} 
@@ -208,18 +208,18 @@ class Personalise extends React.Component {
                   />
                 </div>
               </div>
-            </div>
 
-            <div className="form-group">
-              <div className="terms-and-conditions">
-                <span onClick={() => { this.setState({ agreement: !this.state.agreement})}} style={{marginRight: "10px", display: "inline-block", verticalAlign: "middle", cursor: "pointer"}}>
-                  {
-                    !this.state.agreement
-                      ? <Icon name="rectangle" />
-                      : <Icon name="filledRectangle" />
-                  }
-                </span>
-                <span style={{ display: "inline-block",  userSelect: "none"}}> I confirm that the recipient is of legal drinking age and I agree to the <a style={{ textDecoration : "underline" }} href="/gifting-t-c" target="_blank">Terms & Conditions</a></span>
+              <div className="form-group">
+                <div className="terms-and-conditions">
+                  <span onClick={() => { this.setState({ agreement: !this.state.agreement})}} style={{marginRight: "10px", display: "inline-block", verticalAlign: "middle", cursor: "pointer"}}>
+                    {
+                      !this.state.agreement
+                        ? <Icon name="rectangle" />
+                        : <Icon name="filledRectangle" />
+                    }
+                  </span>
+                  <span className="os s7" style={{ display: "inline-block",  userSelect: "none"}}> I confirm that the recipient is of legal drinking age and I agree to the <a style={{ textDecoration : "underline" }} href="/gifting-t-c" target="_blank">Terms & Conditions</a></span>
+                </div>
               </div>
             </div>
 
@@ -236,31 +236,11 @@ class Personalise extends React.Component {
                         Proceed to pay
                       </Button>
                     </div>
-
-                    <div className="payment-button mobile">
-                      <Button
-                        disabled={!this.state.agreement}
-                        onClick={this.proceedToPayment}
-                        primary 
-                        icon="rightArrowWhite">
-                        Proceed to pay
-                      </Button>
-                    </div>
                   </React.Fragment>
                 )
                 : (
                   <React.Fragment>
                     <div style={{ marginTop: "20px" }} className="payment-button">
-                      <Button
-                        disabled={!this.state.agreement}
-                        onClick={() => { mountModal(SignIn({ mobile: this.state.senderNumber })) }}
-                        primary 
-                        icon="rightArrowWhite">
-                        Sign in to proceed
-                      </Button>
-                    </div>
-
-                    <div className="payment-button mobile">
                       <Button
                         disabled={!this.state.agreement}
                         onClick={() => { mountModal(SignIn({ mobile: this.state.senderNumber })) }}

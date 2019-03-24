@@ -15,6 +15,17 @@ class Landing extends React.Component {
     super()
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      const el = document.querySelector("video")
+      el.muted = true
+      el.play()
+        .catch(err => {
+          console.log(err)
+        })
+    }, 1000)
+  }
+
   render() {
     const backgroundStyle={
       backgroundImage: 'linear-gradient(70deg, rgba(0, 0, 0, 0), #313131)',
@@ -35,7 +46,7 @@ class Landing extends React.Component {
         <div id="landing-new">
           <div className="hero-container">
             <div className="video-bg-container">
-              <video autoPlay="true" preload="true" loop="loop" muted="true">
+              <video ref={(node) => this.video = node} playsInline preload="true" autoPlay muted loop>
                 <source src="https://res.cloudinary.com/www-hipbar-com/video/upload/v1551262512/Gifting-website/video.mp4" type="video/mp4" />
               </video>
             </div>
@@ -53,7 +64,7 @@ class Landing extends React.Component {
           <Slider />
           <div className="steps">
             <div className="step-image">
-              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240057/Gifting-website/Step1.webp" />
+              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240057/Gifting-website/Step1.jpg" />
             </div>
             <div className="step-notes">
               <div>
@@ -65,7 +76,7 @@ class Landing extends React.Component {
 
           <div className="steps">
             <div className="step-image">
-              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240053/Gifting-website/Step2.webp" />
+              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240053/Gifting-website/Step2.jpg" />
             </div>
             <div className="step-notes">
               <div>
@@ -77,7 +88,7 @@ class Landing extends React.Component {
 
           <div className="steps">
             <div className="step-image">
-              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240058/Gifting-website/Step3.webp" />
+              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240058/Gifting-website/Step3.jpg" />
             </div>
             <div className="step-notes">
               <div>
@@ -100,22 +111,27 @@ class Landing extends React.Component {
               }}
             >
               <span
-                className="ft"
+                className="ft s8"
                 style={{
                   background: '#000',
                   padding: '0 30px',
-                  color: '#bcbec0'
+                  color: '#bcbec0',
+                  letterSpacing: "2px",
+                  fontWeight: "500"
                 }}
               >
                 CITIES
               </span>
             </div>
             <div className="city-wrapper">
-              <div className="ft s7 city">
-                Goa
+              <div className="city">
+                <span className="ft s7">Goa</span>
               </div>
-              <div className="ft s7 city">
-                Mahe, Pondicherry
+              <div className="city">
+                <span className="ft s7">Chandigarh</span>
+              </div>
+              <div className="city">
+                <span className="ft s7">Mahe</span>
               </div>
             </div>
           </div>

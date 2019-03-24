@@ -71,7 +71,19 @@ class Header extends React.Component {
     fetch(`${Api.blogicUrl}/consumer/auth/user/logout`, fetchOptions)
       .then((response) => {
         this.setState({isLoggedIn: false})
-        location.href = "/"
+        const notAllowedUrls = [
+          "/transaction-successful",
+          "/transaction-failure",
+          "/transaction-cancelled",
+          "/transaction-history",
+          "/personalise",
+          "/checkout"
+        ]
+        if (notAllowedUrls.indexOf(location.pathname) > -1) {
+          location.href = "/send-gift"
+        } else {
+          location.href = location.pathname
+        }
         //setTimeout(() => {
         clearSession()
         window.fcWidget.user.clear().then(function() {
@@ -101,10 +113,23 @@ class Header extends React.Component {
     this.setState({showDropdown: !showDropdown})
   }
 
+  freezeVp(e) {
+    e.preventDefault()
+  }
+
+  stopBodyScroll(bool) {
+    if (bool === true) {
+      document.body.addEventListener("touchmove", this.freezeVp, false)
+    } else {
+      document.body.removeEventListener("touchmove", this.freezeVp, false)
+    }
+  }
+
   onToggle() {
     const {isMenuOpen} = this.state
     this.setState({ isMenuOpen: !isMenuOpen }, () => {
-      document.body.style = !isMenuOpen ? "overflow:hidden" : "overflow:auto"
+      document.body.style = this.state.isMenuOpen === true ? "overflow:hidden" : "overflow:auto"
+      // document.body.style = this.state.isMenuOpen === false ? this.stopBodyScroll(true) : this.stopBodyScroll(false)
     })
   }
 
@@ -145,9 +170,9 @@ class Header extends React.Component {
           }
           {
             !isLoggedIn && 
-            <span className="login">
+            <div className="login">
               <Button onClick={() => this.handleClick()} primary size="small">SIGN IN</Button>
-            </span>
+            </div>
           }
           {
             isLoggedIn && 

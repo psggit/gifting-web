@@ -20,7 +20,9 @@
     align-items: center;
     z-index: 1;
     padding: 15% 12.5% 7% 12.5%;
-    background: #f1f1f1;
+    @include themify($themes) {
+      background: themed("container-color")
+    }
 
     .note {
       margin-top: 20px;

@@ -4,9 +4,6 @@
   cursor: pointer;
   position: relative;
   text-align: center;
-  @include themify($themes) {
-    border: 1px solid themed("input-border-color")
-  }
   padding: 10px;
   border-radius: 4px;
   width: 135px;

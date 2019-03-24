@@ -1,7 +1,3 @@
-/*
-  This page need to be server side renderesd
-*/
-
 import React from "react"
 import "./sass/listing.scss"
 import BrandsList from "./BrandsList"
@@ -25,11 +21,13 @@ class ProductListing extends React.Component {
     super(props)
     this.fetchBrandsReq = {}
     this.shouldFetchMore = true
+    this.disableScrollIntersection = false
     this.state = {
       search_text: "",
       brands: props.brands || [],
       isBrandsLoading: false,
       isBrandsAvailable: true,
+      isLoading: false,
       shouldMountGenres: false,
       shouldMountSearchResults: false,
       genres: [],
@@ -73,10 +71,7 @@ class ProductListing extends React.Component {
     delete window.__active_city__
     delete window.__active_genre__
     delete window.__BRANDS__
-    const ssrScript = document.getElementById("ssr_script")
-    if (ssrScript) {
-      ssrScript.innerHTML = ""
-    }
+    
     this.setState({ brands, activeCity, activeGenre, isMobile })
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     receiverInfo.cityName = activeCity
@@ -150,7 +145,12 @@ class ProductListing extends React.Component {
   }
 
   sortGenres(genres) {
-    return genres.sort((a, b) => a.ordinal_position - b.ordinal_position)
+    // return genres.sort((a, b) => a.ordinal_position - b.ordinal_position)
+    return genres.sort((a, b) => {
+      if(a.short_name < b.short_name) { return -1 }
+      if(a.short_name > b.short_name) { return 1 }
+      return 0
+    })
   }
 
   resetScrollIntersectionParams() {
@@ -164,6 +164,7 @@ class ProductListing extends React.Component {
     receiverInfo.gps = city.gps
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     localStorage.removeItem("basket")
+    localStorage.removeItem("promo_code")
     this.setState({ basket: null })
     this.resetScrollIntersectionParams()
     const fetchGenresReq = {
@@ -189,7 +190,7 @@ class ProductListing extends React.Component {
 
   handleGenreChange(genre) {
     this.props.history.push(`/brands/${this.props.match.params.citySlug}/${genre.shortName}`)
-    this.setState({ activeGenre: genre.shortName })
+    this.setState({ activeGenre: genre.shortName, isLoading: true })
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) ||{}
     receiverInfo.genreName = genre.shortName
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
@@ -203,6 +204,9 @@ class ProductListing extends React.Component {
 
     fetchBrandsUsingGenre(fetchBrandsReq)
       .then(brands => this.setBrands(brands))
+      .then(() => {
+        this.setState({ isLoading: false })
+      })
   }
 
   setFetchMoreStatus(res) {
@@ -213,28 +217,29 @@ class ProductListing extends React.Component {
 
   findInterSection() {
     const intersectionTarget = document.getElementById("scroll-intersection")
-    const _self = this
 
-    let io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting && !_self.disableScrollIntersection) {
-          _self.setState({ isBrandsLoading: true })
-          _self.offset += _self.limit
+    let io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        console.log(this.disableScrollIntersection)
+        if (entry.isIntersecting && !this.disableScrollIntersection) {
+          this.setState({ isBrandsLoading: true })
+          this.offset += this.limit
           const fetchBrandsReq = {
-            city: capitalize(_self.props.match.params.citySlug),
-            genre: _self.props.match.params.genreSlug,
-            limit: _self.limit,
-            offset: _self.offset
+            city: capitalize(this.props.match.params.citySlug),
+            genre: this.props.match.params.genreSlug,
+            limit: this.limit,
+            offset: this.offset
           }
           
           fetchBrandsUsingGenre(fetchBrandsReq)
             .then(brands => {
-              _self.setState({
-                brands: _self.state.brands.concat(brands),
+              console.log(this.state.brands.concat(brands))
+              this.setState({
+                brands: this.state.brands.concat(brands),
                 isBrandsLoading: false
               })
-              // _self.updateIntersectionTarget()
-              _self.disableScrollIntersection = brands.length < _self.limit
+              // this.updateIntersectionTarget()
+              this.disableScrollIntersection = brands.length < this.limit
             })  
         }
       })
@@ -364,16 +369,20 @@ class ProductListing extends React.Component {
             }
 
             {
-              this.state.isBrandsAvailable
+              !this.state.isLoading
                 ? <BrandsList
                   activeGenre={this.state.activeGenre}
                   activeCity={this.state.activeCity}
                   data={this.state.brands} 
                 />
-                : <NoBrandsAvailable />
+                : <Loader />
+            }
+            {
+              !this.state.isBrandsAvailable &&
+              <NoBrandsAvailable />
             }
             { this.state.isBrandsLoading && <Loader /> }
-            <div style={{ position: "absolute", bottom: "20%" }} id="scroll-intersection"></div>
+            <div style={{ position: "absolute", bottom: "25%" }} id="scroll-intersection"></div>
           </div>
         </div>
       </div>

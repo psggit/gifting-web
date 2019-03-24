@@ -28,6 +28,9 @@
     }
     .city--select {
       flex: 1;
+      select {
+        border-radius: 0;
+      }
     }
     .search--box {
       flex: 1;

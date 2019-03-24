@@ -16,7 +16,7 @@ class ProductDetails extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      brand: props.brand || null,
+      brand: null,
       basketCount: 0,
       viewProductsUrl: "",
       isProductAdded: false
@@ -28,12 +28,14 @@ class ProductDetails extends React.Component {
   }
   componentDidMount() {
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
+    const brand = window.BRAND_STATE || null
     const activeCity = window.__active_city__ || this.props.match.params.citySlug
     const activeGenre = window.__active_genre__ || this.props.match.params.genreSlug
     const isMobile = window.__isMobile__ || this.props.context.isMobile
     delete window.__isMobile__
+    delete window.BRAND_STATE
 
-    this.setState({ isMobile })
+    this.setState({ isMobile, brand })
 
     receiverInfo.cityName = activeCity
     receiverInfo.genreName = activeGenre
@@ -43,7 +45,7 @@ class ProductDetails extends React.Component {
     const basket = JSON.parse(localStorage.getItem("basket"))
     this.setState({ basketCount: basket ? getBasketTotal(basket) : 0 })
     const { params } = this.props.match  
-    if (!this.state.brand){
+    if (!brand){
       fetchSKUUsingBrand({
         cityName: capitalize(params.citySlug),
         genreShortName: params.genreSlug,
@@ -83,7 +85,7 @@ class ProductDetails extends React.Component {
             <div className="header">
               <a href={this.state.viewProductsUrl}>
                 <Icon name="back"/>
-                <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">View Products</span>
+                <span style={{ marginLeft: "10px" }} className="os s5">View Products</span>
               </a>
 
               <a href="/basket">
@@ -101,7 +103,6 @@ class ProductDetails extends React.Component {
                 brand={brand}
                 volumes={brand ? brand.skus : []}
                 name={brand ? brand.brand_name : ""}
-                image={brand ? brand.high_res_image : ""}
               />
             </div>
           </div>

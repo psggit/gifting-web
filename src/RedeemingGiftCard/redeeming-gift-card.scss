@@ -1,6 +1,12 @@
 @import "./../sass/base.scss";
 
 #GiftCards {
+  .btn {
+    height: 52px;
+    span {
+      font-size: 16px;
+    }
+  }
   width: 100%;
   //font-family: $font-OpenSans;
   //height: 100vh;
@@ -27,7 +33,7 @@
     .step-number {
       // margin-top: 80px;
       // margin-bottom: 36px;
-      margin-top: 60px;
+      margin-top: 90px;
       margin-bottom: 3%;
 
       svg {
@@ -43,6 +49,10 @@
         }
       }
     }
+
+    .step-number:nth-child(2) {
+      margin-top: 40px;
+    }
     .step-text {
       text-align: center;
       h2 {
@@ -57,15 +67,9 @@
     }
 
     .app-store-btn {
-      display: -webkit-box;
-      display: -ms-flexbox;
       display: flex;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
+      align-items: center;
+      justify-content: center;
       margin-top: 30px;
       a {
         &:first-child {
@@ -155,55 +159,53 @@
 
 @media only screen and (max-width: 720px) {
   #GiftCards {
-    .content {
-      // margin-top: 0px;
-      // padding: 0 7%;
-      // margin-bottom: 0px;
-      padding: 130px 7% 12% 7%;
-    }
-    .step-number {
-      margin-top: 23px !important;
-      margin-bottom: 10px !important;
-        svg {
-          width: 35px;
-          height: 35px;
-        }
-    }
-
-    .step-text {
+    .btn {
+      height: 44px;
       span {
-        padding: 21px 0px;
-        width: calc(39.5% - 42px); 
+        font-size: 12px;
       }
     }
+    .content {
+      padding: 130px 7% 12% 7%;
 
-    .app-btns {
-      // margin-top: 20px !important;
-      margin-top: 4% !important;
-        svg {
-          width: 94px;
-          height: 25px;
+      .step-number {
+        margin-top: 30px;
+        margin-bottom: 10px;
+          svg {
+            width: 42px;
+            height: 42px;
+          }
+      }
+  
+      .step-text {
+        span {
+          padding: 21px 0px;
+          width: calc(39.5% - 42px); 
         }
-        a {
-          // margin-right: 16px !important;
-          margin-right: 3% !important;
-        }
+      }
+  
+      .app-btns {
+        // margin-top: 20px !important;
+        margin-top: 4% !important;
+          svg {
+            width: 94px;
+            height: 25px;
+          }
+          a {
+            // margin-right: 16px !important;
+            margin-right: 3% !important;
+          }
+      }
+  
+      // .button {
+      //     margin-top: 21px;
+      //     width: 183px !important;
+      //     padding: 9px 18px !important;
+      //     font-size: 10px !important;
+      //     svg {
+      //       height: 13px;
+      //     }
+      // }
     }
-
-    .button {
-        margin-top: 21px;
-        width: 183px !important;
-        padding: 9px 18px !important;
-        font-size: 10px !important;
-        svg {
-          height: 13px;
-        }
-    }
-
-    // .start-gifting {
-    //   .button {
-    //     width: 144px;
-    //   }
-    // }
   }
 }

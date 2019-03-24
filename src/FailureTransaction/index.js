@@ -30,18 +30,17 @@ class FailureTransaction extends React.Component {
   }
 
   componentDidMount() {
-    const txn = window.__TXN__
+    const txn = window.__TXN__ || {}
     delete window.__TXN__
-    document.getElementById("ssr__script").innerHTML = ""
-    const basket = JSON.parse(localStorage.getItem("basket"))
-    const receiver = JSON.parse(localStorage.getItem("receiver_info"))
+    const basket = JSON.parse(localStorage.getItem("basket")) || []
+    const receiver = JSON.parse(localStorage.getItem("receiver_info")) || {}
     this.setState({
       basket,
       message: receiver.message,
       receiver_name: receiver.name,
       receiver_num: `+91 ${receiver.mobile}`,
       amount_paid: parseFloat(txn.net_amount_debit).toFixed(2),
-      paid_using: txn.mode === "CC" || txn.mode === "DC" ? txn.cardnum.split("X").join("*") : this.modeMap[txn.mode],
+      paid_using: txn.mode === "CC" || txn.mode === "DC" ? (txn.cardnum ? txn.cardnum.split("X").join("*") : this.modeMap[txn.mode]) : this.modeMap[txn.mode],
       txnid: txn.txnid,
       txn_time: Moment(txn.addedon).format("DD/MM/YYYY, hh:mm A")
     })
@@ -53,8 +52,10 @@ class FailureTransaction extends React.Component {
         <div className="container">
 
           <div style={{ textAlign: "center", padding: "0 20px" }}>
-            <Icon name="success" />
-            <p className="os s1">Transaction Failed!</p>
+            <span className="tick">
+              <Icon name="failure" />
+            </span>
+            <p style={{ fontWeight: "600" }} className="os s1">Transaction Failed!</p>
             <p style={{ marginTop: "10px" }} className="os s4">
             Don't worry! If incorrectly debited, money will be <br /> refunded via your mode of payment within 5-7 working days
             </p>
@@ -64,7 +65,7 @@ class FailureTransaction extends React.Component {
             <p style={{ paddingBottom: "12px" }} className="os s5 header">Transaction Details</p>
             <div>
               <p className="os s7">Amount Paid</p>
-              <p className="os s7">Rs. {this.state.amount_paid}</p>
+              <p className="os s7">&#8377; {this.state.amount_paid}</p>
             </div>
 
             <div>

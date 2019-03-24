@@ -1,10 +1,16 @@
 @import "./../../sass/base.scss";
 
 @mixin genreItemMargin($w, $n) {
-  margin: 10px calc(((100% - #{$w} * #{$n} * 1px) / #{$n}) / 2);
+  margin: 20px calc(((100% - #{$w} * #{$n} * 1px) / #{$n}) / 2);
 }
 
 #send-gift-drink {
+  .btn {
+    height: 52px;
+    span {
+      font-size: 14px;
+    }
+  }
   @include themify($themes) {
     svg g g {
       fill: themed("text-color")
@@ -26,20 +32,38 @@
     padding: 0 0 20px 0;
     margin-top: 20px;
     .col {
-      @include genreItemMargin(135, 5)
+      @include genreItemMargin(135, 5);
+      .genre--item {
+        width: 140px;
+        height: 60px;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        @include themify($themes) {
+          background-color: themed("input-bg-color");
+          border: 2px solid themed("input-border-color")
+        }
+        &.active {
+          @include themify($themes) {
+            border: 2px solid themed("button-primary-color")
+          }
+        }
+      }
     }
   }
 
   .paper-content{
     text-align: center;
     width: 100%;
-    margin-top: 10vh;
+    margin-top: 40px;
  
     .os.s1 {
       line-height: 1.56;
     }
  
     .os.s2 {
+      font-weight: 600;
       margin-top: 20px;
       margin-bottom: 10px;
     }
@@ -68,26 +92,52 @@
 
 @media only screen and (max-width: $md) {
   #send-gift-drink .flex-grid {
-    width: 90%;
+    width: 100%;
     .col {
       @include genreItemMargin(135, 4)
     }
   }
 }
 
-@media only screen and (max-width: $sm) {
+@media only screen and (max-width: 720px) {
   #send-gift-drink .flex-grid {
     width: 100%;
-    justify-content: space-around;
     .col {
       @include genreItemMargin(135, 3)
     }
   }
 }
 
-@media only screen and (max-width: $xs) {
+@media only screen and (max-width: $sm) {
   #send-gift-drink .flex-grid  {
     width: 100%;
+    justify-content: center;
+    .col {
+      @include genreItemMargin(135, 2);
+      margin-bottom: 5px;
+      .genre--item {
+        width: 120px;
+        height: 60px;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        p {
+          font-size: 11px;
+        }
+      }
+    }
+
+    .paper {
+      min-height: calc(100vh - 87px - 40px);
+    }
+  }
+}
+
+@media only screen and (max-width: $xs) {
+  #send-gift-drink .flex-grid {
+    width: 100%;
+    justify-content: space-around;
     .col {
       @include genreItemMargin(135, 2)
     }

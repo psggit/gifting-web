@@ -1,5 +1,4 @@
 import React from "react"
-import Icon from "Components/icon"
 import "./sass/promo-code-item.scss"
 
 class PromoCodeItem extends React.Component {
@@ -11,10 +10,8 @@ class PromoCodeItem extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
   handleClick(promoCode) {
-    this.props.onApply(promoCode, (err) => {
-      err.response.json().then(json => {
-        this.setState({ error: json.message })
-      })
+    this.props.onApply(promoCode, (error) => {
+      this.setState({ error })
     })
   }
   render() {
@@ -42,7 +39,7 @@ class PromoCodeItem extends React.Component {
         </div> */}
 
         <div className="row">
-          <p style={{ color: "#ff3b34" }} className="os s8">{this.state.error}</p>
+          <p style={{ color: "#c23934" }} className="os s8">{this.state.error}</p>
         </div>
       </div>
     )

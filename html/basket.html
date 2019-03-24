@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <meta charset="utf-8">
 
@@ -36,16 +36,25 @@
       <div id="confirm-modal"></div>
     </div>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-3"></script> -->
-  <script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'UA-89806318-4');
-  </script>
+ <!-- Global site tag (gtag.js) - Google Analytics -->
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+ 
+  gtag('config', 'UA-89806318-4');
+ </script>
+ 
+ <script>
+  // Check that service workers are registered
+if ('serviceWorker' in navigator) {
+  // Use the window load event to keep the page load performant
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js');
+  });
+}
+ </script>
 
 <script src="https://wchat.freshchat.com/js/widget.js"></script>
 <script async>
@@ -77,15 +86,5 @@
     });
   }
 </script>
-
-  <script>
-    // Check that service workers are registered
-  if ('serviceWorker' in navigator) {
-    // Use the window load event to keep the page load performant
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js');
-    });
-  }
-  </script>
 </body>
 </html>

@@ -1,6 +1,12 @@
 @import "./../../sass/base.scss";
 
 #getstarted {
+  .btn {
+    height: 52px;
+    span {
+      font-size: 14px;
+    }
+  }
   position: relative;
   @include themify($themes) {
     svg g g {
@@ -15,15 +21,16 @@
     padding: 20px;
     display: flex;
     justify-content: center;
-    height: calc(100vh - 87px - 96px);
+    min-height: calc(100vh - 87px - 96px);
   }
 
   .paper-content{
    text-align: center;
-   margin-top: 10vh;
+   margin-top: 40px;
 
    .os.s1 {
      line-height: 1.56;
+     font-weight: 600;
    }
   }
 
@@ -42,6 +49,10 @@
 @media only screen and (max-width: $sm) {
   #getstarted {
     .paper {
+      min-height: calc(100vh - 87px - 40px);
+    }
+
+    .paper {
       align-items: center;
     }
     .paper-content {
@@ -49,6 +60,14 @@
       p br{
         display: none;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: $sm) and (orientation: landscape) {
+  #getstarted {
+    .paper-content p br {
+      display: initial;
     }
   }
 }

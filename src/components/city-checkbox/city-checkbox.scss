@@ -42,6 +42,7 @@
   div p {
     font-size: 12px;
     font-weight: 600;
+    letter-spacing: 0.5px;
     @include themify($themes) {
       color: 1px solid themed("text-color")
     }

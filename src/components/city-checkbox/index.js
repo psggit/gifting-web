@@ -24,7 +24,7 @@ export default function CityCheckBox(props){
         transform: "translate(-50%, -50%)",
         textAlign: "center"
       }}>
-        <p className="os">{name}</p>
+        <p className="os s7">{name}</p>
       </div>
     </div>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 import Footer from "Components/footer"
 import './retailOutlet.scss'
 import Icon from "Components/icon"
-import FirstGiftCard from "Components/first-gift-card"
+import FirstGiftCard from "Components/gift-card-ad"
 import * as Api from './../api'
 import Button from "Components/button"
 
@@ -14,7 +14,7 @@ class RetailOutlet extends React.Component {
       retailerOutletData: [],
       loading: false,
       isSelectedCity: false,
-      selectedCity: "",
+      selectedCity: null,
       deliveryMap: {},
       selectedCityId: "",
       // username: props.username ? props.username : "",
@@ -117,15 +117,21 @@ class RetailOutlet extends React.Component {
             <h2 className="cm s1">Find a HipBar powered retailer near you</h2>
             <div className="retailer-list-container">
               <div className="options">
-                <select onChange={(e) => this.handleChange(e)} selected={this.state.selectedCity}>
-                  <option className="os s8" value="select city">-- Select a city --</option>
-                  {
-                    availableDeliveryList.map((item) => (
-                      this.renderItem(item)
-                    ))
-                  }
-                </select>
-                <Button primary onClick={() => this.handleClick()}>FIND</Button>
+                <div className="city--select">
+                  <select onChange={(e) => this.handleChange(e)} selected={this.state.selectedCity}>
+                    {
+                      !this.state.selectedCity &&
+                      <option className="os s8" value="select city">-- Select a city --</option>
+                    }
+                    {
+                      availableDeliveryList.map((item) => (
+                        this.renderItem(item)
+                      ))
+                    }
+                  </select>
+                  <Icon name="caret" />
+                </div>
+                <Button primary onClick={() => this.handleClick()}>FIND RETAILERS</Button>
               </div>
               <div className="retailer-list">
                 {

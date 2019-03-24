@@ -10,12 +10,41 @@ class GenresSlider extends React.Component {
     this.settings = {
       dots: false,
       infinite: false,
-      speed: 500,
+      speed: 400,
       slidesToShow: 7,
-      slidesToScroll: 7,
+      slidesToScroll: 1,
       variableWidth: true,
       prevArrow: <div><Icon name="chevronRight" /></div>,
-      nextArrow: <div><Icon name="chevronRight" /></div>
+      nextArrow: <div><Icon name="chevronRight" /></div>,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            dots: false,
+            infinite: false
+          }
+        },
+        {
+          breakpoint: 640,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            dots: false,
+            infinite: false
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: false,
+            infinite: false
+          }
+        }
+      ]
     }
     this.state = {
       active: -1
@@ -35,19 +64,32 @@ class GenresSlider extends React.Component {
 
   componentDidMount() {
     const active = this.props.active
-    this.setState({ active: this.getGenreIndexByName(active) }) 
+    const activeIdx = this.getGenreIndexByName(active)
+    this.setState({ active: activeIdx })
+    if (activeIdx > 6) {
+      setTimeout(() => {
+        this.slider.slickGoTo((activeIdx).toString(), true)
+      }, 10)
+    }
   }
 
   componentDidUpdate(prevProps) {
     if ((prevProps.genres.length !== this.props.genres.length) || (this.props.active !== prevProps.active)) {
       const active = this.props.active
-      this.setState({ active: this.getGenreIndexByName(active) })
+      const activeIdx = this.getGenreIndexByName(active)
+      this.setState({ active: activeIdx })
+      
+      if (activeIdx < 6) {
+        setTimeout(() => {
+          this.slider.slickGoTo((0).toString(), true)
+        }, 10)
+      }
     }
   }
   render() {
     return (
       <div id="genre--slider">
-        <Slider {...this.settings}>
+        <Slider ref={slider => (this.slider = slider)} {...this.settings}>
           {
             this.props.genres.map((item, i) => (
               <GenreItem

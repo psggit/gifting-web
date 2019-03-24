@@ -24,7 +24,7 @@
   .row:first-child {
     .os.s6 {
       letter-spacing: 0.5px;
-      font-weight: 600;
+      // font-weight: 600;
       margin-right: 16px;
     }
     padding-bottom: 40px;
@@ -107,8 +107,8 @@
   }
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 320px) {
   #product--listing__w-header {
-    @include margin(148, 3);
+    
   }
 }

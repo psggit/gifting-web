@@ -95,11 +95,19 @@ class Payment extends React.Component {
   }
 
   componentWillMount() {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    })
+    try {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      })
+    } catch(err) {
+      if (err instanceof TypeError) {
+        window.scroll(0, 0)
+      } else {
+        throw err
+      }
+    }
     if (!localStorage.getItem("receiver_info")) {
       console.log("go back")
       this.props.history.goBack()
@@ -110,15 +118,9 @@ class Payment extends React.Component {
     // console.log(this.props);
 
     this.getBanks()
-    this.getSavedCards()
+    // this.getSavedCards()
   }
 
-  // componentWillReceiveProps(newProps) {
-  //   //console.log("helo", newProps)
-  //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-  //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-  //   }
-  // }
 
   getSavedCards() {
     GET({
@@ -126,12 +128,16 @@ class Payment extends React.Component {
       apiBase: "blogicUrl"
     })
       .then(json => {
-        this.setState({ savedCards: json.user_cards ? Object.values(json.user_cards) : [] })
+        this.setState({
+          savedCards: json.user_cards
+            ? Object.keys(json.user_cards).map(card => json.user_cards[card])
+            : []
+        })
       })
   }
 
-  handleSaveCard(e) {
-    const { store_card } = this.state;
+  handleSaveCard() {
+    const { store_card } = this.state
     this.setState({ store_card: !store_card })
   }
 
@@ -163,7 +169,7 @@ class Payment extends React.Component {
   }
 
   setActiveAccordian(activeAccordian) {
-    this.setState({ activeAccordian })
+    this.setState({ activeAccordian, ccvv: "" })
   }
 
   handleSelectChange(e) {
@@ -506,13 +512,13 @@ class Payment extends React.Component {
                           paddingBottom: "12px"
                         }}
                       >
-                      <a href="/personalise">
+                      <a href={"javascript:history.back()"}>
                         <Icon name="back"/>
                         <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">Peronsalise</span>
                       </a>
                     </div>
                     <div className="row">
-                    <p style={{ marginTop: "20px", borderBottom: "1px solid #c2c2c2", paddingBottom: "20px" }} className="os s5">To Pay: Rs. {localStorage.getItem("amount")}</p>
+                    <p style={{ marginTop: "20px", paddingBottom: "20px" }} className="os s5 b-bottom">To Pay: &#8377; {localStorage.getItem("amount")}</p>
                     <div className="payment-methods-wrapper">
                       <p className="os s5">Payment Method</p>
                       <p className="os s8">All transactions are secure and encrypted.</p>
@@ -539,7 +545,7 @@ class Payment extends React.Component {
 
                                   <div style={{ width: "130px", position: "relative" }}>
                                     <label className="os">CVV</label>
-                                    <input onChange={this.handleCVVChange} ref={(node) => { this[`cardCvv${i + 3}`] = node }} name="saved" type="password" maxLength={4} />
+                                    <InputMask mask="9999"  maskChar={null} onChange={this.handleCVVChange} ref={(node) => { this[`cardCvv${i + 3}`] = node }} name="saved" type="password" maxLength={4} />
                                     <div style={{ position: "absolute", top: 0, left: 0 }}></div>
                                   </div>
                                   {
@@ -656,17 +662,21 @@ class Payment extends React.Component {
                               <div>
                                 <div style={{ marginTop: "20px" }} className="form-group">
                                   <p style={{ fontWeight: "bold", letterSpacing: "0.5px" }} className="os s8">Other Banks</p>
-                                  <select value={this.state.bankcode} onChange={this.handleSelectChange} style={{ marginTop: "15px", width: "100%" }}>
-                                    {
-                                      (this.state.isPopularSelected || this.state.noBankSelected) &&
-                                      <option value="null">-- Select a Bank --</option>
-                                    }
-                                    {
-                                      this.state.banks.map((item, i) => (
-                                        <option value={item.ibibo_code} key={i}>{item.name}</option>
-                                      ))
-                                    }
-                                  </select>
+                                  <div className="net--banking-select">
+                                    <select value={this.state.bankcode} onChange={this.handleSelectChange} style={{ width: "100%" }}>
+                                      {
+                                        (this.state.isPopularSelected || this.state.noBankSelected) &&
+                                        <option value="null">-- Select a Bank --</option>
+                                      }
+                                      {
+                                        this.state.banks.map((item, i) => (
+                                          <option value={item.ibibo_code} key={i}>{item.name}</option>
+                                        ))
+                                      }
+                                    </select>
+                                    <Icon name="caret" />
+                                  </div>
+
                                 </div>
                               </div>
                             </div>
@@ -676,7 +686,7 @@ class Payment extends React.Component {
                     </div>
 
                     <div style={{ marginTop: "30px" }} className="final-payment-button">
-                      <Button style={{textTransform: 'none'}} disabled={this.state.activeAccordian === -1 || this.state.isSubmitting} onClick={this.handleSubmit} icon="rightArrowWhite" primary>PAY Rs. {this.state.amount}</Button>
+                      <Button style={{textTransform: 'none'}} disabled={this.state.activeAccordian === -1 || this.state.isSubmitting} onClick={this.handleSubmit} icon="rightArrowWhite" primary>PAY &#8377; {this.state.amount}</Button>
                     </div>
                     {
                         this.state.selectedPaymentMethod === "card" &&
@@ -697,7 +707,7 @@ class Payment extends React.Component {
                   </div>
                 </div>
                 {/* <div className="final-payment-button mobile">
-                  <Button style={{textTransform: 'none'}} disabled={this.state.activeAccordian === -1 || this.state.isSubmitting} onClick={this.handleSubmit} icon="rightArrowWhite" primary>PAY Rs. {this.state.amount}</Button>
+                  <Button style={{textTransform: 'none'}} disabled={this.state.activeAccordian === -1 || this.state.isSubmitting} onClick={this.handleSubmit} icon="rightArrowWhite" primary>PAY &#8377; {this.state.amount}</Button>
                 </div> */}
               </div>
             )

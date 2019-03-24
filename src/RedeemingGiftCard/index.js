@@ -2,7 +2,7 @@ import React from 'react'
 import './redeeming-gift-card.scss'
 import Icon from "Components/icon"
 import Button from "Components/button"
-import FirstGiftCard from "Components/first-gift-card"
+import FirstGiftCard from "Components/gift-card-ad"
 import Footer from "Components/footer"
 
 class GiftCards extends React.Component {
@@ -55,7 +55,7 @@ class GiftCards extends React.Component {
 
             <span className="step-number"><Icon name="stepFour" /></span>
             <div className="step-text">
-              <h2 className="cm s3">Redeem with HipBar Gift Card at retail Outlets</h2>
+              <h2 className="cm s3">Redeem with HipBar Gift Card at Retail Outlets</h2>
               <span className="os s4">
                 Add preferred drinks to cart. Choose to pay with "Gift Wallet"
               </span>

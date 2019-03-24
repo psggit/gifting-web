@@ -3,9 +3,10 @@
 #product--details {
   width: 100%;
 
-  .container {
-    // height: calc(100vh - 87px);
-    // overflow: auto;
+  .cashback--title {
+    @include themify($themes) {
+      color: themed("button-primary-color")
+    }
   }
   
   .paper {

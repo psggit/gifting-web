@@ -39,32 +39,31 @@ export function getHasuraId(data) {
 
 export function getUsername(data) {
   //console.log("data", data)
-  const username = data.info.username ? data.info.username : '' 
+  const username = data.info.username ? data.info.username : "" 
   return username
 }
 
 export function createSession(data) {
   //console.log("session storage", data)
-  localStorage.setItem('x-hasura-role', getHasuraRole(data))
-  localStorage.setItem('hasura-id', getHasuraId(data))
-  localStorage.setItem('username', getUsername(data))
-  //localStorage.setItem('isLoggedIn', loginStatus)
+  localStorage.setItem("x-hasura-role", getHasuraRole(data))
+  localStorage.setItem("hasura-id", getHasuraId(data))
+  localStorage.setItem("username", getUsername(data))
+  //localStorage.setItem("isLoggedIn", loginStatus)
 }
 
 export function clearSession() {
-  //const isLoadingFirstTime = localStorage.getItem("isLoadingFirstTime")
-  localStorage.clear()
-  //localStorage.setItem("showAgeGate", "false")
-  //localStorage.setItem("logout", "false")
-  //localStorage.setItem("isLoadingFirstTime", isLoadingFirstTime)
+  localStorage.removeItem("x-hasura-role")
+  localStorage.removeItem("hasura-id")
+  localStorage.removeItem("username")
+  localStorage.removeItem("promo_code")
 }
 
 export function  readCookie(name) {
   var nameEQ = name + "=";
-  var ca = document.cookie.split(';');
+  var ca = document.cookie.split(";");
   for(var i=0;i < ca.length;i++) {
     var c = ca[i];
-    while (c.charAt(0) === ' ') {
+    while (c.charAt(0) === " ") {
       c = c.substring(1,c.length);
     }
     if (c.indexOf(nameEQ) === 0) {

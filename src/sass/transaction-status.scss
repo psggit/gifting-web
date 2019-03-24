@@ -1,17 +1,38 @@
 @import "./../sass/base.scss";
 
 #TransactionStatus {
+  margin-bottom: 40px;
   .container {
     min-height: calc(100vh - 87px);
   }
 
-  svg {
+  .tick svg {
     width: 64px;
     height: 64px;
+    @include themify($themes) {
+      g g {
+        fill: themed("text-color");
+      }
+    }
   }
-  @include themify($themes) {
-    svg g g {
-      fill: themed("text-color");
+
+
+  .app-store-btn {
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    margin-top: 30px;
+    margin-left: 68px;
+    a {
+      &:first-child {
+        margin-right: 15px;
+      }
+      &:last-child {
+        margin-left: 15px;
+      }
+    }
+    svg {
+      max-width: 100%;
     }
   }
 
@@ -19,11 +40,49 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    .col:first-child {
+      margin-right: 70px;
+    }
   }
 
   .col:last-child {
     position: sticky;
     top: calc(87px + 30px);
+  }
+
+  .what-next {
+    max-width: 560px;
+    width: 100%;
+    h2 {
+      margin-bottom: 40px;
+    }
+
+    .note {
+      display: flex;
+      div:last-child {
+        margin-left: 20px;
+      }
+      .os.s3 {
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      svg {
+        width: 50px;
+        height: 50px;
+        @include themify($themes) {
+          circle {
+            stroke: themed("text-color")
+          }
+          path {
+            fill: themed("text-color")
+          }
+        }
+      }
+    }
+
+    .note:nth-child(3) {
+      margin-top: 40px;
+    }
   }
 
   .paper {
@@ -35,17 +94,29 @@
     }
 
     &.gift--basket {
-      padding: 40px;
-      width: 764px;
-      margin-right: 48px;
+      padding: 20px;
+      width: 360px;
+      @include themify($themes) {
+        > p {
+          border-bottom: 1px solid themed("border-bottom-color")
+        }
+      }
+      .col {
+        margin-right: 0;
+      }
+      .gift--basket__item {
+        margin-right: 0;
+        max-width: 100%;
+      }
     }
 
     &.transaction--detail {
+      margin-top: 20px;
       width: 360px;
       padding: 20px;
 
       div {
-        margin-top: 10px;
+        margin-top: 20px;
       }
     }
 
@@ -82,9 +153,38 @@
     .row {
       flex-direction: column;
       align-items: inherit;
+      .col:first-child {
+        margin-right: 0;
+      }
       .col:last-child {
         position: relative;
         top: auto;
+      }
+    }
+
+    .what-next {
+      padding: 20px;
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    }
+
+    .app-store-btn {
+      justify-content: center;
+      margin-left: 0;
+      margin-top: 20px;
+      svg {
+        width: 140px;
+      }
+    }
+
+    .what-next {
+      .note {
+        svg {
+          width: 42px;
+          height: 42px;
+        }
       }
     }
 

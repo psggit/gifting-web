@@ -79,7 +79,7 @@ class TransactionHistory extends React.Component {
               +91 {item.receiver_mobile}
             </p>
           </div>
-          <p className="os s6">Rs. {item.gift_card_amount}</p>
+          <p className="os s6">&#8377; {item.gift_card_amount}</p>
         </div>
         <div className="item-body">
           <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px', marginRight: '24px'}}>

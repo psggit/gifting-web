@@ -11,6 +11,7 @@ class FavDrink extends React.Component {
     super()
     this.handleGenreChange = this.handleGenreChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleEnterPress = this.handleEnterPress.bind(this)
     this.state = {
       name: "",
       genres: [],
@@ -32,7 +33,19 @@ class FavDrink extends React.Component {
     return genres.findIndex(genre => genre.short_name === name)
   }
 
+  handleEnterPress(e) {
+    if (e.keyCode === 13 && this.state.selectedGenre) {
+      location.href = `/brands/${this.state.selectedCity}/${this.state.selectedGenre}`
+    }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleEnterPress)
+  }
+
+
   componentDidMount() {
+    document.addEventListener("keydown", this.handleEnterPress)
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     if (receiverInfo) {
       this.setState({
@@ -59,7 +72,7 @@ class FavDrink extends React.Component {
       return false
     } else {
       const path = "/" + e.currentTarget.href.split("/").slice(3).join("/")
-      this.props.history.push(path)
+      location.href = path
     }
   }
 
@@ -85,7 +98,7 @@ class FavDrink extends React.Component {
               </div>                           
               <div className="row">                            
                 <p className="os s2">
-                  What’s {this.state.name}'s favourite drink?
+                  What is their favourite drink?
                 </p>
                 <p className="os s5">
                   This will let us curate a special list of drinks that you can gift them.                          
@@ -113,8 +126,9 @@ class FavDrink extends React.Component {
                 }
 
                 <div style={{ marginTop: "20px" }}>
-                  <a href={`/brands/${this.state.selectedCity}/${this.state.selectedGenre}`}>
-                    <Button 
+                  <a onClick={this.handleClick} href={`/brands/${this.state.selectedCity}/${this.state.selectedGenre}`}>
+                    <Button
+                      disabled={!this.state.selectedGenre}
                       primary
                       icon="rightArrowWhite"
                       className="small"

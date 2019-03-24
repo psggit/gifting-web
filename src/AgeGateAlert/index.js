@@ -43,7 +43,7 @@ class AgeGate extends React.Component {
   render() {
     const {showNote} = this.state
     return (
-      <Layout image="https://res.cloudinary.com/www-hipbar-com/image/upload/q_auto:good/v1550240044/Gifting-website/bg-gift.webp">
+      <Layout image="https://res.cloudinary.com/www-hipbar-com/image/upload/q_auto:good/v1550240044/Gifting-website/bg-gift.jpg">
         <div className="agegate-container">
           <p className="ft s2 header">
             Agree if you are of legal drinking age in your current state of residence

@@ -23,25 +23,25 @@ class BasketTotal extends React.Component {
   render() {
     return (
       <div>
-        <p style={{ paddingBottom: "12px" }} className="os s5 b-bottom">Total</p>
+        <p style={{ paddingBottom: "12px", fontWeight: "600" }} className="os s5 b-bottom">Total</p>
         <div className="b-bottom" style={{ padding: "16px 0" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <p className="os s7">Gift Card Subtotal</p>
-            <p className="os s7">Rs. {this.props.subtotal}</p>
+            <p className="os s7">&#8377; {this.props.subtotal}</p>
           </div>
   
           {
             parseFloat(this.props.discount)
               ?   <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
                 <p className="os s7">Promo Applied</p>
-                <p className="os s7">-Rs. { this.props.discount }</p>
+                <p className="os s7">- &#8377; { this.props.discount }</p>
               </div>
               : "" 
           }
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
           <p className="os s7">To Pay</p>
-          <p className="os s7">Rs. {this.props.total}</p>
+          <p className="os s7">&#8377; {this.props.total}</p>
         </div>
       </div>
     )

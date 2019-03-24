@@ -17,10 +17,11 @@
       left: 50%;
       border-radius: 5px;
       transform: translate(-50%, -50%);
-      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
-      box-shadow: 0 2px 28px -5px rgba(0, 0, 0, 0.5);
+      // box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+      // box-shadow: 0 2px 28px -5px rgba(0, 0, 0, 0.5);
       @include themify($themes) {
         background-color: themed("paper-color");
+        border: 1px solid themed("input-border-color")
       }
 
       .modal-body {

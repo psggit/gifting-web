@@ -17,6 +17,10 @@ class MobileHeader extends React.Component {
   cancelSearch() {
 
   }
+  getGenreNameByShortName(name) {
+    console.log(name)
+    return this.props.genres.find(item => item.short_name === name).display_name
+  }
   render() {
     return (
       <div id="product--listing__m-header">
@@ -31,17 +35,23 @@ class MobileHeader extends React.Component {
         </div>
 
         <div className="row">
-          <span className="os s4">Showing drinks for:</span>
+          <span className="os s6">Showing drinks for:</span>
           <span
-            className="os s4"
+            className="os s6"
             onClick={this.props.openGenres}
             style={{
               fontWeight: "600",
               display: "inline",
-              padding: "16px 10px"
+              padding: "16px 0px 16px 5px"
             }}>
             <Icon name="drink" />
-            <span style={{ margin: "0 10px 0 5px" }}>{this.props.activeGenre}</span>
+            <span className="os s6" style={{ margin: "0 10px 0 0" }}>
+              {
+                this.props.genres.length
+                  ? this.getGenreNameByShortName(this.props.activeGenre)
+                  : ""
+              }
+            </span>
             <Icon name="caret" />
           </span>   
         </div>

@@ -24,18 +24,11 @@ class SuccessfulTransaction extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    localStorage.removeItem("basket")
-    localStorage.removeItem("receiver_info")
-    localStorage.removeItem("amount")
-  }
-
   componentDidMount() {
-    const txn = window.__TXN__
+    const txn = window.__TXN__ || {}
     delete window.__TXN__
-    document.getElementById("ssr__script").innerHTML = ""
-    const basket = JSON.parse(localStorage.getItem("basket"))
-    const receiver = JSON.parse(localStorage.getItem("receiver_info"))
+    const basket = JSON.parse(localStorage.getItem("basket")) || []
+    const receiver = JSON.parse(localStorage.getItem("receiver_info")) || {}
     this.setState({
       basket,
       message: receiver.message,
@@ -46,6 +39,18 @@ class SuccessfulTransaction extends React.Component {
       txnid: txn.txnid,
       txn_time: Moment(txn.addedon).format("DD/MM/YYYY, hh:mm A")
     })
+
+    const gaProducts = basket.map(item => ({
+      product_name: item.brand_name
+    }))
+
+    ga("send", {
+      hitType: "event",
+      eventCategory: "",
+      eventAction: "",
+      eventLabel: "transaction_success",
+      products: gaProducts
+    })
   }
 
   render() {
@@ -54,18 +59,18 @@ class SuccessfulTransaction extends React.Component {
         <div className="container">
 
           <div style={{ textAlign: "center", padding: "0 20px" }}>
-            <Icon name="success" />
-            <p className="os s1">Transaction Successful!</p>
+            <span className="tick"><Icon name="success" /></span>
+            <p style={{ fontWeight: "600" }} className="os s1">Transaction Successful!</p>
             <p style={{ marginTop: "10px" }} className="os s4">
               We’ve informed the recipient <br />
               about the gift card via SMS
             </p>
           </div>
 
-          <div style={{ marginTop: "40px" }} className="row">
+          <div style={{ marginTop: "60px" }} className="row">
             <div className="col">
               <div className="paper gift--basket">
-                <p style={{ borderBottom: "1px solid #dfdfdf", paddingBottom: "12px" }} className="os s5">Drinks Gifted</p>
+                <p style={{ paddingBottom: "12px" }} className="os s5">Drinks Gifted</p>
                 {
                   this.state.basket.map(item => {
                     const arr = new Array(item.count).fill(1)
@@ -81,9 +86,7 @@ class SuccessfulTransaction extends React.Component {
                   })
                 }
               </div>
-            </div>
 
-            <div className="col">
               <div className="paper transaction--detail">
                 <p style={{ paddingBottom: "12px" }} className="os s5 header">Transaction Details</p>
                 <div>
@@ -123,6 +126,46 @@ class SuccessfulTransaction extends React.Component {
                     </p>
                   </div>
                 }
+              </div>
+            </div>
+
+            <div className="col">
+              <div className="what-next">
+                <h2 className="os s1">Here's what you can do next</h2>
+
+                <div className="note">
+                  <div>
+                    <Icon name="stepOne" />
+                  </div>
+                  <div>
+                    <p className="os s3">
+                    Inform your friend about the gift card via Whatsapp
+                    </p>
+                    <p className="os s5">
+                    For a more personalized experience, inform your friend about the gift card via personal message.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="note">
+                  <div>
+                    <Icon name="stepTwo" />
+                  </div>
+                  <div>
+                    <p className="os s3">
+                    Download the HipBar app!
+                    </p>
+                    <p className="os s5">
+                    Download the HipBar app to manage your gift cards on the go.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="app-store-btn">
+                  <a rel="noopener noreferrer" target="_blank" href="https://itunes.apple.com/in/app/hipbar-delivery/id1179371753?mt=8"><Icon name="appStore" /></a>
+                  <a rel="noopener noreferrer" target="_blank" href="https://play.google.com/store/apps/details?id=in.hipbar.hipbar_user_app&hl=en_IN"><Icon name="googleStore" /></a>
+                </div>
+
               </div>
             </div>
           </div>

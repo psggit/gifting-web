@@ -173,6 +173,12 @@ export default function SignIn(data) {
     }
 
     signIn() {
+      ga("send", {
+        hitType: "event",
+        eventCategory: "",
+        eventAction: "",
+        eventLabel: "point_of_sign_in"
+      })
       console.log(!this.state.isSigningIn, "form valid", this.isFormValid())
       if(!this.state.isSigningIn && this.isFormValid()) {
         const payload = {
@@ -197,14 +203,32 @@ export default function SignIn(data) {
               if(response.status === 400 && responseData.errorCode.includes("invalid-otp")){
                 this.setState({otpErr: {status: true, value: "Incorrect OTP. Please enter again or resend OTP"}})
                 this.setState({isSigningIn: false})
+                ga("send", {
+                  hitType: "event",
+                  eventCategory: "",
+                  eventAction: "",
+                  eventLabel: "sign_in_failure"
+                })
                 return
               } else if(response.status === 401 && responseData.errorCode.includes("role-invalid")){
                 this.setState({otpErr: {status: true, value: responseData.message}})
                 this.setState({isSigningIn: false})
+                ga("send", {
+                  hitType: "event",
+                  eventCategory: "",
+                  eventAction: "",
+                  eventLabel: "sign_in_failure"
+                })
                 return
               } else if(response.status === 400 && responseData.errorCode.includes("expired-otp")){
                 this.setState({otpErr: {status: true, value: responseData.message}})
                 this.setState({isSigningIn: false})
+                ga("send", {
+                  hitType: "event",
+                  eventCategory: "",
+                  eventAction: "",
+                  eventLabel: "sign_in_failure"
+                })
                 return
               }
               createSession(responseData, "true")
@@ -213,7 +237,12 @@ export default function SignIn(data) {
               }, function() {
                 console.log("User Not cleared")
               })
-              gtag("event", "Sign in", {"method": "Google"})
+              ga("send", {
+                hitType: "event",
+                eventCategory: "",
+                eventAction: "",
+                eventLabel: "sign_in_success"
+              })
               //localStorage.setItem("showAgegate", false)
               location.href= (location.pathname)
               unMountModal()
@@ -223,6 +252,7 @@ export default function SignIn(data) {
           })
           .catch((err) => {
             this.setState({errorInSignIn: true})
+            ga("event", "sign_in_failure", {"method": "Google"})
             mountModal(NotifyError({}))
           })
       }

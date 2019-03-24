@@ -804,9 +804,9 @@ export default {
     </svg>
   ),
   rectangle: (
-    <svg width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
+    <svg width="14px" height="14px" viewBox="0 0 24 24" version="1.1">
       <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-        <g id="02d-Gifitng-Website---V0.7---Send-Gift-Cards---Before-selecting-the-checkbox" transform="translate(-86.000000, -1647.000000)" stroke="#000000" strokeWidth="2">
+        <g id="02d-Gifitng-Website---V0.7---Send-Gift-Cards---Before-selecting-the-checkbox" transform="translate(-86.000000, -1647.000000)" stroke="#d1d2dd" strokeWidth="2">
           <g id="Agree" transform="translate(86.000000, 1641.000000)">
             <g id="CheckBoxTicked" transform="translate(0.000000, 6.000000)">
               <rect id="Rectangle-2" x="1" y="1" width="22" height="22" rx="2"></rect>
@@ -817,7 +817,7 @@ export default {
     </svg>
   ),
   filledRectangle: (
-    <svg width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
+    <svg width="14px" viewBox="0 0 24 24" version="1.1">
       <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="02b-Gifitng-Website---V0.7---Send-Gift-Cards---V0.2---Using-GCs---Aftering-Signin-In" transform="translate(-86.000000, -1647.000000)">
           <g id="Agree" transform="translate(86.000000, 1641.000000)">
@@ -1059,7 +1059,7 @@ export default {
 </svg>
   ),
   locationOutlined:(
-    <svg width="32px" height="42px" viewBox="0 0 32 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <svg width="42px"  viewBox="0 0 32 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
       <g id="V0.41" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
           <g id="03-Mobile---City" transform="translate(-24.000000, -151.000000)" fill="#777777" fill-rule="nonzero">
               <g id="RName" transform="translate(23.000000, 151.000000)">
@@ -1128,7 +1128,7 @@ export default {
     </svg>
   ),
   'location': (
-    <svg fill="#FFFFFF" version="1.1" id="Capa_1" x="0px" y="0px" width='52px' height='52px'
+    <svg fill="#d1d2dd" version="1.1" id="Capa_1" x="0px" y="0px" width='52px' height='52px'
     viewBox="0 0 512 512" style={{enableBackground:'new 0 0 512 512'}}>
 		<g>
 			<g>

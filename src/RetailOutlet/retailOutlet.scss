@@ -37,16 +37,21 @@
         flex-direction: row;
       }
 
-      select {
-        width: 160px;
-        padding: 0 10px;
-        border-radius: 4px;
+      .city--select {
+        width: 260px;
         margin-right: 20px;
-        @include themify($themes) {
-          color: themed("text-color");
-          border: 1px solid themed("input-border-color");
-          background-color: themed("input-bg-color")
-         }
+        select {
+          text-indent: initial;
+          width: 100%;
+          padding: 0 10px;
+          border-radius: 4px;
+          font-size: 15px;
+          @include themify($themes) {
+            color: themed("text-color");
+            border: 1px solid themed("input-border-color");
+            background-color: themed("input-bg-color")
+           }
+        }
       }
   
       .btn {
@@ -170,13 +175,14 @@
           flex-direction: column !important;
         }
     
-        select {
-          height: 40px;
-          width: 100%;
+        .city--select {
           margin-right: 0;
           margin-bottom: 20px;
-          .custom-dropdown-select {
-            width: 100px;
+          
+          select {
+            .custom-dropdown-select {
+              width: 100px;
+            }
           }
         }
     

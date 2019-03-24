@@ -34,10 +34,8 @@ class PromoCodes extends React.Component {
   handleApplyPromo() {
     const { promoCode } = this.state
     if (promoCode && promoCode.length) {
-      this.props.data.onApply(promoCode, (err) => {
-        err.response.json().then(json => {
-          this.setState({ error: json.message })
-        })
+      this.props.data.onApply(promoCode, (error) => {
+        this.setState({ error })
       })
     }
   }

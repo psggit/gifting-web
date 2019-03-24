@@ -26,7 +26,7 @@
     margin-left: 10px;
   }
   svg g g {
-    fill: #fff;
+    fill: #fff !important;
   }
 
   &.icon-left {
@@ -86,5 +86,12 @@
       background-color: #a2172a;
       color: #fff;
     }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .btn {
+    height: 42px;
+    padding: 0 15px;
   }
 }

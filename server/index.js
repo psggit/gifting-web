@@ -87,10 +87,18 @@ app.post("/transaction-successful", (req, res) => {
     const headWithNavbar = withHeader(head)
     res.write(headWithNavbar)
  
+    const txn = {
+      net_amount_debit: req.body.net_amount_debit,
+      cardnum: req.body.cardnum,
+      mode: req.body.mode,
+      txnid: req.body.txnid,
+      addedon: req.body.addedon
+    }
+
     const newTail = tail.split("{script}")
       .join(`
       <script id="ssr__script">
-        window.__TXN__ = ${JSON.stringify(req.body)}
+        window.__TXN__ = ${JSON.stringify(txn)}
       </script>
       `)
     const reactElement = React.createElement(TransactionSuccess)
@@ -119,7 +127,7 @@ app.post("/transaction-cancelled", (req, res) => {
       </script>
       `)
 
-    const reactElement = React.createElement(TransactionFailure, { res: req.body })
+    const reactElement = React.createElement(TransactionFailure)
     // console.log(renderToString(reactElement))
     const stream = renderToNodeStream(reactElement)
     stream.pipe(res, { end: false })
@@ -420,6 +428,14 @@ app.get("*.css", (req, res, next) => {
 })
 
 app.use(express.static(path.join(__dirname, "./../dist")))
+
+app.get("/personalise", (req, res) => {
+  const html = fs.readFileSync(path.resolve(__dirname, "./../dist/basket.html"), "utf-8")
+  const [head, tail] = html.split("{content}")
+  const headWithNavbar = withHeader(head)
+  res.write(headWithNavbar)
+  res.end()
+})
 
 app.get("/basket", (req, res) => {
   const html = fs.readFileSync(path.resolve(__dirname, "./../dist/basket.html"), "utf-8")

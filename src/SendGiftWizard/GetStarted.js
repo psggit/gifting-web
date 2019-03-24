@@ -14,13 +14,18 @@ class GetStarted extends React.Component {
     this.props.history.push(path)
   }
 
+  componentCleanup() {
+    console.log("wreefewdwe")
+  }
+
   componentWillUnmount() {
-    document.body.setAttribute("style", "overflow:auto")
+    window.removeEventListener("beforeunload", this.componentCleanup)
   }
 
   componentDidMount() {
-    document.body.setAttribute("style", "overflow:hidden")
+    window.addEventListener("beforeunload", this.componentCleanup)
   }
+  
   render() {
     return (
       <div id="getstarted">

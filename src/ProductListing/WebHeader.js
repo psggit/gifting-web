@@ -53,12 +53,15 @@ class WebHeader extends React.Component {
           <p className="os s6">Showing products for:</p>
           <a href="/basket" className="os s6">
             <Icon name="giftBasket" />
-            <span style={{ marginLeft: "10px" }}>Gift Basket ({this.state.basketTotal})</span>
+            <span className="os s6" style={{ marginLeft: "10px" }}>Gift Basket ({this.state.basketTotal})</span>
           </a>
         </div>
 
         <div className="row">
-          <GenreSlider {...this.props} active={this.props.activeGenre} genres={this.props.genres} />
+          {
+            this.props.genres.length &&
+            <GenreSlider {...this.props} active={this.props.activeGenre} genres={this.props.genres} />
+          }
           {/* <GenresList {...this.props} active={this.props.activeGenre} genres={this.props.genres} /> */}
         </div>
       </div>

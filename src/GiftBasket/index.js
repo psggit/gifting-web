@@ -50,6 +50,19 @@ function PromoBeforeSignIn(props) {
   )
 }
 
+function PromoInvalid({ message, onRemove }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div>
+        <p style={{ color: "#c23934" }} className="os s5">{message}</p>
+      </div>
+      <div style={{ cursor: "pointer" }} onClick={onRemove}>
+        <Icon name="promoCodeClose" />
+      </div>
+    </div>
+  )
+}
+
 class GiftBasket extends React.Component {
   constructor() {
     super()
@@ -61,7 +74,9 @@ class GiftBasket extends React.Component {
       discount: null,
       giftSummary: null,
       isPromoApplied: false,
+      isPromoInvalid: false,
       settingGiftSummary: false,
+      promoModalMounted: false,
       totalDrinks: null,
       key: 0
     }
@@ -133,20 +148,23 @@ class GiftBasket extends React.Component {
       })
       .catch((err) => {
         this.setState({ settingGiftSummary: false })
-        if (CB) {
-          CB(err)
-        }
         err.response.json().then(json => {
+          if (CB) {
+            CB(json.message)
+          }
           if (json.errorCode === "Promo not Valid") {
-            localStorage.removeItem("promo_code")
             const amount = (parseFloat(this.state.subtotal) - parseFloat(this.state.discount)).toFixed(2)
             localStorage.setItem("amount", amount)
             this.setState({
               isPromoApplied: false,
+              isPromoInvalid: localStorage.getItem("promo_code") !== null,
               discount: 0,
               total: amount,
+              invalidPromoMessage: json.message,
               subtotal: amount
             })
+            localStorage.removeItem("promo_code")
+            this.setGiftSummary(null, basket)
           }
         })
       })
@@ -159,7 +177,6 @@ class GiftBasket extends React.Component {
     } else {
       localStorage.setItem("basket", JSON.stringify(basket))
     }
-    // you were here..
   }
 
   getUpdatedBasket(products) {
@@ -197,6 +214,28 @@ class GiftBasket extends React.Component {
     }
   }
 
+  renderPromoItem() {
+    if (this.state.isPromoApplied && !this.state.isPromoInvalid) {
+      return (
+        <PromoAfterApply
+          promoCode={this.state.promoCode}
+          discount={this.state.discount}
+          shortDescription={this.state.shortDescription}
+          onRemove={this.handleRemovePromo}
+        />
+      )
+    } else if (!this.state.isPromoApplied && !this.state.isPromoInvalid) {
+      return <PromoBeforeApply onApply={this.onApplyPromo} />
+    } else if (this.state.isPromoInvalid && !this.state.promoModalMounted) {
+      return (
+        <PromoInvalid
+          onRemove={() => {this.setState({ isPromoApplied: false, isPromoInvalid: false }) }}
+          message={this.state.invalidPromoMessage}
+        />
+      )
+    }
+  }
+
   render() {
     return (
       <div id="gift--basket">
@@ -205,8 +244,8 @@ class GiftBasket extends React.Component {
             this.state.basket.length
               ? (
                 <React.Fragment>
-                  <div className="row">
-                    <div className="col">
+                  <div className="row main">
+                    <div className="col main">
                       <div className="paper basket">
                         <Basket
                           basket={this.state.basket}
@@ -219,20 +258,11 @@ class GiftBasket extends React.Component {
                       </div>
                     </div>
 
-                    <div className="col">
+                    <div className="col main">
                       <div className="paper coupon">
                         {
                           localStorage.getItem("hasura-id")
-                            ? (
-                              this.state.isPromoApplied
-                                ? <PromoAfterApply
-                                  promoCode={this.state.promoCode}
-                                  discount={this.state.discount}
-                                  shortDescription={this.state.shortDescription}
-                                  onRemove={this.handleRemovePromo}
-                                />
-                                : <PromoBeforeApply onApply={this.onApplyPromo} />
-                            )
+                            ? this.renderPromoItem()
                             : <PromoBeforeSignIn />
                         }
                       </div>
@@ -248,7 +278,7 @@ class GiftBasket extends React.Component {
                       <div className="personalise-btn" style={{ marginTop: "20px", width: "100%" }}>
                         <div>
                           <p className="os s4">{this.state.totalDrinks} drinks in basket</p>
-                          <p className="os s4"><b>Rs. {this.state.total}</b></p>
+                          <p className="os s4"><b>&#8377; {this.state.total}</b></p>
                         </div>
                         <a href="/personalise">
                           <Button icon="rightArrowWhite" primary>Personalise</Button>

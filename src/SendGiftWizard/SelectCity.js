@@ -12,6 +12,7 @@ class SelectCity extends React.Component {
     super(props)
     this.handleCityClick = this.handleCityClick.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleEnterPress = this.handleEnterPress.bind(this)
     this.state = {
       cities: [],
       activeCity: -1
@@ -22,15 +23,15 @@ class SelectCity extends React.Component {
     return cities.find(city => city.name === name).id
   }
 
-  componentWillMount() {
-    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
-    if (!receiverInfo) {
-      this.props.history.goBack()
-    }
-  }
+  // componentWillMount() {
+  //   const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
+  //   if (!receiverInfo) {
+  //     this.props.history.goBack()
+  //   }
+  // }
 
   handleCityClick(activeCity) {
-    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
+    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     if (receiverInfo) {
       receiverInfo.gps = activeCity.gps
       receiverInfo.cityName = activeCity.name
@@ -57,15 +58,29 @@ class SelectCity extends React.Component {
     })
   }
 
+  handleEnterPress(e) {
+    if (e.keyCode === 13 && this.state.activeCity > 0) {
+      this.props.history.push("/send-gift/select-drink")
+    }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleEnterPress)
+  }
+
   componentDidMount() {
-    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
-    this.setState({ name: receiverInfo.name })
+    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
+    if (receiverInfo.name) {
+      this.setState({ name: receiverInfo.name })
+    }
     fetchCities().then(cities => {
       if (receiverInfo.cityName) {
         this.setState({ activeCity: this.getCityIdByName(cities, receiverInfo.cityName) || -1 })
       }
       this.setState({ cities: this.getSortedCities(cities) })
     })
+
+    document.addEventListener("keydown", this.handleEnterPress)
   }
  
   
@@ -80,7 +95,7 @@ class SelectCity extends React.Component {
               </div>                           
               <div className="row">                            
                 <p className="os s2">
-                  Which city does {this.state.name} reside in?            
+                  What is their city of residence?            
                 </p>
                 <p className="os s5">
                   This will let us show you the list of drinks available in that city.              
@@ -110,6 +125,7 @@ class SelectCity extends React.Component {
                 <div style={{ marginTop: "40px" }}>
                   <a onClick={this.handleClick} href={"/send-gift/select-drink"}>
                     <Button 
+                      disabled={this.state.activeCity === -1}
                       primary
                       icon="rightArrowWhite"
                       className="small"

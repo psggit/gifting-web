@@ -159,16 +159,30 @@ class SkuItem extends React.Component {
       this.handleImageLoad()
     }
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.volumes.length !== prevProps.volumes.length) {
+      this.setState({
+        image: this.props.volumes[this.state.activeSku].brand_high_res_image || this.props.volumes[this.state.activeSku].brand_low_res_image
+      })
+    }
+  }
+
   render() {
     return (
       <React.Fragment>
         <div className="sku--item">
           <div className="sku--item__img">
             <div className="img-placeholder"></div>
-            <img alt="" ref={(node) => this.img = node} onLoad={this.handleImageLoad} src={this.props.image} />
+            <img
+              alt=""
+              ref={(node) => this.img = node}
+              onLoad={this.handleImageLoad}
+              src={this.state.image}
+            />
           </div>
           <div className="sku--item__desc">
-            <p className="os s4">{this.props.name}</p>
+            <p className="os s2">{this.props.name}</p>
             
             <div className="volume--price--container-w">
               <div className="volumes">
@@ -180,11 +194,21 @@ class SkuItem extends React.Component {
 
               <div className="sku--item__price">
                 <span className="os s6">MRP:</span>
-                <span className="os s4">
+                <span className="os s2">
+                  <span style={{ marginRight: "5px" }}>&#8377;</span>
                   {
-                    this.props.volumes.length &&
-                    `Rs. ${this.props.volumes[this.state.activeSku].price.slice(1)}`
+                    this.props.volumes.length
+                      ? `${this.props.volumes[this.state.activeSku].price.slice(1)}`
+                      : ""
                   }
+                  <br />
+                  <span className="os s9 cashback--title">
+                    {
+                      this.props.volumes.length && this.props.volumes[this.state.activeSku].offer
+                        ? this.props.volumes[this.state.activeSku].offer.description
+                        : ""
+                    }
+                  </span>
                 </span>
               </div>
             </div>
@@ -213,10 +237,19 @@ class SkuItem extends React.Component {
           <div className="sku--item__price">
             <span className="os s6">MRP:</span>
             <span className="os s4">
+              &#8377;&nbsp;
               {
                 this.props.volumes.length &&
-                `Rs. ${this.props.volumes[this.state.activeSku].price.slice(1)}`
+                 `${this.props.volumes[this.state.activeSku].price.slice(1)}`
               }
+              <br />
+              <span className="os s9 cashback--title">
+                {
+                  this.props.volumes.length && this.props.volumes[this.state.activeSku].offer
+                    ? this.props.volumes[this.state.activeSku].offer.description
+                    : ""
+                }
+              </span>
             </span>
           </div>
         </div>

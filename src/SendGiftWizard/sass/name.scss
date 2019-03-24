@@ -1,6 +1,12 @@
 @import "./../../sass/base.scss";
     
 #send-gift-name {
+  .btn {
+    height: 52px;
+    span {
+      font-size: 14px;
+    }
+  }
   @include themify($themes) {
     svg g g {
       fill: themed("text-color")
@@ -10,18 +16,19 @@
     padding: 20px;
     display: flex;
     justify-content: center;
-    height: calc(100vh - 87px - 96px);
+    min-height: calc(100vh - 87px - 96px);
   }
 
   .paper-content{
    text-align: center;
-   margin-top: 10vh;
+   margin-top: 40px;
 
    .os.s1 {
      line-height: 1.56;
    }
 
    .os.s2 {
+     font-weight: 600;
      margin-top: 20px;
      margin-bottom: 10px;
    }
@@ -29,5 +36,28 @@
 
   input{
     max-width: 400px;
+  }
+
+  a {
+    display: inline-block;
+    &.skip-btn {
+      margin-top: 20px;
+     
+      @include themify ($themes) {
+        border-bottom: 1px solid themed("text-color")
+      }
+    }
+
+    &.skip-btn span {
+      padding-bottom: 2px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+
+@media only screen and (max-width: $sm) {
+  #send-gift-name .paper {
+    min-height: calc(100vh - 87px - 40px);
   }
 }

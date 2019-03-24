@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400, 600" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500,600,700" rel="stylesheet">
     <title>HipBar Gifting - Gift your friends drinks online!</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,9 +14,28 @@
   </div>
   <div id="footer-wrapper"></div>
   {script}
-</body>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+ 
+  gtag('config', 'UA-89806318-4');
+</script>
+
+ <script>
+  // Check that service workers are registered
+  if ('serviceWorker' in navigator) {
+    // Use the window load event to keep the page load performant
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js');
+    });
+  }
+ </script>
+
 <script src="https://wchat.freshchat.com/js/widget.js"></script>
-<script async>
+<script>
   window.fcWidget.init({
     token: "3a3ec830-f702-4f77-a001-b8e939438956",
       host: "https://wchat.freshchat.com",
@@ -31,4 +48,5 @@
       phoneCountryCode: "+91" // phone’s country code
   });
 </script>
+</body>
 </html>

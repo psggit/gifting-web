@@ -5,6 +5,12 @@
     display: none;
   }
 
+  .b-bottom {
+    @include themify($themes) {
+      border-bottom: 1px solid themed("border-bottom-color");
+    }
+  }
+
   .paper {
     padding: 40px;
     .header {
@@ -43,7 +49,7 @@
     font-weight: bold;
     letter-spacing: 0.6px;
   }
-
+  To Pa
   .os.s8 {
     letter-spacing: 0.5px;
   }
@@ -55,7 +61,10 @@
 
   .payment-methods-container {
     margin-top: 20px;
-    border: 1px solid #dddbda;
+    @include themify($themes) {
+      border: 1px solid themed("text-color")
+    }
+    border-radius: 2px;
     input[type=checkbox] {
       width: inherit;
     }
@@ -66,6 +75,24 @@
       svg g g {
         fill: themed("text-color")
       }
+    }
+  }
+
+  .net--banking-select {
+    margin-top: 15px;
+    position: relative;
+    svg {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      right: 10px;
+    }
+    select {
+      padding: 0 5px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
     }
   }
 }

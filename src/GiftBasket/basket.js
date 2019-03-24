@@ -1,24 +1,15 @@
 import React from "react"
 import Icon from "Components/icon"
 import GiftBasketItem from "./GiftBasketItem"
-import { getBasketTotalPrice } from "./../ProductDetails/SkuItem"
-import { fetchGiftCardSummary } from "../api"
 
 class Basket extends React.Component {
   constructor(props) {
     super(props)
-    // this.removeItemFromBasket = this.removeItemFromBasket.bind(this)
-    // this.addItemToBasket = this.addItemToBasket.bind(this)
     this.updateBasket = this.updateBasket.bind(this)
     this.state = {
       basket: props.basket || [],
       backUrl: ""
     }
-  }
-
-  componentDidMount() {
-    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
-    this.setState({ backUrl: `/brands/${receiverInfo.cityName}/${receiverInfo.genreName}` })
   }
 
   componentDidUpdate() {
@@ -27,9 +18,18 @@ class Basket extends React.Component {
     }
   }
 
+  /**
+   * Updates the basket (add/remove sku) using sku id and sku count.
+   * @param {integer} skudId
+   * @param {integer} count 
+   */
   updateBasket(skudId, count) {
     const { basket } = this.state
+    
+    // make a copy of current basket
     let updatedBasket = basket.slice(1)
+
+    // set the sku count if greater than 0 else remove the sku
     if (count > 0) {
       updatedBasket = basket.map(item => {
         if (skudId === item.sku.sku_id) {
@@ -41,10 +41,12 @@ class Basket extends React.Component {
       updatedBasket = basket.filter(item => item.sku.sku_id !== skudId)
     }
 
-    const promoCode = localStorage.getItem("promo_code")
+    // get the gift summary if basket is not empty else remove the basket
     if (updatedBasket.length) {
+      const promoCode = localStorage.getItem("promo_code")
       this.props.setGiftSummary(promoCode, updatedBasket)
     } else {
+      localStorage.removeItem("promo_code")
       this.props.updateLocalBasket(updatedBasket)
       localStorage.removeItem("amount")
     }
@@ -55,7 +57,7 @@ class Basket extends React.Component {
       <div>
         <div className="header">
           <a
-            href={this.state.backUrl}
+            href={"javascript:history.back()"}
             style={{
               cursor: "pointer",
             }} className="os s5">
