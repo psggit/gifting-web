@@ -9,10 +9,14 @@ import {readCookie} from "Utils/session-utils"
 import Header from "Components/header"
 import Footer from "Components/footer"
 import Button from "Components/button"
+import { fetchCities } from "./../api"
 
 class Landing extends React.Component {
   constructor() {
     super()
+    this.state = {
+      cities: []
+    }
   }
 
   componentDidMount() {
@@ -24,6 +28,10 @@ class Landing extends React.Component {
           console.log(err)
         })
     }, 1000)
+    fetchCities()
+      .then(cities => {
+        this.setState({ cities })
+      })
   }
 
   render() {
@@ -124,15 +132,13 @@ class Landing extends React.Component {
               </span>
             </div>
             <div className="city-wrapper">
-              <div className="city">
-                <span className="ft s7">Goa</span>
-              </div>
-              <div className="city">
-                <span className="ft s7">Chandigarh</span>
-              </div>
-              <div className="city">
-                <span className="ft s7">Mahe</span>
-              </div>
+              {
+                this.state.cities.map((city, i) => (
+                  <div key={i} className="city">
+                    <span className="ft s7">{ city.name }</span>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>

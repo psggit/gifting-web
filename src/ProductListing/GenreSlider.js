@@ -11,8 +11,8 @@ class GenresSlider extends React.Component {
       dots: false,
       infinite: true,
       speed: 400,
-      slidesToShow: 3,
       initialSlide: this.getGenreIndexByName(props.active),
+      slidesToShow: 3,
       slidesToScroll: 1,
       variableWidth: true,
       prevArrow: <div><Icon name="chevronRight" /></div>,
@@ -48,7 +48,8 @@ class GenresSlider extends React.Component {
       ]
     }
     this.state = {
-      active: -1
+      active: -1,
+      key: 0
     }
     this.getGenreIndexByName = this.getGenreIndexByName.bind(this)
     this.handleGenreChange = this.handleGenreChange.bind(this)
@@ -67,28 +68,24 @@ class GenresSlider extends React.Component {
     const active = this.props.active
     const activeIdx = this.getGenreIndexByName(active)
     this.setState({ active: activeIdx })
-    // if (activeIdx > 6) {
-    //   setTimeout(() => {
-    //     this.slider.slickGoTo((activeIdx).toString(), true)
-    //   }, 10)
-    // }
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.activeCity !== prevProps.activeCity) {
+      let x = this.state.key
+      x = x + 1
+      this.setState({ key: x })
+    }
     if ((prevProps.genres.length !== this.props.genres.length) || (this.props.active !== prevProps.active)) {
       const active = this.props.active
       const activeIdx = this.getGenreIndexByName(active)
       this.setState({ active: activeIdx })
-      
-      if (this.props.activeCity !== prevProps.activeCity) {
-        this.slider.slickGoTo("0", true)
-      }
     }
   }
   render() {
     return (
       <div id="genre--slider">
-        <Slider ref={slider => (this.slider = slider)} {...this.settings}>
+        <Slider key={this.state.key} ref={slider => (this.slider = slider)} {...this.settings}>
           {
             this.props.genres.map((item, i) => (
               <GenreItem

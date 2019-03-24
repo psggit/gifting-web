@@ -165,7 +165,7 @@ class ProductListing extends React.Component {
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     localStorage.removeItem("basket")
     localStorage.removeItem("promo_code")
-    this.setState({ basket: null })
+    this.setState({ basket: null, activeCity: city.name })
     this.resetScrollIntersectionParams()
     const fetchGenresReq = {
       city: capitalize(city.name)
@@ -175,7 +175,7 @@ class ProductListing extends React.Component {
       .then(genres => this.sortGenres(genres))
       .then(sortedGenres => {
         this.props.history.push(`/brands/${city.name}/${sortedGenres[0].short_name}`)
-        this.setState({ activeCity: city.name, activeGenre: sortedGenres[0].short_name })
+        this.setState({ activeGenre: sortedGenres[0].short_name })
         this.setGenres(sortedGenres)
         
         fetchBrandsUsingGenre({
