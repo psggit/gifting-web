@@ -94,7 +94,7 @@ class Payment extends React.Component {
     // this.getButtonStatus = this.getButtonStatus.bind(this)
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     try {
       window.scrollTo({
         top: 0,
@@ -108,8 +108,17 @@ class Payment extends React.Component {
         throw err
       }
     }
-    if (!localStorage.getItem("receiver_info")) {
-      console.log("go back")
+
+    const transactionCompleted = localStorage.getItem("transaction--completed")
+    if (transactionCompleted) {
+      localStorage.removeItem("bsaket")
+    }
+
+    const shouldMount = localStorage.getItem("receiver_info")
+    && localStorage.getItem("basket")
+    && !transactionCompleted
+
+    if (shouldMount === false) {
       this.props.history.goBack()
     }
   }
@@ -118,7 +127,7 @@ class Payment extends React.Component {
     // console.log(this.props);
 
     this.getBanks()
-    // this.getSavedCards()
+    this.getSavedCards()
   }
 
 

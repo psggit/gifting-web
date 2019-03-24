@@ -191,9 +191,10 @@ class GiftBasket extends React.Component {
     return products.find((item) => item.sku_id === id).display_price
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
+    const transactionCompleted = localStorage.getItem("transaction--completed")
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
-    if (!receiverInfo || !receiverInfo.gps) {
+    if (!receiverInfo || !receiverInfo.gps || transactionCompleted) {
       localStorage.removeItem("basket")
       location.href = "/send-gift"
     }

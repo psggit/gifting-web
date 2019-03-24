@@ -79,9 +79,9 @@ module.exports = {
       minify: minfyConfigHTML
     }),
     new HtmlWebpackPlugin({
-      filename: "basket.html",
+      filename: "client.html",
       title: "",
-      template: path.resolve(__dirname, "./../../html/basket.html"),
+      template: path.resolve(__dirname, "./../../html/client.html"),
       minify: minfyConfigHTML
     }),
     new HtmlWebpackPlugin({

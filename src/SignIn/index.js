@@ -192,7 +192,6 @@ export default function SignIn(data) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          credentials: 'include',
           mode: 'cors',
           body: JSON.stringify(payload)
         }

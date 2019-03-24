@@ -14,16 +14,8 @@ class GetStarted extends React.Component {
     this.props.history.push(path)
   }
 
-  componentCleanup() {
-    console.log("wreefewdwe")
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("beforeunload", this.componentCleanup)
-  }
-
   componentDidMount() {
-    window.addEventListener("beforeunload", this.componentCleanup)
+    localStorage.removeItem("transaction--completed") 
   }
   
   render() {

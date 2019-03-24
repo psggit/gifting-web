@@ -25,6 +25,7 @@ class SuccessfulTransaction extends React.Component {
   }
 
   componentDidMount() {
+    localStorage.setItem("transaction--completed",true )
     const txn = window.__TXN__ || {}
     delete window.__TXN__
     const basket = JSON.parse(localStorage.getItem("basket")) || []

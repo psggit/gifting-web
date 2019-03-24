@@ -5,13 +5,14 @@ import "./sass/genre-slider.scss"
 import Icon from "Components/icon"
 
 class GenresSlider extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.settings = {
       dots: false,
       infinite: false,
       speed: 400,
       slidesToShow: 7,
+      initialSlide: this.getGenreIndexByName(props.active),
       slidesToScroll: 1,
       variableWidth: true,
       prevArrow: <div><Icon name="chevronRight" /></div>,
@@ -66,11 +67,11 @@ class GenresSlider extends React.Component {
     const active = this.props.active
     const activeIdx = this.getGenreIndexByName(active)
     this.setState({ active: activeIdx })
-    if (activeIdx > 6) {
-      setTimeout(() => {
-        this.slider.slickGoTo((activeIdx).toString(), true)
-      }, 10)
-    }
+    // if (activeIdx > 6) {
+    //   setTimeout(() => {
+    //     this.slider.slickGoTo((activeIdx).toString(), true)
+    //   }, 10)
+    // }
   }
 
   componentDidUpdate(prevProps) {
@@ -79,10 +80,8 @@ class GenresSlider extends React.Component {
       const activeIdx = this.getGenreIndexByName(active)
       this.setState({ active: activeIdx })
       
-      if (activeIdx < 6) {
-        setTimeout(() => {
-          this.slider.slickGoTo((0).toString(), true)
-        }, 10)
+      if (this.props.activeCity !== prevProps.activeCity) {
+        this.slider.slickGoTo("0", true)
       }
     }
   }

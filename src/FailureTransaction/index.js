@@ -23,13 +23,8 @@ class FailureTransaction extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    localStorage.removeItem("basket")
-    localStorage.removeItem("receiver_info")
-    localStorage.removeItem("amount")
-  }
-
   componentDidMount() {
+    localStorage.setItem("transaction--completed",true )
     const txn = window.__TXN__ || {}
     delete window.__TXN__
     const basket = JSON.parse(localStorage.getItem("basket")) || []

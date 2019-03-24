@@ -7,6 +7,13 @@ import { validateTextField, validateNumberField } from "../utils/validators"
 import { mountModal } from "Components/modal-box/utils"
 import SignIn from "./../SignIn"
 
+function trimSpaces(inputVal) {
+  if (!inputVal.trim().length) {
+    inputVal = inputVal.trim()
+  }
+  return inputVal
+}
+
 class Personalise extends React.Component {
   constructor() {
     super()
@@ -46,8 +53,14 @@ class Personalise extends React.Component {
     this.handleTextChange = this.handleTextChange.bind(this)
   }
 
-  componentWillMount() {
-    if (!localStorage.getItem("basket")) {
+  UNSAFE_componentWillMount() {
+    const transactionCompleted = localStorage.getItem("transaction--completed")
+    if (transactionCompleted) {
+      localStorage.removeItem("bsaket")
+    }
+
+    const shouldMount = !transactionCompleted && localStorage.getItem("basket")
+    if (shouldMount === false) {
       location.href = "/send-gift"
     }
   }
@@ -63,11 +76,11 @@ class Personalise extends React.Component {
   }
 
   handleTextChange(e) {
-    this.setState({ [e.target.name]: e.target.value})
+    this.setState({ [e.target.name]: trimSpaces(e.target.value) })
   }
 
   handleMessageChange(e) {
-    const message = e.target.value
+    const message = trimSpaces(e.target.value)
     message.length > this.characterLimit
       ? e.preventDefault()
       : this.setState({

@@ -429,25 +429,25 @@ app.get("*.css", (req, res, next) => {
 
 app.use(express.static(path.join(__dirname, "./../dist")))
 
-app.get("/personalise", (req, res) => {
-  const html = fs.readFileSync(path.resolve(__dirname, "./../dist/basket.html"), "utf-8")
-  const [head, tail] = html.split("{content}")
-  const headWithNavbar = withHeader(head)
-  res.write(headWithNavbar)
-  res.end()
-})
+// app.get("/personalise", (req, res) => {
+//   const html = fs.readFileSync(path.resolve(__dirname, "./../dist/client.html"), "utf-8")
+//   const [head, tail] = html.split("{content}")
+//   const headWithNavbar = withHeader(head)
+//   res.write(headWithNavbar)
+//   res.end()
+// })
 
-app.get("/basket", (req, res) => {
-  const html = fs.readFileSync(path.resolve(__dirname, "./../dist/basket.html"), "utf-8")
-  const [head, tail] = html.split("{content}")
-  const headWithNavbar = withHeader(head)
-  res.write(headWithNavbar)
-  res.end()
-})
+// app.get("/basket", (req, res) => {
+//   const html = fs.readFileSync(path.resolve(__dirname, "./../dist/client.html"), "utf-8")
+//   const [head, tail] = html.split("{content}")
+//   const headWithNavbar = withHeader(head)
+//   res.write(headWithNavbar)
+//   res.end()
+// })
 
 // client side app
 app.get("/*", (req, res) => {
-  const html = fs.readFileSync(path.resolve(__dirname, "./../dist/index.html"), "utf-8")
+  const html = fs.readFileSync(path.resolve(__dirname, "./../dist/client.html"), "utf-8")
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withHeader(head)
   res.write(headWithNavbar)
