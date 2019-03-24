@@ -48,7 +48,7 @@ class PromoCodes extends React.Component {
             <Input maxLength="20" value={this.state.promoCode} onChange={this.handlePromoChange} placeholder="Enter Coupon Code" />
             <span onClick={this.handleApplyPromo} className="os s8 apply-btn">APPLY</span>
           </div>
-          <p style={{ color: "#ff3b34", marginTop: "5px" }} className="os s8">{this.state.error}</p>
+          <p style={{ color: "#c23934", marginTop: "5px" }} className="os s8">{this.state.error}</p>
         </div>
         <div className="promo--code__body">
           {

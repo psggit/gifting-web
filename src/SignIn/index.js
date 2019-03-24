@@ -193,6 +193,7 @@ export default function SignIn(data) {
             'Content-Type': 'application/json'
           },
           mode: 'cors',
+          credentials: "include",
           body: JSON.stringify(payload)
         }
         this.setState({errorInSignIn: false, isSigningIn: true})
