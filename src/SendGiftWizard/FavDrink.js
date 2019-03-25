@@ -82,6 +82,13 @@ class FavDrink extends React.Component {
       receiverInfo.genreName = genre.shortName
     }
 
+    if(window.gtag) {
+      gtag("event", "choose_genre", {
+        selectedGenre: genre.shortName,
+        date: new Date()
+      })
+    }
+
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.setState({ active: genre.id, selectedGenre: genre.shortName })
   }

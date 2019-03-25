@@ -155,6 +155,7 @@ class SkuItem extends React.Component {
     ))
   }
   componentDidMount() {
+    console.log("sku item")
     if (this.img && this.img.complete) {
       this.handleImageLoad()
     }

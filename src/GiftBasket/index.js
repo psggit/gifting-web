@@ -93,6 +93,15 @@ class GiftBasket extends React.Component {
 
   onApplyPromo(promoCode, CB) {
     const basket = JSON.parse(localStorage.getItem("basket"))
+    console.log("basket", basket)
+    if(window.gtag) {
+      gtag("event", "view_promo", {
+        "event_label": JSON.stringify({
+          appliedPromo: promoCode,
+          cartTotal: localStorage.getItem("Amount")
+        })
+      })
+    }
     this.setGiftSummary(promoCode, basket, (err) => {
       if (err) {
         CB(err)
@@ -204,7 +213,11 @@ class GiftBasket extends React.Component {
     const basket = JSON.parse(localStorage.getItem("basket"))
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     this.setState({ viewProductsUrl: `/brands/${receiverInfo.cityName}/${receiverInfo.genreName}`})
-
+    if(window.gtag) {
+      gtag("event", "view_cart", {
+        "event_label": JSON.stringify(basket)
+      })
+    }
     if (basket) {
       const promoCode = localStorage.getItem("promo_code")
       this.setGiftSummary(promoCode, basket, () => {

@@ -6,9 +6,9 @@ const WorkboxPlugin = require('workbox-webpack-plugin')
 const minfyConfigHTML = {
   collapseWhitespace: true,
   minifyCSS: true,
-  minifyJS: true,
+  minifyJS: false,
   minifyURLs: true,
-  removeComments: true
+  removeComments: false
 }
   
 module.exports = {

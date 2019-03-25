@@ -31,6 +31,13 @@ class SelectCity extends React.Component {
   // }
 
   handleCityClick(activeCity) {
+    console.log("city", activeCity)
+    if(window.gtag) {
+      gtag("event", "choose_city", {
+        cityName: activeCity.name,
+        date: new Date()
+      })
+    }
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     if (receiverInfo) {
       receiverInfo.gps = activeCity.gps

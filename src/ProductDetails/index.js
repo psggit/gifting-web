@@ -27,6 +27,7 @@ class ProductDetails extends React.Component {
     this.toggleProductAdded = this.toggleProductAdded.bind(this)
   }
   componentDidMount() {
+    console.log("product", params)
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     const brand = window.BRAND_STATE || null
     const activeCity = window.__active_city__ || this.props.match.params.citySlug
@@ -45,6 +46,17 @@ class ProductDetails extends React.Component {
     const basket = JSON.parse(localStorage.getItem("basket"))
     this.setState({ basketCount: basket ? getBasketTotal(basket) : 0 })
     const { params } = this.props.match  
+    const gaObject = {
+      brand: params.brandSlug,
+      genre: params.genreSlug,
+      city: params.citySlug,
+      data: new Date()
+    }
+    if(window.gtag) {
+      gtag("event", "view_product", {
+        "event_label": JSON.stringify(gaObject),
+      })
+    }
     if (!brand){
       fetchSKUUsingBrand({
         cityName: capitalize(params.citySlug),
@@ -71,7 +83,7 @@ class ProductDetails extends React.Component {
   }
 
   setBasketCount(basketCount) {
-    console.log(basketCount)
+    console.log(basketCount, this.state.brand)
     this.setState({ basketCount })
   }
 

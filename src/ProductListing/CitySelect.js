@@ -58,7 +58,14 @@ class CitySelect extends React.Component {
     const target = e.target
     const cityIdx = target.value
     const selectedCity = this.state.cities[cityIdx]
-
+    if(window.gtag) {
+      gtag("event", "change_city", {
+        "event_label": JSON.stringify({
+          selectedCity,
+          date: new Date()
+        })
+      })
+    }
     this.setState({ cityIdx: parseInt(cityIdx) })
     this.props.onCityChange(selectedCity)
     this.props.clearBasket()
