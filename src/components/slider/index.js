@@ -57,25 +57,28 @@ const settings = {
 }
 
 const brandImages = [
-  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_120,q_auto:good/v1551433032/Gifting-website/Brand_logos/VAT_69.png",
+  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_300,w_300/v1553523225/Gifting-website/Brand_logos/Black_Dog_TR.jpg",
+  //"https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_120,q_auto:good/v1551433032/Gifting-website/Brand_logos/VAT_69.png",
   "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_57,q_auto:good/v1551433032/Gifting-website/Brand_logos/Talisker.png",
   "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_109,q_auto:good/v1551433031/Gifting-website/Brand_logos/Tanqueray.png",
   "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_46,q_auto:good/v1551433031/Gifting-website/Brand_logos/The_Singleton_Of_Glen_Ord_12_Years_Old.png",
-  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_80,q_auto:good/v1551433031/Gifting-website/Brand_logos/Signature.png",
+  // "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_80,q_auto:good/v1551433031/Gifting-website/Brand_logos/Signature.png",
+  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_300/v1553523224/Gifting-website/Brand_logos/JW-BL.jpg",
   "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_80,q_auto:good/v1551433031/Gifting-website/Brand_logos/Smirnoff.png",
-  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_115,q_auto:good/v1551433031/Gifting-website/Brand_logos/Royal_Challenge.png",
-  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_150,q_auto:good/v1551433031/Gifting-website/Brand_logos/McDowell_s_No.1_Reserve_Whisky.png",
-  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_150,q_auto:good/v1551433031/Gifting-website/Brand_logos/McDowell_s_No1_Luxury_Premium_Whisky.png",
+  // "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_115,q_auto:good/v1551433031/Gifting-website/Brand_logos/Royal_Challenge.png",
+  // "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_150,q_auto:good/v1551433031/Gifting-website/Brand_logos/McDowell_s_No.1_Reserve_Whisky.png",
+  // "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_150,q_auto:good/v1551433031/Gifting-website/Brand_logos/McDowell_s_No1_Luxury_Premium_Whisky.png",
   "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_80,q_auto:good/v1551433031/Gifting-website/Brand_logos/Ketel_One_Vodka.png",
   "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_42,q_auto:good/v1551433031/Gifting-website/Brand_logos/Glenkinchie.png",
-  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_52,q_auto:good/v1551433030/Gifting-website/Brand_logos/Gordon_s.png",
-  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_120,q_auto:good/v1551433030/Gifting-website/Brand_logos/Justerini___Brooks.png",
+  // "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_52,q_auto:good/v1551433030/Gifting-website/Brand_logos/Gordon_s.png",
+  // "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_120,q_auto:good/v1551433030/Gifting-website/Brand_logos/Justerini___Brooks.png",
   "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_80,q_auto:good/v1551433030/Gifting-website/Brand_logos/Baileys.png",
-  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_150,q_auto:good/v1551433030/Gifting-website/Brand_logos/Antiquity_Blue.png",
+  // "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_150,q_auto:good/v1551433030/Gifting-website/Brand_logos/Antiquity_Blue.png",
   "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_120,q_auto:good/v1551433030/Gifting-website/Brand_logos/CiROC.png",
   "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_50,q_auto:good/v1551433030/Gifting-website/Brand_logos/Captain_Morgan.png",
-  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_145,q_auto:good/v1551433030/Gifting-website/Brand_logos/Black___White.png",
-  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_175,q_auto:good/v1551433030/Gifting-website/Brand_logos/Black___White_12.png" 
+  // "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_145,q_auto:good/v1551433030/Gifting-website/Brand_logos/Black___White.png",
+  // "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_175,q_auto:good/v1551433030/Gifting-website/Brand_logos/Black___White_12.png",
+  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_300/v1553524371/Gifting-website/Brand_logos/Morenew.png"
 ]
 
 const BrandPartner = () => (
