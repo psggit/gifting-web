@@ -31,7 +31,7 @@ class GetStarted extends React.Component {
                 Welcome to HipBar Gifting!
               </p>
               <p className="os s4">
-                We’ll help you choose the perfect drink to gift<br /> for your special someone!
+                Say cheers with the perfect gift
               </p>
               <div style={{ marginTop: "40px" }}>
                 <a onClick={this.handleClick} href="/send-gift/select-name">

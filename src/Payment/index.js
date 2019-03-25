@@ -523,14 +523,14 @@ class Payment extends React.Component {
                       >
                       <a href={"javascript:history.back()"}>
                         <Icon name="back"/>
-                        <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">Peronsalise</span>
+                        <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">Personalise</span>
                       </a>
                     </div>
                     <div className="row">
                     <p style={{ marginTop: "20px", paddingBottom: "20px" }} className="os s5 b-bottom">To Pay: &#8377; {localStorage.getItem("amount")}</p>
                     <div className="payment-methods-wrapper">
                       <p className="os s5">Payment Method</p>
-                      <p className="os s8">All transactions are secure and encrypted.</p>
+                      <p className="os s8">All transactions are secure and encrypted</p>
 
                       <div className="payment-methods-container">
                         <Accordian

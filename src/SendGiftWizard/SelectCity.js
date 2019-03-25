@@ -102,7 +102,7 @@ class SelectCity extends React.Component {
               </div>                           
               <div className="row">                            
                 <p className="os s2">
-                  What is their city of residence?            
+                  Where does the recipient live?           
                 </p>
                 <p className="os s5">
                   This will let us show you the list of drinks available in that city.              
@@ -137,7 +137,7 @@ class SelectCity extends React.Component {
                       icon="rightArrowWhite"
                       className="small"
                     >
-                      Favourite drink
+                      Choose Drink(s)
                     </Button>
                   </a>
                 </div>

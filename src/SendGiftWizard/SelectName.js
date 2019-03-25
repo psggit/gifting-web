@@ -66,10 +66,10 @@ class SelectName extends React.Component {
               </div>
               <div className="row">
                 <p className="os s2">
-                  Enter the name of your loved one
+                  Who is the recipient?
                 </p>
                 <p className="os s5">
-                  This will help us provide a much more personalised experience to you.
+                  Enter a name to make it personal & special!
                 </p>
                 <div className="form-group">
                   <Input

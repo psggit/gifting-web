@@ -137,7 +137,7 @@ class Personalise extends React.Component {
                   value={this.state.giftMessage}
                   onChange={this.handleMessageChange}
                   name="giftMessage" rows="4" cols="50"
-                  placeholder="Enter a personal message for a more personalized experience"
+                  placeholder="Thanks for all the great memories! Here's one on me. Cheers!"
                 >
                 </textarea>
                 <p className="os s9">{this.state.count} characters {this.state.count < 250 ? "remaining" : ""}</p>
