@@ -173,12 +173,15 @@ export default function SignIn(data) {
     }
 
     signIn() {
-      // ga("send", {
-      //   hitType: "event",
-      //   eventCategory: "",
-      //   eventAction: "",
-      //   eventLabel: "point_of_sign_in"
-      // })
+      //if (window.ga && ga.loaded) {
+        //console.log("ga")
+        ga("send", {
+          hitType: "event",
+          eventCategory: "",
+          eventAction: "",
+          eventLabel: "point_of_sign_in"
+        })
+      //}
       console.log(!this.state.isSigningIn, "form valid", this.isFormValid())
       if(!this.state.isSigningIn && this.isFormValid()) {
         const payload = {
