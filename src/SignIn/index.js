@@ -184,6 +184,7 @@ export default function SignIn(data) {
       //}
       console.log("ga", window.gtag , gtag.loaded)
       if(window.gtag) {
+        console.log("gtag")
         gtag("event", "sign_in", {
           "event_label": "point_of_sign_in"
         })
