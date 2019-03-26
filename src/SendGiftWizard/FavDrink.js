@@ -132,6 +132,11 @@ class FavDrink extends React.Component {
                     : <p style={{ marginTop: "20px" }} className="os s5">Loading Genres...</p>
                 }
 
+                {
+                  !this.state.loadingGenres && this.state.genres.length === 0 &&
+                  <p style={{ marginTop: "20px" }} className="os s5">No genres found</p>
+                }
+
                 <div style={{ marginTop: "20px" }}>
                   <a onClick={this.handleClick} href={`/brands/${this.state.selectedCity}/${this.state.selectedGenre}`}>
                     <Button
