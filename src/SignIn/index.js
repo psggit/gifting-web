@@ -183,19 +183,34 @@ export default function SignIn(data) {
         // })
       //}
       console.log("gtag", window.gtag , gtag.loaded)
+      
+
       if(window.gtag) {
         console.log("gtag")
-        gtag("event", "sign_in", {
-          "event_label": "point_of_sign_in"
+        gtag('event', 'add_to_cart', {
+          "items": [
+            {
+              "id": "P12345",
+              "name": "Android Warhol T-Shirt",
+              "list_name": "Search Results",
+              "brand": "Google",
+              "category": "Apparel/T-Shirts",
+              "variant": "Black",
+              "list_position": 1,
+              "quantity": 2,
+              "price": '2.0'
+            }
+          ]
+        });
+      }
+      if(window.gtag) {
+        gtag("event", "test", {
+          "event_label": JSON.stringify({
+            "id": "1",
+            "name": "hello"
+          })
         })
       }
-      // if(window.ga && ga.loaded) {
-      //   console.log("ga")
-      //   ga("send", {
-      //     hitType: "event",
-      //     eventLabel: "point_of_sign_in"
-      //   })
-      // }
 
       console.log(!this.state.isSigningIn, "form valid", this.isFormValid())
       if(!this.state.isSigningIn && this.isFormValid()) {
