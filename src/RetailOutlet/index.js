@@ -37,13 +37,11 @@ class RetailOutlet extends React.Component {
   }
 
   successCallback(response) {
-    //console.log("retailer data", response)
     const deliveryMap = {}
-    response.data.map((item) => {
+    response.map((item) => {
       deliveryMap[item.id] = item
     })
-    //console.log("delivery map", deliveryMap)
-    this.setState({availableDeliveryList: response.data, deliveryMap})
+    this.setState({availableDeliveryList: response, deliveryMap})
   }
 
   findRetailer(cityId) {
@@ -66,8 +64,7 @@ class RetailOutlet extends React.Component {
   }
 
   renderItem(item) {
-    //console.log("id", item.id)
-    return <option value={item.id}>{item.name}</option>
+    return <option key={item.id} value={item.id}>{item.name}</option>
   }
 
   handleChange(e) {
