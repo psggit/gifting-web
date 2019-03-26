@@ -356,7 +356,7 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
   const city = capitalize(req.params.citySlug)
   const genre = req.params.genreSlug
 
-  const url = `https://catman.${BASE_URL}/consumer/browse/genres/${city}/${genre}`
+  const url = `https://catman.${BASE_URL}/consumer/browse/web/genres/${city}/${genre}`
   const options = {
     method: "post",
     body: {
@@ -387,7 +387,7 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
       brands: body,
       activeGenre: genre,
       activeCity: city,
-      isMobile: isMobile(req)
+      isMobile: isMobile(req)/brands/Chennai/beer
     })
     const stream = renderToNodeStream(reactElement)
     stream.pipe(res, { end: false })

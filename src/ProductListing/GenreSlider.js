@@ -9,17 +9,17 @@ class GenresSlider extends React.Component {
     super(props)
     this.settings = {
       dots: false,
-      infinite: true,
+      //infinite: true,
       speed: 400,
       initialSlide: this.getGenreIndexByName(props.active),
       slidesToShow: 3,
-      slidesToScroll: 1,
+      slidesToScroll: 0,
       variableWidth: true,
       prevArrow: <div><Icon name="chevronRight" /></div>,
       nextArrow: <div><Icon name="chevronRight" /></div>,
       responsive: [
         {
-          breakpoint: 1024,
+          breakpoint: 2600,
           settings: {
             slidesToShow: 4,
             slidesToScroll: 1,

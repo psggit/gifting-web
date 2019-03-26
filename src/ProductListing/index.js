@@ -141,6 +141,7 @@ class ProductListing extends React.Component {
   }
 
   setGenres(genres) {
+    console.log("genres", genres)
     this.setState({ genres })
   }
 
