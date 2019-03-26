@@ -381,13 +381,11 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
         window.__BRANDS__ = ${JSON.stringify(body)}
       </script>
       `)
-
-
     const reactElement = React.createElement(BrandListingPage, {
       brands: body,
       activeGenre: genre,
       activeCity: city,
-      isMobile: isMobile(req)/brands/Chennai/beer
+      isMobile: isMobile(req)
     })
     const stream = renderToNodeStream(reactElement)
     stream.pipe(res, { end: false })
