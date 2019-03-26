@@ -2,15 +2,15 @@ import React from "react"
 //import { getIcon } from "Utils/icon-utils";
 import "./navbar.scss"
 import Icon from "Components/icon"
-import Button from "Components/button"
-import SignIn from "./../../SignIn"
-import { Api } from "Utils/config"
-// import SignUp from "./../../SignUp"
-import { mountModal, unMountModal } from 'Components/modal-box/utils'
-import {createSession, clearSession, getUsername} from 'Utils/session-utils'
-import NotifyError from './../../NotifyError';
-// import {ThemeProvider, ThemeContext} from "./../../ThemeProvider"
-import { GET } from "Utils/fetch"
+// import Button from "Components/button"
+// import SignIn from "./../../SignIn"
+// import { Api } from "Utils/config"
+// // import SignUp from "./../../SignUp"
+// import { mountModal, unMountModal } from 'Components/modal-box/utils'
+// import {createSession, clearSession, getUsername} from 'Utils/session-utils'
+// import NotifyError from './../../NotifyError';
+// // import {ThemeProvider, ThemeContext} from "./../../ThemeProvider"
+// import { GET } from "Utils/fetch"
 // const ThemeConsumer = ThemeContext.Consumer
 
 class Header extends React.Component {
@@ -44,8 +44,8 @@ class Header extends React.Component {
       }
     ]
     this.onToggle = this.onToggle.bind(this)
-    this.handleClick = this.handleClick.bind(this)
-    this.handleSignOut = this.handleSignOut.bind(this)
+    // this.handleClick = this.handleClick.bind(this)
+    // this.handleSignOut = this.handleSignOut.bind(this)
     this.checkActiveClass = this.checkActiveClass.bind(this)
   }
 
@@ -56,57 +56,57 @@ class Header extends React.Component {
     this.setState({ activePath: location.pathname.slice(1) })
   }
 
-  handleSignOut() {
-    this.setState({showDropdown: false})
-    const fetchOptions = {
-      method: 'get',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      credentials: 'include',
-      mode: 'cors',
-    }
+  // handleSignOut() {
+  //   this.setState({showDropdown: false})
+  //   const fetchOptions = {
+  //     method: 'get',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     credentials: 'include',
+  //     mode: 'cors',
+  //   }
 
-    fetch(`${Api.blogicUrl}/consumer/auth/user/logout`, fetchOptions)
-      .then((response) => {
-        this.setState({isLoggedIn: false})
-        const notAllowedUrls = [
-          "/transaction-successful",
-          "/transaction-failure",
-          "/transaction-cancelled",
-          "/transaction-history",
-          "/personalise",
-          "/checkout"
-        ]
-        if (notAllowedUrls.indexOf(location.pathname) > -1) {
-          location.href = "/send-gift"
-        } else {
-          location.href = location.pathname
-        }
-        //setTimeout(() => {
-        clearSession()
-        window.fcWidget.user.clear().then(function() {
-          console.log('User cleared')
-        }, function() {
-          console.log("User Not cleared")
-        })
-        //console.log("user status out", userStatus)
-        //}, 1000)
-      })
-      .catch((err) => {
-        //console.log("Error in logout", err)
-        mountModal(NotifyError({}))
-      })
-  }
+  //   fetch(`${Api.blogicUrl}/consumer/auth/user/logout`, fetchOptions)
+  //     .then((response) => {
+  //       this.setState({isLoggedIn: false})
+  //       const notAllowedUrls = [
+  //         "/transaction-successful",
+  //         "/transaction-failure",
+  //         "/transaction-cancelled",
+  //         "/transaction-history",
+  //         "/personalise",
+  //         "/checkout"
+  //       ]
+  //       if (notAllowedUrls.indexOf(location.pathname) > -1) {
+  //         location.href = "/send-gift"
+  //       } else {
+  //         location.href = location.pathname
+  //       }
+  //       //setTimeout(() => {
+  //       clearSession()
+  //       window.fcWidget.user.clear().then(function() {
+  //         console.log('User cleared')
+  //       }, function() {
+  //         console.log("User Not cleared")
+  //       })
+  //       //console.log("user status out", userStatus)
+  //       //}, 1000)
+  //     })
+  //     .catch((err) => {
+  //       //console.log("Error in logout", err)
+  //       mountModal(NotifyError({}))
+  //     })
+  // }
 
   
-  handleClick() {
-    this.setState({ isMenuOpen: false })
-    mountModal(SignIn({
-      //reload: this.reloadHeader
-    }))
-  }
+  // handleClick() {
+  //   this.setState({ isMenuOpen: false })
+  //   mountModal(SignIn({
+  //     //reload: this.reloadHeader
+  //   }))
+  // }
 
   openDropdown() {
     const {showDropdown} = this.state
@@ -168,29 +168,6 @@ class Header extends React.Component {
               </a>
             ))
           }
-          {
-            !isLoggedIn &&
-            <div className="login">
-              <Button onClick={() => this.handleClick()} primary size="small">SIGN IN</Button>
-            </div>
-          }
-          {
-            isLoggedIn && 
-            <div className="logout" onClick={() => this.openDropdown()} >
-              <span className="user">
-                <Icon name="appUser" style={{marginRight: '10px'}}/>
-              </span>
-              <div className="os s7"  style={{marginRight: '8px'}} >{this.state.username}</div>
-              <span style={{display: 'flex', alignSelf: 'center'}}>
-                <Icon name="filledDownArrow" />
-              </span>
-
-              <div className={`dropdown-menu ${showDropdown ? 'show' : 'hide'}`} >
-                <div onClick={() => this.handleTransactionHistory()} className="menu-item os s9">Transaction History</div>
-                <div onClick={() => this.handleSignOut()} className="menu-item os s9"> Sign Out</div>
-              </div>
-            </div>
-          }
         </div>
         <div className="navbar-menu">
           {
@@ -227,18 +204,6 @@ class Header extends React.Component {
                 <a onClick={this.handleTransactionHistory} href={`/transaction-history`}>
                     Transaction History
                 </a>
-              </li>
-            }
-            {
-              isLoggedIn &&
-              <li>
-                <Button onClick={() => this.handleSignOut()} secondary>SIGN OUT</Button>
-              </li>
-            }
-            {
-              !isLoggedIn &&
-              <li>
-                <Button onClick={() => this.handleClick()} secondary>SIGN IN</Button>
               </li>
             }
           </ul>

@@ -50,6 +50,12 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "legal-drinking-age.html",
+      template: path.resolve(__dirname, "./../../html/legal-drinking-age.html"),
+      minify: minfyConfigHTML
+    }),
+    new HtmlWebpackPlugin({
+      title: "HipBar Gifting - Gift your friends drinks online!",
       filename: "static.html",
       template: path.resolve(__dirname, "./../../html/static.html"),
       minify: minfyConfigHTML

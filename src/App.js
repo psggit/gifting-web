@@ -352,7 +352,7 @@ if (!document.getElementById("app").childNodes.length) {
   }
   ReactDOM.render(<App />, document.getElementById("app"))
 } else {
-  if (document.getElementById("header")) {
+  if (document.getElementById("header") && location.pathname !== "/legal-drinking-age") {
     ReactDOM.hydrate(<Header />, document.getElementById("header"))
   }
   if (document.getElementById("footer-wrapper")) {

@@ -76,7 +76,7 @@ class Landing extends React.Component {
             </div>
             <div className="step-notes">
               <div>
-                <p className="ft s5 step-no">Step1</p>
+                <p className="ft s5 step-no">Step 1</p>
                 <p className="ft s5 step-note">Enter details &amp; pay <br/>via hipbar</p>
               </div>
             </div>
@@ -88,7 +88,7 @@ class Landing extends React.Component {
             </div>
             <div className="step-notes">
               <div>
-                <p className="ft s5 step-no">Step2</p>
+                <p className="ft s5 step-no">Step 2</p>
                 <p className="ft s5 step-note">Recipient receives <br/>gift card</p>
               </div>
             </div>
@@ -100,7 +100,7 @@ class Landing extends React.Component {
             </div>
             <div className="step-notes">
               <div>
-                <p className="ft s5 step-no">Step3</p>
+                <p className="ft s5 step-no">Step 3</p>
                 <p className="ft s5 step-note">Recipient collects <br/>drink at retail store</p>
               </div>
             </div>
