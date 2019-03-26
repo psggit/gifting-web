@@ -67,7 +67,7 @@ export function fetchCities() {
 
 export function fetchBrandsUsingGenre(req) {
   return POST({
-    api: `/consumer/browse/genres/${req.city}/${req.genre}`,
+    api: `/consumer/browse/web/genres/${req.city}/${req.genre}`,
     handleError: true,
     apiBase: "catman",
     data: {
@@ -81,7 +81,7 @@ export function fetchBrandsUsingGenre(req) {
 
 export function fetchGenres(req) {
   return GET({
-    api: `/consumer/browse/genres/${req.city}`,
+    api: `/consumer/browse/web/genres/${req.city}`,
     handleError: true,
     apiBase: "catman"
   })
