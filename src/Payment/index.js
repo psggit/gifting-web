@@ -190,10 +190,10 @@ class Payment extends React.Component {
 
   handleRadioChange(value) {
     if(window.gtag) {
-      gtag("event", "bank_id", {
-        "event_label": {
+      gtag("event", "selected_bank_nb", {
+        "event_label": JSON.stringify({
           bank_code: value
-        }
+        })
       })
     }
     this.setState({ isPopularSelected: true, noBankSelected: false, bankcode: value })

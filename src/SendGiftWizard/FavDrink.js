@@ -5,6 +5,7 @@ import Icon from "Components/icon"
 import MobileNavBar from "Components/mobile-nav-bar"
 import GenreItem from "Components/GenreItem"
 import { fetchGenres } from "./../api"
+import Moment from "moment"
 
 class FavDrink extends React.Component {
   constructor() {
@@ -84,8 +85,10 @@ class FavDrink extends React.Component {
 
     if(window.gtag) {
       gtag("event", "choose_genre", {
-        selectedGenre: genre.shortName,
-        date: new Date()
+        "event_label": JSON.stringify({
+          selectedGenre: genre.shortName,
+          date: Moment(new Date()).format("DD/MM/YYYY")
+        })
       })
     }
 

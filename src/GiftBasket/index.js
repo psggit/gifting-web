@@ -95,10 +95,11 @@ class GiftBasket extends React.Component {
     const basket = JSON.parse(localStorage.getItem("basket"))
     console.log("basket", basket)
     if(window.gtag) {
-      gtag("event", "view_promo", {
+      gtag("event", "applied_promo", {
         "event_label": JSON.stringify({
           appliedPromo: promoCode,
-          cartTotal: localStorage.getItem("Amount")
+          cartTotal: localStorage.getItem("amount"),
+          city: JSON.parse(localStorage.getItem("receiver_info")).cityName
         })
       })
     }

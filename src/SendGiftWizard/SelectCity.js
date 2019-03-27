@@ -4,6 +4,7 @@ import Button from "Components/button"
 import Icon from "Components/icon"
 import MobileNavBar from "Components/mobile-nav-bar"
 import CityCheckBox from "Components/city-checkbox"
+import Moment from "moment"
 
 import { fetchCities } from "./../api"
 
@@ -34,8 +35,10 @@ class SelectCity extends React.Component {
     console.log("city", activeCity)
     if(window.gtag) {
       gtag("event", "choose_city", {
-        cityName: activeCity.name,
-        date: new Date()
+        "event_label": JSON.stringify({
+          cityName: activeCity.name,
+          date: Moment(new Date()).format("DD/MM/YYYY")
+        })
       })
     }
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}

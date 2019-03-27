@@ -4,6 +4,7 @@ import Icon from "Components/icon"
 import { fetchCities } from "./../api"
 import "./sass/city-select.scss"
 import { capitalize } from "Utils/logic-utils"
+import Moment from "moment"
 
 class CitySelect extends React.Component {
   constructor(props) { 
@@ -61,8 +62,8 @@ class CitySelect extends React.Component {
     if(window.gtag) {
       gtag("event", "change_city", {
         "event_label": JSON.stringify({
-          selectedCity,
-          date: new Date()
+          selectedCity: this.state.cities[cityIdx].name,
+          date: Moment(new Date()).format("DD/MM/YYYY")
         })
       })
     }

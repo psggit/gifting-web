@@ -116,7 +116,7 @@ class SkuItem extends React.Component {
       productName: basketItem.brand.brand_name,
       quantity: basketItem.count,
       volume: basketItem.sku.volume,
-      city: localStorage.getItem("receiver_info") ? localStorage.getItem("receiver_info").cityName : ""
+      city: localStorage.getItem("receiver_info") ?  JSON.parse(localStorage.getItem("receiver_info")).cityName : ""
     })
     console.log("product Details", productDetails)
     if(window.gtag) {

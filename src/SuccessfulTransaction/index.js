@@ -56,7 +56,7 @@ class SuccessfulTransaction extends React.Component {
         "event_label": JSON.stringify({
           cartItems: cartDetails,
           totalToPay: parseFloat(txn.net_amount_debit).toFixed(2),
-          date: Moment(new Date()).format("DD/MM/YYYY h:mm s")
+          date: Moment(new Date()).format("DD/MM/YYYY")
         })
       })
     }

@@ -97,7 +97,8 @@ class RetailOutlet extends React.Component {
       gtag("event", "view_retailer_directions", {
         "event_label": JSON.stringify({
           retailerId: item.retailer_id,
-          retailerName: item.retailer_name
+          retailerName: item.retailer_name,
+          user_city: JSON.parse(localStorage.getItem("receiver_info")).cityName
         })
       })
     }

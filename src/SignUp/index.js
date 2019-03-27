@@ -289,7 +289,7 @@ export default function SignUp(data) {
               //   eventLabel: "sign_up_success"
               // })
               if(window.gtag) {
-                gtag("event", "sign_up_succes", {
+                gtag("event", "sign_up_success", {
                   "event_label": "success"
                 })
               }

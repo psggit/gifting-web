@@ -40,11 +40,11 @@ class FailureTransaction extends React.Component {
       txn_time: Moment(txn.addedon).format("DD/MM/YYYY, hh:mm A")
     })
     //console.log("failue", parseFloat(txn.amount).toFixed(2))
-    if(windown.gtag) {
+    if(window.gtag) {
       gtag("event", "transaction_failure", {
         "event_label": JSON.stringify({
           cart_total: parseFloat(txn.amount).toFixed(2),
-          date: Momnet(new Date()).format("DD/YY/MMMM h:mm s")
+          date: Moment(new Date()).format("DD/YY/MMMM")
         })
       })
     }
