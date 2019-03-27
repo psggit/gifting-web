@@ -189,6 +189,13 @@ class Payment extends React.Component {
   }
 
   handleRadioChange(value) {
+    if(window.gtag) {
+      gtag("event", "bank_id", {
+        "event_label": {
+          bank_code: value
+        }
+      })
+    }
     this.setState({ isPopularSelected: true, noBankSelected: false, bankcode: value })
   }
 
