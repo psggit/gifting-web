@@ -26,6 +26,11 @@ class FAQ extends React.Component {
   }
 
   setActiveAccordian(activeAccordian) {
+    if(window.gtag) {
+      gtag("event", "count_FAQ_wise", {
+        "event_label": this.state.sendingGiftCardQuestions[activeAccordian+1].question
+      })
+    }
     this.setState({activeAccordian})
   }
 
