@@ -27,6 +27,7 @@ class SendGift extends React.Component {
     }
     this.characterLimit = 250
     this.storedState = JSON.parse(localStorage.getItem("send__gift__state"))
+    console.log("props", this.props)
     this.defaultState = {
       activePrice: "price1",
       amount: "500",

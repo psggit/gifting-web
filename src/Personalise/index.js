@@ -29,8 +29,8 @@ class Personalise extends React.Component {
     this.state = {
       senderName: this.senderName,
       senderNumber: this.senderNumber,
-      giftMessage: "",
-      receiverName: this.receiverInfo ? this.receiverInfo.name : "",
+      giftMessage: this.receiverInfo ? (this.receiverInfo.message || "") : "",
+      receiverName: this.receiverInfo ? (this.receiverInfo.receiverName || "") : "",
       receiverNumber: this.receiverInfo ? (this.receiverInfo.phone || "") : "",
       count: this.gift 
         ? this.gift.giftMessage ?  this.characterLimit - this.gift.giftMessage.length : this.characterLimit
@@ -56,7 +56,7 @@ class Personalise extends React.Component {
   UNSAFE_componentWillMount() {
     const transactionCompleted = localStorage.getItem("transaction--completed")
     if (transactionCompleted) {
-      localStorage.removeItem("bsaket")
+      localStorage.removeItem("basket")
     }
 
     const shouldMount = !transactionCompleted && localStorage.getItem("basket")
@@ -77,6 +77,9 @@ class Personalise extends React.Component {
 
   handleTextChange(e) {
     this.setState({ [e.target.name]: trimSpaces(e.target.value) })
+    this.receiverInfo[e.target.name] = e.target.value
+    console.log("adad", this.receiverInfo)
+    localStorage.setItem("receiver_info", JSON.stringify(this.receiverInfo))
   }
 
   handleMessageChange(e) {
@@ -86,6 +89,10 @@ class Personalise extends React.Component {
       : this.setState({
         giftMessage: message,
         count: this.characterLimit - message.length
+      }, () => {
+        this.receiverInfo.message = message
+        localStorage.setItem("receiver_info", JSON.stringify(this.receiverInfo))
+        //localStorage.setItem("giftMessage", message)
       })
   }
 
