@@ -182,24 +182,24 @@ class GiftBasket extends React.Component {
 
   updateLocalBasket(basket) {
     this.setState({ basket })
-    console.log("basket", basket)
-    let cartDetails = basket.map((item) => {
-      return ({
-        productName: item.brand.brand_name,
-        quantity: item.count,
-        volume: item.sku.volume,
-        promoApplied: this.state.promoCode ? this.state.promoCode : "",
-      })
-    })
-    console.log("cart Details", cartDetails)
-    if(window.gtag) {
-      gtag("event", "view_cart", {
-        "event_label": JSON.stringify({
-          cartItems: cartDetails,
-          totalToPay: localStorage.getItem("amount") ? localStorage.getItem("amount")  : ""
-        })
-      })
-    }
+    // console.log("basket", basket)
+    // let cartDetails = basket.map((item) => {
+    //   return ({
+    //     productName: item.brand.brand_name,
+    //     quantity: item.count,
+    //     volume: item.sku.volume,
+    //     promoApplied: this.state.promoCode ? this.state.promoCode : "",
+    //   })
+    // })
+    // console.log("cart Details", cartDetails)
+    // if(window.gtag) {
+    //   gtag("event", "view_cart", {
+    //     "event_label": JSON.stringify({
+    //       cartItems: cartDetails,
+    //       totalToPay: localStorage.getItem("amount") ? localStorage.getItem("amount")  : ""
+    //     })
+    //   })
+    // }
     if (!basket.length) {
       localStorage.removeItem("basket")
     } else {
@@ -232,24 +232,24 @@ class GiftBasket extends React.Component {
     const basket = JSON.parse(localStorage.getItem("basket"))
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     this.setState({ viewProductsUrl: `/brands/${receiverInfo.cityName}/${receiverInfo.genreName}`})
-    console.log("basket", basket)
-    let cartDetails = basket.map((item) => {
-      return ({
-        productName: item.brand.brand_name,
-        quantity: item.count,
-        volume: item.sku.volume,
-        promoApplied: this.state.promoCode ? this.state.promoCode : "",
-      })
-    })
-    console.log("cart Details", cartDetails)
-    if(window.gtag) {
-      gtag("event", "view_cart", {
-        "event_label": JSON.stringify({
-          cartItems: cartDetails,
-          totalToPay: localStorage.getItem("amount") ? localStorage.getItem("amount")  : ""
-        })
-      })
-    }
+    // console.log("basket", basket)
+    // let cartDetails = basket.map((item) => {
+    //   return ({
+    //     productName: item.brand.brand_name,
+    //     quantity: item.count,
+    //     volume: item.sku.volume,
+    //     promoApplied: this.state.promoCode ? this.state.promoCode : "",
+    //   })
+    // })
+    // console.log("cart Details", cartDetails)
+    // if(window.gtag) {
+    //   gtag("event", "view_cart", {
+    //     "event_label": JSON.stringify({
+    //       cartItems: cartDetails,
+    //       totalToPay: localStorage.getItem("amount") ? localStorage.getItem("amount")  : ""
+    //     })
+    //   })
+    // }
     if (basket) {
       const promoCode = localStorage.getItem("promo_code")
       this.setGiftSummary(promoCode, basket, () => {

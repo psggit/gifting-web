@@ -4,6 +4,7 @@ import "./sass/sku-item.scss"
 import { mountModal } from "Components/modal-box/utils"
 import AddedToBasketModal from "./AddedToBasketModal"
 import { fetchGiftCardSummary } from "./../api"
+import { getNegativePatternsAsPositive } from "fast-glob/out/managers/tasks";
 
 // const volumes = [
 //   { volume: "1 Ltr"  },
@@ -111,12 +112,25 @@ class SkuItem extends React.Component {
       sku: this.props.volumes[activeSku],
       count: 1
     }
+    // console.log("basket", basketItem)
+    // let productDetails = ({
+    //   productName: basketItem.brand.brand_name,
+    //   quantity: basketItem.count,
+    //   volume: basketItem.sku.volume,
+    //   city: localStorage.getItem("receiver_info") ?  JSON.parse(localStorage.getItem("receiver_info")).cityName : ""
+    // })
+    // console.log("product Details", productDetails)
+    // if(window.gtag) {
+    //   gtag("event", "add_product_to_cart", {
+    //     "event_label": JSON.stringify({
+    //       productDetails,
+    //     })
+    //   })
+    // }
+    
     console.log("basket", basketItem)
     let productDetails = ({
-      productName: basketItem.brand.brand_name,
-      quantity: basketItem.count,
-      volume: basketItem.sku.volume,
-      city: localStorage.getItem("receiver_info") ?  JSON.parse(localStorage.getItem("receiver_info")).cityName : ""
+      volume: basketItem.sku.sku_id,
     })
     console.log("product Details", productDetails)
     if(window.gtag) {
@@ -126,6 +140,7 @@ class SkuItem extends React.Component {
         })
       })
     }
+    
     const activeSkuId = this.props.volumes[activeSku].sku_id
 
     if (this.itemAlreadyExist(basket, activeSkuId)) {

@@ -173,15 +173,14 @@ export default function SignIn(data) {
     }
 
     signIn() {
-      //if (window.ga && ga.loaded) {
-        //console.log("ga")
-        // ga("send", {
-        //   hitType: "event",
-        //   eventCategory: "",
-        //   eventAction: "",
-        //   eventLabel: "point_of_sign_in"
-        // })
-      //}
+      // if(window.gtag) {
+      //   gtag("event", "sign_in_failure", {
+      //     "event_label": "failure"
+      //   },
+      //   {
+      //     "event_label": "success"
+      //   })
+      // }
       // console.log("gtag", window.gtag , gtag.loaded)
       
 
