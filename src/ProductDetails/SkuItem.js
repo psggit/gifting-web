@@ -111,7 +111,21 @@ class SkuItem extends React.Component {
       sku: this.props.volumes[activeSku],
       count: 1
     }
-
+    console.log("basket", basketItem)
+    let productDetails = ({
+      productName: basketItem.brand.brand_name,
+      quantity: basketItem.count,
+      volume: basketItem.sku.volume,
+      city: localStorage.getItem("receiver_info") ? localStorage.getItem("receiver_info").cityName : ""
+    })
+    console.log("product Details", productDetails)
+    if(window.gtag) {
+      gtag("event", "add_product_to_cart", {
+        "event_label": JSON.stringify({
+          productDetails,
+        })
+      })
+    }
     const activeSkuId = this.props.volumes[activeSku].sku_id
 
     if (this.itemAlreadyExist(basket, activeSkuId)) {
