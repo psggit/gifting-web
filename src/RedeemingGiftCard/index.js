@@ -62,7 +62,7 @@ class GiftCards extends React.Component {
             </div>
           </div>
          
-          <FirstGiftCard />
+          <FirstGiftCard pageTitle="Redeeming Gift Card" />
           {/* <Footer /> */}
         </div>
       </div>

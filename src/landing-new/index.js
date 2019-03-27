@@ -34,6 +34,16 @@ class Landing extends React.Component {
       })
   }
 
+  handleClick() {
+    if(window.gtag) {
+      gtag("event", "point_of_clicking_start_gifting", {
+        "event_label": JSON.stringify({
+          page_title: "landing"
+        })
+      })
+    }
+  }
+
   render() {
     const backgroundStyle={
       backgroundImage: 'linear-gradient(70deg, rgba(0, 0, 0, 0), #313131)',
@@ -65,7 +75,7 @@ class Landing extends React.Component {
               <p className="ft s3 sub-header">
                 Make great memories. Gift your friend a drink today
               </p>
-              <a href="/send-gift"><Button primary icon="rightArrowWhite">Start gifting</Button></a>
+              <a href="/send-gift" onClick={this.handleClick}><Button primary icon="rightArrowWhite">Start gifting</Button></a>
               {/* <CustomButton text="Start Gifting" navigateTo="/send-gift" /> */}
             </div>
           </div>
@@ -106,7 +116,7 @@ class Landing extends React.Component {
             </div>
           </div>
 
-          <FirstGiftCard />
+          <FirstGiftCard pageTitle="landing" />
           <div className="located-cities">
             <span>
               <Icon name="location" />
