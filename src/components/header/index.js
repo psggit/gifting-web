@@ -103,6 +103,11 @@ class Header extends React.Component {
   
   handleClick() {
     this.setState({ isMenuOpen: false })
+    if(window.gtag) {
+      gtag("event", "point_of_signin", {
+        "event_label": location.pathname,
+      })
+    }
     mountModal(SignIn({
       //reload: this.reloadHeader
     }))

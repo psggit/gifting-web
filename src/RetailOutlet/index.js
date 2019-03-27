@@ -84,6 +84,11 @@ class RetailOutlet extends React.Component {
       // this.props.history.push(`/retail-outlet/${this.state.selectedCity}`)
       return
     }
+    if(window.gtag) {
+      gtag("event", "city_wise_retailer_search_count", {
+        "event_label": selectedCity,
+      })
+    }
     this.setState({retailerOutletData: []})
   }
 
@@ -165,7 +170,7 @@ class RetailOutlet extends React.Component {
           
             </div>
           </div>
-          <FirstGiftCard />
+          <FirstGiftCard pageTitle="retailOutlet" />
           {/* <Footer /> */}
         </div>
       </div>

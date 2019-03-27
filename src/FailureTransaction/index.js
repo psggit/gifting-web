@@ -39,6 +39,15 @@ class FailureTransaction extends React.Component {
       txnid: txn.txnid,
       txn_time: Moment(txn.addedon).format("DD/MM/YYYY, hh:mm A")
     })
+    //console.log("failue", parseFloat(txn.amount).toFixed(2))
+    if(windown.gtag) {
+      gtag("event", "transaction_failure", {
+        "event_label": JSON.stringify({
+          cart_total: parseFloat(txn.amount).toFixed(2),
+          date: Momnet(new Date()).format("DD/YY/MMMM h:mm s")
+        })
+      })
+    }
   }
 
   render() {

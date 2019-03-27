@@ -259,6 +259,11 @@ export default function SignUp(data) {
                 //   eventAction: "",
                 //   eventLabel: "sign_up_failure"
                 // })
+                if(window.gtag) {
+                  gtag("event", "sign_up_failure", {
+                    "event_label": "failure"
+                  })
+                }
                 return
               } else if (response.status === 400 && responseData.errorCode === "expired-otp") {
                 this.setState({ otpErr: { status: true, value: responseData.message } })
@@ -269,6 +274,11 @@ export default function SignUp(data) {
                 //   eventAction: "",
                 //   eventLabel: "sign_up_failure"
                 // })
+                if(window.gtag) {
+                  gtag("event", "sign_up_failure", {
+                    "event_label": "failure"
+                  })
+                }
                 return
               }
 
@@ -278,6 +288,11 @@ export default function SignUp(data) {
               //   eventAction: "",
               //   eventLabel: "sign_up_success"
               // })
+              if(window.gtag) {
+                gtag("event", "sign_up_succes", {
+                  "event_label": "success"
+                })
+              }
               createSession(responseData)
               location.href = (location.pathname)
               unMountModal()
@@ -293,6 +308,11 @@ export default function SignUp(data) {
             //   eventAction: "",
             //   eventLabel: "sign_up_failure"
             // })
+            if(window.gtag) {
+              gtag("event", "sign_up_failure", {
+                "event_label": "failure"
+              })
+            }
             mountModal(NotifyError({}))
           })
       }
