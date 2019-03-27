@@ -26,6 +26,7 @@ class Personalise extends React.Component {
     this.receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     this.senderName = localStorage.getItem("username") || ""
     this.senderNumber = localStorage.getItem("sender_mobile") || ""
+    console.log("name and number", this.senderName, localStorage.getItem("sender_mobile") )
     this.state = {
       senderName: this.senderName,
       senderNumber: this.senderNumber,
