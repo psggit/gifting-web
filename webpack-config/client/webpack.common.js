@@ -19,6 +19,9 @@ module.exports = {
     // landing: path.resolve(__dirname, "./../../src/landing-new"),
     app: path.resolve(__dirname, "./../../src/App.js"),
   },
+  node: {
+    fs: 'empty' 
+  },
   plugins: [
     new CleanWebpackPlugin(["dist"], {
       root: path.resolve(__dirname, "./../../"),

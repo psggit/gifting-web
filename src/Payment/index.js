@@ -237,6 +237,12 @@ class Payment extends React.Component {
         ccNumErr.value = "Card number is required"
       this.setState({ ccNumErr })
     }
+    console.log("ccnum", this.state.ccnum, this.state.ccnum.length)
+    if (this.state.ccnum.length < 15 && this.state.ccnum.length < 23) {
+      ccNumErr.status = true,
+        ccNumErr.value = "Card number is invalid"
+      this.setState({ ccNumErr })
+    }
 
     const ccvvErr = {
       status: false,
@@ -587,7 +593,7 @@ class Payment extends React.Component {
                             <div className="form-group">
                               <label className="os">Card Number</label>
                               <InputMask
-                                mask="9999 9999 9999 9999"
+                                mask="9999 9999 9999 9999 999"
                                 maskChar={null}
                                 onChange={this.handleCardNumberChange}
                               />

@@ -348,7 +348,7 @@ if (!document.getElementById("app").childNodes.length) {
       ReactDOM.render(<Footer />, document.getElementById("footer-wrapper"))
     }
   } else {
-    document.getElementById("header").innerHTML = ""
+    document.getElementById("header").style.display = "none"
   }
   ReactDOM.render(<App />, document.getElementById("app"))
 } else {
