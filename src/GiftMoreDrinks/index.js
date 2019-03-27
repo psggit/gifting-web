@@ -8,7 +8,7 @@ function GiftMoreDrinks({ url }) {
     <div className="gift--more-drinks">
       <a href={url}>
         <Icon name="giftIcon" />
-        <p className="os s7">Gift more drinks</p>
+        <p className="os s7">Gift more drink(s)</p>
       </a>
       <a href="/basket">
         <Button primary icon="rightArrowWhite">Gift basket</Button>

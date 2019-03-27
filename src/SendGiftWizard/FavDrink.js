@@ -148,7 +148,7 @@ class FavDrink extends React.Component {
                       icon="rightArrowWhite"
                       className="small"
                     >
-                      View Drinks
+                      View Drink(s)
                     </Button>
                   </a>
                 </div>

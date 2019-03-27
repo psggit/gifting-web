@@ -97,7 +97,7 @@ class ProductDetails extends React.Component {
             <div className="header">
               <a href={this.state.viewProductsUrl}>
                 <Icon name="back"/>
-                <span style={{ marginLeft: "10px" }} className="os s5">View Drinks</span>
+                <span style={{ marginLeft: "10px" }} className="os s5">View Drink(s)</span>
               </a>
 
               <a href="/basket">
