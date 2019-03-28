@@ -7,6 +7,7 @@ import { fetchSKUUsingBrand } from "./../api"
 import { capitalize } from "Utils/logic-utils"
 import { getBasketTotal } from "./SkuItem"
 import GiftMoreDrinks from "./../GiftMoreDrinks"
+import Moment from "moment"
 
 function getImageUrl(image) {
   return `https://api2.${process.env.BASE_URL}/get?fs_url=${image}`
@@ -27,6 +28,7 @@ class ProductDetails extends React.Component {
     this.toggleProductAdded = this.toggleProductAdded.bind(this)
   }
   componentDidMount() {
+    console.log("product", params)
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     const brand = window.BRAND_STATE || null
     const activeCity = window.__active_city__ || this.props.match.params.citySlug
@@ -55,7 +57,17 @@ class ProductDetails extends React.Component {
           this.setState({ brand: res.brand })
         })
     }
-
+    const gaObject = {
+      brand: params.brandSlug,
+      genre: params.genreSlug,
+      city: params.citySlug,
+      date: Moment(new Date()).format("DD/MM/YYYY")
+    }
+    if(window.gtag) {
+      gtag("event", "view_product", {
+        "event_label": JSON.stringify(gaObject),
+      })
+    }
     this.setBrandsUrl()
 
   }
@@ -71,7 +83,7 @@ class ProductDetails extends React.Component {
   }
 
   setBasketCount(basketCount) {
-    console.log(basketCount)
+    console.log(basketCount, this.state.brand)
     this.setState({ basketCount })
   }
 
@@ -85,7 +97,7 @@ class ProductDetails extends React.Component {
             <div className="header">
               <a href={this.state.viewProductsUrl}>
                 <Icon name="back"/>
-                <span style={{ marginLeft: "10px" }} className="os s5">View Products</span>
+                <span style={{ marginLeft: "10px" }} className="os s5">View Drink(s)</span>
               </a>
 
               <a href="/basket">

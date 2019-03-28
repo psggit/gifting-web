@@ -41,17 +41,25 @@ class SuccessfulTransaction extends React.Component {
       txn_time: Moment(txn.addedon).format("DD/MM/YYYY, hh:mm A")
     })
 
-    const gaProducts = basket.map(item => ({
-      product_name: item.brand_name
-    }))
-
-    // ga("send", {
-    //   hitType: "event",
-    //   eventCategory: "",
-    //   eventAction: "",
-    //   eventLabel: "transaction_success",
-    //   products: gaProducts
-    // })
+    console.log("basket", basket)
+    let cartDetails = basket.map((item) => {
+      return ({
+        productName: item.brand.brand_name,
+        quantity: item.count,
+        volume: item.sku.volume,
+        promoApplied: this.state.promoCode ? this.state.promoCode : "",
+      })
+    })
+    console.log("cart Details", cartDetails, localStorage.getItem("amount"))
+    if(window.gtag) {
+      gtag("event", "transaction_success", {
+        "event_label": JSON.stringify({
+          cartItems: cartDetails,
+          totalToPay: parseFloat(txn.net_amount_debit).toFixed(2),
+          date: Moment(new Date()).format("DD/MM/YYYY")
+        })
+      })
+    }
   }
 
   render() {
@@ -140,7 +148,7 @@ class SuccessfulTransaction extends React.Component {
                   </div>
                   <div>
                     <p className="os s3">
-                    Inform your friend about the gift card via Whatsapp
+                    Inform your friend about the gift card via SMS
                     </p>
                     <p className="os s5">
                     For a more personalized experience, inform your friend about the gift card via personal message.

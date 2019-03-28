@@ -18,8 +18,10 @@ class MobileHeader extends React.Component {
 
   }
   getGenreNameByShortName(name) {
-    console.log(name)
-    return this.props.genres.find(item => item.short_name === name).display_name
+    console.log(name, this.props.genres)
+    if(this.props.genres.find(item => item.short_name === name)) {
+      return this.props.genres.find(item => item.short_name === name).display_name
+    }
   }
   render() {
     return (
@@ -44,7 +46,7 @@ class MobileHeader extends React.Component {
               display: "inline",
               padding: "16px 0px 16px 5px"
             }}>
-            <Icon name="drink" />
+            {/* <Icon name="drink" /> */}
             <span className="os s6" style={{ margin: "0 10px 0 0" }}>
               {
                 this.props.genres.length

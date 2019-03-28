@@ -34,6 +34,16 @@ class Landing extends React.Component {
       })
   }
 
+  handleClick() {
+    if(window.gtag) {
+      gtag("event", "point_of_clicking_start_gifting", {
+        "event_label": JSON.stringify({
+          page_title: "landing"
+        })
+      })
+    }
+  }
+
   render() {
     const backgroundStyle={
       backgroundImage: 'linear-gradient(70deg, rgba(0, 0, 0, 0), #313131)',
@@ -65,18 +75,18 @@ class Landing extends React.Component {
               <p className="ft s3 sub-header">
                 Make great memories. Gift your friend a drink today
               </p>
-              <a href="/send-gift"><Button primary icon="rightArrowWhite">Start gifting</Button></a>
+              <a href="/send-gift" onClick={this.handleClick}><Button primary icon="rightArrowWhite">Start gifting</Button></a>
               {/* <CustomButton text="Start Gifting" navigateTo="/send-gift" /> */}
             </div>
           </div>
           <Slider />
           <div className="steps">
             <div className="step-image">
-              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240057/Gifting-website/Step1.jpg" />
+              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_1000,q_auto:good/v1550240057/Gifting-website/Step1.jpg" />
             </div>
             <div className="step-notes">
               <div>
-                <p className="ft s5 step-no">Step-1</p>
+                <p className="ft s5 step-no">Step 1</p>
                 <p className="ft s5 step-note">Enter details &amp; pay <br/>via hipbar</p>
               </div>
             </div>
@@ -84,11 +94,11 @@ class Landing extends React.Component {
 
           <div className="steps">
             <div className="step-image">
-              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240053/Gifting-website/Step2.jpg" />
+              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_1000,q_auto:good/v1553595499/Gifting-website/Step_2.jpg" />
             </div>
             <div className="step-notes">
               <div>
-                <p className="ft s5 step-no">Step-2</p>
+                <p className="ft s5 step-no">Step 2</p>
                 <p className="ft s5 step-note">Recipient receives <br/>gift card</p>
               </div>
             </div>
@@ -96,17 +106,17 @@ class Landing extends React.Component {
 
           <div className="steps">
             <div className="step-image">
-              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240058/Gifting-website/Step3.jpg" />
+              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_1000,q_auto:good/v1550240058/Gifting-website/Step3.jpg" />
             </div>
             <div className="step-notes">
               <div>
-                <p className="ft s5 step-no">Step-3</p>
+                <p className="ft s5 step-no">Step 3</p>
                 <p className="ft s5 step-note">Recipient collects <br/>drink at retail store</p>
               </div>
             </div>
           </div>
 
-          <FirstGiftCard />
+          <FirstGiftCard pageTitle="landing" />
           <div className="located-cities">
             <span>
               <Icon name="location" />

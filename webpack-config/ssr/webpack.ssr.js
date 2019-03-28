@@ -9,7 +9,9 @@ const config = {
   externals: [nodeExternals()],
   entry: {
     "header": path.resolve(__dirname, "./../../src/components/header"),
+    "headerWithoutSignin": path.resolve(__dirname, "./../../src/components/headerWithoutSignin"),
     "age_gate": path.resolve(__dirname, "./../../src/AgeGateAlert"),
+    "legal_drinking_age": path.resolve(__dirname, "./../../src/LegalDrinkingAge"),
     "send_gift": path.resolve(__dirname, "./../../src/SendGiftWizard/GetStarted"),
     "redeem_gift_card": path.resolve(__dirname, "./../../src/RedeemingGiftCard"),
     "retail_outlet": path.resolve(__dirname, "./../../src/RetailOutlet"),

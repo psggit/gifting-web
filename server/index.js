@@ -14,10 +14,12 @@ const TransactionFailure = require("../dist-ssr/transaction_failure").default
 const BrandDetailPage = require("../dist-ssr/brand_detail").default
 const BrandListingPage = require("../dist-ssr/brand_listing").default
 const Header = require("../dist-ssr/header").default
+const HeaderWithoutSignin = require("../dist-ssr/headerWithoutSignin").default
 
 // Static pages
 const LandingPage = require("../dist-ssr/landing").default
 const AgeGate = require("../dist-ssr/age_gate").default
+const LegaDrinkingAge = require("../dist-ssr/legal_drinking_age").default
 const GetStartedPage = require("../dist-ssr/send_gift").default
 const RedeemGiftCard = require("../dist-ssr/redeem_gift_card").default
 const RetailOutlet = require("../dist-ssr/retail_outlet").default
@@ -229,10 +231,30 @@ function renderStaticMarkup({component, req, res, file}) {
   })
 }
 
+function renderLegalDrinkingAgeMarkUp({component, req, res, file}) {
+  const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
+  const [head, tail] = html.split("{content}")
+  console.log(req.url)
+  console.log("head", head)
+  const headWithNavbar = withMetaTags(headerWithoutSignIn(head), req.url, undefined, req.url)
+  console.log("header", headWithNavbar)
+  res.write(headWithNavbar)
+  const reactElement = React.createElement(component)
+  const stream = renderToNodeStream(reactElement)
+  stream.pipe(res, { end: false })
+  stream.on("end", () => {
+    res.write(tail)
+    res.end()
+  })
+}
+
 function withHeader(head) {
   return head.split("{header}").join(renderToString(React.createElement(Header)))
 }
 
+function headerWithoutSignIn(head) {
+  return head.split("{header}").join(renderToString(React.createElement(HeaderWithoutSignin)))
+}
 
 function withTitle(head, title) {
   return head.split("{title}").join(title)
@@ -264,6 +286,16 @@ app.get("/age-gate", (req, res) => {
     res, 
     file: "age-gate",
     pageName: "age-gate"
+  })
+})
+
+app.get("/legal-drinking-age", (req, res) => {
+  renderLegalDrinkingAgeMarkUp({
+    component: LegaDrinkingAge,
+    req,
+    res, 
+    file: "legal-drinking-age",
+    pageName: "legal-drinking-age"
   })
 })
 
@@ -324,7 +356,7 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
   const city = capitalize(req.params.citySlug)
   const genre = req.params.genreSlug
 
-  const url = `https://catman.${BASE_URL}/consumer/browse/genres/${city}/${genre}`
+  const url = `https://catman.${BASE_URL}/consumer/browse/web/genres/${city}/${genre}`
   const options = {
     method: "post",
     body: {
@@ -349,8 +381,6 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
         window.__BRANDS__ = ${JSON.stringify(body)}
       </script>
       `)
-
-
     const reactElement = React.createElement(BrandListingPage, {
       brands: body,
       activeGenre: genre,

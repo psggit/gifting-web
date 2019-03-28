@@ -4,6 +4,7 @@ import Button from "Components/button"
 import Icon from "Components/icon"
 import MobileNavBar from "Components/mobile-nav-bar"
 import CityCheckBox from "Components/city-checkbox"
+import Moment from "moment"
 
 import { fetchCities } from "./../api"
 
@@ -31,6 +32,15 @@ class SelectCity extends React.Component {
   // }
 
   handleCityClick(activeCity) {
+    console.log("city", activeCity)
+    if(window.gtag) {
+      gtag("event", "choose_city", {
+        "event_label": JSON.stringify({
+          cityName: activeCity.name,
+          date: Moment(new Date()).format("DD/MM/YYYY")
+        })
+      })
+    }
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     if (receiverInfo) {
       receiverInfo.gps = activeCity.gps
@@ -95,7 +105,7 @@ class SelectCity extends React.Component {
               </div>                           
               <div className="row">                            
                 <p className="os s2">
-                  What is their city of residence?            
+                  Where does the recipient live?           
                 </p>
                 <p className="os s5">
                   This will let us show you the list of drinks available in that city.              
@@ -130,7 +140,7 @@ class SelectCity extends React.Component {
                       icon="rightArrowWhite"
                       className="small"
                     >
-                      Favourite drink
+                      Choose Drink(s)
                     </Button>
                   </a>
                 </div>

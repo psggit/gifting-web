@@ -19,6 +19,7 @@ const Footer = () => (
             <li><a  href="/send-gift">Send Gift Cards</a></li>
             <li><a  href="/how-to-redeem">Redeeming Gift Cards</a></li>
             <li><a  href="/retail-outlet">Retail Outlets</a></li>
+            <li><a  href="/FAQs">FAQs</a></li>
           </ul>
         </div>
 

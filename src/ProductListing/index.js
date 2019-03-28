@@ -133,14 +133,16 @@ class ProductListing extends React.Component {
   }
 
   setBrands(brands, CB) {
+    console.log("set brands")
     if (CB) {
-      this.setState({ brands }, CB)
+      this.setState({ brands, isLoading: false }, CB)
     } else {
-      this.setState({ brands })
+      this.setState({ brands, isLoading: false })
     }
   }
 
   setGenres(genres) {
+    console.log("genres", genres)
     this.setState({ genres })
   }
 
@@ -165,7 +167,7 @@ class ProductListing extends React.Component {
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     localStorage.removeItem("basket")
     localStorage.removeItem("promo_code")
-    this.setState({ basket: null, activeCity: city.name })
+    this.setState({ basket: null, activeCity: city.name, brands: [], genres: [], isLoading: true })
     this.resetScrollIntersectionParams()
     const fetchGenresReq = {
       city: capitalize(city.name)
@@ -353,7 +355,7 @@ class ProductListing extends React.Component {
             </div> */}
             
             {
-              this.state.shouldMountGenres &&
+              this.state.shouldMountGenres && this.state.genres.length > 0 &&
               <GenreOverlay
                 {...this.props}
                 activeGenre={this.state.activeGenre}
@@ -367,21 +369,23 @@ class ProductListing extends React.Component {
             {
               showMobileBasket && <BasketTotal />
             }
-
             {
-              !this.state.isLoading
-                ? <BrandsList
+              this.state.isLoading &&
+              <Loader />
+            }
+            {
+              !this.state.isLoading &&
+                <BrandsList
                   activeGenre={this.state.activeGenre}
                   activeCity={this.state.activeCity}
                   data={this.state.brands} 
                 />
-                : <Loader />
             }
             {
-              !this.state.isBrandsAvailable &&
+              !this.state.isLoading && !this.state.isBrandsLoading && this.state.brands.length === 0 &&
               <NoBrandsAvailable />
             }
-            { this.state.isBrandsLoading && <Loader /> }
+            {/* { this.state.isBrandsLoading && <Loader /> } */}
             <div style={{ position: "absolute", bottom: "25%" }} id="scroll-intersection"></div>
           </div>
         </div>

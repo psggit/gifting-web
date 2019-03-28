@@ -37,13 +37,11 @@ class RetailOutlet extends React.Component {
   }
 
   successCallback(response) {
-    //console.log("retailer data", response)
     const deliveryMap = {}
-    response.data.map((item) => {
+    response.map((item) => {
       deliveryMap[item.id] = item
     })
-    //console.log("delivery map", deliveryMap)
-    this.setState({availableDeliveryList: response.data, deliveryMap})
+    this.setState({availableDeliveryList: response, deliveryMap})
   }
 
   findRetailer(cityId) {
@@ -66,8 +64,7 @@ class RetailOutlet extends React.Component {
   }
 
   renderItem(item) {
-    //console.log("id", item.id)
-    return <option value={item.id}>{item.name}</option>
+    return <option key={item.id} value={item.id}>{item.name}</option>
   }
 
   handleChange(e) {
@@ -87,7 +84,24 @@ class RetailOutlet extends React.Component {
       // this.props.history.push(`/retail-outlet/${this.state.selectedCity}`)
       return
     }
+    if(window.gtag) {
+      gtag("event", "city_wise_retailer_search_count", {
+        "event_label": selectedCity,
+      })
+    }
     this.setState({retailerOutletData: []})
+  }
+
+  triggerEvent(item) {
+    if(window.gtag) {
+      gtag("event", "view_retailer_directions", {
+        "event_label": JSON.stringify({
+          retailerId: item.retailer_id,
+          retailerName: item.retailer_name,
+          user_city: JSON.parse(localStorage.getItem("receiver_info")).cityName
+        })
+      })
+    }
   }
 
   renderOutlet(item) {
@@ -99,7 +113,7 @@ class RetailOutlet extends React.Component {
           <p className="os s7">{item.retailer_address}</p>
         </div>
         {/* <p className="direction os s8" onClick={() => this.loadMap(item.retailer_gps)}>DIRECTIONS</p> */}
-        <a className="direction os s8" href={` https://www.google.com/maps/search/?api=1&query=${gpsCoordinates[0]},${gpsCoordinates[1]}`} target="_blank">
+        <a className="direction os s8" onClick={() => this.triggerEvent(item)} href={` https://www.google.com/maps/search/?api=1&query=${gpsCoordinates[0]},${gpsCoordinates[1]}`} target="_blank">
           <span className="os s6" style={{marginRight: '13px'}}>DIRECTIONS</span>
           <span style={{position: 'relative', top: '3px'}}><Icon name="rightArrowWhite" /></span>
         </a>
@@ -157,7 +171,7 @@ class RetailOutlet extends React.Component {
           
             </div>
           </div>
-          <FirstGiftCard />
+          <FirstGiftCard pageTitle="retailOutlet" />
           {/* <Footer /> */}
         </div>
       </div>

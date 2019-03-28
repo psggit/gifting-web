@@ -4,6 +4,7 @@ import "./sass/sku-item.scss"
 import { mountModal } from "Components/modal-box/utils"
 import AddedToBasketModal from "./AddedToBasketModal"
 import { fetchGiftCardSummary } from "./../api"
+import { getNegativePatternsAsPositive } from "fast-glob/out/managers/tasks";
 
 // const volumes = [
 //   { volume: "1 Ltr"  },
@@ -52,10 +53,11 @@ class SkuItem extends React.Component {
 
   setBasketFromApi(basket, promoCode, CB) {
     const products = basket.map(item => {
+      console.log("item", item)
       return {
         count: item.count,
-        product_id: item.sku.sku_pricing_id,
-        type: "normal"
+        product_id: item.sku && item.sku.offer ? item.sku.offer.cash_back_offer_id : item.sku.sku_pricing_id,
+        type: item.sku && item.sku.offer ? "cashback" : "normal"
       }
     })
 
@@ -71,6 +73,7 @@ class SkuItem extends React.Component {
       .then(giftSummary => {
         this.setState({ addingToBasket: false })
         localStorage.setItem("basket", JSON.stringify(basket))
+        console.log("resp products", giftSummary.products)
         const updatedBasket = this.getUpdatedBasket(giftSummary.products)
         this.props.setBasketCount(getBasketTotal(basket))
         this.updateLocalBasket(updatedBasket)
@@ -89,13 +92,16 @@ class SkuItem extends React.Component {
   }
 
   getProductUsingSkuId(id, products) {
+    console.log("products", products)
     return products.find((item) => item.sku_id === id)
   }
 
   getUpdatedBasket(products) {
     const basket = JSON.parse(localStorage.getItem("basket"))
     return basket.map((item) => {
+      console.log("price", item)
       const product = this.getProductUsingSkuId(item.sku.sku_id, products)
+      console.log("product", product)
       item.sku.price = product.display_price
       item.count = product.count
       return item
@@ -111,7 +117,35 @@ class SkuItem extends React.Component {
       sku: this.props.volumes[activeSku],
       count: 1
     }
-
+    // console.log("basket", basketItem)
+    // let productDetails = ({
+    //   productName: basketItem.brand.brand_name,
+    //   quantity: basketItem.count,
+    //   volume: basketItem.sku.volume,
+    //   city: localStorage.getItem("receiver_info") ?  JSON.parse(localStorage.getItem("receiver_info")).cityName : ""
+    // })
+    // console.log("product Details", productDetails)
+    // if(window.gtag) {
+    //   gtag("event", "add_product_to_cart", {
+    //     "event_label": JSON.stringify({
+    //       productDetails,
+    //     })
+    //   })
+    // }
+    
+    console.log("basket", basketItem)
+    let productDetails = ({
+      sku_id: basketItem.sku.sku_id,
+    })
+    console.log("product Details", productDetails)
+    if(window.gtag) {
+      gtag("event", "add_product_to_cart", {
+        "event_label": JSON.stringify({
+          productDetails,
+        })
+      })
+    }
+    
     const activeSkuId = this.props.volumes[activeSku].sku_id
 
     if (this.itemAlreadyExist(basket, activeSkuId)) {
@@ -155,6 +189,7 @@ class SkuItem extends React.Component {
     ))
   }
   componentDidMount() {
+    console.log("sku item")
     if (this.img && this.img.complete) {
       this.handleImageLoad()
     }

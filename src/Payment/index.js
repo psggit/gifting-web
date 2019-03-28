@@ -189,6 +189,13 @@ class Payment extends React.Component {
   }
 
   handleRadioChange(value) {
+    if(window.gtag) {
+      gtag("event", "selected_bank_nb", {
+        "event_label": JSON.stringify({
+          bank_code: value
+        })
+      })
+    }
     this.setState({ isPopularSelected: true, noBankSelected: false, bankcode: value })
   }
 
@@ -228,6 +235,12 @@ class Payment extends React.Component {
     if (this.state.ccnum.length === 0) {
       ccNumErr.status = true,
         ccNumErr.value = "Card number is required"
+      this.setState({ ccNumErr })
+    }
+    console.log("ccnum", this.state.ccnum, this.state.ccnum.length)
+    if (this.state.ccnum.length < 15 && this.state.ccnum.length < 23) {
+      ccNumErr.status = true,
+        ccNumErr.value = "Card number is invalid"
       this.setState({ ccNumErr })
     }
 
@@ -360,10 +373,13 @@ class Payment extends React.Component {
     this.setState({ isSubmitting: true })
     const basket = JSON.parse(localStorage.getItem("basket"))
     const products = basket.map(item => {
+      console.log("item", item)
       return {
         count: item.count,
-        product_id: item.sku.sku_pricing_id,
-        type: "normal"
+        // product_id: item.sku.sku_pricing_id,
+        // type: "normal"
+        product_id: item.sku && item.sku.offer ? item.sku.offer.cash_back_offer_id : item.sku.sku_pricing_id,
+        type: item.sku && item.sku.offer ? "cashback" : "normal"
       }
     })
     POST({
@@ -372,6 +388,7 @@ class Payment extends React.Component {
       data: {
         amount: parseFloat(amount),
         mode: "gift",
+        gps: JSON.parse(localStorage.getItem("receiver_info")).gps,
         promo_code: localStorage.getItem("promo_code"),
         gift_message: giftMessage,
         receiver_number: receiverNumber,
@@ -523,14 +540,14 @@ class Payment extends React.Component {
                       >
                       <a href={"javascript:history.back()"}>
                         <Icon name="back"/>
-                        <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">Peronsalise</span>
+                        <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">Personalise</span>
                       </a>
                     </div>
                     <div className="row">
                     <p style={{ marginTop: "20px", paddingBottom: "20px" }} className="os s5 b-bottom">To Pay: &#8377; {localStorage.getItem("amount")}</p>
                     <div className="payment-methods-wrapper">
                       <p className="os s5">Payment Method</p>
-                      <p className="os s8">All transactions are secure and encrypted.</p>
+                      <p className="os s8">All transactions are secure and encrypted</p>
 
                       <div className="payment-methods-container">
                         <Accordian
@@ -580,7 +597,7 @@ class Payment extends React.Component {
                             <div className="form-group">
                               <label className="os">Card Number</label>
                               <InputMask
-                                mask="9999 9999 9999 9999"
+                                mask="9999 9999 9999 9999 999"
                                 maskChar={null}
                                 onChange={this.handleCardNumberChange}
                               />

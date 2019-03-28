@@ -44,7 +44,7 @@ export const StatesList = [
     legal_age: "Above 18 years"
   },
   {
-    state_name: "Gujrat",
+    state_name: "Gujarat",
     legal_age: "illegal"
   },
   {

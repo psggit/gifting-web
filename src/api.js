@@ -20,18 +20,22 @@ export function fetchTransactionList (payloadObj, successCallback, failureCallba
 }
 
 export function fetchAvailableHipbarDelivery(successCallback) {
-  return GET({
-    api: `/consumer/where_hipbar_delivery_available`,
+  return POST({
+    api: "/city/availableCities",
+    handleError: true,
     apiBase: "loki",
-    //data: payloadObj,
-    handleError: true
+    data: {
+      available: true,
+      delivery_available: false,
+      wallet_available: false
+    }
   })
-    .then((json) => {
-      successCallback(json)
-    })
-    .catch(err => {
-      console.log("Error in fetching available hipbar deliveries", err)
-    })
+  .then((json) => {
+    successCallback(json.availableCities)
+  })
+  .catch(err => {
+    console.log("Error in fetching available hipbar deliveries", err)
+  })
 }
 
 export function fetchRetailers(payloadObj, successCallback, failureCallback) {
@@ -67,7 +71,7 @@ export function fetchCities() {
 
 export function fetchBrandsUsingGenre(req) {
   return POST({
-    api: `/consumer/browse/genres/${req.city}/${req.genre}`,
+    api: `/consumer/browse/web/genres/${req.city}/${req.genre}`,
     handleError: true,
     apiBase: "catman",
     data: {
@@ -81,7 +85,7 @@ export function fetchBrandsUsingGenre(req) {
 
 export function fetchGenres(req) {
   return GET({
-    api: `/consumer/browse/genres/${req.city}`,
+    api: `/consumer/browse/web/genres/${req.city}`,
     handleError: true,
     apiBase: "catman"
   })

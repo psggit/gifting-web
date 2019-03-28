@@ -22,7 +22,7 @@ class GiftCards extends React.Component {
             <div className="step-text">
               <h2 className="cm s3">Download the HipBar app</h2>
               <span className="os s4">
-                Download the HipBar app & sign up with the phone number in which you got the SMS in.
+                Download the HipBar app & sign up with the mobile number to which you received the SMS
               </span>
             </div>
 
@@ -62,7 +62,7 @@ class GiftCards extends React.Component {
             </div>
           </div>
          
-          <FirstGiftCard />
+          <FirstGiftCard pageTitle="Redeeming Gift Card" />
           {/* <Footer /> */}
         </div>
       </div>

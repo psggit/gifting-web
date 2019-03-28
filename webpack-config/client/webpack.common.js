@@ -6,9 +6,9 @@ const WorkboxPlugin = require('workbox-webpack-plugin')
 const minfyConfigHTML = {
   collapseWhitespace: true,
   minifyCSS: true,
-  minifyJS: true,
+  minifyJS: false,
   minifyURLs: true,
-  removeComments: true
+  removeComments: false
 }
   
 module.exports = {
@@ -18,6 +18,9 @@ module.exports = {
     // brand_detail: path.resolve(__dirname, "./../../src/ProductDetails"),
     // landing: path.resolve(__dirname, "./../../src/landing-new"),
     app: path.resolve(__dirname, "./../../src/App.js"),
+  },
+  node: {
+    fs: 'empty' 
   },
   plugins: [
     new CleanWebpackPlugin(["dist"], {
@@ -46,6 +49,12 @@ module.exports = {
       title: "HipBar Gifting - Gift your friends drinks online!",
       filename: "age-gate.html",
       template: path.resolve(__dirname, "./../../html/age-gate.html"),
+      minify: minfyConfigHTML
+    }),
+    new HtmlWebpackPlugin({
+      title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "legal-drinking-age.html",
+      template: path.resolve(__dirname, "./../../html/legal-drinking-age.html"),
       minify: minfyConfigHTML
     }),
     new HtmlWebpackPlugin({

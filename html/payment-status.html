@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <body>
-  <div class="theme-dark" style="max-width: 1440px;margin: 0 auto">
+  <div class="theme-dark" style="max-width:1440px;margin: 0 auto">
     <div id="header">{header}</div>
     <div id="app" >{content}</div>
   </div>
@@ -33,7 +33,14 @@
     });
   }
  </script>
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'UA-89806318-7');
+</script>
 <script src="https://wchat.freshchat.com/js/widget.js"></script>
 <script>
   window.fcWidget.init({

@@ -59,7 +59,7 @@ class WebHeader extends React.Component {
 
         <div className="row">
           {
-            this.props.genres.length &&
+            this.props.genres.length > 0 &&
             <GenreSlider {...this.props} active={this.props.activeGenre} genres={this.props.genres} />
           }
           {/* <GenresList {...this.props} active={this.props.activeGenre} genres={this.props.genres} /> */}

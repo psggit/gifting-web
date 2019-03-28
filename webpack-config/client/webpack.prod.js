@@ -57,19 +57,19 @@ module.exports = merge(common, {
         }
       }
     },
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true, // set to true if you want JS source maps,
-        // warning: false,
-        terserOptions: {
-          extractComments: "all",
-          compress: {
-            drop_console: true
-          }
-        }
-      }),
+    // minimizer: [
+    //   new TerserPlugin({
+    //     cache: true,
+    //     parallel: true,
+    //     sourceMap: true, // set to true if you want JS source maps,
+    //     // warning: false,
+    //     terserOptions: {
+    //       extractComments: "all",
+    //       compress: {
+    //         drop_console: true
+    //       }
+    //     }
+    //   }),
       // new UglifyJsPlugin({
         // uglifyOptions: {
           // cache: true,
@@ -81,7 +81,7 @@ module.exports = merge(common, {
           // }
         // }
       // }),
-      new OptimizeCSSAssetsPlugin({})
-    ]
+    //   new OptimizeCSSAssetsPlugin({})
+    // ]
   }
 })

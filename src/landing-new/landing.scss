@@ -118,6 +118,7 @@
       align-items: center;
       justify-content: center;
       width: 100%;
+      flex-wrap: wrap;
 
       .city {
         // background: #0c0c0c;
@@ -125,7 +126,7 @@
         color: #d1d2dd;
         text-transform: uppercase;
         max-width: 328px;
-        width: 100%;
+        //width: 100%;
         text-align: center;
         padding: 19px 0;
         // padding-top: 0;

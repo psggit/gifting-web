@@ -43,11 +43,17 @@ export function getUsername(data) {
   return username
 }
 
+export function getSenderMobileNumber(data) {
+  const sender_mobile = data.sender_mobile ? data.sender_mobile : "" 
+  return sender_mobile
+}
+
 export function createSession(data) {
-  //console.log("session storage", data)
+  console.log("session storage", data)
   localStorage.setItem("x-hasura-role", getHasuraRole(data))
   localStorage.setItem("hasura-id", getHasuraId(data))
   localStorage.setItem("username", getUsername(data))
+  localStorage.setItem("sender_mobile", getSenderMobileNumber(data))
   //localStorage.setItem("isLoggedIn", loginStatus)
 }
 
@@ -56,6 +62,7 @@ export function clearSession() {
   localStorage.removeItem("hasura-id")
   localStorage.removeItem("username")
   localStorage.removeItem("promo_code")
+  localStorage.removeItem("sender_mobile")
 }
 
 export function  readCookie(name) {

@@ -26,11 +26,12 @@ class Personalise extends React.Component {
     this.receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     this.senderName = localStorage.getItem("username") || ""
     this.senderNumber = localStorage.getItem("sender_mobile") || ""
+    console.log("name and number", this.receiverInfo, this.senderName, localStorage.getItem("sender_mobile") )
     this.state = {
       senderName: this.senderName,
       senderNumber: this.senderNumber,
-      giftMessage: "",
-      receiverName: this.receiverInfo ? this.receiverInfo.name : "",
+      giftMessage: this.receiverInfo ? (this.receiverInfo.message || "") : "",
+      receiverName: this.receiverInfo ? (this.receiverInfo.name || "") : "",
       receiverNumber: this.receiverInfo ? (this.receiverInfo.phone || "") : "",
       count: this.gift 
         ? this.gift.giftMessage ?  this.characterLimit - this.gift.giftMessage.length : this.characterLimit
@@ -56,7 +57,7 @@ class Personalise extends React.Component {
   UNSAFE_componentWillMount() {
     const transactionCompleted = localStorage.getItem("transaction--completed")
     if (transactionCompleted) {
-      localStorage.removeItem("bsaket")
+      localStorage.removeItem("basket")
     }
 
     const shouldMount = !transactionCompleted && localStorage.getItem("basket")
@@ -77,6 +78,13 @@ class Personalise extends React.Component {
 
   handleTextChange(e) {
     this.setState({ [e.target.name]: trimSpaces(e.target.value) })
+    if(e.target.name === "receiverName") {
+      this.receiverInfo["name"] = e.target.value
+    } else {
+      this.receiverInfo[e.target.name] = e.target.value
+    }
+    console.log("adad", this.receiverInfo)
+    localStorage.setItem("receiver_info", JSON.stringify(this.receiverInfo))
   }
 
   handleMessageChange(e) {
@@ -86,6 +94,10 @@ class Personalise extends React.Component {
       : this.setState({
         giftMessage: message,
         count: this.characterLimit - message.length
+      }, () => {
+        this.receiverInfo.message = message
+        localStorage.setItem("receiver_info", JSON.stringify(this.receiverInfo))
+        //localStorage.setItem("giftMessage", message)
       })
   }
 
@@ -137,7 +149,7 @@ class Personalise extends React.Component {
                   value={this.state.giftMessage}
                   onChange={this.handleMessageChange}
                   name="giftMessage" rows="4" cols="50"
-                  placeholder="Enter a personal message for a more personalized experience"
+                  placeholder="Thanks for all the great memories! Here's one on me. Cheers!"
                 >
                 </textarea>
                 <p className="os s9">{this.state.count} characters {this.state.count < 250 ? "remaining" : ""}</p>
@@ -240,7 +252,7 @@ class Personalise extends React.Component {
               localStorage.getItem("hasura-id")
                 ? (
                   <React.Fragment>
-                    <div style={{ marginTop: "20px" }} className="payment-button">
+                    <div style={{ marginTop: "20px", zIndex: "1" }} className="payment-button">
                       <Button
                         disabled={!this.state.agreement}
                         onClick={this.proceedToPayment}
@@ -253,7 +265,7 @@ class Personalise extends React.Component {
                 )
                 : (
                   <React.Fragment>
-                    <div style={{ marginTop: "20px" }} className="payment-button">
+                    <div style={{ marginTop: "20px", zIndex: "1" }} className="payment-button">
                       <Button
                         disabled={!this.state.agreement}
                         onClick={() => { mountModal(SignIn({ mobile: this.state.senderNumber })) }}

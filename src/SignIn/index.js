@@ -173,12 +173,36 @@ export default function SignIn(data) {
     }
 
     signIn() {
-      // ga("send", {
-      //   hitType: "event",
-      //   eventCategory: "",
-      //   eventAction: "",
-      //   eventLabel: "point_of_sign_in"
-      // })
+      // if(window.gtag) {
+      //   gtag("event", "sign_in_failure", {
+      //     "event_label": "failure"
+      //   },
+      //   {
+      //     "event_label": "success"
+      //   })
+      // }
+      // console.log("gtag", window.gtag , gtag.loaded)
+      
+
+      // if(window.gtag) {
+      //   console.log("gtag")
+      //   gtag('event', 'add_to_cart', {
+      //     "items": [
+      //       {
+      //         "id": "P12345",
+      //         "name": "Android Warhol T-Shirt",
+      //         "list_name": "Search Results",
+      //         "brand": "Google",
+      //         "category": "Apparel/T-Shirts",
+      //         "variant": "Black",
+      //         "list_position": 1,
+      //         "quantity": 2,
+      //         "price": '2.0'
+      //       }
+      //     ]
+      //   });
+      // }
+
       console.log(!this.state.isSigningIn, "form valid", this.isFormValid())
       if(!this.state.isSigningIn && this.isFormValid()) {
         const payload = {
@@ -203,6 +227,11 @@ export default function SignIn(data) {
               if(response.status === 400 && responseData.errorCode.includes("invalid-otp")){
                 this.setState({otpErr: {status: true, value: "Incorrect OTP. Please enter again or resend OTP"}})
                 this.setState({isSigningIn: false})
+                if(window.gtag) {
+                  gtag("event", "sign_in_failure", {
+                    "event_label": "failure"
+                  })
+                }
                 // ga("send", {
                 //   hitType: "event",
                 //   eventCategory: "",
@@ -213,6 +242,11 @@ export default function SignIn(data) {
               } else if(response.status === 401 && responseData.errorCode.includes("role-invalid")){
                 this.setState({otpErr: {status: true, value: responseData.message}})
                 this.setState({isSigningIn: false})
+                if(window.gtag) {
+                  gtag("event", "sign_in_failure", {
+                    "event_label": "failure"
+                  })
+                }
                 // ga("send", {
                 //   hitType: "event",
                 //   eventCategory: "",
@@ -223,6 +257,11 @@ export default function SignIn(data) {
               } else if(response.status === 400 && responseData.errorCode.includes("expired-otp")){
                 this.setState({otpErr: {status: true, value: responseData.message}})
                 this.setState({isSigningIn: false})
+                if(window.gtag) {
+                  gtag("event", "sign_in_failure", {
+                    "event_label": "failure"
+                  })
+                }
                 // ga("send", {
                 //   hitType: "event",
                 //   eventCategory: "",
@@ -231,7 +270,13 @@ export default function SignIn(data) {
                 // })
                 return
               }
+              responseData = Object.assign(responseData, {sender_mobile: this.state.mobileNo})
               createSession(responseData, "true")
+              if(window.gtag) {
+                gtag("event", "sign_in_success", {
+                  "event_label": "success"
+                })
+              }
               window.fcWidget.user.clear().then(function() {
                 console.log('User cleared')
               }, function() {
@@ -254,6 +299,11 @@ export default function SignIn(data) {
             this.setState({errorInSignIn: true})
             // ga("event", "sign_in_failure", {"method": "Google"})
             mountModal(NotifyError({}))
+            if(window.gtag) {
+              gtag("event", "sign_in_failure", {
+                "event_label": "failure"
+              })
+            }
           })
       }
     }

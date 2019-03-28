@@ -9,6 +9,14 @@ class Accordian extends React.Component {
   }
 
   handleClick(e) {
+    // console.log("props", this.props, this.props.children.length, this.props.children[0][0].props.title)
+    // if(window.gtag && this.props.children.length === 3) {
+    //   gtag("event", "payment_method", {
+    //     "event_label": JSON.stringify({
+    //       payment_method: this.props.children[0][0].props.title
+    //     })
+    //   })
+    // }
     // if middleware exists then apply
     if(this.props.toggleAccordian) {
       if (parseInt(e.target.id) === this.props.activeAccordian) {

@@ -21,6 +21,11 @@ class GiftBasketItem extends React.Component {
       sku: props.item.sku
     }
   }
+
+  componentDidMount() {
+    console.log("props", this.props)
+  }
+
   handleAdd(id) {
     let { count } = this.state
     count += 1

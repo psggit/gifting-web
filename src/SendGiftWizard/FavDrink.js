@@ -5,6 +5,7 @@ import Icon from "Components/icon"
 import MobileNavBar from "Components/mobile-nav-bar"
 import GenreItem from "Components/GenreItem"
 import { fetchGenres } from "./../api"
+import Moment from "moment"
 
 class FavDrink extends React.Component {
   constructor() {
@@ -82,6 +83,15 @@ class FavDrink extends React.Component {
       receiverInfo.genreName = genre.shortName
     }
 
+    if(window.gtag) {
+      gtag("event", "choose_genre", {
+        "event_label": JSON.stringify({
+          selectedGenre: genre.shortName,
+          date: Moment(new Date()).format("DD/MM/YYYY")
+        })
+      })
+    }
+
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.setState({ active: genre.id, selectedGenre: genre.shortName })
   }
@@ -125,6 +135,11 @@ class FavDrink extends React.Component {
                     : <p style={{ marginTop: "20px" }} className="os s5">Loading Genres...</p>
                 }
 
+                {
+                  !this.state.loadingGenres && this.state.genres.length === 0 &&
+                  <p style={{ marginTop: "20px" }} className="os s5">No genres found</p>
+                }
+
                 <div style={{ marginTop: "20px" }}>
                   <a onClick={this.handleClick} href={`/brands/${this.state.selectedCity}/${this.state.selectedGenre}`}>
                     <Button
@@ -133,7 +148,7 @@ class FavDrink extends React.Component {
                       icon="rightArrowWhite"
                       className="small"
                     >
-                      View Drinks
+                      View Drink(s)
                     </Button>
                   </a>
                 </div>
