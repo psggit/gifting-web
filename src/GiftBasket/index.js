@@ -321,7 +321,7 @@ class GiftBasket extends React.Component {
                           discount={this.state.discount}
                         />
                       </div>
-                      <div className="personalise-btn" style={{ marginTop: "20px", width: "100%" }}>
+                      <div className="personalise-btn" style={{ marginTop: "20px", width: "100%", zIndex: 1 }}>
                         <div>
                           <p className="os s4">{this.state.totalDrinks} drinks in basket</p>
                           <p className="os s4"><b>&#8377; {this.state.total}</b></p>

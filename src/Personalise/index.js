@@ -252,7 +252,7 @@ class Personalise extends React.Component {
               localStorage.getItem("hasura-id")
                 ? (
                   <React.Fragment>
-                    <div style={{ marginTop: "20px" }} className="payment-button">
+                    <div style={{ marginTop: "20px", zIndex: "1" }} className="payment-button">
                       <Button
                         disabled={!this.state.agreement}
                         onClick={this.proceedToPayment}
@@ -265,7 +265,7 @@ class Personalise extends React.Component {
                 )
                 : (
                   <React.Fragment>
-                    <div style={{ marginTop: "20px" }} className="payment-button">
+                    <div style={{ marginTop: "20px", zIndex: "1" }} className="payment-button">
                       <Button
                         disabled={!this.state.agreement}
                         onClick={() => { mountModal(SignIn({ mobile: this.state.senderNumber })) }}
