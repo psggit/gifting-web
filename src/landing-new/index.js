@@ -82,7 +82,7 @@ class Landing extends React.Component {
           <Slider />
           <div className="steps">
             <div className="step-image">
-              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240057/Gifting-website/Step1.jpg" />
+              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_1000,q_auto:good/v1550240057/Gifting-website/Step1.jpg" />
             </div>
             <div className="step-notes">
               <div>
@@ -94,7 +94,7 @@ class Landing extends React.Component {
 
           <div className="steps">
             <div className="step-image">
-              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/v1553595499/Gifting-website/Step_2.jpg" />
+              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_1000,q_auto:good/v1553595499/Gifting-website/Step_2.jpg" />
             </div>
             <div className="step-notes">
               <div>
@@ -106,7 +106,7 @@ class Landing extends React.Component {
 
           <div className="steps">
             <div className="step-image">
-              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512,q_auto:good/v1550240058/Gifting-website/Step3.jpg" />
+              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_1000,q_auto:good/v1550240058/Gifting-website/Step3.jpg" />
             </div>
             <div className="step-notes">
               <div>
