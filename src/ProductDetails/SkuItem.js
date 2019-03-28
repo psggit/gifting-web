@@ -56,8 +56,8 @@ class SkuItem extends React.Component {
       console.log("item", item)
       return {
         count: item.count,
-        product_id: item.sku.offer.cash_back_offer_id ? item.sku.offer.cash_back_offer_id : item.sku.sku_pricing_id,
-        type: item.sku.offer.cash_back_offer_id ? "cashback" : "normal"
+        product_id: item.sku && item.sku.offer ? item.sku.offer.cash_back_offer_id : item.sku.sku_pricing_id,
+        type: item.sku && item.sku.offer ? "cashback" : "normal"
       }
     })
 
