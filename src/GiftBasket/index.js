@@ -128,8 +128,8 @@ class GiftBasket extends React.Component {
     const products = basket.map(item => {
       return {
         count: item.count,
-        product_id: item.sku.sku_pricing_id,
-        type: "normal"
+        product_id: item.sku && item.sku.offer ? item.sku.offer.cash_back_offer_id : item.sku.sku_pricing_id,
+        type: item.sku && item.sku.offer ? "cashback" : "normal"
       }
     })
     const giftCardSummaryReq = {
