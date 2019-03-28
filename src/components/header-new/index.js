@@ -120,8 +120,8 @@ class Header extends React.Component {
                 <div className="menu-icon">
                   {
                     !this.state.isMenuOpen ? 
-                      <span onClick={this.onToggle}><Icon name="menu" /></span>
-                      : <span onClick={this.onToggle}><Icon name="cross" /></span>
+                      <div onClick={this.onToggle}><Icon name="menu" /></div>
+                      : <div onClick={this.onToggle}><Icon name="cross" /></div>
                   }
                 </div>
                 <div className="company-logo" >
