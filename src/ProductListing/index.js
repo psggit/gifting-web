@@ -133,7 +133,6 @@ class ProductListing extends React.Component {
   }
 
   setBrands(brands, CB) {
-    console.log("set brands")
     if (CB) {
       this.setState({ brands }, CB)
     } else {
@@ -179,7 +178,7 @@ class ProductListing extends React.Component {
         this.props.history.push(`/brands/${city.name}/${sortedGenres[0].short_name}`)
         this.setState({ activeGenre: sortedGenres[0].short_name })
         this.setGenres(sortedGenres)
-        console.log("fetch genres")
+        
         fetchBrandsUsingGenre({
           city: capitalize(city.name),
           genre: sortedGenres[0].short_name,
@@ -296,7 +295,6 @@ class ProductListing extends React.Component {
 
   render() {
     const showMobileBasket = this.state.isMobile && this.state.basket
-    console.log("active genre", this.state.activeGenre)
     return (
       <div id="BrandsListing">
         <div className="container">
@@ -370,9 +368,12 @@ class ProductListing extends React.Component {
             {
               showMobileBasket && <BasketTotal />
             }
-            { this.state.isLoading && <Loader /> } 
             {
-              !this.state.isLoading && this.state.brands.length > 0 &&
+              this.state.isLoading &&
+              <Loader />
+            }
+            {
+              !this.state.isLoading &&
                 <BrandsList
                   activeGenre={this.state.activeGenre}
                   activeCity={this.state.activeCity}
@@ -380,9 +381,10 @@ class ProductListing extends React.Component {
                 />
             }
             {
-              !this.state.isBrandsAvailable &&
+              !this.state.isBrandsAvailable && this.state.brands.length === 0 &&
               <NoBrandsAvailable />
             }
+            { this.state.isBrandsLoading && <Loader /> }
             <div style={{ position: "absolute", bottom: "25%" }} id="scroll-intersection"></div>
           </div>
         </div>
