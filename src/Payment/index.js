@@ -376,7 +376,6 @@ class Payment extends React.Component {
       console.log("item", item)
       return {
         count: item.count,
-        gps: JSON.parse(localStorage.getItem("receiver_info")).gps,
         // product_id: item.sku.sku_pricing_id,
         // type: "normal"
         product_id: item.sku && item.sku.offer ? item.sku.offer.cash_back_offer_id : item.sku.sku_pricing_id,
@@ -389,6 +388,7 @@ class Payment extends React.Component {
       data: {
         amount: parseFloat(amount),
         mode: "gift",
+        gps: JSON.parse(localStorage.getItem("receiver_info")).gps,
         promo_code: localStorage.getItem("promo_code"),
         gift_message: giftMessage,
         receiver_number: receiverNumber,
