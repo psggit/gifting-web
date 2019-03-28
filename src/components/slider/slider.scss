@@ -8,16 +8,24 @@
   }
 
   .slick-slide {
+    // height: 240px;
+    // display: flex;
+    // //align-content: center;
+    // //align-items: center;
+    // justify-content: center;
+    // flex-direction: column;
     height: 240px;
     display: flex;
     align-content: center;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
+
+    div {
+      width: 100%;
+    }
   }
   .brands {
     .brand {
-      text-align: center;
+      text-align: -webkit-center;
       display: flex;
 
       .brand-icon {
@@ -35,6 +43,9 @@
  }
 }
 
-@media only screen and (max-width: 480px) {
- 
+@media only screen and (max-width: 320px) {
+  img {
+    width: 240px;
+    //height: 240px;
+  }
 }

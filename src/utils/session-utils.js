@@ -62,6 +62,7 @@ export function clearSession() {
   localStorage.removeItem("hasura-id")
   localStorage.removeItem("username")
   localStorage.removeItem("promo_code")
+  localStorage.removeItem("sender_mobile")
 }
 
 export function  readCookie(name) {

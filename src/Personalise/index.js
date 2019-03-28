@@ -26,12 +26,12 @@ class Personalise extends React.Component {
     this.receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     this.senderName = localStorage.getItem("username") || ""
     this.senderNumber = localStorage.getItem("sender_mobile") || ""
-    console.log("name and number", this.senderName, localStorage.getItem("sender_mobile") )
+    console.log("name and number", this.receiverInfo, this.senderName, localStorage.getItem("sender_mobile") )
     this.state = {
       senderName: this.senderName,
       senderNumber: this.senderNumber,
       giftMessage: this.receiverInfo ? (this.receiverInfo.message || "") : "",
-      receiverName: this.receiverInfo ? (this.receiverInfo.receiverName || "") : "",
+      receiverName: this.receiverInfo ? (this.receiverInfo.name || "") : "",
       receiverNumber: this.receiverInfo ? (this.receiverInfo.phone || "") : "",
       count: this.gift 
         ? this.gift.giftMessage ?  this.characterLimit - this.gift.giftMessage.length : this.characterLimit
@@ -78,7 +78,11 @@ class Personalise extends React.Component {
 
   handleTextChange(e) {
     this.setState({ [e.target.name]: trimSpaces(e.target.value) })
-    this.receiverInfo[e.target.name] = e.target.value
+    if(e.target.name === "receiverName") {
+      this.receiverInfo["name"] = e.target.value
+    } else {
+      this.receiverInfo[e.target.name] = e.target.value
+    }
     console.log("adad", this.receiverInfo)
     localStorage.setItem("receiver_info", JSON.stringify(this.receiverInfo))
   }
