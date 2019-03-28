@@ -295,6 +295,7 @@ class ProductListing extends React.Component {
 
   render() {
     const showMobileBasket = this.state.isMobile && this.state.basket
+    console.log("active genre", this.state.activeGenre)
     return (
       <div id="BrandsListing">
         <div className="container">

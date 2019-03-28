@@ -130,7 +130,7 @@ class SkuItem extends React.Component {
     
     console.log("basket", basketItem)
     let productDetails = ({
-      volume: basketItem.sku.sku_id,
+      sku_id: basketItem.sku.sku_id,
     })
     console.log("product Details", productDetails)
     if(window.gtag) {
