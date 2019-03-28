@@ -94,7 +94,7 @@ class Landing extends React.Component {
 
           <div className="steps">
             <div className="step-image">
-              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_512/v1553508851/Gifting-website/shutterstock_226525846_2.jpg" />
+              <img alt={alt} src="https://res.cloudinary.com/www-hipbar-com/image/upload/v1553595499/Gifting-website/Step_2.jpg" />
             </div>
             <div className="step-notes">
               <div>
