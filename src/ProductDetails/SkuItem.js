@@ -53,10 +53,11 @@ class SkuItem extends React.Component {
 
   setBasketFromApi(basket, promoCode, CB) {
     const products = basket.map(item => {
+      console.log("item", item)
       return {
         count: item.count,
-        product_id: item.sku.sku_pricing_id,
-        type: "normal"
+        product_id: item.sku.offer.cash_back_offer_id ? item.sku.offer.cash_back_offer_id : item.sku.sku_pricing_id,
+        type: item.sku.offer.cash_back_offer_id ? "cashback" : "normal"
       }
     })
 
@@ -72,6 +73,7 @@ class SkuItem extends React.Component {
       .then(giftSummary => {
         this.setState({ addingToBasket: false })
         localStorage.setItem("basket", JSON.stringify(basket))
+        console.log("resp products", giftSummary.products)
         const updatedBasket = this.getUpdatedBasket(giftSummary.products)
         this.props.setBasketCount(getBasketTotal(basket))
         this.updateLocalBasket(updatedBasket)
@@ -90,13 +92,16 @@ class SkuItem extends React.Component {
   }
 
   getProductUsingSkuId(id, products) {
+    console.log("products", products)
     return products.find((item) => item.sku_id === id)
   }
 
   getUpdatedBasket(products) {
     const basket = JSON.parse(localStorage.getItem("basket"))
     return basket.map((item) => {
+      console.log("price", item)
       const product = this.getProductUsingSkuId(item.sku.sku_id, products)
+      console.log("product", product)
       item.sku.price = product.display_price
       item.count = product.count
       return item
