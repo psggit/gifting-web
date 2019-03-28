@@ -78,7 +78,7 @@ const brandImages = [
   "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_50,q_auto:good/v1551433030/Gifting-website/Brand_logos/Captain_Morgan.png",
   // "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_145,q_auto:good/v1551433030/Gifting-website/Brand_logos/Black___White.png",
   // "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_175,q_auto:good/v1551433030/Gifting-website/Brand_logos/Black___White_12.png",
-  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_300,q_auto:good/v1553595833/Gifting-website/more_button_2.jpg "
+  "https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,h_200,q_auto:good/v1553595833/Gifting-website/more_button_2.jpg "
 ]
 
 const BrandPartner = () => (
