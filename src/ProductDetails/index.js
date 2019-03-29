@@ -188,7 +188,8 @@ class ProductDetails extends React.Component {
                   Nao Spirits (Greater Than Gin),
                   Desmondji,
                   Big Banyan,
-                  Gusto Imports
+                  Gusto Imports,
+                  Sipping Spirits
                 </p>
               </div>
 
