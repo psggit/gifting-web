@@ -180,15 +180,15 @@ class ProductDetails extends React.Component {
               <div>
                 <p className="os s5">
                   <b>Our Partners:&nbsp;</b>
-                  Beam Suntory,
                   Bacardi,
-                  Carlsberg,
                   Bira,
-                  Brown Forman,
                   ABInBev,
                   Diageo,
-                  Paul John
-
+                  Paul John,
+                  Nao Spirits (Greater Than Gin),
+                  Desmondji,
+                  Big Banyan,
+                  Gusto Imports
                 </p>
               </div>
 
