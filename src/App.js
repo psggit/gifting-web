@@ -25,6 +25,7 @@ import AgeGateAlert from "./AgeGateAlert"
 
 import {ThemeProvider, ThemeContext} from "./ThemeProvider"
 import Header from "Components/header"
+import HeaderWithoutSignIn from "Components/headerWithoutSignin"
 import GiftBasket from "./GiftBasket"
 
 import GetStarted from "./SendGiftWizard/GetStarted"
@@ -354,6 +355,9 @@ if (!document.getElementById("app").childNodes.length) {
 } else {
   if (document.getElementById("header") && location.pathname !== "/legal-drinking-age") {
     ReactDOM.hydrate(<Header />, document.getElementById("header"))
+  }
+  if (document.getElementById("header") && location.pathname == "/legal-drinking-age") {
+    ReactDOM.hydrate(<HeaderWithoutSignIn />, document.getElementById("header"))
   }
   if (document.getElementById("footer-wrapper")) {
     ReactDOM.render(<Footer />, document.getElementById("footer-wrapper"))
