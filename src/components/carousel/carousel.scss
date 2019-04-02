@@ -1,0 +1,62 @@
+@import "./../../sass/base.scss";
+
+.hb--carousel {
+  width: 100%;
+  position: relative;
+}
+
+.hb--carousel__track {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hb--carousel__item {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.hb--carousel__item > .genre--item {
+  width: auto;
+}
+
+.hb--carousel__item .genre--item.active p {
+  position: relative;
+  &:after {
+    left: 0;
+    position: absolute;
+    content: "";
+    display: inline-block;
+    height: 2px;
+    border-radius: 4px;
+    width: 100%;
+    @include themify($themes) {
+      background: themed("text-color")
+    }
+  }
+}
+
+.hb--carousel__arrow {
+  position: absolute;
+  top: calc(50% + 2px);
+  z-index: 2;
+  transform: translateY(-50%);
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  @include themify($themes) {
+    background: themed("paper-color");
+  }
+
+  &.left {
+    left: 0;
+  }
+
+  &.right {
+    right: -10px;
+  }
+
+  &.left svg {
+    transform: rotate(-180deg);
+  }
+}
