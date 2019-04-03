@@ -14,7 +14,6 @@ class GenresSlider extends React.Component {
       initialSlide: this.getGenreIndexByName(props.active),
       slidesToShow: 3,
       slidesToScroll: 0,
-      initialSlide: 0,
       variableWidth: true,
       prevArrow: <div><Icon name="chevronRight" /></div>,
       nextArrow: <div><Icon name="chevronRight" /></div>,

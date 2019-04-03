@@ -89,7 +89,7 @@ class FailureTransaction extends React.Component {
           </div>
           <p style={{ textAlign: "center", padding: "0 20px" }} className="os s4">
           Please get in touch with our customer support team<br />
-through chat for further support
+through chat for further assistance
           </p>
         </div>
       </div>
