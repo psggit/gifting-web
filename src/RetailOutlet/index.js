@@ -105,12 +105,12 @@ class RetailOutlet extends React.Component {
   }
 
   renderOutlet(item) {
-    const gpsCoordinates = item.Gps.split(",")
+    const gpsCoordinates = item.retailer_gps.split(",")
     return (
       <div className="retailer">
         <div className="details">
-          <p className="name os s5">{item.RetailerName}</p>
-          <p className="os s7">{item.Address}</p>
+          <p className="name os s5">{item.retailer_name}</p>
+          <p className="os s7">{item.retailer_address}</p>
         </div>
         {/* <p className="direction os s8" onClick={() => this.loadMap(item.retailer_gps)}>DIRECTIONS</p> */}
         <a className="direction os s8" onClick={() => this.triggerEvent(item)} href={` https://www.google.com/maps/search/?api=1&query=${gpsCoordinates[0]},${gpsCoordinates[1]}`} target="_blank">
