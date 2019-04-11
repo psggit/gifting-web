@@ -228,7 +228,7 @@ class SkuItem extends React.Component {
               <div className="volumes--border"></div>
 
               <div className="sku--item__price">
-                <span className="os s6">MRP:</span>
+                <span className="os s6">Price:</span>
                 <span className="os s2">
                   <span style={{ marginRight: "5px" }}>&#8377;</span>
                   {
@@ -270,7 +270,7 @@ class SkuItem extends React.Component {
           <div className="volumes--border"></div>
 
           <div className="sku--item__price">
-            <span className="os s6">MRP:</span>
+            <span className="os s6">Price:</span>
             <span className="os s4">
               &#8377;&nbsp;
               {
