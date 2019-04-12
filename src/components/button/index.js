@@ -34,6 +34,7 @@ class Button extends React.Component {
         <span className="os">
           { this.props.children }
           {
+            //REFACTOR: icon must be coming be as children prop
             this.props.icon &&
             <Icon name={this.props.icon} />
           }
