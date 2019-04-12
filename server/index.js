@@ -352,6 +352,14 @@ app.get("/robots.txt", (req, res) => {
   })
 })
 
+app.get("/sitemap.xml", (req, res) => {
+  res.sendFile(path.join(__dirname, "./../sitemap.xml"), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
   const city = capitalize(req.params.citySlug)
   const genre = req.params.genreSlug
