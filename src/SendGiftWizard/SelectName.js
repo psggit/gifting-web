@@ -18,14 +18,13 @@ class SelectName extends React.Component {
   }
 
   componentDidMount() {
-    localStorage.removeItem("receiver_info")
-    localStorage.removeItem("amount")
-    localStorage.removeItem("basket")
-    localStorage.removeItem("promo_code")
+    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
+    if (receiverInfo.name) {
+      this.setState({ name: receiverInfo.name })
+    }
   }
 
   handleKeyDown(e) {
-    console.log(this.state.name.length, e.keyCode)
     if (this.state.name.length >= 3 && e.keyCode === 13) {
       const path = "/send-gift/select-city"
       this.props.history.push(path)

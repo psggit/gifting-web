@@ -10,6 +10,7 @@ function getAPIObj() {
     catman: "https://catman." + baseHost,
     loki: "https://loki." + baseHost,
     promoman: "https://promoman." + baseHost,
+    stockandprice: "https://stockandprice." + baseHost + "/Api/stockandprice"
   }
 }
 

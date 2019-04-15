@@ -100,9 +100,9 @@ class GenresSlider extends React.Component {
                 active={this.state.active}
                 onChange={this.handleGenreChange}
                 key={i}
-                id={i}
-                name={item.display_name}
-                shortName={item.short_name}
+                id={item.id}
+                name={item.name}
+                // shortName={item.short_name}
               />
             ))
           }

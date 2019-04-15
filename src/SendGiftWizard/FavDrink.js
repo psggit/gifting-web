@@ -23,7 +23,7 @@ class FavDrink extends React.Component {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     if (!receiverInfo && !receiverInfo.cityName) {
       this.props.history.goBack()
@@ -44,6 +44,9 @@ class FavDrink extends React.Component {
     document.removeEventListener("keydown", this.handleEnterPress)
   }
 
+  getGenreShortName(name) {
+    return name.toLowerCase().split(" ").join("-")
+  }
 
   componentDidMount() {
     document.addEventListener("keydown", this.handleEnterPress)
@@ -51,55 +54,55 @@ class FavDrink extends React.Component {
     if (receiverInfo) {
       this.setState({
         name: receiverInfo.name,
-        // active: receiverInfo.genreId,
-        selectedGenre: receiverInfo.genreName || null,
-        selectedCity: receiverInfo.cityName
+        state_id: receiverInfo.state_id
       })
     }
 
     const fetchGenresReq = {
-      city: receiverInfo.cityName
+      state_id: receiverInfo.state_id
     }
     fetchGenres(fetchGenresReq)
       .then(genres => {
         const sortedGenres = genres.sort((a, b) => a.ordinal_position - b.ordinal_position)
-        this.setState({ genres: sortedGenres, active: this.getGenreIdByName(sortedGenres, receiverInfo.genreName), loadingGenres: false })
+        this.setState({ genres: sortedGenres, active: receiverInfo.genre_id, loadingGenres: false })
       })
   }
 
   handleClick(e) {
     e.preventDefault()
-    if (!this.state.selectedGenre) {
+    if (!this.state.active) {
       return false
     } else {
       const path = "/" + e.currentTarget.href.split("/").slice(3).join("/")
       location.href = path
+      // this.props.history.push(path)
     }
   }
 
   handleGenreChange(genre) {
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     if (receiverInfo) {
-      receiverInfo.genreName = genre.shortName
+      receiverInfo.genreName = genre.name
+      receiverInfo.genre_id = genre.id
     }
 
     if(window.gtag) {
       gtag("event", "choose_genre", {
         "event_label": JSON.stringify({
-          selectedGenre: genre.shortName,
+          selectedGenre: genre.name,
           date: Moment(new Date()).format("DD/MM/YYYY")
         })
       })
     }
 
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
-    this.setState({ active: genre.id, selectedGenre: genre.shortName })
+    this.setState({ active: genre.id, selectedGenre: genre.name })
   }
   render() {
     return (
       <div id="send-gift-drink">
         {/* <MobileNavBar stepNo = {3} stepName = {"Favourite drink"}  */}
-          {/* handleNavigatePageClick = {props.handleNavigatePageClick}/> */}
+        {/* handleNavigatePageClick = {props.handleNavigatePageClick}/> */}
         <div className="container">
           <div className="paper">
             <div className="paper-content">
@@ -123,9 +126,9 @@ class FavDrink extends React.Component {
                               <GenreItem
                                 active={this.state.active}
                                 onChange={this.handleGenreChange}
-                                id={i}
-                                name={item.display_name}
-                                shortName={item.short_name}
+                                id={item.id}
+                                name={item.name}
+                                // shortName={item.short_name}
                               />
                             </div>
                           ))
@@ -141,9 +144,9 @@ class FavDrink extends React.Component {
                 }
 
                 <div style={{ marginTop: "20px" }}>
-                  <a onClick={this.handleClick} href={`/brands/${this.state.selectedCity}/${this.state.selectedGenre}`}>
+                  <a onClick={this.handleClick} href={`/brands/${this.state.state_id}/${this.state.active}`}>
                     <Button
-                      disabled={!this.state.selectedGenre}
+                      disabled={this.state.active === -1}
                       primary
                       icon="rightArrowWhite"
                       className="small"

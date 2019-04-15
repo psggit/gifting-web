@@ -12,7 +12,8 @@ export default function CityCheckBox(props){
         props.handleClick({
           id: props.id,
           gps: props.gps,
-          name: props.name
+          name: props.name,
+          state_id: props.state_id
         })
       }
       className={`city--item ${active === id ? "active" : ""}`}>

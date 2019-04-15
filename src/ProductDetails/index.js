@@ -8,6 +8,7 @@ import { capitalize } from "Utils/logic-utils"
 import { getBasketTotal } from "./SkuItem"
 import GiftMoreDrinks from "./../GiftMoreDrinks"
 import Moment from "moment"
+import { scrollToTop } from "Utils/ui-utils"
 
 function getImageUrl(image) {
   return `https://api2.${process.env.BASE_URL}/get?fs_url=${image}`
@@ -28,10 +29,10 @@ class ProductDetails extends React.Component {
     this.toggleProductAdded = this.toggleProductAdded.bind(this)
   }
   componentDidMount() {
-    console.log("product", params)
+    scrollToTop()
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     const brand = window.BRAND_STATE || null
-    const activeCity = window.__active_city__ || this.props.match.params.citySlug
+    const activeState = window.__active_city__ || this.props.match.params.citySlug
     const activeGenre = window.__active_genre__ || this.props.match.params.genreSlug
     const isMobile = window.__isMobile__ || this.props.context.isMobile
     delete window.__isMobile__
@@ -39,8 +40,8 @@ class ProductDetails extends React.Component {
 
     this.setState({ isMobile, brand })
 
-    receiverInfo.cityName = activeCity
-    receiverInfo.genreName = activeGenre
+    receiverInfo.state_id = activeState
+    receiverInfo.genre_id = activeGenre
 
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     
@@ -49,12 +50,14 @@ class ProductDetails extends React.Component {
     const { params } = this.props.match  
     if (!brand){
       fetchSKUUsingBrand({
-        cityName: capitalize(params.citySlug),
-        genreShortName: params.genreSlug,
-        brandShortName: params.brandSlug
+        state_id: parseInt(params.citySlug),
+        genre_id: parseInt(params.genreSlug),
+        brand_id: parseInt(params.brandSlug),
+        offset: 0,
+        limit: 10
       })
-        .then(res => {
-          this.setState({ brand: res.brand })
+        .then(brand => {
+          this.setState({ brand })
         })
     }
     const gaObject = {
@@ -95,7 +98,14 @@ class ProductDetails extends React.Component {
           <div className="paper price">
             
             <div className="header">
-              <a href={this.state.viewProductsUrl}>
+              <a
+                onClick={(e) => {
+                  e.preventDefault()
+                  const path = "/" + e.currentTarget.href.split("/").slice(3).join("/")
+                  this.props.history.push(path)
+                }}
+                href={this.state.viewProductsUrl}
+              >
                 <Icon name="back"/>
                 <span style={{ marginLeft: "10px" }} className="os s5">View Drink(s)</span>
               </a>
@@ -113,7 +123,8 @@ class ProductDetails extends React.Component {
                 isMobile={this.state.isMobile}
                 setBasketCount={this.setBasketCount}
                 brand={brand}
-                volumes={brand ? brand.skus : []}
+                image={brand ? (brand.logo_high_res_image || brand.logo_low_res_image || "") : null}
+                volumes={brand ? brand.sku : []}
                 name={brand ? brand.brand_name : ""}
               />
             </div>

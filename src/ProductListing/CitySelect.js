@@ -17,8 +17,9 @@ class CitySelect extends React.Component {
     }
   }
 
-  getCityIndexByName(cities, name) {
-    return cities.findIndex(city => city.name === name)
+  getCityIndexByName(cities, activeState) {
+    console.log(cities, activeState)
+    return cities.findIndex(city => city.state_id === activeState)
   }
 
   getSortedCities(cities) {
@@ -33,11 +34,11 @@ class CitySelect extends React.Component {
     fetchCities()
       .then(cities => {
         this.setState({ cities: this.getSortedCities(cities) })
-        const activeCity = capitalize(this.props.activeCity)
 
-        const cityIdx = this.getCityIndexByName(cities, activeCity)
+        const cityIdx = this.getCityIndexByName(cities, this.props.activeState)
         const city = {
           gps: cities[cityIdx].gps,
+          state_id: cities[cityIdx].state_id,
           name: cities[cityIdx].name
         }
         const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}

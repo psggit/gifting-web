@@ -15,6 +15,7 @@ import WebHeader from "./WebHeader"
 import { fetchGenres, fetchBrandsUsingGenre } from "./../api"
 import { capitalize } from "Utils/logic-utils"
 import NoBrandsAvailable from "./NobrandsAvailable"
+import { scrollToTop } from "Utils/ui-utils"
  
 class ProductListing extends React.Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class ProductListing extends React.Component {
       intersectionTarget: null,
       isMobile: props.context ? props.context.isMobile : props.isMobile,
       basket: null,
-      activeCity: props.activeCity,
+      activeState: props.activeState,
       activeGenre: props.activeGenre
     }
 
@@ -63,36 +64,37 @@ class ProductListing extends React.Component {
   }
 
   componentDidMount() {
+    scrollToTop()
     const brands = window.__BRANDS__ || []
-    const activeCity = window.__active_city__ || this.props.match.params.citySlug
-    const activeGenre = window.__active_genre__ || this.props.match.params.genreSlug
+    const activeState = window.__active_state__ || parseInt(this.props.match.params.citySlug)
+    const activeGenre = window.__active_genre__ || parseInt(this.props.match.params.genreSlug)
     const isMobile = window.__isMobile__ || this.props.context.isMobile
     delete window.__isMobile__
-    delete window.__active_city__
+    delete window.__active_state__
     delete window.__active_genre__
     delete window.__BRANDS__
     
-    this.setState({ brands, activeCity, activeGenre, isMobile })
+    this.setState({ brands, activeState, activeGenre, isMobile })
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
-    receiverInfo.cityName = activeCity
-    receiverInfo.genreName = activeGenre
+    receiverInfo.activeState = activeState
+    receiverInfo.activeGenre = activeGenre
 
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.setState({ basket: JSON.parse(localStorage.getItem("basket")) })
     window.onpopstate = this.setDataFromUrl
     window.addEventListener("scroll", this.observeScrollDirection, false)
 
-    const fetchGenresReq = {
-      city: capitalize(activeCity)
-    }
+    // const fetchGenresReq = {
+    //   state_id: activeState
+    // }
 
-    fetchGenres(fetchGenresReq)
-      .then(genres => this.sortGenres(genres))
-      .then(sortedGenres => this.setGenres(sortedGenres))
+    // fetchGenres(fetchGenresReq)
+    //   .then(genres => this.sortGenres(genres))
+    //   .then(sortedGenres => this.setGenres(sortedGenres))
     /* Polyfill for intersection observer API */
     require("intersection-observer")
     if (!brands.length) {
-      this.setDataFromUrl()
+      this.setDataFromUrl(activeState, activeGenre)
     }
     this.findInterSection()
   }
@@ -102,24 +104,24 @@ class ProductListing extends React.Component {
     return { isMobile }
   }
 
-  setDataFromUrl() {
-    const { params } = this.props.match
+  setDataFromUrl(activeState, activeGenre) {
+    // const { params } = this.props.match
     const fetchBrandsReq = {
-      city: capitalize(params.citySlug),
-      genre: params.genreSlug,
+      state_id: activeState,
+      genre_id: activeGenre,
       offset: 0,
       limit: this.limit
     }
 
     const fetchGenresReq = {
-      city: capitalize(params.citySlug)
+      state_id: activeState
     }
 
-    this.setState({ activeCity: params.citySlug, activeGenre: params.genreSlug })
-    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
-    receiverInfo.cityName = params.citySlug
-    receiverInfo.genreName = params.genreSlug
-    localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
+    // this.setState({ activeState: params.citySlug, activeGenre: params.genreSlug })
+    // const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
+    // receiverInfo.cityName = params.citySlug
+    // receiverInfo.genreName = params.genreSlug
+    // localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
 
     fetchGenres(fetchGenresReq)
       .then(genres => this.sortGenres(genres))
@@ -167,22 +169,22 @@ class ProductListing extends React.Component {
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     localStorage.removeItem("basket")
     localStorage.removeItem("promo_code")
-    this.setState({ basket: null, activeCity: city.name, brands: [], genres: [], isLoading: true })
+    this.setState({ basket: null, activeState: city.state_id, brands: [], genres: [], isLoading: true })
     this.resetScrollIntersectionParams()
     const fetchGenresReq = {
-      city: capitalize(city.name)
+      state_id: city.state_id
     }
 
     fetchGenres(fetchGenresReq)
       .then(genres => this.sortGenres(genres))
       .then(sortedGenres => {
-        this.props.history.push(`/brands/${city.name}/${sortedGenres[0].short_name}`)
-        this.setState({ activeGenre: sortedGenres[0].short_name })
+        this.props.history.push(`/brands/${city.id}/${sortedGenres[0].id}`)
+        this.setState({ activeGenre: sortedGenres[0].id })
         this.setGenres(sortedGenres)
         
         fetchBrandsUsingGenre({
-          city: capitalize(city.name),
-          genre: sortedGenres[0].short_name,
+          state_id: city.state_id,
+          genre_id: sortedGenres[0].id,
           offset: 0,
           limit: this.limit
         })
@@ -191,15 +193,16 @@ class ProductListing extends React.Component {
   }
 
   handleGenreChange(genre) {
-    this.props.history.push(`/brands/${this.props.match.params.citySlug}/${genre.shortName}`)
-    this.setState({ activeGenre: genre.shortName, isLoading: true })
+    console.log(genre)
+    this.props.history.push(`/brands/${this.props.match.params.citySlug}/${genre.id}`)
+    this.setState({ activeGenre: genre.id, isLoading: true })
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) ||{}
-    receiverInfo.genreName = genre.shortName
+    receiverInfo.activeGenre = genre.id
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.resetScrollIntersectionParams()
     const fetchBrandsReq = {
-      city: capitalize(this.props.match.params.citySlug),
-      genre: genre.shortName,
+      state_id: parseInt(this.props.match.params.citySlug),
+      genre_id: genre.id,
       limit: this.limit,
       offset: 0
     }
@@ -227,8 +230,8 @@ class ProductListing extends React.Component {
           this.setState({ isBrandsLoading: true })
           this.offset += this.limit
           const fetchBrandsReq = {
-            city: capitalize(this.props.match.params.citySlug),
-            genre: this.props.match.params.genreSlug,
+            state_id: parseInt(this.props.match.params.citySlug),
+            genre_id: parseInt(this.props.match.params.genreSlug),
             limit: this.limit,
             offset: this.offset
           }
@@ -305,7 +308,7 @@ class ProductListing extends React.Component {
                 ? <MobileHeader
                   {...this.props}
                   activeGenre={this.state.activeGenre}
-                  activeCity={this.state.activeCity}
+                  activeState={this.state.activeState}
                   openGenres={this.openGenres}
                   handleGenreChange={this.handleGenreChange}
                   genres={this.state.genres}
@@ -315,7 +318,7 @@ class ProductListing extends React.Component {
                   {...this.props}
                   // key={this.state.WebHeaderKey}
                   activeGenre={this.state.activeGenre}
-                  activeCity={this.state.activeCity}
+                  activeState={this.state.activeState}
                   handleGenreChange={this.handleGenreChange}
                   genres={this.state.genres}
                   onCityChange={this.handleCityChange}
@@ -359,7 +362,7 @@ class ProductListing extends React.Component {
               <GenreOverlay
                 {...this.props}
                 activeGenre={this.state.activeGenre}
-                activeCity={this.state.activeCity}
+                activeState={this.state.activeState}
                 genres={this.state.genres}
                 closeGenres={this.closeGenres}
                 handleGenreChange={this.handleGenreChange}
@@ -376,8 +379,9 @@ class ProductListing extends React.Component {
             {
               !this.state.isLoading &&
                 <BrandsList
+                  {...this.props}
                   activeGenre={this.state.activeGenre}
-                  activeCity={this.state.activeCity}
+                  activeState={this.state.activeState}
                   data={this.state.brands} 
                 />
             }

@@ -189,16 +189,15 @@ class SkuItem extends React.Component {
     ))
   }
   componentDidMount() {
-    console.log("sku item")
     if (this.img && this.img.complete) {
       this.handleImageLoad()
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.volumes.length !== prevProps.volumes.length) {
+    if (this.props.image !== prevProps.image) {
       this.setState({
-        image: this.props.volumes[this.state.activeSku].brand_high_res_image || this.props.volumes[this.state.activeSku].brand_low_res_image
+        image: this.props.image
       })
     }
   }
@@ -233,7 +232,7 @@ class SkuItem extends React.Component {
                   <span style={{ marginRight: "5px" }}>&#8377;</span>
                   {
                     this.props.volumes.length
-                      ? `${this.props.volumes[this.state.activeSku].price.slice(1)}`
+                      ? `${this.props.volumes[this.state.activeSku].price}`
                       : ""
                   }
                   <br />
@@ -275,7 +274,7 @@ class SkuItem extends React.Component {
               &#8377;&nbsp;
               {
                 this.props.volumes.length &&
-                 `${this.props.volumes[this.state.activeSku].price.slice(1)}`
+                 `${this.props.volumes[this.state.activeSku].price}`
               }
               <br />
               <span className="os s9 cashback--title">

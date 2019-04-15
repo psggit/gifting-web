@@ -23,10 +23,7 @@ module.exports = {
     fs: 'empty' 
   },
   plugins: [
-    new CleanWebpackPlugin(["dist"], {
-      root: path.resolve(__dirname, "./../../"),
-      verbose: true
-    }),
+    new CleanWebpackPlugin(),
     new WorkboxPlugin.GenerateSW({
     // these options encourage the ServiceWorkers to get in there fast 
     // and not allow any straggling "old" SWs to hang around

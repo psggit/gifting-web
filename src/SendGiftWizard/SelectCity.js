@@ -32,8 +32,8 @@ class SelectCity extends React.Component {
   // }
 
   handleCityClick(activeCity) {
-    console.log("city", activeCity)
-    if(window.gtag) {
+    console.log(activeCity)
+    if (window.gtag) {
       gtag("event", "choose_city", {
         "event_label": JSON.stringify({
           cityName: activeCity.name,
@@ -42,10 +42,12 @@ class SelectCity extends React.Component {
       })
     }
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
-    if (receiverInfo) {
-      receiverInfo.gps = activeCity.gps
-      receiverInfo.cityName = activeCity.name
-    }
+    
+    receiverInfo.gps = activeCity.gps
+    receiverInfo.cityName = activeCity.name
+    receiverInfo.state_id = activeCity.state_id
+    receiverInfo.genre_id = -1
+
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.setState({ activeCity: activeCity.id })
   }
@@ -79,6 +81,13 @@ class SelectCity extends React.Component {
   }
 
   componentDidMount() {
+    const transactionCompleted = localStorage.getItem("transaction--completed")
+    if (transactionCompleted) {
+      localStorage.removeItem("receiver_info")
+      localStorage.removeItem("amount")
+      localStorage.removeItem("basket")
+      localStorage.removeItem("promo_code")
+    }
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     if (receiverInfo.name) {
       this.setState({ name: receiverInfo.name })
@@ -122,6 +131,7 @@ class SelectCity extends React.Component {
                                 active={this.state.activeCity}
                                 handleClick={this.handleCityClick}
                                 id={item.id}
+                                state_id={item.state_id}
                                 gps={item.gps}
                                 name={item.name}
                               />

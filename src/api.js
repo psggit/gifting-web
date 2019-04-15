@@ -71,34 +71,43 @@ export function fetchCities() {
 
 export function fetchBrandsUsingGenre(req) {
   return POST({
-    api: `/consumer/browse/web/genres/${req.city}/${req.genre}`,
+    api: `/listing/brands/${req.state_id}/${req.genre_id}`,
     handleError: true,
-    apiBase: "catman",
+    apiBase: "stockandprice",
     data: {
-      from: req.offset,
-      size: req.limit,
-      is_featured: false
+      offset: req.offset,
+      limit: req.limit
     }
   })
-    .then(json => json)
+    .then(json => json.brands)
 }
 
 export function fetchGenres(req) {
+  // return GET({
+  //   api: `/consumer/browse/web/genres/${req.city}`,
+  //   handleError: true,
+  //   apiBase: "catman"
+  // })
+  //   .then(json => json.data)
   return GET({
-    api: `/consumer/browse/web/genres/${req.city}`,
+    api: `/listing/genres/${req.state_id}`,
     handleError: true,
-    apiBase: "catman"
+    apiBase: "stockandprice"
   })
-    .then(json => json.data)
+    .then(json => json.genres)
 }
 
 export function fetchSKUUsingBrand(req) {
-  return GET({
-    api: `/consumer/browse/stores/${req.cityName}/${req.genreShortName}/${req.brandShortName}`,
+  return POST({
+    api: `/listing/branddetails/${req.state_id}/${req.genre_id}/${req.brand_id}`,
     handleError: true,
-    apiBase: "catman"
+    apiBase: "stockandprice",
+    data: {
+      offset: req.offset,
+      limit: req.limit
+    }
   })
-    .then(json => json)
+    .then(json => json.brand_details)
 }
 
 export function fetchCoupons(req) {

@@ -47,10 +47,7 @@ const config = {
     new webpack.DefinePlugin({
       "process.env.BROWSER": JSON.stringify(true)
     }),
-    new CleanWebpackPlugin(["dist-ssr"], {
-      root: path.resolve(__dirname, "./../../"),
-      verbose: true
-    }),
+    new CleanWebpackPlugin(),
   ]
 
 }
