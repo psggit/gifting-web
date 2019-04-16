@@ -73,7 +73,7 @@ class Basket extends React.Component {
           </div>
 
           {
-            this.state.basket.map(item => (
+            this.props.basket.map(item => (
               <GiftBasketItem
                 updateBasket={this.updateBasket}
                 key={item.sku.sku_id}

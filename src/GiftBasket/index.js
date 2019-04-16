@@ -128,13 +128,13 @@ class GiftBasket extends React.Component {
     const products = basket.map(item => {
       return {
         count: item.count,
-        product_id: item.sku && item.sku.offer ? item.sku.offer.cash_back_offer_id : item.sku.sku_pricing_id,
-        type: item.sku && item.sku.offer ? "cashback" : "normal"
+        sku_id: item.sku.sku_id
       }
     })
     const giftCardSummaryReq = {
       promo_code: promoCode,
-      gps: JSON.parse(localStorage.getItem("receiver_info")).gps,
+      state_id: JSON.parse(localStorage.getItem("receiver_info")).state_id,
+      city_id: JSON.parse(localStorage.getItem("receiver_info")).city_id,
       products
     }
     return fetchGiftCardSummary(giftCardSummaryReq)
@@ -216,7 +216,7 @@ class GiftBasket extends React.Component {
   }
 
   getPriceUsingSkuId(id, products) {
-    return products.find((item) => item.sku_id === id).display_price
+    return products.find((item) => item.sku_id === id).price
   }
 
   UNSAFE_componentWillMount() {

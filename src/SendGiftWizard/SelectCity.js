@@ -32,7 +32,6 @@ class SelectCity extends React.Component {
   // }
 
   handleCityClick(activeCity) {
-    console.log(activeCity)
     if (window.gtag) {
       gtag("event", "choose_city", {
         "event_label": JSON.stringify({
@@ -47,6 +46,7 @@ class SelectCity extends React.Component {
     receiverInfo.cityName = activeCity.name
     receiverInfo.state_id = activeCity.state_id
     receiverInfo.genre_id = -1
+    receiverInfo.city_id = activeCity.id
 
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.setState({ activeCity: activeCity.id })

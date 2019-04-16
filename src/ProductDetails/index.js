@@ -32,8 +32,10 @@ class ProductDetails extends React.Component {
     scrollToTop()
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     const brand = window.BRAND_STATE || null
-    const activeState = window.__active_city__ || this.props.match.params.citySlug
-    const activeGenre = window.__active_genre__ || this.props.match.params.genreSlug
+    const activeState = window.__active_city__ || parseInt(this.props.match.params.citySlug)
+    const activeGenre = window.__active_genre__ || parseInt(this.props.match.params.genreSlug)
+    const activeBrand = parseInt(this.props.match.params.brandSlug)
+
     const isMobile = window.__isMobile__ || this.props.context.isMobile
     delete window.__isMobile__
     delete window.BRAND_STATE
@@ -47,12 +49,12 @@ class ProductDetails extends React.Component {
     
     const basket = JSON.parse(localStorage.getItem("basket"))
     this.setState({ basketCount: basket ? getBasketTotal(basket) : 0 })
-    const { params } = this.props.match  
+    
     if (!brand){
       fetchSKUUsingBrand({
-        state_id: parseInt(params.citySlug),
-        genre_id: parseInt(params.genreSlug),
-        brand_id: parseInt(params.brandSlug),
+        state_id: activeState,
+        genre_id: activeGenre,
+        brand_id: activeBrand,
         offset: 0,
         limit: 10
       })
@@ -61,9 +63,9 @@ class ProductDetails extends React.Component {
         })
     }
     const gaObject = {
-      brand: params.brandSlug,
-      genre: params.genreSlug,
-      city: params.citySlug,
+      // brand: params.brandSlug,
+      // genre: params.genreSlug,
+      // city: params.citySlug,
       date: Moment(new Date()).format("DD/MM/YYYY")
     }
     if(window.gtag) {

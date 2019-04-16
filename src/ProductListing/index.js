@@ -76,8 +76,8 @@ class ProductListing extends React.Component {
     
     this.setState({ brands, activeState, activeGenre, isMobile })
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
-    receiverInfo.activeState = activeState
-    receiverInfo.activeGenre = activeGenre
+    receiverInfo.state_id = activeState
+    receiverInfo.genre_id = activeGenre
 
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.setState({ basket: JSON.parse(localStorage.getItem("basket")) })
@@ -166,6 +166,8 @@ class ProductListing extends React.Component {
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     receiverInfo.cityName = city.name
     receiverInfo.gps = city.gps
+    receiverInfo.city_id = city.id
+    receiverInfo.state_id = city.state_id
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     localStorage.removeItem("basket")
     localStorage.removeItem("promo_code")
@@ -193,11 +195,10 @@ class ProductListing extends React.Component {
   }
 
   handleGenreChange(genre) {
-    console.log(genre)
     this.props.history.push(`/brands/${this.props.match.params.citySlug}/${genre.id}`)
     this.setState({ activeGenre: genre.id, isLoading: true })
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) ||{}
-    receiverInfo.activeGenre = genre.id
+    receiverInfo.genre_id = genre.id
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.resetScrollIntersectionParams()
     const fetchBrandsReq = {

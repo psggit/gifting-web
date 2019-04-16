@@ -140,7 +140,7 @@ class FavDrink extends React.Component {
 
                 {
                   !this.state.loadingGenres && this.state.genres.length === 0 &&
-                  <p style={{ marginTop: "20px" }} className="os s5">Services temporarily unavailable at this location due to ongoing retailer license renewal. We hope to be back soon!</p>
+                  <p style={{ marginTop: "20px" }} className="os s5">Services temporarily unavailable due to ongoing elections. We'll be back on Apr 19. #InkBeforeYouDrink</p>
                 }
 
                 <div style={{ marginTop: "20px" }}>

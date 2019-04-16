@@ -4,7 +4,6 @@ import "./sass/sku-item.scss"
 import { mountModal } from "Components/modal-box/utils"
 import AddedToBasketModal from "./AddedToBasketModal"
 import { fetchGiftCardSummary } from "./../api"
-import { getNegativePatternsAsPositive } from "fast-glob/out/managers/tasks";
 
 // const volumes = [
 //   { volume: "1 Ltr"  },
@@ -53,17 +52,16 @@ class SkuItem extends React.Component {
 
   setBasketFromApi(basket, promoCode, CB) {
     const products = basket.map(item => {
-      console.log("item", item)
       return {
         count: item.count,
-        product_id: item.sku && item.sku.offer ? item.sku.offer.cash_back_offer_id : item.sku.sku_pricing_id,
-        type: item.sku && item.sku.offer ? "cashback" : "normal"
+        sku_id: item.sku.sku_id
       }
     })
 
     const giftCardSummaryReq = {
       promo_code: promoCode,
-      gps: JSON.parse(localStorage.getItem("receiver_info")).gps,
+      state_id: JSON.parse(localStorage.getItem("receiver_info")).state_id,
+      city_id: JSON.parse(localStorage.getItem("receiver_info")).city_id,
       products
     }
 
@@ -102,7 +100,7 @@ class SkuItem extends React.Component {
       console.log("price", item)
       const product = this.getProductUsingSkuId(item.sku.sku_id, products)
       console.log("product", product)
-      item.sku.price = product.display_price
+      item.sku.price = product.price
       item.count = product.count
       return item
     })
