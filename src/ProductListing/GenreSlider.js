@@ -11,7 +11,7 @@ class GenresSlider extends React.Component {
       dots: false,
       //infinite: true,
       speed: 400,
-      initialSlide: this.getGenreIndexByName(props.active),
+      initialSlide: props.active,
       slidesToShow: 3,
       slidesToScroll: 0,
       variableWidth: true,
@@ -72,22 +72,11 @@ class GenresSlider extends React.Component {
     return this.props.genres.findIndex(genre => genre.short_name === name)
   }
 
-  componentDidMount() {
-    const active = this.props.active
-    const activeIdx = this.getGenreIndexByName(active)
-    this.setState({ active: activeIdx })
-  }
-
   componentDidUpdate(prevProps) {
     if (this.props.activeCity !== prevProps.activeCity) {
       let x = this.state.key
       x = x + 1
       this.setState({ key: x })
-    }
-    if ((prevProps.genres.length !== this.props.genres.length) || (this.props.active !== prevProps.active)) {
-      const active = this.props.active
-      const activeIdx = this.getGenreIndexByName(active)
-      this.setState({ active: activeIdx })
     }
   }
   render() {
@@ -97,7 +86,7 @@ class GenresSlider extends React.Component {
           {
             this.props.genres.map((item, i) => (
               <GenreItem
-                active={this.state.active}
+                active={this.props.active}
                 onChange={this.handleGenreChange}
                 key={i}
                 id={item.id}
