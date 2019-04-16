@@ -8,7 +8,8 @@
   padding-bottom: 20px;
   display: flex;
   align-items: center;
-  max-width: 70%;
+  width: 70%;
+  max-width: 100%;
 
   &:last-child {
     border-bottom: 0;
@@ -47,7 +48,7 @@
   }
 
   .gift--basket__item-desc {
-    width: 100%;
+    width: calc(100% - 65px - 16px);
     .row.price--quantity {
       margin-top: 10px;
       display: flex;

@@ -8,10 +8,10 @@ import { unmountModal } from "Components/modal-box2/utils"
 function GiftMoreDrinks({ url, history }) {
   return (
     <div className="gift--more-drinks">
-      <a href={url}>
+      <NavLink extendedOnclick={unmountModal} history={history} href={url}>
         <Icon name="giftIcon" />
         <p className="os s7">Gift more drink(s)</p>
-      </a>
+      </NavLink>
       <NavLink extendedOnclick={unmountModal} history={history} href="/basket">
         <Button primary icon="rightArrowWhite">Gift basket</Button>
       </NavLink>

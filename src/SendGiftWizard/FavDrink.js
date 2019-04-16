@@ -35,8 +35,8 @@ class FavDrink extends React.Component {
   }
 
   handleEnterPress(e) {
-    if (e.keyCode === 13 && this.state.selectedGenre) {
-      location.href = `/brands/${this.state.selectedCity}/${this.state.selectedGenre}`
+    if (e.keyCode === 13 && this.state.active > 0) {
+      location.href = `/brands/${this.state.state_id}/${this.state.active}/`
     }
   }
 

@@ -7,7 +7,9 @@ function NavLink({ href, children, history, extendedOnclick }) {
         e.preventDefault()
         const path = "/" + e.currentTarget.href.split("/").slice(3).join("/")
         history.push(path)
-        extendedOnclick()
+        if (extendedOnclick) {
+          extendedOnclick()
+        }
       }}
       href={href}>{children}
     </a>

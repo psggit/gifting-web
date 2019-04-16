@@ -143,7 +143,7 @@ class GiftBasket extends React.Component {
       .then(giftSummary => {
         const updatedBasket = this.getUpdatedBasket(giftSummary.products)
         this.updateLocalBasket(updatedBasket)
-        const total = giftSummary.format_balance.slice(1).split(" ").join("")
+        const total = giftSummary.balance
         localStorage.setItem("amount", total)
         this.setState({
           settingGiftSummary: false,
@@ -234,7 +234,7 @@ class GiftBasket extends React.Component {
     scrollToTop()
     const basket = JSON.parse(localStorage.getItem("basket"))
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
-    this.setState({ viewProductsUrl: `/brands/${receiverInfo.cityName}/${receiverInfo.genreName}`})
+    this.setState({ viewProductsUrl: `/brands/${receiverInfo.state_id}/${receiverInfo.genre_id}`})
     // console.log("basket", basket)
     // let cartDetails = basket.map((item) => {
     //   return ({

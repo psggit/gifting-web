@@ -137,6 +137,7 @@
   }
 
   .sku--item .sku--item__desc {
+    width: calc(100% - 65px - 20px);
     p {
       margin: 0;
     }

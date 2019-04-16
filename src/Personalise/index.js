@@ -6,6 +6,7 @@ import Button from "Components/button"
 import { validateTextField, validateNumberField } from "../utils/validators"
 import { mountModal } from "Components/modal-box/utils"
 import SignIn from "./../SignIn"
+import { scrollToTop } from "Utils/ui-utils"
 
 function trimSpaces(inputVal) {
   if (!inputVal.trim().length) {
@@ -52,6 +53,10 @@ class Personalise extends React.Component {
     this.proceedToPayment = this.proceedToPayment.bind(this)
     this.handlePhoneChange = this.handlePhoneChange.bind(this)
     this.handleTextChange = this.handleTextChange.bind(this)
+  }
+
+  componentDidMount() {
+    scrollToTop()
   }
 
   UNSAFE_componentWillMount() {

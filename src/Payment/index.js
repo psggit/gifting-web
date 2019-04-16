@@ -357,12 +357,10 @@ class Payment extends React.Component {
       console.log("item", item)
       return {
         count: item.count,
-        // product_id: item.sku.sku_pricing_id,
-        // type: "normal"
-        product_id: item.sku && item.sku.offer ? item.sku.offer.cash_back_offer_id : item.sku.sku_pricing_id,
-        type: item.sku && item.sku.offer ? "cashback" : "normal"
+        sku_id: item.sku.sku_id
       }
     })
+
     POST({
       api: "/consumer/payment/gift/create",
       apiBase: "orderman",
@@ -376,7 +374,9 @@ class Payment extends React.Component {
         sender_name: senderName,
         device: "web",
         receiver_name: receiverName,
-        products
+        products,
+        city_id: JSON.parse(localStorage.getItem("receiver_info")).city_id,
+        state_id: JSON.parse(localStorage.getItem("receiver_info")).state_id,
       },
       handleError: true
     })
@@ -389,21 +389,8 @@ class Payment extends React.Component {
           user_cred: json.user_cred,
           email: json.email,
           first_name: json.first_name,
-          // sender_name: senderName,
-          // sender_num: this.state.senderNumber,
-          // gift_message: giftMessage,
-          // receiver_name: receiverName,
-          // receiver_num: receiverNumber
         }
         CB()
-
-        
-        // localStorage.setItem("txn", JSON.stringify(this.postBody))
-        // this.props.history.push("/checkout", this.postBody)
-        // location.href = "/checkout"
-        // this.setState({ canProceed: true }, () => {
-        //   this.submit.click()
-        // })
       })
       .catch((err) => {
         this.setState({ isSubmitting: false })
