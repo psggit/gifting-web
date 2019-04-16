@@ -161,7 +161,8 @@ class SkuItem extends React.Component {
       this.props.toggleProductAdded()
       if (this.props.isMobile === false) {
         mountModal(AddedToBasketModal({
-          viewProductsUrl: this.props.viewProductsUrl
+          viewProductsUrl: this.props.viewProductsUrl,
+          history: this.props.history
         }))
       }
     })

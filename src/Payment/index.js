@@ -2,17 +2,13 @@ import React from "react"
 import "preact/debug"
 import "./../sass/form.scss"
 import "./payment.scss"
-import Header from "Components/header"
-import Footer from "Components/footer"
-import Collapsible from "Components/collapsible"
 import Button from "Components/button"
 import Accordian from "Components/accordian"
 import AccordianItem from "Components/accordian/accordian-item"
 import { GET, POST } from "Utils/fetch"
-import GiftCard from "Components/gift-card"
 import Icon from "Components/icon"
 import InputMask from "react-input-mask"
-import Moment from "moment"
+import { scrollToTop } from "Utils/ui-utils"
 
 // const cardNumMask = new IMask()
 
@@ -95,20 +91,6 @@ class Payment extends React.Component {
   }
 
   UNSAFE_componentWillMount() {
-    try {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-      })
-    } catch(err) {
-      if (err instanceof TypeError) {
-        window.scroll(0, 0)
-      } else {
-        throw err
-      }
-    }
-
     const transactionCompleted = localStorage.getItem("transaction--completed")
     if (transactionCompleted) {
       localStorage.removeItem("bsaket")
@@ -124,8 +106,7 @@ class Payment extends React.Component {
   }
 
   componentDidMount() {
-    // console.log(this.props);
-
+    scrollToTop()
     this.getBanks()
     this.getSavedCards()
   }

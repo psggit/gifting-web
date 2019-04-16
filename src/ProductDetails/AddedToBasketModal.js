@@ -22,7 +22,7 @@ export default function AddToBasketModal(data) {
               <p className="os s4">Added to Gift Basket</p>
             </ModalBody>
             <ModalFooter>
-              <GiftMoreDrinks url={data.viewProductsUrl} />
+              <GiftMoreDrinks history={data.history} url={data.viewProductsUrl} />
             </ModalFooter>
           </ModalBox>
         </div>

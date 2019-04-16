@@ -9,6 +9,8 @@ import { mountModal, unmountModal } from "Components/modal-box2/utils"
 import SignIn from "./../SignIn"
 import { fetchGiftCardSummary } from "./../api"
 import "./gift-basket.scss"
+import { scrollToTop } from "Utils/ui-utils"
+import NavLink from "Components/NavLink"
 
 function mountPromoCodesWeb(props) {
   mountModal(PromoCodesWeb({
@@ -229,6 +231,7 @@ class GiftBasket extends React.Component {
   }
 
   componentDidMount() {
+    scrollToTop()
     const basket = JSON.parse(localStorage.getItem("basket"))
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     this.setState({ viewProductsUrl: `/brands/${receiverInfo.cityName}/${receiverInfo.genreName}`})
@@ -326,9 +329,9 @@ class GiftBasket extends React.Component {
                           <p className="os s4">{this.state.totalDrinks} drinks in basket</p>
                           <p className="os s4"><b>&#8377; {this.state.total}</b></p>
                         </div>
-                        <a href="/personalise">
+                        <NavLink history={this.props.history} href="/personalise">
                           <Button icon="rightArrowWhite" primary>Personalise</Button>
-                        </a>
+                        </NavLink>
                       </div>
                     </div>
 

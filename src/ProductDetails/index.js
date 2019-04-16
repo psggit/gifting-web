@@ -9,6 +9,7 @@ import { getBasketTotal } from "./SkuItem"
 import GiftMoreDrinks from "./../GiftMoreDrinks"
 import Moment from "moment"
 import { scrollToTop } from "Utils/ui-utils"
+import NavLink from "Components/NavLink"
 
 function getImageUrl(image) {
   return `https://api2.${process.env.BASE_URL}/get?fs_url=${image}`
@@ -112,14 +113,15 @@ class ProductDetails extends React.Component {
                 <span style={{ marginLeft: "10px" }} className="os s5">View Drink(s)</span>
               </a>
 
-              <a href="/basket">
+              <NavLink history={this.props.history} href="/basket">
                 <Icon name="giftBasket" />
                 <span className="os s5" style={{ marginLeft: "10px" }}>Gift Basket ({this.state.basketCount})</span>
-              </a>
+              </NavLink>
             </div>
 
             <div className="sku--container">
               <SkuItem
+                history={this.props.history}
                 viewProductsUrl={this.state.viewProductsUrl}
                 toggleProductAdded={this.toggleProductAdded}
                 isMobile={this.state.isMobile}
