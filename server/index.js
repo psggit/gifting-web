@@ -361,15 +361,16 @@ app.get("/sitemap.xml", (req, res) => {
 })
 
 app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
-  const city = capitalize(req.params.citySlug)
+  const city = req.params.citySlug
   const genre = req.params.genreSlug
 
-  const url = `https://catman.${BASE_URL}/consumer/browse/web/genres/${city}/${genre}`
+  const url = `https://stockandprice.${BASE_URL}/Api/stockandprice/listing/brands/${city}/${genre}`
+  console.log(url)
   const options = {
     method: "post",
     body: {
-      from: 0,
-      size: 11
+      offset: 0,
+      limit: 11
     },
     json: true,
     url
@@ -380,17 +381,19 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
     const headWithNavbar = withHeader(head)
     res.write(withMetaTags(headWithNavbar, `/${city.toLowerCase()}/${genre}`, undefined, req.url))
 
+    console.log(body)
+
     const newTail = tail.split("{script}")
       .join(`
       <script id="ssr_script">
-        window.__isMobile__ = ${JSON.stringify(isMobile(req))}
-        window.__active_city__ = ${JSON.stringify(city)}
-        window.__active_genre__ = ${JSON.stringify(genre)}
-        window.__BRANDS__ = ${JSON.stringify(body)}
+        window.__isMobile__ = ${isMobile(req)}
+        window.__active_city__ = ${city}
+        window.__active_genre__ = ${genre}
+        window.__BRANDS__ = ${JSON.stringify(body.brands)}
       </script>
       `)
     const reactElement = React.createElement(BrandListingPage, {
-      brands: body,
+      brands: body.brands,
       activeGenre: genre,
       activeCity: city,
       isMobile: isMobile(req)
@@ -405,32 +408,39 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
 })
 
 app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
-  const city = capitalize(req.params.citySlug)
+  const city = req.params.citySlug
   const genre = req.params.genreSlug
-  const brand = urlencode(req.params.brandSlug)
+  // const brand = urlencode(req.params.brandSlug)
+  const brand = req.params.brandSlug
 
-  request({
-    method: "GET",
-    url: `https://catman.${BASE_URL}/consumer/browse/stores/${city}/${genre}/${brand}`,
-  }, (err, httpRes, body) => {
-    const parsed = JSON.parse(body)
+  const url = `https://stockandprice.${BASE_URL}/Api/stockandprice/listing/branddetails/${city}/${genre}/${brand}`
+  const options = {
+    method: "post",
+    body: {
+      offset: 0,
+      limit: 11
+    },
+    json: true,
+    url
+  }
+  request(options, (err, httpRes, body) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/product-detail.html"), "utf-8")
     const [head, tail] = html.split("{content}")
     const headWithNavbar = withHeader(head)
-    res.write(withMetaTags(headWithNavbar, `/${city.toLowerCase()}/${genre}`, parsed.brand.brand_name, req.url))
+    res.write(withMetaTags(headWithNavbar, `/${city.toLowerCase()}/${genre}`, body.brand_details.brand_name, req.url))
 
     const newTail = tail.split("{script}")
       .join(`
       <script>
-        window.__isMobile__ = ${JSON.stringify(isMobile(req))}
-        window.__active_city__ = ${JSON.stringify(city)}
-        window.__active_genre__ = ${JSON.stringify(genre)}
-        window.BRAND_STATE = ${JSON.stringify(parsed.brand)}
+        window.__isMobile__ = ${isMobile(req)}
+        window.__active_city__ = ${city}
+        window.__active_genre__ = ${genre}
+        window.BRAND_STATE = ${JSON.stringify(body.brand_details)}
       </script>
       `)
 
 
-    const reactElement = React.createElement(BrandDetailPage, { brand: parsed.brand })
+    const reactElement = React.createElement(BrandDetailPage, { brand: body.brand_details })
     const stream = renderToNodeStream(reactElement)
     stream.pipe(res, { end: false })
     stream.on("end", () => {

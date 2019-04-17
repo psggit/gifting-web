@@ -84,17 +84,18 @@ class ProductListing extends React.Component {
     window.onpopstate = this.setDataFromUrl
     window.addEventListener("scroll", this.observeScrollDirection, false)
 
-    // const fetchGenresReq = {
-    //   state_id: activeState
-    // }
+    const fetchGenresReq = {
+      state_id: activeState
+    }
 
-    // fetchGenres(fetchGenresReq)
-    //   .then(genres => this.sortGenres(genres))
-    //   .then(sortedGenres => this.setGenres(sortedGenres))
     /* Polyfill for intersection observer API */
     require("intersection-observer")
     if (!brands.length) {
       this.setDataFromUrl(activeState, activeGenre)
+    } else {
+      fetchGenres(fetchGenresReq)
+        .then(genres => this.sortGenres(genres))
+        .then(sortedGenres => this.setGenres(sortedGenres))
     }
     this.findInterSection()
   }

@@ -8,7 +8,7 @@ const TerserPlugin = require("terser-webpack-plugin")
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 
 module.exports = merge(common, {
-  mode: "production",
+  mode: "development",
   devtool: "source-map",
   plugins: [
     new MiniCssExtractPlugin({
