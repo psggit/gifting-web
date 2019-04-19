@@ -6,17 +6,15 @@ import {
   Route
 } from "react-router-dom"
 import { Router } from "react-router"
-import CreateHistory from 'history/createBrowserHistory'
-import LegalDrinkingAge from './LegalDrinkingAge'
-import RedeemingGiftCard from './RedeemingGiftCard'
+import { createBrowserHistory } from "history"
+import LegalDrinkingAge from "./LegalDrinkingAge"
+import RedeemingGiftCard from "./RedeemingGiftCard"
 import LandingPage from "./landing-new"
 import TransactionHistory from "./TransactionHistory"
 import Checkout from "./Payment"
 import RetailOutlet from "./RetailOutlet"
 import FAQ from "./FAQ"
 import Personalise from "./Personalise"
-import TransactionSuccessful from "./SuccessfulTransaction"
-import TransactionFail from "./FailureTransaction"
 import LocationMap from "./LocationMap"
 import ProductListing from "./ProductListing"
 import ProductDetails from "./ProductDetails"
@@ -49,21 +47,10 @@ import FailureTransaction from "./FailureTransaction";
 // const FAQ = makeAsyncComponent(() => import("./FAQ").then(module => module.default), { name: "Page 1" })
 
 
-const history = CreateHistory()
+const history = createBrowserHistory()
 
 // console.log(bolt)
 const ThemeConsumer = ThemeContext.Consumer
-
-const styles = {
-  dark: {
-    backgroundColor: "black",
-    color: "white"
-  },
-  light: {
-    backgroundColor: "white",
-    color: "black"
-  }
-}
 
 class App extends React.Component {
   constructor() {
