@@ -227,8 +227,8 @@ class ProductListing extends React.Component {
 
     let io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        console.log(this.disableScrollIntersection)
         if (entry.isIntersecting && !this.disableScrollIntersection) {
+          console.log("intersecting")
           this.setState({ isBrandsLoading: true })
           this.offset += this.limit
           const fetchBrandsReq = {

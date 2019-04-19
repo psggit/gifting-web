@@ -18,7 +18,6 @@ class MobileHeader extends React.Component {
 
   }
   getGenreNameByShortName(name) {
-    console.log(name, this.props.genres)
     if(this.props.genres.find(item => item.short_name === name)) {
       return this.props.genres.find(item => item.short_name === name).display_name
     }

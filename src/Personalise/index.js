@@ -65,7 +65,11 @@ class Personalise extends React.Component {
       localStorage.removeItem("basket")
     }
 
-    const shouldMount = !transactionCompleted && localStorage.getItem("basket")
+    if (!localStorage.getItem("basket") || !localStorage.getItem("receiver_info")) {
+      location.href = "/send-gift"
+    }
+
+    const shouldMount = (!transactionCompleted && localStorage.getItem("basket"))
     if (shouldMount === false) {
       location.href = "/send-gift"
     }

@@ -15,7 +15,13 @@ class GetStarted extends React.Component {
   }
 
   componentDidMount() {
-    localStorage.removeItem("transaction--completed") 
+    if (localStorage.getItem("transaction--completed")) {
+      localStorage.removeItem("receiver_info")
+      localStorage.removeItem("amount")
+      localStorage.removeItem("basket")
+      localStorage.removeItem("promo_code")
+    }
+    localStorage.removeItem("transaction--completed")
   }
   
   render() {

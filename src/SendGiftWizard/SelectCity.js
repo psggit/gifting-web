@@ -94,7 +94,7 @@ class SelectCity extends React.Component {
     }
     fetchCities().then(cities => {
       if (receiverInfo.cityName) {
-        this.setState({ activeCity: this.getCityIdByName(cities, receiverInfo.cityName) || -1 })
+        this.setState({ activeCity: receiverInfo.city_id })
       }
       this.setState({ cities: this.getSortedCities(cities) })
     })

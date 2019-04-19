@@ -18,7 +18,7 @@ class GenreOverlay extends React.Component {
   constructor() {
     super()
     this.state = {
-      active: 1
+      active: -1
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -29,7 +29,7 @@ class GenreOverlay extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ active: this.getGenreIdByName(this.props.genres, this.props.activeGenre)})
+    this.setState({ active: this.props.activeGenre })
   }
   
   handleClick(genre){
@@ -56,8 +56,8 @@ class GenreOverlay extends React.Component {
                     shortName={item.short_name}
                     active={this.state.active}
                     onChange={this.handleClick}
-                    id={i}
-                    name={item.display_name}
+                    id={item.id}
+                    name={item.name}
                   />
                 </div>
               ))

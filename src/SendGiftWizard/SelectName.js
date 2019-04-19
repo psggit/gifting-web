@@ -18,6 +18,14 @@ class SelectName extends React.Component {
   }
 
   componentDidMount() {
+    if (localStorage.getItem("transaction--completed")) {
+      localStorage.removeItem("receiver_info")
+      localStorage.removeItem("amount")
+      localStorage.removeItem("basket")
+      localStorage.removeItem("promo_code")
+    }
+    localStorage.removeItem("transaction--completed")
+    
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     if (receiverInfo.name) {
       this.setState({ name: receiverInfo.name })
