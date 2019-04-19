@@ -8,6 +8,36 @@
       color: themed("button-primary-color")
     }
   }
+
+  .about-hipbar {
+    border-bottom: 0;
+    border-top: 0;
+    padding: 40px 0px;
+    
+    p {
+      font-size: 14px;
+    }
+    .heading {
+      font-weight: 600;
+      padding-bottom: 10px;
+      @include themify($themes) {
+        border-bottom: 1px solid themed("border-bottom-color");
+      }
+    }
+    .about--hipbar__content {
+      font-family: $font-OpenSans;
+
+      div:first-child {
+        margin-top: 8px;
+      }
+      div {
+        b {
+          font-weight: 600;
+        }
+        margin-top: 20px;
+      }
+    }
+  }
   
   .paper {
     &.price {
@@ -49,33 +79,6 @@
       p:last-child {
         line-height: 1.57;
         margin-top: 8px;
-      }
-    }
-
-    &.about-hipbar {
-      border-bottom: 0;
-      border-top: 0;
-      padding: 40px 60px;
-      
-      .heading {
-        font-weight: 600;
-        padding-bottom: 10px;
-        @include themify($themes) {
-          border-bottom: 1px solid themed("border-bottom-color");
-        }
-      }
-      .about--hipbar__content {
-        font-family: $font-OpenSans;
-
-        div:first-child {
-          margin-top: 8px;
-        }
-        div {
-          b {
-            font-weight: 600;
-          }
-          margin-top: 40px;
-        }
       }
     }
 
