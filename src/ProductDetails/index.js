@@ -149,7 +149,7 @@ class ProductDetails extends React.Component {
             </div>
           </div> */}
 
-          <div className="paper about-hipbar">
+          <div className="about-hipbar">
             <p className="os heading">About HipBar</p>
             <div className="about--hipbar__content">
               <div>
