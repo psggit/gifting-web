@@ -9,6 +9,7 @@ import { GET, POST } from "Utils/fetch"
 import Icon from "Components/icon"
 import InputMask from "react-input-mask"
 import { scrollToTop } from "Utils/ui-utils"
+import { createPayuTransaction } from "../api";
 
 // const cardNumMask = new IMask()
 
@@ -96,9 +97,11 @@ class Payment extends React.Component {
       localStorage.removeItem("bsaket")
     }
 
-    const shouldMount = localStorage.getItem("receiver_info")
-    && localStorage.getItem("basket")
-    && !transactionCompleted
+    const shouldMount = Boolean(JSON.parse(localStorage.getItem("receiver_info")).name)
+      && Boolean(JSON.parse(localStorage.getItem("receiver_info")).phone)
+      && Boolean(localStorage.getItem("sender_mobile"))
+      && Boolean(localStorage.getItem("basket"))
+      && !transactionCompleted
 
     if (shouldMount === false) {
       this.props.history.goBack()
@@ -170,7 +173,7 @@ class Payment extends React.Component {
   }
 
   handleRadioChange(value) {
-    if(window.gtag) {
+    if (window.gtag) {
       gtag("event", "selected_bank_nb", {
         "event_label": JSON.stringify({
           bank_code: value
@@ -264,14 +267,14 @@ class Payment extends React.Component {
   handleSubmit() {
     const { amount, gift_message, receiver_number, senderName, receiver_name } = this.state
     if (this.state.activeAccordian === 1) {
-        if (this.isNormalCardDetailsValid()) {
-          console.log("Processing normal card payment..")
-          this.createTransaction(amount, gift_message, receiver_number, senderName, receiver_name, () => {
-            this.setState({ selectedPaymentMethod: "card" }, () => {
-              this.submit.click()
-            })
+      if (this.isNormalCardDetailsValid()) {
+        console.log("Processing normal card payment..")
+        this.createTransaction(amount, gift_message, receiver_number, senderName, receiver_name, () => {
+          this.setState({ selectedPaymentMethod: "card" }, () => {
+            this.submit.click()
           })
-        }
+        })
+      }
     } else if (this.state.activeAccordian === 2) {
       if (this.state.bankcode !== "null") {
         console.log("Processing net banking..")
@@ -361,25 +364,22 @@ class Payment extends React.Component {
       }
     })
 
-    POST({
-      api: "/consumer/payment/gift/create",
-      apiBase: "orderman",
-      data: {
-        amount: parseFloat(amount),
-        mode: "gift",
-        gps: JSON.parse(localStorage.getItem("receiver_info")).gps,
-        promo_code: localStorage.getItem("promo_code"),
-        gift_message: giftMessage,
-        receiver_number: receiverNumber,
-        sender_name: senderName,
-        device: "web",
-        receiver_name: receiverName,
-        products,
-        city_id: JSON.parse(localStorage.getItem("receiver_info")).city_id,
-        state_id: JSON.parse(localStorage.getItem("receiver_info")).state_id,
-      },
-      handleError: true
-    })
+    const createPayuTransactionReq = {
+      amount: parseFloat(amount),
+      mode: "gift",
+      gps: JSON.parse(localStorage.getItem("receiver_info")).gps,
+      promo_code: localStorage.getItem("promo_code"),
+      gift_message: giftMessage,
+      receiver_number: receiverNumber,
+      sender_name: senderName,
+      device: "web",
+      receiver_name: receiverName,
+      products,
+      city_id: JSON.parse(localStorage.getItem("receiver_info")).city_id,
+      state_id: JSON.parse(localStorage.getItem("receiver_info")).state_id,
+    }
+
+    createPayuTransaction(createPayuTransactionReq)
       .then((json) => {
         this.txn = {
           amount: json.amount,
@@ -397,30 +397,30 @@ class Payment extends React.Component {
       })
   }
 
-  getNetBankingForm() {  
+  getNetBankingForm() {
     // if (this.state.hasTransactionCreated) {
-      const { bankcode } = this.state
-      const postBody = {
-        key: this.txn.key,
-        txnid: this.txn.txnid,
-        amount: this.txn.amount,
-        productinfo: "gift",
-        firstname: this.txn.first_name,
-        email: this.txn.email,
-        phone: this.txn.phone,
-        lastname: "",
-        surl: `${location.origin}/transaction-successful`,
-        furl: `${location.origin}/transaction-failure`,
-        curl: `${location.origin}/transaction-cancelled`,
-        hash: this.txn.hash,
-        pg: "NB",
-        bankcode,
-        udf1: "web"
-      }
+    const { bankcode } = this.state
+    const postBody = {
+      key: this.txn.key,
+      txnid: this.txn.txnid,
+      amount: this.txn.amount,
+      productinfo: "gift",
+      firstname: this.txn.first_name,
+      email: this.txn.email,
+      phone: this.txn.phone,
+      lastname: "",
+      surl: `${location.origin}/transaction-successful`,
+      furl: `${location.origin}/transaction-failure`,
+      curl: `${location.origin}/transaction-cancelled`,
+      hash: this.txn.hash,
+      pg: "NB",
+      bankcode,
+      udf1: "web"
+    }
 
-      return Object.entries(postBody).map(([key, value]) => (
-        <input type="hidden" name={key} value={value} />
-      ))
+    return Object.entries(postBody).map(([key, value]) => (
+      <input type="hidden" name={key} value={value} />
+    ))
     // }
     // sender_num: this.state.senderNumber,
     // gift_message: giftMessage,
@@ -430,45 +430,45 @@ class Payment extends React.Component {
 
   getCardBankingForm() {
     // if (this.state.hasTransactionCreated) {
-      const postBody = {
-        key: this.txn.key,
-        txnid: this.txn.txnid,
-        amount: this.txn.amount,
-        productinfo: "gift",
-        firstname: this.txn.first_name,
-        email: this.txn.email,
-        phone: this.txn.sender_num,
-        lastname: "",
-        surl: `${location.origin}/transaction-successful`,
-        furl: `${location.origin}/transaction-failure`,
-        curl: `${location.origin}/transaction-cancelled`,
-        hash: this.txn.hash,
-        pg: "DC",
-        ccname: this.state.ccname,
-        // ccvv: this.state.ccvv,
-        ccexpmon: this.state.ccexp.split("/")[0],
-        ccexpyr: this.state.ccexp.split("/")[1],
-        user_credentials: this.txn.user_cred,
-        udf1: "web"
-      }
-  
-      if (this.state.ccnum.length) {
-        postBody.ccnum = this.state.ccnum.split(" ").join("")
-        postBody.ccvv = this.state.ccvv
-      }
-  
-      if (this.state.store_card) {
-        postBody.store_card = 1
-      }
-  
-      if (this.state.cctoken.length) {
-        postBody.ccvv = this.state.savedccvv
-        postBody.store_card_token = this.state.cctoken
-      }
-  
-      return Object.entries(postBody).map(([key, value]) => (
-        <input type="hidden" name={key} value={value} />
-      ))
+    const postBody = {
+      key: this.txn.key,
+      txnid: this.txn.txnid,
+      amount: this.txn.amount,
+      productinfo: "gift",
+      firstname: this.txn.first_name,
+      email: this.txn.email,
+      phone: this.txn.sender_num,
+      lastname: "",
+      surl: `${location.origin}/transaction-successful`,
+      furl: `${location.origin}/transaction-failure`,
+      curl: `${location.origin}/transaction-cancelled`,
+      hash: this.txn.hash,
+      pg: "DC",
+      ccname: this.state.ccname,
+      // ccvv: this.state.ccvv,
+      ccexpmon: this.state.ccexp.split("/")[0],
+      ccexpyr: this.state.ccexp.split("/")[1],
+      user_credentials: this.txn.user_cred,
+      udf1: "web"
+    }
+
+    if (this.state.ccnum.length) {
+      postBody.ccnum = this.state.ccnum.split(" ").join("")
+      postBody.ccvv = this.state.ccvv
+    }
+
+    if (this.state.store_card) {
+      postBody.store_card = 1
+    }
+
+    if (this.state.cctoken.length) {
+      postBody.ccvv = this.state.savedccvv
+      postBody.store_card_token = this.state.cctoken
+    }
+
+    return Object.entries(postBody).map(([key, value]) => (
+      <input type="hidden" name={key} value={value} />
+    ))
     // }
   }
 
@@ -488,7 +488,7 @@ class Payment extends React.Component {
   }
 
   handleBackClick() {
-    location.href="/personalise"
+    location.href = "/personalise"
   }
 
   render() {
@@ -501,202 +501,202 @@ class Payment extends React.Component {
                 <div className="container">
                   <div className="paper">
                     <div
-                        className="header"
-                        style={{
-                          paddingBottom: "12px"
-                        }}
-                      >
+                      className="header"
+                      style={{
+                        paddingBottom: "12px"
+                      }}
+                    >
                       <a href={"javascript:history.back()"}>
-                        <Icon name="back"/>
+                        <Icon name="back" />
                         <span style={{ marginLeft: "10px", fontWeight: "600" }} className="os s5">Personalise</span>
                       </a>
                     </div>
                     <div className="row">
-                    <p style={{ marginTop: "20px", paddingBottom: "20px" }} className="os s5 b-bottom">To Pay: &#8377; {localStorage.getItem("amount")}</p>
-                    <div className="payment-methods-wrapper">
-                      <p className="os s5">Payment Method</p>
-                      <p className="os s8">All transactions are secure and encrypted</p>
+                      <p style={{ marginTop: "20px", paddingBottom: "20px" }} className="os s5 b-bottom">To Pay: &#8377; {localStorage.getItem("amount")}</p>
+                      <div className="payment-methods-wrapper">
+                        <p className="os s5">Payment Method</p>
+                        <p className="os s8">All transactions are secure and encrypted</p>
 
-                      <div className="payment-methods-container">
-                        <Accordian
-                          middleware={this.setCardValues}
-                          setActiveAccordian={this.setActiveAccordian}
-                          activeAccordian={this.state.activeAccordian}
-                        >
-                          {
-                            this.state.savedCards.map((item, i) => (
-                              <AccordianItem key={i + 3} title={item.card_name} id={i + 3} showRadioButton={true}>
-                                <div className="form-group">
-                                  <label className="os">Card Number</label>
-                                  <input ref={(node) => { this[`cardNum${i + 3}`] = node }} name="saved" defaultValue={item.card_no} disabled type="text" />
-                                </div>
-
-                                <div className="form-group">
-                                  <div style={{ width: "130px" }}>
-                                    {/* <label className="os">Expiry Date</label> */}
-                                    <input ref={(node) => { this[`cardExp${i + 3}`] = node }} name="saved" defaultValue={`${item.expiry_month}/${item.expiry_year}`} type="hidden" maxLength={4} />
+                        <div className="payment-methods-container">
+                          <Accordian
+                            middleware={this.setCardValues}
+                            setActiveAccordian={this.setActiveAccordian}
+                            activeAccordian={this.state.activeAccordian}
+                          >
+                            {
+                              this.state.savedCards.map((item, i) => (
+                                <AccordianItem key={i + 3} title={item.card_name} id={i + 3} showRadioButton={true}>
+                                  <div className="form-group">
+                                    <label className="os">Card Number</label>
+                                    <input ref={(node) => { this[`cardNum${i + 3}`] = node }} name="saved" defaultValue={item.card_no} disabled type="text" />
                                   </div>
 
-                                  <div style={{ width: "130px", position: "relative" }}>
-                                    <label className="os">CVV</label>
-                                    <InputMask mask="9999"  maskChar={null} onChange={this.handleCVVChange} ref={(node) => { this[`cardCvv${i + 3}`] = node }} name="saved" type="password" maxLength={4} />
-                                    <div style={{ position: "absolute", top: 0, left: 0 }}></div>
+                                  <div className="form-group">
+                                    <div style={{ width: "130px" }}>
+                                      {/* <label className="os">Expiry Date</label> */}
+                                      <input ref={(node) => { this[`cardExp${i + 3}`] = node }} name="saved" defaultValue={`${item.expiry_month}/${item.expiry_year}`} type="hidden" maxLength={4} />
+                                    </div>
+
+                                    <div style={{ width: "130px", position: "relative" }}>
+                                      <label className="os">CVV</label>
+                                      <InputMask mask="9999" maskChar={null} onChange={this.handleCVVChange} ref={(node) => { this[`cardCvv${i + 3}`] = node }} name="saved" type="password" />
+                                      <div style={{ position: "absolute", top: 0, left: 0 }}></div>
+                                    </div>
+                                    {
+                                      this.state.savedccvvErr.status &&
+                                      <p className="error-message os s9">{this.state.savedccvvErr.value}</p>
+                                    }
                                   </div>
+
+                                  <div className="form-group">
+                                    {/* <label className="os">Name on card</label> */}
+                                    <input ref={(node) => { this[`cardToken${i + 3}`] = node }} name="saved" defaultValue={item.card_token} type="hidden" />
+                                  </div>
+
+                                  <div className="form-group">
+                                    {/* <label className="os">Name on card</label> */}
+                                    <input ref={(node) => { this[`cardName${i + 3}`] = node }} name="saved" defaultValue={item.name_on_card} type="hidden" />
+                                  </div>
+                                </AccordianItem>
+                              ))
+                            }
+
+                            <AccordianItem key={1} title="Debit Card / Credit Card" id={1} showRadioButton={true}>
+                              <div className="form-group">
+                                <label className="os">Card Number</label>
+                                <InputMask
+                                  mask="9999 9999 9999 9999 999"
+                                  maskChar={null}
+                                  onChange={this.handleCardNumberChange}
+                                />
+                                {
+                                  this.state.ccNumErr.status &&
+                                  <p className="error-message os s9">{this.state.ccNumErr.value}</p>
+                                }
+                              </div>
+
+                              <div className="form-group" style={{ display: "flex" }}>
+                                <div style={{ width: "130px" }}>
+                                  <label className="os">Expiry Date</label>
+                                  <InputMask
+                                    value={this.state.ccexpyr}
+                                    mask="99 / 9999"
+                                    maskChar={null}
+                                    onChange={this.handleCardExpiryChange}
+                                  />
                                   {
-                                    this.state.savedccvvErr.status &&
-                                    <p className="error-message os s9">{this.state.savedccvvErr.value}</p>
+                                    this.state.ccexpErr.status &&
+                                    <p className="error-message os s9">{this.state.ccexpErr.value}</p>
                                   }
                                 </div>
 
-                                <div className="form-group">
-                                  {/* <label className="os">Name on card</label> */}
-                                  <input ref={(node) => { this[`cardToken${i + 3}`] = node }} name="saved" defaultValue={item.card_token} type="hidden" />
+                                <div style={{ width: "130px", marginLeft: "30px" }}>
+                                  <label className="os">CVV</label>
+                                  <InputMask mask="9999" maskChar={null} className="cvv--input" value={this.state.ccvv} onChange={this.handleCVVChange} type="password" />
+                                  {
+                                    this.state.ccvvErr.status &&
+                                    <p className="error-message os s9">{this.state.ccvvErr.value}</p>
+                                  }
                                 </div>
-
-                                <div className="form-group">
-                                  {/* <label className="os">Name on card</label> */}
-                                  <input ref={(node) => { this[`cardName${i + 3}`] = node }} name="saved" defaultValue={item.name_on_card} type="hidden" />
-                                </div>
-                              </AccordianItem>
-                            ))
-                          }
-
-                          <AccordianItem key={1} title="Debit Card / Credit Card" id={1} showRadioButton={true}>
-                            <div className="form-group">
-                              <label className="os">Card Number</label>
-                              <InputMask
-                                mask="9999 9999 9999 9999 999"
-                                maskChar={null}
-                                onChange={this.handleCardNumberChange}
-                              />
-                              {
-                                this.state.ccNumErr.status &&
-                                <p className="error-message os s9">{this.state.ccNumErr.value}</p>
-                              }
-                            </div>
-
-                            <div className="form-group" style={{ display: "flex" }}>
-                              <div style={{ width: "130px" }}>
-                                <label className="os">Expiry Date</label>
-                                <InputMask
-                                  value={this.state.ccexpyr}
-                                  mask="99 / 9999"
-                                  maskChar={null}
-                                  onChange={this.handleCardExpiryChange}
-                                />
-                                {
-                                  this.state.ccexpErr.status &&
-                                  <p className="error-message os s9">{this.state.ccexpErr.value}</p>
-                                }
                               </div>
 
-                              <div style={{ width: "130px", marginLeft: "30px" }}>
-                                <label className="os">CVV</label>
-                                <InputMask mask="9999" maskChar={null} className="cvv--input" value={this.state.ccvv} onChange={this.handleCVVChange} type="password" />
+                              <div className="form-group">
+                                <label className="os">Name on card</label>
+                                <input value={this.state.ccname} onBlur={(e) => { this.setState({ ccname: this.state.ccname.trim() }) }} onChange={this.handleCardnameChange} type="text" />
                                 {
-                                  this.state.ccvvErr.status &&
-                                  <p className="error-message os s9">{this.state.ccvvErr.value}</p>
+                                  this.state.ccNameErr.status &&
+                                  <p className="error-message os s9">{this.state.ccNameErr.value}</p>
                                 }
                               </div>
-                            </div>
+                            </AccordianItem>
 
-                            <div className="form-group">
-                              <label className="os">Name on card</label>
-                              <input value={this.state.ccname} onBlur={(e) => { this.setState({ ccname: this.state.ccname.trim() }) }} onChange={this.handleCardnameChange} type="text" />
-                              {
-                                this.state.ccNameErr.status &&
-                                <p className="error-message os s9">{this.state.ccNameErr.value}</p>
-                              }
-                            </div>
-                          </AccordianItem>
-
-                          <AccordianItem key={2} title="Net Banking" id={2} showRadioButton={true}>
-                            <div className="net--banking" style={{ padding: "0 20px" }}>
-                              <p style={{ fontWeight: "bold", letterSpacing: "0.5px" }} className="os s8">Popular Banks</p>
-                              <div ref={(node) => { this.radios = node }} style={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}>
-                                {
-                                  this.state.popularBanks.slice(0, 3).map((item, i) => (
-                                    <div style={{ width: "120px", cursor: "pointer" }} key={i}>
-                                      {/* <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
+                            <AccordianItem key={2} title="Net Banking" id={2} showRadioButton={true}>
+                              <div className="net--banking" style={{ padding: "0 20px" }}>
+                                <p style={{ fontWeight: "bold", letterSpacing: "0.5px" }} className="os s8">Popular Banks</p>
+                                <div ref={(node) => { this.radios = node }} style={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}>
+                                  {
+                                    this.state.popularBanks.slice(0, 3).map((item, i) => (
+                                      <div style={{ width: "120px", cursor: "pointer" }} key={i}>
+                                        {/* <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
 
                                     <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label> */}
-                                      <div onClick={() => this.handleRadioChange(item.ibibo_code)} style={{ marginBottom: '10px' }}>
-                                        <span style={{ marginRight: '10px', verticalAlign: "middle" }}>
-                                          {
-                                            this.state.bankcode === item.ibibo_code
-                                              ? <Icon name="filledCircle" />
-                                              : <Icon name="circle" />
-                                          }
-                                        </span>
-                                        <span style={{ letterSpacing: "0.5px", marginLeft: "5px", verticalAlign: "middle" }} className="os s8">{item.name}</span>
+                                        <div onClick={() => this.handleRadioChange(item.ibibo_code)} style={{ marginBottom: '10px' }}>
+                                          <span style={{ marginRight: '10px', verticalAlign: "middle" }}>
+                                            {
+                                              this.state.bankcode === item.ibibo_code
+                                                ? <Icon name="filledCircle" />
+                                                : <Icon name="circle" />
+                                            }
+                                          </span>
+                                          <span style={{ letterSpacing: "0.5px", marginLeft: "5px", verticalAlign: "middle" }} className="os s8">{item.name}</span>
+                                        </div>
                                       </div>
-                                    </div>
-                                  ))
-                                }
+                                    ))
+                                  }
 
-                                {
-                                  this.state.popularBanks.slice(3).map((item, i) => (
-                                    <div style={{ width: "120px", cursor: "pointer" }} key={i}>
-                                      {/* <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
+                                  {
+                                    this.state.popularBanks.slice(3).map((item, i) => (
+                                      <div style={{ width: "120px", cursor: "pointer" }} key={i}>
+                                        {/* <input onChange={this.handleRadioChange}  value={item.ibibo_code} name="bank_code" id={item.ibibo_code} type="radio" />
                                     <label style={{ color: "#000", letterSpacing: "0.5px", marginLeft: "5px" }} className="os s8" htmlFor={item.ibibo_code}>{item.name}</label> */}
-                                      <div onClick={() => this.handleRadioChange(item.ibibo_code)} style={{ marginBottom: '10px' }}>
-                                        <span style={{ marginRight: '10px', verticalAlign: "middle" }}>
-                                          {
-                                            this.state.bankcode === item.ibibo_code
-                                              ? <Icon name="filledCircle" />
-                                              : <Icon name="circle" />
-                                          }
-                                        </span>
-                                        <span style={{ letterSpacing: "0.5px", marginLeft: "5px", verticalAlign: "middle" }} className="os s8">{item.name}</span>
+                                        <div onClick={() => this.handleRadioChange(item.ibibo_code)} style={{ marginBottom: '10px' }}>
+                                          <span style={{ marginRight: '10px', verticalAlign: "middle" }}>
+                                            {
+                                              this.state.bankcode === item.ibibo_code
+                                                ? <Icon name="filledCircle" />
+                                                : <Icon name="circle" />
+                                            }
+                                          </span>
+                                          <span style={{ letterSpacing: "0.5px", marginLeft: "5px", verticalAlign: "middle" }} className="os s8">{item.name}</span>
+                                        </div>
                                       </div>
+                                    ))
+                                  }
+                                </div>
+                                <div>
+                                  <div style={{ marginTop: "20px" }} className="form-group">
+                                    <p style={{ fontWeight: "bold", letterSpacing: "0.5px" }} className="os s8">Other Banks</p>
+                                    <div className="net--banking-select">
+                                      <select value={this.state.bankcode} onChange={this.handleSelectChange} style={{ width: "100%" }}>
+                                        {
+                                          (this.state.isPopularSelected || this.state.noBankSelected) &&
+                                          <option value="null">-- Select a Bank --</option>
+                                        }
+                                        {
+                                          this.state.banks.map((item, i) => (
+                                            <option value={item.ibibo_code} key={i}>{item.name}</option>
+                                          ))
+                                        }
+                                      </select>
+                                      <Icon name="caret" />
                                     </div>
-                                  ))
-                                }
-                              </div>
-                              <div>
-                                <div style={{ marginTop: "20px" }} className="form-group">
-                                  <p style={{ fontWeight: "bold", letterSpacing: "0.5px" }} className="os s8">Other Banks</p>
-                                  <div className="net--banking-select">
-                                    <select value={this.state.bankcode} onChange={this.handleSelectChange} style={{ width: "100%" }}>
-                                      {
-                                        (this.state.isPopularSelected || this.state.noBankSelected) &&
-                                        <option value="null">-- Select a Bank --</option>
-                                      }
-                                      {
-                                        this.state.banks.map((item, i) => (
-                                          <option value={item.ibibo_code} key={i}>{item.name}</option>
-                                        ))
-                                      }
-                                    </select>
-                                    <Icon name="caret" />
+
                                   </div>
-
                                 </div>
                               </div>
-                            </div>
-                          </AccordianItem>
-                        </Accordian>
+                            </AccordianItem>
+                          </Accordian>
+                        </div>
                       </div>
-                    </div>
 
-                    <div style={{ marginTop: "30px" }} className="final-payment-button">
-                      <Button style={{textTransform: 'none'}} disabled={this.state.activeAccordian === -1 || this.state.isSubmitting} onClick={this.handleSubmit} icon="rightArrowWhite" primary>PAY &#8377; {this.state.amount}</Button>
-                    </div>
-                    {
+                      <div style={{ marginTop: "30px" }} className="final-payment-button">
+                        <Button style={{ textTransform: 'none' }} disabled={this.state.activeAccordian === -1 || this.state.isSubmitting} onClick={this.handleSubmit} icon="rightArrowWhite" primary>PAY &#8377; {this.state.amount}</Button>
+                      </div>
+                      {
                         this.state.selectedPaymentMethod === "card" &&
-                      <form action={`https://${process.env.PAYU_BASE}.payu.in/_payment`} method="post">
-                        {this.getCardBankingForm()}
-                        <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit"></input>
-                      </form>
-                    }
+                        <form action={`https://${process.env.PAYU_BASE}.payu.in/_payment`} method="post">
+                          {this.getCardBankingForm()}
+                          <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit"></input>
+                        </form>
+                      }
 
-                    {
-                      this.state.selectedPaymentMethod === "net_banking" &&
-                      <form action={`https://${process.env.PAYU_BASE}.payu.in/_payment`} method="post">
-                        {this.getNetBankingForm()}
-                        <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit"></input>
-                      </form>
-                    }
+                      {
+                        this.state.selectedPaymentMethod === "net_banking" &&
+                        <form action={`https://${process.env.PAYU_BASE}.payu.in/_payment`} method="post">
+                          {this.getNetBankingForm()}
+                          <input style={{ display: "none" }} ref={(node) => { this.submit = node }} type="submit" value="submit"></input>
+                        </form>
+                      }
                     </div>
                   </div>
                 </div>
