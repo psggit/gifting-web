@@ -132,3 +132,13 @@ export function fetchGiftCardSummary(req){
   })
     .then(json => json)
 }
+
+export function createPayuTransaction(req) {
+  return POST({
+    api: "/consumer/payment/gift/create",
+    apiBase: "orderman",
+    handleError: true,
+    data: req
+  })
+    .then(json => json)
+}
