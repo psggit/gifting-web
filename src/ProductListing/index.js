@@ -106,6 +106,7 @@ class ProductListing extends React.Component {
   }
 
   setDataFromUrl(activeState, activeGenre) {
+    this.setState({ isLoading: true })
     // const { params } = this.props.match
     const fetchBrandsReq = {
       state_id: activeState,
