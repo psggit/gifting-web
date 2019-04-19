@@ -1,6 +1,7 @@
-const goa = require("./city-meta-tags/goa")
-const mahe = require("./city-meta-tags/mahe")
-const chennai = require("./city-meta-tags/chennai")
+// const goa = require("./city-meta-tags/goa")
+// const mahe = require("./city-meta-tags/mahe")
+// const chennai = require("./city-meta-tags/chennai")
+const getGenreMetaTag = require("./genre-meta-tags")
 
 const defaultMetaTags = {
   title: "",
@@ -46,12 +47,9 @@ const pageMetaTags = {
   }
 }
 
-function getMetaTags(name, extraKeyWord) {
-  console.log("keyword", extraKeyWord)
-  const metaTags = { ...goa, ...mahe, ...chennai, ...pageMetaTags}
-  if (extraKeyWord && metaTags[name]) {
-    metaTags[name].keywords = metaTags[name].keywords.concat(`, ${extraKeyWord}`)
-  }
+function getMetaTags(name) {
+  const genreMetaTags = getGenreMetaTag(name)
+  const metaTags = { ...genreMetaTags, ...pageMetaTags}
   return metaTags[name] || defaultMetaTags
 }
 

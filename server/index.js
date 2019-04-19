@@ -29,6 +29,7 @@ const FAQ = require("../dist-ssr/faq").default
 const ProductListingHTML = fs.readFileSync(path.resolve(__dirname, "../dist/product-listing.html"), "utf-8")
 
 const getMetaTags = require("./meta-tags")
+const getGenreNameById = require("./utils")
 // const PageWiseMetaTags = require("./page-wise-meta-tags")
 
 function capitalize(str) {
@@ -219,8 +220,7 @@ app.get("/hipbar-wallet", (req, res) => {
 function renderStaticMarkup({component, req, res, file}) {
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
-  console.log(req.url)
-  const headWithNavbar = withMetaTags(withHeader(head), req.url, undefined, req.url)
+  const headWithNavbar = withMetaTags(withHeader(head), req.url, req.url)
   res.write(headWithNavbar)
   const reactElement = React.createElement(component)
   const stream = renderToNodeStream(reactElement)
@@ -234,10 +234,7 @@ function renderStaticMarkup({component, req, res, file}) {
 function renderLegalDrinkingAgeMarkUp({component, req, res, file}) {
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
-  console.log(req.url)
-  console.log("head", head)
   const headWithNavbar = withMetaTags(headerWithoutSignIn(head), req.url, undefined, req.url)
-  console.log("header", headWithNavbar)
   res.write(headWithNavbar)
   const reactElement = React.createElement(component)
   const stream = renderToNodeStream(reactElement)
@@ -256,12 +253,8 @@ function headerWithoutSignIn(head) {
   return head.split("{header}").join(renderToString(React.createElement(HeaderWithoutSignin)))
 }
 
-function withTitle(head, title) {
-  return head.split("{title}").join(title)
-}
-
-function withMetaTags(head, name, extraKeyWord, url) {
-  const meta = getMetaTags(name, extraKeyWord)
+function withMetaTags(head, name, url) {
+  const meta = getMetaTags(name)
   const canonicalTag = `<link rel="canonical" href="https://gifting.hipbar.com${url}">`
   return head.split("{meta}").join(`
     <title>${meta.title}</title>
@@ -365,7 +358,6 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
   const genre = req.params.genreSlug
 
   const url = `https://stockandprice.${BASE_URL}/Api/stockandprice/listing/brands/${city}/${genre}`
-  console.log(url)
   const options = {
     method: "post",
     body: {
@@ -379,9 +371,8 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
   request(options, (err, httpRes, body) => {
     const [head, tail] = ProductListingHTML.split("{content}")
     const headWithNavbar = withHeader(head)
-    res.write(withMetaTags(headWithNavbar, `/${city.toLowerCase()}/${genre}`, undefined, req.url))
-
-    console.log(body)
+    const genreName = getGenreNameById(genre)
+    res.write(withMetaTags(headWithNavbar, genreName, req.url))
 
     const newTail = tail.split("{script}")
       .join(`
@@ -427,7 +418,8 @@ app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/product-detail.html"), "utf-8")
     const [head, tail] = html.split("{content}")
     const headWithNavbar = withHeader(head)
-    res.write(withMetaTags(headWithNavbar, `/${city.toLowerCase()}/${genre}`, body.brand_details.brand_name, req.url))
+    const genreName = getGenreNameById(genre)
+    res.write(withMetaTags(headWithNavbar, genreName, req.url))
 
     const newTail = tail.split("{script}")
       .join(`
