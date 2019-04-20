@@ -9,9 +9,19 @@ function getImageUrl(image) {
 }
 
 class BrandsList extends React.Component {
+  constructor() {
+    super()
+    this.handleBrandClick = this.handleBrandClick.bind(this)
+  }
+  handleBrandClick(e) {
+    e.preventDefault()
+    const path = "/" + e.target.href.split("/").slice(3).join("/")
+    this.props.history.push(path)
+  }
+
   render() {
     return (
-      <div className="brands--list">
+      <div onClick={this.handleBrandClick} className="brands--list">
         {/* <BrandsFilter /> */}
         {
           this.props.data.map((item) => (

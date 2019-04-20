@@ -8,6 +8,9 @@
   text-decoration: none;
   position: relative;
   width: 148px;
+  * {
+    pointer-events: none;
+  }
   @include brandItemMargin(148, 5);
   .brand--item__img {
     object-fit: contain;

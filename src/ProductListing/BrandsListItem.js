@@ -6,22 +6,13 @@ import "Sass/base.scss"
 // import ChevronRight from "./../../images/chevron-right.svg"
 
 class BrandItem extends React.Component {
-  constructor() {
-    super()
-    this.handleClick = this.handleClick.bind(this)
-  }
   handleImageLoad(e) {
     e.target.setAttribute("class", "img-loaded")
   }
-  handleClick(e) {
-    e.preventDefault()
-    const path = "/" + e.currentTarget.href.split("/").slice(3).join("/")
-    this.props.history.push(path)
-  }
+  
   render() {
     return (
       <a
-        onClick={this.handleClick}
         href={`/brands/${this.props.activeState}/${this.props.activeGenre}/${this.props.id}`}
         className="brand--item animated fadeIn">
         <div style={{
