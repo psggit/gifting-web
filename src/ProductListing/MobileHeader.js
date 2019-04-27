@@ -17,10 +17,8 @@ class MobileHeader extends React.Component {
   cancelSearch() {
 
   }
-  getGenreNameByShortName(name) {
-    if(this.props.genres.find(item => item.short_name === name)) {
-      return this.props.genres.find(item => item.short_name === name).display_name
-    }
+  getGenreNameById(id) {
+    return this.props.genres.find(item => item.id === id).name
   }
   render() {
     return (
@@ -49,12 +47,12 @@ class MobileHeader extends React.Component {
             <span className="os s6" style={{ margin: "0 10px 0 0" }}>
               {
                 this.props.genres.length
-                  ? this.getGenreNameByShortName(this.props.activeGenre)
+                  ? this.getGenreNameById(this.props.activeGenre)
                   : ""
               }
             </span>
             <Icon name="caret" />
-          </span>   
+          </span>
         </div>
       </div>
     )

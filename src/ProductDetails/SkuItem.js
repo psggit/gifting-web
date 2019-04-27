@@ -15,7 +15,7 @@ import { fetchGiftCardSummary } from "./../api"
 // ]
 
 function getUnit(val) {
-  return val / 1000 < 1 ? val +" ml" : (val/1000).toFixed(2) +  " Ltr"
+  return val / 1000 < 1 ? val + " ml" : (val / 1000).toFixed(2) + " Ltr"
 }
 
 export function getBasketTotal(basket) {
@@ -44,7 +44,7 @@ class SkuItem extends React.Component {
   }
 
   itemAlreadyExist(basket, id) {
-    const res = basket.findIndex(function(item) {
+    const res = basket.findIndex(function (item) {
       return item.sku.sku_id === id
     })
     return res > -1
@@ -130,20 +130,20 @@ class SkuItem extends React.Component {
     //     })
     //   })
     // }
-    
+
     console.log("basket", basketItem)
     let productDetails = ({
       sku_id: basketItem.sku.sku_id,
     })
     console.log("product Details", productDetails)
-    if(window.gtag) {
+    if (window.gtag) {
       gtag("event", "add_product_to_cart", {
         "event_label": JSON.stringify({
           productDetails,
         })
       })
     }
-    
+
     const activeSkuId = this.props.volumes[activeSku].sku_id
 
     if (this.itemAlreadyExist(basket, activeSkuId)) {
@@ -193,13 +193,14 @@ class SkuItem extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.image !== prevProps.image) {
-      this.setState({
-        image: this.props.image
-      })
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.image !== prevProps.image) {
+  //     console.log(this.props.image)
+  //     this.setState({
+  //       image: this.props.image
+  //     })
+  //   }
+  // }
 
   render() {
     return (
@@ -211,12 +212,12 @@ class SkuItem extends React.Component {
               alt=""
               ref={(node) => this.img = node}
               onLoad={this.handleImageLoad}
-              src={this.state.image}
+              src={this.props.image}
             />
           </div>
           <div className="sku--item__desc">
             <p className="os s2">{this.props.name}</p>
-            
+
             <div className="volume--price--container-w">
               <div className="volumes">
                 {
@@ -273,7 +274,7 @@ class SkuItem extends React.Component {
               &#8377;&nbsp;
               {
                 this.props.volumes.length &&
-                 `${this.props.volumes[this.state.activeSku].price}`
+                `${this.props.volumes[this.state.activeSku].price}`
               }
               <br />
               <span className="os s9 cashback--title">

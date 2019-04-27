@@ -1,0 +1,19 @@
+.loading {
+  animation: rotation 1s infinite linear;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  border-top-color: rgba(255, 255, 255, 0.7);
+  height: 3em;
+  width: 3em;
+}
+
+@keyframes rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader--container {
+  height: calc(100vh - 78px);
+  width: 100%;
+}

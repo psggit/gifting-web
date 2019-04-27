@@ -28,7 +28,7 @@ function PromoBeforeApply(props) {
   )
 }
 
-function PromoAfterApply({promoCode, discount, onRemove, shortDescription}) {
+function PromoAfterApply({ promoCode, discount, onRemove, shortDescription }) {
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
       <div>
@@ -88,7 +88,7 @@ class GiftBasket extends React.Component {
     this.handleRemovePromo = this.handleRemovePromo.bind(this)
     this.updateLocalBasket = this.updateLocalBasket.bind(this)
   }
-  
+
   setBasketTotalPrice(price) {
     this.setState({ subtotal: price })
   }
@@ -96,7 +96,7 @@ class GiftBasket extends React.Component {
   onApplyPromo(promoCode, CB) {
     const basket = JSON.parse(localStorage.getItem("basket"))
     console.log("basket", basket)
-    if(window.gtag) {
+    if (window.gtag) {
       gtag("event", "applied_promo", {
         "event_label": JSON.stringify({
           appliedPromo: promoCode,
@@ -143,7 +143,7 @@ class GiftBasket extends React.Component {
       .then(giftSummary => {
         const updatedBasket = this.getUpdatedBasket(giftSummary.products)
         this.updateLocalBasket(updatedBasket)
-        const total = giftSummary.balance
+        const total = giftSummary.format_balance.slice(1).split(" ").join("")
         localStorage.setItem("amount", total)
         this.setState({
           settingGiftSummary: false,
@@ -234,7 +234,7 @@ class GiftBasket extends React.Component {
     scrollToTop()
     const basket = JSON.parse(localStorage.getItem("basket"))
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
-    this.setState({ viewProductsUrl: `/brands/${receiverInfo.state_id}/${receiverInfo.genre_id}`})
+    this.setState({ viewProductsUrl: `/brands/${receiverInfo.state_id}/${receiverInfo.genre_id}` })
     // console.log("basket", basket)
     // let cartDetails = basket.map((item) => {
     //   return ({
@@ -278,7 +278,7 @@ class GiftBasket extends React.Component {
     } else if (this.state.isPromoInvalid && !this.state.promoModalMounted) {
       return (
         <PromoInvalid
-          onRemove={() => {this.setState({ isPromoApplied: false, isPromoInvalid: false }) }}
+          onRemove={() => { this.setState({ isPromoApplied: false, isPromoInvalid: false }) }}
           message={this.state.invalidPromoMessage}
         />
       )
@@ -302,7 +302,7 @@ class GiftBasket extends React.Component {
                           getGiftSummary={this.getGiftSummary}
                           setGiftSummary={this.setGiftSummary}
                           {...this.props}
-                          setBasketTotalPrice={this.setBasketTotalPrice} 
+                          setBasketTotalPrice={this.setBasketTotalPrice}
                         />
                       </div>
                     </div>
