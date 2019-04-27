@@ -1,9 +1,9 @@
 import { POST, GET } from "Utils/fetch"
 //import Notify from "Components/notify"
 
-export function fetchTransactionList (payloadObj, successCallback, failureCallback) {
+export function fetchTransactionList(payloadObj, successCallback, failureCallback) {
   return POST({
-    api: `/consumer/transactionsv3/gifts_sent_all`,
+    api: `/consumer/transactions/gifts_sent_all`,
     apiBase: "orderman",
     data: payloadObj,
     handleError: true
@@ -30,12 +30,12 @@ export function fetchAvailableHipbarDelivery(successCallback) {
       wallet_available: false
     }
   })
-  .then((json) => {
-    successCallback(json.availableCities)
-  })
-  .catch(err => {
-    console.log("Error in fetching available hipbar deliveries", err)
-  })
+    .then((json) => {
+      successCallback(json.availableCities)
+    })
+    .catch(err => {
+      console.log("Error in fetching available hipbar deliveries", err)
+    })
 }
 
 export function fetchRetailers(payloadObj, successCallback, failureCallback) {
@@ -123,7 +123,7 @@ export function fetchCoupons(req) {
     .then(json => json.data)
 }
 
-export function fetchGiftCardSummary(req){ 
+export function fetchGiftCardSummary(req) {
   return POST({
     api: "/consumer/gift_card/summary",
     handleError: true,
