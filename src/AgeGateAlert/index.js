@@ -23,12 +23,10 @@ class AgeGate extends React.Component {
 
   agreeAgeGate() {
     localStorage.setItem("age-gate__agreed", 1)
-    if (document.referrer.split("/")[3] !== "age-gate") {
-      console.log("referrer page", document.referrer)
-      location.href = document.referrer
-    } else {
-      // console.log("Redirecting to homepage.....")
+    if (document.referrer.includes("age-gate") || document.referrer.length === 0) {
       location.href = "/"
+    } else {
+      location.href = document.referrer
     }
 
     // document.cookie = "isAgeGateAgreed=true; path=/; expires=" + (new Date(new Date().getTime() + 60 * 60 * 1000)).toUTCString() + `;path=/;  domain=${location.hostname}`
