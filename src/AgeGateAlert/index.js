@@ -25,7 +25,7 @@ class AgeGate extends React.Component {
     localStorage.setItem("age-gate__agreed", 1)
     if (document.referrer.split("/")[3] !== "age-gate") {
       console.log("Redirecting to referrer page.....")
-      location.href = document.referrer
+      location.href = "/"
     } else {
       console.log("Redirecting to homepage.....")
       location.href = "/"
