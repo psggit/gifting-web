@@ -18,14 +18,16 @@ class AgeGate extends React.Component {
   }
 
   closeWindow() {
-    this.setState({showNote: true})
+    this.setState({ showNote: true })
   }
 
   agreeAgeGate() {
     localStorage.setItem("age-gate__agreed", 1)
     if (document.referrer.split("/")[3] !== "age-gate") {
+      console.log("Redirecting to referrer page.....")
       location.href = document.referrer
     } else {
+      console.log("Redirecting to homepage.....")
       location.href = "/"
     }
 
@@ -41,7 +43,7 @@ class AgeGate extends React.Component {
   }
 
   render() {
-    const {showNote} = this.state
+    const { showNote } = this.state
     return (
       <Layout image="https://res.cloudinary.com/www-hipbar-com/image/upload/c_scale,w_1920/v1553580747/Gifting-website/webpage-01.jpg">
         <div className="agegate-container">
@@ -49,17 +51,17 @@ class AgeGate extends React.Component {
             Agree if you are of legal drinking age in your current state of residence
           </p>
           <div style={{ margin: "20px 0 40px 0" }}>
-            <a 
-              className="ft s3 sub-header" 
-              href="/legal-drinking-age" 
+            <a
+              className="ft s3 sub-header"
+              href="/legal-drinking-age"
               target="_blank"
             >
               Legal drinking age by states/UTs
             </a>
           </div>
           <div className="button-group">
-            <Button secondary style={{marginRight: '24px', width: '160px'}} onClick={() => {return this.closeWindow()}}>DISAGREE</Button>
-            <Button  primary style={{width: '160px'}} onClick={this.agreeAgeGate}>AGREE</Button>     
+            <Button secondary style={{ marginRight: '24px', width: '160px' }} onClick={() => { return this.closeWindow() }}>DISAGREE</Button>
+            <Button primary style={{ width: '160px' }} onClick={this.agreeAgeGate}>AGREE</Button>
           </div>
           {
             showNote &&
@@ -70,7 +72,7 @@ class AgeGate extends React.Component {
               <div className="ft s6">Sorry! You've to be of legal drinking age to access this website</div>
             </div>
           }
-       
+
         </div>
       </Layout>
     )
