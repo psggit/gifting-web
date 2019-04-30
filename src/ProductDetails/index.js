@@ -61,6 +61,7 @@ class ProductDetails extends React.Component {
         limit: 10
       })
         .then(brand => {
+          // console.log(brand.description.split("\n").join(""))
           this.setState({ brand })
         })
     }
@@ -140,7 +141,15 @@ class ProductDetails extends React.Component {
             <div className="paper about-drink">
               <p className="os">About this drink</p>
               <p className="os s5">
-                {brand && brand.description}
+                {
+                  brand &&
+                  brand.description.split("\n")[0]
+                }
+                <br /><br />
+                {
+                  brand &&
+                  brand.description.split("\n").slice(1).join("")
+                }
               </p>
             </div>
 
