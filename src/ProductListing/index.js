@@ -16,7 +16,7 @@ import { fetchGenres, fetchBrandsUsingGenre } from "./../api"
 import { capitalize } from "Utils/logic-utils"
 import NoBrandsAvailable from "./NobrandsAvailable"
 import { scrollToTop } from "Utils/ui-utils"
- 
+
 class ProductListing extends React.Component {
   constructor(props) {
     super(props)
@@ -56,6 +56,7 @@ class ProductListing extends React.Component {
     this.cancelSearch = this.cancelSearch.bind(this)
     this.setDataFromUrl = this.setDataFromUrl.bind(this)
     this.observeScrollDirection = this.observeScrollDirection.bind(this)
+    this.resetState = this.resetState.bind(this)
   }
 
   componentWillUnmount() {
@@ -73,7 +74,7 @@ class ProductListing extends React.Component {
     delete window.__active_state__
     delete window.__active_genre__
     delete window.__BRANDS__
-    
+
     this.setState({ brands, activeState, activeGenre, isMobile })
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     receiverInfo.state_id = activeState
@@ -96,8 +97,20 @@ class ProductListing extends React.Component {
       fetchGenres(fetchGenresReq)
         .then(genres => this.sortGenres(genres))
         .then(sortedGenres => this.setGenres(sortedGenres))
+        .catch(err => {
+          this.resetState()
+        })
     }
     this.findInterSection()
+  }
+
+  resetState() {
+    this.setState({
+      genres: [],
+      brands: [],
+      isBrandsAvailable: true,
+      isBrandsLoading: false
+    })
   }
 
   getViewPortWidth() {
@@ -128,7 +141,7 @@ class ProductListing extends React.Component {
     fetchGenres(fetchGenresReq)
       .then(genres => this.sortGenres(genres))
       .then(sortedGenres => this.setGenres(sortedGenres))
-    
+
     fetchBrandsUsingGenre(fetchBrandsReq)
       .then(brands => {
         this.setState({ isBrandsAvailable: brands.length > 0 })
@@ -153,8 +166,8 @@ class ProductListing extends React.Component {
   sortGenres(genres) {
     // return genres.sort((a, b) => a.ordinal_position - b.ordinal_position)
     return genres.sort((a, b) => {
-      if(a.short_name < b.short_name) { return -1 }
-      if(a.short_name > b.short_name) { return 1 }
+      if (a.short_name < b.short_name) { return -1 }
+      if (a.short_name > b.short_name) { return 1 }
       return 0
     })
   }
@@ -182,10 +195,10 @@ class ProductListing extends React.Component {
     fetchGenres(fetchGenresReq)
       .then(genres => this.sortGenres(genres))
       .then(sortedGenres => {
-        this.props.history.push(`/brands/${city.id}/${sortedGenres[0].id}`)
+        this.props.history.push(`/brands/${city.state_id}/${sortedGenres[0].id}`)
         this.setState({ activeGenre: sortedGenres[0].id })
         this.setGenres(sortedGenres)
-        
+
         fetchBrandsUsingGenre({
           state_id: city.state_id,
           genre_id: sortedGenres[0].id,
@@ -199,7 +212,7 @@ class ProductListing extends React.Component {
   handleGenreChange(genre) {
     this.props.history.push(`/brands/${this.props.match.params.citySlug}/${genre.id}`)
     this.setState({ activeGenre: genre.id, isLoading: true })
-    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) ||{}
+    const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     receiverInfo.genre_id = genre.id
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.resetScrollIntersectionParams()
@@ -238,7 +251,7 @@ class ProductListing extends React.Component {
             limit: this.limit,
             offset: this.offset
           }
-          
+
           fetchBrandsUsingGenre(fetchBrandsReq)
             .then(brands => {
               console.log(this.state.brands.concat(brands))
@@ -248,7 +261,7 @@ class ProductListing extends React.Component {
               })
               // this.updateIntersectionTarget()
               this.disableScrollIntersection = brands.length < this.limit
-            })  
+            })
         }
       })
     })
@@ -272,7 +285,7 @@ class ProductListing extends React.Component {
     var lastScrollTop = 0
     // element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
     var st = window.pageYOffset || document.documentElement.scrollTop
-    if (st > lastScrollTop){
+    if (st > lastScrollTop) {
       this.setState({ scrollUp: false })
     } else {
       this.setState({ scrollUp: true })
@@ -281,7 +294,7 @@ class ProductListing extends React.Component {
   }
 
   handleTextChange(e) {
-    this.setState({ [e.target.name]: e.target.value})
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleSearch(query) {
@@ -305,7 +318,7 @@ class ProductListing extends React.Component {
     return (
       <div id="BrandsListing">
         <div className="container">
-          <div style={showMobileBasket ? { marginBottom:"85px"} :{}} className="paper">
+          <div style={showMobileBasket ? { marginBottom: "85px" } : {}} className="paper">
             {
               this.state.isMobile
                 ? <MobileHeader
@@ -359,7 +372,7 @@ class ProductListing extends React.Component {
 
               
             </div> */}
-            
+
             {
               this.state.shouldMountGenres && this.state.genres.length > 0 &&
               <GenreOverlay
@@ -381,12 +394,12 @@ class ProductListing extends React.Component {
             }
             {
               !this.state.isLoading &&
-                <BrandsList
-                  {...this.props}
-                  activeGenre={this.state.activeGenre}
-                  activeState={this.state.activeState}
-                  data={this.state.brands} 
-                />
+              <BrandsList
+                {...this.props}
+                activeGenre={this.state.activeGenre}
+                activeState={this.state.activeState}
+                data={this.state.brands}
+              />
             }
             {
               !this.state.isLoading && !this.state.isBrandsLoading && this.state.brands.length === 0 &&
