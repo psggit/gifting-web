@@ -89,7 +89,7 @@ app.post("/transaction-successful", (req, res) => {
     const [head, tail] = html.split("{content}")
     const headWithNavbar = withHeader(head)
     res.write(headWithNavbar)
- 
+
     const txn = {
       net_amount_debit: req.body.net_amount_debit,
       cardnum: req.body.cardnum,
@@ -276,7 +276,7 @@ app.get("/age-gate", (req, res) => {
   renderStaticMarkup({
     component: AgeGate,
     req,
-    res, 
+    res,
     file: "age-gate",
     pageName: "age-gate"
   })
@@ -286,7 +286,7 @@ app.get("/legal-drinking-age", (req, res) => {
   renderLegalDrinkingAgeMarkUp({
     component: LegaDrinkingAge,
     req,
-    res, 
+    res,
     file: "legal-drinking-age",
     pageName: "legal-drinking-age"
   })
@@ -294,9 +294,9 @@ app.get("/legal-drinking-age", (req, res) => {
 
 app.get("/", (req, res) => {
   renderStaticMarkup({
-    component: LandingPage, 
+    component: LandingPage,
     req,
-    res, 
+    res,
     file: "landing",
   })
 })
@@ -305,7 +305,7 @@ app.get("/send-gift", (req, res) => {
   renderStaticMarkup({
     component: GetStartedPage,
     req,
-    res, 
+    res,
     file: "ssr"
   })
 })
@@ -314,7 +314,7 @@ app.get("/how-to-redeem", (req, res) => {
   renderStaticMarkup({
     component: RedeemGiftCard,
     req,
-    res, 
+    res,
     file: "static"
   })
 })
@@ -323,7 +323,7 @@ app.get("/retail-outlet", (req, res) => {
   renderStaticMarkup({
     component: RetailOutlet,
     req,
-    res, 
+    res,
     file: "static"
   })
 })
@@ -332,7 +332,7 @@ app.get("/FAQs", (req, res) => {
   renderStaticMarkup({
     component: FAQ,
     req,
-    res, 
+    res,
     file: "static"
   })
 })
@@ -357,7 +357,7 @@ app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
   const city = req.params.citySlug
   const genre = req.params.genreSlug
 
-  const url = `https://stockandprice.${BASE_URL}/Api/stockandprice/listing/brands/${city}/${genre}`
+  const url = `https://retailer.${BASE_URL}/Api/stockandprice/listing/brands/${city}/${genre}`
   const options = {
     method: "post",
     body: {
@@ -404,7 +404,7 @@ app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
   // const brand = urlencode(req.params.brandSlug)
   const brand = req.params.brandSlug
 
-  const url = `https://stockandprice.${BASE_URL}/Api/stockandprice/listing/branddetails/${city}/${genre}/${brand}`
+  const url = `https://retailer.${BASE_URL}/Api/stockandprice/listing/branddetails/${city}/${genre}/${brand}`
   const options = {
     method: "post",
     body: {
