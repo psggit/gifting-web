@@ -8,14 +8,14 @@ const TerserPlugin = require("terser-webpack-plugin")
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 
 module.exports = merge(common, {
-  mode: "development",
+  mode: "production",
   devtool: "source-map",
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].[hash].css",
       chunkFilename: "[id].[hash].css",
     }),
-    new CompressionPlugin({  
+    new CompressionPlugin({
       test: /\.js$|\.css$|\.html$/,
       filename: "[path].gz[query]",
       exclude: /node_modules/,
@@ -78,17 +78,17 @@ module.exports = merge(common, {
     //       }
     //     }
     //   }),
-      // new UglifyJsPlugin({
-        // uglifyOptions: {
-          // cache: true,
-          // parallel: true,
-          // sourceMap: true, // set to true if you want JS source maps,
-          // warning: false,
-          // compress: {
-          //   drop_console: true
-          // }
-        // }
-      // }),
+    // new UglifyJsPlugin({
+    // uglifyOptions: {
+    // cache: true,
+    // parallel: true,
+    // sourceMap: true, // set to true if you want JS source maps,
+    // warning: false,
+    // compress: {
+    //   drop_console: true
+    // }
+    // }
+    // }),
     //   new OptimizeCSSAssetsPlugin({})
     // ]
   }
