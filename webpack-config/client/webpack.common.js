@@ -10,7 +10,7 @@ const minfyConfigHTML = {
   minifyURLs: true,
   removeComments: false
 }
-  
+
 module.exports = {
   entry: {
     // transaction_success: path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
@@ -20,13 +20,13 @@ module.exports = {
     app: path.resolve(__dirname, "./../../src/App.js"),
   },
   node: {
-    fs: 'empty' 
+    fs: 'empty'
   },
   plugins: [
     new CleanWebpackPlugin(),
     new WorkboxPlugin.GenerateSW({
-    // these options encourage the ServiceWorkers to get in there fast 
-    // and not allow any straggling "old" SWs to hang around
+      // these options encourage the ServiceWorkers to get in there fast 
+      // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,
       skipWaiting: true
     }),
@@ -97,7 +97,7 @@ module.exports = {
       minify: minfyConfigHTML
     }),
     new webpack.DefinePlugin({
-      "process.env.BASE_URL": JSON.stringify(process.env.BASE_URL || "amebae21.hasura-app.io"),
+      "process.env.BASE_URL": JSON.stringify(process.env.BASE_URL || "basketball38.hasura-app.io"),
       "process.env.PAYU_BASE": JSON.stringify(process.env.PAYU_BASE || "test"),
     })
   ],
