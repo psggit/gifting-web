@@ -217,7 +217,7 @@ app.get("/hipbar-wallet", (req, res) => {
   })
 })
 
-function renderStaticMarkup({component, req, res, file}) {
+function renderStaticMarkup({ component, req, res, file }) {
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withMetaTags(withHeader(head), req.url, req.url)
@@ -231,7 +231,7 @@ function renderStaticMarkup({component, req, res, file}) {
   })
 }
 
-function renderLegalDrinkingAgeMarkUp({component, req, res, file}) {
+function renderLegalDrinkingAgeMarkUp({ component, req, res, file }) {
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withMetaTags(headerWithoutSignIn(head), req.url, undefined, req.url)
@@ -353,50 +353,50 @@ app.get("/sitemap.xml", (req, res) => {
   })
 })
 
-app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
-  const city = req.params.citySlug
-  const genre = req.params.genreSlug
+// app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
+//   const city = req.params.citySlug
+//   const genre = req.params.genreSlug
 
-  const url = `https://retailer.${BASE_URL}/Api/stockandprice/listing/brands/${city}/${genre}`
-  const options = {
-    method: "post",
-    body: {
-      offset: 0,
-      limit: 11
-    },
-    json: true,
-    url
-  }
+//   const url = `https://retailer.${BASE_URL}/Api/stockandprice/listing/brands/${city}/${genre}`
+//   const options = {
+//     method: "post",
+//     body: {
+//       offset: 0,
+//       limit: 11
+//     },
+//     json: true,
+//     url
+//   }
 
-  request(options, (err, httpRes, body) => {
-    const [head, tail] = ProductListingHTML.split("{content}")
-    const headWithNavbar = withHeader(head)
-    const genreName = getGenreNameById(genre)
-    res.write(withMetaTags(headWithNavbar, genreName, req.url))
+//   request(options, (err, httpRes, body) => {
+//     const [head, tail] = ProductListingHTML.split("{content}")
+//     const headWithNavbar = withHeader(head)
+//     const genreName = getGenreNameById(genre)
+//     res.write(withMetaTags(headWithNavbar, genreName, req.url))
 
-    const newTail = tail.split("{script}")
-      .join(`
-      <script id="ssr_script">
-        window.__isMobile__ = ${isMobile(req)}
-        window.__active_city__ = ${city}
-        window.__active_genre__ = ${genre}
-        window.__BRANDS__ = ${JSON.stringify(body.brands)}
-      </script>
-      `)
-    const reactElement = React.createElement(BrandListingPage, {
-      brands: body.brands,
-      activeGenre: genre,
-      activeCity: city,
-      isMobile: isMobile(req)
-    })
-    const stream = renderToNodeStream(reactElement)
-    stream.pipe(res, { end: false })
-    stream.on("end", () => {
-      res.write(newTail)
-      res.end()
-    })
-  })
-})
+//     const newTail = tail.split("{script}")
+//       .join(`
+//       <script id="ssr_script">
+//         window.__isMobile__ = ${isMobile(req)}
+//         window.__active_city__ = ${city}
+//         window.__active_genre__ = ${genre}
+//         window.__BRANDS__ = ${JSON.stringify(body.brands)}
+//       </script>
+//       `)
+//     const reactElement = React.createElement(BrandListingPage, {
+//       brands: body.brands,
+//       activeGenre: genre,
+//       activeState: city,
+//       isMobile: isMobile(req)
+//     })
+//     const stream = renderToNodeStream(reactElement)
+//     stream.pipe(res, { end: false })
+//     stream.on("end", () => {
+//       res.write(newTail)
+//       res.end()
+//     })
+//   })
+// })
 
 app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
   const city = req.params.citySlug
