@@ -14,7 +14,6 @@ class BrandsList extends React.Component {
     this.handleBrandClick = this.handleBrandClick.bind(this)
   }
   handleBrandClick(e) {
-    e.preventDefault()
     const path = "/" + e.target.href.split("/").slice(3).join("/")
     this.props.history.push(path)
   }
@@ -27,7 +26,7 @@ class BrandsList extends React.Component {
           this.props.data.map((item) => (
             <BrandsListItem
               {...this.props}
-              activeCity={this.props.activeCity}
+              activeState={this.props.activeState}
               activeGenre={this.props.activeGenre}
               id={item.brand_id}
               key={item.brand_id}

@@ -9,7 +9,7 @@ class BrandItem extends React.Component {
   handleImageLoad(e) {
     e.target.setAttribute("class", "img-loaded")
   }
-  
+
   render() {
     return (
       <a

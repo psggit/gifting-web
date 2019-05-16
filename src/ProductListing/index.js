@@ -150,7 +150,6 @@ class ProductListing extends React.Component {
   }
 
   setBrands(brands, CB) {
-    console.log("set brands")
     if (CB) {
       this.setState({ brands, isLoading: false }, CB)
     } else {
@@ -159,7 +158,6 @@ class ProductListing extends React.Component {
   }
 
   setGenres(genres) {
-    console.log("genres", genres)
     this.setState({ genres })
   }
 
@@ -242,7 +240,6 @@ class ProductListing extends React.Component {
     let io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !this.disableScrollIntersection) {
-          console.log("intersecting")
           this.setState({ isBrandsLoading: true })
           this.offset += this.limit
           const fetchBrandsReq = {
@@ -254,7 +251,6 @@ class ProductListing extends React.Component {
 
           fetchBrandsUsingGenre(fetchBrandsReq)
             .then(brands => {
-              console.log(this.state.brands.concat(brands))
               this.setState({
                 brands: this.state.brands.concat(brands),
                 isBrandsLoading: false
