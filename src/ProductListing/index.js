@@ -41,7 +41,7 @@ class ProductListing extends React.Component {
       activeGenre: props.activeGenre
     }
 
-    this.limit = 11
+    this.limit = this.state.isMobile ? 10 : 20
     this.offset = 0
 
     this.handleTextChange = this.handleTextChange.bind(this)
