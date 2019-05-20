@@ -14,7 +14,7 @@ export default function AddToBasketModal(data) {
       return (
         <div id="added-to-basket--modal">
           <ModalBox>
-            <ModalHeader>  
+            <ModalHeader>
               <span onClick={unmountModal}><Icon name="cross" /></span>
             </ModalHeader>
             <ModalBody>
@@ -22,7 +22,7 @@ export default function AddToBasketModal(data) {
               <p className="os s4">Added to Gift Basket</p>
             </ModalBody>
             <ModalFooter>
-              <GiftMoreDrinks history={data.history} url={data.viewProductsUrl} />
+              <GiftMoreDrinks history={data.history} />
             </ModalFooter>
           </ModalBox>
         </div>

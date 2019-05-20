@@ -36,7 +36,7 @@ class FavDrink extends React.Component {
 
   handleEnterPress(e) {
     if (e.keyCode === 13 && this.state.active > 0) {
-      location.href = `/brands/${this.state.state_id}/${this.state.active}/`
+      location.href = `/brands/${this.state.state_id}/${this.state.active}/${this.state.city_id}`
     }
   }
 
@@ -54,7 +54,8 @@ class FavDrink extends React.Component {
     if (receiverInfo) {
       this.setState({
         name: receiverInfo.name,
-        state_id: receiverInfo.state_id
+        state_id: receiverInfo.state_id,
+        city_id: receiverInfo.city_id
       })
     }
 
@@ -86,7 +87,7 @@ class FavDrink extends React.Component {
       receiverInfo.genre_id = genre.id
     }
 
-    if(window.gtag) {
+    if (window.gtag) {
       gtag("event", "choose_genre", {
         "event_label": JSON.stringify({
           selectedGenre: genre.name,
@@ -106,15 +107,15 @@ class FavDrink extends React.Component {
         <div className="container">
           <div className="paper">
             <div className="paper-content">
-              <div className="row fav-drink"> 
+              <div className="row fav-drink">
                 <Icon name="drink" />
-              </div>                           
-              <div className="row">                            
+              </div>
+              <div className="row">
                 <p className="os s2">
                   What is their favourite drink?
                 </p>
                 <p className="os s5">
-                  This will let us curate a special list of drinks that you can gift them.                          
+                  This will let us curate a special list of drinks that you can gift them.
                 </p>
                 {
                   !this.state.loadingGenres
@@ -128,7 +129,7 @@ class FavDrink extends React.Component {
                                 onChange={this.handleGenreChange}
                                 id={item.id}
                                 name={item.name}
-                                // shortName={item.short_name}
+                              // shortName={item.short_name}
                               />
                             </div>
                           ))
@@ -144,7 +145,7 @@ class FavDrink extends React.Component {
                 }
 
                 <div style={{ marginTop: "20px" }}>
-                  <a onClick={this.handleClick} href={`/brands/${this.state.state_id}/${this.state.active}`}>
+                  <a onClick={this.handleClick} href={`/brands/${this.state.state_id}/${this.state.active}/${this.state.city_id}`}>
                     <Button
                       disabled={this.state.active === -1}
                       primary
@@ -156,11 +157,11 @@ class FavDrink extends React.Component {
                   </a>
                 </div>
 
-              </div> 
+              </div>
             </div>
           </div>
         </div>
-      </div>          
+      </div>
     )
   }
 }

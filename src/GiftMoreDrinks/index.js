@@ -5,13 +5,13 @@ import "./gift-more-drinks.scss"
 import NavLink from "Components/NavLink"
 import { unmountModal } from "Components/modal-box2/utils"
 
-function GiftMoreDrinks({ url, history }) {
+function GiftMoreDrinks({ history }) {
   return (
     <div className="gift--more-drinks">
-      <NavLink extendedOnclick={unmountModal} history={history} href={url}>
+      <a onClick={unmountModal} href={"javascript:history.back()"}>
         <Icon name="giftIcon" />
         <p className="os s7">Gift more drink(s)</p>
-      </NavLink>
+      </a>
       <NavLink extendedOnclick={unmountModal} history={history} href="/basket">
         <Button primary icon="rightArrowWhite">Gift basket</Button>
       </NavLink>

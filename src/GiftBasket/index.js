@@ -234,7 +234,7 @@ class GiftBasket extends React.Component {
     scrollToTop()
     const basket = JSON.parse(localStorage.getItem("basket"))
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
-    this.setState({ viewProductsUrl: `/brands/${receiverInfo.state_id}/${receiverInfo.genre_id}` })
+    this.setState({ viewProductsUrl: `/brands/${receiverInfo.state_id}/${receiverInfo.genre_id}/${receiverInfo.city_id}` })
     // console.log("basket", basket)
     // let cartDetails = basket.map((item) => {
     //   return ({
@@ -348,7 +348,7 @@ class GiftBasket extends React.Component {
                 <div className="paper no-basket">
                   <p className="os s4">Gift basket is empty</p>
                   <div style={{ marginTop: "20px" }}>
-                    <a href={this.state.viewProductsUrl}><Button primary>Add products</Button></a>
+                    <NavLink history={this.props.history} href={this.state.viewProductsUrl}><Button primary>Add products</Button></NavLink>
                   </div>
                 </div>
               )

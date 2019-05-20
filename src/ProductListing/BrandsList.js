@@ -14,8 +14,11 @@ class BrandsList extends React.Component {
     this.handleBrandClick = this.handleBrandClick.bind(this)
   }
   handleBrandClick(e) {
-    const path = "/" + e.target.href.split("/").slice(3).join("/")
-    this.props.history.push(path)
+    if (e.target.nodeName === "A") {
+      e.preventDefault()
+      const path = "/" + e.target.href.split("/").slice(3).join("/")
+      this.props.history.push(path)
+    }
   }
 
   render() {

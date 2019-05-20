@@ -7,7 +7,7 @@ import { capitalize } from "Utils/logic-utils"
 import Moment from "moment"
 
 class CitySelect extends React.Component {
-  constructor(props) { 
+  constructor(props) {
     super(props)
     this.handleCityChange = this.handleCityChange.bind(this)
     this.getCityIndexByName = this.getCityIndexByName.bind(this)
@@ -17,25 +17,25 @@ class CitySelect extends React.Component {
     }
   }
 
-  getCityIndexByName(cities, activeState) {
-    console.log(cities, activeState)
-    return cities.findIndex(city => city.state_id === activeState)
+  getCityIndexByName(cities, activeCity) {
+    return cities.findIndex(city => city.id === activeCity)
   }
 
   getSortedCities(cities) {
     return cities.sort((a, b) => {
-      if(a.name > b.name) { return -1 }
-      if(a.name < b.name) { return 1 }
+      if (a.name > b.name) { return -1 }
+      if (a.name < b.name) { return 1 }
       return 0
     })
   }
-  
+
   componentDidMount() {
     fetchCities()
       .then(cities => {
         this.setState({ cities: this.getSortedCities(cities) })
 
-        const cityIdx = this.getCityIndexByName(cities, this.props.activeState)
+        console.log(this.props.activeCity)
+        const cityIdx = this.getCityIndexByName(cities, this.props.activeCity)
         const city = {
           gps: cities[cityIdx].gps,
           state_id: cities[cityIdx].state_id,
@@ -51,8 +51,7 @@ class CitySelect extends React.Component {
   componentDidUpdate(prevProps) {
     // console.log(prevProps.activeCity, this.props.activeCity)
     if (prevProps.activeCity !== this.props.activeCity) {
-      const activeCity = capitalize(this.props.activeCity)
-      this.setState({ cityIdx: this.getCityIndexByName(this.state.cities, activeCity) })
+      this.setState({ cityIdx: this.getCityIndexByName(this.state.cities, this.props.activeCity) })
     }
   }
 
@@ -60,7 +59,7 @@ class CitySelect extends React.Component {
     const target = e.target
     const cityIdx = target.value
     const selectedCity = this.state.cities[cityIdx]
-    if(window.gtag) {
+    if (window.gtag) {
       gtag("event", "change_city", {
         "event_label": JSON.stringify({
           selectedCity: this.state.cities[cityIdx].name,
@@ -72,7 +71,7 @@ class CitySelect extends React.Component {
     this.props.onCityChange(selectedCity)
     this.props.clearBasket()
   }
-  
+
   render() {
     return (
       <div className="city--select">
@@ -84,7 +83,7 @@ class CitySelect extends React.Component {
                 <option
                   key={item.id}
                   value={i}>
-                  { item.name }
+                  {item.name}
                 </option>
               )
             })

@@ -1,19 +1,12 @@
 import React from "react"
 import "./sass/listing.scss"
 import BrandsList from "./BrandsList"
-import { GET } from "Utils/fetch"
-
 import Loader from "Components/loader"
 import GenreOverlay from "./GenreOverlay"
-import Search from "Components/Search"
 import BasketTotal from "./BasketTotal"
-import Icon from "Components/icon"
-import SearchResults from "./SearchResults"
-import CitySelect from "./CitySelect"
 import MobileHeader from "./MobileHeader"
 import WebHeader from "./WebHeader"
 import { fetchGenres, fetchBrandsUsingGenre } from "./../api"
-import { capitalize } from "Utils/logic-utils"
 import NoBrandsAvailable from "./NobrandsAvailable"
 import { scrollToTop } from "Utils/ui-utils"
 
@@ -41,14 +34,14 @@ class ProductListing extends React.Component {
       activeGenre: props.activeGenre
     }
 
-    this.limit = this.state.isMobile ? 10 : 20
+    this.limit = 6
     this.offset = 0
 
     this.handleTextChange = this.handleTextChange.bind(this)
     this.handleCityChange = this.handleCityChange.bind(this)
     this.handleGenreChange = this.handleGenreChange.bind(this)
     this.findInterSection = this.findInterSection.bind(this)
-    this.setFetchMoreStatus = this.setFetchMoreStatus.bind(this)
+    // this.setFetchMoreStatus = this.setFetchMoreStatus.bind(this)
     this.resetScrollIntersectionParams = this.resetScrollIntersectionParams.bind(this)
     this.openGenres = this.openGenres.bind(this)
     this.closeGenres = this.closeGenres.bind(this)
@@ -67,15 +60,18 @@ class ProductListing extends React.Component {
   componentDidMount() {
     scrollToTop()
     const brands = window.__BRANDS__ || []
-    const activeState = window.__active_state__ || parseInt(this.props.match.params.citySlug)
+    const activeState = window.__active_state__ || parseInt(this.props.match.params.stateSlug)
     const activeGenre = window.__active_genre__ || parseInt(this.props.match.params.genreSlug)
+    const activeCity = window.__active_city__ || parseInt(this.props.match.params.citySlug)
+
     const isMobile = window.__isMobile__ || this.props.context.isMobile
     delete window.__isMobile__
     delete window.__active_state__
     delete window.__active_genre__
+    delete window.__active_city__
     delete window.__BRANDS__
 
-    this.setState({ brands, activeState, activeGenre, isMobile })
+    this.setState({ brands, activeState, activeGenre, activeCity, isMobile })
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     receiverInfo.state_id = activeState
     receiverInfo.genre_id = activeGenre
@@ -100,8 +96,8 @@ class ProductListing extends React.Component {
         .catch(err => {
           this.resetState()
         })
+      this.findInterSection(brands)
     }
-    this.findInterSection()
   }
 
   resetState() {
@@ -109,7 +105,8 @@ class ProductListing extends React.Component {
       genres: [],
       brands: [],
       isBrandsAvailable: true,
-      isBrandsLoading: false
+      isBrandsLoading: false,
+      isLoading: false
     })
   }
 
@@ -132,12 +129,6 @@ class ProductListing extends React.Component {
       state_id: activeState
     }
 
-    // this.setState({ activeState: params.citySlug, activeGenre: params.genreSlug })
-    // const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
-    // receiverInfo.cityName = params.citySlug
-    // receiverInfo.genreName = params.genreSlug
-    // localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
-
     fetchGenres(fetchGenresReq)
       .then(genres => this.sortGenres(genres))
       .then(sortedGenres => this.setGenres(sortedGenres))
@@ -145,16 +136,15 @@ class ProductListing extends React.Component {
     fetchBrandsUsingGenre(fetchBrandsReq)
       .then(brands => {
         this.setState({ isBrandsAvailable: brands.length > 0 })
-        this.setBrands(brands)
+        this.setBrands(brands, () => {
+          this.findInterSection()
+        })
+        this.setState({ isLoading: false })
       })
   }
 
   setBrands(brands, CB) {
-    if (CB) {
-      this.setState({ brands, isLoading: false }, CB)
-    } else {
-      this.setState({ brands, isLoading: false })
-    }
+    CB ? this.setState({ brands }, CB) : this.setState({ brands })
   }
 
   setGenres(genres) {
@@ -193,7 +183,7 @@ class ProductListing extends React.Component {
     fetchGenres(fetchGenresReq)
       .then(genres => this.sortGenres(genres))
       .then(sortedGenres => {
-        this.props.history.push(`/brands/${city.state_id}/${sortedGenres[0].id}`)
+        this.props.history.push(`/brands/${city.state_id}/${sortedGenres[0].id}/${city.id}`)
         this.setState({ activeGenre: sortedGenres[0].id })
         this.setGenres(sortedGenres)
 
@@ -203,35 +193,32 @@ class ProductListing extends React.Component {
           offset: 0,
           limit: this.limit
         })
-          .then(brands => this.setBrands(brands))
+          .then(brands => {
+            this.setBrands(brands)
+            this.setState({ isLoading: false })
+          })
       })
   }
 
   handleGenreChange(genre) {
-    this.props.history.push(`/brands/${this.props.match.params.citySlug}/${genre.id}`)
-    this.setState({ activeGenre: genre.id, isLoading: true })
+    this.props.history.push(`/brands/${this.state.activeState}/${genre.id}/${this.state.activeCity}`)
+    this.setState({ activeGenre: genre.id, brands: [], isLoading: true })
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     receiverInfo.genre_id = genre.id
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.resetScrollIntersectionParams()
     const fetchBrandsReq = {
-      state_id: parseInt(this.props.match.params.citySlug),
+      state_id: parseInt(this.state.activeState),
       genre_id: genre.id,
       limit: this.limit,
       offset: 0
     }
 
     fetchBrandsUsingGenre(fetchBrandsReq)
-      .then(brands => this.setBrands(brands))
-      .then(() => {
+      .then(brands => {
+        this.setBrands(brands)
         this.setState({ isLoading: false })
       })
-  }
-
-  setFetchMoreStatus(res) {
-    if (res.length < this.limit) {
-      this.shouldFetchMore = false
-    }
   }
 
   findInterSection() {
@@ -243,20 +230,20 @@ class ProductListing extends React.Component {
           this.setState({ isBrandsLoading: true })
           this.offset += this.limit
           const fetchBrandsReq = {
-            state_id: parseInt(this.props.match.params.citySlug),
-            genre_id: parseInt(this.props.match.params.genreSlug),
+            state_id: parseInt(this.state.activeState),
+            genre_id: parseInt(this.state.activeGenre),
             limit: this.limit,
             offset: this.offset
           }
 
           fetchBrandsUsingGenre(fetchBrandsReq)
-            .then(brands => {
+            .then(newBrands => {
               this.setState({
-                brands: this.state.brands.concat(brands),
+                brands: this.state.brands.concat(newBrands),
                 isBrandsLoading: false
               })
               // this.updateIntersectionTarget()
-              this.disableScrollIntersection = brands.length < this.limit
+              this.disableScrollIntersection = newBrands.length < this.limit
             })
         }
       })
@@ -321,6 +308,7 @@ class ProductListing extends React.Component {
                   {...this.props}
                   activeGenre={this.state.activeGenre}
                   activeState={this.state.activeState}
+                  activeCity={this.state.activeCity}
                   openGenres={this.openGenres}
                   handleGenreChange={this.handleGenreChange}
                   genres={this.state.genres}
@@ -331,6 +319,7 @@ class ProductListing extends React.Component {
                   // key={this.state.WebHeaderKey}
                   activeGenre={this.state.activeGenre}
                   activeState={this.state.activeState}
+                  activeCity={this.state.activeCity}
                   handleGenreChange={this.handleGenreChange}
                   genres={this.state.genres}
                   onCityChange={this.handleCityChange}
@@ -384,10 +373,7 @@ class ProductListing extends React.Component {
             {
               showMobileBasket && <BasketTotal />
             }
-            {
-              this.state.isLoading &&
-              <Loader />
-            }
+
             {
               !this.state.isLoading &&
               <BrandsList
@@ -398,11 +384,15 @@ class ProductListing extends React.Component {
               />
             }
             {
+              (this.state.isLoading || this.state.isBrandsLoading) &&
+              <Loader />
+            }
+            {
               !this.state.isLoading && !this.state.isBrandsLoading && this.state.brands.length === 0 &&
               <NoBrandsAvailable />
             }
             {/* { this.state.isBrandsLoading && <Loader /> } */}
-            <div style={{ position: "absolute", bottom: "25%" }} id="scroll-intersection"></div>
+            <div style={{ position: "absolute", bottom: "0" }} id="scroll-intersection"></div>
           </div>
         </div>
       </div>

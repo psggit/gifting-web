@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 // import "preact/debug"
-import {Switch} from "react-router-dom"
+import { Switch } from "react-router-dom"
 import {
   Route
 } from "react-router-dom"
@@ -21,7 +21,7 @@ import ProductDetails from "./ProductDetails"
 import PaymentStatus from "./payment-status"
 import AgeGateAlert from "./AgeGateAlert"
 
-import {ThemeProvider, ThemeContext} from "./ThemeProvider"
+import { ThemeProvider, ThemeContext } from "./ThemeProvider"
 import Header from "Components/header"
 import HeaderWithoutSignIn from "Components/headerWithoutSignin"
 import GiftBasket from "./GiftBasket"
@@ -54,7 +54,7 @@ const ThemeConsumer = ThemeContext.Consumer
 
 class App extends React.Component {
   constructor() {
-    super() 
+    super()
     this.state = {
       username: "",
       isLoggedIn: false,
@@ -67,7 +67,7 @@ class App extends React.Component {
       const key = item.split("~")[0]
       const value = item.split("~")[1]
 
-      return <input key={i} type="hidden" name={key} value={value} /> 
+      return <input key={i} type="hidden" name={key} value={value} />
     })
   }
 
@@ -88,164 +88,164 @@ class App extends React.Component {
         <ThemeConsumer>
           {(paramObj) => {
             //console.log(paramObj)
-            return (       
+            return (
               <Router key={this.state.key} history={history}>
                 <Switch>
-                  <Route exact 
-                    path="/" 
+                  <Route exact
+                    path="/"
                     render={
                       props => (
-                        <LandingPage {...props} 
+                        <LandingPage {...props}
                         />
                       )
-                    } 
+                    }
                   />
 
-                  <Route exact 
+                  <Route exact
                     path="/how-to-redeem"
                     render={
                       props => (
-                        <RedeemingGiftCard {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
+                        <RedeemingGiftCard {...props}
+                        // name={this.state.username} 
+                        // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
-                    } 
-                    //component={UsingGiftCard} 
+                    }
+                  //component={UsingGiftCard} 
                   />
 
-                  <Route exact 
+                  <Route exact
                     path="/transaction-successful"
                     render={
                       props => (
-                        <SuccessfulTransaction {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
+                        <SuccessfulTransaction {...props}
+                        // name={this.state.username} 
+                        // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
-                    } 
-                    //component={UsingGiftCard} 
+                    }
+                  //component={UsingGiftCard} 
                   />
 
-                  <Route exact 
+                  <Route exact
                     path="/transaction-failure"
                     render={
                       props => (
-                        <FailureTransaction {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
+                        <FailureTransaction {...props}
+                        // name={this.state.username} 
+                        // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
-                    } 
-                    //component={UsingGiftCard} 
+                    }
+                  //component={UsingGiftCard} 
                   />
 
-                  <Route exact 
+                  <Route exact
                     path="/transaction-cancelled"
                     render={
                       props => (
-                        <FailureTransaction {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
+                        <FailureTransaction {...props}
+                        // name={this.state.username} 
+                        // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
-                    } 
-                    //component={UsingGiftCard} 
+                    }
+                  //component={UsingGiftCard} 
                   />
 
-                  <Route exact 
-                    path="/send-gift/get-started" 
+                  <Route exact
+                    path="/send-gift/get-started"
                     //component={SendGiftCards} 
                     render={
                       props => (
-                        <GetStarted {...props} 
+                        <GetStarted {...props}
                           paramObj={paramObj}
                         />
                       )
-                    } 
+                    }
                   />
 
-                  <Route exact 
-                    path="/send-gift" 
+                  <Route exact
+                    path="/send-gift"
                     render={
                       props => (
-                        <GetStarted {...props} 
+                        <GetStarted {...props}
                           paramObj={paramObj}
                         />
                       )
-                    } 
+                    }
                   />
 
-                  <Route exact 
-                    path="/send-gift/select-name" 
+                  <Route exact
+                    path="/send-gift/select-name"
                     render={
                       props => (
-                        <SelectName {...props} 
+                        <SelectName {...props}
                           paramObj={paramObj}
                         />
                       )
-                    } 
+                    }
                   />
 
-                  <Route exact 
-                    path="/send-gift/select-city" 
+                  <Route exact
+                    path="/send-gift/select-city"
                     render={
                       props => (
-                        <SelectCity {...props} 
+                        <SelectCity {...props}
                           paramObj={paramObj}
                         />
                       )
-                    } 
+                    }
                   />
 
-                  <Route exact 
-                    path="/send-gift/select-drink" 
+                  <Route exact
+                    path="/send-gift/select-drink"
                     render={
                       props => (
-                        <SelectFavDrink {...props} 
+                        <SelectFavDrink {...props}
                           paramObj={paramObj}
                         />
                       )
-                    } 
+                    }
                   />
 
-                  <Route exact 
-                    path="/transaction-history" 
+                  <Route exact
+                    path="/transaction-history"
                     //component={TransactionHistory} 
                     render={
                       props => (
-                        <TransactionHistory {...props} 
-                          //paramObj={paramObj}
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
+                        <TransactionHistory {...props}
+                        //paramObj={paramObj}
+                        // name={this.state.username} 
+                        // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
-                    } 
+                    }
                   />
 
-                  <Route exact 
-                    path="/personalise" 
+                  <Route exact
+                    path="/personalise"
                     //component={Checkout} 
                     render={
                       props => (
-                        <Personalise {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
+                        <Personalise {...props}
+                        // name={this.state.username} 
+                        // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
-                    } 
+                    }
                   />
-                  <Route exact 
-                    path="/checkout" 
+                  <Route exact
+                    path="/checkout"
                     //component={Checkout} 
                     render={
                       props => (
-                        <Checkout {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
+                        <Checkout {...props}
+                        // name={this.state.username} 
+                        // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
-                    } 
+                    }
                   />
 
                   {/* <Route exact 
@@ -274,53 +274,53 @@ class App extends React.Component {
                     } 
                   /> */}
 
-                  <Route exact 
-                    path="/retail-outlet" 
+                  <Route exact
+                    path="/retail-outlet"
                     //component={RetailOutlet} 
                     render={
                       props => (
-                        <RetailOutlet {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
+                        <RetailOutlet {...props}
+                        // name={this.state.username} 
+                        // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
-                    } 
+                    }
                   />
-                  
-                  <Route exact 
-                    path="/FAQs" 
+
+                  <Route exact
+                    path="/FAQs"
                     //component={FAQ} 
                     render={
                       props => (
-                        <FAQ {...props} 
-                          // name={this.state.username} 
-                          // isLoggedIn={this.state.isLoggedIn}
+                        <FAQ {...props}
+                        // name={this.state.username} 
+                        // isLoggedIn={this.state.isLoggedIn}
                         />
                       )
-                    } 
+                    }
                   />
-                
-                  <Route 
-                    path="/locationMap" 
-                    component={LocationMap} 
+
+                  <Route
+                    path="/locationMap"
+                    component={LocationMap}
                   />
                   <Route exact path="/age-gate" component={AgeGateAlert} />
-                  <Route exact path="/payment-status" component={PaymentStatus}  />
-                  <Route exact path="/legal-drinking-age" component={LegalDrinkingAge}  />
-                  <Route exact path="/brands/:citySlug/:genreSlug/:brandSlug"
-                    render={ props => (
+                  <Route exact path="/payment-status" component={PaymentStatus} />
+                  <Route exact path="/legal-drinking-age" component={LegalDrinkingAge} />
+                  <Route exact path="/brand/:stateSlug/:genreSlug/:brandSlug"
+                    render={props => (
                       <ProductDetails {...props} context={paramObj} />
-                    )}/>
-                  <Route exact path="/brands/:citySlug/:genreSlug"
-                    render={ props => (
+                    )} />
+                  <Route exact path="/brands/:stateSlug/:genreSlug/:citySlug"
+                    render={props => (
                       <ProductListing {...props} context={paramObj} />
-                    )}/>
+                    )} />
                   <Route exact path="/basket"
-                    render={ props => (
+                    render={props => (
                       <GiftBasket {...props} context={paramObj} />
-                    )}/> 
+                    )} />
                 </Switch>
-              </Router>   
+              </Router>
             )
           }}
         </ThemeConsumer>

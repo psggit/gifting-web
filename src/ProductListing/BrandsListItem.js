@@ -13,7 +13,7 @@ class BrandItem extends React.Component {
   render() {
     return (
       <a
-        href={`/brands/${this.props.activeState}/${this.props.activeGenre}/${this.props.id}`}
+        href={`/brand/${this.props.activeState}/${this.props.activeGenre}/${this.props.id}`}
         className="brand--item animated fadeIn">
         <div style={{
           position: "absolute",

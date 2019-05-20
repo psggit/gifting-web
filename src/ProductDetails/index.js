@@ -34,7 +34,7 @@ class ProductDetails extends React.Component {
     scrollToTop()
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     const brand = window.BRAND_STATE || null
-    const activeState = window.__active_city__ || parseInt(this.props.match.params.citySlug)
+    const activeState = window.__active_city__ || parseInt(this.props.match.params.stateSlug)
     const activeGenre = window.__active_genre__ || parseInt(this.props.match.params.genreSlug)
     const activeBrand = parseInt(this.props.match.params.brandSlug)
 
@@ -106,12 +106,7 @@ class ProductDetails extends React.Component {
 
               <div className="header">
                 <a
-                  onClick={(e) => {
-                    e.preventDefault()
-                    const path = "/" + e.currentTarget.href.split("/").slice(3).join("/")
-                    this.props.history.push(path)
-                  }}
-                  href={this.state.viewProductsUrl}
+                  href={"javascript:history.back()"}
                 >
                   <Icon name="back" />
                   <span style={{ marginLeft: "10px" }} className="os s5">View Drink(s)</span>
@@ -368,7 +363,7 @@ class ProductDetails extends React.Component {
             {
               this.state.isMobile && this.state.isProductAdded
                 ? <div className="gift-more-drinks-paper">
-                  <GiftMoreDrinks history={this.props.history} url={this.state.viewProductsUrl} />
+                  <GiftMoreDrinks history={this.props.history} />
                 </div>
                 : ""
             }
