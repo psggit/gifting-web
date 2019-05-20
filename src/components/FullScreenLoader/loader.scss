@@ -1,4 +1,5 @@
-.loading {
+#fullscreen-loader {
+  .loading {
   animation: rotation 1s infinite linear;
   border: 3px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
@@ -22,4 +23,5 @@
   margin-top: 87px;
   height: calc(100vh - 87px);
   width: 100%;
+}
 }
