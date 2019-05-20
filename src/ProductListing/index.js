@@ -1,7 +1,7 @@
 import React from "react"
 import "./sass/listing.scss"
 import BrandsList from "./BrandsList"
-import Loader from "Components/loader"
+import DotLoader from "Components/DotLoader"
 import GenreOverlay from "./GenreOverlay"
 import BasketTotal from "./BasketTotal"
 import MobileHeader from "./MobileHeader"
@@ -30,6 +30,7 @@ class ProductListing extends React.Component {
       intersectionTarget: null,
       isMobile: props.context ? props.context.isMobile : props.isMobile,
       basket: null,
+      activeCity: props.activeCity,
       activeState: props.activeState,
       activeGenre: props.activeGenre
     }
@@ -385,7 +386,7 @@ class ProductListing extends React.Component {
             }
             {
               (this.state.isLoading || this.state.isBrandsLoading) &&
-              <Loader />
+              <DotLoader />
             }
             {
               !this.state.isLoading && !this.state.isBrandsLoading && this.state.brands.length === 0 &&

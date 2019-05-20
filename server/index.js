@@ -353,11 +353,12 @@ app.get("/sitemap.xml", (req, res) => {
   })
 })
 
-// app.get("/brands/:citySlug/:genreSlug/", (req, res) => {
+// app.get("/brands/:stateSlug/:genreSlug/:citySlug", (req, res) => {
+//   const state = req.params.stateSlug
 //   const city = req.params.citySlug
 //   const genre = req.params.genreSlug
 
-//   const url = `https://retailer.${BASE_URL}/Api/stockandprice/listing/brands/${city}/${genre}`
+//   const url = `https://retailer.${BASE_URL}/Api/stockandprice/listing/brands/${state}/${genre}`
 //   const options = {
 //     method: "post",
 //     body: {
@@ -378,6 +379,7 @@ app.get("/sitemap.xml", (req, res) => {
 //       .join(`
 //       <script id="ssr_script">
 //         window.__isMobile__ = ${isMobile(req)}
+//         window.__active_state__ = ${state}
 //         window.__active_city__ = ${city}
 //         window.__active_genre__ = ${genre}
 //         window.__BRANDS__ = ${JSON.stringify(body.brands)}
@@ -386,7 +388,8 @@ app.get("/sitemap.xml", (req, res) => {
 //     const reactElement = React.createElement(BrandListingPage, {
 //       brands: body.brands,
 //       activeGenre: genre,
-//       activeState: city,
+//       activeState: state,
+//       activeCity: city,
 //       isMobile: isMobile(req)
 //     })
 //     const stream = renderToNodeStream(reactElement)
@@ -398,13 +401,13 @@ app.get("/sitemap.xml", (req, res) => {
 //   })
 // })
 
-app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
-  const city = req.params.citySlug
+app.get("/brand/:stateSlug/:genreSlug/:brandSlug", (req, res) => {
+  const state = req.params.stateSlug
   const genre = req.params.genreSlug
   // const brand = urlencode(req.params.brandSlug)
   const brand = req.params.brandSlug
 
-  const url = `https://retailer.${BASE_URL}/Api/stockandprice/listing/branddetails/${city}/${genre}/${brand}`
+  const url = `https://retailer.${BASE_URL}/Api/stockandprice/listing/branddetails/${state}/${genre}/${brand}`
   const options = {
     method: "post",
     body: {
@@ -425,7 +428,7 @@ app.get("/brands/:citySlug/:genreSlug/:brandSlug", (req, res) => {
       .join(`
       <script>
         window.__isMobile__ = ${isMobile(req)}
-        window.__active_city__ = ${city}
+        window.__active_city__ = ${state}
         window.__active_genre__ = ${genre}
         window.BRAND_STATE = ${JSON.stringify(body.brand_details)}
       </script>

@@ -10,7 +10,7 @@ import GiftMoreDrinks from "./../GiftMoreDrinks"
 import Moment from "moment"
 import { scrollToTop } from "Utils/ui-utils"
 import NavLink from "Components/NavLink"
-import Loader from "Components/Loader"
+import FullScreenLoader from "Components/FullScreenLoader"
 
 function getImageUrl(image) {
   return `https://api2.${process.env.BASE_URL}/get?fs_url=${image}`
@@ -371,7 +371,7 @@ class ProductDetails extends React.Component {
         }
         {
           brand === null &&
-          <Loader />
+          <FullScreenLoader />
         }
       </div>
     )
