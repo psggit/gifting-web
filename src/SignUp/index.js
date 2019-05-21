@@ -87,9 +87,9 @@ export default function SignUp(data) {
     }
 
     handleKeyDown(e) {
-      const {otpSent} = this.state;
-      if(e.keyCode === 13) {
-        if(!otpSent) {
+      const { otpSent } = this.state;
+      if (e.keyCode === 13) {
+        if (!otpSent) {
           this.handleClick()
         } else {
           this.login()
@@ -102,8 +102,8 @@ export default function SignUp(data) {
     // }
 
     handleGenderChange(genderValue) {
-      const {otpSent} = this.state
-      if(!otpSent) {
+      const { otpSent } = this.state
+      if (!otpSent) {
         this.setState({ gender: genderValue })
       }
     }
@@ -153,11 +153,11 @@ export default function SignUp(data) {
       function tick() {
         var counter = document.getElementById("timer");
         seconds--;
-        counter.innerHTML ="OTP can be resent in" + " 00" + ":"  +(seconds < 10 ? "0" : "") + String(seconds) + " seconds";
-        if( seconds > 0 ) {
-          timeoutHandle=setTimeout(tick, 1000);
-        }else {
-          self.setState({setTimer: false})
+        counter.innerHTML = "OTP can be resent in" + " 00" + ":" + (seconds < 10 ? "0" : "") + String(seconds) + " seconds";
+        if (seconds > 0) {
+          timeoutHandle = setTimeout(tick, 1000);
+        } else {
+          self.setState({ setTimer: false })
         }
       }
       tick();
@@ -190,8 +190,7 @@ export default function SignUp(data) {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        //credentials: 'include',
-        mode: 'cors',
+        credentials: 'include',
         body: JSON.stringify(payload)
       }
       this.setState({ errorInSignUp: false, isGettingOtp: true })
@@ -206,15 +205,15 @@ export default function SignUp(data) {
             } else if (response.status === 409 && responseData.errorCode === "user-already-exists") {
               this.setState({ emailErr: { status: true, value: responseData.message } })
               //return
-            } 
+            }
             // else if (response.status !== 400) {
             else {
-              window.fcWidget.user.clear().then(function() {
+              window.fcWidget.user.clear().then(function () {
                 console.log('User cleared')
-              }, function() {
+              }, function () {
                 console.log("User Not cleared")
               })
-              this.setState({ otpSent: true, disableField: true, setTimer: true})
+              this.setState({ otpSent: true, disableField: true, setTimer: true })
               this.countdown()
               //this.getOtp()
             }
@@ -259,7 +258,7 @@ export default function SignUp(data) {
                 //   eventAction: "",
                 //   eventLabel: "sign_up_failure"
                 // })
-                if(window.gtag) {
+                if (window.gtag) {
                   gtag("event", "sign_up_failure", {
                     "event_label": "failure"
                   })
@@ -274,7 +273,7 @@ export default function SignUp(data) {
                 //   eventAction: "",
                 //   eventLabel: "sign_up_failure"
                 // })
-                if(window.gtag) {
+                if (window.gtag) {
                   gtag("event", "sign_up_failure", {
                     "event_label": "failure"
                   })
@@ -288,7 +287,7 @@ export default function SignUp(data) {
               //   eventAction: "",
               //   eventLabel: "sign_up_success"
               // })
-              if(window.gtag) {
+              if (window.gtag) {
                 gtag("event", "sign_up_success", {
                   "event_label": "success"
                 })
@@ -308,7 +307,7 @@ export default function SignUp(data) {
             //   eventAction: "",
             //   eventLabel: "sign_up_failure"
             // })
-            if(window.gtag) {
+            if (window.gtag) {
               gtag("event", "sign_up_failure", {
                 "event_label": "failure"
               })
@@ -337,7 +336,7 @@ export default function SignUp(data) {
       fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
         .then((response) => {
           if (response.status === 401) {
-            this.setState({ otpSent: true, disableField: true, setTimer: true})
+            this.setState({ otpSent: true, disableField: true, setTimer: true })
             this.countdown()
             // if(dataObj.resend) {
             //   this.setState({resentOtp: true})
@@ -440,7 +439,7 @@ export default function SignUp(data) {
                         /> */}
 
                         <InputMask
-                          onChange={this.handleTextChange} 
+                          onChange={this.handleTextChange}
                           name="mobileNo"
                           mask="9999999999"
                           disabled={this.state.disableField}
@@ -523,7 +522,7 @@ export default function SignUp(data) {
                           //disabled={this.state.disableField && this.state.otpSent} 
                           autoComplete="off"
                           onChange={(e) => this.handleTextChange(e)}
-                          //style={{ paddingLeft: '35px' }}
+                        //style={{ paddingLeft: '35px' }}
                         />
                       </div>
                     </div>
@@ -537,26 +536,26 @@ export default function SignUp(data) {
                     <div className="form-group">
                       <label>Gender</label>
                       <div className="row">
-                        <div 
-                          disabled={this.state.disableField && this.state.otpSent} 
-                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}} 
-                          onClick={() => this.handleGenderChange("male")} 
+                        <div
+                          disabled={this.state.disableField && this.state.otpSent}
+                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
+                          onClick={() => this.handleGenderChange("male")}
                           className={`column os s8 ${gender === "male" ? 'active' : 'inactive'}`}
                         >
                           Male
                         </div>
-                        <div 
-                          disabled={this.state.disableField && this.state.otpSent} 
+                        <div
+                          disabled={this.state.disableField && this.state.otpSent}
                           style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
-                          onClick={() => this.handleGenderChange("female")} 
+                          onClick={() => this.handleGenderChange("female")}
                           className={`column os s8 ${gender === "female" ? 'active' : ''}`}
                         >
                           Female
                         </div>
-                        <div 
-                          disabled={this.state.disableField && this.state.otpSent} 
+                        <div
+                          disabled={this.state.disableField && this.state.otpSent}
                           style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
-                          onClick={() => this.handleGenderChange("unspecified")} 
+                          onClick={() => this.handleGenderChange("unspecified")}
                           className={`column os s8 ${gender === "unspecified" ? 'active' : ''}`}
                         >
                           Unspecified
@@ -585,7 +584,7 @@ export default function SignUp(data) {
                         /> */}
 
                         <InputMask
-                          onChange={this.handleTextChange} 
+                          onChange={this.handleTextChange}
                           name="pin"
                           disabled={this.state.disableField && this.state.otpSent}
                           style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
@@ -625,7 +624,7 @@ export default function SignUp(data) {
                         /> */}
 
                         <InputMask
-                          onChange={this.handleTextChange} 
+                          onChange={this.handleTextChange}
                           name="confirmPin"
                           disabled={this.state.disableField && this.state.otpSent}
                           style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
@@ -663,7 +662,7 @@ export default function SignUp(data) {
                         /> */}
 
                         <InputMask
-                          onChange={this.handleTextChange} 
+                          onChange={this.handleTextChange}
                           name="otp"
                           mask="999999"
                           placeholder="Enter the OTP"
@@ -674,7 +673,7 @@ export default function SignUp(data) {
                         />
                         <div className={`resend os s10 ${setTimer ? 'disabled' : ''}`} onClick={this.resendOtp}>RESEND OTP</div>
                         {
-                          this.state.setTimer && 
+                          this.state.setTimer &&
                           <div className="note os s9" id="timer"></div>
                         }
                       </div>
@@ -691,23 +690,23 @@ export default function SignUp(data) {
                       ? <React.Fragment>
                         <div className="button-section">
                           <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                          <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
-                        </div> 
+                          <Button size="small" style={{ marginLeft: "15px" }} icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
+                        </div>
                         <div className="button-section mobile">
                           <Button size="small" icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
                           <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                        </div> 
+                        </div>
                       </React.Fragment>
                       : <React.Fragment>
                         <div className="button-section">
                           <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                          <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
-                        </div> 
+                          <Button size="small" style={{ marginLeft: "15px" }} icon="rightArrowWhite" disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
+                        </div>
                         <div className="button-section mobile">
                           <Button size="small" icon="rightArrowWhite" disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
                           <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                        </div> 
-                       
+                        </div>
+
                       </React.Fragment>
                   }
                 </div>

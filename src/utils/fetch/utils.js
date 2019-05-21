@@ -19,7 +19,7 @@ function getHeaders(type) {
   const json_headers = {
     "Accept": "application/json",
     "Content-Type": "application/json",
-    "App-Name": "HipBar-Delivery"
+    "App-Name": "HipBar-Drinks"
   }
 
   switch (type) {
@@ -28,7 +28,7 @@ function getHeaders(type) {
     case "Public":
       return Object.assign({}, json_headers)
     case "RSS":
-      return Object.assign({}, {"Accept": "application/xml", "Content-Type": "application/xml"})
+      return Object.assign({}, { "Accept": "application/xml", "Content-Type": "application/xml" })
     default:
       return Object.assign({}, json_headers)
   }
@@ -76,7 +76,7 @@ export function constructFetchUtility(options) {
   const { api, data, method, type, cors, prependBaseUrl = true, apiBase } = options
   // construct request url
   const url = prependBaseUrl ? `${Api[apiBase]}${api}` : api
-  
+
   // construct options for creating `window.fetch` instance
   let fetchOptions = {
     method,
@@ -84,10 +84,10 @@ export function constructFetchUtility(options) {
     headers: getHeaders(type),
   }
 
-  if(cors) fetchOptions.mode = "cors"
+  if (cors) fetchOptions.mode = "cors"
   // add data to request
   if (data && method !== "GET") {
-    fetchOptions.body = constructBody({type, data})
+    fetchOptions.body = constructBody({ type, data })
   }
 
   return (options.handleError)
