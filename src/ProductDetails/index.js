@@ -61,7 +61,10 @@ class ProductDetails extends React.Component {
         limit: 10
       })
         .then(brand => {
-          // console.log(brand.description.split("\n").join(""))
+          const sortedSkus = brand.sku.sort((a, b) => {
+            return a.volume - b.volume
+          })
+          brand.skus = sortedSkus
           this.setState({ brand })
         })
     }
