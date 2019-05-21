@@ -25,7 +25,7 @@ class SuccessfulTransaction extends React.Component {
   }
 
   componentDidMount() {
-    localStorage.setItem("transaction--completed",true )
+    localStorage.setItem("transaction--completed", true)
     const txn = window.__TXN__ || {}
     delete window.__TXN__
     const basket = JSON.parse(localStorage.getItem("basket")) || []
@@ -51,7 +51,7 @@ class SuccessfulTransaction extends React.Component {
       })
     })
     console.log("cart Details", cartDetails, localStorage.getItem("amount"))
-    if(window.gtag) {
+    if (window.gtag) {
       gtag("event", "transaction_success", {
         "event_label": JSON.stringify({
           cartItems: cartDetails,
@@ -64,7 +64,7 @@ class SuccessfulTransaction extends React.Component {
 
   render() {
     return (
-      <div id="TransactionStatus"> 
+      <div id="TransactionStatus">
         <div className="container">
 
           <div style={{ textAlign: "center", padding: "0 20px" }}>
@@ -90,7 +90,7 @@ class SuccessfulTransaction extends React.Component {
                         key={i}
                         item={item}
                         count={item.count}
-                      />  
+                      />
                     ))
                   })
                 }
@@ -118,7 +118,7 @@ class SuccessfulTransaction extends React.Component {
                   <p className="os s7">{this.state.txn_time}</p>
                 </div>
               </div>
-              
+
               <div className="paper sent--to">
                 <p style={{ paddingBottom: "12px" }} className="os s5 header">Sent To</p>
                 <div>
@@ -148,10 +148,10 @@ class SuccessfulTransaction extends React.Component {
                   </div>
                   <div>
                     <p className="os s3">
-                    Inform your friend about the gift card via SMS
+                      Inform your friend about the gift card via SMS
                     </p>
                     <p className="os s5">
-                    For a more personalized experience, inform your friend about the gift card via personal message.
+                      For a more personalized experience, inform your friend about the gift card via personal message.
                     </p>
                   </div>
                 </div>
@@ -162,17 +162,17 @@ class SuccessfulTransaction extends React.Component {
                   </div>
                   <div>
                     <p className="os s3">
-                    Download the HipBar app!
+                      Download the HipBar app!
                     </p>
                     <p className="os s5">
-                    Download the HipBar app to manage your gift cards on the go.
+                      Download the HipBar app to manage your gift cards on the go.
                     </p>
                   </div>
                 </div>
 
                 <div className="app-store-btn">
-                  <a rel="noopener noreferrer" target="_blank" href="https://itunes.apple.com/in/app/hipbar-delivery/id1179371753?mt=8"><Icon name="appStore" /></a>
-                  <a rel="noopener noreferrer" target="_blank" href="https://play.google.com/store/apps/details?id=in.hipbar.hipbar_user_app&hl=en_IN"><Icon name="googleStore" /></a>
+                  <a rel="noopener noreferrer" target="_blank" href="https://itunes.apple.com/in/app/hipbar-pay/id1297218847?mt=8"><Icon name="appStore" /></a>
+                  <a rel="noopener noreferrer" target="_blank" href="https://play.google.com/store/apps/details?id=in.hipbar.hipbar_pay_app&hl=en"><Icon name="googleStore" /></a>
                 </div>
 
               </div>
