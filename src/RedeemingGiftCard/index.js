@@ -7,13 +7,13 @@ import Footer from "Components/footer"
 
 class GiftCards extends React.Component {
   constructor(props) {
-    super(props) 
+    super(props)
     //console.log("props", props, props.data, props.name, props.isLoggedIn)
   }
 
   render() {
     //console.log("props in card", this.props)
-    return(
+    return (
       <div>
         <div id="GiftCards">
           <div className="content">
@@ -27,8 +27,8 @@ class GiftCards extends React.Component {
             </div>
 
             <div className="app-store-btn">
-              <a rel="noopener noreferrer" target="_blank" href="https://itunes.apple.com/in/app/hipbar-delivery/id1179371753?mt=8"><Icon name="appStore" /></a>
-              <a rel="noopener noreferrer" target="_blank" href="https://play.google.com/store/apps/details?id=in.hipbar.hipbar_user_app&hl=en_IN"><Icon name="googleStore" /></a>
+              <a rel="noopener noreferrer" target="_blank" href="https://itunes.apple.com/in/app/hipbar-pay/id1297218847?mt=8"><Icon name="appStore" /></a>
+              <a rel="noopener noreferrer" target="_blank" href="https://play.google.com/store/apps/details?id=in.hipbar.hipbar_pay_app&hl=en"><Icon name="googleStore" /></a>
             </div>
 
             <span className="step-number"><Icon name="stepTwo" /></span>
@@ -61,7 +61,7 @@ class GiftCards extends React.Component {
               </span>
             </div>
           </div>
-         
+
           <FirstGiftCard pageTitle="Redeeming Gift Card" />
           {/* <Footer /> */}
         </div>
