@@ -43,7 +43,9 @@ function isMobile(req) {
 }
 
 app.use(helmet({
-  noSniff: false
+  frameguard: {
+    action: "deny"
+  }
 }))
 
 // ENV variables
@@ -63,6 +65,7 @@ app.get("/images/:name", (req, res) => {
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get("/privacy", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../html/privacy.html`), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -83,8 +86,8 @@ app.get("/transaction-cancelled", (req, res) => {
 })
 
 app.post("/transaction-successful", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
-    console.log(httpRes)
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-success.html"), "utf-8")
     const [head, tail] = html.split("{content}")
     const headWithNavbar = withHeader(head)
@@ -118,6 +121,7 @@ app.post("/transaction-successful", (req, res) => {
 })
 
 app.post("/transaction-cancelled", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-failed.html"), "utf-8")
     const [head, tail] = html.split("{content}")
@@ -144,6 +148,7 @@ app.post("/transaction-cancelled", (req, res) => {
 })
 
 app.post("/transaction-failure", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-failed.html"), "utf-8")
     const [head, tail] = html.split("{content}")
@@ -170,6 +175,7 @@ app.post("/transaction-failure", (req, res) => {
 })
 
 app.get("/manifest.json", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, "./../manifest.json"), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -178,6 +184,7 @@ app.get("/manifest.json", (req, res) => {
 })
 
 app.get("/grievance-policy", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../html/grievance-policy.html`), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -186,6 +193,7 @@ app.get("/grievance-policy", (req, res) => {
 })
 
 app.get("/merchants-t-c", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../html/merchants-t-c.html`), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -194,6 +202,7 @@ app.get("/merchants-t-c", (req, res) => {
 })
 
 app.get("/gifting-t-c", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../html/gifting-t-c.html`), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -202,6 +211,7 @@ app.get("/gifting-t-c", (req, res) => {
 })
 
 app.get("/user-terms", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../html/user-terms.html`), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -210,6 +220,7 @@ app.get("/user-terms", (req, res) => {
 })
 
 app.get("/hipbar-wallet", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../html/hipbar-wallet.html`), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -218,6 +229,8 @@ app.get("/hipbar-wallet", (req, res) => {
 })
 
 function renderStaticMarkup({ component, req, res, file }) {
+  res.set("Content-type", "text/html")
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withMetaTags(withHeader(head), req.url, req.url)
@@ -354,6 +367,7 @@ app.get("/sitemap.xml", (req, res) => {
 })
 
 // app.get("/brands/:stateSlug/:genreSlug/:citySlug", (req, res) => {
+// res.set("Content-type", "text/html")
 //   const state = req.params.stateSlug
 //   const city = req.params.citySlug
 //   const genre = req.params.genreSlug
@@ -402,6 +416,8 @@ app.get("/sitemap.xml", (req, res) => {
 // })
 
 app.get("/brand/:stateSlug/:genreSlug/:brandSlug", (req, res) => {
+  res.set("Content-type", "text/html")
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   const state = req.params.stateSlug
   const genre = req.params.genreSlug
   // const brand = urlencode(req.params.brandSlug)
@@ -490,6 +506,10 @@ app.use(express.static(path.join(__dirname, "./../dist")))
 
 // client side app
 app.get("/*", (req, res) => {
+  if (!/.*.js/.test(req.url)) {
+    res.set("Content-type", "text/html")
+    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  }
   const html = fs.readFileSync(path.resolve(__dirname, "./../dist/client.html"), "utf-8")
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withHeader(head)
