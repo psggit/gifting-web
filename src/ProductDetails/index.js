@@ -20,7 +20,7 @@ class ProductDetails extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      brand: null,
+      brand: props.brand,
       basketCount: 0,
       viewProductsUrl: "",
       isProductAdded: false
