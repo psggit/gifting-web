@@ -86,6 +86,7 @@ app.get("/transaction-cancelled", (req, res) => {
 })
 
 app.post("/transaction-successful", (req, res) => {
+  res.set("Content-type", "text/html")
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-success.html"), "utf-8")
@@ -121,6 +122,7 @@ app.post("/transaction-successful", (req, res) => {
 })
 
 app.post("/transaction-cancelled", (req, res) => {
+  res.set("Content-type", "text/html")
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-failed.html"), "utf-8")
@@ -148,6 +150,7 @@ app.post("/transaction-cancelled", (req, res) => {
 })
 
 app.post("/transaction-failure", (req, res) => {
+  res.set("Content-type", "text/html")
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-failed.html"), "utf-8")
