@@ -248,6 +248,8 @@ function renderStaticMarkup({ component, req, res, file }) {
 }
 
 function renderLegalDrinkingAgeMarkUp({ component, req, res, file }) {
+  res.set("Content-type", "text/html")
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withMetaTags(headerWithoutSignIn(head), req.url, undefined, req.url)
