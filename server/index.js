@@ -19,6 +19,7 @@ const HeaderWithoutSignin = require("../dist-ssr/headerWithoutSignin").default
 // Static pages
 const LandingPage = require("../dist-ssr/landing").default
 const AgeGate = require("../dist-ssr/age_gate").default
+const ServiceableCities = require("../dist-ssr/cities-serviceable").default
 const LegaDrinkingAge = require("../dist-ssr/legal_drinking_age").default
 const GetStartedPage = require("../dist-ssr/send_gift").default
 const RedeemGiftCard = require("../dist-ssr/redeem_gift_card").default
@@ -297,6 +298,15 @@ app.get("/age-gate", (req, res) => {
     res,
     file: "age-gate",
     pageName: "age-gate"
+  })
+})
+
+app.get("/cities-serviceable", (req, res) => {
+  renderStaticMarkup({
+    component: ServiceableCities,
+    req,
+    res,
+    file: "static"
   })
 })
 

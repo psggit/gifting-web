@@ -5,11 +5,12 @@ import Slider from "Components/slider"
 import CustomButton from "Components/custom-button"
 import FirstGiftCard from "Components/gift-card-ad"
 import Icon from "Components/icon"
-import {readCookie} from "Utils/session-utils"
+import { readCookie } from "Utils/session-utils"
 import Header from "Components/header"
 import Footer from "Components/footer"
 import Button from "Components/button"
 import { fetchCities } from "./../api"
+import ServicableCities from "Components/ServicableCities"
 
 class Landing extends React.Component {
   constructor() {
@@ -35,7 +36,7 @@ class Landing extends React.Component {
   }
 
   handleClick() {
-    if(window.gtag) {
+    if (window.gtag) {
       gtag("event", "point_of_clicking_start_gifting", {
         "event_label": JSON.stringify({
           page_title: "landing"
@@ -45,7 +46,7 @@ class Landing extends React.Component {
   }
 
   render() {
-    const backgroundStyle={
+    const backgroundStyle = {
       backgroundImage: 'linear-gradient(70deg, rgba(0, 0, 0, 0), #313131)',
       padding: '11% 10%',
       display: 'flex',
@@ -87,7 +88,7 @@ class Landing extends React.Component {
             <div className="step-notes">
               <div>
                 <p className="ft s5 step-no">Step 1</p>
-                <p className="ft s5 step-note">Enter details &amp; pay <br/>via hipbar</p>
+                <p className="ft s5 step-note">Enter details &amp; pay <br />via hipbar</p>
               </div>
             </div>
           </div>
@@ -99,7 +100,7 @@ class Landing extends React.Component {
             <div className="step-notes">
               <div>
                 <p className="ft s5 step-no">Step 2</p>
-                <p className="ft s5 step-note">Recipient receives <br/>gift card</p>
+                <p className="ft s5 step-note">Recipient receives <br />gift card</p>
               </div>
             </div>
           </div>
@@ -111,13 +112,14 @@ class Landing extends React.Component {
             <div className="step-notes">
               <div>
                 <p className="ft s5 step-no">Step 3</p>
-                <p className="ft s5 step-note">Recipient collects <br/>drink at retail store</p>
+                <p className="ft s5 step-note">Recipient collects <br />drink at retail store</p>
               </div>
             </div>
           </div>
 
           <FirstGiftCard pageTitle="landing" />
-          <div className="located-cities">
+          <ServicableCities />
+          {/* <div className="located-cities">
             <span>
               <Icon name="location" />
             </span>
@@ -150,7 +152,7 @@ class Landing extends React.Component {
                 ))
               }
             </div>
-          </div>
+          </div> */}
         </div>
         {/* <Footer /> */}
       </React.Fragment>

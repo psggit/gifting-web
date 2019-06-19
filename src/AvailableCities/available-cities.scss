@@ -1,0 +1,29 @@
+@import "./../sass/base.scss";
+
+#AvailableCities {
+   margin: 10% 0;
+  .located-cities {
+     background: #111;
+     .title {
+      background: #111 !important;
+     }
+  }
+}
+
+@media only screen and (max-width: $sm) {
+  #AvailableCities {
+    margin-top: 87px;
+    margin-bottom: 0;
+    .located-cities {
+      padding: 20px !important;
+      .city-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        .city {
+          margin-bottom: 24px;
+        }
+      }
+    }
+  }
+}

@@ -16,10 +16,10 @@ const Footer = () => (
       <div className="col">
         <div className="footer-item">
           <ul>
-            <li><a  href="/send-gift">Send Gift Cards</a></li>
-            <li><a  href="/how-to-redeem">Redeeming Gift Cards</a></li>
-            <li><a  href="/retail-outlet">Retail Outlets</a></li>
-            <li><a  href="/FAQs">FAQs</a></li>
+            <li><a href="/send-gift">Send Gift Cards</a></li>
+            <li><a href="/how-to-redeem">Redeeming Gift Cards</a></li>
+            <li><a href="/retail-outlet">Retail Outlets</a></li>
+            <li><a href="/FAQs">FAQs</a></li>
           </ul>
         </div>
 
@@ -36,7 +36,7 @@ const Footer = () => (
 
       <div className="col">
         <div className="footer-item">
-          <p>HipBar Private Limited</p>
+          <p>Hip Bar Private Limited</p>
           <p>
             No. 34, (1st Floor) B Ramachandra<br />
             Adithanar Road, <br />

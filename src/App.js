@@ -33,6 +33,7 @@ import SelectFavDrink from "./SendGiftWizard/FavDrink"
 import Footer from "Components/footer"
 import SuccessfulTransaction from "./SuccessfulTransaction";
 import FailureTransaction from "./FailureTransaction";
+import AvailableCities from "./AvailableCities";
 // import NotFound from "./NotFound"
 // import makeAsyncComponent from "./makeAsyncComponent"
 
@@ -280,6 +281,19 @@ class App extends React.Component {
                     render={
                       props => (
                         <RetailOutlet {...props}
+                        // name={this.state.username} 
+                        // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )
+                    }
+                  />
+
+                  <Route exact
+                    path="/cities-serviceable"
+                    //component={FAQ} 
+                    render={
+                      props => (
+                        <AvailableCities {...props}
                         // name={this.state.username} 
                         // isLoggedIn={this.state.isLoggedIn}
                         />
