@@ -7,7 +7,7 @@ import SignIn from "./../../SignIn"
 import { Api } from "Utils/config"
 // import SignUp from "./../../SignUp"
 import { mountModal, unMountModal } from 'Components/modal-box/utils'
-import {createSession, clearSession, getUsername} from 'Utils/session-utils'
+import { createSession, clearSession, getUsername } from 'Utils/session-utils'
 import NotifyError from './../../NotifyError';
 // import {ThemeProvider, ThemeContext} from "./../../ThemeProvider"
 import { GET } from "Utils/fetch"
@@ -51,13 +51,13 @@ class Header extends React.Component {
 
   componentDidMount() {
     this.links = document.querySelectorAll(".nav-items a div")
-    this.setState({isLoggedIn: localStorage.getItem("hasura-id") ? true  : false})
-    this.setState({username: localStorage.getItem("username")})
+    this.setState({ isLoggedIn: localStorage.getItem("hasura-id") ? true : false })
+    this.setState({ username: localStorage.getItem("username") })
     this.setState({ activePath: location.pathname.slice(1) })
   }
 
   handleSignOut() {
-    this.setState({showDropdown: false})
+    this.setState({ showDropdown: false })
     const fetchOptions = {
       method: 'get',
       headers: {
@@ -70,7 +70,7 @@ class Header extends React.Component {
 
     fetch(`${Api.blogicUrl}/consumer/auth/user/logout`, fetchOptions)
       .then((response) => {
-        this.setState({isLoggedIn: false})
+        this.setState({ isLoggedIn: false })
         const notAllowedUrls = [
           "/transaction-successful",
           "/transaction-failure",
@@ -86,9 +86,9 @@ class Header extends React.Component {
         }
         //setTimeout(() => {
         clearSession()
-        window.fcWidget.user.clear().then(function() {
+        window.fcWidget.user.clear().then(function () {
           console.log('User cleared')
-        }, function() {
+        }, function () {
           console.log("User Not cleared")
         })
         //console.log("user status out", userStatus)
@@ -100,10 +100,10 @@ class Header extends React.Component {
       })
   }
 
-  
+
   handleClick() {
     this.setState({ isMenuOpen: false })
-    if(window.gtag) {
+    if (window.gtag) {
       gtag("event", "point_of_signin", {
         "event_label": location.pathname,
       })
@@ -114,8 +114,8 @@ class Header extends React.Component {
   }
 
   openDropdown() {
-    const {showDropdown} = this.state
-    this.setState({showDropdown: !showDropdown})
+    const { showDropdown } = this.state
+    this.setState({ showDropdown: !showDropdown })
   }
 
   freezeVp(e) {
@@ -131,7 +131,7 @@ class Header extends React.Component {
   }
 
   onToggle() {
-    const {isMenuOpen} = this.state
+    const { isMenuOpen } = this.state
     this.setState({ isMenuOpen: !isMenuOpen }, () => {
       document.body.style = this.state.isMenuOpen === true ? "overflow:hidden" : "overflow:auto"
       // document.body.style = this.state.isMenuOpen === false ? this.stopBodyScroll(true) : this.stopBodyScroll(false)
@@ -139,7 +139,7 @@ class Header extends React.Component {
   }
 
   handleTransactionHistory() {
-    location.href="/transaction-history"
+    location.href = "/transaction-history"
   }
 
   checkActiveClass(path) {
@@ -147,14 +147,14 @@ class Header extends React.Component {
   }
 
   render() {
-    const {showDropdown} = this.state
+    const { showDropdown } = this.state
     const { isLoggedIn } = this.state
     //console.log("header state", this.props)
     return (
       <div className="navbar">
         <div className="navbar-logo" >
           {
-            this.state.isMenuOpen 
+            this.state.isMenuOpen
               ? <a href="/"><Icon name="hipbarLogoMobile" /></a>
               : <a href="/"><Icon name="hipbarLogoMobile" /></a>
           }
@@ -162,10 +162,10 @@ class Header extends React.Component {
         <div className="nav-items">
           {
             this.navItems.map((item, index) => (
-              <a id={`nav-item-${index+1}`} className={this.checkActiveClass(item.value)} href={`/${item.value}`}  key={`nav-item-${index+1}`}>
+              <a id={`nav-item-${index + 1}`} className={this.checkActiveClass(item.value)} href={`/${item.value}`} key={`nav-item-${index + 1}`}>
                 <div
                   onClick={this.handleLink}
-                  className="nav-item os s7" 
+                  className="nav-item os s7"
                   key={index}
                 >
                   {item.label}
@@ -180,13 +180,13 @@ class Header extends React.Component {
             </div>
           }
           {
-            isLoggedIn && 
+            isLoggedIn &&
             <div className="logout" onClick={() => this.openDropdown()} >
               <span className="user">
-                <Icon name="appUser" style={{marginRight: '10px'}}/>
+                <Icon name="appUser" style={{ marginRight: '10px' }} />
               </span>
-              <div className="os s7"  style={{marginRight: '8px'}} >{this.state.username}</div>
-              <span style={{display: 'flex', alignSelf: 'center'}}>
+              <div className="os s7" style={{ marginRight: '8px' }} >{this.state.username}</div>
+              <span style={{ display: 'flex', alignSelf: 'center' }}>
                 <Icon name="filledDownArrow" />
               </span>
 
@@ -199,7 +199,7 @@ class Header extends React.Component {
         </div>
         <div className="navbar-menu">
           {
-            !this.state.isMenuOpen ? 
+            !this.state.isMenuOpen ?
               <span onClick={() => this.onToggle()}><Icon name="menu" /></span>
               : <span onClick={() => this.onToggle()}><Icon name="cross" /></span>
           }
@@ -210,10 +210,10 @@ class Header extends React.Component {
               {
                 isLoggedIn &&
                 <React.Fragment>
-                  <span className="user" style={{marginRight: '10px'}}>
+                  <span className="user" style={{ marginRight: '10px' }}>
                     <Icon name="mobileApplnUser" />
                   </span>
-                  <span style={{color: '#fff'}}>{this.state.username}</span>
+                  <span style={{ color: '#fff' }}>{this.state.username}</span>
                 </React.Fragment>
               }
             </li>
@@ -230,7 +230,7 @@ class Header extends React.Component {
               isLoggedIn &&
               <li>
                 <a onClick={this.handleTransactionHistory} href={`/transaction-history`}>
-                    Transaction History
+                  Transaction History
                 </a>
               </li>
             }

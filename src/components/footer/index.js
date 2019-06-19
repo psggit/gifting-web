@@ -7,10 +7,15 @@ const Footer = () => (
     <div className="upper">
       <div className="col">
         <Icon name="hipbarLogoFooter" />
+
         <p>HipBar</p>
         <p>
-          Copyright 2019 | All Rights Reserved.
+          © Copyright 2019 | All Rights Reserved
         </p>
+        {/* <img src="/images/footerLogo.png" style={{ width: '60px' }} />
+        <p style={{ color: '#e97c07' }}>
+          © Copyright 2019 | All Rights Reserved
+        </p> */}
       </div>
 
       <div className="col">
@@ -25,11 +30,11 @@ const Footer = () => (
 
         <div className="footer-item">
           <ul>
-            <li><a target="_blank" href="/privacy">Privacy Policy</a></li>
-            <li><a target="_blank" href="/user-terms">Customer T&amp;C</a></li>
+            <li><a target="_blank" href="/user-terms">Consumer T&amp;C</a></li>
             <li><a target="_blank" href="/merchants-t-c">Merchant T&amp;C</a></li>
-            <li><a target="_blank" href="/grievance-policy">Grievance Policy</a></li>
             <li><a target="_blank" href="/gifting-t-c">Gifting T&amp;C</a></li>
+            <li><a target="_blank" href="/grievance-policy">Grievance Policy</a></li>
+            <li><a target="_blank" href="/privacy">Privacy Policy</a></li>
           </ul>
         </div>
       </div>
