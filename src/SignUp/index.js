@@ -23,8 +23,8 @@ export default function SignUp(data) {
         name: "Name",
         otp: "Otp",
         dob: "Date of Birth",
-        pin: "Account Pin",
-        confirmPin: "Confirm Account Pin"
+        // pin: "Account Pin",
+        // confirmPin: "Confirm Account Pin"
       }
       this.state = {
         otpSent: false,
@@ -33,8 +33,8 @@ export default function SignUp(data) {
         name: "",
         email: "",
         otp: "",
-        pin: "",
-        confirmPin: "",
+        // pin: "",
+        // confirmPin: "",
         //resentOtp: false,
         setTimer: false,
         gender: "male",
@@ -49,14 +49,14 @@ export default function SignUp(data) {
           value: "",
           status: false
         },
-        pinErr: {
-          value: "",
-          status: false
-        },
-        confirmPinErr: {
-          value: "",
-          status: false
-        },
+        // pinErr: {
+        //   value: "",
+        //   status: false
+        // },
+        // confirmPinErr: {
+        //   value: "",
+        //   status: false
+        // },
         emailErr: {
           value: "",
           status: false
@@ -109,7 +109,7 @@ export default function SignUp(data) {
     }
 
     isFormValid() {
-      const { otpSent, pin, confirmPin } = this.state
+      const { otpSent } = this.state
       let otpErr = this.state.otpErr
 
       const mobileNoErr = validateTextField(this.inputNameMap['mobileNo'], this.state.mobileNo)
@@ -124,23 +124,23 @@ export default function SignUp(data) {
       const dobErr = validateTextField(this.inputNameMap['dob'], this.state.dob)
       this.setState({ dobErr: validateTextField(this.inputNameMap['dob'], this.state.dob) })
 
-      const pinErr = validateTextField(this.inputNameMap['pin'], this.state.pin)
-      this.setState({ pinErr: validateTextField(this.inputNameMap['pin'], this.state.pin) })
+      // const pinErr = validateTextField(this.inputNameMap['pin'], this.state.pin)
+      // this.setState({ pinErr: validateTextField(this.inputNameMap['pin'], this.state.pin) })
 
-      const confirmPinErr = validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin)
-      this.setState({ confirmPinErr: validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin) })
+      // const confirmPinErr = validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin)
+      // this.setState({ confirmPinErr: validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin) })
 
       if (otpSent) {
         otpErr = validateTextField(this.inputNameMap['otp'], this.state.otp)
         this.setState({ otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp) })
       }
 
-      if (pin !== confirmPin) {
-        this.setState({ confirmPinErr: { status: true, value: "Pin does not match" } })
-        return false
-      }
+      // if (pin !== confirmPin) {
+      //   this.setState({ confirmPinErr: { status: true, value: "Pin does not match" } })
+      //   return false
+      // }
 
-      if (!mobileNoErr.status && !otpErr.status && !emailErr.status && !nameErr.status && !dobErr.status && !pinErr.status && !confirmPinErr.status) {
+      if (!mobileNoErr.status && !otpErr.status && !emailErr.status && !nameErr.status && !dobErr.status) {
         return true
       }
       return false
@@ -177,7 +177,7 @@ export default function SignUp(data) {
           gender: this.state.gender,
           name: this.state.name,
           gps: "",
-          pin: parseInt(this.state.pin),
+          //pin: parseInt(this.state.pin),
           referral_code: ""
         },
         mobile: this.state.mobileNo,
@@ -395,8 +395,8 @@ export default function SignUp(data) {
         nameErr, otpErr,
         errorInSignUp,
         dobErr,
-        pinErr,
-        confirmPinErr,
+        // pinErr,
+        // confirmPinErr,
         gender,
         isSigningUp,
         isGettingOtp,
@@ -563,26 +563,10 @@ export default function SignUp(data) {
                       </div>
                     </div>
                   }
-                  {
-                    //!otpSent &&
+                  {/* {
                     <div className="form-group">
                       <label>Account PIN</label>
                       <div>
-                        {/* <input
-                          type="password"
-                          name="pin"
-                          maxLength={4}
-                          placeholder="Set your account pin"
-                          //value={this.state.pin}
-                          className={`${pinErr.status ? 'error' : ''}`}
-                          autoComplete="off"
-                          disabled={this.state.disableField && this.state.otpSent}
-                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
-                          //onChange={(e) => this.handleTextChange(e)}
-                          onKeyDown={(e) => {this.handleNumberChange(e)}}
-                          onKeyUp={(e) => {this.handleNumberChange(e)}}
-                        /> */}
-
                         <InputMask
                           onChange={this.handleTextChange}
                           name="pin"
@@ -599,30 +583,12 @@ export default function SignUp(data) {
                     </div>
                   }
                   {
-                    //!otpSent &&
                     <p className="note os s9">Set account pin for secure transactions on the HipBar mobile app</p>
                   }
                   {
-                    //!otpSent &&
                     <div className="form-group">
                       <label>Confirm Account PIN</label>
                       <div>
-                        {/* <input
-                          type="password"
-                          name="confirmPin"
-                          disabled={this.state.disableField && this.state.otpSent}
-                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
-                          maxLength={4}
-                          placeholder="Re enter your account pin"
-                          //value={this.state.confirmPin}
-                          className={`${confirmPinErr.status ? 'error' : ''}`}
-                          autoComplete="off"
-                          //onChange={(e) => this.handleTextChange(e)}
-                          onKeyDown={(e) => {this.handleNumberChange(e)}}
-                          onKeyUp={(e) => {this.handleNumberChange(e)}}
-                        //style={{paddingLeft: '30px'}}
-                        /> */}
-
                         <InputMask
                           onChange={this.handleTextChange}
                           name="confirmPin"
@@ -641,7 +607,7 @@ export default function SignUp(data) {
                   {
                     confirmPinErr.status &&
                     <p className="error-message os s9">{confirmPinErr.value}</p>
-                  }
+                  } */}
                   {
                     otpSent &&
                     <div className="form-group">
