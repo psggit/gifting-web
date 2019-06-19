@@ -12,11 +12,13 @@ import { validateTextField, validateEmail } from '../utils/validators';
 import NotifyError from './../NotifyError';
 import Button from "Components/button"
 import InputMask from "react-input-mask"
+import { clearTimeout } from 'timers';
 
 export default function SignUp(data) {
   return class SignUp extends React.Component {
     constructor(props) {
       super(props)
+      this.timeoutHandle = null;
       this.inputNameMap = {
         mobileNo: "Mobile no",
         email: "Email",
@@ -86,6 +88,10 @@ export default function SignUp(data) {
       window.addEventListener("keydown", this.handleKeyDown)
     }
 
+    componentWillUnmount() {
+      clearTimeout(this.timeoutHandle)
+    }
+
     handleKeyDown(e) {
       const { otpSent } = this.state;
       if (e.keyCode === 13) {
@@ -147,7 +153,7 @@ export default function SignUp(data) {
     }
 
     countdown() {
-      let timeoutHandle;
+      // let timeoutHandle;
       let seconds = 30;
       let self = this;
       function tick() {
@@ -155,7 +161,7 @@ export default function SignUp(data) {
         seconds--;
         counter.innerHTML = "OTP can be resent in" + " 00" + ":" + (seconds < 10 ? "0" : "") + String(seconds) + " seconds";
         if (seconds > 0) {
-          timeoutHandle = setTimeout(tick, 1000);
+          self.timeoutHandle = setTimeout(tick, 1000);
         } else {
           self.setState({ setTimer: false })
         }
@@ -413,7 +419,7 @@ export default function SignUp(data) {
             <ModalBox>
               <div id="SignUp">
                 <h2 className="header os s2">
-                  Sign up with HipBar
+                  Sign Up with HipBar
                 </h2>
                 <div className="page-body">
                   <div className="form-group">
