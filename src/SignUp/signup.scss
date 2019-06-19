@@ -135,6 +135,9 @@
           cursor: not-allowed;
           pointer-events: none;
         }
+        @include themify($themes) {
+          color: themed("text-color")
+        }
       }
     }
 
@@ -175,6 +178,9 @@
       letter-spacing: 0;
       margin: 10px 0;
       font-weight: 600;
+      @include themify($themes) {
+        color: themed("text-color")
+      }
     }
 
     .alert-box {
