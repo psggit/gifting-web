@@ -135,7 +135,7 @@ export default function SignUp(data) {
 
       const confirmPinErr = validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin)
       this.setState({ confirmPinErr: validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin) })
-
+      console.log("form validation")
       if (otpSent) {
         otpErr = validateTextField(this.inputNameMap['otp'], this.state.otp)
         this.setState({ otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp) })
