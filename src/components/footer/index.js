@@ -6,16 +6,16 @@ const Footer = () => (
   <div className="footer">
     <div className="upper">
       <div className="col">
-        <Icon name="hipbarLogoFooter" />
+        {/* <Icon name="hipbarLogoFooter" />
 
         <p>HipBar</p>
         <p>
           © Copyright 2019 | All Rights Reserved
-        </p>
-        {/* <img src="/images/footerLogo.png" style={{ width: '60px' }} />
+        </p> */}
+        <img src="/images/footerLogo.png" style={{ width: '60px' }} />
         <p style={{ color: '#e97c07' }}>
           © Copyright 2019 | All Rights Reserved
-        </p> */}
+        </p>
       </div>
 
       <div className="col">
