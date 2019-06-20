@@ -115,7 +115,7 @@ export default function SignUp(data) {
     }
 
     isFormValid() {
-      const { otpSent } = this.state
+      const { otpSent, pin, confirmPin } = this.state
       let otpErr = this.state.otpErr
 
       const mobileNoErr = validateTextField(this.inputNameMap['mobileNo'], this.state.mobileNo)
