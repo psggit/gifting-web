@@ -159,6 +159,10 @@ class Header extends React.Component {
               : <a href="/"><Icon name="hipbarLogoMobile" /></a>
           }
         </div>
+        {/* <div>
+          <p>HipBar</p>
+          <p>Gifting</p>
+        </div> */}
         <div className="nav-items">
           {
             this.navItems.map((item, index) => (
