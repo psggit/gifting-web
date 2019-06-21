@@ -21,7 +21,9 @@ class AvailableCities extends React.Component {
   render() {
     return (
       <div id="AvailableCities">
+        <p className="ft s3" style={{ textAlign: 'center' }}>HipBar Gifting is available in the following cities</p>
         <ServicableCities />
+        <p className="ft s3" style={{ textAlign: 'center' }}> We're expanding to more cities soon! </p>
       </div>
     )
   }
