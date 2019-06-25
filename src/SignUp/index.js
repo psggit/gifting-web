@@ -25,8 +25,8 @@ export default function SignUp(data) {
         name: "Name",
         otp: "Otp",
         dob: "Date of Birth",
-        pin: "Account Pin",
-        confirmPin: "Confirm Account Pin"
+        // pin: "Account Pin",
+        // confirmPin: "Confirm Account Pin"
       }
       this.state = {
         otpSent: false,
@@ -51,14 +51,14 @@ export default function SignUp(data) {
           value: "",
           status: false
         },
-        pinErr: {
-          value: "",
-          status: false
-        },
-        confirmPinErr: {
-          value: "",
-          status: false
-        },
+        // pinErr: {
+        //   value: "",
+        //   status: false
+        // },
+        // confirmPinErr: {
+        //   value: "",
+        //   status: false
+        // },
         emailErr: {
           value: "",
           status: false
@@ -115,7 +115,7 @@ export default function SignUp(data) {
     }
 
     isFormValid() {
-      const { otpSent, pin, confirmPin } = this.state
+      const { otpSent } = this.state
       let otpErr = this.state.otpErr
 
       const mobileNoErr = validateTextField(this.inputNameMap['mobileNo'], this.state.mobileNo)
@@ -130,21 +130,21 @@ export default function SignUp(data) {
       const dobErr = validateTextField(this.inputNameMap['dob'], this.state.dob)
       this.setState({ dobErr: validateTextField(this.inputNameMap['dob'], this.state.dob) })
 
-      const pinErr = validateTextField(this.inputNameMap['pin'], this.state.pin)
-      this.setState({ pinErr: validateTextField(this.inputNameMap['pin'], this.state.pin) })
+      // const pinErr = validateTextField(this.inputNameMap['pin'], this.state.pin)
+      // this.setState({ pinErr: validateTextField(this.inputNameMap['pin'], this.state.pin) })
 
-      const confirmPinErr = validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin)
-      this.setState({ confirmPinErr: validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin) })
+      // const confirmPinErr = validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin)
+      // this.setState({ confirmPinErr: validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin) })
 
       if (otpSent) {
         otpErr = validateTextField(this.inputNameMap['otp'], this.state.otp)
         this.setState({ otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp) })
       }
 
-      if (pin !== confirmPin) {
-        this.setState({ confirmPinErr: { status: true, value: "Pin does not match" } })
-        return false
-      }
+      // if (pin !== confirmPin) {
+      //   this.setState({ confirmPinErr: { status: true, value: "Pin does not match" } })
+      //   return false
+      // }
 
       if (!mobileNoErr.status && !otpErr.status && !emailErr.status && !nameErr.status && !dobErr.status) {
         return true
@@ -183,7 +183,7 @@ export default function SignUp(data) {
           gender: this.state.gender,
           name: this.state.name,
           gps: "",
-          pin: parseInt(this.state.pin),
+          //pin: parseInt(this.state.pin),
           referral_code: ""
         },
         mobile: this.state.mobileNo,
@@ -401,8 +401,8 @@ export default function SignUp(data) {
         nameErr, otpErr,
         errorInSignUp,
         dobErr,
-        pinErr,
-        confirmPinErr,
+        // pinErr,
+        // confirmPinErr,
         gender,
         isSigningUp,
         isGettingOtp,
@@ -569,7 +569,7 @@ export default function SignUp(data) {
                       </div>
                     </div>
                   }
-                  {
+                  {/* {
                     <div className="form-group">
                       <label>Account PIN</label>
                       <div>
@@ -613,7 +613,7 @@ export default function SignUp(data) {
                   {
                     confirmPinErr.status &&
                     <p className="error-message os s9">{confirmPinErr.value}</p>
-                  }
+                  } */}
                   {
                     otpSent &&
                     <div className="form-group">
