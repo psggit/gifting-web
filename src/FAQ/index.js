@@ -17,7 +17,8 @@ class FAQ extends React.Component {
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
-    //this.toggleBox = this.toggleBox.bind(this)
+    this.fetchSendingGiftCardFaqs = this.fetchSendingGiftCardFaqs.bind(this)
+    this.fetchRedeemingGiftCardFaqs = this.fetchRedeemingGiftCardFaqs.bind(this)
     this.setActiveAccordian = this.setActiveAccordian.bind(this)
     this.toggleAccordian = this.toggleAccordian.bind(this)
   }
@@ -26,6 +27,12 @@ class FAQ extends React.Component {
     //this.setState({ sendingGiftCardQuestions })
     const myHeaders = new Headers();
     myHeaders.append('Authorization', 'Bearer Y3NzSUUzTmlLbFh4Z2JsYUV2bmk =');
+
+    this.fetchSendingGiftCardFaqs(myHeaders)
+    this.fetchRedeemingGiftCardFaqs(myHeaders)
+  }
+
+  fetchSendingGiftCardFaqs(myHeaders) {
     fetch(`https://hipbar.freshdesk.com/api/v2/solutions/folders/9000087684/articles`, {
       method: 'GET',
       headers: myHeaders,
@@ -42,7 +49,9 @@ class FAQ extends React.Component {
       .catch((err) => {
         console.log("Error in fetching faq's", err)
       })
+  }
 
+  fetchRedeemingGiftCardFaqs(myHeaders) {
     fetch(`https://hipbar.freshdesk.com/api/v2/solutions/folders/9000087685/articles`, {
       method: 'GET',
       headers: myHeaders,
