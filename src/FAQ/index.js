@@ -2,7 +2,7 @@ import React from "react"
 import Footer from "Components/footer"
 import './faq.scss'
 import Icon from "Components/icon"
-import { redeemingGiftCardQuestions } from './QA'
+// import { redeemingGiftCardQuestions } from './QA'
 import Accordian from "Components/accordian"
 import AccordianItem from "Components/accordian/accordian-item"
 
@@ -11,6 +11,7 @@ class FAQ extends React.Component {
     super(props)
     this.state = {
       sendingGiftCardQuestions: [],
+      redeemingGiftCardQuestions: [],
       //isModelOpen: false,
       activeAccordian: -1
       // username: props.username ? props.username : "",
@@ -39,7 +40,24 @@ class FAQ extends React.Component {
         })
       })
       .catch((err) => {
-        console.log("Error in fetching faqs", err)
+        console.log("Error in fetching faq's", err)
+      })
+
+    fetch(`https://hipbar.freshdesk.com/api/v2/solutions/folders/9000087685/articles`, {
+      method: 'GET',
+      headers: myHeaders,
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        console.log("response data", data)
+        this.setState({
+          redeemingGiftCardQuestions: data
+        })
+      })
+      .catch((err) => {
+        console.log("Error in fetching faq's", err)
       })
   }
 
@@ -57,7 +75,7 @@ class FAQ extends React.Component {
   }
 
   render() {
-    const { sendingGiftCardQuestions } = this.state
+    const { sendingGiftCardQuestions, redeemingGiftCardQuestions } = this.state
     return (
       <div>
         <div id="Faq">
@@ -101,9 +119,9 @@ class FAQ extends React.Component {
                 >
                   {
                     redeemingGiftCardQuestions.map((item, index) => (
-                      <AccordianItem key={index + 11} title={item.question} icon={this.state.activeAccordian !== -1 && this.state.activeAccordian === index + 11 ? <Icon name="minus" /> : <Icon name="plus" />} id={index + 11}>
+                      <AccordianItem key={index + 11} title={item.title} icon={this.state.activeAccordian !== -1 && this.state.activeAccordian === index + 11 ? <Icon name="minus" /> : <Icon name="plus" />} id={index + 11}>
                         <p className="os s7">
-                          {item.answer}
+                          {item.description_text}
                         </p>
                       </AccordianItem>
                     ))
