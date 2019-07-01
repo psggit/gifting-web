@@ -2,7 +2,7 @@ import React from "react"
 import Footer from "Components/footer"
 import './faq.scss'
 import Icon from "Components/icon"
-// import { redeemingGiftCardQuestions } from './QA'
+import { sendingGiftCardQuestions, redeemingGiftCardQuestions } from './QA'
 import Accordian from "Components/accordian"
 import AccordianItem from "Components/accordian/accordian-item"
 
@@ -17,58 +17,57 @@ class FAQ extends React.Component {
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
-    this.fetchSendingGiftCardFaqs = this.fetchSendingGiftCardFaqs.bind(this)
-    this.fetchRedeemingGiftCardFaqs = this.fetchRedeemingGiftCardFaqs.bind(this)
+    // this.fetchSendingGiftCardFaqs = this.fetchSendingGiftCardFaqs.bind(this)
+    // this.fetchRedeemingGiftCardFaqs = this.fetchRedeemingGiftCardFaqs.bind(this)
     this.setActiveAccordian = this.setActiveAccordian.bind(this)
     this.toggleAccordian = this.toggleAccordian.bind(this)
   }
 
   componentDidMount() {
     //this.setState({ sendingGiftCardQuestions })
-    const myHeaders = new Headers();
-    myHeaders.append('Authorization', 'Bearer Y3NzSUUzTmlLbFh4Z2JsYUV2bmk =');
+    // const myHeaders = new Headers();
 
-    this.fetchSendingGiftCardFaqs(myHeaders)
-    this.fetchRedeemingGiftCardFaqs(myHeaders)
+    // this.fetchSendingGiftCardFaqs(myHeaders)
+    // this.fetchRedeemingGiftCardFaqs(myHeaders)
   }
 
-  fetchSendingGiftCardFaqs(myHeaders) {
-    fetch(`https://hipbar.freshdesk.com/api/v2/solutions/folders/9000087684/articles`, {
-      method: 'GET',
-      headers: myHeaders,
-    })
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        console.log("response data", data)
-        this.setState({
-          sendingGiftCardQuestions: data
-        })
-      })
-      .catch((err) => {
-        console.log("Error in fetching faq's", err)
-      })
-  }
+  // fetchSendingGiftCardFaqs(myHeaders) {
+  //   fetch(`https://hipbar.freshdesk.com/api/v2/solutions/folders/9000087684/articles`, {
+  //     method: 'GET',
+  //     headers: myHeaders,
+  //   })
+  //     .then((response) => {
+  //       return response.json()
+  //     })
+  //     .then((data) => {
+  //       console.log("response data", data)
+  //       this.setState({
+  //         sendingGiftCardQuestions: data
+  //       })
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error in fetching faq's", err)
+  //     })
+  // }
 
-  fetchRedeemingGiftCardFaqs(myHeaders) {
-    fetch(`https://hipbar.freshdesk.com/api/v2/solutions/folders/9000087685/articles`, {
-      method: 'GET',
-      headers: myHeaders,
-    })
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        console.log("response data", data)
-        this.setState({
-          redeemingGiftCardQuestions: data
-        })
-      })
-      .catch((err) => {
-        console.log("Error in fetching faq's", err)
-      })
-  }
+  // fetchRedeemingGiftCardFaqs(myHeaders) {
+  //   fetch(`https://hipbar.freshdesk.com/api/v2/solutions/folders/9000087685/articles`, {
+  //     method: 'GET',
+  //     headers: myHeaders,
+  //   })
+  //     .then((response) => {
+  //       return response.json()
+  //     })
+  //     .then((data) => {
+  //       console.log("response data", data)
+  //       this.setState({
+  //         redeemingGiftCardQuestions: data
+  //       })
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error in fetching faq's", err)
+  //     })
+  // }
 
   setActiveAccordian(activeAccordian) {
     // if(window.gtag) {
@@ -84,7 +83,7 @@ class FAQ extends React.Component {
   }
 
   render() {
-    const { sendingGiftCardQuestions, redeemingGiftCardQuestions } = this.state
+    //const { sendingGiftCardQuestions, redeemingGiftCardQuestions } = this.state
     return (
       <div>
         <div id="Faq">
@@ -105,9 +104,9 @@ class FAQ extends React.Component {
                   >
                     {
                       sendingGiftCardQuestions.map((item, index) => (
-                        <AccordianItem key={index} title={item.title} icon={this.state.activeAccordian !== -1 && this.state.activeAccordian === index ? <Icon name="minus" /> : <Icon name="plus" />} id={index}>
+                        <AccordianItem key={index} title={item.question} icon={this.state.activeAccordian !== -1 && this.state.activeAccordian === index ? <Icon name="minus" /> : <Icon name="plus" />} id={index}>
                           <p className="os s7">
-                            {item.description_text}
+                            {item.answer}
                           </p>
                         </AccordianItem>
                       ))
@@ -128,9 +127,9 @@ class FAQ extends React.Component {
                 >
                   {
                     redeemingGiftCardQuestions.map((item, index) => (
-                      <AccordianItem key={index + 11} title={item.title} icon={this.state.activeAccordian !== -1 && this.state.activeAccordian === index + 11 ? <Icon name="minus" /> : <Icon name="plus" />} id={index + 11}>
+                      <AccordianItem key={index + 11} title={item.question} icon={this.state.activeAccordian !== -1 && this.state.activeAccordian === index + 11 ? <Icon name="minus" /> : <Icon name="plus" />} id={index + 11}>
                         <p className="os s7">
-                          {item.description_text}
+                          {item.answer}
                         </p>
                       </AccordianItem>
                     ))
