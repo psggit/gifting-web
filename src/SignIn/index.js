@@ -124,11 +124,27 @@ export default function SignIn(data) {
               // if(dataObj.resendOtp) {
               //   this.setState({resentOtp : true})
               // }
+            } else if (response.status === 200) {
+              responseData = Object.assign(responseData, { sender_mobile: this.state.mobileNo })
+              createSession(responseData, "true")
+              if (window.gtag) {
+                gtag("event", "sign_in_success", {
+                  "event_label": "success"
+                })
+              }
+              window.fcWidget.user.clear().then(function () {
+                console.log('User cleared')
+              }, function () {
+                console.log("User Not cleared")
+              })
+              location.href = (location.pathname)
+              unMountModal()
             }
             this.setState({ isGettingOtp: false })
           })
         })
         .catch((err) => {
+          console.log("Error")
           this.setState({ errorInSignIn: true, isGettingOtp: false })
           //this.setState({isGettingOtp: false})
           mountModal(NotifyError({}))
@@ -172,6 +188,7 @@ export default function SignIn(data) {
     }
 
     signIn() {
+      console.log("sign in")
       // if(window.gtag) {
       //   gtag("event", "sign_in_failure", {
       //     "event_label": "failure"
@@ -271,6 +288,7 @@ export default function SignIn(data) {
               }
               responseData = Object.assign(responseData, { sender_mobile: this.state.mobileNo })
               createSession(responseData, "true")
+              console.log("create session")
               if (window.gtag) {
                 gtag("event", "sign_in_success", {
                   "event_label": "success"
@@ -295,6 +313,7 @@ export default function SignIn(data) {
             })
           })
           .catch((err) => {
+            console.log("Error in catch")
             this.setState({ errorInSignIn: true })
             // ga("event", "sign_in_failure", {"method": "Google"})
             mountModal(NotifyError({}))
