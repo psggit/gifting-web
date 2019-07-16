@@ -35,8 +35,8 @@ export default function SignUp(data) {
         name: "",
         email: "",
         otp: "",
-        pin: "",
-        confirmPin: "",
+        // pin: "",
+        // confirmPin: "",
         //resentOtp: false,
         setTimer: false,
         gender: "male",
@@ -136,6 +136,9 @@ export default function SignUp(data) {
       // const confirmPinErr = validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin)
       // this.setState({ confirmPinErr: validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin) })
 
+      // const confirmPinErr = validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin)
+      // this.setState({ confirmPinErr: validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin) })
+      // console.log("form validation")
       if (otpSent) {
         otpErr = validateTextField(this.inputNameMap['otp'], this.state.otp)
         this.setState({ otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp) })
@@ -375,10 +378,18 @@ export default function SignUp(data) {
 
     handleTextChange(e) {
       const errName = `${e.target.name}Err`
+      console.log("name", (e.target.value).trim().replace(/-/g, '/'))
+      //if (e.target.name === "dob") {
+      // this.setState({
+      //   [e.target.name]: (e.target.value).trim().replace(/-/g, '/'),
+      //   //[errName]: validateTextField(this.inputNameMap[e.target.name], e.target.value),
+      // })
+      //} else {
       this.setState({
-        [e.target.name]: (e.target.value).trim(),
+        [e.target.name]: (e.target.value).trim().replace(/-/g, '/'),
         //[errName]: validateTextField(this.inputNameMap[e.target.name], e.target.value),
       })
+      //}
     }
 
     handleNumberChange(e) {
@@ -519,7 +530,7 @@ export default function SignUp(data) {
                         <input
                           type="date"
                           name="dob"
-                          max="9999-12-31"
+                          // max="9999-12-31"
                           value={this.state.dob}
                           disabled={this.state.disableField && this.state.otpSent}
                           style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
@@ -609,8 +620,8 @@ export default function SignUp(data) {
                         />
                       </div>
                     </div>
-                  }
-                  {
+                  } */}
+                  {/* {
                     confirmPinErr.status &&
                     <p className="error-message os s9">{confirmPinErr.value}</p>
                   } */}

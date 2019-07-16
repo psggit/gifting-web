@@ -12,6 +12,7 @@ export function getQueryParamByName(name, query = location.search.slice(1)) {
 }
 
 export function getQueryUri(queryObj) {
+  console.log("query obj", queryObj, Object.entries(queryObj).map(obj => obj.join('=')).join('&'))
   const queryUri = Object.entries(queryObj).map(obj => obj.join('=')).join('&')
   return "?" + queryUri
 }

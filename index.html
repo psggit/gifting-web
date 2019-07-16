@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <meta charset="utf-8">
 
@@ -11,17 +12,19 @@
   <link rel="preconnect" href="https://res.cloudinary.com">
 
   <link rel="stylesheet" href="https://use.typekit.net/djr0bfk.css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500,600,700" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+  <link rel="stylesheet" type="text/css" charset="UTF-8"
+    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
   <link href="/images/For-Webflow-01.png" rel="shortcut icon" type="image/x-icon">
   <link href="/images/For-Webflow-02.png" rel="apple-touch-icon">
   <!-- <link rel="manifest" href="/manifest.json"> -->
 
   <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
-  <meta content='FVz8vJPDa60jzuyoOc9W7jZZqA_TA-lVwHO2OwPJGPg' name='google-site-verification'/>
+  <meta content='FVz8vJPDa60jzuyoOc9W7jZZqA_TA-lVwHO2OwPJGPg' name='google-site-verification' />
 
   <meta keywords="">
   <meta description="">
@@ -29,56 +32,57 @@
   <meta name="googlebot" content="index,follow">
 
   <style media="screen">
-     #fc_frame {
-       display: none !important;
-     }
+    #fc_frame {
+      display: none !important;
+    }
   </style>
 </head>
+
 <body>
-    <div class="theme-dark" style="max-width:1440px;margin: 0 auto">
-      <div id="header">{header}</div>
-      <div id="app" ></div>
-      <div id="confirm-modal"></div>
-    </div>
-    <div id="footer-wrapper"></div>
+  <div class="theme-dark" style="max-width:1440px;margin: 0 auto">
+    <div id="header">{header}</div>
+    <div id="app"></div>
+    <div id="confirm-modal"></div>
+  </div>
+  <div id="footer-wrapper"></div>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-3"></script> -->
   <script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-10"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-89806318-10');
   </script>
 
-   <!-- <script>
+  <!-- <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-89806318-4', 'auto');ga('send', 'pageview');
     </script>  -->
-  
+
   <script>
     // Check that service workers are registered
-    "serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("/service-worker.js").then(function(r){}).catch(function(r){console.error("Error during service worker registration:",r)})})
+    "serviceWorker" in navigator && window.addEventListener("load", function () { navigator.serviceWorker.register("/service-worker.js").then(function (r) { }).catch(function (r) { console.error("Error during service worker registration:", r) }) })
   </script>
 
   <script src="https://wchat.freshchat.com/js/widget.js"></script>
   <script async>
-    if(!localStorage.getItem("hasura-id")) {
+    if (!localStorage.getItem("hasura-id")) {
       window.fcWidget.init({
         token: "3a3ec830-f702-4f77-a001-b8e939438956",
         host: "https://wchat.freshchat.com",
         tags: ["conversation_gifting"],
       });
-    } else if(localStorage.getItem("hasura-id")) {
-        window.fcWidget.init({
-          token: "3a3ec830-f702-4f77-a001-b8e939438956",
-          host: "https://wchat.freshchat.com",
-          tags: ["conversation_gifting"],
-        });
-      window.fcWidget.user.get(function(resp) {
+    } else if (localStorage.getItem("hasura-id")) {
+      window.fcWidget.init({
+        token: "3a3ec830-f702-4f77-a001-b8e939438956",
+        host: "https://wchat.freshchat.com",
+        tags: ["conversation_gifting"],
+      });
+      window.fcWidget.user.get(function (resp) {
         var status = resp && resp.status,
-            data = resp && resp.data;
+          data = resp && resp.data;
         if (status !== 200) {
           window.fcWidget.user.setProperties({
             externalId: "",
@@ -90,8 +94,17 @@
           });
         }
       });
+      // console.log("location", location.pathname)
+      // if (location.pathname === "FAQs") {
+      //   window.fcWidget.setFaqTags({
+      //     // For ex: ["public", "paid"]
+      //     tags: ['SERVICE_UNAVAILABLE_TITLE'],
+      //     filterType: 'article' //Or filterType: 'category'
+      //   });
+      // }
     }
   </script>
 
 </body>
+
 </html>
