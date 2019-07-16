@@ -375,18 +375,10 @@ export default function SignUp(data) {
 
     handleTextChange(e) {
       const errName = `${e.target.name}Err`
-      console.log("name", (e.target.value).trim().replace(/-/g, '/'))
-      //if (e.target.name === "dob") {
-      // this.setState({
-      //   [e.target.name]: (e.target.value).trim().replace(/-/g, '/'),
-      //   //[errName]: validateTextField(this.inputNameMap[e.target.name], e.target.value),
-      // })
-      //} else {
       this.setState({
-        [e.target.name]: (e.target.value).trim().replace(/-/g, '/'),
+        [e.target.name]: (e.target.value),
         //[errName]: validateTextField(this.inputNameMap[e.target.name], e.target.value),
       })
-      //}
     }
 
     handleNumberChange(e) {
@@ -527,7 +519,7 @@ export default function SignUp(data) {
                         <input
                           type="date"
                           name="dob"
-                          // max="9999-12-31"
+                          max="9999-12-31"
                           value={this.state.dob}
                           disabled={this.state.disableField && this.state.otpSent}
                           style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
