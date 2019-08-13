@@ -10,7 +10,6 @@ import Header from "Components/header"
 import Footer from "Components/footer"
 import {readCookie} from "Utils/session-utils"
 import {supportedCities} from "Utils/constants"
-//import GroverZampa from "./../../images/Grover Zampa_Logo_Grey.png"
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -20,7 +19,7 @@ class LandingPage extends React.Component {
     //   isLoggedIn: false
     // }
   }
-  
+
   componentDidMount() {
     window.scrollTo({
       top: 0,
@@ -202,7 +201,7 @@ class LandingPage extends React.Component {
               <h2 className="cm s2">Redeem with HipBar Gift Card at Retail Outlets</h2>
               <p className="os s3">
               Recipient pays for drinks with their HipBar<br/>
-              Gift Card at any of the 60+ HipBar-affiliated<br/> 
+              Gift Card at any of the 60+ HipBar-affiliated<br/>
               stores in the city of operation
               </p>
             </div>
