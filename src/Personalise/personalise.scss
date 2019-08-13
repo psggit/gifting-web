@@ -1,0 +1,111 @@
+@import "./../sass/base.scss";
+
+#giftInputForm {
+ 
+  .paper {
+    padding: 48px;
+    @include themify($themes) {
+      .personalise-icon svg g g {
+        fill: themed("text-color")
+      }
+    }
+    .header {
+      padding-bottom: 12px;
+      @include themify($themes) {
+        border-bottom: 1px solid themed("border-bottom-color");
+        svg g g {
+          fill: themed("text-color")
+        }
+      }
+    }
+  }
+
+  .payment-button.mobile {
+    display: none;
+    text-align: center;
+    button {
+      width: 100%;
+    }
+  }
+
+  .not-selectable {
+    user-select: none;
+  }
+
+  &.gift-card-form {
+    .terms-and-conditions {
+      display: flex;
+    }
+  }
+
+  &.gift-card-form .form-item {
+    margin-bottom: 60px;
+    width: 50%;
+    
+    .form-group {
+      input, textarea {
+        font-family: $font-OpenSans;
+        padding: 20px;
+      }
+
+      input {
+        width: 100%;
+        height: 38px;
+      }
+
+      textarea {
+        width: 100%;
+        resize: none;
+        line-height: 1.5;
+      }
+    }
+
+    label {
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    &:last-child {
+      margin-bottom: 84px;
+    }
+  }
+}
+
+@media only screen and (max-width: $sm) {
+  #giftInputForm {
+    &.gift-card-form {
+      padding: 0;
+      //background: #fff;
+    }
+
+    .paper {
+      padding: 20px;
+    }
+
+    .payment-button {
+      text-align: center;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      padding: 20px;
+      @include themify($themes) {
+        box-shadow: 0 0 2px 0 themed("container-color");
+        background-color: themed("paper-color")
+      }
+    }
+
+    &.gift-card-form .form-item { 
+      width: 100%;
+    }
+
+    &.gift-card-form {
+      .form-group {
+        .terms-and-conditions {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

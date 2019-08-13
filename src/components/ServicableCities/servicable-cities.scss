@@ -1,0 +1,60 @@
+#ServicableCities {
+  .located-cities {
+    text-align: center;
+    padding: 6% 8%;
+    background: #000;
+
+    .city-wrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      flex-wrap: wrap;
+
+      .city {
+        // background: #0c0c0c;
+        display: inline-block;
+        color: #d1d2dd;
+        text-transform: uppercase;
+        max-width: 328px;
+        //width: 100%;
+        text-align: center;
+        padding: 19px 0;
+        // padding-top: 0;
+        // border: 1px solid #6d6e71;
+        margin: 0 20px;
+        span {
+          font-weight: 500;
+          letter-spacing: 1.3px;
+          display: inline-block;
+          &:after {
+            content: "";
+            display: block;
+            height: 5px;
+            background: #d1d2dd;
+            width: 70%;
+            margin: 0 auto;
+            border-radius: 4px;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// @media only screen and (max-width: $sm) {
+//   #ServicableCities {
+//     .located-cities {
+//       padding: 20px;
+//       .city-wrapper {
+//         display: flex;
+//         flex-direction: column;
+
+//         .city {
+//           margin-bottom: 24px;
+//         }
+//       }
+//     }
+//   }
+// }

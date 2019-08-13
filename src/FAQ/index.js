@@ -1,52 +1,89 @@
 import React from "react"
-import Header from "Components/header"
 import Footer from "Components/footer"
 import './faq.scss'
 import Icon from "Components/icon"
-import {sendingGiftCardQuestions, redeemingGiftCardQuestions} from './QA'
+import { sendingGiftCardQuestions, redeemingGiftCardQuestions } from './QA'
 import Accordian from "Components/accordian"
 import AccordianItem from "Components/accordian/accordian-item"
-import AgeGate from './../AgeGate'
-import {readCookie} from "Utils/session-utils"
-import { mountModal } from 'Components/modal-box/utils'
 
 class FAQ extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       sendingGiftCardQuestions: [],
+      redeemingGiftCardQuestions: [],
       //isModelOpen: false,
       activeAccordian: -1
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
     }
-    //this.toggleBox = this.toggleBox.bind(this)
+    // this.fetchSendingGiftCardFaqs = this.fetchSendingGiftCardFaqs.bind(this)
+    // this.fetchRedeemingGiftCardFaqs = this.fetchRedeemingGiftCardFaqs.bind(this)
     this.setActiveAccordian = this.setActiveAccordian.bind(this)
     this.toggleAccordian = this.toggleAccordian.bind(this)
   }
 
   componentDidMount() {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    })
-    this.setState({sendingGiftCardQuestions})
-    if(!readCookie("isAgeGateAgreed")) {
-      mountModal(AgeGate({}))
-    }
+    //this.setState({ sendingGiftCardQuestions })
+    // const myHeaders = new Headers();
+
+    // this.fetchSendingGiftCardFaqs(myHeaders)
+    // this.fetchRedeemingGiftCardFaqs(myHeaders)
   }
 
+  // fetchSendingGiftCardFaqs(myHeaders) {
+  //   fetch(`https://hipbar.freshdesk.com/api/v2/solutions/folders/9000087684/articles`, {
+  //     method: 'GET',
+  //     headers: myHeaders,
+  //   })
+  //     .then((response) => {
+  //       return response.json()
+  //     })
+  //     .then((data) => {
+  //       console.log("response data", data)
+  //       this.setState({
+  //         sendingGiftCardQuestions: data
+  //       })
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error in fetching faq's", err)
+  //     })
+  // }
+
+  // fetchRedeemingGiftCardFaqs(myHeaders) {
+  //   fetch(`https://hipbar.freshdesk.com/api/v2/solutions/folders/9000087685/articles`, {
+  //     method: 'GET',
+  //     headers: myHeaders,
+  //   })
+  //     .then((response) => {
+  //       return response.json()
+  //     })
+  //     .then((data) => {
+  //       console.log("response data", data)
+  //       this.setState({
+  //         redeemingGiftCardQuestions: data
+  //       })
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error in fetching faq's", err)
+  //     })
+  // }
+
   setActiveAccordian(activeAccordian) {
-    this.setState({activeAccordian})
+    // if(window.gtag) {
+    //   gtag("event", "count_FAQ_wise", {
+    //     "event_label": this.state.sendingGiftCardQuestions[activeAccordian+1].question
+    //   })
+    // }
+    this.setState({ activeAccordian })
   }
 
   toggleAccordian() {
-    this.setState({activeAccordian: -1})
+    this.setState({ activeAccordian: -1 })
   }
 
   render() {
-    const {sendingGiftCardQuestions} = this.state
+    //const { sendingGiftCardQuestions, redeemingGiftCardQuestions } = this.state
     return (
       <div>
         <div id="Faq">
@@ -54,9 +91,9 @@ class FAQ extends React.Component {
             <h2 className="cm s1">Frequently Asked Questions</h2>
             <div className="faqContainer">
               <div className="header">
-                <div className="os s7" style={{fontWeight: '600'}}> SENDING A GIFT CARD </div>
+                <p className="os s7" style={{ fontWeight: '600' }}> SENDING A GIFT CARD </p>
               </div>
-              <div style={{marginBottom: '70px'}}>
+              <div style={{ marginBottom: '70px' }}>
                 {
                   sendingGiftCardQuestions.length > 0 &&
                   <Accordian
@@ -78,10 +115,10 @@ class FAQ extends React.Component {
                 }
               </div>
               <div className="header">
-                <div className="os s7" style={{fontWeight: '600'}}> REDEEMING A GIFT CARD </div>
+                <p className="os s7" style={{ fontWeight: '600' }}> REDEEMING A GIFT CARD </p>
               </div>
               {
-                redeemingGiftCardQuestions.length > 0 && 
+                redeemingGiftCardQuestions.length > 0 &&
                 <Accordian
                   //middleware={this.setCardValues}
                   setActiveAccordian={this.setActiveAccordian}
@@ -90,7 +127,7 @@ class FAQ extends React.Component {
                 >
                   {
                     redeemingGiftCardQuestions.map((item, index) => (
-                      <AccordianItem key={index+11} title={item.question} icon={this.state.activeAccordian !== -1 && this.state.activeAccordian === index+11 ? <Icon name="minus" /> : <Icon name="plus" />} id={index+11}>
+                      <AccordianItem key={index + 11} title={item.question} icon={this.state.activeAccordian !== -1 && this.state.activeAccordian === index + 11 ? <Icon name="minus" /> : <Icon name="plus" />} id={index + 11}>
                         <p className="os s7">
                           {item.answer}
                         </p>
@@ -101,6 +138,7 @@ class FAQ extends React.Component {
               }
             </div>
           </div>
+          {/* <Footer /> */}
         </div>
       </div>
     )

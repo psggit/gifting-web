@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta charset="utf-8">
+
+  <title>HipBar Gifting - Gift your friends drinks online!</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://res.cloudinary.com">
+
+  <link rel="stylesheet" href="https://use.typekit.net/djr0bfk.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500,600,700" rel="stylesheet">
+
+  <link href="/images/For-Webflow-01.png" rel="shortcut icon" type="image/x-icon">
+  <link href="/images/For-Webflow-02.png" rel="apple-touch-icon">
+  <!-- <link rel="manifest" href="/manifest.json"> -->
+
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+  <meta content='FVz8vJPDa60jzuyoOc9W7jZZqA_TA-lVwHO2OwPJGPg' name='google-site-verification' />
+
+  <meta name="robots" content="index,follow">
+  <meta name="googlebot" content="index,follow">
+
+  {meta}
+</head>
+
+<body>
+  <div class="theme-dark" style="max-width:1440px;margin: 0 auto">
+    <div id="header">{header}</div>
+    <div id="app">{content}</div>
+    <div id="confirm-modal"></div>
+  </div>
+  <div id="footer-wrapper"></div>
+</body>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-3"></script> -->
+<!-- <script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+ 
+  gtag('config', 'UA-89806318-4');
+ </script> -->
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-89806318-10');
+</script>
+<script src="https://wchat.freshchat.com/js/widget.js"></script>
+<script async>
+  //var userStatus = false;
+  //console.log("user status", userStatus)
+  if (!localStorage.getItem("hasura-id")) {
+    // window.fcWidget.init({
+    //   token: "3a3ec830-f702-4f77-a001-b8e939438956",
+    //   host: "https://wchat.freshchat.com",
+    //   tags: ["conversation_gifting"],
+    // });
+    window.fcWidget.init({
+      token: "3a3ec830-f702-4f77-a001-b8e939438956",
+      host: "https://wchat.freshchat.com",
+      // Setting FAQ Tags in the object below.
+      faqTags: {
+        // Array of Tags
+        tags: ['SERVICE_UNAVAILABLE'],
+        //For articles, the below value should be article.
+        //For article category, the below value should be category.
+        //filterType: 'category' //Or filterType: 'article'
+      },
+    });
+  } else if (localStorage.getItem("hasura-id")) {
+    // window.fcWidget.init({
+    //   token: "3a3ec830-f702-4f77-a001-b8e939438956",
+    //   host: "https://wchat.freshchat.com",
+    //   tags: ["conversation_gifting"],
+    //   //externalId: '1234567',
+    //   //restoreId: restoreId ? restoreId : null
+    // });
+    // window.fcWidget.user.get(function (resp) {
+    //   var status = resp && resp.status,
+    //     data = resp && resp.data;
+    //   if (status !== 200) {
+    //     window.fcWidget.user.setProperties({
+    //       externalId: "",   // user’s id unique to your system
+    //       firstName: localStorage.getItem("username"), // user’s first name
+    //       lastName: "", // user’s last name
+    //       email: localStorage.getItem("email"), // user’s email address
+    //       phone: localStorage.getItem("sender_mobile"), // phone number without country code
+    //       phoneCountryCode: "+91" // phone’s country code
+    //     });
+    //   }
+    // });
+    window.fcWidget.init({
+      token: "3a3ec830-f702-4f77-a001-b8e939438956",
+      host: "https://wchat.freshchat.com",
+      // Setting FAQ Tags in the object below.
+      faqTags: {
+        // Array of Tags
+        tags: ['SERVICE_UNAVAILABLE'],
+        //For articles, the below value should be article.
+        //For article category, the below value should be category.
+        //filterType: 'category' //Or filterType: 'article'
+      },
+    });
+  }
+  //   console.log("username", localStorage.getItem("username"), "number", localStorage.getItem("sender_mobile"))
+
+  //   window.fcWidget.user.create().then(function() {
+  //   console.log('User Created');
+  //   }, function() {
+  //   console.log("User Not Created");
+  //   });    
+  //   window.fcWidget.init({
+  //   token: "3a3ec830-f702-4f77-a001-b8e939438956",
+  //     host: "https://wchat.freshchat.com",
+  //     tags: ["conversation_gifting"],
+  //     externalId: "",   // user’s id unique to your system
+  //     firstName: localStorage.getItem("username"), // user’s first name
+  //     lastName: "", // user’s last name
+  //     email: "", // user’s email address
+  //     phone: localStorage.getItem("sender_mobile"), // phone number without country code
+  //     phoneCountryCode: "+91" // phone’s country code
+  //   });
+  // }
+  // window.fcWidget.on("user:created", function(resp) {
+  //   console.log('User has been created');
+  //   //Function to do some task
+  // });
+
+  // window.fcWidget.user.get().then(function(result) {
+  //   console.log(result);
+  //   var userInfo = result.data;
+  //   //Do Something
+  // });
+</script>
+
+<script>
+  // Check that service workers are registered
+  if ('serviceWorker' in navigator) {
+    // Use the window load event to keep the page load performant
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js');
+    });
+  }
+</script>
+
+</html>

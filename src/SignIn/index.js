@@ -3,9 +3,9 @@ import './signin.scss'
 import { unMountModal, mountModal } from 'Components/modal-box/utils'
 import ModalBox from '../components/modal-box/modalBox'
 import Icon from "Components/icon"
-import {Api} from 'Utils/config'
+import { Api } from 'Utils/config'
 import SignUp from './../SignUp'
-import {createSession} from 'Utils/session-utils'
+import { createSession } from 'Utils/session-utils'
 import { checkCtrlA, validateNumType, checkCtrlV, checkCtrlC } from 'Utils/logic-utils'
 import { validateNumberField } from 'Utils/validators'
 import { validateTextField } from '../utils/validators';
@@ -17,7 +17,7 @@ export default function SignIn(data) {
   return class SignIn extends React.Component {
     constructor(props) {
       super(props)
-      this.inputNameMap ={
+      this.inputNameMap = {
         mobileNo: "Mobile number",
         otp: "Otp"
       }
@@ -56,9 +56,9 @@ export default function SignIn(data) {
 
     handleKeyDown(e) {
       //console.log("keydown", this.state.otpSent)
-      if(e.keyCode === 13) {
-        const {otpSent} = this.state;
-        if(!otpSent) {
+      if (e.keyCode === 13) {
+        const { otpSent } = this.state;
+        if (!otpSent) {
           this.handleClick()
         } else {
           this.signIn()
@@ -77,16 +77,16 @@ export default function SignIn(data) {
       function tick() {
         let counter = document.getElementById("timer")
         seconds--
-        counter.innerHTML ="OTP can be resent in" + " 00" + ":"  +(seconds < 10 ? "0" : "") + String(seconds) + " seconds";
-        if( seconds > 0 ) {
-          timeoutHandle=setTimeout(tick, 1000)
-        }else {
-          self.setState({setTimer: false})
+        counter.innerHTML = "OTP can be resent in" + " 00" + ":" + (seconds < 10 ? "0" : "") + String(seconds) + " seconds";
+        if (seconds > 0) {
+          timeoutHandle = setTimeout(tick, 1000)
+        } else {
+          self.setState({ setTimer: false })
         }
       }
       tick();
     }
-    
+
 
     verifyUserAndGetOtp(dataObj) {
       const payload = {
@@ -100,81 +100,127 @@ export default function SignIn(data) {
           'Content-Type': 'application/json'
         },
         credentials: 'include',
-        mode: 'cors',
         body: JSON.stringify(payload)
       }
-      this.setState({errorInSignIn: false, isGettingOtp: true})
+      this.setState({ errorInSignIn: false, isGettingOtp: true })
       fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
         .then((response) => {
           response.json().then((responseData) => {
             if (response.status === 400 && responseData.errorCode && responseData.errorCode.includes("invalid-user")) {
-              if(dataObj.unMountModal) {
+              if (dataObj.unMountModal) {
                 unMountModal()
               }
               mountModal(SignUp({
                 mobile: this.state.mobileNo,
                 //reload: data.reload
               }))
-              this.setState({isGettingOtp: false})
+              this.setState({ isGettingOtp: false })
               return
-            } else if(response.status === 400){
-              this.setState({mobileNoErr: {status: true, value: "Invalid mobile number"}})
+            } else if (response.status === 400) {
+              this.setState({ mobileNoErr: { status: true, value: "Invalid mobile number" } })
             } else if (response.status === 401) {
-              this.setState({otpSent: true, disableField: true, setTimer: true})
+              this.setState({ otpSent: true, disableField: true, setTimer: true })
               this.countdown()
               // if(dataObj.resendOtp) {
               //   this.setState({resentOtp : true})
               // }
+            } else if (response.status === 200) {
+              responseData = Object.assign(responseData, { sender_mobile: this.state.mobileNo })
+              createSession(responseData, "true")
+              if (window.gtag) {
+                gtag("event", "sign_in_success", {
+                  "event_label": "success"
+                })
+              }
+              window.fcWidget.user.clear().then(function () {
+                console.log('User cleared')
+              }, function () {
+                console.log("User Not cleared")
+              })
+              location.href = (location.pathname)
+              unMountModal()
             }
-            this.setState({isGettingOtp: false})
+            this.setState({ isGettingOtp: false })
           })
         })
         .catch((err) => {
-          this.setState({errorInSignIn: true, isGettingOtp: false})
+          console.log("Error")
+          this.setState({ errorInSignIn: true, isGettingOtp: false })
           //this.setState({isGettingOtp: false})
           mountModal(NotifyError({}))
         })
     }
 
     isFormValid() {
-      const {otpSent} = this.state
+      const { otpSent } = this.state
       let otpErr = this.state.otpErr
 
       const mobileNoErr = validateTextField(this.inputNameMap['mobileNo'], this.state.mobileNo)
-      this.setState({mobileNoErr: validateTextField(this.inputNameMap['mobileNo'], this.state.mobileNo)})
-      if(otpSent) {
+      this.setState({ mobileNoErr: validateTextField(this.inputNameMap['mobileNo'], this.state.mobileNo) })
+      if (otpSent) {
         otpErr = validateTextField(this.inputNameMap['otp'], this.state.otp)
-        this.setState({otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp)})
+        this.setState({ otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp) })
       }
-      
+
       if (!mobileNoErr.status && !otpErr.status) {
         return true
       }
       return false
     }
 
-    handleClick () {
-      if(this.isFormValid() && !this.state.isGettingOtp) {
-        this.verifyUserAndGetOtp({unMountModal: true})
+    handleClick() {
+      if (this.isFormValid() && !this.state.isGettingOtp) {
+        this.verifyUserAndGetOtp({ unMountModal: true })
       }
     }
 
     handleNumberChange(e) {
       const errName = `${e.target.name}Err`
 
-      if(validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e) || checkCtrlC(e)) {
-        this.setState({ 
+      if (validateNumType(e.keyCode) || checkCtrlA(e) || checkCtrlV(e) || checkCtrlC(e)) {
+        this.setState({
           [e.target.name]: (e.target.value),
           //[errName]:  validateNumberField(this.inputNameMap[e.target.name], e.target.value)
         })
       } else {
         e.preventDefault()
-      }   
+      }
     }
 
     signIn() {
+      console.log("sign in")
+      // if(window.gtag) {
+      //   gtag("event", "sign_in_failure", {
+      //     "event_label": "failure"
+      //   },
+      //   {
+      //     "event_label": "success"
+      //   })
+      // }
+      // console.log("gtag", window.gtag , gtag.loaded)
+
+
+      // if(window.gtag) {
+      //   console.log("gtag")
+      //   gtag('event', 'add_to_cart', {
+      //     "items": [
+      //       {
+      //         "id": "P12345",
+      //         "name": "Android Warhol T-Shirt",
+      //         "list_name": "Search Results",
+      //         "brand": "Google",
+      //         "category": "Apparel/T-Shirts",
+      //         "variant": "Black",
+      //         "list_position": 1,
+      //         "quantity": 2,
+      //         "price": '2.0'
+      //       }
+      //     ]
+      //   });
+      // }
+
       console.log(!this.state.isSigningIn, "form valid", this.isFormValid())
-      if(!this.state.isSigningIn && this.isFormValid()) {
+      if (!this.state.isSigningIn && this.isFormValid()) {
         const payload = {
           info: {},
           mobile: this.state.mobileNo,
@@ -186,61 +232,113 @@ export default function SignIn(data) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          credentials: 'include',
           mode: 'cors',
+          credentials: "include",
           body: JSON.stringify(payload)
         }
-        this.setState({errorInSignIn: false, isSigningIn: true})
+        this.setState({ errorInSignIn: false, isSigningIn: true })
         fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
           .then((response) => {
             response.json().then((responseData) => {
-              if(response.status === 400 && responseData.errorCode.includes("invalid-otp")){
-                this.setState({otpErr: {status: true, value: "Incorrect OTP. Please enter again or resend OTP"}})
-                this.setState({isSigningIn: false})
+              if (response.status === 400 && responseData.errorCode.includes("invalid-otp")) {
+                this.setState({ otpErr: { status: true, value: "Incorrect OTP. Please enter again or resend OTP" } })
+                this.setState({ isSigningIn: false })
+                if (window.gtag) {
+                  gtag("event", "sign_in_failure", {
+                    "event_label": "failure"
+                  })
+                }
+                // ga("send", {
+                //   hitType: "event",
+                //   eventCategory: "",
+                //   eventAction: "",
+                //   eventLabel: "sign_in_failure"
+                // })
                 return
-              } else if(response.status === 401 && responseData.errorCode.includes("role-invalid")){
-                this.setState({otpErr: {status: true, value: responseData.message}})
-                this.setState({isSigningIn: false})
+              } else if (response.status === 401 && responseData.errorCode.includes("role-invalid")) {
+                this.setState({ otpErr: { status: true, value: responseData.message } })
+                this.setState({ isSigningIn: false })
+                if (window.gtag) {
+                  gtag("event", "sign_in_failure", {
+                    "event_label": "failure"
+                  })
+                }
+                // ga("send", {
+                //   hitType: "event",
+                //   eventCategory: "",
+                //   eventAction: "",
+                //   eventLabel: "sign_in_failure"
+                // })
                 return
-              } else if(response.status === 400 && responseData.errorCode.includes("expired-otp")){
-                this.setState({otpErr: {status: true, value: responseData.message}})
-                this.setState({isSigningIn: false})
+              } else if (response.status === 400 && responseData.errorCode.includes("expired-otp")) {
+                this.setState({ otpErr: { status: true, value: responseData.message } })
+                this.setState({ isSigningIn: false })
+                if (window.gtag) {
+                  gtag("event", "sign_in_failure", {
+                    "event_label": "failure"
+                  })
+                }
+                // ga("send", {
+                //   hitType: "event",
+                //   eventCategory: "",
+                //   eventAction: "",
+                //   eventLabel: "sign_in_failure"
+                // })
                 return
               }
+              responseData = Object.assign(responseData, { sender_mobile: this.state.mobileNo })
               createSession(responseData, "true")
-              window.fcWidget.user.clear().then(function() {
+              console.log("create session")
+              if (window.gtag) {
+                gtag("event", "sign_in_success", {
+                  "event_label": "success"
+                })
+              }
+              window.fcWidget.user.clear().then(function () {
                 console.log('User cleared')
-              }, function() {
+              }, function () {
                 console.log("User Not cleared")
               })
-              gtag("event", "Sign in", {"method": "Google"})
+              // ga("send", {
+              //   hitType: "event",
+              //   eventCategory: "",
+              //   eventAction: "",
+              //   eventLabel: "sign_in_success"
+              // })
               //localStorage.setItem("showAgegate", false)
-              location.href= (location.pathname)
+              location.href = (location.pathname)
               unMountModal()
               //data.reload(true)
-              this.setState({isSigningIn: false})
+              this.setState({ isSigningIn: false })
             })
           })
           .catch((err) => {
-            this.setState({errorInSignIn: true})
+            console.log("Error in catch")
+            this.setState({ errorInSignIn: true })
+            // ga("event", "sign_in_failure", {"method": "Google"})
             mountModal(NotifyError({}))
+            if (window.gtag) {
+              gtag("event", "sign_in_failure", {
+                "event_label": "failure"
+              })
+            }
           })
       }
     }
 
     resendOtp() {
-      if(!this.state.isGettingOtp) {
-        this.verifyUserAndGetOtp({unMountModal: false})
+      if (!this.state.isGettingOtp) {
+        this.verifyUserAndGetOtp({ unMountModal: false })
         //this.setState({})
       }
     }
 
     handleTextChange(e) {
-      this.setState({[e.target.name]: (e.target.value)})
+      this.setState({ [e.target.name]: (e.target.value) })
     }
 
     render() {
-      const {otpSent, isGettingOtp, mobileNoErr, otpErr, isSigningIn, setTimer} = this.state
+      const { otpSent, isGettingOtp, mobileNoErr, otpErr, isSigningIn, setTimer } = this.state
       const cursorStyle = {
         cursor: 'not-allowed'
       }
@@ -250,7 +348,7 @@ export default function SignIn(data) {
             <ModalBox>
               <div id="SignIn">
                 {
-                  !otpSent && 
+                  !otpSent &&
                   <h2 className="header os s2">
                     Sign In / Sign Up with mobile number
                   </h2>
@@ -263,12 +361,12 @@ export default function SignIn(data) {
                 }
                 <div className="page-body">
                   <div className="form-group">
-                  <label className="os s7">Phone Number</label>
-                  <div style={{display: 'flex'}}>
-                    <div className={`country-code ${mobileNoErr.status ? 'error' : ''}`}>
-                      +91
-                    </div>
-                    {/* <div style={{width: 'calc(100% - 40px'}}> */}
+                    <label className="os s7">Phone Number</label>
+                    <div style={{ display: 'flex' }}>
+                      <div className={`country-code ${mobileNoErr.status ? 'error' : ''}`}>
+                        <span className="os s7">+91</span>
+                      </div>
+                      {/* <div style={{width: 'calc(100% - 40px'}}> */}
                       {/* <input 
                         type="text"
                         name="mobileNo"
@@ -286,7 +384,7 @@ export default function SignIn(data) {
                       /> */}
 
                       <InputMask
-                        onChange={this.handleTextChange} 
+                        onChange={this.handleTextChange}
                         name="mobileNo"
                         mask="9999999999"
                         disabled={this.state.disableField}
@@ -307,18 +405,20 @@ export default function SignIn(data) {
                   {
                     otpSent &&
                     <React.Fragment>
-                      <div className="note os s9">OTP has been sent!</div>
+                      <div className="note"><span className="os s9">OTP has been sent!</span></div>
                       <div className="alert-box">
-                        <div style={{marginRight: '10px', display: 'flex'}}>
+                        <div style={{ marginRight: '10px', display: 'flex' }}>
                           <Icon name="alert" />
                         </div>
-                        <div className="os s8">
-                          Welcome back to HipBar! Please enter the OTP to sign in.
+                        <div>
+                          <p className="os s8">
+                            Welcome back to HipBar! Please enter the OTP to sign in.
+                          </p>
                         </div>
                       </div>
                       <div className="form-group">
                         <label className="os s7">OTP</label>
-                        <div className="input-otp-container"> 
+                        <div className="input-otp-container">
                           {/* <input 
                             type="text"
                             name="otp"
@@ -332,7 +432,7 @@ export default function SignIn(data) {
                             //onChange={(e) => this.handleTextChange(e)}
                           /> */}
                           <InputMask
-                            onChange={this.handleTextChange} 
+                            onChange={this.handleTextChange}
                             name="otp"
                             mask="999999"
                             className={`${otpErr.status ? 'error' : ''}`}
@@ -341,10 +441,10 @@ export default function SignIn(data) {
                             maskChar={null}
                             type="text"
                           />
-                          <div className={`resend os s10 ${setTimer ? 'disabled': ''}`} onClick={this.resendOtp}>RESEND OTP</div>
+                          <div className={`resend os s10 ${setTimer ? 'disabled' : ''}`} onClick={this.resendOtp}><span>RESEND OTP</span></div>
                           {
-                            this.state.setTimer && 
-                            <div className="note os s9" id="timer"></div>
+                            this.state.setTimer &&
+                            <p className="note os s9" id="timer"></p>
                           }
                         </div>
                         {
@@ -353,36 +453,36 @@ export default function SignIn(data) {
                         }
                       </div>
                     </React.Fragment>
-                    
+
                   }
                 </div>
                 <div className="page-footer">
                   {
-                    !otpSent 
-                    ? <React.Fragment>
+                    !otpSent
+                      ? <React.Fragment>
                         <div>
                           <div className="button-section">
                             <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
                             <Button size="small" icon="rightArrowWhite" style={{ marginLeft: "15px" }} disabled={isGettingOtp} primary onClick={this.handleClick}>PROCEED</Button>
-                          </div> 
+                          </div>
                           <div className="button-section mobile">
-                            <Button size="small"  icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.handleClick}>PROCEED</Button>
+                            <Button size="small" icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.handleClick}>PROCEED</Button>
                             <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                          </div> 
+                          </div>
                         </div>
-                        
+
                       </React.Fragment>
-                    : <React.Fragment>
+                      : <React.Fragment>
                         <div className="button-section">
                           <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                          <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.signIn}>Sign in</Button>
-                        </div> 
+                          <Button size="small" style={{ marginLeft: "15px" }} icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.signIn}>Sign in</Button>
+                        </div>
                         <div className="button-section mobile">
                           <Button size="small" icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.signIn}>Sign in</Button>
                           <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                        </div> 
+                        </div>
                       </React.Fragment>
-                  } 
+                  }
                 </div>
                 {/* {
                   errorInSignIn && 
@@ -395,5 +495,5 @@ export default function SignIn(data) {
       )
     }
   }
-//export default SignIn
+  //export default SignIn
 }

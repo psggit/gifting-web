@@ -1,0 +1,38 @@
+$themes: (
+  light: (
+    container-color: #f1f1f1,
+    paper-color: #fff,
+    text-color: #333,
+    sku-focus-color: #000,
+    sku-border-color: #000,
+    sku-text-color: #333,
+    sku-text-focus-color: #fff,
+    button-primary-color: #000,
+    border-bottom-color: #333,
+    nav-item-color: #e97c07,
+    add-to-basket-bg-color: #fff,
+    input-bg-color: #fff,
+    input-border-color: #dfdfdf,
+    city-box-color: #333,
+    city-box-focus-color: #000,
+    image-placeholder-color: #dfdfdf
+  ),
+  dark: (
+    container-color: #111,
+    paper-color: #1c1c1c,
+    text-color: #d1d2dd,
+    sku-focus-color: #d1d2dd,
+    sku-border-color: #d1d2dd,
+    sku-text-color: #d1d2dd,
+    sku-text-focus-color: #222,
+    button-primary-color: #e97c07,
+    nav-item-color: #e97c07,
+    border-bottom-color: #555,
+    add-to-basket-bg-color: #222,
+    input-bg-color: #272729,
+    input-border-color: #2c2c33,
+    city-box-color: #2c2c33,
+    city-box-focus-color: #e97c07,
+    image-placeholder-color: #333
+  )
+)

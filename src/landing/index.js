@@ -5,7 +5,7 @@ import "./landing.scss"
 import GiftCard from "Components/gift-card"
 import FirstGiftCard from "Components/first-gift-card"
 import { mountModal } from 'Components/modal-box/utils'
-import AgeGate from './../AgeGate'
+//import AgeGate from './../AgeGate'
 import Header from "Components/header"
 import Footer from "Components/footer"
 import {readCookie} from "Utils/session-utils"
@@ -27,8 +27,10 @@ class LandingPage extends React.Component {
       left: 0,
       behavior: 'smooth'
     })
+    console.log("age gate", !readCookie("isAgeGateAgreed"))
     if(!readCookie("isAgeGateAgreed")) {
-      mountModal(AgeGate({}))
+      //mountModal(AgeGate({}))
+      this.props.history.push("/age-gate", { navigateTo: "/"})
     }
     //document.cookie = "my_super_cookie=hellyeah; path=/; expires=" + (new Date(new Date().getTime() + 1 * 60 * 1000)).toUTCString() + "; path=/; domain=codepen.io";
   }
@@ -213,6 +215,7 @@ class LandingPage extends React.Component {
           </div>
 
           <FirstGiftCard />
+          <Footer />
         </div>
       </div>
     )

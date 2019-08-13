@@ -27,6 +27,7 @@ class SendGift extends React.Component {
     }
     this.characterLimit = 250
     this.storedState = JSON.parse(localStorage.getItem("send__gift__state"))
+    console.log("props", this.props)
     this.defaultState = {
       activePrice: "price1",
       amount: "500",
@@ -71,7 +72,7 @@ class SendGift extends React.Component {
   }
 
   componentDidMount() {
-    console.log("send gift mounting....")
+    console.log("send gift mounting....", this.props.paramObj)
     window.scrollTo({
       top: 0,
       left: 0,
@@ -80,7 +81,8 @@ class SendGift extends React.Component {
     localStorage.removeItem("gift")
     //localStorage.setItem("showAgeGate", false)
     if(!readCookie("isAgeGateAgreed")) {
-      mountModal(AgeGate({}))
+      //mountModal(AgeGate({}))
+      this.props.history.push("/age-gate", { navigateTo: "/send-gift"})
     }
   }
 

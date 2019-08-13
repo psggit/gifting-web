@@ -23,7 +23,6 @@
     align-items: center;
     z-index: 1;
     padding: 12% 12.5% 10% 12.5%;
-    background: #f1f1f1;
 
     .retailer-list-container {
       padding-top: 30px;
@@ -38,47 +37,25 @@
         flex-direction: row;
       }
 
-      .custom-dropdown {
-        position: relative;
-        display: inline-block;
-        vertical-align: middle;
-        margin-right:  20px;
-        //height: 40px;
-        .custom-dropdown-select {
-          padding: 11px !important;
-          width: 220px; 
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-          font-size: inherit;
-          padding: .5em;
-          margin: 0;
-          background: #fff;
-
-          option {
-            color: #2b2826;
-          }
-        }
-
-        &::after {
-          content: "\25BC";
-          height: 1em;
-          font-size: .625em;
-          line-height: 1;
-          right: 1.2em;
-          top: 50%;
-          margin-top: -.5em;
-          position: absolute;
-          pointer-events: none;
+      .city--select {
+        width: 260px;
+        margin-right: 20px;
+        select {
+          text-indent: initial;
+          width: 100%;
+          padding: 0 10px;
+          border-radius: 4px;
+          font-size: 15px;
+          @include themify($themes) {
+            color: themed("text-color");
+            border: 1px solid themed("input-border-color");
+            background-color: themed("input-bg-color")
+           }
         }
       }
   
       .btn {
         line-height: 37px;
-
-        // &.disabled {
-        //   opacity: ;
-        // }
       }
 
       .retailer-list {
@@ -87,45 +64,27 @@
         width: 100%;
         text-align: center;
         .header {
-          border-bottom: 1px solid #555555;
-          display: flex;
-        }
-
-        .retailer {
-          display: flex;
-          flex-direction: row;
-          padding: 24px 0;
-          border-bottom: 1px solid #555555;
-          text-align: left;
-          a {
-            text-decoration: none;
-            color: #000;
+          .content {
+            padding: 130px 7% 12% 7% !important;
           }
-          .details {
-            width: 75%;
-            .name {
-              font-weight: bold;
+        
+          .retailer-list-container {
+            .options {
+              display: flex;
+              flex-direction: column !important;
             }
-          }
-          .direction {
-            width: 25%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            font-weight: bold;
-            cursor: pointer;
-          }
-        }
-
-        .note {
-          color: #555555;
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 720px) { 
+        
+            select {
+              width: 100%;
+              margin-right: 0;
+              margin-bottom: 20px;
+              .custom-dropdown-select {
+                width: 100px;
+              }
+            }
+        
+            .retailer-list {
+              .retailer {
   .content {
     padding: 130px 7% 12% 7% !important;
   }
@@ -136,8 +95,9 @@
       flex-direction: column !important;
     }
 
-    .custom-dropdown {
-      margin-right: 0 !important;
+    select {
+      width: 100%;
+      margin-right: 0;
       margin-bottom: 20px;
       .custom-dropdown-select {
         width: 100px;
@@ -158,6 +118,91 @@
           justify-content: flex-start !important;
         }
       }
+    }
+  }              display: flex;
+                flex-direction: column !important;
+                padding: 20px;
+                .details {
+                  margin-bottom: 10px;
+                }
+        
+                .direction {
+                  width: 100% !important;
+                  justify-content: flex-start !important;
+                }
+              }
+            }
+          }        border-bottom: 1px solid #555555;
+          display: flex;
+        }
+
+        .retailer {
+          display: flex;
+          flex-direction: row;
+          padding: 24px 0;
+          border-bottom: 1px solid #555555;
+          text-align: left;
+          a {
+            text-decoration: none;
+          }
+          .details {
+            width: 75%;
+            .name {
+              font-weight: bold;
+            }
+          }
+          .direction {
+            width: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-weight: bold;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 720px) { 
+  #retailOutlet {
+    .content {
+      padding: 130px 7% 12% 7% !important;
+      .retailer-list-container {
+        .options {
+          display: flex;
+          flex-direction: column !important;
+        }
+    
+        .city--select {
+          margin-right: 0;
+          margin-bottom: 20px;
+          
+          select {
+            .custom-dropdown-select {
+              width: 100px;
+            }
+          }
+        }
+    
+        .retailer-list {
+          .retailer {
+            display: flex;
+            flex-direction: column !important;
+            padding: 20px;
+            .details {
+              margin-bottom: 10px;
+            }
+    
+            .direction {
+              width: 100% !important;
+              justify-content: flex-start !important;
+            }
+          }
+        }
+      }
+
     }
   }
 }

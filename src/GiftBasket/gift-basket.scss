@@ -1,0 +1,205 @@
+@import "./../sass/base.scss";
+
+#gift--basket {
+  position: relative;
+  .container {
+    min-height: calc(100vh - 87px);
+  }
+
+  svg g g {
+    @include themify($themes) {
+      fill: themed("text-color")
+    }
+  }
+
+  .b-bottom {
+    @include themify($themes) {
+      border-bottom: 1px solid themed("border-bottom-color")
+    }
+  }
+
+  a {
+    color: #555;
+  }
+  .updating--cart-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    @include themify($themes) {
+      background: themed("paper-color");
+    }
+    z-index: 5;
+    p {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  margin-top: 87px;
+
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    .col:last-child {
+      position: sticky;
+      top: calc(87px + 30px);
+    }
+  }
+
+  .row.main {
+    .col.main:first-child {
+      width: 70%;
+      margin-right: 48px;
+    }
+
+    .col.main:last-child {
+      width: 30%;
+    }
+  }
+
+  .paper.no-basket {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 87px - 96px);
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .paper.basket {
+    padding: 40px;
+    width: 100%;
+    max-width: 100%;
+    margin-right: 48px;
+
+    .header {
+      @include themify($themes) {
+        border-bottom: 1px solid themed("border-bottom-color");
+      }
+      padding-bottom: 12px;
+    }
+
+    .basket-body {
+      margin-top: 40px;
+    }
+  }
+
+  .paper.coupon {
+    > div {
+      padding: 20px;
+    }
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .paper.total {
+    margin-top: 20px;
+    > div {
+      padding: 20px;
+    }
+    width: 100%;
+    max-width: 100%;
+    p:first-child {
+      font-weight: 600;
+    }
+  }
+
+  .personalise-btn .btn {
+    width: 100%;
+  }
+
+  .personalise-btn > div {
+    display: none;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  #gift--basket {
+    .row.main {
+      flex-direction: column;
+      .col.main:first-child {
+        width: 100%;
+        margin-bottom: 48px;
+      }
+
+      .col.main:last-child {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $sm) {
+  #gift--basket {
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .row {
+      flex-direction: column;
+      align-items: inherit;
+      .col:last-child {
+        position: relative;
+        top: auto;
+      }
+    }
+
+    .paper {
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+    }
+
+    .paper.basket {
+      padding: 20px;
+      margin-right: 0;
+      width: 100%;
+
+      .basket-body {
+        margin-top: 16px;
+      }
+    }
+
+    .paper.coupon {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .paper.total {
+      width: 100%;
+      margin-bottom: 84px;
+    }
+
+    .personalise-btn {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @include themify($themes) {
+        box-shadow: 0 0 2px 0 darken(themed("add-to-basket-bg-color"), 5%);
+      }
+      @include themify($themes) {
+        background-color: themed("add-to-basket-bg-color")
+      }
+      padding: 20px;
+      > div {
+        display: block;
+      }
+      .btn {
+        width: 100%;
+      }
+      margin-top: 0;
+    }
+  }
+}

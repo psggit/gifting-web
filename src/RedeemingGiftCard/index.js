@@ -2,41 +2,18 @@ import React from 'react'
 import './redeeming-gift-card.scss'
 import Icon from "Components/icon"
 import Button from "Components/button"
-import FirstGiftCard from "Components/first-gift-card"
-import Header from "Components/header"
+import FirstGiftCard from "Components/gift-card-ad"
 import Footer from "Components/footer"
-import AgeGate from './../AgeGate'
-import {readCookie} from "Utils/session-utils"
-import { mountModal } from 'Components/modal-box/utils'
 
 class GiftCards extends React.Component {
   constructor(props) {
-    super(props) 
+    super(props)
     //console.log("props", props, props.data, props.name, props.isLoggedIn)
   }
 
-  componentDidMount() {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    })
-    if(!readCookie("isAgeGateAgreed")) {
-      mountModal(AgeGate({}))
-    }
-    //localStorage.setItem("showAgeGate", false)
-  }
-
-  // componentWillReceiveProps(newProps) {
-  //   //console.log("helo", newProps)
-  //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-  //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-  //   }
-  // }
-
   render() {
     //console.log("props in card", this.props)
-    return(
+    return (
       <div>
         <div id="GiftCards">
           <div className="content">
@@ -45,13 +22,13 @@ class GiftCards extends React.Component {
             <div className="step-text">
               <h2 className="cm s3">Download the HipBar app</h2>
               <span className="os s4">
-                Download the HipBar app & sign up with the phone number in which you got the SMS in.
+                Download the HipBar app & sign up with the mobile number to which you received the SMS
               </span>
             </div>
 
             <div className="app-store-btn">
-              <a rel="noopener noreferrer" target="_blank" href="https://itunes.apple.com/in/app/hipbar-delivery/id1179371753?mt=8"><Icon name="appStore" /></a>
-              <a rel="noopener noreferrer" target="_blank" href="https://play.google.com/store/apps/details?id=in.hipbar.hipbar_user_app&hl=en_IN"><Icon name="googleStore" /></a>
+              <a rel="noopener noreferrer" target="_blank" href="https://itunes.apple.com/in/app/hipbar-pay/id1297218847?mt=8"><Icon name="appStore" /></a>
+              <a rel="noopener noreferrer" target="_blank" href="https://play.google.com/store/apps/details?id=in.hipbar.hipbar_pay_app&hl=en"><Icon name="googleStore" /></a>
             </div>
 
             <span className="step-number"><Icon name="stepTwo" /></span>
@@ -78,14 +55,15 @@ class GiftCards extends React.Component {
 
             <span className="step-number"><Icon name="stepFour" /></span>
             <div className="step-text">
-              <h2 className="cm s3">Redeem with HipBar Gift Card at retail Outlets</h2>
+              <h2 className="cm s3">Redeem with HipBar Gift Card at Retail Outlets</h2>
               <span className="os s4">
                 Add preferred drinks to cart. Choose to pay with "Gift Wallet"
               </span>
             </div>
           </div>
-         
-          <FirstGiftCard />
+
+          <FirstGiftCard pageTitle="Redeeming Gift Card" />
+          {/* <Footer /> */}
         </div>
       </div>
     )

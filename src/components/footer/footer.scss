@@ -1,17 +1,23 @@
+@import "./../../sass/base.scss";
+
 .footer {
-  padding: 4% 8%;
-  font-family: Montserrat;
-  background-color: #f1f1f1;
+  padding: 30px 5.6%;
+  font-family: $font-OpenSans;
+  @include themify($themes) {
+    background: themed("container-color");
+  }
+  width: 100%;
+  max-width: 1440px;
   a {
     text-decoration: none;
-    //color: #D1D3DF;
-    color: #000;
+    color: #d1d2dd;
+    // color: #000;
     transition: all 0.2s ease-in;
-    // &:hover {
-    //   color: #e0e0e0;
-    //   // border-bottom: 1px solid #E87D24;
-    //   transition: all 0.2s ease-in;
-    // }
+    &:hover {
+      color: #e0e0e0;
+      text-decoration: underline;
+      transition: all 0.2s ease-in;
+    }
   }
   .upper {
     display: flex;
@@ -24,14 +30,14 @@
     .col:first-child {
       width: 20%;
       p {
-        color: #000;
+        color: #D1D3DF;
         margin-top: 5px;
-        margin-left: -2px;
+        // margin-left: -2px;
         &:last-child {
           font-size: 12px;
           line-height: 1.63;
           letter-spacing: 0.4px;
-          color: #555555;
+          color: #D1D3DF;
         }
       }
     }
@@ -39,12 +45,12 @@
     .col:last-child {
       width: 20%;
       p {
-        color: #000;
+        color: #D1D3DF;
         font-size: 12px;
       }
 
       p:first-child {
-        color: #000;
+        color: #D1D3DF;
         font-weight: bold;
         font-size: 14px;
         margin-bottom: 20px;
@@ -115,7 +121,7 @@
 }
 
 .get-in-touch {
-  //font-family: Montserrat;
+  //font-family: $font-OpenSans;
   padding: 2% 4%;
   background-color: #60606F;
   p {
@@ -172,7 +178,7 @@
 
 @media only screen and (max-width: 440px) {
   .footer {
-    padding: 40px !important;
+    padding: 20px !important;
     .upper {
       .col:nth-child(2) {
         margin-left: 0 !important;

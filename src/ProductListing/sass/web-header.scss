@@ -1,0 +1,114 @@
+@import "./../../sass/base.scss";
+
+@mixin margin($w, $n) {
+  padding: 40px calc(((100% - #{$w} * #{$n} * 1px) / #{$n}) / 2);
+  padding-bottom: 0;
+}
+
+#product--listing__w-header {
+  z-index: 1;
+  @include margin(148, 5);
+  @include themify($themes) {
+    svg g g {
+      fill: themed("text-color")
+    }
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .row:first-child {
+    .os.s6 {
+      letter-spacing: 0.5px;
+      // font-weight: 600;
+      margin-right: 16px;
+    }
+    padding-bottom: 40px;
+  }
+
+  .row:nth-child(2) {
+    padding-bottom: 16px;
+    @include themify($themes) {
+      border-bottom: 1px solid themed("border-bottom-color")
+    }
+    flex-wrap: wrap;
+  }
+
+  .row:last-child {
+    // justify-content: flex-start;
+    // align-items: baseline;
+    padding-top: 20px;
+    .genre--item {
+      width: auto;
+      // border: 1px solid;
+      // margin-bottom: 10px;
+      cursor: pointer;
+      opacity: 0.5;
+      border: 0;
+      text-align: left;
+      margin-right: 32px;
+      // width: 160px;
+      // line-height: 32px;
+      border-radius: 2px;
+      // padding: 0 20px 0 10px;
+      &:first-child {
+        padding-left: 40px;
+      }
+      > span {
+        display: none;
+      }
+
+      &.active {
+        // background: #333;
+        p {
+          color: #fff !important;
+        }
+      }
+    }
+
+    .genre--item.active {
+      opacity: 1;
+    }
+  }
+
+  .city--select select {
+    border-radius: 4px;
+  }
+
+  .search--box {
+    width: 320px;
+    height: 46px;
+    &.focused ~ .city--select {
+      flex: 0;
+      transition: 0.2s all ease-in;
+    }
+  }
+  .search--box input {
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #dfdfdf;
+    line-height: 40px;
+    &:focus {
+      outline: 0;
+
+    }
+  }
+}
+
+@media only screen and (max-width: $md) {
+  #product--listing__w-header {
+    @include margin(148, 4);
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  #product--listing__w-header {
+    
+  }
+}

@@ -1,0 +1,50 @@
+@import "./../sass/base.scss";
+
+.promo--header {
+  display: flex;
+  justify-content: space-between;
+  @include themify($themes) {
+    background: themed("paper-color");
+    border-bottom: 1px solid themed("border-bottom-color");
+    .close svg g g {
+      stroke: themed("text-color")
+    }
+  }
+  padding: 20px;
+  .close {
+    cursor: pointer;
+  }
+  .close svg {
+    width: 16px;
+    height: 16px;
+  }
+  p {
+    font-weight: 600;
+  }
+}
+
+.promo--code__form {
+  // padding-top: 0 !important;
+}
+
+@media only screen and (max-width: $sm) {
+  #promocodes--web #modal-box2 {
+    .modal-overlay .modal-container {
+      width: 100%;
+      height: 100vh;
+    }
+
+    .modal-overlay .modal-container .modal-body {
+      max-height: 100%;
+      height: calc(100% - 61px);
+    }
+  }
+
+  #promo--codes {
+    height: 100%;
+  }
+
+  #promo--codes .promo--code__body {
+    height: calc(100% - 83px);
+  }
+}

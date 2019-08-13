@@ -2,7 +2,7 @@
  * utility methods for constructing `Fetch` API
  */
 
-// import 'whatwg-fetch'
+// import "whatwg-fetch"
 // import Session from "./../session"
 import { Api } from "./../config"
 /**
@@ -10,15 +10,16 @@ import { Api } from "./../config"
  */
 
 const getToken = () => ({
-  // "Authorization": `Bearer ${localStorage.getItem('auth-token')}`,
-  "x-hasura-role": `${localStorage.getItem('x-hasura-role')}`,
-  "hasura-id": `${localStorage.getItem('hasura-id')}`
+  // "Authorization": `Bearer ${localStorage.getItem("auth-token")}`,
+  "x-hasura-role": `${localStorage.getItem("x-hasura-role")}`,
+  "hasura-id": `${localStorage.getItem("hasura-id")}`
 })
 
 function getHeaders(type) {
   const json_headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "App-Name": "HipBar-Drinks"
   }
 
   switch (type) {
@@ -26,10 +27,10 @@ function getHeaders(type) {
       return getToken()
     case "Public":
       return Object.assign({}, json_headers)
-    case 'RSS':
-      return Object.assign({}, {'Accept': 'application/xml', 'Content-Type': 'application/xml'})
+    case "RSS":
+      return Object.assign({}, { "Accept": "application/xml", "Content-Type": "application/xml" })
     default:
-      return Object.assign({}, json_headers, getToken())
+      return Object.assign({}, json_headers)
   }
 }
 
@@ -53,7 +54,10 @@ function constructBody({ type, data }) {
 export function checkStatus(response) {
   if (response.status >= 200 && response.status < 305) {
     return response
-  } else {
+  }
+
+  // return response
+  else {
     //console.log(response.statusText);
     var error = new Error(response.statusText)
     //console.log("res", response)
@@ -73,18 +77,17 @@ export function constructFetchUtility(options) {
   // construct request url
   const url = prependBaseUrl ? `${Api[apiBase]}${api}` : api
 
-  console.log(apiBase)
   // construct options for creating `window.fetch` instance
   let fetchOptions = {
     method,
-    credentials: 'include',
+    credentials: "include",
     headers: getHeaders(type),
   }
 
-  if(cors) fetchOptions.mode = 'cors'
+  if (cors) fetchOptions.mode = "cors"
   // add data to request
   if (data && method !== "GET") {
-    fetchOptions.body = constructBody({type, data})
+    fetchOptions.body = constructBody({ type, data })
   }
 
   return (options.handleError)

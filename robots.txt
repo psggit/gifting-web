@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://gifting.hipbar.com/sitemap.xml

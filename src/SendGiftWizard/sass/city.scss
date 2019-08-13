@@ -1,0 +1,56 @@
+@import "./../../sass/base.scss";
+
+#send-gift-city {
+  .btn {
+    height: 52px;
+    span {
+      font-size: 14px;
+    }
+  }
+  @include themify($themes) {
+    svg g g {
+      fill: themed("text-color")
+    }
+  }
+  .flex-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 0 20px 0;
+    .col {
+      margin: 20px 15px 0 15px;
+    }
+  }
+
+  .paper {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - 87px - 96px);
+  }
+
+  .paper-content{
+   text-align: center;
+   margin-top: 40px;
+
+   .os.s1 {
+     line-height: 1.56;
+   }
+
+   .os.s2 {
+     font-weight: 600;
+     margin-top: 20px;
+     margin-bottom: 10px;
+   }
+  }
+
+  input{
+    max-width: 400px;
+  }
+}
+
+@media only screen and (max-width: $sm) {
+  #send-gift-city .paper {
+    min-height: calc(100vh - 87px - 40px);
+  }
+}

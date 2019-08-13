@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400, 600" rel="stylesheet">
+    <title>HipBar Gifting - Gift your friends drinks online!</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+  <div class="theme-dark" style="max-width:1440px;margin: 0 auto">
+    <div id="header">{header}</div>
+    <div id="app" >{content}</div>
+  </div>
+  <div id="footer-wrapper"></div>
+  {script}
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- <script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+ 
+  gtag('config', 'UA-89806318-4');
+</script> -->
+
+ <script>
+  // Check that service workers are registered
+  if ('serviceWorker' in navigator) {
+    // Use the window load event to keep the page load performant
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js');
+    });
+  }
+ </script>
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-89806318-10');
+</script>
+<script src="https://wchat.freshchat.com/js/widget.js"></script>
+<script>
+  window.fcWidget.init({
+    token: "3a3ec830-f702-4f77-a001-b8e939438956",
+      host: "https://wchat.freshchat.com",
+      tags: ["conversation_gifting"],
+      externalId: "",   // user’s id unique to your system
+      firstName: localStorage.getItem("username"), // user’s first name
+      lastName: "", // user’s last name
+      email: localStorage.getItem("email"), // user’s email address
+      phone: localStorage.getItem("sender_mobile"), // phone number without country code
+      phoneCountryCode: "+91" // phone’s country code
+  });
+</script>
+</body>
+</html>

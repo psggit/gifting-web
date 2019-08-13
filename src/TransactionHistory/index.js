@@ -29,9 +29,6 @@ class TransactionHistory extends React.Component {
     if(isLoggedIn) {
       this.showTransactions()
     }
-    if(!readCookie("isAgeGateAgreed")) {
-      mountModal(AgeGate({}))
-    }
   }
 
   showTransactions() {
@@ -77,30 +74,30 @@ class TransactionHistory extends React.Component {
       <div key={i} className="transaction-item">
         <div className="item-header os s7">
           <div className="item-subheader">
-            <p className="os s7">{item.receiver_name} | </p>
-            <p className="os s7">
+            <p className="os s6">{item.receiver_name} | </p>
+            <p className="os s6">
               +91 {item.receiver_mobile}
             </p>
           </div>
-          <p className="os s7">Rs. {item.gift_card_amount}</p>
+          <p className="os s6">&#8377; {item.gift_card_amount}</p>
         </div>
         <div className="item-body">
           <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px', marginRight: '24px'}}>
-            <p className="os s9">
+            <p className="os s7">
               Transaction ID
             </p>
-            <span className="os s8">#{item.txn_id}</span>
+            <span className="os s6">#{item.txn_id}</span>
           </div>
           <div style={{display: 'flex', flexDirection: 'column', marginTop: '16px', marginRight: '24px'}}>
-            <p className="os s9">Transaction Date & Time</p>
-            <span className="os s8">{Moment(item.gifted_on).format('DD/MM/YYYY, HH:mm A')}</span>
+            <p className="os s7">Transaction Date & Time</p>
+            <span className="os s6">{Moment(item.gifted_on).format('DD/MM/YYYY, HH:mm A')}</span>
           </div>
         </div>
         {
           item.gift_message
             ? <div className="item-footer">
-              <p className="os s9">Personal Message</p>
-              <p className="os s8">{item.gift_message}</p>
+              <p className="os s7">Personal Message</p>
+              <p className="os s6">{item.gift_message}</p>
             </div>
             : ""
         }

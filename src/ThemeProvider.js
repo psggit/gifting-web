@@ -16,6 +16,12 @@ export class ThemeProvider extends React.Component {
   }
 
   componentWillMount() {
+    const isMobile = window.innerWidth <= 640
+    const isTablet = window.innerWidth > 640 && window.innerWidth <= 1024
+    const isLaptop = window.innerWidth > 1024
+
+    this.setState({ isMobile, isTablet, isLaptop })
+
     const fetchOptions = {
       method: 'get',
       credentials: 'include',
@@ -26,12 +32,8 @@ export class ThemeProvider extends React.Component {
     fetch(`${Api.blogicUrl}/consumer/settings/profile`, fetchOptions)
       .then((response) => {
         if (response.status !== 200) {
-          //console.log(`Looks like there was a problem. Status Code: ${response.status}`)
+          console.log(`Looks like there was a problem. Status Code: ${response.status}`)
           this.setState({isLoggedIn: false})
-          // if(location.pathname.split("/")[1] && location.pathname.split("/")[1] !== 0)
-          // {
-          //   location.href="/"
-          // }
           return
         }
         response.json().then((data) => {
@@ -42,11 +44,7 @@ export class ThemeProvider extends React.Component {
         })
       })
       .catch((err) => {
-        // console.log('Fetch Error :-S', err)
-        // if(location.pathname.split("/")[1] && location.pathname.split("/")[1] !== 0)
-        // {
-        //   location.href="/"
-        // }
+        console.log('Fetch Error :-S', err)
       })
   }
 
@@ -55,7 +53,10 @@ export class ThemeProvider extends React.Component {
       username: this.state.username,
       mobile: this.state.mobile,
       isLoggedIn: this.state.isLoggedIn,
-      history
+      history,
+      isMobile: this.state.isMobile,
+      isTablet: this.state.isTablet,
+      isLaptop: this.state.isLaptop
     }
     //console.log("theme provider", paramObj)
     return (

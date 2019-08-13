@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://res.cloudinary.com">
+
+    <link rel="stylesheet" href="https://use.typekit.net/djr0bfk.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400, 600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+    <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon">
+    <link href="/images/favicon.png" rel="apple-touch-icon">
+    <!-- <link rel="manifest" href="/manifest.json"> -->
+    <link rel="canonical" href="https://gifting.hipbar.com/">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+    <meta content='FVz8vJPDa60jzuyoOc9W7jZZqA_TA-lVwHO2OwPJGPg' name='google-site-verification'/>
+
+    <title>HipBar Gifting - Gift your friends drinks online!</title>
+    <meta name="keywords" content="Gifts Online, Gifting in India, Alcohol Online, Drinks Online, Hipbar">
+    <meta name="description" content="Gift your friends their favourite drinks - Beers, Whiskys, Vodkas & More! Send gift cards online to celebrate all occasions and say 'Cheers' in style. Use HipBar Gifting today!">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+</head>
+<body>
+  <div class="theme-dark" style="margin: 0 auto">
+    <div id="header">{header}</div>
+    <div id="app" >{content}</div>
+    <div id="confirm-modal"></div>
+  </div>
+  
+  <div id="footer-wrapper"></div>
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-3"></script> -->
+  <!-- <script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-89806318-4');
+  </script> -->
+  <script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-10"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-89806318-10');
+  </script>
+  <script src="https://wchat.freshchat.com/js/widget.js"></script>
+  <script async>
+    if(!localStorage.getItem("hasura-id")) {
+      window.fcWidget.init({
+        token: "3a3ec830-f702-4f77-a001-b8e939438956",
+        host: "https://wchat.freshchat.com",
+        tags: ["conversation_gifting"],
+      });
+    } else if(localStorage.getItem("hasura-id")) {
+        window.fcWidget.init({
+          token: "3a3ec830-f702-4f77-a001-b8e939438956",
+          host: "https://wchat.freshchat.com",
+          tags: ["conversation_gifting"],
+        });
+      window.fcWidget.user.get(function(resp) {
+        var status = resp && resp.status,
+            data = resp && resp.data;
+        if (status !== 200) {
+          window.fcWidget.user.setProperties({
+            externalId: "",
+            firstName: localStorage.getItem("username"),
+            lastName: "",
+            email: localStorage.getItem("email"),
+            phone: localStorage.getItem("sender_mobile"),
+            phoneCountryCode: "+91"
+          });
+        }
+      });
+    }
+  </script>
+
+  <script>
+    // Check that service workers are registered
+  if ('serviceWorker' in navigator) {
+    // Use the window load event to keep the page load performant
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js');
+    });
+  }
+  </script>
+</body>
+</html>

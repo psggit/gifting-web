@@ -4,7 +4,9 @@
   padding: 8.5% 49px;
   // border-radius: 5px;
   box-shadow: 0 2px 28px -5px rgba(0, 0, 0, 0.5);
-  background-color: #f1f1f1;
+  @include themify($themes) {
+    background: themed("paper-color");
+  }
   font-family: $font-OpenSans;
   max-height: 560px;
   overflow: auto;
@@ -14,7 +16,9 @@
     margin: 20px 0px;
 
     .country-code {
-      border: 1px solid #cccccc;
+      @include themify($themes) {
+        border: 1px solid themed("input-border-color")
+      }
       display: flex;
       padding: 0 10px;
       align-items: center;
@@ -131,6 +135,9 @@
           cursor: not-allowed;
           pointer-events: none;
         }
+        @include themify($themes) {
+          color: themed("text-color")
+        }
       }
     }
 
@@ -138,7 +145,9 @@
       display: table;
       width: 100%;
       table-layout: fixed;
-      border: 1px solid #dddbda;
+      @include themify($themes) {
+        border: 1px solid themed("text-color");
+      }
       border-radius: 5px;
       .column {
         border: none;
@@ -148,24 +157,30 @@
         //background-color: #f1f1f1;
         cursor: pointer;
         //box-shadow: 0 2px 28px -5px rgba(0, 0, 0, 0.5);
-        background-color: #fff;
-        border-right: 1px solid #dddbda;
+        @include themify($themes) {
+          border-right: 1px solid themed("text-color");
+          color: themed("sku-text-color")
+        }
         text-align: center;
         vertical-align: middle;
         color: #2b2826;
         &.active {
-          background-color: #000;
-          color: #d1d2dd;
+          @include themify($themes) {
+            background: themed("sku-focus-color");
+            color: themed("sku-text-focus-color");
+          }
           font-weight: bold;
         }
       }  
     }
    
     .note {
-      color: #232a2e;
       letter-spacing: 0;
       margin: 10px 0;
       font-weight: 600;
+      @include themify($themes) {
+        color: themed("text-color")
+      }
     }
 
     .alert-box {
@@ -180,10 +195,10 @@
   .page-footer {
 
     .button-section {
-      display: -webkit-box;
-      display: -ms-flexbox;
       display: flex;
-
+      .btn:last-child {
+        margin-left: 15px;
+      }
       &.mobile {
         display: none;
       }
@@ -363,13 +378,8 @@
       .button-section {
         display: none !important;
         &.mobile {
-          display: -webkit-box !important;
-          display: -ms-flexbox !important;
           display: flex !important;
-          -webkit-box-orient: vertical !important;
-          -webkit-box-direction: normal !important;
-              -ms-flex-direction: column !important;
-                  flex-direction: column !important;
+          flex-direction: column !important;
         }
       }
 

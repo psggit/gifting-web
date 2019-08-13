@@ -3,46 +3,101 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CleanWebpackPlugin = require("clean-webpack-plugin")
 const webpack = require("webpack")
 const WorkboxPlugin = require('workbox-webpack-plugin')
+const minfyConfigHTML = {
+  collapseWhitespace: true,
+  minifyCSS: true,
+  minifyJS: false,
+  minifyURLs: true,
+  removeComments: false
+}
 
-console.log(path.resolve(__dirname, "./../../src/payment-status.html"))
-  
 module.exports = {
   entry: {
-    transaction_success: path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
-    transaction_failure: path.resolve(__dirname, "./../../src/FailureTransaction"),
+    // transaction_success: path.resolve(__dirname, "./../../src/SuccessfulTransaction"),
+    // transaction_failure: path.resolve(__dirname, "./../../src/FailureTransaction"),
+    // brand_detail: path.resolve(__dirname, "./../../src/ProductDetails"),
+    // landing: path.resolve(__dirname, "./../../src/landing-new"),
     app: path.resolve(__dirname, "./../../src/App.js"),
   },
+  node: {
+    fs: 'empty'
+  },
   plugins: [
-    new CleanWebpackPlugin(["dist"], {
-      root: path.resolve(__dirname, "./../../"),
-      verbose: true
-    }),
+    new CleanWebpackPlugin(),
     new WorkboxPlugin.GenerateSW({
-    // these options encourage the ServiceWorkers to get in there fast 
-    // and not allow any straggling "old" SWs to hang around
+      // these options encourage the ServiceWorkers to get in there fast 
+      // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,
       skipWaiting: true
     }),
     new HtmlWebpackPlugin({
-      // chunks: ["transaction_success"],
+      title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "landing.html",
+      template: path.resolve(__dirname, "./../../html/landing.html"),
+      minify: minfyConfigHTML
+    }),
+    new HtmlWebpackPlugin({
+      title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "product-listing.html",
+      template: path.resolve(__dirname, "./../../html/product-listing.html"),
+      minify: minfyConfigHTML
+    }),
+    new HtmlWebpackPlugin({
+      title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "age-gate.html",
+      template: path.resolve(__dirname, "./../../html/age-gate.html"),
+      minify: minfyConfigHTML
+    }),
+    new HtmlWebpackPlugin({
+      title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "legal-drinking-age.html",
+      template: path.resolve(__dirname, "./../../html/legal-drinking-age.html"),
+      minify: minfyConfigHTML
+    }),
+    new HtmlWebpackPlugin({
+      title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "static.html",
+      template: path.resolve(__dirname, "./../../html/static.html"),
+      minify: minfyConfigHTML
+    }),
+    new HtmlWebpackPlugin({
+      title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "ssr.html",
+      template: path.resolve(__dirname, "./../../html/ssr.html"),
+      minify: minfyConfigHTML
+    }),
+    new HtmlWebpackPlugin({
+      title: "HipBar Gifting - Gift your friends drinks online!",
+      filename: "product-detail.html",
+      template: path.resolve(__dirname, "./../../html/product-detail.html"),
+      minify: minfyConfigHTML
+    }),
+    new HtmlWebpackPlugin({
       title: "Transaction Successful",
       filename: "transaction-success.html",
-      template: path.resolve(__dirname, "./../../src/payment-status.html")
+      template: path.resolve(__dirname, "./../../html/payment-status.html"),
+      minify: minfyConfigHTML
     }),
     new HtmlWebpackPlugin({
-      // chunks: ["transaction_failure"],
       title: "Transaction Failed",
       filename: "transaction-failed.html",
-      template: path.resolve(__dirname, "./../../src/payment-status.html")
+      template: path.resolve(__dirname, "./../../html/payment-status.html"),
+      minify: minfyConfigHTML
     }),
     new HtmlWebpackPlugin({
-      excludeChunks: ["transaction_success", "transaction_failure"],
+      filename: "client.html",
+      title: "",
+      template: path.resolve(__dirname, "./../../html/client.html"),
+      minify: minfyConfigHTML
+    }),
+    new HtmlWebpackPlugin({
       filename: "index.html",
-      title: "Output Management",
-      template: path.resolve(__dirname, "./../../index.html")
+      title: "",
+      template: path.resolve(__dirname, "./../../index.html"),
+      minify: minfyConfigHTML
     }),
     new webpack.DefinePlugin({
-      "process.env.BASE_URL": JSON.stringify(process.env.BASE_URL || "amebae21.hasura-app.io"),
+      "process.env.BASE_URL": JSON.stringify(process.env.BASE_URL || "basketball38.hasura-app.io"),
       "process.env.PAYU_BASE": JSON.stringify(process.env.PAYU_BASE || "test"),
     })
   ],
@@ -63,10 +118,15 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   test: /\.css$/,
-      //   use: ["style-loader", "css-loader"]
-      // },
+      {
+        test: /\.(png|jpg|svg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {},
+          },
+        ],
+      },
       {
         test: /\.js$/,
         loader: "babel-loader",
@@ -74,29 +134,4 @@ module.exports = {
       }
     ]
   }
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: "async",
-  //     minSize: 30000,
-  //     minChunks: 1,
-  //     maxAsyncRequests: 5,
-  //     maxInitialRequests: 3,
-  //     automaticNameDelimiter: "~",
-  //     name: true,
-  //     cacheGroups: {
-  //       vendors: {
-  //         chunks: "initial",
-  //         name: "vendor",
-  //         test: "vendor",
-  //         enforce: true
-  //       },
-  //       default: {
-  //         minChunks: 2,
-  //         priority: -20,
-  //         reuseExistingChunk: true
-  //       }
-  //     }
-  //   },
-  //   runtimeChunk: true
-  // }
 }

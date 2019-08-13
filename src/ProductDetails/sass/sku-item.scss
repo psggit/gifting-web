@@ -1,0 +1,182 @@
+@import "./../../sass/base.scss";
+
+@mixin volumeItemMargin($w, $n) {
+  margin: 0 calc(((100% - #{$w} * #{$n} * 1px) / #{$n}) / 2);
+}
+
+.sku--item {
+  display: flex;
+  // align-items: center;
+}
+
+
+.sku--item .sku--item__desc .add-to-basket {
+  margin-top: 20px;
+  .btn {
+    width: 100%;
+  }
+}
+
+.volume--price--container-m {
+  display: none;
+}
+
+.volumes--border {
+  height: 1px;
+  @include themify($themes) {
+    background-color: themed("border-bottom-color")
+  }
+  // @include volumeItemMargin(65, 4);
+}
+
+.volumes {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 20px 0;
+  padding-bottom: 4px;
+  
+  // .hr {
+  //   height: 2px;
+  //   width: 100%;
+  //   background-color: #dddbda;
+  // }
+  .volume--item {
+    border-width: 1px;
+    border-style: solid;
+    background-color: transparent;
+    @include themify($themes) {
+      border-color: themed("sku-border-color");
+      color: themed("sku-text-color");
+    }
+    border-radius: 2px;
+    width: 68px;
+    height: 35px;
+    text-align: center;
+    padding: 8px;
+    // @include volumeItemMargin(65, 4);
+    margin-right: 10px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    font-size: 14px;
+    
+    &:focus, &.focused {
+      @include themify($themes) {
+        background-color: themed("sku-focus-color");
+        color: themed("sku-text-focus-color");
+      }
+    }
+  }
+}
+
+.sku--item {
+  .sku--item__img {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    margin-right: 40px;
+    img {
+      // border-radius: 4px;
+      // filter: grayscale(1);
+      // z-index: 1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: 0.1s all ease-in;
+      &.img-loaded {
+        opacity: 1;
+        transition: 0.1s all ease-in;
+      }
+    }
+
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      @include themify($themes) {
+        background-color: themed("image-placeholder-color");
+      }
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .sku--item__desc {
+    width: 330px;
+    max-width: 100%;
+    p {
+      // @include volumeItemMargin(65, 4);
+      letter-spacing: 0.6px;
+      font-weight: 600;
+    }
+  }
+
+  .sku--item__price {
+    // @include volumeItemMargin(65, 4);
+    margin-top: 16px;
+    span:first-child {
+      letter-spacing: 0.5px;
+      margin-right: 10px;
+    }
+
+    span:last-child {
+      letter-spacing: 0.6px;
+      font-weight: 600;
+    }
+  }
+}
+
+@media only screen and (max-width: $sm) {
+  .sku--item .sku--item__img {
+    width: 65px;
+    height: 65px;
+    margin-right: 20px;
+  }
+
+  .sku--item .sku--item__desc {
+    width: calc(100% - 65px - 20px);
+    p {
+      margin: 0;
+    }
+    .add-to-basket {
+      // display: none;
+    }
+  }
+
+  .volumes--border {
+    margin: 0;
+  }
+
+  .sku--item .sku--item__price {
+    margin: 0;
+    margin-top: 20px;
+  }
+
+  .volumes .volume--item {
+    margin: 0;
+    margin-right: 16px;
+    margin-bottom: 16px;
+  }
+  .volume--price--container-w {
+    display: none;
+  }
+
+  .volume--price--container-m {
+    display: block;
+    .sku--item__price {
+      margin-top: 16px;
+      span:first-child {
+        letter-spacing: 0.5px;
+        margin-right: 10px;
+      }
+  
+      span:last-child {
+        letter-spacing: 0.6px;
+        font-weight: 600;
+      }
+    }
+  }
+}

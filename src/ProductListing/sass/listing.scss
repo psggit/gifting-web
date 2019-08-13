@@ -1,0 +1,51 @@
+@import "./../../sass/base.scss";
+
+#BrandsListing {
+  width: 100%;
+
+  .paper {
+  }
+
+  .header {
+    position: sticky;
+    top: 87px;
+    width: 100%;
+    z-index: 2147483602;
+    // height: calc(100vh - 100px);
+    .row:first-child {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    .row:last-child {
+      padding: 16px 20px;
+      border-bottom: 1px solid #dfdfdf;
+      background-color: #fff;
+      span:last-child {
+        svg:first-child {
+          margin-right: 5px;
+          position: relative;
+          top: 1px;
+        }
+        svg:last-child {
+          margin-left: 5px;
+          position: relative;
+          top: -2px;
+        }
+      }
+    }
+  }
+
+  .brands{
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: $md) {
+  #BrandsListing {
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

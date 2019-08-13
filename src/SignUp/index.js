@@ -12,19 +12,21 @@ import { validateTextField, validateEmail } from '../utils/validators';
 import NotifyError from './../NotifyError';
 import Button from "Components/button"
 import InputMask from "react-input-mask"
+import { clearTimeout } from 'timers';
 
 export default function SignUp(data) {
   return class SignUp extends React.Component {
     constructor(props) {
       super(props)
+      this.timeoutHandle = null;
       this.inputNameMap = {
         mobileNo: "Mobile no",
         email: "Email",
         name: "Name",
         otp: "Otp",
         dob: "Date of Birth",
-        pin: "Account Pin",
-        confirmPin: "Confirm Account Pin"
+        // pin: "Account Pin",
+        // confirmPin: "Confirm Account Pin"
       }
       this.state = {
         otpSent: false,
@@ -33,8 +35,8 @@ export default function SignUp(data) {
         name: "",
         email: "",
         otp: "",
-        pin: "",
-        confirmPin: "",
+        // pin: "",
+        // confirmPin: "",
         //resentOtp: false,
         setTimer: false,
         gender: "male",
@@ -49,14 +51,14 @@ export default function SignUp(data) {
           value: "",
           status: false
         },
-        pinErr: {
-          value: "",
-          status: false
-        },
-        confirmPinErr: {
-          value: "",
-          status: false
-        },
+        // pinErr: {
+        //   value: "",
+        //   status: false
+        // },
+        // confirmPinErr: {
+        //   value: "",
+        //   status: false
+        // },
         emailErr: {
           value: "",
           status: false
@@ -86,10 +88,14 @@ export default function SignUp(data) {
       window.addEventListener("keydown", this.handleKeyDown)
     }
 
+    componentWillUnmount() {
+      clearTimeout(this.timeoutHandle)
+    }
+
     handleKeyDown(e) {
-      const {otpSent} = this.state;
-      if(e.keyCode === 13) {
-        if(!otpSent) {
+      const { otpSent } = this.state;
+      if (e.keyCode === 13) {
+        if (!otpSent) {
           this.handleClick()
         } else {
           this.login()
@@ -102,14 +108,14 @@ export default function SignUp(data) {
     // }
 
     handleGenderChange(genderValue) {
-      const {otpSent} = this.state
-      if(!otpSent) {
+      const { otpSent } = this.state
+      if (!otpSent) {
         this.setState({ gender: genderValue })
       }
     }
 
     isFormValid() {
-      const { otpSent, pin, confirmPin } = this.state
+      const { otpSent } = this.state
       let otpErr = this.state.otpErr
 
       const mobileNoErr = validateTextField(this.inputNameMap['mobileNo'], this.state.mobileNo)
@@ -124,40 +130,43 @@ export default function SignUp(data) {
       const dobErr = validateTextField(this.inputNameMap['dob'], this.state.dob)
       this.setState({ dobErr: validateTextField(this.inputNameMap['dob'], this.state.dob) })
 
-      const pinErr = validateTextField(this.inputNameMap['pin'], this.state.pin)
-      this.setState({ pinErr: validateTextField(this.inputNameMap['pin'], this.state.pin) })
+      // const pinErr = validateTextField(this.inputNameMap['pin'], this.state.pin)
+      // this.setState({ pinErr: validateTextField(this.inputNameMap['pin'], this.state.pin) })
 
-      const confirmPinErr = validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin)
-      this.setState({ confirmPinErr: validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin) })
+      // const confirmPinErr = validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin)
+      // this.setState({ confirmPinErr: validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin) })
 
+      // const confirmPinErr = validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin)
+      // this.setState({ confirmPinErr: validateTextField(this.inputNameMap['confirmPin'], this.state.confirmPin) })
+      // console.log("form validation")
       if (otpSent) {
         otpErr = validateTextField(this.inputNameMap['otp'], this.state.otp)
         this.setState({ otpErr: validateTextField(this.inputNameMap['otp'], this.state.otp) })
       }
 
-      if (pin !== confirmPin) {
-        this.setState({ confirmPinErr: { status: true, value: "Pin does not match" } })
-        return false
-      }
+      // if (pin !== confirmPin) {
+      //   this.setState({ confirmPinErr: { status: true, value: "Pin does not match" } })
+      //   return false
+      // }
 
-      if (!mobileNoErr.status && !otpErr.status && !emailErr.status && !nameErr.status && !dobErr.status && !pinErr.status && !confirmPinErr.status) {
+      if (!mobileNoErr.status && !otpErr.status && !emailErr.status && !nameErr.status && !dobErr.status) {
         return true
       }
       return false
     }
 
     countdown() {
-      let timeoutHandle;
+      // let timeoutHandle;
       let seconds = 30;
       let self = this;
       function tick() {
         var counter = document.getElementById("timer");
         seconds--;
-        counter.innerHTML ="OTP can be resent in" + " 00" + ":"  +(seconds < 10 ? "0" : "") + String(seconds) + " seconds";
-        if( seconds > 0 ) {
-          timeoutHandle=setTimeout(tick, 1000);
-        }else {
-          self.setState({setTimer: false})
+        counter.innerHTML = "OTP can be resent in" + " 00" + ":" + (seconds < 10 ? "0" : "") + String(seconds) + " seconds";
+        if (seconds > 0) {
+          self.timeoutHandle = setTimeout(tick, 1000);
+        } else {
+          self.setState({ setTimer: false })
         }
       }
       tick();
@@ -177,7 +186,7 @@ export default function SignUp(data) {
           gender: this.state.gender,
           name: this.state.name,
           gps: "",
-          pin: parseInt(this.state.pin),
+          //pin: parseInt(this.state.pin),
           referral_code: ""
         },
         mobile: this.state.mobileNo,
@@ -190,8 +199,7 @@ export default function SignUp(data) {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        //credentials: 'include',
-        mode: 'cors',
+        credentials: 'include',
         body: JSON.stringify(payload)
       }
       this.setState({ errorInSignUp: false, isGettingOtp: true })
@@ -206,15 +214,15 @@ export default function SignUp(data) {
             } else if (response.status === 409 && responseData.errorCode === "user-already-exists") {
               this.setState({ emailErr: { status: true, value: responseData.message } })
               //return
-            } 
+            }
             // else if (response.status !== 400) {
             else {
-              window.fcWidget.user.clear().then(function() {
+              window.fcWidget.user.clear().then(function () {
                 console.log('User cleared')
-              }, function() {
+              }, function () {
                 console.log("User Not cleared")
               })
-              this.setState({ otpSent: true, disableField: true, setTimer: true})
+              this.setState({ otpSent: true, disableField: true, setTimer: true })
               this.countdown()
               //this.getOtp()
             }
@@ -253,13 +261,46 @@ export default function SignUp(data) {
               if (response.status === 400 && responseData.errorCode.includes("invalid-otp")) {
                 this.setState({ otpErr: { status: true, value: "Incorrect OTP. Please enter again or resend OTP" } })
                 this.setState({ isSigningUp: false })
+                // ga("send", {
+                //   hitType: "event",
+                //   eventCategory: "",
+                //   eventAction: "",
+                //   eventLabel: "sign_up_failure"
+                // })
+                if (window.gtag) {
+                  gtag("event", "sign_up_failure", {
+                    "event_label": "failure"
+                  })
+                }
                 return
               } else if (response.status === 400 && responseData.errorCode === "expired-otp") {
                 this.setState({ otpErr: { status: true, value: responseData.message } })
                 this.setState({ isSigningUp: false })
+                // ga("send", {
+                //   hitType: "event",
+                //   eventCategory: "",
+                //   eventAction: "",
+                //   eventLabel: "sign_up_failure"
+                // })
+                if (window.gtag) {
+                  gtag("event", "sign_up_failure", {
+                    "event_label": "failure"
+                  })
+                }
                 return
               }
-              //localStorage.setItem("showAgegate", false)
+
+              // ga("send", {
+              //   hitType: "event",
+              //   eventCategory: "",
+              //   eventAction: "",
+              //   eventLabel: "sign_up_success"
+              // })
+              if (window.gtag) {
+                gtag("event", "sign_up_success", {
+                  "event_label": "success"
+                })
+              }
               createSession(responseData)
               location.href = (location.pathname)
               unMountModal()
@@ -269,7 +310,17 @@ export default function SignUp(data) {
           })
           .catch((err) => {
             this.setState({ errorInSignUp: true, isSigningUp: false })
-            //this.setState({})
+            // ga("send", {
+            //   hitType: "event",
+            //   eventCategory: "",
+            //   eventAction: "",
+            //   eventLabel: "sign_up_failure"
+            // })
+            if (window.gtag) {
+              gtag("event", "sign_up_failure", {
+                "event_label": "failure"
+              })
+            }
             mountModal(NotifyError({}))
           })
       }
@@ -294,7 +345,7 @@ export default function SignUp(data) {
       fetch(`${Api.blogicUrl}/consumer/auth/otp-login`, fetchOptions)
         .then((response) => {
           if (response.status === 401) {
-            this.setState({ otpSent: true, disableField: true, setTimer: true})
+            this.setState({ otpSent: true, disableField: true, setTimer: true })
             this.countdown()
             // if(dataObj.resend) {
             //   this.setState({resentOtp: true})
@@ -328,7 +379,7 @@ export default function SignUp(data) {
     handleTextChange(e) {
       const errName = `${e.target.name}Err`
       this.setState({
-        [e.target.name]: (e.target.value).trim(),
+        [e.target.name]: (e.target.value),
         //[errName]: validateTextField(this.inputNameMap[e.target.name], e.target.value),
       })
     }
@@ -353,8 +404,8 @@ export default function SignUp(data) {
         nameErr, otpErr,
         errorInSignUp,
         dobErr,
-        pinErr,
-        confirmPinErr,
+        // pinErr,
+        // confirmPinErr,
         gender,
         isSigningUp,
         isGettingOtp,
@@ -371,15 +422,15 @@ export default function SignUp(data) {
             <ModalBox>
               <div id="SignUp">
                 <h2 className="header os s2">
-                  Sign up with HipBar
+                  Sign Up with HipBar
                 </h2>
                 <div className="page-body">
                   <div className="form-group">
                     <label className="os s7">Phone Number</label>
                     <div style={{ display: 'flex' }}>
-                      <div className={`country-code ${mobileNoErr.status ? 'error' : ''}`}>
+                      <span className={`country-code ${mobileNoErr.status ? 'error' : ''}`}>
                         +91
-                      </div>
+                      </span>
                       <div style={{ width: 'calc(100% - 40px' }}>
                         {/* <input
                           type="text"
@@ -397,7 +448,7 @@ export default function SignUp(data) {
                         /> */}
 
                         <InputMask
-                          onChange={this.handleTextChange} 
+                          onChange={this.handleTextChange}
                           name="mobileNo"
                           mask="9999999999"
                           disabled={this.state.disableField}
@@ -480,7 +531,7 @@ export default function SignUp(data) {
                           //disabled={this.state.disableField && this.state.otpSent} 
                           autoComplete="off"
                           onChange={(e) => this.handleTextChange(e)}
-                          //style={{ paddingLeft: '35px' }}
+                        //style={{ paddingLeft: '35px' }}
                         />
                       </div>
                     </div>
@@ -494,26 +545,26 @@ export default function SignUp(data) {
                     <div className="form-group">
                       <label>Gender</label>
                       <div className="row">
-                        <div 
-                          disabled={this.state.disableField && this.state.otpSent} 
-                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}} 
-                          onClick={() => this.handleGenderChange("male")} 
+                        <div
+                          disabled={this.state.disableField && this.state.otpSent}
+                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
+                          onClick={() => this.handleGenderChange("male")}
                           className={`column os s8 ${gender === "male" ? 'active' : 'inactive'}`}
                         >
                           Male
                         </div>
-                        <div 
-                          disabled={this.state.disableField && this.state.otpSent} 
+                        <div
+                          disabled={this.state.disableField && this.state.otpSent}
                           style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
-                          onClick={() => this.handleGenderChange("female")} 
+                          onClick={() => this.handleGenderChange("female")}
                           className={`column os s8 ${gender === "female" ? 'active' : ''}`}
                         >
                           Female
                         </div>
-                        <div 
-                          disabled={this.state.disableField && this.state.otpSent} 
+                        <div
+                          disabled={this.state.disableField && this.state.otpSent}
                           style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
-                          onClick={() => this.handleGenderChange("unspecified")} 
+                          onClick={() => this.handleGenderChange("unspecified")}
                           className={`column os s8 ${gender === "unspecified" ? 'active' : ''}`}
                         >
                           Unspecified
@@ -521,28 +572,12 @@ export default function SignUp(data) {
                       </div>
                     </div>
                   }
-                  {
-                    //!otpSent &&
+                  {/* {
                     <div className="form-group">
                       <label>Account PIN</label>
                       <div>
-                        {/* <input
-                          type="password"
-                          name="pin"
-                          maxLength={4}
-                          placeholder="Set your account pin"
-                          //value={this.state.pin}
-                          className={`${pinErr.status ? 'error' : ''}`}
-                          autoComplete="off"
-                          disabled={this.state.disableField && this.state.otpSent}
-                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
-                          //onChange={(e) => this.handleTextChange(e)}
-                          onKeyDown={(e) => {this.handleNumberChange(e)}}
-                          onKeyUp={(e) => {this.handleNumberChange(e)}}
-                        /> */}
-
                         <InputMask
-                          onChange={this.handleTextChange} 
+                          onChange={this.handleTextChange}
                           name="pin"
                           disabled={this.state.disableField && this.state.otpSent}
                           style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
@@ -557,32 +592,14 @@ export default function SignUp(data) {
                     </div>
                   }
                   {
-                    //!otpSent &&
-                    <div className="note os s9">Set account pin for secure transactions on the HipBar mobile app</div>
+                    <p className="note os s9">Set account pin for secure transactions on the HipBar mobile app</p>
                   }
                   {
-                    //!otpSent &&
                     <div className="form-group">
                       <label>Confirm Account PIN</label>
                       <div>
-                        {/* <input
-                          type="password"
-                          name="confirmPin"
-                          disabled={this.state.disableField && this.state.otpSent}
-                          style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
-                          maxLength={4}
-                          placeholder="Re enter your account pin"
-                          //value={this.state.confirmPin}
-                          className={`${confirmPinErr.status ? 'error' : ''}`}
-                          autoComplete="off"
-                          //onChange={(e) => this.handleTextChange(e)}
-                          onKeyDown={(e) => {this.handleNumberChange(e)}}
-                          onKeyUp={(e) => {this.handleNumberChange(e)}}
-                        //style={{paddingLeft: '30px'}}
-                        /> */}
-
                         <InputMask
-                          onChange={this.handleTextChange} 
+                          onChange={this.handleTextChange}
                           name="confirmPin"
                           disabled={this.state.disableField && this.state.otpSent}
                           style={this.state.disableField && this.state.otpSent ? cursorStyle : {}}
@@ -595,11 +612,11 @@ export default function SignUp(data) {
                         />
                       </div>
                     </div>
-                  }
-                  {
+                  } */}
+                  {/* {
                     confirmPinErr.status &&
                     <p className="error-message os s9">{confirmPinErr.value}</p>
-                  }
+                  } */}
                   {
                     otpSent &&
                     <div className="form-group">
@@ -620,7 +637,7 @@ export default function SignUp(data) {
                         /> */}
 
                         <InputMask
-                          onChange={this.handleTextChange} 
+                          onChange={this.handleTextChange}
                           name="otp"
                           mask="999999"
                           placeholder="Enter the OTP"
@@ -631,7 +648,7 @@ export default function SignUp(data) {
                         />
                         <div className={`resend os s10 ${setTimer ? 'disabled' : ''}`} onClick={this.resendOtp}>RESEND OTP</div>
                         {
-                          this.state.setTimer && 
+                          this.state.setTimer &&
                           <div className="note os s9" id="timer"></div>
                         }
                       </div>
@@ -648,23 +665,23 @@ export default function SignUp(data) {
                       ? <React.Fragment>
                         <div className="button-section">
                           <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                          <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
-                        </div> 
+                          <Button size="small" style={{ marginLeft: "15px" }} icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
+                        </div>
                         <div className="button-section mobile">
                           <Button size="small" icon="rightArrowWhite" disabled={isGettingOtp} primary onClick={this.handleClick}>Get otp</Button>
                           <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                        </div> 
+                        </div>
                       </React.Fragment>
                       : <React.Fragment>
                         <div className="button-section">
                           <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                          <Button size="small" style={{ marginLeft: "15px" }}  icon="rightArrowWhite" disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
-                        </div> 
+                          <Button size="small" style={{ marginLeft: "15px" }} icon="rightArrowWhite" disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
+                        </div>
                         <div className="button-section mobile">
                           <Button size="small" icon="rightArrowWhite" disabled={isSigningUp} primary onClick={this.login}>Sign up</Button>
                           <Button size="small" secondary onClick={unMountModal}>Cancel</Button>
-                        </div> 
-                       
+                        </div>
+
                       </React.Fragment>
                   }
                 </div>

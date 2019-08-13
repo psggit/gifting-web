@@ -1,149 +1,70 @@
-// // body font size
-// $browser-context: 16;
+@import "./animation.scss";
+@import "./fonts.scss";
+@import "./layout.scss";
 
-// // unitless function to convert px to em
-// @function em($pixels, $context: $browser-context) {
-//   @if (unitless($pixels)) {
-//     $pixels: $pixels * 1px;
-//   }
-//   @if (unitless($context)) {
-//     $context: $context * 1px;
-//   }
-//   @return $pixels / $context * 1rem;
+body {
+  background-color: #111;
+  // position: relative;
+  // height: 100%;
+}
+
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 87px;
+  width: 100%;
+  @include themify($themes) {
+    background: themed("paper-color");
+    box-shadow: 0 1px 1px 0 themed("container-color");
+  }
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+}
+
+#footer-wrapper {
+  width: 100%;
+  @include themify($themes) {
+    background: themed("paper-color");
+  }
+  // position: absolute;
+  // bottom: 0;
+  // left: 0;
+  display: flex;
+  justify-content: center;
+}
+
+// *::-webkit-scrollbar {
+//   width: 8px;
 // }
 
-@function px($size) {
-  @return $size/1.4 * 1px;
-}
+// *::-webkit-scrollbar-track {
+//   box-shadow: inset 0 0 6px #111;
+// }
 
-/* Layout */
-.container {
-  padding: 5.6%;
-}
+// *::-webkit-scrollbar-thumb {
+//   background-color: #222;
+//   outline: 1px solid slategrey;
+// }
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   -webkit-font-smoothing: antialiased;
+ }
 
-// @media only screen and (max-width: 33)
+ a {
+   text-decoration: none;
+ }
 
-/* Font families */
+ input:focus {
+   outline: 0;
+ }
 
-$font-OpenSans: "Open Sans", sans-serif;
-$font-Montserrat: "Montserrat", sans-serif;
-$font-Cormorant: "Cormorant Garamond", serif;
-
-
-/* Texts  */
-/* cm - Cormorant Garamond */
-/* os - Open Sans */
-
-.cm {
-  font-family: $font-Cormorant;
-}
-
-.os {
-  font-family: $font-OpenSans;
-}
-
-.cm {
-  &.s1 {
-    font-size: px(52);
-  }
-  &.s2 {
-    font-size: px(40);
-  }
-  &.s3 {
-    font-size: px(38);
-  }
-  &.s4 {
-    font-size: px(36);
-  }
-  &.s5 {
-    font-size: px(32);
-  }
-  &.s6 {
-    font-size: px(28);
-  }
-}
-
-.os {
-  &.s1 {
-    font-size: px(32);
-  }
-  &.s2 {
-    font-size: px(30);
-  }
-  &.s3 {
-    font-size: px(28);
-  }
-  &.s4 {
-    font-size: px(26);
-  }
-  &.s5 {
-    font-size: px(24);
-  }
-  &.s6 {
-    font-size: px(22);
-  }
-  &.s7 {
-    font-size: px(20);
-  }
-  &.s8 {
-    font-size: px(18);
-  }
-  &.s9 {
-    font-size: px(16);
-  }
-  &.s10 {
-    font-size: px(14);
-  }
-}
-
-@media only screen and (max-width: 640px) {
-  
-}
-
-
-@media only screen and (max-width: 970px) {
-  .cm {
-    &.s1 {
-      font-size: 28px;
-    }
-
-    &.s2 {
-      font-size: 22px;
-    }
-  }
-}
-
-@media only screen and (max-width: 930px) {
-  .cm {
-    &.s1 {
-      font-size: 26px;
-    }
-
-    &.s2 {
-      font-size: 20px;
-    }
-  }
-}
-
-@media only screen and (max-width: 640px) {
-  .cm {
-    &.s1 {
-      font-size: 24px;
-    }
-  }
-
-  .os {
-    &.s3 {
-      font-size: 14px;
-    }
-    &.s2 {
-      font-size: 16px;
-    }
-    &.s0 {
-      font-size: 20px;
-    }
-    &.s1 {
-      font-size: 14px;
-    }
-  }
-}
+h1, h3, h2, label, p, a, span {
+   @include themify($themes) {
+     color: themed("text-color")
+   }
+ }

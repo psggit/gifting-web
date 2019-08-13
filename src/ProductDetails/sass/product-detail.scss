@@ -1,0 +1,248 @@
+@import "./../../sass/base.scss";
+
+#product--details {
+  width: 100%;
+
+  .cashback--title {
+    @include themify($themes) {
+      color: themed("button-primary-color")
+    }
+  }
+
+  .about-hipbar {
+    border-bottom: 0;
+    border-top: 0;
+    padding: 40px 0px;
+    
+    p {
+      font-size: 12px;
+    }
+    .heading {
+      font-weight: 600;
+      // padding-bottom: 10px;
+      // @include themify($themes) {
+      //   border-bottom: 1px solid themed("border-bottom-color");
+      // }
+    }
+    .about--hipbar__content {
+      font-family: $font-OpenSans;
+
+      div:first-child {
+        margin-top: 8px;
+      }
+      div {
+        b {
+          font-weight: 600;
+        }
+        margin-top: 20px;
+      }
+    }
+  }
+  
+  .paper {
+    &.price {
+      padding: 40px 60px;
+      border-bottom: 0;
+      .header {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 12px;
+        @include themify($themes) {
+          border-bottom: 1px solid themed("border-bottom-color");
+        }
+        svg g g {
+          @include themify($themes) {
+            fill: themed("text-color")
+          } 
+        }
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .sku--container {
+      padding-top: 40px;
+    }
+
+    &.about-drink {
+      border-bottom: 0;
+      border-top: 0;
+      padding: 40px 60px;
+      p:first-child {
+        font-weight: 600;
+        padding-bottom: 10px;
+        @include themify($themes) {
+          border-bottom: 1px solid themed("border-bottom-color");
+        }
+      }
+      p:last-child {
+        line-height: 1.57;
+        margin-top: 8px;
+      }
+    }
+
+    &.gs1-code {
+      border-top: 0;
+      padding: 40px 60px;
+      p {
+        font-weight: 600;
+        padding-bottom: 10px;
+        @include themify($themes) {
+          border-bottom: 1px solid themed("border-bottom-color");
+        }
+      }
+      .gs1-img {
+        margin-top: 16px;
+        width: 140px;
+        height: 80px;
+        position: relative;
+        .placeholder {
+          width: 100%;
+          height: 100%;
+          @include themify($themes) {
+            background-color: themed("image-placeholder-color");
+          }
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0;
+          &.loaded {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &.add-to-basket {
+      display: none;
+      padding: 40px 60px;
+      text-align: center;
+      p {
+        font-size: 12px;
+      }
+      div > div svg {
+        width: 42px;
+        height: 32px;
+        g {
+          opacity: 1;
+          g {
+            fill: #555;
+          }
+        }
+      }
+    }
+  }
+
+  .gift-more-drinks-paper {
+    display: none;
+  }
+
+  .brand--item {
+    padding: 16px 20px;
+    padding-top: 0;
+    border: 0;
+    svg {
+      display: none;
+    }
+  }
+}
+
+// .total--price {
+//   padding: 16px 20px;
+//   padding-top: 0;
+//   p {
+//     color: #777;
+//     span {
+//       font-weight: 600;
+//     }
+//   }
+// }
+
+
+@media only screen and (max-width: $md) {
+  #product--details {
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: $sm) {
+  #product--details {
+    .paper {
+      &.price {
+        padding: 16px 20px;
+      }
+
+      &.about-drink {
+        padding: 16px 20px;
+      }
+
+      &.about-hipbar {
+        padding: 16px 20px;
+        margin-bottom: 84px;
+      }
+
+      &.gs1-code {
+        padding: 16px 20px;
+      }
+      &.add-to-basket {
+        padding: 16px 20px;
+        .btn {
+          width: 100%;
+        }
+      }
+    }
+
+    .gift-more-drinks-paper {
+      display: block;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+      margin-bottom: 0;
+      @include themify($themes) {
+        box-shadow: 0 0 2px 0 themed("container-color");
+        background: themed("add-to-basket-bg-color");
+      }
+      .gift--more-drinks {
+        a:first-child {
+          margin-right: 10px;
+        }
+      }
+    }
+    
+    .paper .sku--container {
+      .add-to-basket {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        @include themify($themes) {
+          box-shadow: 0 0 2px 0 themed("container-color");
+          background: themed("add-to-basket-bg-color");
+        }
+        padding: 20px;
+        z-index: 1;
+        left: 0;
+      }
+    }
+    .paper.add-to-basket {
+      display: block;
+    }
+
+    .paper .sku--container {
+      padding-top: 16px;
+    }
+
+    .about-hipbar {
+      padding: 20px;
+    }
+  }
+}

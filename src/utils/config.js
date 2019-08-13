@@ -8,7 +8,9 @@ function getAPIObj() {
     blogicUrl: "https://api1." + baseHost,
     orderman: "https://orderman." + baseHost,
     catman: "https://catman." + baseHost,
-    loki: "https://loki." + baseHost
+    loki: "https://loki." + baseHost,
+    promoman: "https://promoman." + baseHost,
+    stockandprice: "https://retailer." + baseHost + "/Api/stockandprice"
   }
 }
 

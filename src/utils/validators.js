@@ -41,12 +41,19 @@ export function validateNumberField(fieldName, fieldValue) {
       status: true,
       value: `${fieldName} is required`
     }
-  } else if ((fieldValue.length !== 10 || ["1", "2", "3", "4", "5"].indexOf(fieldValue[0]) > -1)) {
+  }
+  else if ((fieldValue.length !== 10)) {
     return {
       status: true,
       value: `${fieldName} is invalid`
     }
-  }   
+  }
+  // else if ((fieldValue.length !== 10 || ["1", "2", "3", "4", "5"].indexOf(fieldValue[0]) > -1)) {
+  //   return {
+  //     status: true,
+  //     value: `${fieldName} is invalid`
+  //   }
+  // }   
   return {
     status: false,
     value: ''

@@ -1,14 +1,10 @@
 import React from 'react'
-import Header from 'Components/header'
 import Footer from "Components/footer"
 import './retailOutlet.scss'
 import Icon from "Components/icon"
-import FirstGiftCard from "Components/first-gift-card"
+import FirstGiftCard from "Components/gift-card-ad"
 import * as Api from './../api'
-import {retailerData} from './../TransactionHistory/mockdata'
-import AgeGate from './../AgeGate'
-import {readCookie} from "Utils/session-utils"
-import { mountModal } from 'Components/modal-box/utils'
+import Button from "Components/button"
 
 class RetailOutlet extends React.Component {
   constructor(props) {
@@ -18,7 +14,7 @@ class RetailOutlet extends React.Component {
       retailerOutletData: [],
       loading: false,
       isSelectedCity: false,
-      selectedCity: "",
+      selectedCity: null,
       deliveryMap: {},
       selectedCityId: "",
       // username: props.username ? props.username : "",
@@ -33,36 +29,19 @@ class RetailOutlet extends React.Component {
   }
 
   componentDidMount() {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    })
     this.fetchAvailableHipbarDelivery()
-    if(!readCookie("isAgeGateAgreed")) {
-      mountModal(AgeGate({}))
-    }
   }
-
-  // componentWillReceiveProps(newProps) {
-  //   //console.log("helo", newProps)
-  //   if(this.props.username !== newProps.username || this.props.isLoggedIn !== newProps.isLoggedIn) {
-  //     this.setState({username: newProps.username, isLoggedIn: newProps.isLoggedIn})
-  //   }
-  // }
 
   fetchAvailableHipbarDelivery() {
     Api.fetchAvailableHipbarDelivery(this.successCallback)
   }
 
   successCallback(response) {
-    //console.log("retailer data", response)
     const deliveryMap = {}
-    response.data.map((item) => {
+    response.map((item) => {
       deliveryMap[item.id] = item
     })
-    //console.log("delivery map", deliveryMap)
-    this.setState({availableDeliveryList: response.data, deliveryMap})
+    this.setState({availableDeliveryList: response, deliveryMap})
   }
 
   findRetailer(cityId) {
@@ -85,8 +64,7 @@ class RetailOutlet extends React.Component {
   }
 
   renderItem(item) {
-    //console.log("id", item.id)
-    return <option value={item.id}>{item.name}</option>
+    return <option key={item.id} value={item.id}>{item.name}</option>
   }
 
   handleChange(e) {
@@ -103,9 +81,27 @@ class RetailOutlet extends React.Component {
     const {selectedCityId} = this.state
     if(selectedCityId && selectedCityId !== "select city") {
       this.findRetailer(selectedCityId)
+      // this.props.history.push(`/retail-outlet/${this.state.selectedCity}`)
       return
-    } 
+    }
+    if(window.gtag) {
+      gtag("event", "city_wise_retailer_search_count", {
+        "event_label": selectedCity,
+      })
+    }
     this.setState({retailerOutletData: []})
+  }
+
+  triggerEvent(item) {
+    if(window.gtag) {
+      gtag("event", "view_retailer_directions", {
+        "event_label": JSON.stringify({
+          retailerId: item.retailer_id,
+          retailerName: item.retailer_name,
+          user_city: JSON.parse(localStorage.getItem("receiver_info")).cityName
+        })
+      })
+    }
   }
 
   renderOutlet(item) {
@@ -117,9 +113,9 @@ class RetailOutlet extends React.Component {
           <p className="os s7">{item.retailer_address}</p>
         </div>
         {/* <p className="direction os s8" onClick={() => this.loadMap(item.retailer_gps)}>DIRECTIONS</p> */}
-        <a className="direction os s8" href={` https://www.google.com/maps/search/?api=1&query=${gpsCoordinates[0]},${gpsCoordinates[1]}`} target="_blank">
-          <span style={{marginRight: '13px'}}>DIRECTIONS</span>
-          <span style={{position: 'relative', top: '3px'}}><Icon name="rightArrowBlack" /></span>
+        <a className="direction os s8" onClick={() => this.triggerEvent(item)} href={` https://www.google.com/maps/search/?api=1&query=${gpsCoordinates[0]},${gpsCoordinates[1]}`} target="_blank">
+          <span className="os s6" style={{marginRight: '13px'}}>DIRECTIONS</span>
+          <span style={{position: 'relative', top: '3px'}}><Icon name="rightArrowWhite" /></span>
         </a>
       </div>
     )
@@ -135,17 +131,21 @@ class RetailOutlet extends React.Component {
             <h2 className="cm s1">Find a HipBar powered retailer near you</h2>
             <div className="retailer-list-container">
               <div className="options">
-                <span class="custom-dropdown">
-                  <select class="custom-dropdown-select" onChange={(e) => this.handleChange(e)} selected={this.state.selectedCity}>
-                    <option className="os s8" value="select city">-- Select a city --</option>
+                <div className="city--select">
+                  <select onChange={(e) => this.handleChange(e)} selected={this.state.selectedCity}>
+                    {
+                      !this.state.selectedCity &&
+                      <option className="os s8" value="select city">-- Select a city --</option>
+                    }
                     {
                       availableDeliveryList.map((item) => (
                         this.renderItem(item)
                       ))
                     }
                   </select>
-                </span>
-                <button className={`btn btn-primary ${selectedCity.length === 0 ? 'disabled' : ''} `} size="small" onClick={() => this.handleClick()}>FIND</button>
+                  <Icon name="caret" />
+                </div>
+                <Button primary onClick={() => this.handleClick()}>FIND RETAILERS</Button>
               </div>
               <div className="retailer-list">
                 {
@@ -171,7 +171,8 @@ class RetailOutlet extends React.Component {
           
             </div>
           </div>
-          <FirstGiftCard />
+          <FirstGiftCard pageTitle="retailOutlet" />
+          {/* <Footer /> */}
         </div>
       </div>
     )

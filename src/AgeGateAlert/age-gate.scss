@@ -1,0 +1,61 @@
+@import "./../sass/base.scss";
+
+.agegate-container {
+  width: 80%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .header {
+    color: #ff9300;
+    text-transform: uppercase;
+    line-height: 1.5;
+    
+    font-weight: 600;
+  }
+
+  .sub-header {
+    //font-size: 35px;
+    font-weight: 500;
+    color: #f1f2f2;
+    padding-bottom: 2px;
+    border-bottom: 2px solid #fff;
+  }
+
+  .note {
+    margin-top: 20px;
+    color: #ff3b34;
+  }
+
+  .button-group .btn:first-child {
+    margin-right: 20px;
+  }
+
+  .button-group .btn {
+    width: 120px;
+    // &:first-child {
+    //   border: 2px solid #ff9300;
+    //   color: #ff9300;
+    //   background: #333;
+    // }
+
+    // &:last-child {
+    //   border: 2px solid #ff9300;
+    //   background: #ff9300;
+    //   color: #fff;
+    // }
+  }
+}
+
+@media only screen and (max-width: $sm) {
+  .agegate-container {
+    width: 100%;
+    .header {
+      font-size: 24px !important;
+      padding: 20px;
+    }
+  }
+}
+

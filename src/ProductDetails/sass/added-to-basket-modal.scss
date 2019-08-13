@@ -1,0 +1,61 @@
+@import "./../../sass/base.scss";
+
+#added-to-basket--modal {
+  .modal-header {
+    text-align: right;
+    padding: 0px;
+    padding-bottom: 0;
+    height: 0;
+    span {
+      cursor: pointer;
+    }
+    @include themify($themes) {
+      svg {
+        position: relative;
+        right: -50px;
+        top: 3px;
+      }
+      svg g g {
+        stroke: themed("text-color");
+      }
+    }
+  }
+  .modal-body {
+    height: auto !important;
+    text-align: center;
+    padding: 60px;
+    @include themify($themes) {
+      svg {
+        width: 52px;
+        height: 52px;
+        margin-bottom: 10px;
+      }
+      svg g g {
+        fill: themed("text-color");
+      }
+    }
+  }
+  .modal-footer .gift--more-drinks{
+    padding: 16px 20px;
+    @include themify($themes) {
+      border-top: 0.5px solid themed("border-bottom-color");
+      svg g g {
+        fill: themed("text-color");
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $sm) {
+  #added-to-basket--modal {
+    .modal-container {
+      width: 90%;
+    }
+
+    .modal-footer {
+      a:first-child {
+        // display: none;
+      }
+    }
+  }
+}

@@ -1,211 +1,221 @@
 @import "./../sass/base.scss";
 
-.transaction-status {
-  width: 100%;
-  font-family: $font-OpenSans;
-  //height: 100vh;
-  h4, h2 {
-    font-family: $font-Cormorant;
-    text-align: center;
+#TransactionStatus {
+  margin-bottom: 40px;
+  .container {
+    min-height: calc(100vh - 87px);
   }
 
-  &.fail {
-    .content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  .tick svg {
+    width: 64px;
+    height: 64px;
+    @include themify($themes) {
+      g g {
+        fill: themed("text-color");
+      }
     }
   }
-  .content {
-    // padding: 0 20.5%;
-    position: relative;
-    // margin-top: calc(134px + 80px);
-    // margin-bottom: 140px;
+
+
+  .app-store-btn {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    // justify-content: center;
+    margin-top: 30px;
+    margin-left: 68px;
+    a {
+      &:first-child {
+        margin-right: 15px;
+      }
+      &:last-child {
+        margin-left: 15px;
+      }
+    }
+    svg {
+      max-width: 100%;
+    }
+  }
+
+  .row {
+    display: flex;
+    justify-content: center;
     align-items: flex-start;
-    justify-content: space-between;
-    //align-items: center;
-    z-index: 1;
-    padding: 12% 5% 5% 5%;
-    background: #f1f1f1;
+    .col:first-child {
+      margin-right: 70px;
+    }
+  }
+
+  .col:last-child {
+    position: sticky;
+    top: calc(87px + 30px);
+  }
+
+  .what-next {
+    max-width: 560px;
     width: 100%;
-      .successful {
-        width: 48%;
-        border-radius: 4px;
-        background: #fff;
-        padding: 36px 60px;
+    h2 {
+      margin-bottom: 40px;
+    }
 
-        .section {
-          padding-bottom: 20px;
-          .subheader {
-            font-weight: bold;
-          }
-        }
-
-        .section-content {
-          margin-top: 20px;
-        }
-
-        .header {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          //justify-content: center;
-          text-align: center;
-          border-bottom: 1px solid #cfcfcf;
-
-          svg {
-            width: 80px;
-            height: 88px;
-          }
-
-          .title {
-            margin-top: 18px;
-          }
-          .info {
-            margin-top: 8px;
-          }
-        }
-
-        .body {
-          display: flex;
-          flex-direction: column;
-          padding-top: 20px;
-          border-bottom: 1px solid #cfcfcf;
-        }
-
-        .footnote {
-          padding-top: 20px;
-          display: flex;
-          flex-direction: column;
-        }
+    .note {
+      display: flex;
+      div:last-child {
+        margin-left: 20px;
       }
-
-      .note {
-        width: 48%;
-        //border: 1px solid red;
-        text-align: left;
-        position: sticky;
-        //top: 134px;
-        .steps {
-          svg {
-            width: 30px;
-            height: 38px;
-            margin-right: 20px;
+      .os.s3 {
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      svg {
+        width: 50px;
+        height: 50px;
+        @include themify($themes) {
+          circle {
+            stroke: themed("text-color")
           }
-        }
-        h2 {
-          text-align: left;
-        }
-        .info {
-          margin-top: 20px;
-          display: flex;
-          align-items: center;
-
-          &.icon {
-            margin-left: 50px;
-          }
-
-          a {
-            margin-right: 20px;
-          }
-
-          .detail {
-            display: flex;
-            //align-items: center;
-            flex-direction: column;
-            justify-content: center;
-            p {
-              font-weight: bold;
-            }
+          path {
+            fill: themed("text-color")
           }
         }
       }
-      
+    }
+
+    .note:nth-child(3) {
+      margin-top: 40px;
+    }
+  }
+
+  .paper {
+    border-radius: 4px;
+    .header {
+      @include themify($themes) {
+        border-bottom: 1px solid themed("border-bottom-color")
+      }
+    }
+
+    &.gift--basket {
+      padding: 20px;
+      width: 360px;
+      @include themify($themes) {
+        > p {
+          border-bottom: 1px solid themed("border-bottom-color")
+        }
+      }
+      .col {
+        margin-right: 0;
+      }
+      .gift--basket__item {
+        margin-right: 0;
+        max-width: 100%;
+      }
+    }
+
+    &.transaction--detail {
+      margin-top: 20px;
+      width: 360px;
+      padding: 20px;
+
+      div {
+        margin-top: 20px;
+      }
+    }
+
+    &.transaction--detail-fail {
+      width: 360px;
+      padding: 20px;
+      margin: 40px auto;
+
+      div {
+        margin-top: 10px;
+      }
+    }
+
+
+    &.sent--to {
+      margin-top: 20px;
+      width: 360px;
+      padding: 20px;
+
+      div {
+        margin-top: 10px;
+      }
+    }
   }
 }
 
-@media only screen and (max-width: 980px) {
-  .content {
-    padding: 12% 5% 5% 5%;
-    display: flex;
-    flex-direction: column !important;
-  }
-
-  .section {
-    border-bottom: 0px !important;
-  }
-
-  &.fail {
-    // .section {
-    //   border-bottom: 1px solid #cfcfcf !important;
-    // }
-
-    .body {
-      display: flex !important;
-      flex-direction: column !important;
-      padding-top: 20px !important;
-      border-bottom: 1px solid #cfcfcf !important;
+@media only screen and (max-width: $sm) {
+  #TransactionStatus {
+    .container {
+      padding-left: 0;
+      padding-right: 0;
     }
 
-    .footnote {
-      margin-top: 0px !important;
-    }
-  }
-
-  .successful {
-    width: 100% !important;
-    background: none !important;
-    padding: 24px !important;
-
-    // .header {
-    //   background: #cfcfcf;
-    // }
-
-    .body {
-      background: #fff;
-      padding: 24px;
-      margin-top: 24px;
-    } 
-
-    .footnote {
-      margin-top: 24px;
-      background: #fff;
-      padding: 24px;
-    }
-  }
-
-  .note {
-    position: relative !important;
-    padding: 24px;
-    width: 100% !important;
-
-    h2 {
-      text-align: center !important;
-    }
-    
-    .info {
-      display: flex;
-      text-align: center;
+    .row {
       flex-direction: column;
-
-      &.icon {
-        margin-left: 0px !important;
-        display: flex;
-        flex-direction: row !important;
-        justify-content: center;
+      align-items: inherit;
+      .col:first-child {
+        margin-right: 0;
       }
+      .col:last-child {
+        position: relative;
+        top: auto;
+      }
+    }
 
-      a {
-        margin-right: 10px;
+    .what-next {
+      padding: 20px;
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    }
+
+    .app-store-btn {
+      justify-content: center;
+      margin-left: 0;
+      margin-top: 20px;
+      svg {
+        width: 140px;
+      }
+    }
+
+    .what-next {
+      .note {
         svg {
-          width: 108px;
-          height: 30px;
+          width: 42px;
+          height: 42px;
         }
       }
     }
+
+    .paper {
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+    }
+
+    .paper.gift--basket {
+      padding: 20px;
+      margin-right: 0;
+      width: 100%;
+
+      // .basket-body {
+      //   margin-top: 16px;
+      // }
+    }
+
+    .paper.transaction--detail{
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .paper.transaction--detail-fail{
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .paper.sent--to {
+      width: 100%;
+    }
   }
-} 
-
-
+}

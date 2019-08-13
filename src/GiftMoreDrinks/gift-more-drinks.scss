@@ -1,0 +1,36 @@
+@import "./../sass/base.scss";
+
+.gift--more-drinks {
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  
+  a {
+    text-decoration: none
+  }
+  a:first-child {
+    text-align: center;
+    text-transform: uppercase;
+    p {
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+  }
+
+  a:first-child svg {
+    width: 26px;
+    height: 26px;
+    @include themify($themes) {
+      g g {
+        fill: themed("text-color")
+      }
+    }
+  }
+
+  // a:last-child {
+  //   wid
+  // }
+  
+}

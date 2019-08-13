@@ -1,37 +1,28 @@
 @import "./../sass/base.scss";
 
 #SignIn {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   padding: 8.5% 49px;
-  // border-radius: 5px;
-  box-shadow: 0 2px 28px -5px rgba(0, 0, 0, 0.5);
-  background-color: #f1f1f1;
   font-family: $font-OpenSans;
+  @include themify($themes) {
+    background: themed("paper-color");
+  }
   .page-body {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
     margin: 30px 0px;
 
     .country-code {
-      border: 1px solid #cccccc;
+      @include themify($themes) {
+        border: 1px solid themed("input-border-color")
+      }
       // border-right: 0;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
       border-top-right-radius: 0px;
       border-bottom-right-radius: 0px;
-      display: -webkit-box;
-      display: -ms-flexbox;
       display: flex;
       padding: 0 10px;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
+      align-items: center;
       font-size: 14px;
     }
 
@@ -85,20 +76,20 @@
       padding: 10px 0;
     }
     .input-otp-container {
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
       position: relative;
       .resend {
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
         position: absolute;
         top: 11px;
         right: 10px;
         font-weight: 600;
         letter-spacing: 0.6px;
         cursor: pointer;
+        span {
+          font-size: 10px;
+        }
 
         &.disabled {
           opacity: 0.5;
-          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
           cursor: not-allowed;
           pointer-events: none;
         }
@@ -106,32 +97,36 @@
     }
 
     .note {
-      color: #232a2e;
+      // color: #232a2e;
       letter-spacing: 0;
       margin: 10px 0;
       font-weight: 600;
     }
 
     .alert-box {
-      display: -webkit-box;
-      display: -ms-flexbox;
       display: flex;
       align-items: center;
       padding: 10px 10px;
       margin: 10px 0;
-      border: 1px solid #000;
+      @include themify($themes) {
+        border: 1px solid themed("input-border-color");
+        background: themed("input-bg-color"); 
+        svg g g {
+          fill: themed("text-color")
+        }
+      }
       border-radius: 4px;
-      background: #fff;
     }
   }
 
   .page-footer {
 
     .button-section {
-      display: -webkit-box;
-      display: -ms-flexbox;
       display: flex;
 
+      .btn:last-child {
+        margin-left: 15px;
+      }
       &.mobile {
         display: none
       }
@@ -196,13 +191,8 @@
       .button-section {
         display: none;
         &.mobile {
-          display: -webkit-box !important;
-          display: -ms-flexbox !important;
           display: flex !important;
-          -webkit-box-orient: vertical !important;
-          -webkit-box-direction: normal !important;
-              -ms-flex-direction: column !important;
-                  flex-direction: column !important;
+          flex-direction: column !important;
         }
       }
 
