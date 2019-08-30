@@ -12,7 +12,7 @@ export function validateTextField(fieldName, fieldValue) {
   if (fieldName.indexOf("Mobile") !== -1 && !mobileRegex.test(fieldValue)) {
     return {
       status: true,
-      value: `Invalid ${fieldName}`
+      value: `Invalid ${fieldName.toLowerCase()}`
     }
   }
   return {
