@@ -2,7 +2,6 @@ import { emailRegex } from 'Utils/regex'
 import { mobileRegex } from 'Utils/regex'
 
 export function validateTextField(fieldName, fieldValue) {
-  console.log("field name", fieldName, "field val", fieldValue, "len")
   if (!fieldValue) {
     return {
       status: true,
