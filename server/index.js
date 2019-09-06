@@ -74,14 +74,14 @@ app.get("/privacy", (req, res) => {
   })
 })
 
-app.get("/privacy/tamil", (req, res) => {
-  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../html/privacy-tamil.html`), (err) => {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
+// app.get("/privacy/tamil", (req, res) => {
+//   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+//   res.sendFile(path.join(__dirname, `./../html/privacy-tamil.html`), (err) => {
+//     if (err) {
+//       res.status(500).send(err)
+//     }
+//   })
+// })
 
 app.get("/privacy/hindi", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
@@ -214,14 +214,14 @@ app.get("/grievance-policy", (req, res) => {
   })
 })
 
-app.get("/grievance-policy/tamil", (req, res) => {
-  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../html/grievance-policy-tamil.html`), (err) => {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
+// app.get("/grievance-policy/tamil", (req, res) => {
+//   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+//   res.sendFile(path.join(__dirname, `./../html/grievance-policy-tamil.html`), (err) => {
+//     if (err) {
+//       res.status(500).send(err)
+//     }
+//   })
+// })
 
 app.get("/grievance-policy/hindi", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
@@ -241,14 +241,14 @@ app.get("/merchants-t-c", (req, res) => {
   })
 })
 
-app.get("/merchants-t-c/tamil", (req, res) => {
-  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../html/merchants-t-c-tamil.html`), (err) => {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
+// app.get("/merchants-t-c/tamil", (req, res) => {
+//   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+//   res.sendFile(path.join(__dirname, `./../html/merchants-t-c-tamil.html`), (err) => {
+//     if (err) {
+//       res.status(500).send(err)
+//     }
+//   })
+// })
 
 app.get("/merchants-t-c/hindi", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
@@ -277,14 +277,14 @@ app.get("/gifting-t-c/hindi", (req, res) => {
   })
 })
 
-app.get("/gifting-t-c/tamil", (req, res) => {
-  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../html/gifting-t-c-tamil.html`), (err) => {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
+// app.get("/gifting-t-c/tamil", (req, res) => {
+//   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+//   res.sendFile(path.join(__dirname, `./../html/gifting-t-c-tamil.html`), (err) => {
+//     if (err) {
+//       res.status(500).send(err)
+//     }
+//   })
+// })
 
 app.get("/user-terms", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
@@ -304,14 +304,14 @@ app.get("/user-terms/hindi", (req, res) => {
   })
 })
 
-app.get("/user-terms/tamil", (req, res) => {
-  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../html/user-terms-tamil.html`), (err) => {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
+// app.get("/user-terms/tamil", (req, res) => {
+//   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+//   res.sendFile(path.join(__dirname, `./../html/user-terms-tamil.html`), (err) => {
+//     if (err) {
+//       res.status(500).send(err)
+//     }
+//   })
+// })
 
 app.get("/hipbar-wallet", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
@@ -322,14 +322,14 @@ app.get("/hipbar-wallet", (req, res) => {
   })
 })
 
-app.get("/hipbar-wallet/tamil", (req, res) => {
-  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../html/hipbar-wallet-tamil.html`), (err) => {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
+// app.get("/hipbar-wallet/tamil", (req, res) => {
+//   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+//   res.sendFile(path.join(__dirname, `./../html/hipbar-wallet-tamil.html`), (err) => {
+//     if (err) {
+//       res.status(500).send(err)
+//     }
+//   })
+// })
 
 app.get("/hipbar-wallet/hindi", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
