@@ -4,7 +4,7 @@
   "description": "Web application for hipbar gifting",
   "main": "server.js",
   "dependencies": {
-    "autoprefixer": "^9.5.1",
+    "autoprefixer": "^9.6.1",
     "form-data": "^2.3.3",
     "helmet": "^3.20.0",
     "intersection-observer": "^0.7.0",
