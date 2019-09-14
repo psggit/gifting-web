@@ -1,0 +1,68 @@
+Arguments: 
+  /home/aparna/.nvm/versions/node/v10.16.0/bin/node /usr/share/yarn/bin/yarn.js install
+
+PATH: 
+  /home/aparna/.linuxbrew/bin:/home/aparna/.nvm/versions/node/v10.16.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/aparna/Go:/home/aparna/Go/bin
+
+Yarn version: 
+  1.16.0
+
+Node version: 
+  10.16.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/aparna/Projects/gifting-web/package.json: Unexpected token } in JSON at position 382
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:304:30)
+      at /usr/share/yarn/lib/cli.js:315:13
+
+npm manifest: 
+  {
+    "name": "gifting-web",
+    "version": "1.0.1",
+    "description": "Web application for hipbar gifting",
+    "main": "server.js",
+    "dependencies": {
+      "form-data": "^2.3.3",
+      "helmet": "^3.20.0",
+      "intersection-observer": "^0.7.0",
+      "mock-browser": "^0.92.14",
+      "moment": "^2.24.0",
+      "preact": "^8.4.2",
+      "preact-compat": "^3.18.4",
+      "prop-types": "^15.7.2",
+    },
+    "devDependencies": {},
+    "browserslist": [
+      "last 2 versions"
+    ],
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node ./server/index.js",
+      "build-client": "BASE_URL=basketball38.hasura-app.io PAYU_BASE=test webpack --config ./webpack-config/client/webpack.prod.js",
+      "build-ssr": "BASE_URL=basketball38.hasura-app.io PAYU_BASE=test webpack --config ./webpack-config/ssr/webpack.ssr.js",
+      "//apply-postcss": "postcss --use autoprefixer -r  ./dist/*.css",
+      "build": "yarn run build-client && yarn run build-ssr",
+      "build-client-p": "BASE_URL=hipbar.com PAYU_BASE=secure webpack --config ./webpack-config/client/webpack.prod.js",
+      "build-ssr-p": "BASE_URL=hipbar.com PAYU_BASE=secure webpack --config ./webpack-config/ssr/webpack.ssr.js",
+      "build-p": "yarn run build-client-p && yarn run build-ssr-p",
+      "start:dev": "webpack-dev-server --config ./webpack-config/client/webpack.dev.js --host 0.0.0.0  --history-api-fallback",
+      "storybook": "start-storybook -p 6006",
+      "build-storybook": "build-storybook"
+    },
+    "repository": "git+ssh://git@bitbucket.org/hipbar-dev/gifting-web.git",
+    "author": "Madhur Garg <madhur@hipbar.com>",
+    "license": "ISC",
+    "homepage": "https://bitbucket.org/hipbar-dev/gifting-web#readme"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
