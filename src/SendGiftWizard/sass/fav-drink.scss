@@ -29,7 +29,7 @@
     justify-content: center;
     margin: 0 auto;
     flex-wrap: wrap;
-    padding: 0 0 20px 0;
+    padding: 0 0 20px;
     margin-top: 20px;
     .col {
       @include genreItemMargin(135, 5);
@@ -72,7 +72,7 @@
 
   .fav-drink{
     > svg {
-      width:50px; 
+      width:50px;
       height:50px;
     }
   }

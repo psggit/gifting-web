@@ -61,7 +61,7 @@
   @include themify($themes) {
     background-color: themed("paper-color")
    }
-  padding: 20px 20px;
+  padding: 20px;
   p {
     pointer-events: none;
     max-width: 90%;

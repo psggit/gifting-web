@@ -19,7 +19,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
-    padding: 15% 12.5% 7% 12.5%;
+    padding: 15% 12.5% 7%;
     @include themify($themes) {
       background: themed("container-color")
     }
@@ -42,7 +42,7 @@
       .transaction-item {
         display: flex;
         flex-direction: column;
-        padding: 12px 0px;
+        padding: 12px 0;
         border-bottom: 1px solid #555555;
         word-wrap: break-word;
 
@@ -78,7 +78,7 @@
 @media only screen and (max-width: 720px) {
 
   .content {
-    padding: 130px 7% 12% 7% !important;
+    padding: 130px 7% 12% !important;
   }
 
   .item-header {

@@ -9,7 +9,7 @@
   .page-body {
     display: flex;
     flex-direction: column;
-    margin: 30px 0px;
+    margin: 30px 0;
 
     .country-code {
       @include themify($themes) {
@@ -18,8 +18,8 @@
       // border-right: 0;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
-      border-top-right-radius: 0px;
-      border-bottom-right-radius: 0px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
       display: flex;
       padding: 0 10px;
       align-items: center;
@@ -49,8 +49,8 @@
     }
 
     input.mobile {
-      border-top-left-radius: 0px;
-      border-bottom-left-radius: 0px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
       //border-left: 0px;
     }
 
@@ -61,7 +61,7 @@
       border-bottom: 1px solid #c23934 !important;
     }
 
-    input[type="text"] { 
+    input[type="text"] {
       outline: none;
     }
 
@@ -106,11 +106,11 @@
     .alert-box {
       display: flex;
       align-items: center;
-      padding: 10px 10px;
+      padding: 10px;
       margin: 10px 0;
       @include themify($themes) {
         border: 1px solid themed("input-border-color");
-        background: themed("input-bg-color"); 
+        background: themed("input-bg-color");
         svg g g {
           fill: themed("text-color")
         }
@@ -168,7 +168,7 @@
 @media only screen and (max-width: 560px) {
   #SignIn {
     height: 100vh;
-    border-radius: 0px;
+    border-radius: 0;
     padding: 8.5% 25px;
   
     .page-body {

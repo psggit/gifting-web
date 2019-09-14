@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.scss'
 import { unmountComponentAtNode } from 'react-dom'
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'
 
 class ModalBox extends React.Component {
   constructor() {

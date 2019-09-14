@@ -69,7 +69,7 @@ class TransactionHistory extends React.Component {
   }
 
   renderTransation() {
-    const {transactionData} = this.state;
+    const {transactionData} = this.state
     return transactionData.map((item, i) => (
       <div key={i} className="transaction-item">
         <div className="item-header os s7">

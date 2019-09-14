@@ -3,7 +3,7 @@ import PromoCodeItem from "./PromoCodeItem"
 import Input from "Components/input"
 import "./sass/promo-code.scss"
 import { fetchCoupons } from "./../api"
-import { attribute } from "postcss-selector-parser";
+import { attribute } from "postcss-selector-parser"
 
 class PromoCodes extends React.Component {
   constructor() {

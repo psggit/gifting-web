@@ -9,7 +9,7 @@ import { GET, POST } from "Utils/fetch"
 import Icon from "Components/icon"
 import InputMask from "react-input-mask"
 import { scrollToTop } from "Utils/ui-utils"
-import { createPayuTransaction } from "../api";
+import { createPayuTransaction } from "../api"
 
 // const cardNumMask = new IMask()
 

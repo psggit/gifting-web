@@ -8,17 +8,17 @@ import { Api } from '../utils/config'
 import { createSession } from 'Utils/session-utils'
 import { checkCtrlA, validateNumType, checkCtrlV, checkCtrlC } from 'Utils/logic-utils'
 import { validateNumberField } from 'Utils/validators'
-import { validateTextField, validateEmail } from '../utils/validators';
-import NotifyError from './../NotifyError';
+import { validateTextField, validateEmail } from '../utils/validators'
+import NotifyError from './../NotifyError'
 import Button from "Components/button"
 import InputMask from "react-input-mask"
-import { clearTimeout } from 'timers';
+import { clearTimeout } from 'timers'
 
 export default function SignUp(data) {
   return class SignUp extends React.Component {
     constructor(props) {
       super(props)
-      this.timeoutHandle = null;
+      this.timeoutHandle = null
       this.inputNameMap = {
         mobileNo: "Mobile no",
         email: "Email",
@@ -93,7 +93,7 @@ export default function SignUp(data) {
     }
 
     handleKeyDown(e) {
-      const { otpSent } = this.state;
+      const { otpSent } = this.state
       if (e.keyCode === 13) {
         if (!otpSent) {
           this.handleClick()
@@ -157,19 +157,19 @@ export default function SignUp(data) {
 
     countdown() {
       // let timeoutHandle;
-      let seconds = 30;
-      let self = this;
+      let seconds = 30
+      let self = this
       function tick() {
-        var counter = document.getElementById("timer");
-        seconds--;
-        counter.innerHTML = "OTP can be resent in" + " 00" + ":" + (seconds < 10 ? "0" : "") + String(seconds) + " seconds";
+        var counter = document.getElementById("timer")
+        seconds--
+        counter.innerHTML = "OTP can be resent in" + " 00" + ":" + (seconds < 10 ? "0" : "") + String(seconds) + " seconds"
         if (seconds > 0) {
-          self.timeoutHandle = setTimeout(tick, 1000);
+          self.timeoutHandle = setTimeout(tick, 1000)
         } else {
           self.setState({ setTimer: false })
         }
       }
-      tick();
+      tick()
     }
 
     handleClick() {

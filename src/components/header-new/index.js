@@ -5,7 +5,7 @@ import {ThemeProvider, ThemeContext} from "./../../ThemeProvider"
 import { mountModal } from 'Components/modal-box/utils'
 import SignIn from "./../../SignIn"
 import {Api} from 'Utils/config'
-import NotifyError from './../../NotifyError';
+import NotifyError from './../../NotifyError'
 import {createSession, clearSession, getUsername} from 'Utils/session-utils'
 const ThemeConsumer = ThemeContext.Consumer
 

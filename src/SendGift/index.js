@@ -11,15 +11,15 @@ import { POST } from "Utils/fetch"
 import AgeGate from './../AgeGate'
 import InputMask from "react-input-mask"
 import {readCookie} from "Utils/session-utils"
-import { validateTextField, validateNumberField } from '../utils/validators';
-import { parse } from "path";
+import { validateTextField, validateNumberField } from '../utils/validators'
+import { parse } from "path"
 import {supportedCities} from "Utils/constants"
 
 class SendGift extends React.Component {
   constructor(props) {
     super(props)
-    console.log(props.name);
-    this.count = 0;
+    console.log(props.name)
+    this.count = 0
 
     this.inputNameMap = {
       receiverName: "Receiver name",
@@ -169,7 +169,7 @@ class SendGift extends React.Component {
         //e.preventDefault()
         // this.setState({otherValue: 10000})
         //this.setState({amountErr: {status: false, value: ''} })
-        return;
+        return
       }
       //console.log("35")
       this.setState({ amount: e.target.value, activePrice: e.target.name, otherValue: e.target.value})
@@ -247,7 +247,7 @@ class SendGift extends React.Component {
   }
 
   getOtherAmountClassName() {
-    let classname;
+    let classname
     if(this.state.activePrice === "price4") {
       classname += "focused"
     } 
@@ -255,7 +255,7 @@ class SendGift extends React.Component {
       classname += "mobile error"
     }
     //classname = undefined;
-    return classname;
+    return classname
   }
   // componentDidMount() {
   //   POST({
@@ -268,7 +268,7 @@ class SendGift extends React.Component {
   render() {
     console.log("state in send gift", this.state)
     //console.log("sender nae", this.state.senderName)
-    const {receiverNameErr, receiverNumberErr, isActive} = this.state;
+    const {receiverNameErr, receiverNumberErr, isActive} = this.state
     return (
       <div>
         <div id="send-gift">
