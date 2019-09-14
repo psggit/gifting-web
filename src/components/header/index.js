@@ -8,7 +8,7 @@ import { Api } from "Utils/config"
 // import SignUp from "./../../SignUp"
 import { mountModal, unMountModal } from 'Components/modal-box/utils'
 import { createSession, clearSession, getUsername } from 'Utils/session-utils'
-import NotifyError from './../../NotifyError';
+import NotifyError from './../../NotifyError'
 // import {ThemeProvider, ThemeContext} from "./../../ThemeProvider"
 import { GET } from "Utils/fetch"
 // const ThemeConsumer = ThemeContext.Consumer

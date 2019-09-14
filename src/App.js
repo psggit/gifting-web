@@ -31,9 +31,9 @@ import SelectName from "./SendGiftWizard/SelectName"
 import SelectCity from "./SendGiftWizard/SelectCity"
 import SelectFavDrink from "./SendGiftWizard/FavDrink"
 import Footer from "Components/footer"
-import SuccessfulTransaction from "./SuccessfulTransaction";
-import FailureTransaction from "./FailureTransaction";
-import AvailableCities from "./AvailableCities";
+import SuccessfulTransaction from "./SuccessfulTransaction"
+import FailureTransaction from "./FailureTransaction"
+import AvailableCities from "./AvailableCities"
 // import NotFound from "./NotFound"
 // import makeAsyncComponent from "./makeAsyncComponent"
 

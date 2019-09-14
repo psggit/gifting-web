@@ -8,8 +8,8 @@ import SignUp from './../SignUp'
 import { createSession } from 'Utils/session-utils'
 import { checkCtrlA, validateNumType, checkCtrlV, checkCtrlC } from 'Utils/logic-utils'
 import { validateNumberField } from 'Utils/validators'
-import { validateTextField } from '../utils/validators';
-import NotifyError from './../NotifyError';
+import { validateTextField } from '../utils/validators'
+import NotifyError from './../NotifyError'
 import Button from "Components/button"
 import InputMask from "react-input-mask"
 
@@ -57,7 +57,7 @@ export default function SignIn(data) {
     handleKeyDown(e) {
       //console.log("keydown", this.state.otpSent)
       if (e.keyCode === 13) {
-        const { otpSent } = this.state;
+        const { otpSent } = this.state
         if (!otpSent) {
           this.handleClick()
         } else {
@@ -71,20 +71,20 @@ export default function SignIn(data) {
     // }
 
     countdown() {
-      let timeoutHandle;
+      let timeoutHandle
       let seconds = 30
       let self = this
       function tick() {
         let counter = document.getElementById("timer")
         seconds--
-        counter.innerHTML = "OTP can be resent in" + " 00" + ":" + (seconds < 10 ? "0" : "") + String(seconds) + " seconds";
+        counter.innerHTML = "OTP can be resent in" + " 00" + ":" + (seconds < 10 ? "0" : "") + String(seconds) + " seconds"
         if (seconds > 0) {
           timeoutHandle = setTimeout(tick, 1000)
         } else {
           self.setState({ setTimer: false })
         }
       }
-      tick();
+      tick()
     }
 
 

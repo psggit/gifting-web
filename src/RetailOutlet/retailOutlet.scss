@@ -22,7 +22,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
-    padding: 12% 12.5% 10% 12.5%;
+    padding: 12% 12.5% 10%;
 
     .retailer-list-container {
       padding-top: 30px;
@@ -65,7 +65,7 @@
         text-align: center;
         .header {
           .content {
-            padding: 130px 7% 12% 7% !important;
+            padding: 130px 7% 12% !important;
           }
         
           .retailer-list-container {
@@ -86,7 +86,7 @@
             .retailer-list {
               .retailer {
   .content {
-    padding: 130px 7% 12% 7% !important;
+    padding: 130px 7% 12% !important;
   }
 
   .retailer-list-container {
@@ -165,10 +165,10 @@
   }
 }
 
-@media only screen and (max-width: 720px) { 
+@media only screen and (max-width: 720px) {
   #retailOutlet {
     .content {
-      padding: 130px 7% 12% 7% !important;
+      padding: 130px 7% 12% !important;
       .retailer-list-container {
         .options {
           display: flex;

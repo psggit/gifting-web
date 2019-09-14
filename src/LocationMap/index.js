@@ -21,28 +21,28 @@ class LocationMap extends React.Component {
         // Add a global handler for when the API finishes loading
         window.resolveGoogleMapsPromise = () => {
           // Resolve the promise
-          resolve(google);
+          resolve(google)
 
           // Tidy up
-          delete window.resolveGoogleMapsPromise;
-        };
+          delete window.resolveGoogleMapsPromise
+        }
 
         // Load the Google Maps API
-        const script = document.createElement("script");
-        const API = 'AIzaSyDpG-NeL-XGYAduQul2JenVr86HIPITEso';
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${API}&callback=resolveGoogleMapsPromise`;
-        script.async = true;
-        document.body.appendChild(script);
-      });
+        const script = document.createElement("script")
+        const API = 'AIzaSyDpG-NeL-XGYAduQul2JenVr86HIPITEso'
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${API}&callback=resolveGoogleMapsPromise`
+        script.async = true
+        document.body.appendChild(script)
+      })
     }
 
     // Return a promise for the Google Maps API
-    return this.googleMapsPromise;
+    return this.googleMapsPromise
   }
 
   componentWillMount() {
     // Start Google Maps API loading since we know we'll soon need it
-    this.getGoogleMaps();
+    this.getGoogleMaps()
   }
 
   componentDidMount() {
@@ -58,18 +58,18 @@ class LocationMap extends React.Component {
     })
 
     this.getGoogleMaps().then((google) => {
-      const location = {lat: parseFloat(this.state.lat), lng: parseFloat(this.state.lng)};
+      const location = {lat: parseFloat(this.state.lat), lng: parseFloat(this.state.lng)}
       const map = new google.maps.Map(document.getElementById('map'), {
         // zoom: 4,
         // center: uluru
         zoom: 13,
         center: location,
-      });
+      })
       const marker = new google.maps.Marker({
         position: location,
         map: map
-      });
-    });
+      })
+    })
   }
 
   render() {

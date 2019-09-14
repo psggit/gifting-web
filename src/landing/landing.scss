@@ -67,7 +67,7 @@
   }
 
   .brands-list {
-    margin: 40px 10% 40px 10%;
+    margin: 40px 10%;
     //max-width: 800px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -119,7 +119,7 @@
           -ms-flex-pack: justify;
               justify-content: space-between;
       max-width: 800px;
-      margin: 40px auto 0 auto;
+      margin: 40px auto 0;
     }
     .presence-item {
       h1 {
@@ -253,5 +253,5 @@
         margin: 20px 0;
       }
     }
-  } 
+  }
 }

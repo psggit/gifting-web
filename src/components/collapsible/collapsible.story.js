@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import Collapsible from '.';
+import Collapsible from '.'
 
 storiesOf('Collapsible', module).add('Without body', () => {
   return (

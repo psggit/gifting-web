@@ -1,6 +1,6 @@
 import React from 'react'
 import './accordian.scss'
-import { parse } from 'path';
+import { parse } from 'path'
 
 class Accordian extends React.Component {
   constructor() {
