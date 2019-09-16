@@ -14,7 +14,14 @@ class GetStarted extends React.Component {
     this.props.history.push(path)
   }
 
+  handleConnectionChange(e) {
+    if (e.type === "offline") {
+      window.addEventListener('online', () => { location.reload() });
+    }
+  }
+
   componentDidMount() {
+    window.addEventListener('offline', this.handleConnectionChange);
     if (localStorage.getItem("transaction--completed")) {
       localStorage.removeItem("receiver_info")
       localStorage.removeItem("amount")
@@ -23,7 +30,7 @@ class GetStarted extends React.Component {
     }
     localStorage.removeItem("transaction--completed")
   }
-  
+
   render() {
     return (
       <div id="getstarted">
@@ -45,16 +52,16 @@ class GetStarted extends React.Component {
                     primary
                     icon="rightArrowWhite"
                   >
-                  Get started
+                    Get started
                   </Button>
                 </a>
               </div>
             </div>
           </div>
         </div>
-      </div>      
+      </div>
     )
-  }  
+  }
 }
 
 export default GetStarted
