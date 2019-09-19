@@ -24,16 +24,23 @@ class RetailOutlet extends React.Component {
     this.successCallback = this.successCallback.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.fetchAvailableHipbarDelivery = this.fetchAvailableHipbarDelivery.bind(this)
     this.successRetailerListCallback = this.successRetailerListCallback.bind(this)
     this.failureRetailerListCallback = this.failureRetailerListCallback.bind(this)
   }
 
   componentDidMount() {
     this.fetchAvailableHipbarDelivery()
+    this.setState({
+      selectedCityId: location.search.split("=")[1]
+    })
   }
 
   fetchAvailableHipbarDelivery() {
     Api.fetchAvailableHipbarDelivery(this.successCallback)
+    if (this.state.selectedCityId) {
+      this.findRetailer(this.state.selectedCityId)
+    }
   }
 
   successCallback(response) {
@@ -41,7 +48,7 @@ class RetailOutlet extends React.Component {
     response.map((item) => {
       deliveryMap[item.id] = item
     })
-    this.setState({availableDeliveryList: response, deliveryMap})
+    this.setState({ availableDeliveryList: response, deliveryMap })
   }
 
   findRetailer(cityId) {
@@ -56,11 +63,11 @@ class RetailOutlet extends React.Component {
   }
 
   successRetailerListCallback(response) {
-    this.setState({loading: false,  isSelectedCity: true, retailerOutletData: response.data})
+    this.setState({ loading: false, isSelectedCity: true, retailerOutletData: response.data })
   }
 
   failureRetailerListCallback() {
-    this.setState({loading: false, retailerOutletData: [], isSelectedCity: true})
+    this.setState({ loading: false, retailerOutletData: [], isSelectedCity: true })
   }
 
   renderItem(item) {
@@ -69,31 +76,31 @@ class RetailOutlet extends React.Component {
 
   handleChange(e) {
     //console.log("value", e.target.value)
-    const {deliveryMap} = this.state
-    if(e.target.value === "select city") {
-      this.setState({selectedCityId: ""})
+    const { deliveryMap } = this.state
+    if (e.target.value === "select city") {
+      this.setState({ selectedCityId: "" })
       return
     }
-    this.setState({selectedCityId: e.target.value, selectedCity: deliveryMap[e.target.value].name})
+    this.setState({ selectedCityId: e.target.value, selectedCity: deliveryMap[e.target.value].name })
   }
 
   handleClick() {
-    const {selectedCityId} = this.state
-    if(selectedCityId && selectedCityId !== "select city") {
+    const { selectedCityId } = this.state
+    if (selectedCityId && selectedCityId !== "select city") {
       this.findRetailer(selectedCityId)
-      // this.props.history.push(`/retail-outlet/${this.state.selectedCity}`)
+      this.props.history.push(`/retail-outlet?cityId=${this.state.selectedCityId}`)
       return
     }
-    if(window.gtag) {
+    if (window.gtag) {
       gtag("event", "city_wise_retailer_search_count", {
         "event_label": selectedCity,
       })
     }
-    this.setState({retailerOutletData: []})
+    this.setState({ retailerOutletData: [] })
   }
 
   triggerEvent(item) {
-    if(window.gtag) {
+    if (window.gtag) {
       gtag("event", "view_retailer_directions", {
         "event_label": JSON.stringify({
           retailerId: item.retailer_id,
@@ -114,15 +121,15 @@ class RetailOutlet extends React.Component {
         </div>
         {/* <p className="direction os s8" onClick={() => this.loadMap(item.retailer_gps)}>DIRECTIONS</p> */}
         <a className="direction os s8" onClick={() => this.triggerEvent(item)} href={` https://www.google.com/maps/search/?api=1&query=${gpsCoordinates[0]},${gpsCoordinates[1]}`} target="_blank">
-          <span className="os s6" style={{marginRight: '13px'}}>DIRECTIONS</span>
-          <span style={{position: 'relative', top: '3px'}}><Icon name="rightArrowWhite" /></span>
+          <span className="os s6" style={{ marginRight: '13px' }}>DIRECTIONS</span>
+          <span style={{ position: 'relative', top: '3px' }}><Icon name="rightArrowWhite" /></span>
         </a>
       </div>
     )
   }
 
   render() {
-    const {availableDeliveryList, retailerOutletData, isSelectedCity, selectedCity} = this.state
+    const { availableDeliveryList, retailerOutletData, isSelectedCity, selectedCity } = this.state
     //console.log("outlet data", this.state.retailerOutletData)
     return (
       <div>
@@ -132,7 +139,7 @@ class RetailOutlet extends React.Component {
             <div className="retailer-list-container">
               <div className="options">
                 <div className="city--select">
-                  <select onChange={(e) => this.handleChange(e)} selected={this.state.selectedCity}>
+                  <select onChange={(e) => this.handleChange(e)} value={this.state.selectedCityId}>
                     {
                       !this.state.selectedCity &&
                       <option className="os s8" value="select city">-- Select a city --</option>
@@ -168,7 +175,7 @@ class RetailOutlet extends React.Component {
                   <p className="note os s4">Select a city to find retailers there </p>
                 }
               </div>
-          
+
             </div>
           </div>
           <FirstGiftCard pageTitle="retailOutlet" />

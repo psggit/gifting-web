@@ -1,6 +1,6 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const CleanWebpackPlugin = require("clean-webpack-plugin")
+const {CleanWebpackPlugin} = require("clean-webpack-plugin")
 const webpack = require("webpack")
 const WorkboxPlugin = require('workbox-webpack-plugin')
 const minfyConfigHTML = {
@@ -97,7 +97,7 @@ module.exports = {
       minify: minfyConfigHTML
     }),
     new webpack.DefinePlugin({
-      "process.env.BASE_URL": JSON.stringify(process.env.BASE_URL || "basketball38.hasura-app.io"),
+      "process.env.BASE_URL": JSON.stringify(process.env.BASE_URL || "hipbar-dev.com"),
       "process.env.PAYU_BASE": JSON.stringify(process.env.PAYU_BASE || "test"),
     })
   ],

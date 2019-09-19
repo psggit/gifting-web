@@ -1,11 +1,17 @@
 import { emailRegex } from 'Utils/regex'
+import { mobileRegex } from 'Utils/regex'
 
 export function validateTextField(fieldName, fieldValue) {
-  //console.log("field name", fieldName, "field val", fieldValue, "len")
   if (!fieldValue) {
     return {
       status: true,
       value: `${fieldName} is required`
+    }
+  }
+  if (fieldName.indexOf("Mobile") !== -1 && !mobileRegex.test(fieldValue)) {
+    return {
+      status: true,
+      value: `Invalid ${fieldName.toLowerCase()}`
     }
   }
   return {
@@ -26,7 +32,7 @@ export function validateEmail(fieldName, fieldValue) {
       value: `${fieldName} is invalid`
     }
   }
-  
+
   return {
     status: false,
     value: ''
