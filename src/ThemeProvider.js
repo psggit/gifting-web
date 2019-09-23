@@ -1,8 +1,8 @@
 import React from "react";
 import { render } from "react-dom";
 import { Api } from "Utils/config"
-import CreateHistory from 'history/createBrowserHistory'
-const history = CreateHistory()
+import { createBrowserHistory as createHistory } from 'history'
+const history = createHistory()
 
 export const ThemeContext = React.createContext("light")
 export class ThemeProvider extends React.Component {

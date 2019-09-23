@@ -6,7 +6,7 @@ import {
   Route
 } from "react-router-dom"
 import { Router } from "react-router"
-import { createBrowserHistory } from "history"
+import { createBrowserHistory as createHistory } from 'history'
 import LegalDrinkingAge from "./LegalDrinkingAge"
 import RedeemingGiftCard from "./RedeemingGiftCard"
 import LandingPage from "./landing-new"
@@ -48,7 +48,7 @@ import AvailableCities from "./AvailableCities";
 // const FAQ = makeAsyncComponent(() => import("./FAQ").then(module => module.default), { name: "Page 1" })
 
 
-const history = createBrowserHistory()
+const history = createHistory()
 
 // console.log(bolt)
 const ThemeConsumer = ThemeContext.Consumer
