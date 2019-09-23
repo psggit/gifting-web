@@ -70,7 +70,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./server/index.js",
-    "build-client": "BASE_URL=hipar-dev.com PAYU_BASE=test webpack --config ./webpack-config/client/webpack.prod.js",
+    "build-client": "BASE_URL=hipbar-dev.com PAYU_BASE=test webpack --config ./webpack-config/client/webpack.prod.js",
     "build-ssr": "BASE_URL=hipbar-dev.com PAYU_BASE=test webpack --config ./webpack-config/ssr/webpack.ssr.js",
     "apply-postcss": "postcss --use autoprefixer -r  ./dist/*.css",
     "build": "yarn run build-client && yarn run build-ssr",
