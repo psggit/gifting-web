@@ -6,7 +6,7 @@
   "dependencies": {
     "autoprefixer": "^9.6.1",
     "form-data": "^2.5.1",
-    "helmet": "^3.21.0",
+    "helmet": "^3.21.1",
     "intersection-observer": "^0.7.0",
     "mock-browser": "^0.92.14",
     "moment": "^2.24.0",
