@@ -342,9 +342,9 @@ app.get("/alcohol-gifting-redeem-gift-cards", (req, res) => {
   })
 })
 
-app.get("/available-stores", (req, res) => {
+app.get("/our-network", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../wp-static-files/available-stores/index.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/our-network/index.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
