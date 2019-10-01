@@ -1,723 +1,350 @@
 <!DOCTYPE html>
 <html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="profile" href="http://gmpg.org/xfn/11">
+        <link rel="pingback" href="/xmlrpc.php">
+				<title>Stores &#8211; HipBar</title>
+<meta name='robots' content='noindex,follow' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="stylesheet" type="text/css" href="/wp-includes/css/available-stores.css" />
+<link rel="alternate" type="application/rss+xml" title="HipBar &raquo; Feed" href="/feed/" />
+<link rel="alternate" type="application/rss+xml" title="HipBar &raquo; Comments Feed" href="/comments/feed/" />
+<link rel='stylesheet' id='edsanimate-animo-css-css'  href='/wp-content/plugins/animate-it/assets/css/animate-animo.css?ver=5.2.3' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.1.4' type='text/css' media='all' />
+<link rel='stylesheet' id='pgafu-public-style-css'  href='/wp-content/plugins/post-grid-and-filter-ultimate/assets/css/pgafu-public.css?ver=1.1.3' type='text/css' media='all' />
+<link rel='stylesheet' id='siteorigin-panels-front-css'  href='/wp-content/plugins/siteorigin-panels/css/front-flex.min.css?ver=2.10.7' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-spaios-public-css-css'  href='/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/css/wp-spaios-public.css?ver=1.13' type='text/css' media='all' />
+<link rel='stylesheet' id='sow-button-base-css'  href='/wp-content/plugins/so-widgets-bundle/widgets/button/css/style.css?ver=1.15.8' type='text/css' media='all' />
+<link rel='stylesheet' id='sow-button-atom-2cde5de98610-css'  href='/wp-content/uploads/siteorigin-widgets/sow-button-atom-2cde5de98610.css?ver=5.2.3' type='text/css' media='all' />
+<link rel='stylesheet' id='one-paze-style-css'  href='/wp-content/themes/hipbar/style.css?ver=5.2.3' type='text/css' media='all' />
+<style id='one-paze-style-inline-css' type='text/css'>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="profile" href="http://gmpg.org/xfn/11">
-  <link rel="pingback" href="/xmlrpc.php">
-  <title>Stores &#8211; HipBar</title>
-  <meta name='robots' content='noindex,follow' />
-  <link rel='dns-prefetch' href='//fonts.googleapis.com' />
-  <link rel='dns-prefetch' href='//s.w.org' />
-  <link rel="stylesheet" type="text/css" href="/wp-includes/css/available-stores.css" />
-  <link rel="alternate" type="application/rss+xml" title="HipBar &raquo; Feed" href="/feed/" />
-  <link rel="alternate" type="application/rss+xml" title="HipBar &raquo; Comments Feed" href="/comments/feed/" />
-  <link rel='stylesheet' id='edsanimate-animo-css-css'
-    href='/wp-content/plugins/animate-it/assets/css/animate-animo.css?ver=5.2.2' type='text/css' media='all' />
-  <link rel='stylesheet' id='contact-form-7-css'
-    href='/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.1.4' type='text/css' media='all' />
-  <link rel='stylesheet' id='pgafu-public-style-css'
-    href='/wp-content/plugins/post-grid-and-filter-ultimate/assets/css/pgafu-public.css?ver=1.1.3' type='text/css'
-    media='all' />
-  <link rel='stylesheet' id='siteorigin-panels-front-css'
-    href='/wp-content/plugins/siteorigin-panels/css/front-flex.min.css?ver=2.10.6' type='text/css' media='all' />
-  <link rel='stylesheet' id='wp-spaios-public-css-css'
-    href='/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/css/wp-spaios-public.css?ver=1.13'
-    type='text/css' media='all' />
-  <link rel='stylesheet' id='sow-button-base-css'
-    href='/wp-content/plugins/so-widgets-bundle/widgets/button/css/style.css?ver=1.15.7' type='text/css' media='all' />
-  <link rel='stylesheet' id='sow-button-atom-2cde5de98610-css'
-    href='/wp-content/uploads/siteorigin-widgets/sow-button-atom-2cde5de98610.css?ver=5.2.2' type='text/css'
-    media='all' />
-  <link rel='stylesheet' id='one-paze-style-css' href='/wp-content/themes/hipbar/style.css?ver=5.2.2' type='text/css'
-    media='all' />
-  <style id='one-paze-style-inline-css' type='text/css'>
-    .main-nav-scrolled,
-    .cta_read,
-    .port-view-all,
-    .blog-view-all,
-    .nav-previous a:before,
-    .nav-next a:before,
-    .form-submit input,
-    .site-header {
-      background: #000000;
-    }
+            .main-nav-scrolled,
+            .cta_read,
+            .port-view-all, .blog-view-all,
+            .nav-previous a:before, .nav-next a:before,
+            .form-submit input,
+            .site-header{
+                background: #000000;
+            }
+            .cta_read,
+            .port-view-all, .blog-view-all,
+            .portfolio-post-filter .filter.active,
+            .form-submit input:hover,
+            .form-submit input{
+                border-color: #000000;
+            }
+            .cta_read:hover,
+            .port-view-all:hover, .blog-view-all:hover,
+            .blog_read,
+            .testinomial .bx-controls-direction a,
+            .contact-info>div a, .contact-info>div,
+            .site-info a,
+            .ap-container span.current,
+            .portfolio-post-filter .filter:hover,
+            .portfolio-post-filter .filter.active,
+            .footer-top a:hover,
+            .blog-post-wrap a:hover h3,
+            .form-submit input:hover,
+            .blog-collection .post-meta-infos>span>span.readmore a,
+            .blog-collection .post-meta-infos>span>span:hover,
+            .blog-collection .post-meta-infos>span>span:hover a,
+            .inner .blog-post-content>a,
+            .search-results h1.entry-title a:hover{
+                color: #000000;
+            }
+            .main-nav-scrolled{
+                box-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
+            }
+                .main-nav-scrolled{
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+                }.slider-overlay1{
+                -webkit-transform: rotate(180deg);
+                -moz-transform: rotate(180deg);
+            }
+</style>
+<link rel='stylesheet' id='one-paze-sidetogglemenu-css-css'  href='/wp-content/themes/hipbar/css/sidetogglemenu.css?ver=5.2.3' type='text/css' media='all' />
+<link rel='stylesheet' id='one-paze-wow-css-css'  href='/wp-content/themes/hipbar/css/animate.css?ver=5.2.3' type='text/css' media='all' />
+<link rel='stylesheet' id='one-paze-fontawesome-css-css'  href='/wp-content/themes/hipbar/css/faw/css/font-awesome.css?ver=5.2.3' type='text/css' media='all' />
+<link rel='stylesheet' id='one-paze-google-fonts-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C600italic%2C700italic%2C400%2C300%2C600%2C700&#038;ver=5.2.3' type='text/css' media='all' />
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='/wp-content/themes/hipbar/js/sidetogglemenu.js?ver=5.2.3'></script>
+<script type='text/javascript' src='/wp-content/themes/hipbar/js/jquery.scrollTo.js?ver=5.2.3'></script>
+<script type='text/javascript' src='/wp-content/themes/hipbar/js/jquery.localScroll.js?ver=5.2.3'></script>
+<script type='text/javascript' src='/wp-content/themes/hipbar/js/jquery.parallax.js?ver=5.2.3'></script>
+<script type='text/javascript' src='/wp-content/themes/hipbar/js/jquery.mixitup.js?ver=5.2.3'></script>
+<script type='text/javascript' src='/wp-content/themes/hipbar/js/jquery.nav.js?ver=5.2.3'></script>
+<script type='text/javascript' src='/wp-content/themes/hipbar/js/bxslider/jquery.bxslider.js?ver=5.2.3'></script>
+<script type='text/javascript' src='/wp-content/themes/hipbar/js/wow.js?ver=5.2.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var OnepazeObj = {"down_arrow_src":"\/wp-content\/themes\/hipbar\/images\/toggledown.png","position":"right"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/themes/hipbar/js/custom.js?ver=5.2.3'></script>
+<link rel='https://api.w.org/' href='/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 5.2.3" />
+<link rel="canonical" href="/" />
+<link rel='shortlink' href='/' />
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=%2F" />
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=%2F&#038;format=xml" />
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		                <style type="text/css" media="all"
+                       id="siteorigin-panels-layouts-head">/* Layout 7 */ #pgc-7-0-0 , #pgc-7-0-1 , #pgc-7-6-0 , #pgc-7-6-1 , #pgc-7-7-0 , #pgc-7-7-1 , #pgc-7-8-0 , #pgc-7-8-1 , #pgc-7-10-0 , #pgc-7-10-1 , #pgc-7-11-0 , #pgc-7-11-1 { width:50%;width:calc(50% - ( 0.5 * 30px ) ) } #pl-7 #panel-7-0-0-0 , #pl-7 #panel-7-0-1-2 , #pl-7 #panel-7-1-0-0 , #pl-7 #panel-7-2-0-1 , #pl-7 #panel-7-3-0-0 , #pl-7 #panel-7-4-0-0 , #pl-7 #panel-7-4-0-1 , #pl-7 #panel-7-4-0-2 , #pl-7 #panel-7-5-0-0 , #pl-7 #panel-7-6-0-0 , #pl-7 #panel-7-7-0-0 , #pl-7 #panel-7-7-1-2 , #pl-7 #panel-7-8-0-0 , #pl-7 #panel-7-9-0-0 , #pl-7 #panel-7-10-0-0 , #pl-7 #panel-7-10-1-0 , #pl-7 #panel-7-11-0-0 , #pl-7 #panel-7-11-1-0 , #pl-7 #panel-7-12-0-0 , #pl-7 #panel-7-15-0-0 , #pl-7 #panel-7-16-0-0 , #pl-7 #panel-7-17-0-1 {  } #pl-7 #panel-7-0-1-0 , #pl-7 #panel-7-6-1-1 , #pl-7 #panel-7-11-1-1 , #pl-7 #panel-7-13-0-0 , #pl-7 #panel-7-14-0-0 , #pl-7 #panel-7-16-1-0 , #pl-7 #panel-7-17-0-0 , #pl-7 #panel-7-17-0-2 { margin:0px 0px 0px 0px } #pl-7 #panel-7-0-1-1 { margin:0px 0px 20px 0px } #pg-7-0 , #pg-7-1 , #pg-7-2 , #pg-7-3 , #pg-7-4 , #pg-7-5 , #pg-7-9 , #pg-7-10 , #pg-7-11 , #pg-7-12 , #pg-7-13 , #pg-7-14 , #pg-7-15 , #pg-7-16 , #pl-7 .so-panel { margin-bottom:30px } #pgc-7-1-0 , #pgc-7-2-0 , #pgc-7-3-0 , #pgc-7-4-0 , #pgc-7-5-0 , #pgc-7-9-0 , #pgc-7-12-0 , #pgc-7-13-0 , #pgc-7-14-0 , #pgc-7-15-0 , #pgc-7-17-0 { width:100%;width:calc(100% - ( 0 * 30px ) ) } #pl-7 #panel-7-2-0-0 , #pl-7 #panel-7-6-1-0 , #pl-7 #panel-7-7-1-0 , #pl-7 #panel-7-8-1-0 { margin:0px 0px 10px 0px } #pl-7 #panel-7-6-1-2 , #pl-7 #panel-7-8-1-2 , #pl-7 #panel-7-10-0-2 , #pl-7 #panel-7-11-1-2 { margin:20px 0px 0px 0px } #pg-7-6 , #pg-7-7 , #pg-7-8 , #pl-7 .so-panel:last-child { margin-bottom:0px } #pl-7 #panel-7-7-1-1 , #pl-7 #panel-7-8-1-1 { margin:0px 0px 15px 0px } #pl-7 #panel-7-10-0-1 { margin:10px 0px 0px 0px } #pl-7 #panel-7-13-0-1 , #pl-7 #panel-7-14-0-1 { margin:30px 0px 0px 0px } #pgc-7-16-0 { width:25%;width:calc(25% - ( 0.75 * 30px ) ) } #pgc-7-16-1 { width:75%;width:calc(75% - ( 0.25 * 30px ) ) } #pg-7-0> .panel-row-style { padding:96px 15px 0px 15px } #pg-7-0.panel-no-style, #pg-7-0.panel-has-style > .panel-row-style , #pg-7-6.panel-no-style, #pg-7-6.panel-has-style > .panel-row-style , #pg-7-7.panel-no-style, #pg-7-7.panel-has-style > .panel-row-style , #pg-7-8.panel-no-style, #pg-7-8.panel-has-style > .panel-row-style , #pg-7-10.panel-no-style, #pg-7-10.panel-has-style > .panel-row-style , #pg-7-11.panel-no-style, #pg-7-11.panel-has-style > .panel-row-style , #pg-7-16.panel-no-style, #pg-7-16.panel-has-style > .panel-row-style , #pg-7-17.panel-no-style, #pg-7-17.panel-has-style > .panel-row-style { -webkit-align-items:center;align-items:center } #pgc-7-0-0 , #pgc-7-0-1 , #pgc-7-2-0 , #pgc-7-5-0 , #pgc-7-6-0 , #pgc-7-6-1 , #pgc-7-7-0 , #pgc-7-7-1 , #pgc-7-8-0 , #pgc-7-8-1 , #pgc-7-10-0 , #pgc-7-10-1 , #pgc-7-11-0 , #pgc-7-11-1 , #pgc-7-16-0 , #pgc-7-16-1 , #pgc-7-17-0 { align-self:auto } #pg-7-1.panel-no-style, #pg-7-1.panel-has-style > .panel-row-style , #pg-7-2.panel-no-style, #pg-7-2.panel-has-style > .panel-row-style , #pg-7-3.panel-no-style, #pg-7-3.panel-has-style > .panel-row-style , #pg-7-4.panel-no-style, #pg-7-4.panel-has-style > .panel-row-style , #pg-7-5.panel-no-style, #pg-7-5.panel-has-style > .panel-row-style , #pg-7-9.panel-no-style, #pg-7-9.panel-has-style > .panel-row-style , #pg-7-12.panel-no-style, #pg-7-12.panel-has-style > .panel-row-style , #pg-7-13.panel-no-style, #pg-7-13.panel-has-style > .panel-row-style , #pg-7-14.panel-no-style, #pg-7-14.panel-has-style > .panel-row-style , #pg-7-15.panel-no-style, #pg-7-15.panel-has-style > .panel-row-style { -webkit-align-items:flex-start;align-items:flex-start } #pg-7-2> .panel-row-style , #pg-7-4> .panel-row-style , #pg-7-6> .panel-row-style , #pg-7-7> .panel-row-style , #pg-7-8> .panel-row-style { padding:30px 15px 30px 15px } #pg-7-10> .panel-row-style , #pg-7-11> .panel-row-style , #pg-7-13> .panel-row-style , #pg-7-14> .panel-row-style , #pg-7-16> .panel-row-style , #pg-7-17> .panel-row-style { padding:50px 15px 50px 15px } @media (max-width:780px){ #pg-7-0.panel-no-style, #pg-7-0.panel-has-style > .panel-row-style , #pg-7-1.panel-no-style, #pg-7-1.panel-has-style > .panel-row-style , #pg-7-2.panel-no-style, #pg-7-2.panel-has-style > .panel-row-style , #pg-7-3.panel-no-style, #pg-7-3.panel-has-style > .panel-row-style , #pg-7-4.panel-no-style, #pg-7-4.panel-has-style > .panel-row-style , #pg-7-5.panel-no-style, #pg-7-5.panel-has-style > .panel-row-style , #pg-7-6.panel-no-style, #pg-7-6.panel-has-style > .panel-row-style , #pg-7-7.panel-no-style, #pg-7-7.panel-has-style > .panel-row-style , #pg-7-8.panel-no-style, #pg-7-8.panel-has-style > .panel-row-style , #pg-7-9.panel-no-style, #pg-7-9.panel-has-style > .panel-row-style , #pg-7-10.panel-no-style, #pg-7-10.panel-has-style > .panel-row-style , #pg-7-11.panel-no-style, #pg-7-11.panel-has-style > .panel-row-style , #pg-7-12.panel-no-style, #pg-7-12.panel-has-style > .panel-row-style , #pg-7-13.panel-no-style, #pg-7-13.panel-has-style > .panel-row-style , #pg-7-14.panel-no-style, #pg-7-14.panel-has-style > .panel-row-style , #pg-7-15.panel-no-style, #pg-7-15.panel-has-style > .panel-row-style , #pg-7-16.panel-no-style, #pg-7-16.panel-has-style > .panel-row-style , #pg-7-17.panel-no-style, #pg-7-17.panel-has-style > .panel-row-style { -webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column } #pg-7-0 > .panel-grid-cell , #pg-7-0 > .panel-row-style > .panel-grid-cell , #pg-7-1 > .panel-grid-cell , #pg-7-1 > .panel-row-style > .panel-grid-cell , #pg-7-2 > .panel-grid-cell , #pg-7-2 > .panel-row-style > .panel-grid-cell , #pg-7-3 > .panel-grid-cell , #pg-7-3 > .panel-row-style > .panel-grid-cell , #pg-7-4 > .panel-grid-cell , #pg-7-4 > .panel-row-style > .panel-grid-cell , #pg-7-5 > .panel-grid-cell , #pg-7-5 > .panel-row-style > .panel-grid-cell , #pg-7-6 > .panel-grid-cell , #pg-7-6 > .panel-row-style > .panel-grid-cell , #pg-7-7 > .panel-grid-cell , #pg-7-7 > .panel-row-style > .panel-grid-cell , #pg-7-8 > .panel-grid-cell , #pg-7-8 > .panel-row-style > .panel-grid-cell , #pg-7-9 > .panel-grid-cell , #pg-7-9 > .panel-row-style > .panel-grid-cell , #pg-7-10 > .panel-grid-cell , #pg-7-10 > .panel-row-style > .panel-grid-cell , #pg-7-11 > .panel-grid-cell , #pg-7-11 > .panel-row-style > .panel-grid-cell , #pg-7-12 > .panel-grid-cell , #pg-7-12 > .panel-row-style > .panel-grid-cell , #pg-7-13 > .panel-grid-cell , #pg-7-13 > .panel-row-style > .panel-grid-cell , #pg-7-14 > .panel-grid-cell , #pg-7-14 > .panel-row-style > .panel-grid-cell , #pg-7-15 > .panel-grid-cell , #pg-7-15 > .panel-row-style > .panel-grid-cell , #pg-7-16 > .panel-grid-cell , #pg-7-16 > .panel-row-style > .panel-grid-cell , #pg-7-17 > .panel-grid-cell , #pg-7-17 > .panel-row-style > .panel-grid-cell { width:100%;margin-right:0 } #pgc-7-0-0 , #pgc-7-6-0 , #pg-7-6 , #pgc-7-7-0 , #pg-7-7 , #pgc-7-8-0 , #pg-7-8 , #pgc-7-10-0 , #pgc-7-11-0 , #pgc-7-16-0 { margin-bottom:30px } #pl-7 .panel-grid-cell { padding:0 } #pl-7 .panel-grid .panel-grid-cell-empty { display:none } #pl-7 .panel-grid .panel-grid-cell-mobile-last { margin-bottom:0px }  } </style>    </head>
 
-    .cta_read,
-    .port-view-all,
-    .blog-view-all,
-    .portfolio-post-filter .filter.active,
-    .form-submit input:hover,
-    .form-submit input {
-      border-color: #000000;
-    }
+    <body class="home page-template-default page page-id-7 wp-embed-responsive siteorigin-panels siteorigin-panels-before-js siteorigin-panels-home" >
 
-    .cta_read:hover,
-    .port-view-all:hover,
-    .blog-view-all:hover,
-    .blog_read,
-    .testinomial .bx-controls-direction a,
-    .contact-info>div a,
-    .contact-info>div,
-    .site-info a,
-    .ap-container span.current,
-    .portfolio-post-filter .filter:hover,
-    .portfolio-post-filter .filter.active,
-    .footer-top a:hover,
-    .blog-post-wrap a:hover h3,
-    .form-submit input:hover,
-    .blog-collection .post-meta-infos>span>span.readmore a,
-    .blog-collection .post-meta-infos>span>span:hover,
-    .blog-collection .post-meta-infos>span>span:hover a,
-    .inner .blog-post-content>a,
-    .search-results h1.entry-title a:hover {
-      color: #000000;
-    }
+                <div id="togglemenu" class="sidetogglemenu menu-from-right">
+            <!-- Your content -->
+            <nav id="site-navigation" class="main-navigation" role="navigation">                
+                                                        <div class="menu-main-menu-container"><ul id="primary-menu" class="menu"><li id="menu-item-554" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-7 current_page_item menu-item-554"><a href="/" aria-current="page">Home</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-553"><a href="/gifting-guide-alcohol/">Gifting Guide</a></li>
+<li id="menu-item-678" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-678"><a href="/gifting-alcohol-occasions/">Occasions</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-552"><a href="/alcohol-gifting-redeem-gift-cards/">How to Redeem</a></li>
+<li id="menu-item-617" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-617"><a href="/our-network">Network</a></li>
+<li id="menu-item-692" class="cus-mobile-view menu-item menu-item-type-post_type menu-item-object-page menu-item-692"><a href="/alcohol-gifting-support-and-faqs/">Help</a></li>
+</ul></div>                            </nav><!-- #site-navigation -->
+            <div class="clearfix"></div>
+                    </div> 
 
-    .main-nav-scrolled {
-      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
-    }
 
-    .main-nav-scrolled {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    }
-
-    .slider-overlay1 {
-      -webkit-transform: rotate(180deg);
-      -moz-transform: rotate(180deg);
-    }
-  </style>
-  <link rel='stylesheet' id='one-paze-sidetogglemenu-css-css'
-    href='/wp-content/themes/hipbar/css/sidetogglemenu.css?ver=5.2.2' type='text/css' media='all' />
-  <link rel='stylesheet' id='one-paze-wow-css-css' href='/wp-content/themes/hipbar/css/animate.css?ver=5.2.2'
-    type='text/css' media='all' />
-  <link rel='stylesheet' id='one-paze-fontawesome-css-css'
-    href='/wp-content/themes/hipbar/css/faw/css/font-awesome.css?ver=5.2.2' type='text/css' media='all' />
-  <link rel='stylesheet' id='one-paze-google-fonts-css'
-    href='//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C600italic%2C700italic%2C400%2C300%2C600%2C700&#038;ver=5.2.2'
-    type='text/css' media='all' />
-  <script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
-  <script type='text/javascript' src='/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
-  <script type='text/javascript' src='/wp-content/themes/hipbar/js/sidetogglemenu.js?ver=5.2.2'></script>
-  <script type='text/javascript' src='/wp-content/themes/hipbar/js/jquery.scrollTo.js?ver=5.2.2'></script>
-  <script type='text/javascript' src='/wp-content/themes/hipbar/js/jquery.localScroll.js?ver=5.2.2'></script>
-  <script type='text/javascript' src='/wp-content/themes/hipbar/js/jquery.parallax.js?ver=5.2.2'></script>
-  <script type='text/javascript' src='/wp-content/themes/hipbar/js/jquery.mixitup.js?ver=5.2.2'></script>
-  <script type='text/javascript' src='/wp-content/themes/hipbar/js/jquery.nav.js?ver=5.2.2'></script>
-  <script type='text/javascript' src='/wp-content/themes/hipbar/js/bxslider/jquery.bxslider.js?ver=5.2.2'></script>
-  <script type='text/javascript' src='/wp-content/themes/hipbar/js/wow.js?ver=5.2.2'></script>
-  <script type='text/javascript'>
-    /* <![CDATA[ */
-    var OnepazeObj = { "down_arrow_src": "\/wp-content\/themes\/hipbar\/images\/toggledown.png", "position": "right" };
-    /* ]]> */
-
-    function changeUrl(url) {
-      window.open(url)
-    }
-  </script>
-  <script type='text/javascript' src='/wp-content/themes/hipbar/js/custom.js?ver=5.2.2'></script>
-  <link rel='https://api.w.org/' href='/wp-json/' />
-  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
-  <meta name="generator" content="WordPress 5.2.2" />
-  <link rel="canonical" href="/home-2/" />
-  <link rel='shortlink' href='/?p=124' />
-  <link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=%2Fhome-2%2F" />
-  <link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=%2Fhome-2%2F&#038;format=xml" />
-  <style type="text/css">
-    .recentcomments a {
-      display: inline !important;
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-  </style>
-  <style type="text/css" media="all" id="siteorigin-panels-layouts-head">
-    /* Layout 124 */
-    #pgc-124-0-0,
-    #pgc-124-0-1,
-    #pgc-124-1-0,
-    #pgc-124-1-1,
-    #pgc-124-2-0,
-    #pgc-124-2-1,
-    #pgc-124-3-0,
-    #pgc-124-3-1,
-    #pgc-124-4-0,
-    #pgc-124-4-1,
-    #pgc-124-5-0,
-    #pgc-124-5-1,
-    #pgc-124-6-0,
-    #pgc-124-6-1,
-    #pgc-124-7-0,
-    #pgc-124-7-1,
-    #pgc-124-8-0,
-    #pgc-124-8-1,
-    #pgc-124-9-0,
-    #pgc-124-9-1 {
-      width: 50%;
-      width: calc(50% - (0.5 * 30px))
-    }
-
-    #pl-124 #panel-124-0-0-0,
-    #pl-124 #panel-124-0-1-0,
-    #pl-124 #panel-124-1-0-0,
-    #pl-124 #panel-124-1-1-2,
-    #pl-124 #panel-124-2-0-2,
-    #pl-124 #panel-124-2-1-0,
-    #pl-124 #panel-124-3-0-0,
-    #pl-124 #panel-124-3-1-2,
-    #pl-124 #panel-124-4-0-0,
-    #pl-124 #panel-124-4-1-2,
-    #pl-124 #panel-124-5-0-2,
-    #pl-124 #panel-124-5-1-0,
-    #pl-124 #panel-124-6-0-0,
-    #pl-124 #panel-124-6-1-2,
-    #pl-124 #panel-124-7-0-0,
-    #pl-124 #panel-124-7-1-2,
-    #pl-124 #panel-124-8-0-2,
-    #pl-124 #panel-124-8-1-0,
-    #pl-124 #panel-124-9-0-0,
-    #pl-124 #panel-124-9-1-2,
-    #pl-124 #panel-124-10-0-0,
-    #pl-124 #panel-124-11-0-0 {}
-
-    #pg-124-0,
-    #pg-124-1,
-    #pg-124-2,
-    #pg-124-3,
-    #pg-124-4,
-    #pg-124-5,
-    #pg-124-6,
-    #pg-124-7,
-    #pg-124-8,
-    #pg-124-9,
-    #pg-124-10,
-    #pl-124 .so-panel {
-      margin-bottom: 30px
-    }
-
-    #pl-124 #panel-124-1-1-0,
-    #pl-124 #panel-124-4-1-0,
-    #pl-124 #panel-124-7-1-0,
-    #pl-124 #panel-124-11-1-0 {
-      margin: 0px 0px 0px 0px
-    }
-
-    #pl-124 #panel-124-1-1-1,
-    #pl-124 #panel-124-4-1-1,
-    #pl-124 #panel-124-7-1-1 {
-      margin: 0px 0px 30px 0px
-    }
-
-    #pl-124 #panel-124-2-0-0,
-    #pl-124 #panel-124-3-1-0,
-    #pl-124 #panel-124-5-0-0,
-    #pl-124 #panel-124-6-1-0,
-    #pl-124 #panel-124-8-0-0,
-    #pl-124 #panel-124-9-1-0 {
-      margin: 0px 0px 10px 0px
-    }
-
-    #pl-124 #panel-124-2-0-1,
-    #pl-124 #panel-124-3-1-1,
-    #pl-124 #panel-124-5-0-1,
-    #pl-124 #panel-124-6-1-1,
-    #pl-124 #panel-124-8-0-1,
-    #pl-124 #panel-124-9-1-1 {
-      margin: 0px 0px 15px 0px
-    }
-
-    #pgc-124-10-0 {
-      width: 100%;
-      width: calc(100% - (0 * 30px))
-    }
-
-    #pgc-124-11-0 {
-      width: 25%;
-      width: calc(25% - (0.75 * 30px))
-    }
-
-    #pgc-124-11-1 {
-      width: 75%;
-      width: calc(75% - (0.25 * 30px))
-    }
-
-    #pl-124 .so-panel:last-child {
-      margin-bottom: 0px
-    }
-
-    #pg-124-0.panel-no-style,
-    #pg-124-0.panel-has-style>.panel-row-style,
-    #pg-124-1.panel-no-style,
-    #pg-124-1.panel-has-style>.panel-row-style,
-    #pg-124-2.panel-no-style,
-    #pg-124-2.panel-has-style>.panel-row-style,
-    #pg-124-3.panel-no-style,
-    #pg-124-3.panel-has-style>.panel-row-style,
-    #pg-124-4.panel-no-style,
-    #pg-124-4.panel-has-style>.panel-row-style,
-    #pg-124-5.panel-no-style,
-    #pg-124-5.panel-has-style>.panel-row-style,
-    #pg-124-6.panel-no-style,
-    #pg-124-6.panel-has-style>.panel-row-style,
-    #pg-124-7.panel-no-style,
-    #pg-124-7.panel-has-style>.panel-row-style,
-    #pg-124-8.panel-no-style,
-    #pg-124-8.panel-has-style>.panel-row-style,
-    #pg-124-9.panel-no-style,
-    #pg-124-9.panel-has-style>.panel-row-style,
-    #pg-124-11.panel-no-style,
-    #pg-124-11.panel-has-style>.panel-row-style {
-      -webkit-align-items: center;
-      align-items: center
-    }
-
-    #pgc-124-0-0,
-    #pgc-124-0-1,
-    #pgc-124-1-0,
-    #pgc-124-1-1,
-    #pgc-124-2-0,
-    #pgc-124-2-1,
-    #pgc-124-3-0,
-    #pgc-124-3-1,
-    #pgc-124-4-0,
-    #pgc-124-4-1,
-    #pgc-124-5-0,
-    #pgc-124-5-1,
-    #pgc-124-6-0,
-    #pgc-124-6-1,
-    #pgc-124-7-0,
-    #pgc-124-7-1,
-    #pgc-124-8-0,
-    #pgc-124-8-1,
-    #pgc-124-9-0,
-    #pgc-124-9-1,
-    #pgc-124-11-0,
-    #pgc-124-11-1 {
-      align-self: auto
-    }
-
-    #pg-124-1>.panel-row-style,
-    #pg-124-2>.panel-row-style,
-    #pg-124-3>.panel-row-style,
-    #pg-124-4>.panel-row-style,
-    #pg-124-5>.panel-row-style,
-    #pg-124-6>.panel-row-style,
-    #pg-124-7>.panel-row-style,
-    #pg-124-8>.panel-row-style,
-    #pg-124-9>.panel-row-style,
-    #pg-124-11>.panel-row-style {
-      padding: 50px 0px 50px 0px
-    }
-
-    #pg-124-10.panel-no-style,
-    #pg-124-10.panel-has-style>.panel-row-style {
-      -webkit-align-items: flex-start;
-      align-items: flex-start
-    }
-
-    @media (max-width:780px) {
-
-      #pg-124-0.panel-no-style,
-      #pg-124-0.panel-has-style>.panel-row-style,
-      #pg-124-1.panel-no-style,
-      #pg-124-1.panel-has-style>.panel-row-style,
-      #pg-124-2.panel-no-style,
-      #pg-124-2.panel-has-style>.panel-row-style,
-      #pg-124-3.panel-no-style,
-      #pg-124-3.panel-has-style>.panel-row-style,
-      #pg-124-4.panel-no-style,
-      #pg-124-4.panel-has-style>.panel-row-style,
-      #pg-124-5.panel-no-style,
-      #pg-124-5.panel-has-style>.panel-row-style,
-      #pg-124-6.panel-no-style,
-      #pg-124-6.panel-has-style>.panel-row-style,
-      #pg-124-7.panel-no-style,
-      #pg-124-7.panel-has-style>.panel-row-style,
-      #pg-124-8.panel-no-style,
-      #pg-124-8.panel-has-style>.panel-row-style,
-      #pg-124-9.panel-no-style,
-      #pg-124-9.panel-has-style>.panel-row-style,
-      #pg-124-10.panel-no-style,
-      #pg-124-10.panel-has-style>.panel-row-style,
-      #pg-124-11.panel-no-style,
-      #pg-124-11.panel-has-style>.panel-row-style {
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column
-      }
-
-      #pg-124-0>.panel-grid-cell,
-      #pg-124-0>.panel-row-style>.panel-grid-cell,
-      #pg-124-1>.panel-grid-cell,
-      #pg-124-1>.panel-row-style>.panel-grid-cell,
-      #pg-124-2>.panel-grid-cell,
-      #pg-124-2>.panel-row-style>.panel-grid-cell,
-      #pg-124-3>.panel-grid-cell,
-      #pg-124-3>.panel-row-style>.panel-grid-cell,
-      #pg-124-4>.panel-grid-cell,
-      #pg-124-4>.panel-row-style>.panel-grid-cell,
-      #pg-124-5>.panel-grid-cell,
-      #pg-124-5>.panel-row-style>.panel-grid-cell,
-      #pg-124-6>.panel-grid-cell,
-      #pg-124-6>.panel-row-style>.panel-grid-cell,
-      #pg-124-7>.panel-grid-cell,
-      #pg-124-7>.panel-row-style>.panel-grid-cell,
-      #pg-124-8>.panel-grid-cell,
-      #pg-124-8>.panel-row-style>.panel-grid-cell,
-      #pg-124-9>.panel-grid-cell,
-      #pg-124-9>.panel-row-style>.panel-grid-cell,
-      #pg-124-10>.panel-grid-cell,
-      #pg-124-10>.panel-row-style>.panel-grid-cell,
-      #pg-124-11>.panel-grid-cell,
-      #pg-124-11>.panel-row-style>.panel-grid-cell {
-        width: 100%;
-        margin-right: 0
-      }
-
-      #pgc-124-0-0,
-      #pgc-124-1-0,
-      #pgc-124-2-0,
-      #pgc-124-3-0,
-      #pgc-124-4-0,
-      #pgc-124-5-0,
-      #pgc-124-6-0,
-      #pgc-124-7-0,
-      #pgc-124-8-0,
-      #pgc-124-9-0,
-      #pgc-124-11-0 {
-        margin-bottom: 30px
-      }
-
-      #pl-124 .panel-grid-cell {
-        padding: 0
-      }
-
-      #pl-124 .panel-grid .panel-grid-cell-empty {
-        display: none
-      }
-
-      #pl-124 .panel-grid .panel-grid-cell-mobile-last {
-        margin-bottom: 0px
-      }
-    }
-  </style>
-</head>
-
-<body onload="fetchAvailableCities()"
-  class="page-template page-template-fullwidth-page page-template-fullwidth-page-php page page-id-124 wp-embed-responsive siteorigin-panels siteorigin-panels-before-js">
-
-  <div id="togglemenu" class="sidetogglemenu menu-from-right">
-    <!-- Your content -->
-    <nav id="site-navigation" class="main-navigation" role="navigation">
-      <div id="primary-menu" class="menu">
-        <ul>
-          <li class="page_item page-item-7"><a href="/home">Home</a></li>
-          <li class="page_item page-item-124 current_page_item"><a href="/home-2/" aria-current="page">Home 2</a></li>
-          <li class="page_item page-item-142"><a href="/home-3/">Redeem</a></li>
-          <li class="page_item page-item-186"><a href="/our-handy-guide/">Top Brands</a></li>
-          <li class="page_item page-item-158"><a href="/support-faqs/">Help</a></li>
-        </ul>
-      </div>
-    </nav><!-- #site-navigation -->
-    <div class="clearfix"></div>
-  </div>
-
-  <div id="page" class="hfeed site">
-    <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
-    <header id="masthead" class="site-header menu-on-top" role="banner">
-
-      <div class="container clearfix">
-        <div class="site-branding pull-left">
-          <div class="site_logo">
-            <a href="/home" rel="home"><img src="/wp-content/uploads/2019/07/logo.png" alt="HipBar" /></a>
-          </div>
-        </div>
-        <div class="clearfix"></div>
-        <div id="menu" class="inner-menu-on-top">
-          <nav id="site-navigation" class="main-navigation" role="navigation">
-            <div id="primary-menu" class="menu">
-              <ul>
-                <li class="page_item page-item-7"><a href="/home">Home</a></li>
-                <li class="page_item page-item-124"><a href="/home-2/" aria-current="page">Home 2</a></li>
-                <li class="page_item page-item-142"><a href="/home-3/">Redeem</a></li>
-                <li class="page_item page-item-186"><a href="/our-handy-guide/">Top Brands</a></li>
-                <li class="page_item page-item-158"><a href="/support-faqs/">Help</a></li>
-                <li class="page_item page-item-159 current_page_item"><a href="/available-stores/">Stores</a></li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
-    <div class="header-banner">
-      <div class="container">
-        <h1 class="entry-title">Stores</h1>
-        <div id="onepager-breadcrumbs">
-          <div class="ap-container"><a href="">Home</a> &#124; <span class="current">Home 2</span></div>
-        </div>
-      </div>
-    </div>
-    <div id="content" class="site-content">
-
-      <!-- assigning inner container for appropriate div structure for inner and front page separately -->
-      <div class="container">
-        <!-- Container -->
-        <div class="clearfix inner">
-          <!-- Clearfix -->
-
-          <div id="primary-fullwidth" class="content-area">
-            <div id="availableStores">
-              <div class="section1">
-                <div class="title">Send it from anywhere.</div>
-                <div class="title">Pick it up here.</div>
-                <div class="dropdown">
-                  <select id="cityList" onchange="handleSelectChange()">
-                    <option value="" hidden>-- Select a city --</option>
-                  </select>
-                  <img src="/wp-includes/images/down-arrow.png" />
-                </div>
-                <div id="stores" class="hide"></div>
-                <div class="store-map">
-                  <img src="/wp-includes/svg/Map.svg" />
-                </div>
-
-                <div id="panel-124-2-0-2" class="so-panel widget widget_sow-button panel-last-child" data-index="8">
-                  <div class="custom-btn panel-widget-style panel-widget-style-for-124-2-0-2">
-                    <div class="so-widget-sow-button so-widget-sow-button-atom-2cde5de98610">
-                      <div class="ow-button-base ow-button-align-left">
-                        <a href="#" class="ow-icon-placement-left">
-                          <span>
-
-                            START GIFTING </span>
-                        </a>
-                      </div>
+        
+        <div id="page" class="hfeed site">
+            <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+            <header id="masthead" class="site-header menu-on-top" role="banner">
+				<div class="container clearfix cus-desktop-view">
+					<div class="top-bar"><ul id="menu-top-bar" class="menu"><li id="menu-item-680" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-680"><a href="/alcohol-gifting-support-and-faqs/">Help</a></li>
+</ul></div>				</div>
+                <div class="container clearfix">
+                    <div class="site-branding pull-left">
+                                                    <div class="site_logo">
+                                <a href="/" rel="home"><img src="/wp-content/uploads/2019/07/logo.png" alt="HipBar" /></a>
+                            </div>
+                                            </div><!-- .site-branding -->
+                                            <!--<div id="toggle" class="toggle-on-top">
+                            <div class="one"></div>
+                            <div class="two"></div>
+                            <div class="three"></div>
+                        </div>-->
+                        <div class="clearfix"></div>
+                        <div id="menu" class="inner-menu-on-top">
+                            <nav id="site-navigation" class="main-navigation" role="navigation">
+                                                                                                        <div class="menu-main-menu-container"><ul id="primary-menu" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-7 current_page_item menu-item-554"><a href="/" aria-current="page">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-553"><a href="/gifting-guide-alcohol/">Gifting Guide</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-678"><a href="/gifting-alcohol-occasions/">Occasions</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-552"><a href="/alcohol-gifting-redeem-gift-cards/">How to Redeem</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-617"><a href="/our-network">Network</a></li>
+<li class="cus-mobile-view menu-item menu-item-type-post_type menu-item-object-page menu-item-692"><a href="/alcohol-gifting-support-and-faqs/">Help</a></li>
+</ul></div>                                                            </nav><!-- #site-navigation -->
+                        </div>
+                                    </div>
+            </header><!-- #masthead -->
+                             
+                    <div class="header-banner">
+                        <div class="container" >
+                                                            <h1 class="entry-title">Home</h1>
+                                                                                </div>
                     </div>
-                  </div>
-                </div>
+                                        <div id="content" class="site-content">
+                                                    
+                <!-- assigning inner container for appropriate div structure for inner and front page separately -->
+                                                            <div class="container"> <!-- Container -->
+                            <div class="clearfix inner"> <!-- Clearfix -->
+                                    
+	<div id="primary-fullwidth" class="content-area">
+		<main id="main" class="site-main" role="main">
 
-              </div>
-              <div class="section2">
-                <div class="image">
-                  <img src="/wp-includes/images/home-sec9-img.png" />
-                </div>
-                <div class="content">
-                  <p>Got a question or need support?</p>
-                  <p>Get it answered here or call us at 1-8000-234-0908</p>
-                </div>
-              </div>
-            </div>
-          </div><!-- #primary -->
+			
+				
+<article id="post-7" class="post-7 page type-page status-publish hentry">
+    
+	<div id="content" class="site-content">
+	
+		<!-- assigning inner container for appropriate div structure for inner and front page separately -->
+		<div class="container">
+			<!-- Container -->
+			<div class="clearfix inner">
+				<!-- Clearfix -->
+	
+				<div id="primary-fullwidth" class="content-area">
+					<div id="availableStores">
+						<div class="section1">
+							<div class="title">Send it from anywhere.</div>
+							<div class="title">Pick it up here.</div>
+							<div class="dropdown">
+								<select id="cityList" onchange="handleSelectChange()">
+									<option value="" hidden>-- Select a city --</option>
+								</select>
+								<img src="/wp-includes/images/down-arrow.png" />
+							</div>
+							<div id="stores" class="hide"></div>
+							<div class="store-map">
+								<img src="/wp-includes/svg/Map.svg" />
+							</div>
+	
+							<div id="panel-124-2-0-2" class="so-panel widget widget_sow-button panel-last-child" data-index="8">
+								<div class="custom-btn panel-widget-style panel-widget-style-for-124-2-0-2">
+									<div class="so-widget-sow-button so-widget-sow-button-atom-2cde5de98610">
+										<div class="ow-button-base ow-button-align-left">
+											<a href="#" class="ow-icon-placement-left">
+												<span>
+	
+													START GIFTING </span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+	
+						</div>
+						<div class="section2">
+							<div class="image">
+								<img src="/wp-includes/images/home-sec9-img.png" />
+							</div>
+							<div class="content">
+								<p>Got a question or need support?</p>
+								<p>Get it answered here or call us at 1-8000-234-0908</p>
+							</div>
+						</div>
+					</div>
+				</div><!-- #primary -->
+	
+			</div> <!-- Container -->
+		</div> <!-- Clearfix -->
+	</div><!-- #content -->
+	<footer class="entry-footer">
+			</footer><!-- .entry-footer -->
+</article><!-- #post-## -->
 
-        </div> <!-- Container -->
-      </div> <!-- Clearfix -->
+
+				
+			
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+            </div> <!-- Container -->
+        </div> <!-- Clearfix -->
     </div><!-- #content -->
-    <footer id="colophon" class="site-footer" role="contentinfo">
-      <div class="footer-widget">
-        <div class="footer-top container">
-          <div class="footer-tops clearfix">
-            <div class="footer-top-widget-1">
-              <div class="footer-widget-1-container">
-                <div id="text-3" class="  widget-container widget_text">
-                  <div class="textwidget">
-                    <div class="footer-logo"><img class="size-full wp-image-118"
-                        src="/wp-content/uploads/2019/07/footer-logo-small-1.png" alt="" width="73" height="99" /></div>
-                  </div>
+<footer id="colophon" class="site-footer" role="contentinfo">
+            <div class="footer-widget">
+            <div class="footer-top container">
+                <div class="footer-tops clearfix">
+                    <div class="footer-top-widget-1">
+													<div class="footer-widget-1-container">
+								<div id="text-3" class="widget-container widget_text">			<div class="textwidget"><div class="footer-logo"><img class="size-full wp-image-118" src="/wp-content/uploads/2019/07/footer-logo-small-1.png" alt="" width="73" height="99" /></div>
+</div>
+		</div>							</div>
+											</div>
+					<div class="footer-top-widget-2">
+													<div class="footer-widget-2-container">
+								<div id="nav_menu-2" class="widget-container widget_nav_menu"><div class="menu-footer-menu-1-container"><ul id="menu-footer-menu-1" class="menu"><li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-7 current_page_item menu-item-543"><a href="/" aria-current="page">Home</a></li>
+<li id="menu-item-542" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-542"><a href="/gifting-guide-alcohol/">Gifting Guide</a></li>
+<li id="menu-item-541" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-541"><a href="/alcohol-gifting-redeem-gift-cards/">How to Redeem</a></li>
+</ul></div></div>							</div>
+											</div>
+					<div class="footer-top-widget-3">
+													<div class="footer-widget-3-container">
+								<div id="nav_menu-3" class="widget-container widget_nav_menu"><div class="menu-footer-menu-2-container"><ul id="menu-footer-menu-2" class="menu"><li id="menu-item-749" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-749"><a href="/alcohol-gifting-support-and-faqs/">Help</a></li>
+<li id="menu-item-689" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-689"><a href="/gifting-alcohol-occasions/">Occasions</a></li>
+<li id="menu-item-546" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-546"><a href="/our-network">Network</a></li>
+</ul></div></div>							</div>
+											</div>
+					<div class="footer-top-widget-4">
+													<div class="footer-widget-4-container">
+								<div id="nav_menu-4" class="widget-container widget_nav_menu"><div class="menu-footer-menu-3-container"><ul id="menu-footer-menu-3" class="menu"><li id="menu-item-731" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-731"><a target="_blank" rel="noopener noreferrer" href="https://gifting.hipbar.com/user-terms">Consumer T&#038;C</a></li>
+<li id="menu-item-732" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-732"><a target="_blank" rel="noopener noreferrer" href="https://gifting.hipbar.com/merchants-t-c">Merchant T&#038;C</a></li>
+<li id="menu-item-733" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-733"><a target="_blank" rel="noopener noreferrer" href="https://gifting.hipbar.com/gifting-t-c">Gifting T&#038;C</a></li>
+<li id="menu-item-729" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-729"><a target="_blank" rel="noopener noreferrer" href="https://gifting.hipbar.com/privacy">Privacy Policy</a></li>
+<li id="menu-item-730" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-730"><a target="_blank" rel="noopener noreferrer" href="https://gifting.hipbar.com/grievance-policy">Greivance</a></li>
+</ul></div></div>							</div>
+											</div>
                 </div>
-              </div>
             </div>
-            <div class="footer-top-widget-2">
-              <div class="footer-widget-2-container">
-                <div id="nav_menu-2" class="widget-container widget_nav_menu">
-                  <div class="menu-footer-menu-1-container">
-                    <ul id="menu-footer-menu-1" class="menu">
-                      <li id="menu-item-110"
-                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-110">
-                        <a href="/send-gift">Send a Gift</a></li>
-                      <li id="menu-item-111"
-                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-111">
-                        <a href="/how-to-redeem">Redeem a Gift</a></li>
-                      <li id="menu-item-112"
-                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-112">
-                        <a href="#">Gifting Ideas</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="footer-top-widget-3">
-              <div class="footer-widget-3-container">
-                <div id="nav_menu-3" class="widget-container widget_nav_menu">
-                  <div class="menu-footer-menu-2-container">
-                    <ul id="menu-footer-menu-2" class="menu">
-                      <li id="menu-item-113"
-                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-113">
-                        <a href="/privacy">Privacy Policy</a></li>
-                      <li id="menu-item-114"
-                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-114">
-                        <a href="/user-terms">Customer T&#038;C</a></li>
-                      <li id="menu-item-115"
-                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-115">
-                        <a href="/merchants-t-c">Merchant T&#038;C</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="footer-top-widget-4">
-              <div class="footer-widget-4-container">
-                <div id="nav_menu-4" class="widget-container widget_nav_menu">
-                  <div class="menu-footer-menu-3-container">
-                    <ul id="menu-footer-menu-3" class="menu">
-                      <li id="menu-item-116"
-                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-116">
-                        <a href="/grievance-policy">Grievance Policy</a></li>
-                      <li id="menu-item-117"
-                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-117">
-                        <a href="/gifting-t-c">Gifting T&#038;C</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="container clearfix">
-          <div class="clearfix"></div>
-          <div class="footer-row">
-            <div class="site-info">
-              <span>&copy; 2019 HipBar</span>
-              <span class="sep"> | </span>
-              <span>
-                All Rights Reserved </span>
-            </div><!-- .site-info -->
-            <div class="footer-social">
-              <div class="footer-social-links-container">
-                <aside id="custom_html-2" class="widget_text widget widget_custom_html">
-                  <div class="textwidget custom-html-widget">
-                    <ul>
-                      <li onclick='changeUrl("https://facebook.com/hipbarapp")'><i class="fa fa-facebook"
-                          aria-hidden="true"></i></li>
-                      <li onclick='changeUrl("https://twitter.com/hipbarapp")'><i class="fa fa-twitter"
-                          aria-hidden="true"></i></li>
-                      <li onclick='changeUrl("https://instagram.com/hipbarapp")'><i class="fa fa-instagram"
-                          aria-hidden="true"></i></li>
-                    </ul>
-                  </div>
-                </aside>
-              </div>
-            </div><!-- .social-limks -->
-          </div>
+        <div class="footer-bottom">
+        <div class="container clearfix">            
+            <div class="clearfix"></div>
+			<div class="footer-row">
+				<div class="site-info">
+					<span>&copy; 2019 HipBar</span>
+					<span class="sep"> | </span>
+					<span>
+						All Rights Reserved					</span>
+				</div><!-- .site-info -->
+				<div class="footer-social">
+																								<div class="footer-social-links-container">
+								<aside id="custom_html-2" class="widget_text   widget widget_custom_html"><div class="textwidget custom-html-widget"><ul>
+	<li><a href="https://facebook.com/hipbarapp" target="_blank" rel="noopener noreferrer"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+	<li><a href="https://twitter.com/hipbarapp" target="_blank" rel="noopener noreferrer"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	<li><a href="https://instagram.com/hipbarapp" target="_blank" rel="noopener noreferrer"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+</ul></div></aside>							</div>
+															</div><!-- .social-limks -->
+			</div>
         </div>
 
-      </div>
-    </footer>
-  </div><!-- #page -->
-  <script>
-
-    function handleSelectChange() {
-      const storeList = document.getElementById("stores")
-      storeList.className = "hide"
-      var selectedCityId = document.getElementById("cityList").value;
-      console.log("selected city id", selectedCityId)
-      const payload = {
-        city_id: parseInt(selectedCityId),
-        limit: 1000,
-        offset: 0
-      }
-      const fetchOptions = {
-        method: 'post',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        mode: 'cors',
-        credentials: "include",
-        body: JSON.stringify(payload)
-      }
-      fetch(`https://catman.basketball38.hasura-app.io/retailerDiscovery/getRetailers`, fetchOptions)
-        .then((response) => {
-          return response.json()
-        })
-        .then((stores) => {
-          console.log("data stores", stores)
-          const storeList = document.getElementById("stores")
-          storeList.innerHTML = ""
-          storeList.className = "show"
-          for (var i = 0; i < stores.data.length; i++) {
-            var store = document.createElement("div")
-            store.className = "store"
-            var storeName = document.createElement("p")
-            storeName.className = "store-name"
-            var storeAddress = document.createElement("p")
-            storeAddress.className = "store-address"
-            storeName.innerHTML = stores.data[i].retailer_name
-            storeAddress.innerHTML = stores.data[i].retailer_address
-            store.appendChild(storeName)
-            store.appendChild(storeAddress)
-            storeList.appendChild(store)
-          }
-        })
-        .catch((error) => {
-          console.log("Error in fetching all stores", error)
-        })
-    }
-
-    function fetchAvailableCities() {
-      const payload = {
-        available: true,
-        delivery_available: false,
-        wallet_available: false
-      }
-      const fetchOptions = {
-        method: 'post',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        mode: 'cors',
-        credentials: "include",
-        body: JSON.stringify(payload)
-      }
-      fetch(`https://loki.basketball38.hasura-app.io/city/availableCities`, fetchOptions)
-        .then((response) => {
-          return response.json()
-        })
-        .then((data) => {
-          console.log("data", data)
-          const selectList = document.getElementById("cityList")
-          for (var i = 0; i < data.availableCities.length; i++) {
-            var option = document.createElement("option");
-            option.value = data.availableCities[i].id;
-            option.text = data.availableCities[i].name;
-            selectList.appendChild(option);
-          }
-        })
-        .catch((error) => {
-          console.log("Error in fetching all cities", error)
-        })
+    </div>
+</footer><!-- #colophon -->
+</div><!-- #page -->
+                <style type="text/css" media="all"
+                       id="siteorigin-panels-layouts-footer">/* Layout w5d824a6fbfdc5 */ #pgc-w5d824a6fbfdc5-0-0 , #pgc-w5d824a6fbfdc5-0-1 , #pgc-w5d824a6fbfdc5-0-2 , #pgc-w5d824a6fbfdc5-1-0 , #pgc-w5d824a6fbfdc5-1-1 , #pgc-w5d824a6fbfdc5-1-2 { width:33.3333%;width:calc(33.3333% - ( 0.666666666667 * 30px ) ) } #pl-w5d824a6fbfdc5 #panel-w5d824a6fbfdc5-0-0-0 , #pl-w5d824a6fbfdc5 #panel-w5d824a6fbfdc5-0-1-0 , #pl-w5d824a6fbfdc5 #panel-w5d824a6fbfdc5-0-2-0 , #pl-w5d824a6fbfdc5 #panel-w5d824a6fbfdc5-1-0-0 , #pl-w5d824a6fbfdc5 #panel-w5d824a6fbfdc5-1-1-0 , #pl-w5d824a6fbfdc5 #panel-w5d824a6fbfdc5-1-2-0 {  } #pg-w5d824a6fbfdc5-0 , #pl-w5d824a6fbfdc5 .so-panel { margin-bottom:30px } #pl-w5d824a6fbfdc5 .so-panel:last-child { margin-bottom:0px } #pg-w5d824a6fbfdc5-0.panel-no-style, #pg-w5d824a6fbfdc5-0.panel-has-style > .panel-row-style { -webkit-align-items:center;align-items:center } #pgc-w5d824a6fbfdc5-0-0 , #pgc-w5d824a6fbfdc5-1-0 { align-self:auto } #pg-w5d824a6fbfdc5-1.panel-no-style, #pg-w5d824a6fbfdc5-1.panel-has-style > .panel-row-style { -webkit-align-items:flex-start;align-items:flex-start } @media (max-width:780px){ #pg-w5d824a6fbfdc5-0.panel-no-style, #pg-w5d824a6fbfdc5-0.panel-has-style > .panel-row-style , #pg-w5d824a6fbfdc5-1.panel-no-style, #pg-w5d824a6fbfdc5-1.panel-has-style > .panel-row-style { -webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column } #pg-w5d824a6fbfdc5-0 > .panel-grid-cell , #pg-w5d824a6fbfdc5-0 > .panel-row-style > .panel-grid-cell , #pg-w5d824a6fbfdc5-1 > .panel-grid-cell , #pg-w5d824a6fbfdc5-1 > .panel-row-style > .panel-grid-cell { width:100%;margin-right:0 } #pgc-w5d824a6fbfdc5-0-0 , #pgc-w5d824a6fbfdc5-0-1 , #pgc-w5d824a6fbfdc5-1-0 , #pgc-w5d824a6fbfdc5-1-1 { margin-bottom:30px } #pl-w5d824a6fbfdc5 .panel-grid-cell { padding:0 } #pl-w5d824a6fbfdc5 .panel-grid .panel-grid-cell-empty { display:none } #pl-w5d824a6fbfdc5 .panel-grid .panel-grid-cell-mobile-last { margin-bottom:0px }  } /* Layout w5d83bdc2318cc */ #pgc-w5d83bdc2318cc-0-0 , #pgc-w5d83bdc2318cc-0-1 , #pgc-w5d83bdc2318cc-0-2 { width:33.3333%;width:calc(33.3333% - ( 0.666666666667 * 30px ) ) } #pl-w5d83bdc2318cc #panel-w5d83bdc2318cc-0-0-0 , #pl-w5d83bdc2318cc #panel-w5d83bdc2318cc-0-1-0 , #pl-w5d83bdc2318cc #panel-w5d83bdc2318cc-0-2-0 { margin:0px 0px 0px 0px } #pl-w5d83bdc2318cc #panel-w5d83bdc2318cc-0-0-1 , #pl-w5d83bdc2318cc #panel-w5d83bdc2318cc-0-1-1 , #pl-w5d83bdc2318cc #panel-w5d83bdc2318cc-0-2-1 {  } #pl-w5d83bdc2318cc .so-panel { margin-bottom:30px } #pl-w5d83bdc2318cc .so-panel:last-child { margin-bottom:0px } #pg-w5d83bdc2318cc-0.panel-no-style, #pg-w5d83bdc2318cc-0.panel-has-style > .panel-row-style { -webkit-align-items:center;align-items:center } #pgc-w5d83bdc2318cc-0-0 { align-self:auto } @media (max-width:780px){ #pg-w5d83bdc2318cc-0.panel-no-style, #pg-w5d83bdc2318cc-0.panel-has-style > .panel-row-style { -webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column } #pg-w5d83bdc2318cc-0 > .panel-grid-cell , #pg-w5d83bdc2318cc-0 > .panel-row-style > .panel-grid-cell { width:100%;margin-right:0 } #pgc-w5d83bdc2318cc-0-0 , #pgc-w5d83bdc2318cc-0-1 { margin-bottom:30px } #pl-w5d83bdc2318cc .panel-grid-cell { padding:0 } #pl-w5d83bdc2318cc .panel-grid .panel-grid-cell-empty { display:none } #pl-w5d83bdc2318cc .panel-grid .panel-grid-cell-mobile-last { margin-bottom:0px }  } </style><link rel='stylesheet' id='wpos-owlcarousel-style-css'  href='/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/css/owl.carousel.css?ver=1.13' type='text/css' media='all' />
+<script type='text/javascript' src='/wp-content/plugins/animate-it/assets/js/animo.min.js?ver=1.0.3'></script>
+<script type='text/javascript' src='/wp-content/plugins/animate-it/assets/js/jquery.ba-throttle-debounce.min.js?ver=1.1'></script>
+<script type='text/javascript' src='/wp-content/plugins/animate-it/assets/js/viewportchecker.js?ver=1.4.4'></script>
+<script type='text/javascript' src='/wp-content/plugins/animate-it/assets/js/edsanimate.js?ver=1.4.4'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var edsanimate_options = {"offset":"75","hide_hz_scrollbar":"1","hide_vl_scrollbar":"0"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/animate-it/assets/js/edsanimate.site.js?ver=1.4.5'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.1.4'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var panelsStyles = {"fullContainer":"body"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/siteorigin-panels/js/styling-2107.min.js?ver=2.10.7'></script>
+<script type='text/javascript' src='/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/js/owl-slider/owl.carousel.min.js?ver=1.13'></script>
+<script type='text/javascript' src='/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/js/owl-slider/wpos-owl-slider-public.js?ver=1.13'></script>
+<script type="text/javascript">document.body.className = document.body.className.replace("siteorigin-panels-before-js","");</script><script src="https://wchat.freshchat.com/js/widget.js"></script>
+  <script async>
+    if (!localStorage.getItem("hasura-id")) {
+      window.fcWidget.init({
+        token: "3a3ec830-f702-4f77-a001-b8e939438956",
+        host: "https://wchat.freshchat.com",
+        tags: ["conversation_gifting"],
+      });
+    } else if (localStorage.getItem("hasura-id")) {
+      window.fcWidget.init({
+        token: "3a3ec830-f702-4f77-a001-b8e939438956",
+        host: "https://wchat.freshchat.com",
+        tags: ["conversation_gifting"],
+      });
+      window.fcWidget.user.get(function (resp) {
+        var status = resp && resp.status,
+          data = resp && resp.data;
+        if (status !== 200) {
+          window.fcWidget.user.setProperties({
+            externalId: "",
+            firstName: localStorage.getItem("username"),
+            lastName: "",
+            email: localStorage.getItem("email"),
+            phone: localStorage.getItem("sender_mobile"),
+            phoneCountryCode: "+91"
+          });
+        }
+      });
     }
   </script>
-  <script type='text/javascript' src='/wp-content/plugins/animate-it/assets/js/animo.min.js?ver=1.0.3'></script>
-  <script type='text/javascript'
-    src='/wp-content/plugins/animate-it/assets/js/jquery.ba-throttle-debounce.min.js?ver=1.1'></script>
-  <script type='text/javascript' src='/wp-content/plugins/animate-it/assets/js/viewportchecker.js?ver=1.4.4'></script>
-  <script type='text/javascript' src='/wp-content/plugins/animate-it/assets/js/edsanimate.js?ver=1.4.4'></script>
-  <script type='text/javascript'>
-    /* <![CDATA[ */
-    var edsanimate_options = { "offset": "75", "hide_hz_scrollbar": "1", "hide_vl_scrollbar": "0" };
-/* ]]> */
-  </script>
-  <script type='text/javascript' src='/wp-content/plugins/animate-it/assets/js/edsanimate.site.js?ver=1.4.5'></script>
-  <script type='text/javascript'>
-    /* <![CDATA[ */
-    var wpcf7 = { "apiSettings": { "root": "\/wp-json\/contact-form-7\/v1", "namespace": "contact-form-7\/v1" } };
-/* ]]> */
-  </script>
-  <script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.1.4'></script>
-  <script
-    type="text/javascript">document.body.className = document.body.className.replace("siteorigin-panels-before-js", "");</script>
 </body>
-
 </html>
