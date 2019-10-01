@@ -3611,7 +3611,7 @@ ul#menu-top-bar {
     transform: translateY(0px);
 }
 .site-header .menu .menu-item-617 a::after {
-    background: unset;
+    /* background: unset; */
 }
 /***Menu hover effect end***/
 
