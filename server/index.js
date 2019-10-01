@@ -317,7 +317,7 @@ app.get("/home", (req, res) => {
 
 app.get("/gifting-guide-alcohol", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../wp-static-files/gifting-guide/index.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/gifting-guide-alcohol/index.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -326,7 +326,7 @@ app.get("/gifting-guide-alcohol", (req, res) => {
 
 app.get("/gifting-alcohol-occasions", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../wp-static-files/occasions/index.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/gifting-alcohol-occasions/index.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -335,7 +335,7 @@ app.get("/gifting-alcohol-occasions", (req, res) => {
 
 app.get("/alcohol-gifting-redeem-gift-cards", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../wp-static-files/how-to-redeem/index.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/alcohol-gifting-redeem-gift-cards/index.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -344,7 +344,7 @@ app.get("/alcohol-gifting-redeem-gift-cards", (req, res) => {
 
 app.get("/our-network", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../wp-static-files/our-network/index.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/available-stores/index.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -353,7 +353,7 @@ app.get("/our-network", (req, res) => {
 
 app.get("/alcohol-gifting-support-and-faqs", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../wp-static-files/support-faqs/index.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/alcohol-gifting-support-and-faqs/index.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
