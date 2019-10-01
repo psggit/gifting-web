@@ -2057,8 +2057,8 @@ h1.widget-title{
 
 /*========== Inner Page Section Open=================*/
 .page .inner, .single .inner, .arch-pfolio .inner {
-    border-bottom: 1px solid #c5c5c5;
-    padding-bottom: 50px;
+    /* border-bottom: 1px solid #c5c5c5;
+    padding-bottom: 50px; */
 }
 .single-pfolio article .clearfix{
   border-bottom: none;
