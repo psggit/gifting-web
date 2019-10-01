@@ -1,0 +1,217 @@
+    @font-face {
+      font-family: 'AmaticBold';
+      src: url('/wp-includes/fonts/AmaticSC-Bold.ttf');
+    }
+
+    @font-face {
+      font-family: 'Champagne';
+      src: url('/wp-includes/fonts/Champagne & Limousines Bold.ttf');
+    }
+
+    @font-face {
+      font-family: 'EncodeSansCondensedLight';
+      src: url('/wp-includes/fonts/EncodeSansCondensed-Light.ttf');
+    }
+
+    @font-face {
+      font-family: 'EncodeSansCondensedMedium';
+      src: url('/wp-includes/fonts/EncodeSansCondensed-Medium.ttf');
+    }
+#availableStores .section1 {
+  /* margin: 0 13%; */
+  margin-top: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#availableStores div.title {
+  font-family: AmaticBold;
+  font-size: 65px;
+  text-align: center;
+  margin: 0px;
+  line-height: 60px;
+}
+
+#availableStores .section1 .dropdown {
+  width: 340px;
+  position: relative;
+}
+
+#availableStores .section1 .dropdown img {
+  position: absolute;
+  right: 10px;
+  top: 72.5px;
+  width: 20px;
+  height: 15px;
+}
+
+#availableStores .section1 .dropdown select {
+  width: 100%;
+  height: 40px;
+  margin-top: 60px;
+  padding: 0px 20px;
+  font-size: 15px;
+  font-family: AmaticBold;
+  appearance: none;
+  background-color: #fff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid #999;
+  cursor: pointer;
+}
+
+/* #availableStores select {
+  height: 40px;
+  margin-top: 60px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-family: AmaticBold;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+} */
+
+#availableStores #stores {
+  margin-top: 20px;
+  max-height: 200px;
+  overflow: auto;
+  width: 340px;
+  overflow-x: hidden;
+  border: 1px solid #999;
+  padding: 0 20px;
+}
+
+#availableStores #stores.hide {
+  display: none;
+}
+
+#availableStores #stores.show {
+  display: block;
+}
+
+#availableStores #stores .store {
+  font-family: EncodeSansCondensedMedium;
+  font-size: 20px;
+  /* width: 340px; */
+  padding: 10px 20px;
+}
+
+#availableStores #stores .store:not(:last-child) {
+  border-bottom: 1px solid #999;
+}
+
+#availableStores #stores .store .store-name {
+  font-size: 16px;
+  line-height: 21px;
+  margin: 0px;
+  color: #000;
+  font-family: EncodeSansCondensedMedium;
+}
+
+#availableStores #stores .store .store-address {
+  font-size: 12px;
+  line-height: 15px;
+  margin: 0px;
+  color: #999;
+  font-family: EncodeSansCondensedMedium;
+}
+
+#availableStores .store-map {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+#availableStores .store-map img {
+  width: 675px;
+  height: 610px;
+}
+
+#availableStores .section2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#availableStores .section2 .image {
+  /* margin-right: 40px; */
+}
+
+#availableStores .section2 .image img {
+  width: 244px;
+  height: 406px;
+}
+
+#availableStores .section2 .content p {
+  font-family: AmaticBold;
+  font-size: 50px;
+  padding: 0 20px;
+}
+
+#availableStores .section2 .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 0px;
+  margin: 0;
+}
+
+@media only screen and (max-width: 560px) {
+  #availableStores .section2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #availableStores .section2 .image {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  #availableStores .section2 .image img {
+    width: 299px;
+    height: 497px;
+  }
+
+  #availableStores .section2 .content p {
+    font-family: AmaticBold;
+    font-size: 50px;
+    line-height: 60px;
+    margin: 0px;
+  }
+
+  #availableStores .store-map {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  #availableStores .store-map img {
+    width: 675px;
+    height: 468px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+   #availableStores .store-map img {
+    width: 675px;
+    height: 332px;
+  }
+
+  #availableStores #stores {
+    width: 240px;
+  }
+
+  #availableStores .section1 .dropdown {
+    width: 240px;
+    position: relative;
+  }
+
+  /* #availableStores .section1 .dropdown img {
+    position: absolute;
+    right: 10px;
+    top: 80px;
+  } */
+}

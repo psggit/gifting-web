@@ -1,0 +1,11 @@
+ <svg width="7px" height="4px" viewBox="0 0 7 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+        <g id="V0.41" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+            <g id="05a-Mobile---Product-Listing" transform="translate(-121.000000, -98.000000)" fill="#777777" fillRule="nonzero">
+                <g id="City-+-Search" transform="translate(0.000000, 80.000000)">
+                    <g id="City-Selection" transform="translate(24.000000, 9.000000)">
+                        <path d="M102.098516,10.7299796 L98.5364059,7.83426242 C98.390118,7.71575442 98.2072581,7.86517755 98.2072581,8.10219355 L98.2072581,13.8987804 C98.2072581,14.1357964 98.390118,14.2852196 98.5364059,14.1667116 L102.098516,11.2709944 C102.244804,11.1472823 102.244804,10.8484876 102.098516,10.7299796 Z" id="Right" transform="translate(100.207745, 11.000487) rotate(90.000000) translate(-100.207745, -11.000487) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </svg>

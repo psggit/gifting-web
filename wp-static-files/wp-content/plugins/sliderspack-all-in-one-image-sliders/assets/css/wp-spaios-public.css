@@ -1,0 +1,155 @@
+/************************************************************
+				Box Sizing
+************************************************************/
+.wp-spaios-slider-wrap *{-webkit-box-sizing: border-box; -moz-box-sizing: border-box;box-sizing: border-box;}
+.wp-spaios-slider-wrap{position:relative;}
+/************************************************************
+				Clearfix
+************************************************************/
+.wp-spaios-row-clearfix:before, .wp-spaios-row-clearfix:after{content: "";display: table;}
+.wp-spaios-row-clearfix::after{clear: both;}
+.wp-spaios-row-clearfix{clear: both;}
+.wp-spaios-hidden { visibility: hidden; }
+.wp-spaios-bxslider-container{visibility: hidden; }
+.wp-spaios-swiper-3dcarousel-wrapper, .wp-spaios-swiper-wrapper, .wp-spaios-unslider-container{visibility: hidden; opacity:0; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";  -webkit-transition: opacity 0.5s linear;  transition:opacity 0.5s linear;}
+.wp-spaios-swiper-3dcarousel-wrapper.swiper-container-coverflow,
+.wp-spaios-swiper-wrapper.swiper-container-horizontal,
+.wp-spaios-swiper-wrapper.swiper-container-vertical,
+.wp-spaios-unslider-container.unslider-horizontal,
+.wp-spaios-unslider-container.unslider-vertical,
+.wp-spaios-unslider-container.unslider-fade {visibility: visible !important; opacity:1 !important; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; }
+/************************************************************
+				CSS Overright
+************************************************************/
+.center-img{text-align:center;}
+.wp-spaios-slider-wrap img{display:inline-block !important;  margin:0;    vertical-align:top;}
+.wp-spaios-slider-wrap .bxslider img, 
+.wp-spaios-slider-wrap .flexslider .slides img, 
+.wp-spaios-slider-wrap .owl-carousel .owl-item img, 
+.wp-spaios-slider-wrap .responsive-slider img, 
+.wp-spaios-slider-wrap .photostack img, 
+.wp-spaios-slider-wrap .Wallop img, 
+.wp-spaios-slider-wrap .unslider img {width: auto !important;}
+.wp-spaios-hide{display:none;}
+.wp-spaios-slider-wrap ol.flex-control-nav, .wp-spaios-slider-wrap ul{padding:0px !important; margin:0px !important; list-style:none !important}
+.wp-spaios-slider-wrap ol.flex-control-nav li{margin:5px !important;}
+.wp-spaios-slider-wrap ol.flex-control-nav li a { outline: none; }
+.wp-spaios-slider-wrap .flex-caption { position: relative; width: 100%; padding: 2%;  background: #737373; color: #fff;  text-shadow: none;  font-size: 14px;  line-height: 18px;}
+.wp-spaios-slider-wrap .flex-direction-nav{line-height:normal !important}
+.wp-spaios-slider-wrap .swiper-caption{position:absolute; bottom:0px;z-index:9;}
+.flex-direction-nav .flex-nav-next,
+.flex-direction-nav .flex-nav-prev { outline: none; }
+.photostack figcaption h2{font-weight: normal !important;}
+.wp-spaios-slider-wrap a,
+.wp-spaios-slider-wrap a:hover,
+.wp-spaios-slider-wrap a:focus, 
+.wp-spaios-slider-wrap button, 
+.wp-spaios-slider-wrap button:focus {outline: none !important; opacity: 1;}
+/*************************BX Slider**************************/
+.wp-spaios-bxslider-container {text-align:center;}
+.wp-spaios-slider-wrap img{border-radius:0px !important; -moz-box-shadow: 0 0 0px #ccc !important;  -webkit-box-shadow: 0 0 0px #ccc !important;  box-shadow: 0 0 0px #ccc !important; }
+.wp-spaios-slider-wrap .bx-wrapper{-moz-box-shadow: 0 0 0px #ccc;  -webkit-box-shadow: 0 0 0px #ccc;  box-shadow: 0 0 0px #ccc;  border: 0px solid #fff;  background: transparent;}
+.wp-spaios-bxslider-container { visibility: hidden; }
+/*************************Responsive Slider**************************/
+.wp-spaios-responsive-slider-container .slidesjs-slide{text-align:center; /*position: relative !important;*/ height: 100%;}
+.wp-spaios-responsive-slider-container .wp-spaios-img-wrap {height: 100%;}
+.design-1.wp-spaios-responsive-slider-container .slidejs-caption.wp-spaios-content-wrp,
+.slides-design-1 .slidejs-caption {position: absolute; text-align: center; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); left: 0; right: 0; padding: 15px 40px;}
+.slides-design-1 .slidejs-caption {background:rgba(255,255,255,0.9); padding:30px 40px;}
+.wp-spaios-responsive-slider-container .slidesjs-navigation{position:absolute; top:50%;-webkit-transform: translateY(-50%);transform: translateY(-50%);cursor:pointer; z-index:99; text-indent:-99999px; width:30px;  padding:10px !important; display:inline-block !important; margin:0px !important}
+.wp-spaios-responsive-slider-container .slidesjs-navigation.slidesjs-next{right:0; background:rgba(0,0,0,0.6) url(/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/images/arrow-right.png) center center no-repeat; background-size:15px 26px;}
+.wp-spaios-responsive-slider-container .slidesjs-navigation.slidesjs-previous{left:0; background:rgba(0,0,0,0.6) url(/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/images/arrow-left.png) center center no-repeat; background-size:15px 26px;}
+
+.wp-spaios-responsive-slider-container .slidesjs-navigation.slidesjs-next:hover,
+.wp-spaios-responsive-slider-container .slidesjs-navigation.slidesjs-previous:hover,
+.wp-spaios-responsive-slider-container .slidesjs-navigation.slidesjs-next:focus,
+.wp-spaios-responsive-slider-container .slidesjs-navigation.slidesjs-previous:focus{outline:none; background-color:rgba(0,0,0,1)} 
+.wp-spaios-slider-wrap .slidesjs-stop, .wp-spaios-slider-wrap .slidesjs-play {display:none !important;}
+
+
+/*************************Un Slider**************************/
+.wp-spaios-slider-wrap .unslider-arrow{position:absolute; top:45%;-webkit-transform: translateY(-50%);transform: translateY(-50%);cursor:pointer; z-index:99; text-indent:-99999px; width:30px; height:40px; padding:10px !important; display:inline-block !important; margin:0px !important}
+.wp-spaios-slider-wrap .unslider-arrow.next{right:0; background:rgba(0,0,0,0.6) url(/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/images/arrow-right.png) center center no-repeat; background-size:15px 26px;}
+.wp-spaios-slider-wrap .unslider-arrow.prev{left:0; background:rgba(0,0,0,0.6) url(/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/images/arrow-left.png) center center no-repeat; background-size:15px 26px;}
+.wp-spaios-slider-wrap .unslider-vertical .unslider-wrap.unslider-carousel li { position: relative; }
+.wp-spaios-slider-wrap .unslider-vertical .unslider-wrap.unslider-carousel .flex-caption { position: absolute; bottom: 0; }
+.wp-spaios-slider-wrap .unslider-vertical .unslider-wrap.unslider-carousel .wp-spaios-content-wrp { position: absolute; left: 30px; right: 30px; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); background: rgb(255,255,255,0.70); }
+.wp-spaios-slider-wrap .unslider-vertical .unslider-wrap.unslider-carousel .wp-spaios-img-wrap { height: 100%; }
+.wp-spaios-slider-wrap .unslider-vertical .unslider-wrap.unslider-carousel img { height: 100%; width: 100% !important; object-fit: cover; object-position: center center; }
+
+.wp-spaios-slider-wrap .unslider-wrap li{text-align:center;}
+.wp-spaios-slider-wrap .slidesjs-navigation.slidesjs-next:hover,
+.wp-spaios-slider-wrap .slidesjs-navigation.slidesjs-previous:hover,
+.wp-spaios-slider-wrap .slidesjs-navigation.slidesjs-next:focus,
+.wp-spaios-slider-wrap .slidesjs-navigation.slidesjs-previous:focus{outline:none; background-color:rgba(0,0,0,1)}
+
+/*************************Swiper Slider**************************/
+.wp-spaios-swiper-carousel .swiper-slide{text-align:center;}
+.wp-spaios-swiper-carousel .swiper-slide a { display: inline-block; }
+.wp-spaios-slider-wrap .swiper-container img { width: 100%; object-fit: cover; object-position: center center; }
+.wp-spaios-slider-wrap .swiper-button-next { right: 20px; }
+.wp-spaios-slider-wrap .swiper-button-prev { left: 20px; }
+.wp-spaios-slider-wrap .swiper-container-vertical .flex-caption { position: absolute; bottom: 0; }
+
+/*************************Wallop Slider**************************/
+.wp-spaios-slider-wrap .Wallop-button{position:absolute; top:50%;-webkit-transform: translateY(-50%);transform: translateY(-50%);cursor:pointer; z-index:99; text-indent:-99999px; width:30px; height:40px; padding:10px !important; display:inline-block !important; margin:0px !important}
+.wp-spaios-slider-wrap .Wallop-buttonNext{right:0; background:rgba(0,0,0,0.6) url(/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/images/arrow-right.png) center center no-repeat; background-size:15px 26px;}
+.wp-spaios-slider-wrap .Wallop-buttonPrevious{left:0; background:rgba(0,0,0,0.6) url(/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/images/arrow-left.png) center center no-repeat; background-size:15px 26px;}
+.wp-spaios-slider-wrap .Wallop-item{text-align:center;}
+.wp-spaios-slider-wrap .Wallop-button:hover,
+.wp-spaios-slider-wrap .Wallop-button:focus{outline:none; background-color:rgba(0,0,0,1)}
+.wp-spaios-slider-wrap .Wallop--fold .Wallop-item { display: none; }
+.wp-spaios-slider-wrap .Wallop--fold .Wallop-item.Wallop-item--current { display: block; }
+
+.Wallop-pagination { list-style: none; text-align: center; bottom:-2px; left:0; right:0; }
+.Wallop-pagination .Wallop-dot { position: relative; display: inline-block; width: 10px; height: 10px; margin: 0 4px; background: transparent; border-radius: 5px; overflow: hidden; text-indent: -999em; border: 1px solid #000; cursor: pointer; }
+.Wallop-pagination .Wallop-dot.Wallop-dot--current { background: #000; cursor: default; }
+.swiper-container-horizontal.swiper-container-horizontal > .swiper-pagination-bullets{bottom:0px;}
+
+/*************************Scattered Polaroids Gallery**************************/
+.wp-spaios-pol-gallery-container.photostack figure{ height: auto !important; padding: 10px;}
+.fancybox-container .fancybox-navigation button:hover{ background-color: transparent !important; }
+.wp-spaios-pol-gallery-container.photostack .photostack-current { z-index: 9; }
+
+.wp-spaios-nivoslider-container .nivo-caption{ position: relative; text-align: center; padding: 10px;clear: both;background: #dddd; z-index: 9;}
+.wp-spaios-nivoslider-container.design-1 .nivo-caption { background: #fff; border: 10px solid #ddd; }
+/************************************************************
+		Post Type Common CSS
+************************************************************/
+.wp-spaios-slider-wrap .wp-spaios-owl-slide{ text-align: center;}
+.wp-spaios-slider-wrap .wp-spaios-owl-slide .wp-spaios-content-wrp{ text-align: center; }
+.wp-spaios-slider-wrap .wp-spaios-title {margin-bottom: 10px;}
+.wp-spaios-slider-wrap .wp-spaios-category a, 
+.wp-spaios-slider-wrap .nivo-caption .wp-spaios-category a { font-size: 12px; text-transform: uppercase; padding: 3px 10px; color: #000; line-height: normal; display: inline-block; margin: 0 0 2px 0; text-decoration: none; font-weight: 800; outline: none;}
+.wp-spaios-slider-wrap .wp-spaios-category a:visited, 
+.wp-spaios-slider-wrap .wp-spaios-content-wrp .wp-spaios-category a:hover, 
+.wp-spaios-slider-wrap .wp-spaios-content-wrp .wp-spaios-category a:focus {color: #000; outline: none;}
+.wp-spaios-slider-wrap .nivo-caption .wp-spaios-title a, 
+.wp-spaios-slider-wrap .wp-spaios-title a, 
+.wp-spaios-slider-wrap .nivo-caption .wp-spaios-title a:hover, 
+.wp-spaios-slider-wrap .wp-spaios-content-wrp .wp-spaios-title a:hover, 
+.wp-spaios-slider-wrap .nivo-caption .wp-spaios-title a:focus,  
+.wp-spaios-slider-wrap .wp-spaios-content-wrp .wp-spaios-title a:focus {font-size: 22px; line-height: normal; color: #444; text-decoration: none; font-weight: 600; border: none; outline: none;}
+.wp-spaios-slider-wrap .wp-spaios-content-wrp{padding: 15px; clear: both; line-height: normal; }
+.wp-spaios-slider-wrap .wp-spaios-readmorebtn{-moz-transition: all 0.5s ease-out 0s; transition: all 0.5s ease-out 0s; text-decoration: none; padding: 4px 12px; font-size: 12px; display: inline-block; box-sizing: border-box; line-height: normal; margin: 15px 0px;}
+
+/************************* Nivo Slider Design 4 **************************/
+.nivoSlider .nivo-main-image { float: left; }
+
+.wp-spaios-slider-wrap .wp-spaios-nivoslider-container.nivoSlider a.wp-spaios-readmorebtn {display: inline-block !important;}
+
+/*****************************
+	All Slider General CSS
+******************************/
+.wp-spaios-slider-wrap .wp-spaios-img-wrap { position: relative; overflow: hidden; }
+.wp-spaios-slider-wrap .wp-spaios-content-wrp { position: relative; text-align:center; }
+.wp-spaios-slider-wrap .wp-spaios-content-wrp .wp-spaios-readmorebtn,
+.wp-spaios-slider-wrap .nivo-caption .wp-spaios-readmorebtn { font-size: 14px; border: 2px solid #d7d7d7; color: #000000; }
+.wp-spaios-slider-wrap .fa.fa-angle-right { margin-left: 5px; }
+
+/********* Design 1 ***********/
+.wp-spaios-slider-wrap .design-1 .wp-spaios-content-wrp { background: rgba(255,255,255,0.9); }
+.wp-spaios-slider-wrap .design-1 .wp-spaios-img-wrap .wp-spaios-cat-title { position: absolute; bottom: 5px; left: 5px; right: 5px; background: rgba(255,255,255,0.80); padding: 5px; }
+.wp-spaios-slider-wrap .design-1 .wp-spaios-img-wrap .wp-spaios-cat-title .wp-spaios-category a { padding: 2px 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; }
+.wp-spaios-slider-wrap .design-1 .wp-spaios-content-wrp .wp-spaios-readmorebtn { background: #000000; border: 0; color: #ffffff; }
+.wp-spaios-slider-wrap .design-1 .wp-spaios-img-wrap .wp-spaios-cat-title .wp-spaios-post-title { font-size: 18px; font-weight: 700; color: #444444; }

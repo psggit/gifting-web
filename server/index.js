@@ -62,8 +62,303 @@ app.get("/images/:name", (req, res) => {
   })
 })
 
+app.get("/wp-includes/js/jquery/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-includes/js/jquery/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-includes/css/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-includes/css/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-includes/svg/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-includes/svg/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-includes/images/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-includes/images/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-includes/fonts/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-includes/fonts/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/animate-it/assets/css/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/animate-it/assets/css/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/animate-it/assets/css/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/animate-it/assets/css/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/animate-it/assets/js/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/animate-it/assets/js/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/contact-form-7/includes/css/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/contact-form-7/includes/css/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/post-grid-and-filter-ultimate/assets/js/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/post-grid-and-filter-ultimate/assets/js/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/contact-form-7/includes/js/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/contact-form-7/includes/js/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/post-grid-and-filter-ultimate/assets/css/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/post-grid-and-filter-ultimate/assets/css/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/siteorigin-panels/css/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/siteorigin-panels/css/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/siteorigin-panels/js/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/siteorigin-panels/js/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/shortcodes-ultimate/assets/js/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/shortcodes-ultimate/assets/js/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/shortcodes-ultimate/includes/css/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/shortcodes-ultimate/includes/css/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/css/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/css/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/js/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/js/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/js/owl-slider/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/js/owl-slider/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/plugins/so-widgets-bundle/widgets/button/css/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/plugins/so-widgets-bundle/widgets/button/css/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/themes/hipbar/js/bxslider/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/themes/hipbar/js/bxslider/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/themes/hipbar/js/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/themes/hipbar/js/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/themes/hipbar/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/themes/hipbar/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/themes/hipbar/css/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/themes/hipbar/css/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/themes/hipbar/css/faw/css/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/themes/hipbar/css/faw/css/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/themes/hipbar/css/faw/fonts/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/themes/hipbar/css/faw/fonts/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/uploads/siteorigin-widgets/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/uploads/siteorigin-widgets/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/uploads/2019/07/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/uploads/2019/07/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/wp-content/uploads/2019/08/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/wp-content/uploads/2019/08/${req.params.name}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 // app.use(express.static(path.join(__dirname, "dist")))
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.get("/", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  res.sendFile(path.join(__dirname, `./../wp-static-files/index.html`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/home", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  res.sendFile(path.join(__dirname, `./../wp-static-files/index.html`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/gifting-guide-alcohol", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  res.sendFile(path.join(__dirname, `./../wp-static-files/gifting-guide-alcohol/index.html`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/gifting-alcohol-occasions", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  res.sendFile(path.join(__dirname, `./../wp-static-files/gifting-alcohol-occasions/index.html`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/alcohol-gifting-redeem-gift-cards", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  res.sendFile(path.join(__dirname, `./../wp-static-files/alcohol-gifting-redeem-gift-cards/index.html`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/our-network", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  res.sendFile(path.join(__dirname, `./../wp-static-files/available-stores/index.html`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+app.get("/alcohol-gifting-support-and-faqs", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  res.sendFile(path.join(__dirname, `./../wp-static-files/alcohol-gifting-support-and-faqs/index.html`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 app.get("/privacy", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
@@ -648,7 +943,6 @@ app.get("/*", (req, res) => {
   res.write(headWithNavbar)
   res.end()
 })
-
 
 app.listen(8080, () => {
   console.log("Server is running on port 8080\n")
