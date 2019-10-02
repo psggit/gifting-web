@@ -298,7 +298,7 @@ app.get("/wp-content/uploads/2019/08/:name", (req, res) => {
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get("/", (req, res) => {
-  console.log("home")
+  // console.log("home")
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../wp-static-files/index.html`), (err) => {
     if (err) {
@@ -934,7 +934,7 @@ app.use(express.static(path.join(__dirname, "./../dist")))
 
 // client side app
 app.get("/*", (req, res) => {
-  console.log("no match")
+  // console.log("no match")
   if (!/.*.js/.test(req.url)) {
     res.set("Content-type", "text/html")
     res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
