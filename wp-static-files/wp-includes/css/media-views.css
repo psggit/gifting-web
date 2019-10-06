@@ -244,7 +244,7 @@
 
 /* higher specificity */
 .wp-core-ui .media-modal-icon {
-	background-image: url(http://visva.me/wp-includes/images/uploader-icons.png);
+	background-image: url(/wp-includes/images/uploader-icons.png);
 	background-repeat: no-repeat;
 }
 
@@ -1548,7 +1548,7 @@
  * Spinner
  */
 .media-frame .spinner {
-	background: url(http://visva.me/wp-includes/images/spinner.gif) no-repeat;
+	background: url(/wp-includes/images/spinner.gif) no-repeat;
 	background-size: 20px 20px;
 	float: right;
 	display: inline-block;
@@ -2638,12 +2638,12 @@
   (min-resolution: 120dpi) {
 
 	.wp-core-ui .media-modal-icon {
-		background-image: url(http://visva.me/wp-includes/images/uploader-icons-2x.png);
+		background-image: url(/wp-includes/images/uploader-icons-2x.png);
 		background-size: 134px 15px;
 	}
 
 	.media-frame .spinner {
-		background-image: url(http://visva.me/wp-includes/images/spinner-2x.gif);
+		background-image: url(/wp-includes/images/spinner-2x.gif);
 	}
 }
 
