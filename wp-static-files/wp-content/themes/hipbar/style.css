@@ -3610,7 +3610,9 @@ ul#menu-top-bar {
     -moz-transform: translateY(0px);
     transform: translateY(0px);
 }
-
+.site-header .menu .menu-item-617 a::after {
+    /* background: unset; */
+}
 /***Menu hover effect end***/
 
 /* Smartphones (portrait and landscape) ----------- */
