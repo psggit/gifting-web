@@ -30,6 +30,12 @@ class FavDrink extends React.Component {
     }
   }
 
+  handleConnectionChange(e) {
+    if (e.type === "offline") {
+      window.addEventListener('online', () => { location.reload() });
+    }
+  }
+
   getGenreIdByName(genres, name) {
     return genres.findIndex(genre => genre.short_name === name)
   }
@@ -49,6 +55,7 @@ class FavDrink extends React.Component {
   }
 
   componentDidMount() {
+    window.addEventListener('offline', this.handleConnectionChange);
     document.addEventListener("keydown", this.handleEnterPress)
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info"))
     if (receiverInfo) {

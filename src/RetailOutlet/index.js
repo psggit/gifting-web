@@ -30,10 +30,13 @@ class RetailOutlet extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchAvailableHipbarDelivery()
-    this.setState({
-      selectedCityId: location.search.split("=")[1]
-    })
+    if(location.search.length) {
+      this.setState({
+        selectedCityId: location.search.split("=")[1]
+      }, () => this.fetchAvailableHipbarDelivery())
+    } else {
+      this.fetchAvailableHipbarDelivery()
+    }
   }
 
   fetchAvailableHipbarDelivery() {
@@ -52,7 +55,7 @@ class RetailOutlet extends React.Component {
   }
 
   findRetailer(cityId) {
-    //console.log("city details", cityId)
+    console.log("city details", cityId)
     const payload = {
       city_id: parseInt(cityId),
       limit: 1000,
