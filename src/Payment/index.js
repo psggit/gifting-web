@@ -343,14 +343,17 @@ class Payment extends React.Component {
   }
 
   handleCardnameChange(e) {
-    //this.setState({ ccname: e.target.value })
-    this.setState({
-      ccname: e.target.value,
-      ccNameErr: {
-        status: false,
-        value: ""
-      }
-    })
+    console.log("key", e.which, e.keyCode)
+    const regex = /^[a-zA-Z]*$/
+    if (regex.test(e.target.value)) {
+      this.setState({
+        ccname: e.target.value,
+        ccNameErr: {
+          status: false,
+          value: ""
+        }
+      })
+    }
   }
 
   createTransaction(amount, giftMessage, receiverNumber, senderName, receiverName, CB) {
@@ -491,6 +494,14 @@ class Payment extends React.Component {
     location.href = "/personalise"
   }
 
+  // handleKeyPress(e) {
+  //   if ((e.which >= 65 && e.which <= 90) || e.which == 8) {
+  //     return true
+  //   } else {
+  //     return false
+  //   }
+  // }
+
   render() {
     return (
       <div>
@@ -602,7 +613,12 @@ class Payment extends React.Component {
 
                               <div className="form-group">
                                 <label className="os">Name on card</label>
-                                <input value={this.state.ccname} onBlur={(e) => { this.setState({ ccname: this.state.ccname.trim() }) }} onChange={this.handleCardnameChange} type="text" />
+                                <input 
+                                value={this.state.ccname} 
+                                onBlur={(e) => { this.setState({ ccname: this.state.ccname.trim() }) }} 
+                                onChange={this.handleCardnameChange} 
+                                type="text"
+                                />
                                 {
                                   this.state.ccNameErr.status &&
                                   <p className="error-message os s9">{this.state.ccNameErr.value}</p>
