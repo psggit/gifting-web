@@ -1,25 +1,26 @@
-    @font-face {
-      font-family: 'AmaticBold';
-      src: url('/wp-includes/fonts/AmaticSC-Bold.ttf');
-    }
+@font-face {
+  font-family: 'AmaticBold';
+  src: url('/wp-includes/fonts/AmaticSC-Bold.ttf');
+}
 
-    @font-face {
-      font-family: 'Champagne';
-      src: url('/wp-includes/fonts/Champagne & Limousines Bold.ttf');
-    }
+@font-face {
+  font-family: 'Champagne';
+  src: url('/wp-includes/fonts/Champagne & Limousines Bold.ttf');
+}
 
-    @font-face {
-      font-family: 'EncodeSansCondensedLight';
-      src: url('/wp-includes/fonts/EncodeSansCondensed-Light.ttf');
-    }
+@font-face {
+  font-family: 'EncodeSansCondensedLight';
+  src: url('/wp-includes/fonts/EncodeSansCondensed-Light.ttf');
+}
 
-    @font-face {
-      font-family: 'EncodeSansCondensedMedium';
-      src: url('/wp-includes/fonts/EncodeSansCondensed-Medium.ttf');
-    }
+@font-face {
+  font-family: 'EncodeSansCondensedMedium';
+  src: url('/wp-includes/fonts/EncodeSansCondensed-Medium.ttf');
+}
+
 #availableStores .section1 {
   /* margin: 0 13%; */
-  margin-top: 5%;
+  margin-top: 10%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -161,12 +162,36 @@
   line-height: 0px;
   margin: 0;
 }
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  #availableStores div.title {
+    font-size: 47px;
+    line-height: 50px;
+  }
+
+  #availableStores .section1 .dropdown {
+    width: 280px;
+  }
+
+  #availableStores .section2 .content p {
+    font-size: 45px;
+    line-height: 50px;
+    padding: 0px;
+  }
+
+  .site-content {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
 @media only screen and (max-width: 600px) {
- #availableStores .section2 .content p {
+ /* #availableStores .section2 .content p {
    font-size: 30px;
    line-height: 40px;
- }
+ } */
 }
+
 @media only screen and (max-width: 560px) {
   #availableStores .section2 {
     display: flex;
@@ -176,20 +201,21 @@
 
   #availableStores .section2 .image {
     margin-bottom: 30px;
+    margin-top: 30px;
     text-align: center;
   }
 
   #availableStores .section2 .image img {
-    width: 299px;
-    height: 497px;
+    width: 250px;
+    height: 357px;
   }
 
-  #availableStores .section2 .content p {
+  /* #availableStores .section2 .content p {
     font-family: AmaticBold;
     font-size: 50px;
     line-height: 60px;
     margin: 0px;
-  }
+  } */
 
   #availableStores .store-map {
     margin-top: 20px;
