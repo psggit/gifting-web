@@ -791,23 +791,24 @@
           return response.json()
         })
         .then((stores) => {
-          console.log("data stores", stores)
-          const storeList = document.getElementById("stores")
-          storeList.innerHTML = ""
-          storeList.className = "show"
-          for (var i = 0; i < stores.data.length; i++) {
-            var store = document.createElement("div")
-            store.className = "store"
-            var storeName = document.createElement("p")
-            storeName.className = "store-name"
-            var storeAddress = document.createElement("p")
-            storeAddress.className = "store-address"
-            storeName.innerHTML = stores.data[i].retailer_name
-            storeAddress.innerHTML = stores.data[i].retailer_address
-            store.appendChild(storeName)
-            store.appendChild(storeAddress)
-            storeList.appendChild(store)
-          }
+         if(stores.data.length > 0) {
+            const storeList = document.getElementById("stores")
+            storeList.innerHTML = ""
+            storeList.className = "show"
+            for (var i = 0; i < stores.data.length; i++) {
+              var store = document.createElement("div")
+              store.className = "store"
+              var storeName = document.createElement("p")
+              storeName.className = "store-name"
+              var storeAddress = document.createElement("p")
+              storeAddress.className = "store-address"
+              storeName.innerHTML = stores.data[i].retailer_name
+              storeAddress.innerHTML = stores.data[i].retailer_address
+              store.appendChild(storeName)
+              store.appendChild(storeAddress)
+              storeList.appendChild(store)
+            }
+         }
         })
         .catch((error) => {
           console.log("Error in fetching all stores", error)
