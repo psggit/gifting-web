@@ -66,6 +66,10 @@ class Payment extends React.Component {
       savedccvvErr: {
         status: false,
         value: ""
+      },
+      netbankingErr: {
+        status: false,
+        value: "'"
       }
       // username: props.username ? props.username : "",
       // isLoggedIn: props.isLoggedIn ? props.isLoggedIn : false
@@ -166,13 +170,14 @@ class Payment extends React.Component {
   }
 
   handleSelectChange(e) {
-    this.setState({ isPopularSelected: false, noBankSelected: false, bankcode: e.target.value })
+    this.setState({ isPopularSelected: false, noBankSelected: false, bankcode: e.target.value, netbankingErr: {value: "", status: false} })
     Array.prototype.slice.call(this.radios.children).forEach(item => {
       item.childNodes[0].checked = false
     })
   }
 
   handleRadioChange(value) {
+    this.setState({ netbankingErr: { value: "", status: false } })
     if (window.gtag) {
       gtag("event", "selected_bank_nb", {
         "event_label": JSON.stringify({
@@ -180,7 +185,7 @@ class Payment extends React.Component {
         })
       })
     }
-    this.setState({ isPopularSelected: true, noBankSelected: false, bankcode: value })
+    this.setState({ isPopularSelected: true, noBankSelected: false, bankcode: value})
   }
 
   isNormalCardDetailsValid() {
@@ -194,7 +199,7 @@ class Payment extends React.Component {
     }
     const re = /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/
 
-    if (!re.test(ccexp)) {
+    if (!re.test(ccexp) || ccexp.split("/").pop() < new Date().getFullYear()) {
       ccexpErr.status = true
       ccexpErr.value = "Invalid expiry date"
       this.setState({ ccexpErr })
@@ -282,6 +287,10 @@ class Payment extends React.Component {
           this.setState({ selectedPaymentMethod: "net_banking" }, () => {
             this.submit.click()
           })
+        })
+      } else {
+        this.setState({
+          netbankingErr: {status: true, value: "Select a bank"}
         })
       }
     } else {
@@ -686,7 +695,10 @@ class Payment extends React.Component {
                                       </select>
                                       <Icon name="caret" />
                                     </div>
-
+                                    {
+                                      this.state.netbankingErr.status &&
+                                      <p className="error-message os s9">{this.state.netbankingErr.value}</p>
+                                    }
                                   </div>
                                 </div>
                               </div>
