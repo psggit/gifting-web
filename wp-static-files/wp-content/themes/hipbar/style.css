@@ -1898,7 +1898,7 @@ body{
 	color:#3498DB;
 }
 .footer-top{
-    padding:50px 0px;
+    padding:50px 10px !important;
     text-align:center;
 }
 #menu-footer-menu {
@@ -2023,7 +2023,7 @@ h1.widget-title{
     color:#919191
 }
 .footer-bottom {
-    padding: 0px 0px 0px;
+    padding: 0px 10px 0px;
     background: #000000;
     text-align: center;
 }
@@ -3610,9 +3610,7 @@ ul#menu-top-bar {
     -moz-transform: translateY(0px);
     transform: translateY(0px);
 }
-.site-header .menu .menu-item-617 a::after {
-    /* background: unset; */
-}
+
 /***Menu hover effect end***/
 
 /* Smartphones (portrait and landscape) ----------- */
@@ -3772,6 +3770,89 @@ div#togglemenu {
     padding-top: 0px;
 	position: sticky;
     top: 0;
+}
+}
+
+@media only screen and (min-device-width : 481px) and (max-device-width : 767px) {
+h2 {
+    font-size: 40px;
+    line-height: 55px;
+}
+.cus-mobile-view {
+    display: block !important;
+}
+.cus-desktop-view {
+    display: none !important;
+}
+.entry-content {
+    padding: 0 20px;
+}
+div#menu {
+    display: none !important;
+}
+div#smallscreentoggler {
+    display: block !important;
+}
+div#smallscreentoggler {
+    top: 60px;
+    right: 10px;
+	background: #fff !important;
+	color: #000 !important;
+	z-index: 99999999 !important;
+    position: sticky !important;
+}
+div#smallscreentoggler:hover {
+    background: #fff !important;
+}
+div#togglemenu {
+    position: fixed;
+    top: 135px !important;
+    right: 18px !important;
+    width: 200px !important;
+    box-shadow: 0px 0px 15px rgba(174, 174, 174, .8) !important;
+    border-radius: 10px;
+	display: none;
+	height: auto;
+}
+.sidetogglemenu a {
+    border-bottom: none !important;
+    padding: 12px 0 !important;
+}
+.sidetogglemenu a:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+.sidetogglemenu ul ul {
+    border-left: unset !important;
+    width: 100%;
+    box-shadow: unset !important;
+}
+.site-branding.pull-left {
+    width: 25%;
+}
+.site-header {
+    padding-top: 0px;
+	position: sticky;
+    top: 0;
+}
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+.footer-top {
+    padding: 50px 10px;
+}
+.footer-bottom {
+    padding: 30px 10px 0px;
+}
+.cus-mobile-view {
+    display: block !important;
+}
+.cus-desktop-view {
+    display: none !important;
+}
+.entry-content {
+    padding: 0 20px;
 }
 }
 
