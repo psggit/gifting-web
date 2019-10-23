@@ -72,7 +72,7 @@ export default function SignIn(data) {
 
     countdown() {
       let timeoutHandle
-      let seconds = 30
+      let seconds = 60
       let self = this
       function tick() {
         let counter = document.getElementById("timer")

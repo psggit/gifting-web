@@ -157,7 +157,7 @@ export default function SignUp(data) {
 
     countdown() {
       // let timeoutHandle;
-      let seconds = 30
+      let seconds = 60
       let self = this
       function tick() {
         var counter = document.getElementById("timer")
