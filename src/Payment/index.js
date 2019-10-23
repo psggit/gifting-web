@@ -601,6 +601,7 @@ class Payment extends React.Component {
                                   <InputMask
                                     value={this.state.ccexpyr}
                                     mask="99 / 9999"
+                                    placeholder="MM / YYYY"
                                     maskChar={null}
                                     onChange={this.handleCardExpiryChange}
                                   />
