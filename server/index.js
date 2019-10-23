@@ -52,7 +52,7 @@ app.use(helmet({
 // ENV variables
 // const PROD_API_BASE = process.env.PROD_API_BASE
 // const BASE_URL = "amebae21.hasura-app.io";
-const BASE_URL = process.env.BASE_URL || "basketball38.hasura-app.io"
+const BASE_URL = process.env.BASE_URL || "hipbar-dev.com"
 
 app.get("/images/:name", (req, res) => {
   res.sendFile(path.join(__dirname, `./../images/${req.params.name}`), (err) => {
