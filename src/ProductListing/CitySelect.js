@@ -32,8 +32,8 @@ class CitySelect extends React.Component {
   componentDidMount() {
     fetchCities()
       .then(cities => {
-        this.setState({ cities: this.getSortedCities(cities) })
-
+        // this.setState({ cities: this.getSortedCities(cities) })
+        this.setState({ cities })
         console.log(this.props.activeCity)
         const cityIdx = this.getCityIndexByName(cities, this.props.activeCity)
         const city = {
