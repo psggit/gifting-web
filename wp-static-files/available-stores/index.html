@@ -6,8 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="profile" href="http://gmpg.org/xfn/11">
   <link rel="pingback" href="/xmlrpc.php">
-  <title>HipBar &#8211; Gifting</title>
-  <meta name='robots' content='noindex,follow' />
+  <title>HipBar Network - Our Cities for Gifting Drinks!</title>
+  <meta name="keywords"
+    content="Gift alcohol in India, Alcohol gifts online, Hipbar, Chennai, Coimbatore, Erode, Kolkata, Madurai, Mahe, Nilgiris, Puducherry, Salem, Tiruppur, Trichy, Vijayawada">
+  <meta name="description"
+    content="We know you’re excited to gift a drink & say cheers! So, check out our network and gift a drink now!">
+  <meta name="robots" content="index,follow">
+  <meta name="googlebot" content="index,follow">
   <link rel='dns-prefetch' href='//fonts.googleapis.com' />
   <link rel='dns-prefetch' href='//s.w.org' />
   <link rel="stylesheet" type="text/css" href="/wp-includes/css/available-stores.css" />
@@ -770,12 +775,16 @@
       const storeList = document.getElementById("stores")
       storeList.className = "hide"
       var selectedCityId = document.getElementById("cityList").value;
-      console.log("selected city id", selectedCityId)
+      history.pushState(null, "", `?cityId=${selectedCityId}`)
       const payload = {
         city_id: parseInt(selectedCityId),
         limit: 1000,
         offset: 0
       }
+      fetchRetailers(payload)
+    }
+
+    function fetchRetailers(payload) {
       const fetchOptions = {
         method: 'post',
         headers: {
@@ -791,7 +800,7 @@
           return response.json()
         })
         .then((stores) => {
-         if(stores.data.length > 0) {
+          if (stores.data.length > 0) {
             const storeList = document.getElementById("stores")
             storeList.innerHTML = ""
             storeList.className = "show"
@@ -808,7 +817,7 @@
               store.appendChild(storeAddress)
               storeList.appendChild(store)
             }
-         }
+          }
         })
         .catch((error) => {
           console.log("Error in fetching all stores", error)
@@ -836,13 +845,21 @@
           return response.json()
         })
         .then((data) => {
-          console.log("data", data)
           const selectList = document.getElementById("cityList")
           for (var i = 0; i < data.availableCities.length; i++) {
             var option = document.createElement("option");
             option.value = data.availableCities[i].id;
             option.text = data.availableCities[i].name;
             selectList.appendChild(option);
+          }
+          if (location.search.length > 0) {
+            const fetchRetailersPayload = {
+              city_id: parseInt(location.search.split("=").pop()),
+              limit: 1000,
+              offset: 0
+            }
+            selectList.value = (location.search.split("=").pop())
+            fetchRetailers(fetchRetailersPayload)
           }
         })
         .catch((error) => {
