@@ -316,7 +316,7 @@ app.get("/gifting-drinks", (req, res) => {
   })
 })
 
-app.get("gifting-guide-for-drinks", (req, res) => {
+app.get("/gifting-guide-for-drinks", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../wp-static-files/gifting-guide-for-drinks/index.html`), (err) => {
     if (err) {
@@ -334,7 +334,7 @@ app.get("/gifting-drinks-for-occasions", (req, res) => {
   })
 })
 
-app.get("/alcohol-gifting-redeem-gift-cards", (req, res) => {
+app.get("/gifting-drinks-redeem-gift-cards", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../wp-static-files/gifting-drinks-redeem-gift-cards/index.html`), (err) => {
     if (err) {
