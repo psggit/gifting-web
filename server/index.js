@@ -307,7 +307,7 @@ app.get("/", (req, res) => {
   })
 })
 
-app.get("/home", (req, res) => {
+app.get("/gifting-drinks", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../wp-static-files/index.html`), (err) => {
     if (err) {
@@ -316,18 +316,18 @@ app.get("/home", (req, res) => {
   })
 })
 
-app.get("/gifting-guide-alcohol", (req, res) => {
+app.get("gifting-guide-for-drinks", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../wp-static-files/gifting-guide-alcohol/index.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/gifting-guide-for-drinks/index.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
   })
 })
 
-app.get("/gifting-alcohol-occasions", (req, res) => {
+app.get("/gifting-drinks-for-occasions", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../wp-static-files/gifting-alcohol-occasions/index.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/gifting-drinks-for-occasions/index.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
@@ -336,14 +336,14 @@ app.get("/gifting-alcohol-occasions", (req, res) => {
 
 app.get("/alcohol-gifting-redeem-gift-cards", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../wp-static-files/alcohol-gifting-redeem-gift-cards/index.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/gifting-drinks-redeem-gift-cards/index.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
   })
 })
 
-app.get("/our-network", (req, res) => {
+app.get("/our-network-for-gifting-drinks", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../wp-static-files/available-stores/index.html`), (err) => {
     if (err) {
@@ -352,9 +352,9 @@ app.get("/our-network", (req, res) => {
   })
 })
 
-app.get("/alcohol-gifting-support-and-faqs", (req, res) => {
+app.get("/gifting-drinks-support-and-faqs", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, `./../wp-static-files/alcohol-gifting-support-and-faqs/index.html`), (err) => {
+  res.sendFile(path.join(__dirname, `./../wp-static-files/gifting-drinks-support-and-faqs/index.html`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
