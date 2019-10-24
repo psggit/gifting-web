@@ -316,6 +316,15 @@ app.get("/gifting-drinks", (req, res) => {
   })
 })
 
+app.get("/our-network", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  res.sendFile(path.join(__dirname, `./../wp-static-files/available-stores/index.html`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 app.get("/gifting-guide-for-drinks", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../wp-static-files/gifting-guide-for-drinks/index.html`), (err) => {
