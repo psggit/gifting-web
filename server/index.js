@@ -779,8 +779,9 @@ app.get("/retail-outlet", (req, res) => {
 })
 
 app.get('*.pdf', (req, res) => {
-  console.log("dirname", __dirname, req.url)
-  res.sendFile(path.join(__dirname, './../pdf/${req.url}'), (err) => {
+  // const file = path.join(__dirname, `./../pdf/${req.url}`)
+  //res.download(file)
+  res.sendFile(path.join(__dirname, `./../pdf/${req.url}`), (err) => {
     if (err) {
       res.status(500).send(err)
     }
