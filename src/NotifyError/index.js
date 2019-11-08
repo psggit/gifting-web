@@ -1,37 +1,35 @@
-import React from 'react'
-import ModalHeader from 'Components/modal-box/ModalHeader'
-import ModalFooter from 'Components/modal-box/ModalFooter'
-import ModalBody from 'Components/modal-box/ModalBody'
-import ModalBox from 'Components/modal-box'
+import React from "react"
+import ModalHeader from "Components/modal-box2/ModalHeader"
+import ModalFooter from "Components/modal-box2/ModalFooter"
+import ModalBody from "Components/modal-box2/ModalBody"
+import ModalBox from "Components/modal-box2"
+import { unmountModal } from "Components/modal-box2/utils"
 import Icon from "Components/icon"
-import { unMountModal } from 'Components/modal-box/utils'
 import Button from "Components/button"
+import "./notification-modal.scss"
 
-export default function NotifyError(data) {
-  return class NotifyError extends React.Component {
-
-    constructor(props) {
-      super(props)
-    }
-
+export default function NotificationModal() {
+  return class NotificationModal extends React.Component {
     render() {
       return (
-        <ModalBox>
-          <ModalHeader>  
-            <Icon name="errorIcon" />
-          </ModalHeader>
-          <ModalBody>
-            <p className="os s4">
-              Something went wrong! Please try again
-            </p>
-          </ModalBody>
-          <ModalFooter>
-            <Button primary onClick={unMountModal}>RETRY</Button>
-          </ModalFooter>
-        </ModalBox>
+        <div id="notification--modal">
+          <ModalBox>
+            {/* <ModalHeader>
+              <span onClick={unmountModal}><Icon name="cross" /></span>
+            </ModalHeader> */}
+            <ModalBody width="350px">
+              <Icon name="info" />
+              <p className="os s4">Something went wrong!</p>
+              <p className="os s4">Please try again later</p>
+            </ModalBody>
+            <ModalFooter>
+              <div className="submit" onClick={unmountModal}>
+                <Button primary>OK</Button>
+              </div>
+            </ModalFooter>
+          </ModalBox>
+        </div>
       )
     }
   }
 }
-
-//export default NewAddress

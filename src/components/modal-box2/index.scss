@@ -42,3 +42,15 @@
     }
   }
 }
+
+@media only screen and (min-width: 320px) and (max-width: 560px) {
+  #modal-box2 {
+    .modal-overlay {
+        .modal-container {
+          .modal-body {
+            width: 250px !important;
+          }
+        }
+    }
+  }
+}

@@ -3,6 +3,7 @@ import Button from "Components/button"
 import "./sass/sku-item.scss"
 import { mountModal } from "Components/modal-box/utils"
 import AddedToBasketModal from "./AddedToBasketModal"
+import NotificationModal from "./../NotifyError"
 import { fetchGiftCardSummary } from "./../api"
 
 // const volumes = [
@@ -77,7 +78,11 @@ class SkuItem extends React.Component {
         this.updateLocalBasket(updatedBasket)
         const total = giftSummary.format_balance.slice(1).split(" ").join("")
         localStorage.setItem("amount", total)
+        //mountModal(NotificationModal())
         CB()
+      })
+      .catch((err) => {
+        mountModal(NotificationModal())
       })
   }
 
