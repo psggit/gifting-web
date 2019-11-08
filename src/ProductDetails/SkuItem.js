@@ -82,6 +82,7 @@ class SkuItem extends React.Component {
         CB()
       })
       .catch((err) => {
+        this.setState({ addingToBasket: false })
         mountModal(NotificationModal())
       })
   }
