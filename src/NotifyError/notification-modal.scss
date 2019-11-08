@@ -26,8 +26,6 @@
     padding: 40px 20px;
     p {
       line-height: 30px;
-    }
-    p.note {
       color: #E74C3C;
     }
     @include themify($themes) {

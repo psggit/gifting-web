@@ -19,7 +19,7 @@ export default function NotificationModal() {
             </ModalHeader> */}
             <ModalBody width="350px">
               <Icon name="info" />
-              <p className="note os s4">Something went wrong!</p>
+              <p className="os s4">Something went wrong!</p>
               <p className="os s4">Please try again later</p>
             </ModalBody>
             <ModalFooter>

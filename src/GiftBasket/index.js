@@ -346,7 +346,7 @@ class GiftBasket extends React.Component {
               )
               : (
                 <div className="paper no-basket">
-                  <p className="os s4">Gift basket is empty</p>
+                  <p className="os s4">Gift Basket is empty</p>
                   <div style={{ marginTop: "20px" }}>
                     <NavLink history={this.props.history} href={this.state.viewProductsUrl}><Button primary>Add products</Button></NavLink>
                   </div>
