@@ -27,6 +27,9 @@
     p {
       line-height: 30px;
     }
+    p.note {
+      color: #E74C3C;
+    }
     @include themify($themes) {
       svg {
         width: 52px;
