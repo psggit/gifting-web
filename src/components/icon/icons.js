@@ -237,6 +237,13 @@ export default {
       </g>
     </svg>
   ),
+  info: (
+    <svg width="64" height="64" viewBox="0 0 18 18" fill="none" >
+      <path fillRule="evenodd" clipRule="evenodd" d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="#E74C3C" strokeWidth="0.8" />
+      <path d="M9.00002 13.48V8.67999" stroke="#E74C3C" strokeLinecap="round" />
+      <path fillRule="evenodd" clipRule="evenodd" d="M8.99998 5.79997C9.53017 5.79997 9.95998 5.37017 9.95998 4.83997C9.95998 4.30978 9.53017 3.87997 8.99998 3.87997C8.46978 3.87997 8.03998 4.30978 8.03998 4.83997C8.03998 5.37017 8.46978 5.79997 8.99998 5.79997Z" fill="#E74C3C" />
+    </svg>
+  ),
   rightArrowWhite: (
     <svg width="18px" height="19px" viewBox="0 0 18 14" version="1.1">
       <g id="V0.3---With-Mobile-Version" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
