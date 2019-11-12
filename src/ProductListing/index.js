@@ -30,7 +30,7 @@ class ProductListing extends React.Component {
       intersectionTarget: null,
       isMobile: props.context ? props.context.isMobile : props.isMobile,
       basket: null,
-      activeCity: props.activeCity,
+      activeCity: props.activeCity || parseInt(this.props.match.params.citySlug),
       activeState: props.activeState,
       activeGenre: props.activeGenre
     }
@@ -64,7 +64,7 @@ class ProductListing extends React.Component {
     const activeState = window.__active_state__ || parseInt(this.props.match.params.stateSlug)
     const activeGenre = window.__active_genre__ || parseInt(this.props.match.params.genreSlug)
     const activeCity = window.__active_city__ || parseInt(this.props.match.params.citySlug)
-
+    console.log("city", activeCity)
     const isMobile = window.__isMobile__ || this.props.context.isMobile
     delete window.__isMobile__
     delete window.__active_state__
@@ -299,6 +299,7 @@ class ProductListing extends React.Component {
 
   render() {
     const showMobileBasket = this.state.isMobile && this.state.basket
+    console.log("state in product listing", this.state)
     return (
       <div id="BrandsListing">
         <div className="container">
