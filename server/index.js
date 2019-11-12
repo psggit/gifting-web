@@ -862,7 +862,7 @@ app.get("/sitemap.xml", (req, res) => {
 //   })
 // })
 
-app.get("/brand/:stateSlug/:genreSlug/:brandSlug", (req, res) => {
+app.get("/brand/:stateSlug/:genreSlug/:citySlug/:brandSlug", (req, res) => {
   res.set("Content-type", "text/html")
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   const state = req.params.stateSlug

@@ -17,11 +17,13 @@ class BrandsList extends React.Component {
     if (e.target.nodeName === "A") {
       e.preventDefault()
       const path = "/" + e.target.href.split("/").slice(3).join("/")
+      console.log("path", path, e.target.href)
       this.props.history.push(path)
     }
   }
 
   render() {
+    console.log("active city", this.props.activeCity)
     return (
       <div onClick={this.handleBrandClick} className="brands--list">
         {/* <BrandsFilter /> */}
@@ -31,6 +33,7 @@ class BrandsList extends React.Component {
               {...this.props}
               activeState={this.props.activeState}
               activeGenre={this.props.activeGenre}
+              activeCity={this.props.activeCity}
               id={item.brand_id}
               key={item.brand_id}
               thumbnail={item.logo_low_res_image || item.logo_high_res_image || ""}
