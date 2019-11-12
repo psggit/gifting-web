@@ -867,6 +867,7 @@ app.get("/brand/:stateSlug/:genreSlug/:citySlug/:brandSlug", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   const state = req.params.stateSlug
   const genre = req.params.genreSlug
+  const city = req.params.citySlug
   // const brand = urlencode(req.params.brandSlug)
   const brand = req.params.brandSlug
 
@@ -891,7 +892,7 @@ app.get("/brand/:stateSlug/:genreSlug/:citySlug/:brandSlug", (req, res) => {
       .join(`
       <script>
         window.__isMobile__ = ${isMobile(req)}
-        window.__active_city__ = ${state}
+        window.__active_city__ = ${city}
         window.__active_genre__ = ${genre}
         window.BRAND_STATE = ${JSON.stringify(body.brand_details)}
       </script>
