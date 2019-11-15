@@ -152,7 +152,7 @@ class FavDrink extends React.Component {
                 }
 
                 <div style={{ marginTop: "20px" }}>
-                  <a onClick={this.handleClick} href={`/brands/${this.state.state_id}/${this.state.active}/${this.state.city_id}`}>
+                  <a onClick={this.handleClick} href={`${this.state.active !== -1 ? `/brands/${this.state.state_id}/${this.state.active}/${this.state.city_id}` : 'javascript:void(0)'}`}>
                     <Button
                       disabled={this.state.active === -1}
                       primary
