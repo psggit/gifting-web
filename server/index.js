@@ -893,6 +893,7 @@ app.get("/brand/:stateSlug/:genreSlug/:citySlug/:brandSlug", (req, res) => {
       <script>
         window.__isMobile__ = ${isMobile(req)}
         window.__active_city__ = ${city}
+        window.__active_state__ = ${state}
         window.__active_genre__ = ${genre}
         window.BRAND_STATE = ${JSON.stringify(body.brand_details)}
       </script>
