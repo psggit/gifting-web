@@ -78,7 +78,7 @@ class FavDrink extends React.Component {
 
   handleClick(e) {
     e.preventDefault()
-    if (!this.state.active) {
+    if (this.state.active === -1) {
       return false
     } else {
       const path = "/" + e.currentTarget.href.split("/").slice(3).join("/")
