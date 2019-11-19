@@ -60,7 +60,6 @@ app.get("/images/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-includes/js/jquery/:name", (req, res) => {
@@ -69,7 +68,6 @@ app.get("/wp-includes/js/jquery/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-includes/css/:name", (req, res) => {
@@ -78,7 +76,6 @@ app.get("/wp-includes/css/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-includes/svg/:name", (req, res) => {
@@ -87,7 +84,6 @@ app.get("/wp-includes/svg/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-includes/images/:name", (req, res) => {
@@ -96,7 +92,6 @@ app.get("/wp-includes/images/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-includes/fonts/:name", (req, res) => {
@@ -105,7 +100,6 @@ app.get("/wp-includes/fonts/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/animate-it/assets/css/:name", (req, res) => {
@@ -114,7 +108,6 @@ app.get("/wp-content/plugins/animate-it/assets/css/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/animate-it/assets/css/:name", (req, res) => {
@@ -123,7 +116,6 @@ app.get("/wp-content/plugins/animate-it/assets/css/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/animate-it/assets/js/:name", (req, res) => {
@@ -132,7 +124,6 @@ app.get("/wp-content/plugins/animate-it/assets/js/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/contact-form-7/includes/css/:name", (req, res) => {
@@ -141,7 +132,6 @@ app.get("/wp-content/plugins/contact-form-7/includes/css/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/post-grid-and-filter-ultimate/assets/js/:name", (req, res) => {
@@ -150,7 +140,6 @@ app.get("/wp-content/plugins/post-grid-and-filter-ultimate/assets/js/:name", (re
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/contact-form-7/includes/js/:name", (req, res) => {
@@ -159,7 +148,6 @@ app.get("/wp-content/plugins/contact-form-7/includes/js/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/post-grid-and-filter-ultimate/assets/css/:name", (req, res) => {
@@ -168,7 +156,6 @@ app.get("/wp-content/plugins/post-grid-and-filter-ultimate/assets/css/:name", (r
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/siteorigin-panels/css/:name", (req, res) => {
@@ -177,7 +164,6 @@ app.get("/wp-content/plugins/siteorigin-panels/css/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/siteorigin-panels/js/:name", (req, res) => {
@@ -186,7 +172,6 @@ app.get("/wp-content/plugins/siteorigin-panels/js/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/shortcodes-ultimate/assets/js/:name", (req, res) => {
@@ -195,7 +180,6 @@ app.get("/wp-content/plugins/shortcodes-ultimate/assets/js/:name", (req, res) =>
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/shortcodes-ultimate/includes/css/:name", (req, res) => {
@@ -204,7 +188,6 @@ app.get("/wp-content/plugins/shortcodes-ultimate/includes/css/:name", (req, res)
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/css/:name", (req, res) => {
@@ -213,7 +196,6 @@ app.get("/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/css/:na
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/js/:name", (req, res) => {
@@ -222,7 +204,6 @@ app.get("/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/js/:nam
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/js/owl-slider/:name", (req, res) => {
@@ -231,7 +212,6 @@ app.get("/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/js/owl-
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/plugins/so-widgets-bundle/widgets/button/css/:name", (req, res) => {
@@ -240,7 +220,6 @@ app.get("/wp-content/plugins/so-widgets-bundle/widgets/button/css/:name", (req, 
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/themes/hipbar/js/bxslider/:name", (req, res) => {
@@ -249,7 +228,6 @@ app.get("/wp-content/themes/hipbar/js/bxslider/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/themes/hipbar/js/:name", (req, res) => {
@@ -258,7 +236,6 @@ app.get("/wp-content/themes/hipbar/js/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/themes/hipbar/:name", (req, res) => {
@@ -267,7 +244,6 @@ app.get("/wp-content/themes/hipbar/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/themes/hipbar/css/:name", (req, res) => {
@@ -276,7 +252,6 @@ app.get("/wp-content/themes/hipbar/css/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/themes/hipbar/css/faw/css/:name", (req, res) => {
@@ -285,7 +260,6 @@ app.get("/wp-content/themes/hipbar/css/faw/css/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/themes/hipbar/css/faw/fonts/:name", (req, res) => {
@@ -294,7 +268,6 @@ app.get("/wp-content/themes/hipbar/css/faw/fonts/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/uploads/siteorigin-widgets/:name", (req, res) => {
@@ -303,7 +276,6 @@ app.get("/wp-content/uploads/siteorigin-widgets/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/uploads/2019/07/:name", (req, res) => {
@@ -312,7 +284,6 @@ app.get("/wp-content/uploads/2019/07/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 app.get("/wp-content/uploads/2019/08/:name", (req, res) => {
@@ -321,7 +292,6 @@ app.get("/wp-content/uploads/2019/08/:name", (req, res) => {
       res.status(500).send(err)
     }
   })
-  res.end()
 })
 
 // app.use(express.static(path.join(__dirname, "dist")))
@@ -334,7 +304,9 @@ app.get("/", (req, res) => {
     if (err) {
       res.status(500).send(err)
     }
+    res.end()
   })
+  
 })
 
 app.get("/gifting-drinks", (req, res) => {
