@@ -647,20 +647,20 @@ app.get("/hipbar-wallet/hindi", (req, res) => {
 
 function renderStaticMarkup({ component, req, res, file }) {
   console.log("static markup")
-  // res.set("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  //res.set("Cache-Control", "no-cache, no-store, must-revalidate, private")
   // res.set("Content-type", "text/html")
-  // //res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  // const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
-  // const [head, tail] = html.split("{content}")
-  // const headWithNavbar = withMetaTags(withHeader(head), req.url, req.url)
-  // res.write(headWithNavbar)
-  // const reactElement = React.createElement(component)
-  // const stream = renderToNodeStream(reactElement)
-  // stream.pipe(res, { end: false })
-  // stream.on("end", () => {
-  //   res.write(tail)
-  //   res.end()
-  // })
+  // res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
+  const [head, tail] = html.split("{content}")
+  const headWithNavbar = withMetaTags(withHeader(head), req.url, req.url)
+  res.write(headWithNavbar)
+  const reactElement = React.createElement(component)
+  const stream = renderToNodeStream(reactElement)
+  stream.pipe(res, { end: false })
+  stream.on("end", () => {
+    res.write(tail)
+    res.end()
+  })
 }
 
 function renderLegalDrinkingAgeMarkUp({ component, req, res, file }) {
