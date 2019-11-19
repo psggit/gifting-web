@@ -344,6 +344,7 @@ class App extends React.Component {
 }
 
 if (!document.getElementById("app").childNodes.length) {
+  console.log("if")
   if (location.pathname !== "/age-gate") {
     ReactDOM.render(<Header />, document.getElementById("header"))
     if (document.getElementById("footer-wrapper")) {
@@ -354,6 +355,7 @@ if (!document.getElementById("app").childNodes.length) {
   }
   ReactDOM.render(<App />, document.getElementById("app"))
 } else {
+  console.log("else server")
   if (document.getElementById("header") && location.pathname !== "/legal-drinking-age") {
     ReactDOM.hydrate(<Header />, document.getElementById("header"))
   }

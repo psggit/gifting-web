@@ -475,7 +475,7 @@ app.post("/transaction-cancelled", (req, res) => {
 
 app.post("/transaction-failure", (req, res) => {
   res.set("Content-type", "text/html")
-  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  res.set("Cache-Control", "no-cache, no-store, must-revalidate, private")
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-failed.html"), "utf-8")
     const [head, tail] = html.split("{content}")
@@ -646,8 +646,10 @@ app.get("/hipbar-wallet/hindi", (req, res) => {
 })
 
 function renderStaticMarkup({ component, req, res, file }) {
-  res.set("Content-type", "text/html")
+  console.log("static markup")
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  res.set("Content-type", "text/html")
+  //res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withMetaTags(withHeader(head), req.url, req.url)
@@ -714,6 +716,7 @@ app.get('/fonts/:name', (req, res) => {
 })
 
 app.get("/age-gate", (req, res) => {
+  console.log("age-gate")
   renderStaticMarkup({
     component: AgeGate,
     req,

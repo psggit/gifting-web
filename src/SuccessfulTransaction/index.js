@@ -130,7 +130,7 @@ class SuccessfulTransaction extends React.Component {
                   this.state.message &&
                   <div>
                     <p className="os s7">Personal Message</p>
-                    <p className="os s7">
+                    <p className="os s7" style={{wordBreak: 'break-word'}}>
                       {this.state.message}
                     </p>
                   </div>
