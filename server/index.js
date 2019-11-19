@@ -646,10 +646,8 @@ app.get("/hipbar-wallet/hindi", (req, res) => {
 })
 
 function renderStaticMarkup({ component, req, res, file }) {
-  console.log("static markup")
-  //res.set("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.set("Content-type", "text/html")
-  // res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withMetaTags(withHeader(head), req.url, req.url)
@@ -707,7 +705,6 @@ function withMetaTags(head, name, url) {
 // }
 
 app.get('/fonts/:name', (req, res) => {
-  console.log(req.params.name)
   res.sendFile(path.join(__dirname, `./../html/fonts/${req.params.name}`), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -716,7 +713,6 @@ app.get('/fonts/:name', (req, res) => {
 })
 
 app.get("/age-gate", (req, res) => {
-  console.log("age-gate")
   renderStaticMarkup({
     component: AgeGate,
     req,
