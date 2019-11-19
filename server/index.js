@@ -648,7 +648,7 @@ app.get("/hipbar-wallet/hindi", (req, res) => {
 function renderStaticMarkup({ component, req, res, file }) {
   console.log("static markup")
   //res.set("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  // res.set("Content-type", "text/html")
+  res.set("Content-type", "text/html")
   // res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
