@@ -770,7 +770,7 @@
     </footer><!-- #colophon -->
   </div><!-- #page -->
   <script>
-
+    const domain = location.href.split(".")[1]
     function handleSelectChange() {
       const storeList = document.getElementById("stores")
       storeList.className = "hide"
@@ -795,7 +795,7 @@
         credentials: "include",
         body: JSON.stringify(payload)
       }
-      fetch(`https://catman.hipbar-dev.com/retailerDiscovery/getRetailers`, fetchOptions)
+      fetch(`https://catman.${domain}/retailerDiscovery/getRetailers`, fetchOptions)
         .then((response) => {
           return response.json()
         })
@@ -840,7 +840,7 @@
         credentials: "include",
         body: JSON.stringify(payload)
       }
-      fetch(`https://loki.hipbar-dev.com/city/availableCities`, fetchOptions)
+      fetch(`https://loki.${domain}.com/city/availableCities`, fetchOptions)
         .then((response) => {
           return response.json()
         })
