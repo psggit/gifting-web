@@ -117,7 +117,7 @@ class Payment extends React.Component {
   componentDidMount() {
     scrollToTop()
     this.getBanks()
-    this.getSavedCards()
+    //this.getSavedCards()
   }
 
 
