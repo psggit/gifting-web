@@ -770,7 +770,7 @@
     </footer><!-- #colophon -->
   </div><!-- #page -->
   <script>
-    const domain = "hipbar.com"
+    const domain = location.href.split(".")[1]
     function handleSelectChange() {
       const storeList = document.getElementById("stores")
       storeList.className = "hide"
