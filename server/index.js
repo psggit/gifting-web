@@ -693,6 +693,13 @@ function withMetaTags(head, name, url) {
     ${canonicalTag}
     <meta name="keywords" content="${meta.keywords}">
     <meta name="description" content="${meta.description}">
+
+    <meta content="en_US" property="og:locale">
+    <meta content="website" property="og:type">
+    <meta content="${meta.title}" property="og:title">
+    <meta content="${meta.description}" property="og:description">
+    <meta content="${meta.url}" property="og:url">
+    <meta content="${meta.site_name}" property="og:site_name">
   `)
 }
 
@@ -967,6 +974,6 @@ app.get("/*", (req, res) => {
   res.end()
 })
 
-app.listen(8080, () => {
+app.listen(8004, () => {
   console.log("Server is running on port 8080\n")
 })
