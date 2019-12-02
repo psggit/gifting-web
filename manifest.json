@@ -1,6 +1,7 @@
 {
   "short_name": "Hipbar Gifting",
   "name": "Hipbar Gifting",
+  "gcm_sender_id": "675341753434",
   "icons": [
     {
       "src": "./images/favicon.png",

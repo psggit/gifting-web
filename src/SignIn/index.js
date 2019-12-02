@@ -132,6 +132,7 @@ export default function SignIn(data) {
                   "event_label": "success"
                 })
               }
+              window.dataLayer.push({ "event": "login", "name": "Gamooga", "mobile": "9999999999", "email": "info@gamooga.com"}) 
               window.fcWidget.user.clear().then(function () {
                 console.log('User cleared')
               }, function () {
