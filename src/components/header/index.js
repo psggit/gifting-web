@@ -108,7 +108,7 @@ class Header extends React.Component {
         "event_label": location.pathname,
       })
     }
-    window.dataLayer.push({ "event": "sign-in-success", "name": "Gamooga", "mobile": "9999999999", "email": "info@gamooga.com" }) 
+    window.dataLayer.push({ "event": "point_of_signin", "page_name": location.pathname }) 
     mountModal(SignIn({
       //reload: this.reloadHeader
     }))
