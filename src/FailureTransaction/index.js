@@ -48,7 +48,6 @@ class FailureTransaction extends React.Component {
         })
       })
     }
-    const basket = JSON.parse(localStorage.getItem("basket")) || []
     let cartDetails = basket.map((item) => {
       return ({
         productName: item.brand.brand_name,
