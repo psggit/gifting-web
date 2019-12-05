@@ -275,9 +275,7 @@ export default function SignUp(data) {
                 }
                 return
               } else if (response.status === 400 && responseData.errorCode === "expired-otp") {
-                setTimeout(() => {
-                  window.dataLayer.push({ "event": "sign_up_complete", "hasura_id": responseData.hasura_id, "dob": this.state.dob, "gender": this.state.gender })
-                }, 0)
+                window.dataLayer.push({ "event": "sign_up_complete", "hasura_id": responseData.hasura_id, "dob": this.state.dob, "gender": this.state.gender })
                 this.setState({ otpErr: { status: true, value: responseData.message } })
                 this.setState({ isSigningUp: false })
                 // ga("send", {
