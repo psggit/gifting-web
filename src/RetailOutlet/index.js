@@ -99,6 +99,7 @@ class RetailOutlet extends React.Component {
         "event_label": selectedCity,
       })
     }
+    window.dataLayer.push({ "event": "find_retailers", "city_id": selectedCityId }) 
     this.setState({ retailerOutletData: [] })
   }
 
@@ -112,6 +113,8 @@ class RetailOutlet extends React.Component {
         })
       })
     }
+    console.log("item", item)
+    window.dataLayer.push({ "event": "navigate_retailer", "city_id": item.retailer_id }) 
   }
 
   renderOutlet(item) {

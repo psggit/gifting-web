@@ -117,8 +117,10 @@ export default function SignIn(data) {
               this.setState({ isGettingOtp: false })
               return
             } else if (response.status === 400) {
+              window.dataLayer.push({ "event": "signin_start" })
               this.setState({ mobileNoErr: { status: true, value: "Invalid mobile number" } })
             } else if (response.status === 401) {
+              window.dataLayer.push({ "event": "signin_start" })
               this.setState({ otpSent: true, disableField: true, setTimer: true })
               this.countdown()
               // if(dataObj.resendOtp) {
@@ -132,7 +134,7 @@ export default function SignIn(data) {
                   "event_label": "success"
                 })
               }
-              window.dataLayer.push({ "event": "sign-in-success", "name": "Gamooga", "mobile": "9999999999", "email": "info@gamooga.com"}) 
+              window.dataLayer.push({ "event": "signin_success", "hasura_id": responseData.hasura_id}) 
               window.fcWidget.user.clear().then(function () {
                 console.log('User cleared')
               }, function () {
