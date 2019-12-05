@@ -56,6 +56,7 @@ class RetailOutlet extends React.Component {
 
   findRetailer(cityId) {
     console.log("city details", cityId)
+    window.dataLayer.push({ "event": "find_retailers", "city_id": selectedCityId })
     const payload = {
       city_id: parseInt(cityId),
       limit: 1000,
@@ -94,7 +95,6 @@ class RetailOutlet extends React.Component {
       this.props.history.push(`/retail-outlet?cityId=${this.state.selectedCityId}`)
       return
     }
-    window.dataLayer.push({ "event": "find_retailers", "city_id": selectedCityId })
     if (window.gtag) {
       gtag("event", "city_wise_retailer_search_count", {
         "event_label": selectedCity,
