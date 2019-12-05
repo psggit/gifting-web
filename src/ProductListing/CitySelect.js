@@ -66,6 +66,9 @@ class CitySelect extends React.Component {
         })
       })
     }
+    window.dataLayer.push({
+      "event": "change_city", "city_id": this.state.cities[cityIdx].id
+    })
     this.setState({ cityIdx: parseInt(cityIdx) })
     this.props.onCityChange(selectedCity)
     this.props.clearBasket()

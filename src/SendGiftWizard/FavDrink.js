@@ -102,6 +102,10 @@ class FavDrink extends React.Component {
         })
       })
     }
+    
+    const state_id = localStorage.getItem("receiver_info").state_id
+    const city_id = localStorage.getItem("receiver_info").city_id
+    window.dataLayer.push({ "event": "view_genre", "genre_id": genre.id, "city_id": city_id, "state_id": state_id }) 
 
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.setState({ active: genre.id, selectedGenre: genre.name })

@@ -40,6 +40,7 @@ class SelectCity extends React.Component {
         })
       })
     }
+    window.dataLayer.push({ "event": "select_city", "city_id": activeCity.id }) 
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     
     receiverInfo.gps = activeCity.gps
