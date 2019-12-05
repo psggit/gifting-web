@@ -60,6 +60,12 @@ class SuccessfulTransaction extends React.Component {
         })
       })
     }
+    window.dataLayer.push({
+      "event": "payment_success",
+      "payment_mode": txn.mode === "CC" || txn.mode === "DC" ? txn.cardnum.split("X").join("*") : this.modeMap[txn.mode],
+      "sku_id": cartDetails,
+      "total_amount": parseFloat(txn.net_amount_debit).toFixed(2)
+    })
   }
 
   render() {

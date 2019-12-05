@@ -48,6 +48,21 @@ class FailureTransaction extends React.Component {
         })
       })
     }
+    const basket = JSON.parse(localStorage.getItem("basket")) || []
+    let cartDetails = basket.map((item) => {
+      return ({
+        productName: item.brand.brand_name,
+        quantity: item.count,
+        volume: item.sku.volume,
+        promoApplied: this.state.promoCode ? this.state.promoCode : "",
+      })
+    })
+    window.dataLayer.push({
+      "event": "payment_failure",
+      "payment_mode": txn.mode === "CC" || txn.mode === "DC" ? txn.cardnum.split("X").join("*") : this.modeMap[txn.mode],
+      "sku_id": cartDetails,
+      "total_amount": parseFloat(txn.net_amount_debit).toFixed(2)
+    })
   }
 
   render() {

@@ -5,6 +5,7 @@ import { mountModal } from "Components/modal-box/utils"
 import AddedToBasketModal from "./AddedToBasketModal"
 import NotificationModal from "./../NotifyError"
 import { fetchGiftCardSummary } from "./../api"
+import { local } from "store2"
 
 // const volumes = [
 //   { volume: "1 Ltr"  },
@@ -149,6 +150,14 @@ class SkuItem extends React.Component {
         })
       })
     }
+
+    window.dataLayer.push({ 
+      "event": "add_to_cart_item", 
+      "city_id": localStorage.getItem("receiver_info").city_id, 
+      "sku_id": basketItem.sku.sku_id, 
+      "brand_id": basketItem.brand.brand_id, 
+      "count": 1
+    })
 
     const activeSkuId = this.props.volumes[activeSku].sku_id
 
