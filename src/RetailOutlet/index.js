@@ -56,7 +56,7 @@ class RetailOutlet extends React.Component {
 
   findRetailer(cityId) {
     console.log("city details", cityId)
-    window.dataLayer.push({ "event": "find_retailers", "city_id": selectedCityId })
+    window.dataLayer.push({ "event": "find_retailers", "city_id": cityId })
     const payload = {
       city_id: parseInt(cityId),
       limit: 1000,
