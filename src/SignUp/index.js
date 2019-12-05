@@ -223,7 +223,7 @@ export default function SignUp(data) {
                 console.log("User Not cleared")
               })
               this.setState({ otpSent: true, disableField: true, setTimer: true })
-              window.dataLayer.push({ "event": "signup_start" }) 
+              window.dataLayer.push({ "event": "sign_up_start" }) 
               this.countdown()
               //this.getOtp()
             }
@@ -302,7 +302,9 @@ export default function SignUp(data) {
                   "event_label": "success"
                 })
               }
-              window.dataLayer.push({ "event": "signup_success", "hasura_id": responseData.hasura_id, "dob": this.state.dob, "gender": this.state.gender }) 
+              setTimeout(() => {
+                window.dataLayer.push({ "event": "sign_up_complete", "hasura_id": responseData.hasura_id, "dob": this.state.dob, "gender": this.state.gender }) 
+              }, 0)
               createSession(responseData)
               location.href = (location.pathname)
               unMountModal()

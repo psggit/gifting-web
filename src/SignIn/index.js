@@ -140,7 +140,7 @@ export default function SignIn(data) {
                 console.log("User Not cleared")
               })
               setTimeout(() => {
-                window.dataLayer.push({ "event": "signin_success", "hasura_id": responseData.hasura_id }) 
+                window.dataLayer.push({ "event": "signin_complete", "hasura_id": responseData.hasura_id }) 
               }, 0)
               location.href = (location.pathname)
               unMountModal()
