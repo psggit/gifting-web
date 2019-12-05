@@ -134,12 +134,14 @@ export default function SignIn(data) {
                   "event_label": "success"
                 })
               }
-              window.dataLayer.push({ "event": "signin_success", "hasura_id": responseData.hasura_id}) 
               window.fcWidget.user.clear().then(function () {
                 console.log('User cleared')
               }, function () {
                 console.log("User Not cleared")
               })
+              setTimeout(() => {
+                window.dataLayer.push({ "event": "signin_success", "hasura_id": responseData.hasura_id }) 
+              }, 0)
               location.href = (location.pathname)
               unMountModal()
             }
