@@ -94,12 +94,12 @@ class RetailOutlet extends React.Component {
       this.props.history.push(`/retail-outlet?cityId=${this.state.selectedCityId}`)
       return
     }
+    window.dataLayer.push({ "event": "find_retailers", "city_id": selectedCityId })
     if (window.gtag) {
       gtag("event", "city_wise_retailer_search_count", {
         "event_label": selectedCity,
       })
     }
-    window.dataLayer.push({ "event": "find_retailers", "city_id": selectedCityId }) 
     this.setState({ retailerOutletData: [] })
   }
 
@@ -114,7 +114,7 @@ class RetailOutlet extends React.Component {
       })
     }
     console.log("item", item)
-    window.dataLayer.push({ "event": "navigate_retailer", "city_id": item.retailer_id }) 
+    window.dataLayer.push({ "event": "navigate_retailer", "retailer_id": item.retailer_id }) 
   }
 
   renderOutlet(item) {
