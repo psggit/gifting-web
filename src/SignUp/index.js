@@ -275,6 +275,9 @@ export default function SignUp(data) {
                 }
                 return
               } else if (response.status === 400 && responseData.errorCode === "expired-otp") {
+                setTimeout(() => {
+                  window.dataLayer.push({ "event": "sign_up_complete", "hasura_id": responseData.hasura_id, "dob": this.state.dob, "gender": this.state.gender })
+                }, 0)
                 this.setState({ otpErr: { status: true, value: responseData.message } })
                 this.setState({ isSigningUp: false })
                 // ga("send", {
@@ -302,9 +305,6 @@ export default function SignUp(data) {
                   "event_label": "success"
                 })
               }
-              setTimeout(() => {
-                window.dataLayer.push({ "event": "sign_up_complete", "hasura_id": responseData.hasura_id, "dob": this.state.dob, "gender": this.state.gender }) 
-              }, 0)
               createSession(responseData)
               location.href = (location.pathname)
               unMountModal()

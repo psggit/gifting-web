@@ -127,6 +127,9 @@ export default function SignIn(data) {
               //   this.setState({resentOtp : true})
               // }
             } else if (response.status === 200) {
+              setTimeout(() => {
+                window.dataLayer.push({ "event": "signin_complete", "hasura_id": responseData.hasura_id })
+              }, 0)
               responseData = Object.assign(responseData, { sender_mobile: this.state.mobileNo })
               createSession(responseData, "true")
               if (window.gtag) {
@@ -139,9 +142,6 @@ export default function SignIn(data) {
               }, function () {
                 console.log("User Not cleared")
               })
-              setTimeout(() => {
-                window.dataLayer.push({ "event": "signin_complete", "hasura_id": responseData.hasura_id }) 
-              }, 0)
               location.href = (location.pathname)
               unMountModal()
             }
