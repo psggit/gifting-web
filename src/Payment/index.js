@@ -273,9 +273,24 @@ class Payment extends React.Component {
 
   handleSubmit() {
     const { amount, gift_message, receiver_number, senderName, receiver_name } = this.state
+    const basket = JSON.parse(localStorage.getItem("basket"))
+    const products = basket.map(item => {
+      console.log("item", item)
+      return {
+        count: item.count,
+        sku_id: item.sku.sku_id
+      }
+    })
     if (this.state.activeAccordian === 1) {
       if (this.isNormalCardDetailsValid()) {
         console.log("Processing normal card payment..")
+
+        window.dataLayer.push({
+          "event": "initiate_payment",
+          "payment_mode": "card payment",
+          "sku_id": products,
+          "total_amount": amount
+        })
         this.createTransaction(amount, gift_message, receiver_number, senderName, receiver_name, () => {
           this.setState({ selectedPaymentMethod: "card" }, () => {
             this.submit.click()
@@ -285,6 +300,12 @@ class Payment extends React.Component {
     } else if (this.state.activeAccordian === 2) {
       if (this.state.bankcode !== "null") {
         console.log("Processing net banking..")
+        window.dataLayer.push({
+          "event": "initiate_payment",
+          "payment_mode": "net banking",
+          "sku_id": products,
+          "total_amount": amount
+        })
         this.createTransaction(amount, gift_message, receiver_number, senderName, receiver_name, () => {
           this.setState({ selectedPaymentMethod: "net_banking" }, () => {
             this.submit.click()
