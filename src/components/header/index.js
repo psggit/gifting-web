@@ -57,8 +57,10 @@ class Header extends React.Component {
     this.setState({ username: localStorage.getItem("username") })
     this.setState({ activePath: location.pathname.slice(1) })
     if(hasuraId && readCookie("signin_complete")) {
+      console.log("sign in")
       window.dataLayer.push({ "event": "signin_complete", "hasura_id": hasuraId })
     } else if (hasuraId && readCookie("signup_complete")) {
+      console.log("sign up")
       window.dataLayer.push({ 
         "event": "sign_up_complete", 
         "hasura_id": hasuraId, 
