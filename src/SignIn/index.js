@@ -291,6 +291,7 @@ export default function SignIn(data) {
               }
               responseData = Object.assign(responseData, { sender_mobile: this.state.mobileNo })
               createSession(responseData, "true")
+              document.cookie = "signin_complete=true; path=/; expires=" + (new Date(new Date().getTime() + 60 * 1000)).toUTCString() + `;path=/;  domain=${location.hostname}`
               console.log("create session")
               if (window.gtag) {
                 gtag("event", "sign_in_success", {

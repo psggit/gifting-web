@@ -5,7 +5,7 @@ import ModalBox from '../components/modal-box/modalBox'
 import Icon from "Components/icon"
 import SignIn from './../SignIn'
 import { Api } from '../utils/config'
-import { createSession } from 'Utils/session-utils'
+import { createSession, saveUserData } from 'Utils/session-utils'
 import { checkCtrlA, validateNumType, checkCtrlV, checkCtrlC } from 'Utils/logic-utils'
 import { validateNumberField } from 'Utils/validators'
 import { validateTextField, validateEmail } from '../utils/validators'
@@ -275,7 +275,6 @@ export default function SignUp(data) {
                 }
                 return
               } else if (response.status === 400 && responseData.errorCode === "expired-otp") {
-                window.dataLayer.push({ "event": "sign_up_complete", "hasura_id": responseData.hasura_id, "dob": this.state.dob, "gender": this.state.gender })
                 this.setState({ otpErr: { status: true, value: responseData.message } })
                 this.setState({ isSigningUp: false })
                 // ga("send", {
@@ -304,6 +303,11 @@ export default function SignUp(data) {
                 })
               }
               createSession(responseData)
+              saveUserData({
+                "dob": this.state.dob,
+                "gender": this.state.gender
+              })
+              document.cookie = "signup_complete=true; path=/; expires=" + (new Date(new Date().getTime() + 60 * 1000)).toUTCString() + `;path=/;  domain=${location.hostname}`
               location.href = (location.pathname)
               unMountModal()
               //data.reload(true)
