@@ -5,6 +5,7 @@ import {ThemeProvider, ThemeContext} from "./../../ThemeProvider"
 import { mountModal } from 'Components/modal-box/utils'
 import SignIn from "./../../SignIn"
 import {Api} from 'Utils/config'
+import { readCookie } from "Utils/session-utils"
 import NotifyError from './../../NotifyError'
 import {createSession, clearSession, getUsername} from 'Utils/session-utils'
 const ThemeConsumer = ThemeContext.Consumer
@@ -53,8 +54,21 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({isLoggedIn: localStorage.getItem("hasura-id") ? true  : false})
+    const hasuraId = localStorage.getItem("hasura-id")
+    this.setState({isLoggedIn: hasuraId ? true  : false})
     this.setState({username: localStorage.getItem("username")})
+    if (hasuraId && readCookie("signin_complete")) {
+      console.log("sign in")
+      window.dataLayer.push({ "event": "signin_complete", "hasura_id": hasuraId })
+    } else if (hasuraId && readCookie("signup_complete")) {
+      console.log("sign up")
+      window.dataLayer.push({
+        "event": "sign_up_complete",
+        "hasura_id": hasuraId,
+        "dob": JSON.parse(localStorage.getItem("senderInfo")).dob,
+        "gender": JSON.parse(localStorage.getItem("senderInfo")).gender
+      })
+    }
   }
 
   handleClick() {
