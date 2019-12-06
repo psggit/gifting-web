@@ -6,6 +6,7 @@ import MobileNavBar from "Components/mobile-nav-bar"
 import GenreItem from "Components/GenreItem"
 import { fetchGenres } from "./../api"
 import Moment from "moment"
+import { OS } from "Utils/constants"
 
 class FavDrink extends React.Component {
   constructor() {
@@ -105,7 +106,14 @@ class FavDrink extends React.Component {
     
     const state_id = localStorage.getItem("receiver_info").state_id
     const city_id = localStorage.getItem("receiver_info").city_id
-    window.dataLayer.push({ "event": "view_genre", "genre_id": genre.id, "city_id": city_id, "state_id": state_id }) 
+    window.dataLayer.push({ 
+      "event": "view_genre", 
+      "genre_id": genre.id, 
+      "city_id": city_id, 
+      "state_id": state_id,
+      "os": OS,
+      "hasura_id": location.getItem("hasura_id") 
+    }) 
 
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.setState({ active: genre.id, selectedGenre: genre.name })

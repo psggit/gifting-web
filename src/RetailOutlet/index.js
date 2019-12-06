@@ -5,6 +5,7 @@ import Icon from "Components/icon"
 import FirstGiftCard from "Components/gift-card-ad"
 import * as Api from './../api'
 import Button from "Components/button"
+import { OS } from "Utils/constants"
 
 class RetailOutlet extends React.Component {
   constructor(props) {
@@ -56,7 +57,7 @@ class RetailOutlet extends React.Component {
 
   findRetailer(cityId) {
     console.log("city details", cityId)
-    window.dataLayer.push({ "event": "find_retailers", "city_id": cityId })
+    window.dataLayer.push({ "event": "find_retailers", "city_id": cityId, "os": OS })
     const payload = {
       city_id: parseInt(cityId),
       limit: 1000,
@@ -114,7 +115,7 @@ class RetailOutlet extends React.Component {
       })
     }
     console.log("item", item)
-    window.dataLayer.push({ "event": "navigate_retailer", "retailer_id": item.retailer_id }) 
+    window.dataLayer.push({ "event": "navigate_retailer", "retailer_id": item.retailer_id, "os": OS }) 
   }
 
   renderOutlet(item) {

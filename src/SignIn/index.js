@@ -12,6 +12,7 @@ import { validateTextField } from '../utils/validators'
 import NotifyError from './../NotifyError'
 import Button from "Components/button"
 import InputMask from "react-input-mask"
+import {OS} from "Utils/constants"
 
 export default function SignIn(data) {
   return class SignIn extends React.Component {
