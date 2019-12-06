@@ -52,9 +52,23 @@ class Header extends React.Component {
 
   componentDidMount() {
     this.links = document.querySelectorAll(".nav-items a div")
-    this.setState({ isLoggedIn: localStorage.getItem("hasura-id") ? true : false })
+    const hasuraId = localStorage.getItem("hasura-id");
+    this.setState({ isLoggedIn: hasuraId ? true : false })
     this.setState({ username: localStorage.getItem("username") })
     this.setState({ activePath: location.pathname.slice(1) })
+    console.log("hasuraid", hasuraId, readCookie("signin_complete"), "signup", readCookie("signup_complete"))
+    if(hasuraId && readCookie("signin_complete")) {
+      console.log("sign in")
+      window.dataLayer.push({ "event": "signin_complete", "hasura_id": hasuraId })
+    } else if (hasuraId && readCookie("signup_complete")) {
+      console.log("signup")
+      window.dataLayer.push({ 
+        "event": "sign_up_complete", 
+        "hasura_id": hasuraId, 
+        "dob": JSON.parse(localStorage.getItem("senderInfo")).dob, 
+        "gender": JSON.parse(localStorage.getItem("senderInfo")).gender
+      })
+    }
   }
 
   handleSignOut() {
