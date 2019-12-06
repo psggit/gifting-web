@@ -238,6 +238,13 @@ export default function SignUp(data) {
         })
     }
 
+    setCookie() {
+      return new Promise((resolve, reject) => {
+        document.cookie = "signup_complete=true; path=/; expires=" + (new Date(new Date().getTime() + 60 * 1000)).toUTCString() + `;path=/;  domain=${location.hostname}`
+        resolve()
+      })
+    }
+
     login() {
       if (!this.state.isSigningUp && this.isFormValid()) {
         const payload = {
@@ -307,8 +314,10 @@ export default function SignUp(data) {
                 "dob": this.state.dob,
                 "gender": this.state.gender
               })
-              document.cookie = "signup_complete=true; path=/; expires=" + (new Date(new Date().getTime() + 60 * 1000)).toUTCString() + `;path=/;  domain=${location.hostname}`
-              location.href = (location.pathname)
+              this.setCookie()
+              .then(() => {
+                location.href = location.pathname
+              })
               unMountModal()
               //data.reload(true)
               this.setState({ isSigningUp: false })

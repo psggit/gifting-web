@@ -190,6 +190,13 @@ export default function SignIn(data) {
       }
     }
 
+    setCookie() {
+      return new Promise((resolve, reject) => {
+        document.cookie = "signin_complete=true; path=/; expires=" + (new Date(new Date().getTime() + 60 * 1000)).toUTCString() + `;path=/;  domain=${location.hostname}`
+        resolve()
+      })
+    }
+
     signIn() {
       console.log("sign in")
       // if(window.gtag) {
@@ -291,7 +298,6 @@ export default function SignIn(data) {
               }
               responseData = Object.assign(responseData, { sender_mobile: this.state.mobileNo })
               createSession(responseData, "true")
-              document.cookie = "signin_complete=true; path=/; expires=" + (new Date(new Date().getTime() + 60 * 1000)).toUTCString() + `;path=/;  domain=${location.hostname}`
               console.log("create session")
               if (window.gtag) {
                 gtag("event", "sign_in_success", {
@@ -310,7 +316,10 @@ export default function SignIn(data) {
               //   eventLabel: "sign_in_success"
               // })
               //localStorage.setItem("showAgegate", false)
-              location.href = (location.pathname)
+              this.setCookie()
+              .then(() => {
+                location.href = (location.pathname)
+              })
               unMountModal()
               //data.reload(true)
               this.setState({ isSigningIn: false })
