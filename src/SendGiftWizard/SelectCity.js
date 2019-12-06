@@ -45,7 +45,7 @@ class SelectCity extends React.Component {
       "event": "select_city", 
       "city_id": activeCity.id, 
       "os": OS,
-      "hasura_id": location.getItem("hasura_id")
+      "hasura_id": localStorage.getItem("hasura_id")
     }) 
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     
