@@ -1,6 +1,12 @@
 import React from "react"
 import Button from "Components/button"
 import "./first-gift-card.scss"
+import { OS } from "Utils/constants"
+
+const handleClick = () => {
+  window.dataLayer.push({ "event": "start_gifting", "path_name": location.hostname, "page_title": document.title, "os": OS })
+  location.href = "/send-gift" 
+}
 
 const FirstGiftCard = () => (
   <div className="first-gift-card">
@@ -13,7 +19,7 @@ const FirstGiftCard = () => (
 with HipBar Gift Cards!
     </p>
 
-    <a href="/send-gift">
+    <a onClick={handleClick()}>
       <Button primary icon="rightArrowBlack">start gifting!</Button>
     </a>
   </div>

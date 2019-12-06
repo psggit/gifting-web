@@ -5,6 +5,7 @@ import Icon from "Components/icon"
 import MobileNavBar from "Components/mobile-nav-bar"
 import CityCheckBox from "Components/city-checkbox"
 import Moment from "moment"
+import { OS } from "Utils/constants"
 
 import { fetchCities } from "./../api"
 
@@ -40,7 +41,12 @@ class SelectCity extends React.Component {
         })
       })
     }
-    window.dataLayer.push({ "event": "select_city", "city_id": activeCity.id }) 
+    window.dataLayer.push({ 
+      "event": "select_city", 
+      "city_id": activeCity.id, 
+      "os": OS,
+      "hasura_id": location.getItem("hasura_id")
+    }) 
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     
     receiverInfo.gps = activeCity.gps

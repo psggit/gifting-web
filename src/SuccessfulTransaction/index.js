@@ -3,6 +3,7 @@ import Icon from "Components/icon"
 import "Sass/transaction-status.scss"
 import Moment from "moment"
 import GiftBasketItem from "./../GiftBasket/GiftBasketItem"
+import { OS } from "Utils/constants"
 
 class SuccessfulTransaction extends React.Component {
   constructor(props) {
@@ -64,7 +65,8 @@ class SuccessfulTransaction extends React.Component {
       "event": "payment_success",
       "payment_mode": txn.mode === "CC" || txn.mode === "DC" ? txn.cardnum.split("X").join("*") : this.modeMap[txn.mode],
       "sku_id": cartDetails,
-      "total_amount": parseFloat(txn.net_amount_debit).toFixed(2)
+      "total_amount": parseFloat(txn.net_amount_debit).toFixed(2),
+      "os": OS
     })
   }
 
