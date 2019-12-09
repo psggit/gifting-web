@@ -17,6 +17,6 @@
   "start_url": "/send-gift?source=pwa",
   "background_color": "#000",
   "display": "standalone",
-  "scope": "/send-gift",
+  "scope": "/",
   "theme_color": "#000"
 }
