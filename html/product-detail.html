@@ -18,7 +18,7 @@
 
   <link href="/images/For-Webflow-01.png" rel="shortcut icon" type="image/x-icon">
   <link href="/images/For-Webflow-02.png" rel="apple-touch-icon">
-  <!-- <link rel="manifest" href="/manifest.json"> -->
+  <link rel="manifest" href="/manifest.json">
 
   <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
   <meta content='FVz8vJPDa60jzuyoOc9W7jZZqA_TA-lVwHO2OwPJGPg' name='google-site-verification'/>
@@ -108,6 +108,7 @@
     // Use the window load event to keep the page load performant
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/service-worker.js');
+      navigator.serviceWorker.register('/sw.js');
     });
   }
   </script>

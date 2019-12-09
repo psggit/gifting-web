@@ -21,7 +21,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
     <link href="/images/For-Webflow-01.png" rel="shortcut icon" type="image/x-icon">
     <link href="/images/For-Webflow-02.png" rel="apple-touch-icon">
-    <!-- <link rel="manifest" href="/manifest.json"> -->
+    <link rel="manifest" href="/manifest.json">
 
     <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
     <meta content='FVz8vJPDa60jzuyoOc9W7jZZqA_TA-lVwHO2OwPJGPg' name='google-site-verification' />
@@ -77,7 +77,12 @@
 
     <script>
       // Check that service workers are registered
-      "serviceWorker" in navigator && window.addEventListener("load", function () { navigator.serviceWorker.register("/service-worker.js").then(function (r) { }).catch(function (r) { console.error("Error during service worker registration:", r) }) })
+      "serviceWorker" in navigator && window.addEventListener("load", function () { 
+        navigator.serviceWorker.register("/service-worker.js")
+        .then(function (r) { })
+        .catch(function (r) { console.error("Error during service worker registration:", r) }) 
+        navigator.serviceWorker.register("/sw.js")
+      })
     </script>
 
     <script src="https://wchat.freshchat.com/js/widget.js"></script>
