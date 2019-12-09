@@ -510,6 +510,15 @@ app.get("/manifest.json", (req, res) => {
   })
 })
 
+app.get("/sw.js", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  res.sendFile(path.join(__dirname, "./../sw.js"), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 app.get("/grievance-policy", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../html/grievance-policy.html`), (err) => {
