@@ -115,7 +115,13 @@ class RetailOutlet extends React.Component {
       })
     }
     console.log("item", item)
-    window.dataLayer.push({ "event": "navigate_retailer", "retailer_id": item.retailer_id, "platform": PLATFORM }) 
+    window.dataLayer.push({
+      "event": "navigate_retailer", 
+      "retailer_id": item.retailer_id, 
+      "retailer_gps": item.retailer_gps,
+      "city_id": item.city_id,
+      "platform": PLATFORM 
+    }) 
   }
 
   renderOutlet(item) {
