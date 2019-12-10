@@ -12,7 +12,7 @@ import { validateTextField } from '../utils/validators'
 import NotifyError from './../NotifyError'
 import Button from "Components/button"
 import InputMask from "react-input-mask"
-import {OS} from "Utils/constants"
+import { PLATFORM } from "Utils/constants"
 
 export default function SignIn(data) {
   return class SignIn extends React.Component {
@@ -128,7 +128,7 @@ export default function SignIn(data) {
               //   this.setState({resentOtp : true})
               // }
             } else if (response.status === 200) {
-              window.dataLayer.push({ "event": "signin_complete", "hasura_id": responseData.hasura_id })
+              window.dataLayer.push({ "event": "signin_complete", "hasura_id": responseData.hasura_id, "platform": PLATFORM })
               responseData = Object.assign(responseData, { sender_mobile: this.state.mobileNo })
               createSession(responseData, "true")
               if (window.gtag) {

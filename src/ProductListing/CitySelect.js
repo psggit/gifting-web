@@ -5,7 +5,7 @@ import { fetchCities } from "./../api"
 import "./sass/city-select.scss"
 import { capitalize } from "Utils/logic-utils"
 import Moment from "moment"
-import { OS } from "Utils/constants"
+import { PLATFORM } from "Utils/constants"
 
 class CitySelect extends React.Component {
   constructor(props) {
@@ -70,7 +70,7 @@ class CitySelect extends React.Component {
     window.dataLayer.push({
       "event": "change_city", 
       "city_id": this.state.cities[cityIdx].id,
-      "os": OS
+      "platform": PLATFORM
     })
     this.setState({ cityIdx: parseInt(cityIdx) })
     this.props.onCityChange(selectedCity)

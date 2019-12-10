@@ -1,1 +1,1 @@
-export const OS = "web"
+export const PLATFORM = "web"

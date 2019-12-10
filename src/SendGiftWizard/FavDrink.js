@@ -6,7 +6,7 @@ import MobileNavBar from "Components/mobile-nav-bar"
 import GenreItem from "Components/GenreItem"
 import { fetchGenres } from "./../api"
 import Moment from "moment"
-import { OS } from "Utils/constants"
+import { PLATFORM } from "../utils/constants"
 
 class FavDrink extends React.Component {
   constructor() {
@@ -111,7 +111,7 @@ class FavDrink extends React.Component {
       "genre_id": genre.id, 
       "city_id": city_id, 
       "state_id": state_id,
-      "os": OS,
+      "platform": PLATFORM,
       "hasura_id": localStorage.getItem("hasura_id") 
     }) 
 

@@ -5,7 +5,7 @@ import { mountModal } from "Components/modal-box/utils"
 import AddedToBasketModal from "./AddedToBasketModal"
 import NotificationModal from "./../NotifyError"
 import { fetchGiftCardSummary } from "./../api"
-import { OS } from "Utils/constants"
+import { PLATFORM } from "Utils/constants"
 
 // const volumes = [
 //   { volume: "1 Ltr"  },
@@ -157,7 +157,7 @@ class SkuItem extends React.Component {
       "sku_id": basketItem.sku.sku_id, 
       "brand_id": basketItem.brand.brand_id, 
       "count": 1,
-      "os": OS
+      "platform": PLATFORM
     })
 
     const activeSkuId = this.props.volumes[activeSku].sku_id
@@ -211,7 +211,7 @@ class SkuItem extends React.Component {
       "event": "view_brand", 
       "brand_id": location.pathname.split("/").pop(), 
       "city_id": location.pathname.split("/")[4],
-      "os": OS
+      "platform": PLATFORM
     })
   }
 

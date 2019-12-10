@@ -12,7 +12,7 @@ import { scrollToTop } from "Utils/ui-utils"
 import { mountModal } from "Components/modal-box/utils"
 import NotificationModal from "./../NotifyError"
 import { createPayuTransaction } from "../api"
-import { OS } from "Utils/constants"
+import { PLATFORM } from "Utils/constants"
 
 // const cardNumMask = new IMask()
 
@@ -291,7 +291,7 @@ class Payment extends React.Component {
           "payment_mode": "card payment",
           "sku_id": products,
           "total_amount": amount,
-          "os": OS
+          "platform": PLATFORM
         })
         this.createTransaction(amount, gift_message, receiver_number, senderName, receiver_name, () => {
           this.setState({ selectedPaymentMethod: "card" }, () => {
@@ -307,7 +307,7 @@ class Payment extends React.Component {
           "payment_mode": "net banking",
           "sku_id": products,
           "total_amount": amount,
-          "os": OS
+          "platform": PLATFORM
         })
         this.createTransaction(amount, gift_message, receiver_number, senderName, receiver_name, () => {
           this.setState({ selectedPaymentMethod: "net_banking" }, () => {
