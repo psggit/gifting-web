@@ -2,7 +2,7 @@ const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const {CleanWebpackPlugin} = require("clean-webpack-plugin")
 const webpack = require("webpack")
-const WorkboxPlugin = require('workbox-webpack-plugin')
+// const WorkboxPlugin = require('workbox-webpack-plugin')
 const minfyConfigHTML = {
   collapseWhitespace: true,
   minifyCSS: true,
@@ -24,12 +24,12 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new WorkboxPlugin.GenerateSW({
-      // these options encourage the ServiceWorkers to get in there fast 
-      // and not allow any straggling "old" SWs to hang around
-      clientsClaim: true,
-      skipWaiting: true
-    }),
+    // new WorkboxPlugin.GenerateSW({
+    //   // these options encourage the ServiceWorkers to get in there fast 
+    //   // and not allow any straggling "old" SWs to hang around
+    //   clientsClaim: true,
+    //   skipWaiting: true
+    // }),
     new HtmlWebpackPlugin({
       title: "HipBar Gifting - Gift your friends drinks online!",
       filename: "landing.html",
