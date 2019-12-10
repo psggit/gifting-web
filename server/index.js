@@ -297,6 +297,16 @@ app.get("/wp-content/uploads/2019/08/:name", (req, res) => {
 // app.use(express.static(path.join(__dirname, "dist")))
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.get("/sw.js", (req, res) => {
+  console.log("sw.js")
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  res.sendFile(path.join(__dirname, "./../sw.js"), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 app.get("/", (req, res) => {
   // console.log("home")
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
@@ -504,15 +514,6 @@ app.post("/transaction-failure", (req, res) => {
 app.get("/manifest.json", (req, res) => {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, "./../manifest.json"), (err) => {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
-
-app.get("/sw.js", (req, res) => {
-  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
-  res.sendFile(path.join(__dirname, "./../sw.js"), (err) => {
     if (err) {
       res.status(500).send(err)
     }
