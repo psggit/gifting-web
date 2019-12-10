@@ -10,7 +10,7 @@ import { readCookie } from "Utils/session-utils"
 import { mountModal, unMountModal } from 'Components/modal-box/utils'
 import { createSession, clearSession, getUsername } from 'Utils/session-utils'
 import NotifyError from './../../NotifyError'
-import { OS } from "Utils/constants"
+import { PLATFORM } from "Utils/constants"
 // import {ThemeProvider, ThemeContext} from "./../../ThemeProvider"
 import { GET } from "Utils/fetch"
 // const ThemeConsumer = ThemeContext.Consumer
@@ -60,7 +60,7 @@ class Header extends React.Component {
     console.log("hasuraid", hasuraId, readCookie("signin_complete"), "signup", readCookie("signup_complete"))
     if(hasuraId && readCookie("signin_complete")) {
       console.log("sign in")
-      window.dataLayer.push({ "event": "signin_complete", "hasura_id": hasuraId, "os": OS })
+      window.dataLayer.push({ "event": "signin_complete", "hasura_id": hasuraId, "platform": PLATFORM })
     } else if (hasuraId && readCookie("signup_complete")) {
       console.log("signup")
       window.dataLayer.push({ 
@@ -68,7 +68,7 @@ class Header extends React.Component {
         "hasura_id": hasuraId, 
         "dob": JSON.parse(localStorage.getItem("senderInfo")).dob, 
         "gender": JSON.parse(localStorage.getItem("senderInfo")).gender,
-        "os": OS
+        "platform": PLATFORM
       })
     }
   }
@@ -125,7 +125,7 @@ class Header extends React.Component {
         "event_label": location.pathname,
       })
     }
-    window.dataLayer.push({ "event": "point_of_signin", "page_name": location.pathname, "os": OS }) 
+    window.dataLayer.push({ "event": "point_of_signin", "page_name": location.pathname, "platform": PLATFORM }) 
     mountModal(SignIn({
       //reload: this.reloadHeader
     }))

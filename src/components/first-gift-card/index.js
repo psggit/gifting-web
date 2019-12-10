@@ -1,10 +1,10 @@
 import React from "react"
 import Button from "Components/button"
 import "./first-gift-card.scss"
-import { OS } from "Utils/constants"
+import { PLATFORM } from "Utils/constants"
 
 const handleClick = () => {
-  window.dataLayer.push({ "event": "start_gifting", "path_name": location.hostname, "page_title": document.title, "os": OS })
+  window.dataLayer.push({ "event": "start_gifting", "path_name": location.hostname, "page_title": document.title, "platform": PLATFORM })
   location.href = "/send-gift" 
 }
 
