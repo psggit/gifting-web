@@ -661,9 +661,10 @@ function renderStaticMarkup({ component, req, res, file }) {
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withMetaTags(withHeader(head), req.url, req.url)
-  const headWithGtmScript = getGtmScript(headWithNavbar)
+  const headWithGtmScriptPart1 = getGtmScriptPart1(headWithNavbar)
+  const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
   const tailWithGamoogaScript = getGamoogaScript(tail)
-  res.write(headWithGtmScript)
+  res.write(headWithGtmScriptPart2)
   const reactElement = React.createElement(component)
   const stream = renderToNodeStream(reactElement)
   stream.pipe(res, { end: false })
@@ -715,8 +716,8 @@ function withMetaTags(head, name, url) {
   `)
 }
 
-function getGtmScript (head) {
-  return head.split("{gtmScript}").join(`
+function getGtmScriptPart1 (head) {
+  return head.split("{gtmScriptPart1}").join(`
     <script>
       (function (w, d, s, l, i) {
         w[l] = w[l] || []; w[l].push({
@@ -727,6 +728,15 @@ function getGtmScript (head) {
             'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
       })(window, document, 'script', 'dataLayer', 'GTM-T5C9JFG');
     </script>
+  `)
+}
+
+function getGtmScriptPart2 (head) {
+  return head.split("{gtmScriptPart2}").join(`
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5C9JFG" height="0" width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
   `)
 }
 
