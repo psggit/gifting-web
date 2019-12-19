@@ -32,7 +32,7 @@
           display: none !important;
         }
     </style>
-    {gtmScript}
+    {gtmScriptPart1}
     <!-- <script>
       (function (w, d, s, l, i) {
         w[l] = w[l] || []; w[l].push({
@@ -45,10 +45,11 @@
     </script> -->
   </head>
   <body>
-    <noscript>
+    <!-- <noscript>
       <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5C9JFG" height="0" width="0"
         style="display:none;visibility:hidden"></iframe>
-    </noscript>
+    </noscript> -->
+    {gtmScriptPart2}
     <div class="theme-dark" style="max-width:1440px;margin: 0 auto">
       <div id="header">{header}</div>
       <div id="app" >{content}</div>
