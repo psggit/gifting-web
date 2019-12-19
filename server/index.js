@@ -661,7 +661,8 @@ function renderStaticMarkup({ component, req, res, file }) {
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withMetaTags(withHeader(head), req.url, req.url)
-  res.write(headWithNavbar)
+  const headWithGtmScript = getGtmScript(headWithNavbar)
+  res.write(headWithGtmScript)
   const reactElement = React.createElement(component)
   const stream = renderToNodeStream(reactElement)
   stream.pipe(res, { end: false })
@@ -710,6 +711,21 @@ function withMetaTags(head, name, url) {
     <meta content="${meta.description}" property="og:description">
     <meta content="${meta.url}" property="og:url">
     <meta content="${meta.site_name}" property="og:site_name">
+  `)
+}
+
+function getGtmScript (head) {
+  return head.split("{gtmScript}").join(`
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-T5C9JFG');
+    </script>
   `)
 }
 
