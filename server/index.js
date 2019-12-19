@@ -662,12 +662,13 @@ function renderStaticMarkup({ component, req, res, file }) {
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withMetaTags(withHeader(head), req.url, req.url)
   const headWithGtmScript = getGtmScript(headWithNavbar)
+  const tailWithGamoogaScript = getGamoogaScript(tail)
   res.write(headWithGtmScript)
   const reactElement = React.createElement(component)
   const stream = renderToNodeStream(reactElement)
   stream.pipe(res, { end: false })
   stream.on("end", () => {
-    res.write(tail)
+    res.write(tailWithGamoogaScript)
     res.end()
   })
 }
@@ -725,6 +726,38 @@ function getGtmScript (head) {
           j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
             'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
       })(window, document, 'script', 'dataLayer', 'GTM-T5C9JFG');
+    </script>
+  `)
+}
+
+function getGamoogaScript (tail) {
+  return tail.split("{gamoogaScript}").join(`
+    <script type="text/javascript">
+      var _taq = { "id": "e848dae5-a4a9-41ad-8322-2d5092411a78", "events": [], "identify": [], "property": [], "handlers": [] };
+      (function () {
+        var ta = document.createElement('script'); ta.type = 'text/javascript'; ta.async = true; ta.id = "__ta";
+        ta.src = '//cdn-jp.gsecondscreen.com/static/ta.min.js';
+        var fs = document.getElementsByTagName('script')[0]; fs.parentNode.insertBefore(ta, fs);
+      })();
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+  
+   
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
+  
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyBPcX0dh8EdPg4qyoa9vbIwTkSgvoKyxuw",
+        authDomain: "gifting-site-dev.firebaseapp.com",
+        databaseURL: "https://gifting-site-dev.firebaseio.com",
+        projectId: "gifting-site-dev",
+        storageBucket: "gifting-site-dev.appspot.com",
+        messagingSenderId: "675341753434",
+        appId: "1:675341753434:web:ca94f6b2566337c75ecc63",
+        measurementId: "G-QY3C3KV5DT"
+      };
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
     </script>
   `)
 }
