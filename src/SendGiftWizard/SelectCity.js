@@ -40,13 +40,12 @@ class SelectCity extends React.Component {
         })
       })
     }
-    alert("select city")
-    // window.dataLayer.push({ 
-    //   "event": "select_city", 
-    //   "city_id": activeCity.id, 
-    //   "platform": PLATFORM,
-    //   "hasura_id": localStorage.getItem("hasura_id")
-    // }) 
+    window.dataLayer.push({ 
+      "event": "select_city", 
+      "city_id": activeCity.id, 
+      "platform": PLATFORM,
+      "hasura_id": localStorage.getItem("hasura_id")
+    }) 
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     
     receiverInfo.gps = activeCity.gps
