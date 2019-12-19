@@ -2,18 +2,6 @@
   "short_name": "Hipbar Gifting",
   "name": "Hipbar Gifting",
   "gcm_sender_id": "675341753434",
-  "icons": [
-    {
-      "src": "./images/favicon.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "./images/favicon.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
   "start_url": "/send-gift?source=pwa",
   "background_color": "#000",
   "display": "standalone",
