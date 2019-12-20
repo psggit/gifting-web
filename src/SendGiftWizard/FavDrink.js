@@ -112,7 +112,7 @@ class FavDrink extends React.Component {
       "city_id": city_id, 
       "state_id": state_id,
       "platform": PLATFORM,
-      "hasura_id": localStorage.getItem("hasura_id") 
+      "hasura_id": localStorage.getItem("hasura-id") 
     }) 
 
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
