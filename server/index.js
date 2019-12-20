@@ -1038,8 +1038,13 @@ app.get("/*", (req, res) => {
   }
   const html = fs.readFileSync(path.resolve(__dirname, "./../dist/client.html"), "utf-8")
   const [head, tail] = html.split("{content}")
+  // const headWithNavbar = withHeader(head)
+  // res.write(headWithNavbar)
   const headWithNavbar = withHeader(head)
-  res.write(headWithNavbar)
+  const headWithGtmScriptPart1 = getGtmScriptPart1(headWithNavbar)
+  const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
+  //const tailWithGamoogaScript = getGamoogaScript(tail)
+  res.write(headWithGtmScriptPart2)
   res.end()
 })
 
