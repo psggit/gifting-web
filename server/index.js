@@ -438,13 +438,13 @@ app.post("/transaction-successful", (req, res) => {
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-success.html"), "utf-8")
     const [head, tail] = html.split("{content}")
-    // const headWithNavbar = withHeader(head)
-    // res.write(headWithNavbar)
     const headWithNavbar = withHeader(head)
-    const headWithGtmScriptPart1 = getGtmScriptPart1(headWithNavbar)
-    const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
-    const tailWithGamoogaScript = getGamoogaScript(tail)
-    res.write(headWithGtmScriptPart2)
+    res.write(headWithNavbar)
+    // const headWithNavbar = withHeader(head)
+    // const headWithGtmScriptPart1 = getGtmScriptPart1(headWithNavbar)
+    // const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
+    // const tailWithGamoogaScript = getGamoogaScript(tail)
+    // res.write(headWithGtmScriptPart2)
 
     const txn = {
       net_amount_debit: req.body.net_amount_debit,
@@ -454,7 +454,7 @@ app.post("/transaction-successful", (req, res) => {
       addedon: req.body.addedon
     }
 
-    const newTail = tailWithGamoogaScript.split("{script}")
+    const newTail = tail.split("{script}")
       .join(`
       <script id="ssr__script">
         window.__TXN__ = ${JSON.stringify(txn)}
