@@ -762,7 +762,7 @@ function getGtmScriptPart1 (head) {
 function getGtmScriptPart2 (head) {
   return head.split("{gtmScriptPart2}").join(`
     <noscript>
-      <iframe src=https://www.googletagmanager.com/ns.html?id=${GTM_CONTAINER_ID} height="0" width="0"
+      <iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_CONTAINER_ID}" height="0" width="0"
         style="display:none;visibility:hidden"></iframe>
     </noscript>
   `)
