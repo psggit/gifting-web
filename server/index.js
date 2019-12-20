@@ -54,6 +54,16 @@ app.use(helmet({
 // const BASE_URL = "amebae21.hasura-app.io";
 const BASE_URL = process.env.BASE_URL || "hipbar-dev.com"
 const GTM_CONTAINER_ID = process.env.GTM_CONTAINER_ID
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBPcX0dh8EdPg4qyoa9vbIwTkSgvoKyxuw",
+  authDomain: "gifting-site-dev.firebaseapp.com",
+  databaseURL: "https://gifting-site-dev.firebaseio.com",
+  projectId: "gifting-site-dev",
+  storageBucket: "gifting-site-dev.appspot.com",
+  messagingSenderId: "675341753434",
+  appId: "1:675341753434:web:ca94f6b2566337c75ecc63",
+  measurementId: "G-QY3C3KV5DT"
+}
 
 console.log("gtm container id", GTM_CONTAINER_ID)
 
@@ -744,7 +754,7 @@ function getGtmScriptPart1 (head) {
         }); var f = d.getElementsByTagName(s)[0],
           j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
             'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-T5C9JFG');
+      })(window, document, 'script', 'dataLayer', ${GTM_CONTAINER_ID});
     </script>
   `)
 }
@@ -752,7 +762,7 @@ function getGtmScriptPart1 (head) {
 function getGtmScriptPart2 (head) {
   return head.split("{gtmScriptPart2}").join(`
     <noscript>
-      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5C9JFG" height="0" width="0"
+      <iframe src=https://www.googletagmanager.com/ns.html?id=${GTM_CONTAINER_ID} height="0" width="0"
         style="display:none;visibility:hidden"></iframe>
     </noscript>
   `)
@@ -774,16 +784,7 @@ function getGamoogaScript (tail) {
     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
   
     <script>
-      var firebaseConfig = {
-        apiKey: "AIzaSyBPcX0dh8EdPg4qyoa9vbIwTkSgvoKyxuw",
-        authDomain: "gifting-site-dev.firebaseapp.com",
-        databaseURL: "https://gifting-site-dev.firebaseio.com",
-        projectId: "gifting-site-dev",
-        storageBucket: "gifting-site-dev.appspot.com",
-        messagingSenderId: "675341753434",
-        appId: "1:675341753434:web:ca94f6b2566337c75ecc63",
-        measurementId: "G-QY3C3KV5DT"
-      };
+      var firebaseConfig = ${FIREBASE_CONFIG};
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
     </script>
