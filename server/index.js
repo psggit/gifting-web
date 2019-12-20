@@ -65,8 +65,6 @@ const FIREBASE_CONFIG = {
   measurementId: "G-QY3C3KV5DT"
 }
 
-console.log("gtm container id", GTM_CONTAINER_ID)
-
 app.get("/images/:name", (req, res) => {
   res.sendFile(path.join(__dirname, `./../images/${req.params.name}`), (err) => {
     if (err) {
@@ -311,7 +309,6 @@ app.get("/wp-content/uploads/2019/08/:name", (req, res) => {
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get("/sw.js", (req, res) => {
-  console.log("sw.js")
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, "./../sw.js"), (err) => {
     if (err) {
@@ -321,7 +318,6 @@ app.get("/sw.js", (req, res) => {
 })
 
 app.get("/", (req, res) => {
-  // console.log("home")
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../wp-static-files/index.html`), (err) => {
     if (err) {
@@ -1063,7 +1059,6 @@ app.get("/*", (req, res) => {
   const [head, tail] = html.split("{content}")
   // const headWithNavbar = withHeader(head)
   // res.write(headWithNavbar)
-  console.log("tail", tail)
   const headWithNavbar = withHeader(head)
   const headWithGtmScriptPart1 = getGtmScriptPart1(headWithNavbar)
   const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
