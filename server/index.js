@@ -425,8 +425,13 @@ app.post("/transaction-successful", (req, res) => {
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-success.html"), "utf-8")
     const [head, tail] = html.split("{content}")
+    // const headWithNavbar = withHeader(head)
+    // res.write(headWithNavbar)
     const headWithNavbar = withHeader(head)
-    res.write(headWithNavbar)
+    const headWithGtmScriptPart1 = getGtmScriptPart1(headWithNavbar)
+    const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
+    const tailWithGamoogaScript = getGamoogaScript(tail)
+    res.write(headWithGtmScriptPart2)
 
     const txn = {
       net_amount_debit: req.body.net_amount_debit,
@@ -436,7 +441,7 @@ app.post("/transaction-successful", (req, res) => {
       addedon: req.body.addedon
     }
 
-    const newTail = tail.split("{script}")
+    const newTail = tailWithGamoogaScript.split("{script}")
       .join(`
       <script id="ssr__script">
         window.__TXN__ = ${JSON.stringify(txn)}
@@ -461,9 +466,14 @@ app.post("/transaction-cancelled", (req, res) => {
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-failed.html"), "utf-8")
     const [head, tail] = html.split("{content}")
+    // const headWithNavbar = withHeader(head)
+    // res.write(headWithNavbar)
     const headWithNavbar = withHeader(head)
-    res.write(headWithNavbar)
-    const newTail = tail.split("{script}")
+    const headWithGtmScriptPart1 = getGtmScriptPart1(headWithNavbar)
+    const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
+    const tailWithGamoogaScript = getGamoogaScript(tail)
+    res.write(headWithGtmScriptPart2)
+    const newTail = tailWithGamoogaScript.split("{script}")
       .join(`
       <script id="ssr__script">
         window.__TXN__ = ${JSON.stringify(req.body)}
@@ -489,9 +499,14 @@ app.post("/transaction-failure", (req, res) => {
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-failed.html"), "utf-8")
     const [head, tail] = html.split("{content}")
+    // const headWithNavbar = withHeader(head)
+    // res.write(headWithNavbar)
     const headWithNavbar = withHeader(head)
-    res.write(headWithNavbar)
-    const newTail = tail.split("{script}")
+    const headWithGtmScriptPart1 = getGtmScriptPart1(headWithNavbar)
+    const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
+    const tailWithGamoogaScript = getGamoogaScript(tail)
+    res.write(headWithGtmScriptPart2)
+    const newTail = tailWithGamoogaScript.split("{script}")
       .join(`
       <script id="ssr__script">
         window.__TXN__ = ${JSON.stringify(req.body)}
@@ -961,9 +976,13 @@ app.get("/brand/:stateSlug/:genreSlug/:citySlug/:brandSlug", (req, res) => {
     const [head, tail] = html.split("{content}")
     const headWithNavbar = withHeader(head)
     const genreName = getGenreNameById(genre)
-    res.write(withMetaTags(headWithNavbar, genreName, req.url))
-
-    const newTail = tail.split("{script}")
+    //res.write(withMetaTags(headWithNavbar, genreName, req.url))
+    const headWithMetaTag = withMetaTags(withHeader(headWithNavbar), genreName, req.url)
+    const headWithGtmScriptPart1 = getGtmScriptPart1(headWithMetaTag)
+    const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
+    const tailWithGamoogaScript = getGamoogaScript(tail)
+    res.write(headWithGtmScriptPart2)
+    const newTail = tailWithGamoogaScript.split("{script}")
       .join(`
       <script>
         window.__isMobile__ = ${isMobile(req)}
