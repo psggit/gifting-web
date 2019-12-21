@@ -54,16 +54,7 @@ app.use(helmet({
 // const BASE_URL = "amebae21.hasura-app.io";
 const BASE_URL = process.env.BASE_URL || "hipbar-dev.com"
 const GTM_CONTAINER_ID = process.env.GTM_CONTAINER_ID
-const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyBPcX0dh8EdPg4qyoa9vbIwTkSgvoKyxuw",
-  authDomain: "gifting-site-dev.firebaseapp.com",
-  databaseURL: "https://gifting-site-dev.firebaseio.com",
-  projectId: "gifting-site-dev",
-  storageBucket: "gifting-site-dev.appspot.com",
-  messagingSenderId: "675341753434",
-  appId: "1:675341753434:web:ca94f6b2566337c75ecc63",
-  measurementId: "G-QY3C3KV5DT"
-}
+const FIREBASE_CONFIG = process.env.FIREBASE_CONFIG
 
 app.get("/images/:name", (req, res) => {
   res.sendFile(path.join(__dirname, `./../images/${req.params.name}`), (err) => {
