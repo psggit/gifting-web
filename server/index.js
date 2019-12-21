@@ -55,6 +55,7 @@ app.use(helmet({
 const BASE_URL = process.env.BASE_URL || "hipbar-dev.com"
 const GTM_CONTAINER_ID = process.env.GTM_CONTAINER_ID
 const FIREBASE_CONFIG = process.env.FIREBASE_CONFIG
+console.log("firebase config", FIREBASE_CONFIG)
 
 app.get("/images/:name", (req, res) => {
   res.sendFile(path.join(__dirname, `./../images/${req.params.name}`), (err) => {
