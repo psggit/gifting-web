@@ -460,11 +460,24 @@
       }
     }
   </style>
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-T5C9JFG');
+  </script>
 </head>
 
 <body onload="fetchAvailableCities()"
   class="home page-template-default page page-id-7 wp-embed-responsive siteorigin-panels siteorigin-panels-before-js siteorigin-panels-home">
-
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5C9JFG" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe>
+  </noscript>
   <div id="togglemenu" class="sidetogglemenu menu-from-right">
     <!-- Your content -->
     <nav id="site-navigation" class="main-navigation" role="navigation">
@@ -600,11 +613,12 @@
                                           class="so-panel widget widget_sow-button panel-last-child" data-index="8">
                                           <div class="custom-btn panel-widget-style panel-widget-style-for-124-2-0-2">
                                             <div class="so-widget-sow-button so-widget-sow-button-atom-2cde5de98610">
-                                              <div class="ow-button-base ow-button-align-left">
+                                              <div class="ow-button-base ow-button-align-left" onclick="handleClick()">
                                                 <a href="/send-gift" target="_blank" class="ow-icon-placement-left">
                                                   <span>
 
-                                                    START GIFTING </span>
+                                                    START GIFTING 
+                                                  </span>
                                                 </a>
                                               </div>
                                             </div>
@@ -769,6 +783,33 @@
       </div>
     </footer><!-- #colophon -->
   </div><!-- #page -->
+  <script type="text/javascript">
+    var _taq = { "id": "e848dae5-a4a9-41ad-8322-2d5092411a78", "events": [], "identify": [], "property": [], "handlers": [] };
+    (function () {
+      var ta = document.createElement('script'); ta.type = 'text/javascript'; ta.async = true; ta.id = "__ta";
+      ta.src = '//cdn-jp.gsecondscreen.com/static/ta.min.js';
+      var fs = document.getElementsByTagName('script')[0]; fs.parentNode.insertBefore(ta, fs);
+    })();
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+  
+  
+  <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
+  
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyBPcX0dh8EdPg4qyoa9vbIwTkSgvoKyxuw",
+      authDomain: "gifting-site-dev.firebaseapp.com",
+      databaseURL: "https://gifting-site-dev.firebaseio.com",
+      projectId: "gifting-site-dev",
+      storageBucket: "gifting-site-dev.appspot.com",
+      messagingSenderId: "675341753434",
+      appId: "1:675341753434:web:ca94f6b2566337c75ecc63",
+      measurementId: "G-QY3C3KV5DT"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
   <script>
     const domain = location.href.split(".")[1]
     function handleSelectChange() {
@@ -865,6 +906,14 @@
         .catch((error) => {
           console.log("Error in fetching all cities", error)
         })
+    }
+
+    function handleClick() {
+      window.dataLayer.push({ 
+        page_title: document.title, 
+        path_name: location.pathname, 
+        platform: "web" 
+      })
     }
   </script>
 
