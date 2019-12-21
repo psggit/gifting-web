@@ -153,7 +153,7 @@ class SkuItem extends React.Component {
 
     window.dataLayer.push({ 
       "event": "add_to_cart_item", 
-      "city_id": localStorage.getItem("receiver_info").city_id, 
+      "city_id": JSON.parse(localStorage.getItem("receiver_info")).city_id, 
       "sku_id": basketItem.sku.sku_id, 
       "brand_id": basketItem.brand.brand_id, 
       "count": 1,
