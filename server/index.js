@@ -52,9 +52,20 @@ app.use(helmet({
 // ENV variables
 // const PROD_API_BASE = process.env.PROD_API_BASE
 // const BASE_URL = "amebae21.hasura-app.io";
+const firebaseConfig = {
+  apiKey: "AIzaSyBPcX0dh8EdPg4qyoa9vbIwTkSgvoKyxuw",
+  authDomain: "gifting-site-dev.firebaseapp.com",
+  databaseURL: "https://gifting-site-dev.firebaseio.com",
+  projectId: "gifting-site-dev",
+  storageBucket: "gifting-site-dev.appspot.com",
+  messagingSenderId: "675341753434",
+  appId: "1:675341753434:web:ca94f6b2566337c75ecc63",
+  measurementId: "G-QY3C3KV5DT"
+}
+
 const BASE_URL = process.env.BASE_URL || "hipbar-dev.com"
-const GTM_CONTAINER_ID = process.env.GTM_CONTAINER_ID
-const FIREBASE_CONFIG = process.env.FIREBASE_CONFIG
+const GTM_CONTAINER_ID = process.env.GTM_CONTAINER_ID || "GTM-T5C9JFG"
+const FIREBASE_CONFIG = process.env.FIREBASE_CONFIG || firebaseConfig
 console.log("firebase config", FIREBASE_CONFIG)
 
 app.get("/images/:name", (req, res) => {
@@ -429,7 +440,8 @@ app.post("/transaction-successful", (req, res) => {
     // const headWithNavbar = withHeader(head)
     // res.write(headWithNavbar)
     const headWithNavbar = withHeader(head)
-    const headWithGtmScriptPart1 = getGtmScriptPart1(headWithNavbar)
+    const headerWithFacebookPixelCode = withFacebookPixelCode(headWithNavbar) 
+    const headWithGtmScriptPart1 = getGtmScriptPart1(headerWithFacebookPixelCode)
     const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
     const tailWithGamoogaScript = getGamoogaScript(tail)
     res.write(headWithGtmScriptPart2)
@@ -470,7 +482,8 @@ app.post("/transaction-cancelled", (req, res) => {
     // const headWithNavbar = withHeader(head)
     // res.write(headWithNavbar)
     const headWithNavbar = withHeader(head)
-    const headWithGtmScriptPart1 = getGtmScriptPart1(headWithNavbar)
+    const headerWithFacebookPixelCode = withFacebookPixelCode(headWithNavbar) 
+    const headWithGtmScriptPart1 = getGtmScriptPart1(headerWithFacebookPixelCode)
     const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
     const tailWithGamoogaScript = getGamoogaScript(tail)
     res.write(headWithGtmScriptPart2)
@@ -503,7 +516,8 @@ app.post("/transaction-failure", (req, res) => {
     // const headWithNavbar = withHeader(head)
     // res.write(headWithNavbar)
     const headWithNavbar = withHeader(head)
-    const headWithGtmScriptPart1 = getGtmScriptPart1(headWithNavbar)
+    const headerWithFacebookPixelCode = withFacebookPixelCode(headWithNavbar) 
+    const headWithGtmScriptPart1 = getGtmScriptPart1(headerWithFacebookPixelCode)
     const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
     const tailWithGamoogaScript = getGamoogaScript(tail)
     res.write(headWithGtmScriptPart2)
@@ -677,7 +691,8 @@ function renderStaticMarkup({ component, req, res, file }) {
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withMetaTags(withHeader(head), req.url, req.url)
-  const headWithGtmScriptPart1 = getGtmScriptPart1(headWithNavbar)
+  const headerWithFacebookPixelCode = withFacebookPixelCode(headWithNavbar) 
+  const headWithGtmScriptPart1 = getGtmScriptPart1(headerWithFacebookPixelCode)
   const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
   const tailWithGamoogaScript = getGamoogaScript(tail)
   res.write(headWithGtmScriptPart2)
@@ -729,6 +744,26 @@ function withMetaTags(head, name, url) {
     <meta content="${meta.description}" property="og:description">
     <meta content="${meta.url}" property="og:url">
     <meta content="${meta.site_name}" property="og:site_name">
+  `)
+}
+
+function withFacebookPixelCode (head) {
+  return head.split("{facebookPixelCode}").join(`
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '747686785640043');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=747686785640043&ev=PageView&noscript=1"
+    /></noscript>
   `)
 }
 
@@ -970,7 +1005,8 @@ app.get("/brand/:stateSlug/:genreSlug/:citySlug/:brandSlug", (req, res) => {
     const genreName = getGenreNameById(genre)
     //res.write(withMetaTags(headWithNavbar, genreName, req.url))
     const headWithMetaTag = withMetaTags(withHeader(headWithNavbar), genreName, req.url)
-    const headWithGtmScriptPart1 = getGtmScriptPart1(headWithMetaTag)
+    const headerWithFacebookPixelCode = withFacebookPixelCode(headWithMetaTag) 
+    const headWithGtmScriptPart1 = getGtmScriptPart1(headerWithFacebookPixelCode)
     const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
     const tailWithGamoogaScript = getGamoogaScript(tail)
     res.write(headWithGtmScriptPart2)
@@ -1052,7 +1088,8 @@ app.get("/*", (req, res) => {
   // const headWithNavbar = withHeader(head)
   // res.write(headWithNavbar)
   const headWithNavbar = withHeader(head)
-  const headWithGtmScriptPart1 = getGtmScriptPart1(headWithNavbar)
+  const headerWithFacebookPixelCode = withFacebookPixelCode(headWithNavbar) 
+  const headWithGtmScriptPart1 = getGtmScriptPart1(headerWithFacebookPixelCode)
   const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
   const tailWithGamoogaScript = getGamoogaScript(tail)
   res.write(headWithGtmScriptPart2)
