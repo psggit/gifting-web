@@ -56,14 +56,14 @@ class GenresSlider extends React.Component {
   }
 
   handleGenreChange(genre) {
-    if(window.gtag) {
-      gtag("event", "change_genre", {
-        "event_label": JSON.stringify({
-          genre: genre.short_name,
-          date: new Date()
-        })
-      })
-    }
+    // if(window.gtag) {
+    //   gtag("event", "change_genre", {
+    //     "event_label": JSON.stringify({
+    //       genre: genre.short_name,
+    //       date: new Date()
+    //     })
+    //   })
+    // }
     this.setState({ active: genre.id })
     this.props.handleGenreChange(genre)
   }

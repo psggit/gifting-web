@@ -32,14 +32,14 @@ class SelectCity extends React.Component {
   // }
 
   handleCityClick(activeCity) {
-    if (window.gtag) {
-      gtag("event", "choose_city", {
-        "event_label": JSON.stringify({
-          cityName: activeCity.name,
-          date: Moment(new Date()).format("DD/MM/YYYY")
-        })
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "choose_city", {
+    //     "event_label": JSON.stringify({
+    //       cityName: activeCity.name,
+    //       date: Moment(new Date()).format("DD/MM/YYYY")
+    //     })
+    //   })
+    // }
     window.dataLayer.push({ 
       "event": "select_city", 
       "city_id": activeCity.id, 

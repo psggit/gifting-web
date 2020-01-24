@@ -52,15 +52,15 @@ class SuccessfulTransaction extends React.Component {
       })
     })
     console.log("cart Details", cartDetails, localStorage.getItem("amount"))
-    if (window.gtag) {
-      gtag("event", "transaction_success", {
-        "event_label": JSON.stringify({
-          cartItems: cartDetails,
-          totalToPay: parseFloat(txn.net_amount_debit).toFixed(2),
-          date: Moment(new Date()).format("DD/MM/YYYY")
-        })
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "transaction_success", {
+    //     "event_label": JSON.stringify({
+    //       cartItems: cartDetails,
+    //       totalToPay: parseFloat(txn.net_amount_debit).toFixed(2),
+    //       date: Moment(new Date()).format("DD/MM/YYYY")
+    //     })
+    //   })
+    // }
     window.dataLayer.push({
       "event": "payment_success",
       "payment_mode": txn.mode === "CC" || txn.mode === "DC" ? txn.cardnum.split("X").join("*") : this.modeMap[txn.mode],

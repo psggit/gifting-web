@@ -143,13 +143,13 @@ class SkuItem extends React.Component {
       sku_id: basketItem.sku.sku_id,
     })
     console.log("product Details", productDetails)
-    if (window.gtag) {
-      gtag("event", "add_product_to_cart", {
-        "event_label": JSON.stringify({
-          productDetails,
-        })
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "add_product_to_cart", {
+    //     "event_label": JSON.stringify({
+    //       productDetails,
+    //     })
+    //   })
+    // }
 
     window.dataLayer.push({ 
       "event": "add_to_cart_item", 

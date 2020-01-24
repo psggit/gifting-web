@@ -41,14 +41,14 @@ class FailureTransaction extends React.Component {
       txn_time: Moment(txn.addedon).format("DD/MM/YYYY, hh:mm A")
     })
     //console.log("failue", parseFloat(txn.amount).toFixed(2))
-    if(window.gtag) {
-      gtag("event", "transaction_failure", {
-        "event_label": JSON.stringify({
-          cart_total: parseFloat(txn.amount).toFixed(2),
-          date: Moment(new Date()).format("DD/YY/MMMM")
-        })
-      })
-    }
+    // if(window.gtag) {
+    //   gtag("event", "transaction_failure", {
+    //     "event_label": JSON.stringify({
+    //       cart_total: parseFloat(txn.amount).toFixed(2),
+    //       date: Moment(new Date()).format("DD/YY/MMMM")
+    //     })
+    //   })
+    // }
     let cartDetails = basket.map((item) => {
       return ({
         productName: item.brand.brand_name,

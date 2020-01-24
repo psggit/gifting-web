@@ -120,11 +120,11 @@ class Header extends React.Component {
 
   handleClick() {
     this.setState({ isMenuOpen: false })
-    if (window.gtag) {
-      gtag("event", "point_of_signin", {
-        "event_label": location.pathname,
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "point_of_signin", {
+    //     "event_label": location.pathname,
+    //   })
+    // }
     window.dataLayer.push({ "event": "point_of_signin", "page_name": location.pathname, "platform": PLATFORM }) 
     mountModal(SignIn({
       //reload: this.reloadHeader
