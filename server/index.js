@@ -802,14 +802,35 @@ function getGamoogaScript (tail) {
       })();
     </script>
     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
-  
-   
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
-  
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-messaging.js"></script>
+   
     <script>
-      var firebaseConfig = ${FIREBASE_CONFIG};
+      //var firebaseConfig = ${FIREBASE_CONFIG}
+      var firebaseConfig = {
+        apiKey: "AIzaSyBPcX0dh8EdPg4qyoa9vbIwTkSgvoKyxuw",
+        authDomain: "gifting-site-dev.firebaseapp.com",
+        databaseURL: "https://gifting-site-dev.firebaseio.com",
+        projectId: "gifting-site-dev",
+        storageBucket: "gifting-site-dev.appspot.com",
+        messagingSenderId: "675341753434",
+        appId: "1:675341753434:web:ca94f6b2566337c75ecc63",
+        measurementId: "G-QY3C3KV5DT"
+      }
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
+      const messaging = firebase.messaging();
+      messaging.usePublicVapidKey("BGbI11PFGFHrvV_YVfCuxgJAUQq08UK9MuBseOjPOl5f_0AaRAfolXQ6iSwcsKLjhJBPy1KD2jaVSRJP0Nl2_PM");
+      messaging.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          console.log('Notification permission granted.');
+          // TODO(developer): Retrieve an Instance ID token for use with FCM.
+          // ...
+        } else {
+          console.log('Unable to get permission to notify.');
+        }
+      });
     </script>
   `)
 }

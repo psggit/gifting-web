@@ -59,14 +59,14 @@ class CitySelect extends React.Component {
     const target = e.target
     const cityIdx = target.value
     const selectedCity = this.state.cities[cityIdx]
-    if (window.gtag) {
-      gtag("event", "change_city", {
-        "event_label": JSON.stringify({
-          selectedCity: this.state.cities[cityIdx].name,
-          date: Moment(new Date()).format("DD/MM/YYYY")
-        })
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "change_city", {
+    //     "event_label": JSON.stringify({
+    //       selectedCity: this.state.cities[cityIdx].name,
+    //       date: Moment(new Date()).format("DD/MM/YYYY")
+    //     })
+    //   })
+    // }
     window.dataLayer.push({
       "event": "change_city", 
       "city_id": this.state.cities[cityIdx].id,
