@@ -143,13 +143,13 @@ class SkuItem extends React.Component {
       sku_id: basketItem.sku.sku_id,
     })
     console.log("product Details", productDetails)
-    if (window.gtag) {
-      gtag("event", "add_product_to_cart", {
-        "event_label": JSON.stringify({
-          productDetails,
-        })
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "add_product_to_cart", {
+    //     "event_label": JSON.stringify({
+    //       productDetails,
+    //     })
+    //   })
+    // }
 
     window.dataLayer.push({ 
       "event": "add_to_cart_item", 
@@ -207,12 +207,13 @@ class SkuItem extends React.Component {
     if (this.img && this.img.complete) {
       this.handleImageLoad()
     }
-    window.dataLayer.push({
-      "event": "view_brand", 
-      "brand_id": location.pathname.split("/").pop(), 
-      "city_id": location.pathname.split("/")[4],
-      "platform": PLATFORM
-    })
+    console.log("view_brand")
+    // window.dataLayer.push({
+    //   "event": "view_brand", 
+    //   "brand_id": location.pathname.split("/").pop(), 
+    //   "city_id": location.pathname.split("/")[4],
+    //   "platform": PLATFORM
+    // })
   }
 
   // componentDidUpdate(prevProps) {

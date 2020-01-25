@@ -275,11 +275,11 @@ export default function SignUp(data) {
                 //   eventAction: "",
                 //   eventLabel: "sign_up_failure"
                 // })
-                if (window.gtag) {
-                  gtag("event", "sign_up_failure", {
-                    "event_label": "failure"
-                  })
-                }
+                // if (window.gtag) {
+                //   gtag("event", "sign_up_failure", {
+                //     "event_label": "failure"
+                //   })
+                // }
                 return
               } else if (response.status === 400 && responseData.errorCode === "expired-otp") {
                 this.setState({ otpErr: { status: true, value: responseData.message } })
@@ -290,11 +290,11 @@ export default function SignUp(data) {
                 //   eventAction: "",
                 //   eventLabel: "sign_up_failure"
                 // })
-                if (window.gtag) {
-                  gtag("event", "sign_up_failure", {
-                    "event_label": "failure"
-                  })
-                }
+                // if (window.gtag) {
+                //   gtag("event", "sign_up_failure", {
+                //     "event_label": "failure"
+                //   })
+                // }
                 return
               }
 
@@ -304,11 +304,11 @@ export default function SignUp(data) {
               //   eventAction: "",
               //   eventLabel: "sign_up_success"
               // })
-              if (window.gtag) {
-                gtag("event", "sign_up_success", {
-                  "event_label": "success"
-                })
-              }
+              // if (window.gtag) {
+              //   gtag("event", "sign_up_success", {
+              //     "event_label": "success"
+              //   })
+              // }
               createSession(responseData)
               saveUserData({
                 "dob": this.state.dob,
@@ -331,11 +331,11 @@ export default function SignUp(data) {
             //   eventAction: "",
             //   eventLabel: "sign_up_failure"
             // })
-            if (window.gtag) {
-              gtag("event", "sign_up_failure", {
-                "event_label": "failure"
-              })
-            }
+            // if (window.gtag) {
+            //   gtag("event", "sign_up_failure", {
+            //     "event_label": "failure"
+            //   })
+            // }
             mountModal(NotifyError({}))
           })
       }

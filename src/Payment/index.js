@@ -181,13 +181,13 @@ class Payment extends React.Component {
 
   handleRadioChange(value) {
     this.setState({ netbankingErr: { value: "", status: false } })
-    if (window.gtag) {
-      gtag("event", "selected_bank_nb", {
-        "event_label": JSON.stringify({
-          bank_code: value
-        })
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "selected_bank_nb", {
+    //     "event_label": JSON.stringify({
+    //       bank_code: value
+    //     })
+    //   })
+    // }
     this.setState({ isPopularSelected: true, noBankSelected: false, bankcode: value})
   }
 

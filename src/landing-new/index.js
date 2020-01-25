@@ -36,13 +36,13 @@ class Landing extends React.Component {
   }
 
   handleClick() {
-    if (window.gtag) {
-      gtag("event", "point_of_clicking_start_gifting", {
-        "event_label": JSON.stringify({
-          page_title: "landing"
-        })
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "point_of_clicking_start_gifting", {
+    //     "event_label": JSON.stringify({
+    //       page_title: "landing"
+    //     })
+    //   })
+    // }
   }
 
   render() {

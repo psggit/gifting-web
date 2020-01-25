@@ -68,17 +68,17 @@ class ProductDetails extends React.Component {
           this.setState({ brand })
         })
     }
-    const gaObject = {
-      // brand: params.brandSlug,
-      // genre: params.genreSlug,
-      // city: params.citySlug,
-      date: Moment(new Date()).format("DD/MM/YYYY")
-    }
-    if (window.gtag) {
-      gtag("event", "view_product", {
-        "event_label": JSON.stringify(gaObject),
-      })
-    }
+    //const gaObject = {
+    // brand: params.brandSlug,
+    // genre: params.genreSlug,
+    // city: params.citySlug,
+    // date: Moment(new Date()).format("DD/MM/YYYY")
+    //}
+    // if (window.gtag) {
+    //   gtag("event", "view_product", {
+    //     "event_label": JSON.stringify(gaObject),
+    //   })
+    // }
     this.setBrandsUrl()
 
   }

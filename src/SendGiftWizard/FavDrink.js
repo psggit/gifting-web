@@ -95,14 +95,14 @@ class FavDrink extends React.Component {
       receiverInfo.genre_id = genre.id
     }
 
-    if (window.gtag) {
-      gtag("event", "choose_genre", {
-        "event_label": JSON.stringify({
-          selectedGenre: genre.name,
-          date: Moment(new Date()).format("DD/MM/YYYY")
-        })
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "choose_genre", {
+    //     "event_label": JSON.stringify({
+    //       selectedGenre: genre.name,
+    //       date: Moment(new Date()).format("DD/MM/YYYY")
+    //     })
+    //   })
+    // }
     
     const state_id = JSON.parse(localStorage.getItem("receiver_info")).state_id
     const city_id = JSON.parse(localStorage.getItem("receiver_info")).city_id
