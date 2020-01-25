@@ -207,13 +207,12 @@ class SkuItem extends React.Component {
     if (this.img && this.img.complete) {
       this.handleImageLoad()
     }
-    console.log("view_brand")
-    // window.dataLayer.push({
-    //   "event": "view_brand", 
-    //   "brand_id": location.pathname.split("/").pop(), 
-    //   "city_id": location.pathname.split("/")[4],
-    //   "platform": PLATFORM
-    // })
+    window.dataLayer.push({
+      "event": "view_brand", 
+      "brand_id": location.pathname.split("/").pop(), 
+      "city_id": location.pathname.split("/")[4],
+      "platform": PLATFORM
+    })
   }
 
   // componentDidUpdate(prevProps) {
