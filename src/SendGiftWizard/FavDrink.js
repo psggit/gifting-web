@@ -6,6 +6,7 @@ import MobileNavBar from "Components/mobile-nav-bar"
 import GenreItem from "Components/GenreItem"
 import { fetchGenres } from "./../api"
 import Moment from "moment"
+import { PLATFORM } from "../utils/constants"
 
 class FavDrink extends React.Component {
   constructor() {
@@ -94,14 +95,25 @@ class FavDrink extends React.Component {
       receiverInfo.genre_id = genre.id
     }
 
-    if (window.gtag) {
-      gtag("event", "choose_genre", {
-        "event_label": JSON.stringify({
-          selectedGenre: genre.name,
-          date: Moment(new Date()).format("DD/MM/YYYY")
-        })
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "choose_genre", {
+    //     "event_label": JSON.stringify({
+    //       selectedGenre: genre.name,
+    //       date: Moment(new Date()).format("DD/MM/YYYY")
+    //     })
+    //   })
+    // }
+    
+    const state_id = JSON.parse(localStorage.getItem("receiver_info")).state_id
+    const city_id = JSON.parse(localStorage.getItem("receiver_info")).city_id
+    window.dataLayer.push({ 
+      "event": "view_genre", 
+      "genre_id": genre.id, 
+      "city_id": city_id, 
+      "state_id": state_id,
+      "platform": PLATFORM,
+      "hasura_id": localStorage.getItem("hasura-id") 
+    }) 
 
     localStorage.setItem("receiver_info", JSON.stringify(receiverInfo))
     this.setState({ active: genre.id, selectedGenre: genre.name })

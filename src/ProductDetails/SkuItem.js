@@ -5,6 +5,7 @@ import { mountModal } from "Components/modal-box/utils"
 import AddedToBasketModal from "./AddedToBasketModal"
 import NotificationModal from "./../NotifyError"
 import { fetchGiftCardSummary } from "./../api"
+import { PLATFORM } from "Utils/constants"
 
 // const volumes = [
 //   { volume: "1 Ltr"  },
@@ -142,13 +143,22 @@ class SkuItem extends React.Component {
       sku_id: basketItem.sku.sku_id,
     })
     console.log("product Details", productDetails)
-    if (window.gtag) {
-      gtag("event", "add_product_to_cart", {
-        "event_label": JSON.stringify({
-          productDetails,
-        })
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "add_product_to_cart", {
+    //     "event_label": JSON.stringify({
+    //       productDetails,
+    //     })
+    //   })
+    // }
+
+    window.dataLayer.push({ 
+      "event": "add_to_cart_item", 
+      "city_id": JSON.parse(localStorage.getItem("receiver_info")).city_id, 
+      "sku_id": basketItem.sku.sku_id, 
+      "brand_id": basketItem.brand.brand_id, 
+      "count": 1,
+      "platform": PLATFORM
+    })
 
     const activeSkuId = this.props.volumes[activeSku].sku_id
 
@@ -197,6 +207,12 @@ class SkuItem extends React.Component {
     if (this.img && this.img.complete) {
       this.handleImageLoad()
     }
+    window.dataLayer.push({
+      "event": "view_brand", 
+      "brand_id": location.pathname.split("/").pop(), 
+      "city_id": location.pathname.split("/")[4],
+      "platform": PLATFORM
+    })
   }
 
   // componentDidUpdate(prevProps) {

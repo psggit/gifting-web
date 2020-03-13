@@ -52,7 +52,21 @@ app.use(helmet({
 // ENV variables
 // const PROD_API_BASE = process.env.PROD_API_BASE
 // const BASE_URL = "amebae21.hasura-app.io";
+const firebaseConfig = {
+  apiKey: "AIzaSyBPcX0dh8EdPg4qyoa9vbIwTkSgvoKyxuw",
+  authDomain: "gifting-site-dev.firebaseapp.com",
+  databaseURL: "https://gifting-site-dev.firebaseio.com",
+  projectId: "gifting-site-dev",
+  storageBucket: "gifting-site-dev.appspot.com",
+  messagingSenderId: "675341753434",
+  appId: "1:675341753434:web:ca94f6b2566337c75ecc63",
+  measurementId: "G-QY3C3KV5DT"
+}
+
 const BASE_URL = process.env.BASE_URL || "hipbar-dev.com"
+const GTM_CONTAINER_ID = process.env.GTM_CONTAINER_ID || "GTM-T5C9JFG"
+const FIREBASE_CONFIG = process.env.FIREBASE_CONFIG || firebaseConfig
+console.log("firebase config", FIREBASE_CONFIG)
 
 app.get("/images/:name", (req, res) => {
   res.sendFile(path.join(__dirname, `./../images/${req.params.name}`), (err) => {
@@ -297,8 +311,16 @@ app.get("/wp-content/uploads/2019/08/:name", (req, res) => {
 // app.use(express.static(path.join(__dirname, "dist")))
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.get("/sw.js", (req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
+  res.sendFile(path.join(__dirname, "./../sw.js"), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 app.get("/", (req, res) => {
-  // console.log("home")
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private")
   res.sendFile(path.join(__dirname, `./../wp-static-files/index.html`), (err) => {
     if (err) {
@@ -415,8 +437,14 @@ app.post("/transaction-successful", (req, res) => {
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-success.html"), "utf-8")
     const [head, tail] = html.split("{content}")
+    // const headWithNavbar = withHeader(head)
+    // res.write(headWithNavbar)
     const headWithNavbar = withHeader(head)
-    res.write(headWithNavbar)
+    const headerWithFacebookPixelCode = withFacebookPixelCode(headWithNavbar) 
+    const headWithGtmScriptPart1 = getGtmScriptPart1(headerWithFacebookPixelCode)
+    const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
+    const tailWithGamoogaScript = getGamoogaScript(tail)
+    res.write(headWithGtmScriptPart2)
 
     const txn = {
       net_amount_debit: req.body.net_amount_debit,
@@ -426,7 +454,7 @@ app.post("/transaction-successful", (req, res) => {
       addedon: req.body.addedon
     }
 
-    const newTail = tail.split("{script}")
+    const newTail = tailWithGamoogaScript.split("{script}")
       .join(`
       <script id="ssr__script">
         window.__TXN__ = ${JSON.stringify(txn)}
@@ -451,9 +479,15 @@ app.post("/transaction-cancelled", (req, res) => {
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-failed.html"), "utf-8")
     const [head, tail] = html.split("{content}")
+    // const headWithNavbar = withHeader(head)
+    // res.write(headWithNavbar)
     const headWithNavbar = withHeader(head)
-    res.write(headWithNavbar)
-    const newTail = tail.split("{script}")
+    const headerWithFacebookPixelCode = withFacebookPixelCode(headWithNavbar) 
+    const headWithGtmScriptPart1 = getGtmScriptPart1(headerWithFacebookPixelCode)
+    const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
+    const tailWithGamoogaScript = getGamoogaScript(tail)
+    res.write(headWithGtmScriptPart2)
+    const newTail = tailWithGamoogaScript.split("{script}")
       .join(`
       <script id="ssr__script">
         window.__TXN__ = ${JSON.stringify(req.body)}
@@ -479,9 +513,15 @@ app.post("/transaction-failure", (req, res) => {
   request.post({ url: `https://orderman.${BASE_URL}/consumer/payment/gift/finalize`, form: req.body }, (err, httpRes, body) => {
     const html = fs.readFileSync(path.resolve(__dirname, "./../dist/transaction-failed.html"), "utf-8")
     const [head, tail] = html.split("{content}")
+    // const headWithNavbar = withHeader(head)
+    // res.write(headWithNavbar)
     const headWithNavbar = withHeader(head)
-    res.write(headWithNavbar)
-    const newTail = tail.split("{script}")
+    const headerWithFacebookPixelCode = withFacebookPixelCode(headWithNavbar) 
+    const headWithGtmScriptPart1 = getGtmScriptPart1(headerWithFacebookPixelCode)
+    const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
+    const tailWithGamoogaScript = getGamoogaScript(tail)
+    res.write(headWithGtmScriptPart2)
+    const newTail = tailWithGamoogaScript.split("{script}")
       .join(`
       <script id="ssr__script">
         window.__TXN__ = ${JSON.stringify(req.body)}
@@ -651,12 +691,16 @@ function renderStaticMarkup({ component, req, res, file }) {
   const html = fs.readFileSync(path.resolve(__dirname, `./../dist/${file}.html`), "utf-8")
   const [head, tail] = html.split("{content}")
   const headWithNavbar = withMetaTags(withHeader(head), req.url, req.url)
-  res.write(headWithNavbar)
+  const headerWithFacebookPixelCode = withFacebookPixelCode(headWithNavbar) 
+  const headWithGtmScriptPart1 = getGtmScriptPart1(headerWithFacebookPixelCode)
+  const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
+  const tailWithGamoogaScript = getGamoogaScript(tail)
+  res.write(headWithGtmScriptPart2)
   const reactElement = React.createElement(component)
   const stream = renderToNodeStream(reactElement)
   stream.pipe(res, { end: false })
   stream.on("end", () => {
-    res.write(tail)
+    res.write(tailWithGamoogaScript)
     res.end()
   })
 }
@@ -700,6 +744,94 @@ function withMetaTags(head, name, url) {
     <meta content="${meta.description}" property="og:description">
     <meta content="${meta.url}" property="og:url">
     <meta content="${meta.site_name}" property="og:site_name">
+  `)
+}
+
+function withFacebookPixelCode (head) {
+  return head.split("{facebookPixelCode}").join(`
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '747686785640043');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=747686785640043&ev=PageView&noscript=1"
+    /></noscript>
+  `)
+}
+
+function getGtmScriptPart1 (head) {
+  return head.split("{gtmScriptPart1}").join(`
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', "${GTM_CONTAINER_ID}");
+    </script>
+  `)
+}
+
+function getGtmScriptPart2 (head) {
+  return head.split("{gtmScriptPart2}").join(`
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_CONTAINER_ID}" height="0" width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
+  `)
+}
+
+function getGamoogaScript (tail) {
+  return tail.split("{gamoogaScript}").join(`
+    <script type="text/javascript">
+      var _taq = { "id": "e848dae5-a4a9-41ad-8322-2d5092411a78", "events": [], "identify": [], "property": [], "handlers": [] };
+      (function () {
+        var ta = document.createElement('script'); ta.type = 'text/javascript'; ta.async = true; ta.id = "__ta";
+        ta.src = '//cdn-jp.gsecondscreen.com/static/ta.min.js';
+        var fs = document.getElementsByTagName('script')[0]; fs.parentNode.insertBefore(ta, fs);
+      })();
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-messaging.js"></script>
+   
+    <script>
+      //var firebaseConfig = ${FIREBASE_CONFIG}
+      var firebaseConfig = {
+        apiKey: "AIzaSyBPcX0dh8EdPg4qyoa9vbIwTkSgvoKyxuw",
+        authDomain: "gifting-site-dev.firebaseapp.com",
+        databaseURL: "https://gifting-site-dev.firebaseio.com",
+        projectId: "gifting-site-dev",
+        storageBucket: "gifting-site-dev.appspot.com",
+        messagingSenderId: "675341753434",
+        appId: "1:675341753434:web:ca94f6b2566337c75ecc63",
+        measurementId: "G-QY3C3KV5DT"
+      }
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      const messaging = firebase.messaging();
+      messaging.usePublicVapidKey("BGbI11PFGFHrvV_YVfCuxgJAUQq08UK9MuBseOjPOl5f_0AaRAfolXQ6iSwcsKLjhJBPy1KD2jaVSRJP0Nl2_PM");
+      messaging.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          console.log('Notification permission granted.');
+          // TODO(developer): Retrieve an Instance ID token for use with FCM.
+          // ...
+        } else {
+          console.log('Unable to get permission to notify.');
+        }
+      });
+    </script>
   `)
 }
 
@@ -892,9 +1024,14 @@ app.get("/brand/:stateSlug/:genreSlug/:citySlug/:brandSlug", (req, res) => {
     const [head, tail] = html.split("{content}")
     const headWithNavbar = withHeader(head)
     const genreName = getGenreNameById(genre)
-    res.write(withMetaTags(headWithNavbar, genreName, req.url))
-
-    const newTail = tail.split("{script}")
+    //res.write(withMetaTags(headWithNavbar, genreName, req.url))
+    const headWithMetaTag = withMetaTags(withHeader(headWithNavbar), genreName, req.url)
+    const headerWithFacebookPixelCode = withFacebookPixelCode(headWithMetaTag) 
+    const headWithGtmScriptPart1 = getGtmScriptPart1(headerWithFacebookPixelCode)
+    const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
+    const tailWithGamoogaScript = getGamoogaScript(tail)
+    res.write(headWithGtmScriptPart2)
+    const newTail = tailWithGamoogaScript.split("{script}")
       .join(`
       <script>
         window.__isMobile__ = ${isMobile(req)}
@@ -969,11 +1106,18 @@ app.get("/*", (req, res) => {
   }
   const html = fs.readFileSync(path.resolve(__dirname, "./../dist/client.html"), "utf-8")
   const [head, tail] = html.split("{content}")
+  // const headWithNavbar = withHeader(head)
+  // res.write(headWithNavbar)
   const headWithNavbar = withHeader(head)
-  res.write(headWithNavbar)
+  const headerWithFacebookPixelCode = withFacebookPixelCode(headWithNavbar) 
+  const headWithGtmScriptPart1 = getGtmScriptPart1(headerWithFacebookPixelCode)
+  const headWithGtmScriptPart2 = getGtmScriptPart2(headWithGtmScriptPart1)
+  const tailWithGamoogaScript = getGamoogaScript(tail)
+  res.write(headWithGtmScriptPart2)
+  res.write(tailWithGamoogaScript)
   res.end()
 })
 
 app.listen(8080, () => {
-  console.log("Server is running on port 8080\n")
+  console.log("Server is running on the port 8080\n")
 })

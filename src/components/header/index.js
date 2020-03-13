@@ -5,10 +5,12 @@ import Icon from "Components/icon"
 import Button from "Components/button"
 import SignIn from "./../../SignIn"
 import { Api } from "Utils/config"
+import { readCookie } from "Utils/session-utils"
 // import SignUp from "./../../SignUp"
 import { mountModal, unMountModal } from 'Components/modal-box/utils'
 import { createSession, clearSession, getUsername } from 'Utils/session-utils'
 import NotifyError from './../../NotifyError'
+import { PLATFORM } from "Utils/constants"
 // import {ThemeProvider, ThemeContext} from "./../../ThemeProvider"
 import { GET } from "Utils/fetch"
 // const ThemeConsumer = ThemeContext.Consumer
@@ -51,9 +53,24 @@ class Header extends React.Component {
 
   componentDidMount() {
     this.links = document.querySelectorAll(".nav-items a div")
-    this.setState({ isLoggedIn: localStorage.getItem("hasura-id") ? true : false })
+    const hasuraId = localStorage.getItem("hasura-id");
+    this.setState({ isLoggedIn: hasuraId ? true : false })
     this.setState({ username: localStorage.getItem("username") })
     this.setState({ activePath: location.pathname.slice(1) })
+    console.log("hasuraid", hasuraId, readCookie("signin_complete"), "signup", readCookie("signup_complete"))
+    if(hasuraId && readCookie("signin_complete")) {
+      console.log("sign in")
+      window.dataLayer.push({ "event": "signin_complete", "hasura_id": hasuraId, "platform": PLATFORM })
+    } else if (hasuraId && readCookie("signup_complete")) {
+      console.log("signup")
+      window.dataLayer.push({ 
+        "event": "sign_up_complete", 
+        "hasura_id": hasuraId, 
+        "dob": JSON.parse(localStorage.getItem("senderInfo")).dob, 
+        "gender": JSON.parse(localStorage.getItem("senderInfo")).gender,
+        "platform": PLATFORM
+      })
+    }
   }
 
   handleSignOut() {
@@ -103,11 +120,12 @@ class Header extends React.Component {
 
   handleClick() {
     this.setState({ isMenuOpen: false })
-    if (window.gtag) {
-      gtag("event", "point_of_signin", {
-        "event_label": location.pathname,
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "point_of_signin", {
+    //     "event_label": location.pathname,
+    //   })
+    // }
+    window.dataLayer.push({ "event": "point_of_signin", "page_name": location.pathname, "platform": PLATFORM }) 
     mountModal(SignIn({
       //reload: this.reloadHeader
     }))

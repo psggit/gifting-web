@@ -1,3 +1,5 @@
+import { local } from "store2"
+
 export function getHasuraRole(data) {
   const hasuraRoles = data.hasura_roles
   // const hasuraRoles = ["user", "support_person", "excise", "support_admin"]
@@ -55,6 +57,10 @@ export function createSession(data) {
   localStorage.setItem("username", getUsername(data))
   localStorage.setItem("sender_mobile", getSenderMobileNumber(data))
   //localStorage.setItem("isLoggedIn", loginStatus)
+}
+
+export function saveUserData(data) {
+  localStorage.setItem("senderInfo", JSON.stringify(data))
 }
 
 export function clearSession() {

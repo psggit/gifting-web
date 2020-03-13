@@ -18,11 +18,11 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
   <link href="/images/For-Webflow-01.png" rel="shortcut icon" type="image/x-icon">
   <link href="/images/For-Webflow-02.png" rel="apple-touch-icon">
+  <link rel="manifest" href="/manifest.json">
   <!-- <link rel="manifest" href="/manifest.json"> -->
 
   <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
   <meta content='FVz8vJPDa60jzuyoOc9W7jZZqA_TA-lVwHO2OwPJGPg' name='google-site-verification' />
-
   <meta keywords="">
   <meta description="">
   <meta name="robots" content="index,follow">
@@ -33,24 +33,67 @@
       display: none !important;
     }
   </style>
+  {gtmScriptPart1}
+  {facebookPixelCode}
+  <!-- <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-T5C9JFG');
+  </script> -->
 </head>
 
 <body>
+  {gtmScriptPart2}
+  <!-- <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5C9JFG" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe>
+  </noscript> -->
   <div class="theme-dark" style="max-width:1440px;margin: 0 auto">
     <div id="header">{header}</div>
-    <div id="app"></div>
+    <div id="app">{content}</div>
     <div id="confirm-modal"></div>
   </div>
-
+  {gamoogaScript}
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <!-- <script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
- 
-  gtag('config', 'UA-89806318-4');
- </script> -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-89806318-4');
+  </script> -->
+  <!-- <script type="text/javascript">
+    var _taq = { "id": "e848dae5-a4a9-41ad-8322-2d5092411a78", "events": [], "identify": [], "property": [], "handlers": [] };
+    (function () {
+      var ta = document.createElement('script'); ta.type = 'text/javascript'; ta.async = true; ta.id = "__ta";
+      ta.src = '//cdn-jp.gsecondscreen.com/static/ta.min.js';
+      var fs = document.getElementsByTagName('script')[0]; fs.parentNode.insertBefore(ta, fs);
+    })();
+  </script> -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+  
+
+  <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
+  
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyBPcX0dh8EdPg4qyoa9vbIwTkSgvoKyxuw",
+      authDomain: "gifting-site-dev.firebaseapp.com",
+      databaseURL: "https://gifting-site-dev.firebaseio.com",
+      projectId: "gifting-site-dev",
+      storageBucket: "gifting-site-dev.appspot.com",
+      messagingSenderId: "675341753434",
+      appId: "1:675341753434:web:ca94f6b2566337c75ecc63",
+      measurementId: "G-QY3C3KV5DT"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script> -->
   <script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-10"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -64,7 +107,8 @@
     if ('serviceWorker' in navigator) {
       // Use the window load event to keep the page load performant
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js');
+        navigator.serviceWorker.register('/sw.js');
+        //navigator.serviceWorker.register('/service-worker.js');
       });
     }
   </script>

@@ -5,6 +5,7 @@ import { fetchCities } from "./../api"
 import "./sass/city-select.scss"
 import { capitalize } from "Utils/logic-utils"
 import Moment from "moment"
+import { PLATFORM } from "Utils/constants"
 
 class CitySelect extends React.Component {
   constructor(props) {
@@ -58,14 +59,19 @@ class CitySelect extends React.Component {
     const target = e.target
     const cityIdx = target.value
     const selectedCity = this.state.cities[cityIdx]
-    if (window.gtag) {
-      gtag("event", "change_city", {
-        "event_label": JSON.stringify({
-          selectedCity: this.state.cities[cityIdx].name,
-          date: Moment(new Date()).format("DD/MM/YYYY")
-        })
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "change_city", {
+    //     "event_label": JSON.stringify({
+    //       selectedCity: this.state.cities[cityIdx].name,
+    //       date: Moment(new Date()).format("DD/MM/YYYY")
+    //     })
+    //   })
+    // }
+    window.dataLayer.push({
+      "event": "change_city", 
+      "city_id": this.state.cities[cityIdx].id,
+      "platform": PLATFORM
+    })
     this.setState({ cityIdx: parseInt(cityIdx) })
     this.props.onCityChange(selectedCity)
     this.props.clearBasket()

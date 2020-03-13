@@ -5,7 +5,7 @@ import ModalBox from '../components/modal-box/modalBox'
 import Icon from "Components/icon"
 import SignIn from './../SignIn'
 import { Api } from '../utils/config'
-import { createSession } from 'Utils/session-utils'
+import { createSession, saveUserData } from 'Utils/session-utils'
 import { checkCtrlA, validateNumType, checkCtrlV, checkCtrlC } from 'Utils/logic-utils'
 import { validateNumberField } from 'Utils/validators'
 import { validateTextField, validateEmail } from '../utils/validators'
@@ -223,6 +223,7 @@ export default function SignUp(data) {
                 console.log("User Not cleared")
               })
               this.setState({ otpSent: true, disableField: true, setTimer: true })
+              window.dataLayer.push({ "event": "sign_up_start" }) 
               this.countdown()
               //this.getOtp()
             }
@@ -235,6 +236,13 @@ export default function SignUp(data) {
           //this.setState({isGettingOtp: false})
           mountModal(NotifyError({}))
         })
+    }
+
+    setCookie() {
+      return new Promise((resolve, reject) => {
+        document.cookie = "signup_complete=true; path=/; expires=" + (new Date(new Date().getTime() + 60 * 1000)).toUTCString() + `;path=/;  domain=${location.hostname}`
+        resolve()
+      })
     }
 
     login() {
@@ -267,11 +275,11 @@ export default function SignUp(data) {
                 //   eventAction: "",
                 //   eventLabel: "sign_up_failure"
                 // })
-                if (window.gtag) {
-                  gtag("event", "sign_up_failure", {
-                    "event_label": "failure"
-                  })
-                }
+                // if (window.gtag) {
+                //   gtag("event", "sign_up_failure", {
+                //     "event_label": "failure"
+                //   })
+                // }
                 return
               } else if (response.status === 400 && responseData.errorCode === "expired-otp") {
                 this.setState({ otpErr: { status: true, value: responseData.message } })
@@ -282,11 +290,11 @@ export default function SignUp(data) {
                 //   eventAction: "",
                 //   eventLabel: "sign_up_failure"
                 // })
-                if (window.gtag) {
-                  gtag("event", "sign_up_failure", {
-                    "event_label": "failure"
-                  })
-                }
+                // if (window.gtag) {
+                //   gtag("event", "sign_up_failure", {
+                //     "event_label": "failure"
+                //   })
+                // }
                 return
               }
 
@@ -296,13 +304,20 @@ export default function SignUp(data) {
               //   eventAction: "",
               //   eventLabel: "sign_up_success"
               // })
-              if (window.gtag) {
-                gtag("event", "sign_up_success", {
-                  "event_label": "success"
-                })
-              }
+              // if (window.gtag) {
+              //   gtag("event", "sign_up_success", {
+              //     "event_label": "success"
+              //   })
+              // }
               createSession(responseData)
-              location.href = (location.pathname)
+              saveUserData({
+                "dob": this.state.dob,
+                "gender": this.state.gender
+              })
+              this.setCookie()
+              .then(() => {
+                location.href = location.pathname
+              })
               unMountModal()
               //data.reload(true)
               this.setState({ isSigningUp: false })
@@ -316,11 +331,11 @@ export default function SignUp(data) {
             //   eventAction: "",
             //   eventLabel: "sign_up_failure"
             // })
-            if (window.gtag) {
-              gtag("event", "sign_up_failure", {
-                "event_label": "failure"
-              })
-            }
+            // if (window.gtag) {
+            //   gtag("event", "sign_up_failure", {
+            //     "event_label": "failure"
+            //   })
+            // }
             mountModal(NotifyError({}))
           })
       }

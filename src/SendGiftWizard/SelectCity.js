@@ -5,7 +5,7 @@ import Icon from "Components/icon"
 import MobileNavBar from "Components/mobile-nav-bar"
 import CityCheckBox from "Components/city-checkbox"
 import Moment from "moment"
-
+import { PLATFORM } from "Utils/constants"
 import { fetchCities } from "./../api"
 
 class SelectCity extends React.Component {
@@ -32,14 +32,20 @@ class SelectCity extends React.Component {
   // }
 
   handleCityClick(activeCity) {
-    if (window.gtag) {
-      gtag("event", "choose_city", {
-        "event_label": JSON.stringify({
-          cityName: activeCity.name,
-          date: Moment(new Date()).format("DD/MM/YYYY")
-        })
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "choose_city", {
+    //     "event_label": JSON.stringify({
+    //       cityName: activeCity.name,
+    //       date: Moment(new Date()).format("DD/MM/YYYY")
+    //     })
+    //   })
+    // }
+    window.dataLayer.push({ 
+      "event": "select_city", 
+      "city_id": activeCity.id, 
+      "platform": PLATFORM,
+      "hasura_id": localStorage.getItem("hasura-id")
+    }) 
     const receiverInfo = JSON.parse(localStorage.getItem("receiver_info")) || {}
     
     receiverInfo.gps = activeCity.gps

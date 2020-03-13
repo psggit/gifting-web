@@ -2,6 +2,7 @@ import React from 'react'
 import Icon from "Components/icon"
 import "Sass/transaction-status.scss"
 import Moment from "moment"
+import { PLATFORM } from "Utils/constants"
 
 class FailureTransaction extends React.Component {
   constructor(props) {
@@ -40,14 +41,29 @@ class FailureTransaction extends React.Component {
       txn_time: Moment(txn.addedon).format("DD/MM/YYYY, hh:mm A")
     })
     //console.log("failue", parseFloat(txn.amount).toFixed(2))
-    if(window.gtag) {
-      gtag("event", "transaction_failure", {
-        "event_label": JSON.stringify({
-          cart_total: parseFloat(txn.amount).toFixed(2),
-          date: Moment(new Date()).format("DD/YY/MMMM")
-        })
+    // if(window.gtag) {
+    //   gtag("event", "transaction_failure", {
+    //     "event_label": JSON.stringify({
+    //       cart_total: parseFloat(txn.amount).toFixed(2),
+    //       date: Moment(new Date()).format("DD/YY/MMMM")
+    //     })
+    //   })
+    // }
+    let cartDetails = basket.map((item) => {
+      return ({
+        productName: item.brand.brand_name,
+        quantity: item.count,
+        volume: item.sku.volume,
+        promoApplied: this.state.promoCode ? this.state.promoCode : "",
       })
-    }
+    })
+    window.dataLayer.push({
+      "event": "payment_failure",
+      "payment_mode": txn.mode === "CC" || txn.mode === "DC" ? txn.cardnum.split("X").join("*") : this.modeMap[txn.mode],
+      "sku_id": cartDetails,
+      "total_amount": parseFloat(txn.net_amount_debit).toFixed(2),
+      "platform": PLATFORM
+    })
   }
 
   render() {

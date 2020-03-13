@@ -1,101 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <meta charset="utf-8">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <!-- <meta http-equiv="Content-Security-Policy"
+      content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' resource://devtools/server/actors/source.js"> -->
+    <title>HipBar Gifting - Gift your friends drinks online!</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://res.cloudinary.com">
 
-  <title>HipBar Gifting - Gift your friends drinks online!</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link rel="preconnect" href="https://res.cloudinary.com">
+    <!-- <link rel="stylesheet" href="https://use.typekit.net/djr0bfk.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500,600,700" rel="stylesheet">
 
-  <!-- <link rel="stylesheet" href="https://use.typekit.net/djr0bfk.css"> -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"> 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500,600,700" rel="stylesheet">
+    <link href="/images/For-Webflow-01.png" rel="shortcut icon" type="image/x-icon">
+    <link href="/images/For-Webflow-02.png" rel="apple-touch-icon">
+    <link rel="manifest" href="/manifest.json">
 
-  <link href="/images/For-Webflow-01.png" rel="shortcut icon" type="image/x-icon">
-  <link href="/images/For-Webflow-02.png" rel="apple-touch-icon">
-  <!-- <link rel="manifest" href="/manifest.json"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+    <meta content='FVz8vJPDa60jzuyoOc9W7jZZqA_TA-lVwHO2OwPJGPg' name='google-site-verification'/>
 
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
-  <meta content='FVz8vJPDa60jzuyoOc9W7jZZqA_TA-lVwHO2OwPJGPg' name='google-site-verification'/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
 
-  <meta name="robots" content="index,follow">
-  <meta name="googlebot" content="index,follow">
-
-  {meta}
-  <style media="screen">
-      #fc_frame {
-        display: none !important;
-      }
-   </style>
-</head>
-<body>
+    {meta}
+    <style media="screen">
+        #fc_frame {
+          display: none !important;
+        }
+    </style>
+    {gtmScriptPart1}
+    {facebookPixelCode}
+    <!-- <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-T5C9JFG');
+    </script> -->
+  </head>
+  <body>
+    <!-- <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5C9JFG" height="0" width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript> -->
+    {gtmScriptPart2}
     <div class="theme-dark" style="max-width:1440px;margin: 0 auto">
       <div id="header">{header}</div>
       <div id="app" >{content}</div>
       <div id="confirm-modal"></div>
     </div>
-</body>
+    {gamoogaScript}
+    <!-- <script type="text/javascript">
+      var _taq = { "id": "e848dae5-a4a9-41ad-8322-2d5092411a78", "events": [], "identify": [], "property": [], "handlers": [] };
+      (function () {
+        var ta = document.createElement('script'); ta.type = 'text/javascript'; ta.async = true; ta.id = "__ta";
+        ta.src = '//cdn-jp.gsecondscreen.com/static/ta.min.js';
+        var fs = document.getElementsByTagName('script')[0]; fs.parentNode.insertBefore(ta, fs);
+      })();
+    </script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+  
+   
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
+  
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyBPcX0dh8EdPg4qyoa9vbIwTkSgvoKyxuw",
+        authDomain: "gifting-site-dev.firebaseapp.com",
+        databaseURL: "https://gifting-site-dev.firebaseio.com",
+        projectId: "gifting-site-dev",
+        storageBucket: "gifting-site-dev.appspot.com",
+        messagingSenderId: "675341753434",
+        appId: "1:675341753434:web:ca94f6b2566337c75ecc63",
+        measurementId: "G-QY3C3KV5DT"
+      };
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script> -->
+  </body>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-3"></script> -->
-<!-- <script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
- 
-  gtag('config', 'UA-89806318-4');
- </script> -->
-
-<script src="https://wchat.freshchat.com/js/widget.js"></script>
-<script async>
-  if(!localStorage.getItem("hasura-id")) {
-    window.fcWidget.init({
-      token: "3a3ec830-f702-4f77-a001-b8e939438956",
-      host: "https://wchat.freshchat.com",
-      tags: ["conversation_gifting"],
-    });
-  } else if(localStorage.getItem("hasura-id")) {
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-3"></script> -->
+  <!-- <script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-89806318-4');
+  </script> -->
+  <script>
+    console.log("elo")
+    // Check that service workers are registered
+    if ('serviceWorker' in navigator) {
+      console.log("hi")
+      //Use the window load event to keep the page load performant
+      window.addEventListener('load', () => {
+        console.log("sw.js")
+        navigator.serviceWorker.register('/sw.js');
+        //navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+  </script>
+  <script src="https://wchat.freshchat.com/js/widget.js"></script>
+  <script async>
+    if(!localStorage.getItem("hasura-id")) {
       window.fcWidget.init({
         token: "3a3ec830-f702-4f77-a001-b8e939438956",
         host: "https://wchat.freshchat.com",
         tags: ["conversation_gifting"],
       });
-    window.fcWidget.user.get(function(resp) {
-      var status = resp && resp.status,
-          data = resp && resp.data;
-      if (status !== 200) {
-        window.fcWidget.user.setProperties({
-          externalId: "",
-          firstName: localStorage.getItem("username"),
-          lastName: "",
-          email: localStorage.getItem("email"),
-          phone: localStorage.getItem("sender_mobile"),
-          phoneCountryCode: "+91"
+    } else if(localStorage.getItem("hasura-id")) {
+        window.fcWidget.init({
+          token: "3a3ec830-f702-4f77-a001-b8e939438956",
+          host: "https://wchat.freshchat.com",
+          tags: ["conversation_gifting"],
         });
-      }
-    });
-  }
-</script>
- <script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-10"></script>
- <script>
-   window.dataLayer = window.dataLayer || [];
-   function gtag(){dataLayer.push(arguments);}
-   gtag('js', new Date());
+      window.fcWidget.user.get(function(resp) {
+        var status = resp && resp.status,
+            data = resp && resp.data;
+        if (status !== 200) {
+          window.fcWidget.user.setProperties({
+            externalId: "",
+            firstName: localStorage.getItem("username"),
+            lastName: "",
+            email: localStorage.getItem("email"),
+            phone: localStorage.getItem("sender_mobile"),
+            phoneCountryCode: "+91"
+          });
+        }
+      });
+    }
+  </script>
+  <script src="https://www.googletagmanager.com/gtag/js?id=UA-89806318-10"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-89806318-10');
+  </script>
  
-   gtag('config', 'UA-89806318-10');
- </script>
-<script>
-  // Check that service workers are registered
-if ('serviceWorker' in navigator) {
-  // Use the window load event to keep the page load performant
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js');
-  });
-}
- </script>
 </html>

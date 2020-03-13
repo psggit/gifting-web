@@ -3,6 +3,7 @@ import Icon from "Components/icon"
 import "Sass/transaction-status.scss"
 import Moment from "moment"
 import GiftBasketItem from "./../GiftBasket/GiftBasketItem"
+import { PLATFORM } from "Utils/constants"
 
 class SuccessfulTransaction extends React.Component {
   constructor(props) {
@@ -51,15 +52,22 @@ class SuccessfulTransaction extends React.Component {
       })
     })
     console.log("cart Details", cartDetails, localStorage.getItem("amount"))
-    if (window.gtag) {
-      gtag("event", "transaction_success", {
-        "event_label": JSON.stringify({
-          cartItems: cartDetails,
-          totalToPay: parseFloat(txn.net_amount_debit).toFixed(2),
-          date: Moment(new Date()).format("DD/MM/YYYY")
-        })
-      })
-    }
+    // if (window.gtag) {
+    //   gtag("event", "transaction_success", {
+    //     "event_label": JSON.stringify({
+    //       cartItems: cartDetails,
+    //       totalToPay: parseFloat(txn.net_amount_debit).toFixed(2),
+    //       date: Moment(new Date()).format("DD/MM/YYYY")
+    //     })
+    //   })
+    // }
+    window.dataLayer.push({
+      "event": "payment_success",
+      "payment_mode": txn.mode === "CC" || txn.mode === "DC" ? txn.cardnum.split("X").join("*") : this.modeMap[txn.mode],
+      "sku_id": cartDetails,
+      "total_amount": parseFloat(txn.net_amount_debit).toFixed(2),
+      "platform": PLATFORM
+    })
   }
 
   render() {

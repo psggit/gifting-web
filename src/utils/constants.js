@@ -1,1 +1,1 @@
-export const supportedCities = "Goa and Mahe"
+export const PLATFORM = "web"

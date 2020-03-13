@@ -12,6 +12,7 @@ import { validateTextField } from '../utils/validators'
 import NotifyError from './../NotifyError'
 import Button from "Components/button"
 import InputMask from "react-input-mask"
+import { PLATFORM } from "Utils/constants"
 
 export default function SignIn(data) {
   return class SignIn extends React.Component {
@@ -117,21 +118,24 @@ export default function SignIn(data) {
               this.setState({ isGettingOtp: false })
               return
             } else if (response.status === 400) {
+              window.dataLayer.push({ "event": "signin_start" })
               this.setState({ mobileNoErr: { status: true, value: "Invalid mobile number" } })
             } else if (response.status === 401) {
+              window.dataLayer.push({ "event": "signin_start" })
               this.setState({ otpSent: true, disableField: true, setTimer: true })
               this.countdown()
               // if(dataObj.resendOtp) {
               //   this.setState({resentOtp : true})
               // }
             } else if (response.status === 200) {
+              window.dataLayer.push({ "event": "signin_complete", "hasura_id": responseData.hasura_id, "platform": PLATFORM })
               responseData = Object.assign(responseData, { sender_mobile: this.state.mobileNo })
               createSession(responseData, "true")
-              if (window.gtag) {
-                gtag("event", "sign_in_success", {
-                  "event_label": "success"
-                })
-              }
+              // if (window.gtag) {
+              //   gtag("event", "sign_in_success", {
+              //     "event_label": "success"
+              //   })
+              // }
               window.fcWidget.user.clear().then(function () {
                 console.log('User cleared')
               }, function () {
@@ -185,6 +189,13 @@ export default function SignIn(data) {
       } else {
         e.preventDefault()
       }
+    }
+
+    setCookie() {
+      return new Promise((resolve, reject) => {
+        document.cookie = "signin_complete=true; path=/; expires=" + (new Date(new Date().getTime() + 60 * 1000)).toUTCString() + `;path=/;  domain=${location.hostname}`
+        resolve()
+      })
     }
 
     signIn() {
@@ -243,11 +254,11 @@ export default function SignIn(data) {
               if (response.status === 400 && responseData.errorCode.includes("invalid-otp")) {
                 this.setState({ otpErr: { status: true, value: "Incorrect OTP. Please enter again or resend OTP" } })
                 this.setState({ isSigningIn: false })
-                if (window.gtag) {
-                  gtag("event", "sign_in_failure", {
-                    "event_label": "failure"
-                  })
-                }
+                // if (window.gtag) {
+                //   gtag("event", "sign_in_failure", {
+                //     "event_label": "failure"
+                //   })
+                // }
                 // ga("send", {
                 //   hitType: "event",
                 //   eventCategory: "",
@@ -258,11 +269,11 @@ export default function SignIn(data) {
               } else if (response.status === 401 && responseData.errorCode.includes("role-invalid")) {
                 this.setState({ otpErr: { status: true, value: responseData.message } })
                 this.setState({ isSigningIn: false })
-                if (window.gtag) {
-                  gtag("event", "sign_in_failure", {
-                    "event_label": "failure"
-                  })
-                }
+                // if (window.gtag) {
+                //   gtag("event", "sign_in_failure", {
+                //     "event_label": "failure"
+                //   })
+                // }
                 // ga("send", {
                 //   hitType: "event",
                 //   eventCategory: "",
@@ -273,11 +284,11 @@ export default function SignIn(data) {
               } else if (response.status === 400 && responseData.errorCode.includes("expired-otp")) {
                 this.setState({ otpErr: { status: true, value: responseData.message } })
                 this.setState({ isSigningIn: false })
-                if (window.gtag) {
-                  gtag("event", "sign_in_failure", {
-                    "event_label": "failure"
-                  })
-                }
+                // if (window.gtag) {
+                //   gtag("event", "sign_in_failure", {
+                //     "event_label": "failure"
+                //   })
+                // }
                 // ga("send", {
                 //   hitType: "event",
                 //   eventCategory: "",
@@ -289,11 +300,11 @@ export default function SignIn(data) {
               responseData = Object.assign(responseData, { sender_mobile: this.state.mobileNo })
               createSession(responseData, "true")
               console.log("create session")
-              if (window.gtag) {
-                gtag("event", "sign_in_success", {
-                  "event_label": "success"
-                })
-              }
+              // if (window.gtag) {
+              //   gtag("event", "sign_in_success", {
+              //     "event_label": "success"
+              //   })
+              // }
               window.fcWidget.user.clear().then(function () {
                 console.log('User cleared')
               }, function () {
@@ -306,7 +317,10 @@ export default function SignIn(data) {
               //   eventLabel: "sign_in_success"
               // })
               //localStorage.setItem("showAgegate", false)
-              location.href = (location.pathname)
+              this.setCookie()
+              .then(() => {
+                location.href = (location.pathname)
+              })
               unMountModal()
               //data.reload(true)
               this.setState({ isSigningIn: false })
@@ -317,11 +331,11 @@ export default function SignIn(data) {
             this.setState({ errorInSignIn: true })
             // ga("event", "sign_in_failure", {"method": "Google"})
             mountModal(NotifyError({}))
-            if (window.gtag) {
-              gtag("event", "sign_in_failure", {
-                "event_label": "failure"
-              })
-            }
+            // if (window.gtag) {
+            //   gtag("event", "sign_in_failure", {
+            //     "event_label": "failure"
+            //   })
+            // }
           })
       }
     }
