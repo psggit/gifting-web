@@ -350,10 +350,10 @@ h6{
     font-size: 18px;
 }
 
-.note{
+/* .note{
     font-size: 10px;
     margin-top: 60px;
-}
+} */
 
 p {
     margin-bottom: 20px;
@@ -1903,8 +1903,7 @@ body{
 	color:#3498DB;
 }
 .footer-top{
-    padding: 20px 3px !important;
-    /* padding:50px 10px !important; */
+    padding:50px 10px !important;
     text-align:center;
 }
 #menu-footer-menu {
