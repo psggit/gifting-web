@@ -856,13 +856,13 @@
 			window.fcWidget.init({
 				token: "3a3ec830-f702-4f77-a001-b8e939438956",
 				host: "https://wchat.freshchat.com",
-				tags: ["conversation_gifting"],
+				tags: ["conversation_gifting","conversation_refunds"],
 			});
 		} else if (localStorage.getItem("hasura-id")) {
 			window.fcWidget.init({
 				token: "3a3ec830-f702-4f77-a001-b8e939438956",
 				host: "https://wchat.freshchat.com",
-				tags: ["conversation_gifting"],
+				tags: ["conversation_gifting","conversation_refunds"],
 			});
 			window.fcWidget.user.get(function (resp) {
 				var status = resp && resp.status,
