@@ -558,7 +558,7 @@
 																	<h1 style="margin-bottom: 0px;">Gift cards cannot be purchased until further notice,
 																		given the current situation.</h1>
 																</div><br />
-																<div>For refunds, please write to support@hipbar.com along with transaction details.
+																<div>For refunds, please write to support@hipbar.com along with transcation details.
 																</div>
 																<div class="note">We will be back to serve you shortly</div>
 															</div>
@@ -856,13 +856,13 @@
 			window.fcWidget.init({
 				token: "3a3ec830-f702-4f77-a001-b8e939438956",
 				host: "https://wchat.freshchat.com",
-				tags: ["conversation_gifting", "conversation_refunds"],
+				tags: ["conversation_gifting"],
 			});
 		} else if (localStorage.getItem("hasura-id")) {
 			window.fcWidget.init({
 				token: "3a3ec830-f702-4f77-a001-b8e939438956",
 				host: "https://wchat.freshchat.com",
-				tags: ["conversation_gifting", "conversation_refunds"],
+				tags: ["conversation_gifting"],
 			});
 			window.fcWidget.user.get(function (resp) {
 				var status = resp && resp.status,

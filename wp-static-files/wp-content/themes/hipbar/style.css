@@ -2683,6 +2683,11 @@ ol.comment-list {
     color: #4295ce;
 } 
 
+.note {
+    font-size: 10px;
+    margin-top: 60px;
+}
+
 .blog-collection .post-meta-infos{
     padding:10px 0px;
     border-top:1px solid #eeeeee;
@@ -3248,7 +3253,8 @@ ol.comment-list {
 
 /*========== Header Fixes ===========*/
 div#smallscreentoggler{
-    box-shadow: none !important;
+    display: none !important;
+    /* box-shadow: none !important; */
 }
 
 /*Guttenberg Compatible CSS*/
