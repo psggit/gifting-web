@@ -842,47 +842,44 @@
 		/* <![CDATA[ */
 		var panelsStyles = { "fullContainer": "body" };
 /* ]]> */
-	</script>
-	<script type='text/javascript' src='/wp-content/plugins/siteorigin-panels/js/styling-2107.min.js?ver=2.10.7'></script>
-	<script type='text/javascript'
-		src='/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/js/owl-slider/owl.carousel.min.js?ver=1.13'></script>
-	<script type='text/javascript'
-		src='/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/js/owl-slider/wpos-owl-slider-public.js?ver=1.13'></script>
-	<script
-		type="text/javascript">document.body.className = document.body.className.replace("siteorigin-panels-before-js", "");</script>
-	<script src="https://wchat.freshchat.com/js/widget.js"></script>
-	<script async>
-		if (!localStorage.getItem("hasura-id")) {
-			window.fcWidget.init({
-				token: "3a3ec830-f702-4f77-a001-b8e939438956",
-				host: "https://wchat.freshchat.com",
-				tags: ["conversation_gifting","conversation_refunds"],
-			});
-		} else if (localStorage.getItem("hasura-id")) {
-			window.fcWidget.init({
-				token: "3a3ec830-f702-4f77-a001-b8e939438956",
-				host: "https://wchat.freshchat.com",
-				tags: ["conversation_gifting","conversation_refunds"],
-			});
-			window.fcWidget.user.get(function (resp) {
-				var status = resp && resp.status,
-					data = resp && resp.data;
-				if (status !== 200) {
-					window.fcWidget.user.setProperties({
-						externalId: "",
-						firstName: localStorage.getItem("username"),
-						lastName: "",
-						email: localStorage.getItem("email"),
-						phone: localStorage.getItem("sender_mobile"),
-						phoneCountryCode: "+91"
-					});
-				}
-			});
-		}
-		function custom_code() {
-			if (localStorage.getItem("hasura-id") || location.pathname ===
-				"/age-gate" || location.pathname === "/legal-drinking-age") {
-				return true
+</script>
+<script type='text/javascript' src='/wp-content/plugins/siteorigin-panels/js/styling-2107.min.js?ver=2.10.7'></script>
+<script type='text/javascript' src='/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/js/owl-slider/owl.carousel.min.js?ver=1.13'></script>
+<script type='text/javascript' src='/wp-content/plugins/sliderspack-all-in-one-image-sliders/assets/js/owl-slider/wpos-owl-slider-public.js?ver=1.13'></script>
+<script type="text/javascript">document.body.className = document.body.className.replace("siteorigin-panels-before-js","");</script><script src="https://wchat.freshchat.com/js/widget.js"></script>
+  <script async>
+    if (!localStorage.getItem("hasura-id")) {
+      window.fcWidget.init({
+        token: "3a3ec830-f702-4f77-a001-b8e939438956",
+        host: "https://wchat.freshchat.com",
+        tags: ["conversation_gifting", "conversation_refunds"],
+      });
+    } else if (localStorage.getItem("hasura-id")) {
+      window.fcWidget.init({
+        token: "3a3ec830-f702-4f77-a001-b8e939438956",
+        host: "https://wchat.freshchat.com",
+        tags: ["conversation_gifting", "conversation_refunds"],
+      });
+      window.fcWidget.user.get(function (resp) {
+        var status = resp && resp.status,
+          data = resp && resp.data;
+        if (status !== 200) {
+          window.fcWidget.user.setProperties({
+            externalId: "",
+            firstName: localStorage.getItem("username"),
+            lastName: "",
+            email: localStorage.getItem("email"),
+            phone: localStorage.getItem("sender_mobile"),
+            phoneCountryCode: "+91"
+          });
+        }
+      });
+    }
+	  function custom_code(){
+		if (localStorage.getItem("hasura-id") || location.pathname ===
+		"/age-gate" || location.pathname === "/legal-drinking-age") {
+			  return true
+
 			} else {
 				if (!localStorage.getItem("age-gate__agreed")) {
 					location.href = "/age-gate"
