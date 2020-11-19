@@ -10,7 +10,7 @@
     "intersection-observer": "^0.7.0",
     "mock-browser": "^0.92.14",
     "moment": "^2.24.0",
-    "postcss-cli": "^7.1.0",
+    "postcss-cli": "^8.0.0",
     "preact": "^10.3.4",
     "preact-compat": "^3.19.0",
     "prop-types": "^15.7.2",
