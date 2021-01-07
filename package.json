@@ -24,7 +24,7 @@
     "request": "^2.88.2",
     "slick-carousel": "^1.8.1",
     "urlencode": "^1.1.0",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
